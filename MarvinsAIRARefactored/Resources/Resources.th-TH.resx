@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>ไม่มี</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>ตามระยะฐานล้อ</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>ตามรถ</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>ส่งผ่านอินพุต A หรืออินพุต B โดยไม่เปลี่ยนแปลง ตามตำแหน่งของสวิตช์ — สลับเพื่อเปรียบเทียบเส้นทางสัญญาณสองเส้นได้ทันที</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>อัปเดตการตั้งค่าทุกที่ที่เลือกกราฟนี้</value>
   </data>
 </root>

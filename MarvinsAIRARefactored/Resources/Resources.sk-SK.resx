@@ -402,9 +402,6 @@
   <data name="None" xml:space="preserve">
     <value>Žiadne</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Na základňu volantu</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Na auto</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>Prepúšťa bez zmeny buď vstup A, alebo vstup B podľa polohy prepínača — prepnutím okamžite porovnáte dve cesty signálu.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Aktualizovať nastavenia všade, kde je tento graf vybraný</value>
   </data>
 </root>

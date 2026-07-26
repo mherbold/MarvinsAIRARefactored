@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Nenhum</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Por base do volante</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Por carro</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>Deixa passar sem alterações a entrada A ou a entrada B, consoante a posição do comutador — alterne para comparar de imediato dois caminhos de sinal.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Atualizar as definições em todos os locais onde este gráfico está selecionado</value>
   </data>
 </root>

@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Nincs</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Tengelytáv alapján</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Autó alapján</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>A kapcsoló állásától függően az A vagy a B bemenetet engedi át változatlanul — átkapcsolva azonnal összehasonlíthat két jelutat.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Beállítások frissítése mindenhol, ahol ez a grafikon van kiválasztva</value>
   </data>
 </root>

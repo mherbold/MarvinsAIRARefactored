@@ -23,12 +23,12 @@
 
     <StackPanel Margin="20">
 
-        <UniformGrid Columns="3">
+        <UniformGrid Columns="2">
 
-            <controls:MairaSwitch  Margin="0,10,0,0"
-                                   IsOn="{Binding PerWheelbase, Mode=TwoWay}"
-                                   Label="{Binding DataContext.Instance.Localization[PerWheelbase]}"
-                                   VerticalAlignment="Bottom" />
+            <controls:MairaSwitch Margin="0,10,0,0"
+                                  IsOn="{Binding PerCar, Mode=TwoWay}"
+                                  Label="{Binding DataContext.Instance.Localization[PerCar]}"
+                                  VerticalAlignment="Bottom" />
 
             <controls:MairaSwitch Margin="0,10,0,0"
                                   IsOn="{Binding PerTrack, Mode=TwoWay}"
@@ -38,11 +38,6 @@
             <controls:MairaSwitch Margin="0,10,0,0"
                                   IsOn="{Binding PerWetDry, Mode=TwoWay}"
                                   Label="{Binding DataContext.Instance.Localization[PerWetDry]}"
-                                  VerticalAlignment="Bottom" />
-
-            <controls:MairaSwitch Margin="0,10,0,0"
-                                  IsOn="{Binding PerCar, Mode=TwoWay}"
-                                  Label="{Binding DataContext.Instance.Localization[PerCar]}"
                                   VerticalAlignment="Bottom" />
 
             <controls:MairaSwitch Margin="0,10,0,0"

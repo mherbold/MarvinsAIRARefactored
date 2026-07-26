@@ -133,6 +133,11 @@ public class SettingsFile
 			DataContext.DataContext.Instance.Settings.RacingWheelAutoTargetMigrated = true;
 		}
 
+		// One-time: merge context buckets from before the per-wheelbase context dimension was retired.
+		// Buckets that differed only by wheelbase collapse into one, with the currently selected steering
+		// device's bucket winning; persisted below so the legacy guids leave the file for good.
+		var legacyWheelbaseContextsConsolidated = DataContext.DataContext.Instance.Settings.ConsolidateLegacyWheelbaseContexts();
+
 		// Migrate the old percentage-based auto margin to the new Nm-based auto target (value, scope,
 		// and input mappings). Must run before the controller profiles are initialized/applied so the
 		// renamed profile mapping keys are in place.
@@ -163,13 +168,17 @@ public class SettingsFile
 		// Populate the RacingWheelPage graph editor card tree from the selected graph.
 		Settings.RebuildGraphEditorViewModel();
 
-		Settings.SuppressUpdatingOfContextSettings = false;
+		// Context-settings updates stay SUPPRESSED here on purpose. The live setting values still hold whatever
+		// context was active when the app last closed, while the current context is (for now) the baseline - so
+		// any property setter firing during the rest of startup would push those stale values into the baseline
+		// buckets via UpdateSettings( true ). The first UpdateSettings( false ) in App.OnStartup re-baselines the
+		// live values from the current context and clears the suppression flag itself when it finishes.
 
 		PauseSerialization = false;
 
 		// Persist a launch-time built-in graph sync now that serialization is un-paused (the setter ignores
 		// a queue request while paused), so the recorded graph file hashes reach disk and the sync runs once.
-		if ( builtInGraphsChanged || graphIdentitiesChanged )
+		if ( builtInGraphsChanged || graphIdentitiesChanged || legacyWheelbaseContextsConsolidated )
 		{
 			QueueForSerialization = true;
 		}

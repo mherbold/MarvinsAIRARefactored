@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Выкл</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Для базы</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>для машины</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>Пропускает без изменений вход A или вход B в зависимости от положения переключателя — переключайте, чтобы мгновенно сравнить два тракта сигнала.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Обновить настройки везде, где выбран этот граф</value>
   </data>
 </root>

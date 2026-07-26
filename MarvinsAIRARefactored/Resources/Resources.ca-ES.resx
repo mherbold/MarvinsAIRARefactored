@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Cap</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Per base de rodes</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Per cotxe</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>Deixa passar sense canvis l'entrada A o l'entrada B, segons la posició del commutador — commuta per comparar a l'instant dos camins de senyal.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Actualitza la configuració a tot arreu on estigui seleccionat aquest gràfic</value>
   </data>
 </root>

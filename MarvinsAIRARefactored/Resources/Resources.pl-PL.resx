@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Brak</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Osobno dla bazy</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Osobno dla auta</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>Przepuszcza bez zmian wejście A albo wejście B, zależnie od położenia przełącznika — przełącz, aby natychmiast porównać dwie ścieżki sygnału.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Zaktualizuj ustawienia wszędzie tam, gdzie wybrano ten wykres</value>
   </data>
 </root>

@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Nessuno</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>BaseVolante</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Auto</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>Lascia passare inalterato l'ingresso A o l'ingresso B, in base alla posizione dell'interruttore — commuta per confrontare all'istante due percorsi del segnale.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Aggiorna le impostazioni ovunque sia selezionato questo grafico</value>
   </data>
 </root>

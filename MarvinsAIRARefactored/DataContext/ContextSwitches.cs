@@ -48,7 +48,6 @@ public class ContextSwitches : INotifyPropertyChanged
 
 	public ContextSwitches()
 	{
-		PerWheelbase = false;
 		PerCar = false;
 		PerTrack = false;
 		PerTrackConfiguration = false;
@@ -57,9 +56,8 @@ public class ContextSwitches : INotifyPropertyChanged
 		_initializing = false;
 	}
 
-	public ContextSwitches( bool perWheelbase, bool perCar, bool perTrack, bool perTrackConfiguration, bool perWetDry )
+	public ContextSwitches( bool perCar, bool perTrack, bool perTrackConfiguration, bool perWetDry )
 	{
-		PerWheelbase = perWheelbase;
 		PerCar = perCar;
 		PerTrack = perTrack;
 		PerTrackConfiguration = perTrackConfiguration;
@@ -67,27 +65,6 @@ public class ContextSwitches : INotifyPropertyChanged
 
 		_initializing = false;
 	}
-
-	#region Per wheelbase
-
-	private bool _perWheelbase;
-
-	public bool PerWheelbase
-	{
-		get => _perWheelbase;
-
-		set
-		{
-			if ( value != _perWheelbase )
-			{
-				_perWheelbase = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
 
 	#region Per car
 

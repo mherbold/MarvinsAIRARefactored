@@ -402,9 +402,6 @@
   <data name="None" xml:space="preserve">
     <value>Няма</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>За волан</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>За кола</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>Пропуска непроменен или вход A, или вход B според положението на превключвателя — превключете, за да сравните мигновено два сигнални пътя.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Актуализиране на настройките навсякъде, където е избран този граф</value>
   </data>
 </root>

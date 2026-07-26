@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Ingen</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Per hjulbas</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Per bil</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>Släpper igenom antingen ingång A eller ingång B oförändrad beroende på omkopplarens läge — växla för att direkt jämföra två signalvägar.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Uppdatera inställningar överallt där den här grafen är vald</value>
   </data>
 </root>

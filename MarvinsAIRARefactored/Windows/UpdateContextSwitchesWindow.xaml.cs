@@ -7,7 +7,6 @@ namespace MarvinsAIRARefactored.Windows;
 
 public partial class UpdateContextSwitchesWindow : Window
 {
-	private readonly bool _perWheelbase;
 	private readonly bool _perCar;
 	private readonly bool _perTrack;
 	private readonly bool _perTrackConfiguration;
@@ -25,7 +24,6 @@ public partial class UpdateContextSwitchesWindow : Window
 
 		DataContext = contextSwitches;
 
-		_perWheelbase = contextSwitches.PerWheelbase;
 		_perCar = contextSwitches.PerCar;
 		_perTrack = contextSwitches.PerTrack;
 		_perTrackConfiguration = contextSwitches.PerTrackConfiguration;
@@ -41,7 +39,6 @@ public partial class UpdateContextSwitchesWindow : Window
 	{
 		if ( DataContext is ContextSwitches contextSwitches )
 		{
-			contextSwitches.PerWheelbase = _perWheelbase;
 			contextSwitches.PerCar = _perCar;
 			contextSwitches.PerTrack = _perTrack;
 			contextSwitches.PerTrackConfiguration = _perTrackConfiguration;

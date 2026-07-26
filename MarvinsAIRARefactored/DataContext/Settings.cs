@@ -326,6 +326,51 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	// One-time cleanup after the per-wheelbase context dimension was retired: older settings files can contain
+	// multiple context buckets that differed only by their wheelbase guid. Buckets with the same car/track/
+	// configuration/wet-dry are merged - the bucket recorded for the currently selected steering device wins,
+	// falling back to the bucket that had no wheelbase guid, then to the first one found - and every surviving
+	// bucket is re-keyed without the legacy guid so it matches the contexts the app builds from now on.
+	// Returns true when anything was merged/re-keyed so the caller can persist the cleaned-up file.
+	public bool ConsolidateLegacyWheelbaseContexts()
+	{
+		if ( !ContextSettingsDictionary.Keys.Any( context => context.WheelbaseGuid != Guid.Empty ) )
+		{
+			return false;
+		}
+
+		var winners = new Dictionary<(string CarName, string TrackName, string TrackConfigurationName, string WetDryName), (int Rank, ContextSettings ContextSettings)>();
+
+		foreach ( var ( context, contextSettings ) in ContextSettingsDictionary )
+		{
+			var namesKey = ( context.CarName, context.TrackName, context.TrackConfigurationName, context.WetDryName );
+
+			var rank = ( context.WheelbaseGuid == RacingWheelSteeringDeviceGuid ) ? 0 : ( context.WheelbaseGuid == Guid.Empty ) ? 1 : 2;
+
+			if ( !winners.TryGetValue( namesKey, out var winner ) || ( rank < winner.Rank ) )
+			{
+				winners[ namesKey ] = ( rank, contextSettings );
+			}
+		}
+
+		App.Instance!.Logger.WriteLine( $"[Settings] Consolidating legacy per-wheelbase contexts ({ContextSettingsDictionary.Count} -> {winners.Count})" );
+
+		ContextSettingsDictionary.Clear();
+
+		foreach ( var ( namesKey, winner ) in winners )
+		{
+			ContextSettingsDictionary.Add( new Context
+			{
+				CarName = namesKey.CarName,
+				TrackName = namesKey.TrackName,
+				TrackConfigurationName = namesKey.TrackConfigurationName,
+				WetDryName = namesKey.WetDryName
+			}, winner.ContextSettings );
+		}
+
+		return true;
+	}
+
 	// One-time migration from the old percentage-based RacingWheelAutoMargin to the new absolute-Nm
 	// RacingWheelAutoTarget. Converts the live and per-context values, carries the context scope and
 	// the input mappings (both the live working copy and every saved controller profile) across, then
@@ -349,7 +394,6 @@ public class Settings : INotifyPropertyChanged
 		}
 
 		RacingWheelAutoTargetContextSwitches = new ContextSwitches(
-			RacingWheelAutoMarginContextSwitches.PerWheelbase,
 			RacingWheelAutoMarginContextSwitches.PerCar,
 			RacingWheelAutoMarginContextSwitches.PerTrack,
 			RacingWheelAutoMarginContextSwitches.PerTrackConfiguration,
@@ -603,7 +647,7 @@ public class Settings : INotifyPropertyChanged
 		var scope = RacingWheelSelectedFFBGraphNameContextSwitches;
 
 		var currentContext = new Context( scope );
-		var baselineContext = BuildBaselineContext( scope );
+		var baselineContext = new Context();
 
 		var available = currentContext.CompareTo( baselineContext ) != 0;
 
@@ -611,11 +655,13 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	// Applies an imported graph's per-module setting values onto an existing graph the user already has (matched by
-	// GraphId), writing into the current-context and/or baseline per-context stores. The imported nodes are mapped
-	// onto the existing graph's nodes by module id first (built-in-derived graphs share deterministic ids) and then
-	// by module type + position (user graphs get fresh ids on every import, so a shared graph's nodes line up by
-	// position). Nodes with no counterpart are skipped - structural divergence degrades gracefully.
-	public void ApplyImportedGraphValues( string existingGraphName, FFBGraph imported, bool toCurrentContext, bool toBaseline )
+	// GraphId), writing into the current-context and/or baseline per-context stores - and, when
+	// toEveryContextWithGraphSelected is set, into every saved car/track/config/wet-dry context bucket that has this
+	// graph selected. The imported nodes are mapped onto the existing graph's nodes by module id first
+	// (built-in-derived graphs share deterministic ids) and then by module type + position (user graphs get fresh ids
+	// on every import, so a shared graph's nodes line up by position). Nodes with no counterpart are skipped -
+	// structural divergence degrades gracefully.
+	public void ApplyImportedGraphValues( string existingGraphName, FFBGraph imported, bool toCurrentContext, bool toBaseline, bool toEveryContextWithGraphSelected = false )
 	{
 		if ( !RacingWheelFFBGraphs.TryGetValue( existingGraphName, out var localGraph ) )
 		{
@@ -630,7 +676,7 @@ public class Settings : INotifyPropertyChanged
 		var moduleIdMap = BuildImportModuleIdMap( imported, localGraph );
 
 		var currentContext = new Context( scope );
-		var baselineContext = BuildBaselineContext( scope );
+		var baselineContext = new Context();
 		var currentIsBaseline = currentContext.CompareTo( baselineContext ) == 0;
 
 		if ( toCurrentContext )
@@ -641,6 +687,20 @@ public class Settings : INotifyPropertyChanged
 		if ( toBaseline )
 		{
 			WriteImportedModuleValues( imported, localGraph.GraphId, moduleIdMap, FindContextSettings( baselineContext ).RacingWheelFFBGraphModuleValues );
+		}
+
+		// every saved context bucket that has this graph selected gets the new values too - this includes the
+		// baseline bucket when the graph is the default selection (re-writing a bucket already covered above is
+		// harmless; the writes are idempotent)
+		if ( toEveryContextWithGraphSelected )
+		{
+			foreach ( var contextSettings in ContextSettingsDictionary.Values )
+			{
+				if ( contextSettings.RacingWheelSelectedFFBGraphName == existingGraphName )
+				{
+					WriteImportedModuleValues( imported, localGraph.GraphId, moduleIdMap, contextSettings.RacingWheelFFBGraphModuleValues );
+				}
+			}
 		}
 
 		// The description and pinned quick controls are part of the author's intent for the graph, so an update
@@ -686,21 +746,6 @@ public class Settings : INotifyPropertyChanged
 		}
 
 		App.Instance!.SettingsFile.QueueForSerialization = true;
-	}
-
-	// The baseline (default) context bucket: the sim-derived dimensions forced to their defaults, so it is the bucket
-	// that is active whenever the sim isn't running. The wheelbase dimension is kept (it is the connected device, not
-	// sim data) so per-wheelbase scopes still address the right baseline.
-	private Context BuildBaselineContext( ContextSwitches scope )
-	{
-		var context = new Context();
-
-		if ( scope.PerWheelbase )
-		{
-			context.WheelbaseGuid = RacingWheelSteeringDeviceGuid;
-		}
-
-		return context;
 	}
 
 	// Human-readable label for the live context, built from the scope dimensions that resolve to a non-default value
@@ -1265,7 +1310,7 @@ public class Settings : INotifyPropertyChanged
 								{
 									var valueType = settingsPropertyValue?.GetType().Name ?? "null";
 
-									app.SettingsFile.RecordChangedSetting( $"context:{contextSettingsProperty.Name}", $"[Settings] Updating context setting {contextSettingsProperty.Name} to ({valueType}) {settingsPropertyValue} from setting ({context.WheelbaseGuid}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
+									app.SettingsFile.RecordChangedSetting( $"context:{contextSettingsProperty.Name}", $"[Settings] Updating context setting {contextSettingsProperty.Name} to ({valueType}) {settingsPropertyValue} from setting ({context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
 
 									contextSettingsProperty.SetValue( contextSettings, settingsPropertyValue );
 								}
@@ -1273,7 +1318,7 @@ public class Settings : INotifyPropertyChanged
 								{
 									var valueType = contextSettingsPropertyValue?.GetType().Name ?? "null";
 
-									app.Logger.WriteLine( $"[Settings] Updating setting {settingsProperty.Name} to ({valueType}) {contextSettingsPropertyValue} from context setting ({context.WheelbaseGuid}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
+									app.Logger.WriteLine( $"[Settings] Updating setting {settingsProperty.Name} to ({valueType}) {contextSettingsPropertyValue} from context setting ({context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
 
 									settingsProperty.SetValue( this, contextSettingsPropertyValue );
 								}
@@ -1484,7 +1529,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelEnableForceFeedbackContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelEnableForceFeedbackContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelEnableForceFeedbackButtonMappings { get; set; } = new();
 
 	#endregion
@@ -1549,7 +1594,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelWheelForceString = $"{_racingWheelWheelForce:F1}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 
-	public ContextSwitches RacingWheelWheelForceContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelWheelForceContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -1601,7 +1646,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelStrengthString = $"{_racingWheelStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelStrengthContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelStrengthContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelStrengthMinusButtonMappings { get; set; } = new();
 
@@ -1681,7 +1726,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelAutoMarginContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelAutoMarginContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelAutoMarginPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelAutoMarginMinusButtonMappings { get; set; } = new();
 
@@ -1740,7 +1785,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelAutoTargetString = $"{_racingWheelAutoTarget:F1}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 
-	public ContextSwitches RacingWheelAutoTargetContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelAutoTargetContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelAutoTargetPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelAutoTargetMinusButtonMappings { get; set; } = new();
 
@@ -1783,7 +1828,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelAlgorithmContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelAlgorithmContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -1828,7 +1873,7 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	// One scope for the whole FFB graph feature: which graph is selected AND its per-module values.
-	public ContextSwitches RacingWheelSelectedFFBGraphNameContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches RacingWheelSelectedFFBGraphNameContextSwitches { get; set; } = new( true, false, false, false );
 
 	// Snap-to-grid toggle on the node editor (global — not per-context).
 	private bool _racingWheelFFBGraphSnapToGrid = false;
@@ -2013,7 +2058,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelEnableSoftLimiterContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelEnableSoftLimiterContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -2067,7 +2112,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelDetailBoostString = $"{_racingWheelDetailBoost * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelDetailBoostContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelDetailBoostContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelDetailBoostPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelDetailBoostMinusButtonMappings { get; set; } = new();
 
@@ -2123,7 +2168,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelDetailBoostBiasString = $"{_racingWheelDetailBoostBias * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelDetailBoostBiasContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelDetailBoostBiasContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelDetailBoostBiasPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelDetailBoostBiasMinusButtonMappings { get; set; } = new();
 
@@ -2179,7 +2224,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelDeltaLimitString = $"{_racingWheelDeltaLimit:F0}{DataContext.Instance.Localization[ "DeltaLimitUnits" ]}";
 	}
 
-	public ContextSwitches RacingWheelDeltaLimitContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelDeltaLimitContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelDeltaLimitPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelDeltaLimitMinusButtonMappings { get; set; } = new();
 
@@ -2235,7 +2280,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelDeltaLimiterBiasString = $"{_racingWheelDeltaLimiterBias * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelDeltaLimiterBiasContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelDeltaLimiterBiasContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelDeltaLimiterBiasPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelDeltaLimiterBiasMinusButtonMappings { get; set; } = new();
 
@@ -2287,7 +2332,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelSlewCompressionThresholdString = $"{_racingWheelSlewCompressionThreshold * DataContext.Instance.Settings.RacingWheelMaxForce / 1000f:F2}{DataContext.Instance.Localization[ "SlewUnits" ]}";
 	}
 
-	public ContextSwitches RacingWheelSlewCompressionThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelSlewCompressionThresholdContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelSlewCompressionThresholdPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelSlewCompressionThresholdMinusButtonMappings { get; set; } = new();
 
@@ -2343,7 +2388,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelSlewCompressionRateString = $"{_racingWheelSlewCompressionRate * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelSlewCompressionRateContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelSlewCompressionRateContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelSlewCompressionRatePlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelSlewCompressionRateMinusButtonMappings { get; set; } = new();
 
@@ -2395,7 +2440,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelTotalCompressionThresholdString = $"{_racingWheelTotalCompressionThreshold * DataContext.Instance.Settings.RacingWheelMaxForce:F1}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 
-	public ContextSwitches RacingWheelTotalCompressionThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelTotalCompressionThresholdContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelTotalCompressionThresholdPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelTotalCompressionThresholdMinusButtonMappings { get; set; } = new();
 
@@ -2451,7 +2496,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelTotalCompressionRateString = $"{_racingWheelTotalCompressionRate * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelTotalCompressionRateContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelTotalCompressionRateContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelTotalCompressionRatePlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelTotalCompressionRateMinusButtonMappings { get; set; } = new();
 
@@ -2529,7 +2574,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelMultiFFBSourceSelectionContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelMultiFFBSourceSelectionContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -2594,7 +2639,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelMulti360HzDetailString = $"{_racingWheelMulti360HzDetail * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelMulti360HzDetailContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelMulti360HzDetailContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelMulti360HzDetailPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelMulti360HzDetailMinusButtonMappings { get; set; } = new();
 
@@ -2650,7 +2695,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelMultiTorqueCompressionString = $"{_racingWheelMultiTorqueCompression * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelMultiTorqueCompressionContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelMultiTorqueCompressionContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelMultiTorqueCompressionPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelMultiTorqueCompressionMinusButtonMappings { get; set; } = new();
 
@@ -2679,7 +2724,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelMultiEnableSlewPeakModeContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelMultiEnableSlewPeakModeContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -2733,7 +2778,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelMultiSlewRateReductionString = $"{_racingWheelMultiSlewRateReduction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelMultiSlewRateReductionContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelMultiSlewRateReductionContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelMultiSlewRateReductionPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelMultiSlewRateReductionMinusButtonMappings { get; set; } = new();
 
@@ -2789,7 +2834,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelMultiDetailGainString = $"{_racingWheelMultiDetailGain * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelMultiDetailGainContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelMultiDetailGainContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelMultiDetailGainPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelMultiDetailGainMinusButtonMappings { get; set; } = new();
 
@@ -2845,7 +2890,7 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelMultiOutputSmoothingString = $"{_racingWheelMultiOutputSmoothing * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches RacingWheelMultiOutputSmoothingContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelMultiOutputSmoothingContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelMultiOutputSmoothingPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelMultiOutputSmoothingMinusButtonMappings { get; set; } = new();
 
@@ -2910,7 +2955,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelOutputMinimumContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelOutputMinimumContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelOutputMinimumPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelOutputMinimumMinusButtonMappings { get; set; } = new();
 
@@ -2975,7 +3020,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelOutputMaximumContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelOutputMaximumContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelOutputMaximumPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelOutputMaximumMinusButtonMappings { get; set; } = new();
 
@@ -3038,7 +3083,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelOutputCurveContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelOutputCurveContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelOutputCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelOutputCurveMinusButtonMappings { get; set; } = new();
 
@@ -3155,7 +3200,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelLFEStrengthContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelLFEStrengthContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings RacingWheelLFEStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelLFEStrengthMinusButtonMappings { get; set; } = new();
 
@@ -3214,7 +3259,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelCrashProtectionLongitudalGForceContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelCrashProtectionLongitudalGForceContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelCrashProtectionLongitudalGForcePlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelCrashProtectionLongitudalGForceMinusButtonMappings { get; set; } = new();
 
@@ -3273,7 +3318,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelCrashProtectionLateralGForceContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelCrashProtectionLateralGForceContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelCrashProtectionLateralGForcePlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelCrashProtectionLateralGForceMinusButtonMappings { get; set; } = new();
 
@@ -3332,7 +3377,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelCrashProtectionDurationContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelCrashProtectionDurationContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelCrashProtectionDurationPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelCrashProtectionDurationMinusButtonMappings { get; set; } = new();
 
@@ -3391,7 +3436,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelCrashProtectionForceReductionContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelCrashProtectionForceReductionContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelCrashProtectionForceReductionPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelCrashProtectionForceReductionMinusButtonMappings { get; set; } = new();
 
@@ -3450,7 +3495,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelCurbProtectionShockVelocityContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelCurbProtectionShockVelocityContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelCurbProtectionShockVelocityPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelCurbProtectionShockVelocityMinusButtonMappings { get; set; } = new();
 
@@ -3509,7 +3554,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelCurbProtectionDurationContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelCurbProtectionDurationContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelCurbProtectionDurationPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelCurbProtectionDurationMinusButtonMappings { get; set; } = new();
 
@@ -3568,7 +3613,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelCurbProtectionForceReductionContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelCurbProtectionForceReductionContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelCurbProtectionForceReductionPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelCurbProtectionForceReductionMinusButtonMappings { get; set; } = new();
 
@@ -3627,7 +3672,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelParkedStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelParkedStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelParkedStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelParkedStrengthMinusButtonMappings { get; set; } = new();
 
@@ -3686,7 +3731,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelParkedFrictionContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelParkedFrictionContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelParkedFrictionPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelParkedFrictionMinusButtonMappings { get; set; } = new();
 
@@ -3745,7 +3790,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelSoftLockStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelSoftLockStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelSoftLockStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelSoftLockStrengthMinusButtonMappings { get; set; } = new();
 
@@ -3804,7 +3849,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelFrictionContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelFrictionContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelFrictionPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelFrictionMinusButtonMappings { get; set; } = new();
 
@@ -3863,7 +3908,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelWheelCenteringStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelWheelCenteringStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelWheelCenteringStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelWheelCenteringStrengthMinusButtonMappings { get; set; } = new();
 
@@ -3924,7 +3969,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelShiftRPMVibrateStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelShiftRPMVibrateStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelShiftRPMVibrateStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelShiftRPMVibrateStrengthMinusButtonMappings { get; set; } = new();
 
@@ -3985,7 +4030,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelGearChangeVibrateStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelGearChangeVibrateStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelGearChangeVibrateStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelGearChangeVibrateStrengthMinusButtonMappings { get; set; } = new();
 
@@ -4046,7 +4091,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelABSVibrateStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches RacingWheelABSVibrateStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings RacingWheelABSVibrateStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelABSVibrateStrengthMinusButtonMappings { get; set; } = new();
 
@@ -4155,7 +4200,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelCenterWheelWhileRacingContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelCenterWheelWhileRacingContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -4178,7 +4223,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelCenterWheelWhileParkedContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelCenterWheelWhileParkedContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -4201,7 +4246,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches RacingWheelFadeEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches RacingWheelFadeEnabledContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -4273,7 +4318,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerEnabledContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerEnabledContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -4327,7 +4372,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsUndersteerMinimumThresholdString = $"{_steeringEffectsUndersteerMinimumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerMinimumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerMinimumThresholdContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerMinimumThresholdPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerMinimumThresholdMinusButtonMappings { get; set; } = new();
 
@@ -4383,7 +4428,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsUndersteerMaximumThresholdString = $"{_steeringEffectsUndersteerMaximumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerMaximumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerMaximumThresholdContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerMaximumThresholdPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerMaximumThresholdMinusButtonMappings { get; set; } = new();
 
@@ -4408,7 +4453,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerWheelVibrationPatternContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerWheelVibrationPatternContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -4467,7 +4512,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerWheelVibrationStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerWheelVibrationStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerWheelVibrationStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerWheelVibrationStrengthMinusButtonMappings { get; set; } = new();
 
@@ -4519,7 +4564,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsUndersteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerWheelVibrationMinimumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerWheelVibrationMinimumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -4571,7 +4616,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsUndersteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerWheelVibrationMaximumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerWheelVibrationMaximumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -4630,7 +4675,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerWheelVibrationCurveContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerWheelVibrationCurveContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerWheelVibrationCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerWheelVibrationCurveMinusButtonMappings { get; set; } = new();
 
@@ -4655,7 +4700,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerWheelConstantForceDirectionContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerWheelConstantForceDirectionContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -4715,7 +4760,7 @@ public class Settings : INotifyPropertyChanged
 	}
 
 
-	public ContextSwitches SteeringEffectsUndersteerWheelConstantForceStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerWheelConstantForceStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerWheelConstantForceStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerWheelConstantForceStrengthMinusButtonMappings { get; set; } = new();
 
@@ -4774,7 +4819,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerWheelConstantForceCurveContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerWheelConstantForceCurveContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerWheelConstantForceCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerWheelConstantForceCurveMinusButtonMappings { get; set; } = new();
 
@@ -4828,7 +4873,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsUndersteerPedalVibrationMinimumFrequencyString = $"{_steeringEffectsUndersteerPedalVibrationMinimumFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerPedalVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerPedalVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerPedalVibrationMinimumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerPedalVibrationMinimumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -4882,7 +4927,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsUndersteerPedalVibrationMaximumFrequencyString = $"{_steeringEffectsUndersteerPedalVibrationMaximumFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerPedalVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerPedalVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerPedalVibrationMaximumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerPedalVibrationMaximumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -4941,7 +4986,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerPedalVibrationCurveContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsUndersteerPedalVibrationCurveContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsUndersteerPedalVibrationCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsUndersteerPedalVibrationCurveMinusButtonMappings { get; set; } = new();
 
@@ -4968,7 +5013,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsOversteerEnabledContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerEnabledContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -5022,7 +5067,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsOversteerMinimumThresholdString = $"{_steeringEffectsOversteerMinimumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsOversteerMinimumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerMinimumThresholdContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerMinimumThresholdPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerMinimumThresholdMinusButtonMappings { get; set; } = new();
 
@@ -5078,7 +5123,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsOversteerMaximumThresholdString = $"{_steeringEffectsOversteerMaximumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsOversteerMaximumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerMaximumThresholdContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerMaximumThresholdPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerMaximumThresholdMinusButtonMappings { get; set; } = new();
 
@@ -5103,7 +5148,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsOversteerWheelVibrationPatternContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerWheelVibrationPatternContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -5162,7 +5207,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsOversteerWheelVibrationStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerWheelVibrationStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerWheelVibrationStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerWheelVibrationStrengthMinusButtonMappings { get; set; } = new();
 
@@ -5214,7 +5259,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsOversteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsOversteerWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerWheelVibrationMinimumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerWheelVibrationMinimumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -5266,7 +5311,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsOversteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsOversteerWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerWheelVibrationMaximumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerWheelVibrationMaximumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -5325,7 +5370,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsOversteerWheelVibrationCurveContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerWheelVibrationCurveContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerWheelVibrationCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerWheelVibrationCurveMinusButtonMappings { get; set; } = new();
 
@@ -5350,7 +5395,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsOversteerWheelConstantForceDirectionContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerWheelConstantForceDirectionContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -5409,7 +5454,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsOversteerWheelConstantForceStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerWheelConstantForceStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerWheelConstantForceStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerWheelConstantForceStrengthMinusButtonMappings { get; set; } = new();
 
@@ -5468,7 +5513,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsOversteerWheelConstantForceCurveContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerWheelConstantForceCurveContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerWheelConstantForceCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerWheelConstantForceCurveMinusButtonMappings { get; set; } = new();
 
@@ -5522,7 +5567,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsOversteerPedalVibrationMinimumFrequencyString = $"{_steeringEffectsOversteerPedalVibrationMinimumFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches SteeringEffectsOversteerPedalVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerPedalVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerPedalVibrationMinimumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerPedalVibrationMinimumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -5576,7 +5621,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsOversteerPedalVibrationMaximumFrequencyString = $"{_steeringEffectsOversteerPedalVibrationMaximumFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches SteeringEffectsOversteerPedalVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerPedalVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerPedalVibrationMaximumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerPedalVibrationMaximumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -5635,7 +5680,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsOversteerPedalVibrationCurveContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsOversteerPedalVibrationCurveContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsOversteerPedalVibrationCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsOversteerPedalVibrationCurveMinusButtonMappings { get; set; } = new();
 
@@ -5660,7 +5705,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsEnabledContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsEnabledContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -5719,7 +5764,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsSeatOfPantsMinimumThresholdString = $"{_steeringEffectsSeatOfPantsMinimumThreshold:F2}{units}";
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsMinimumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsMinimumThresholdContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsMinimumThresholdPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsMinimumThresholdMinusButtonMappings { get; set; } = new();
 
@@ -5780,7 +5825,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsSeatOfPantsMaximumThresholdString = $"{_steeringEffectsSeatOfPantsMaximumThreshold:F2}{units}";
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsMaximumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsMaximumThresholdContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsMaximumThresholdPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsMaximumThresholdMinusButtonMappings { get; set; } = new();
 
@@ -5808,7 +5853,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsAlgorithmContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsAlgorithmContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -5831,7 +5876,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationPatternContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationPatternContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -5890,7 +5935,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelVibrationStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelVibrationStrengthMinusButtonMappings { get; set; } = new();
 
@@ -5942,7 +5987,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -5994,7 +6039,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -6053,7 +6098,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationCurveContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationCurveContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelVibrationCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelVibrationCurveMinusButtonMappings { get; set; } = new();
 
@@ -6078,7 +6123,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsWheelConstantForceDirectionContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsWheelConstantForceDirectionContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -6137,7 +6182,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsWheelConstantForceStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsWheelConstantForceStrengthContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelConstantForceStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelConstantForceStrengthMinusButtonMappings { get; set; } = new();
 
@@ -6196,7 +6241,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsWheelConstantForceCurveContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsWheelConstantForceCurveContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelConstantForceCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsWheelConstantForceCurveMinusButtonMappings { get; set; } = new();
 
@@ -6250,7 +6295,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyString = $"{_steeringEffectsSeatOfPantsPedalVibrationMinimumFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -6304,7 +6349,7 @@ public class Settings : INotifyPropertyChanged
 		SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyString = $"{_steeringEffectsSeatOfPantsPedalVibrationMaximumFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -6363,7 +6408,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches SteeringEffectsSeatOfPantsPedalVibrationCurveContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches SteeringEffectsSeatOfPantsPedalVibrationCurveContextSwitches { get; set; } = new( true, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsPedalVibrationCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsPedalVibrationCurveMinusButtonMappings { get; set; } = new();
 
@@ -6489,7 +6534,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsMinimumFrequencyString = $"{_pedalsMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
-	public ContextSwitches PedalsMinimumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsMinimumFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsMinimumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsMinimumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -6545,7 +6590,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsMaximumFrequencyString = $"{_pedalsMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
-	public ContextSwitches PedalsMaximumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsMaximumFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsMaximumFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsMaximumFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -6604,7 +6649,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsFrequencyCurveContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsFrequencyCurveContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsFrequencyCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsFrequencyCurveMinusButtonMappings { get; set; } = new();
 
@@ -6658,7 +6703,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsMinimumAmplitudeString = $"{_pedalsMinimumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsMinimumAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsMinimumAmplitudeContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsMinimumAmplitudePlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsMinimumAmplitudeMinusButtonMappings { get; set; } = new();
 
@@ -6712,7 +6757,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsMaximumAmplitudeString = $"{_pedalsMaximumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsMaximumAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsMaximumAmplitudeContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsMaximumAmplitudePlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsMaximumAmplitudeMinusButtonMappings { get; set; } = new();
 
@@ -6771,7 +6816,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsAmplitudeCurveContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsAmplitudeCurveContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsAmplitudeCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsAmplitudeCurveMinusButtonMappings { get; set; } = new();
 
@@ -6796,7 +6841,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsClutchEffect1ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsClutchEffect1ContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -6846,7 +6891,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsClutchStrength1String = $"{_pedalsClutchStrength1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsClutchStrength1ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsClutchStrength1ContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsClutchStrength1PlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsClutchStrength1MinusButtonMappings { get; set; } = new();
 
@@ -7039,7 +7084,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsBrakeEffect1ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsBrakeEffect1ContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -7089,7 +7134,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsBrakeStrength1String = $"{_pedalsBrakeStrength1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsBrakeStrength1ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsBrakeStrength1ContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsBrakeStrength1PlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsBrakeStrength1MinusButtonMappings { get; set; } = new();
 
@@ -7282,7 +7327,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsThrottleEffect1ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsThrottleEffect1ContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -7332,7 +7377,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsThrottleStrength1String = $"{_pedalsThrottleStrength1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsThrottleStrength1ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsThrottleStrength1ContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsThrottleStrength1PlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsThrottleStrength1MinusButtonMappings { get; set; } = new();
 
@@ -7554,7 +7599,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsShiftIntoGearFrequencyString = $"{_pedalsShiftIntoGearFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches PedalsShiftIntoGearFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsShiftIntoGearFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsShiftIntoGearFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsShiftIntoGearFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -7606,7 +7651,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsShiftIntoGearAmplitudeString = $"{_pedalsShiftIntoGearAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsShiftIntoGearAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsShiftIntoGearAmplitudeContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsShiftIntoGearAmplitudePlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsShiftIntoGearAmplitudeMinusButtonMappings { get; set; } = new();
 
@@ -7658,7 +7703,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsShiftIntoGearDurationString = $"{_pedalsShiftIntoGearDuration:F2}{DataContext.Instance.Localization[ "SecondsUnits" ]}";
 	}
 
-	public ContextSwitches PedalsShiftIntoGearDurationContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsShiftIntoGearDurationContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsShiftIntoGearDurationPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsShiftIntoGearDurationMinusButtonMappings { get; set; } = new();
 
@@ -7712,7 +7757,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsShiftIntoNeutralFrequencyString = $"{_pedalsShiftIntoNeutralFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches PedalsShiftIntoNeutralFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsShiftIntoNeutralFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsShiftIntoNeutralFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsShiftIntoNeutralFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -7764,7 +7809,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsShiftIntoNeutralAmplitudeString = $"{_pedalsShiftIntoNeutralAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsShiftIntoNeutralAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsShiftIntoNeutralAmplitudeContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsShiftIntoNeutralAmplitudePlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsShiftIntoNeutralAmplitudeMinusButtonMappings { get; set; } = new();
 
@@ -7816,7 +7861,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsShiftIntoNeutralDurationString = $"{_pedalsShiftIntoNeutralDuration:F2}{DataContext.Instance.Localization[ "SecondsUnits" ]}";
 	}
 
-	public ContextSwitches PedalsShiftIntoNeutralDurationContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsShiftIntoNeutralDurationContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsShiftIntoNeutralDurationPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsShiftIntoNeutralDurationMinusButtonMappings { get; set; } = new();
 
@@ -7870,7 +7915,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsABSEngagedFrequencyString = $"{_pedalsABSEngagedFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches PedalsABSEngagedFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsABSEngagedFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsABSEngagedFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsABSEngagedFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -7922,7 +7967,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsABSEngagedAmplitudeString = $"{_pedalsABSEngagedAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsABSEngagedAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsABSEngagedAmplitudeContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsABSEngagedAmplitudePlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsABSEngagedAmplitudeMinusButtonMappings { get; set; } = new();
 
@@ -7947,7 +7992,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsABSEngagedFadeWithBrakeEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsABSEngagedFadeWithBrakeEnabledContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -7997,7 +8042,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsStartingRPMString = $"{_pedalsStartingRPM * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsStartingRPMContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsStartingRPMContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsStartingRPMPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsStartingRPMMinusButtonMappings { get; set; } = new();
 
@@ -8022,7 +8067,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsRPMVibrateInTopGearEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsRPMVibrateInTopGearEnabledContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -8045,7 +8090,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsRPMFadeWithThrottleEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsRPMFadeWithThrottleEnabledContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -8097,7 +8142,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsShiftRPMFrequencyString = $"{_pedalsShiftRPMFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches PedalsShiftRPMFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsShiftRPMFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsShiftRPMFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsShiftRPMFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -8149,7 +8194,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsShiftRPMAmplitudeString = $"{_pedalsShiftRPMAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsShiftRPMAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsShiftRPMAmplitudeContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsShiftRPMAmplitudePlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsShiftRPMAmplitudeMinusButtonMappings { get; set; } = new();
 
@@ -8174,7 +8219,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsShiftRPMPulsateEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsShiftRPMPulsateEnabledContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -8226,7 +8271,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsWheelLockFrequencyString = $"{_pedalsWheelLockFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches PedalsWheelLockFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsWheelLockFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsWheelLockFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsWheelLockFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -8278,7 +8323,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsWheelLockSensitivityString = $"{_pedalsWheelLockSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsWheelLockSensitivityContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsWheelLockSensitivityContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsWheelLockSensitivityPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsWheelLockSensitivityMinusButtonMappings { get; set; } = new();
 
@@ -8303,7 +8348,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsWheelLockFadeWithBrakeEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsWheelLockFadeWithBrakeEnabledContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -8355,7 +8400,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsWheelSpinFrequencyString = $"{_pedalsWheelSpinFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches PedalsWheelSpinFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsWheelSpinFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsWheelSpinFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsWheelSpinFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -8407,7 +8452,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsWheelSpinSensitivityString = $"{_pedalsWheelSpinSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsWheelSpinSensitivityContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsWheelSpinSensitivityContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsWheelSpinSensitivityPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsWheelSpinSensitivityMinusButtonMappings { get; set; } = new();
 
@@ -8432,7 +8477,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsWheelSpinFadeWithThrottleEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsWheelSpinFadeWithThrottleEnabledContextSwitches { get; set; } = new( false, false, false, false );
 
 	#endregion
 
@@ -8484,7 +8529,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsClutchSlipStartString = $"{_pedalsClutchSlipStart * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsClutchSlipStartContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsClutchSlipStartContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsClutchSlipStartPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsClutchSlipStartMinusButtonMappings { get; set; } = new();
 
@@ -8538,7 +8583,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsClutchSlipEndString = $"{_pedalsClutchSlipEnd * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
-	public ContextSwitches PedalsClutchSlipEndContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsClutchSlipEndContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsClutchSlipEndPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsClutchSlipEndMinusButtonMappings { get; set; } = new();
 
@@ -8592,7 +8637,7 @@ public class Settings : INotifyPropertyChanged
 		PedalsClutchSlipFrequencyString = $"{_pedalsClutchSlipFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
 	}
 
-	public ContextSwitches PedalsClutchSlipFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsClutchSlipFrequencyContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsClutchSlipFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsClutchSlipFrequencyMinusButtonMappings { get; set; } = new();
 
@@ -8651,7 +8696,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsNoiseDamperContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsNoiseDamperContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings PedalsNoiseDamperPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsNoiseDamperMinusButtonMappings { get; set; } = new();
 
@@ -8731,7 +8776,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches TyphoonWindMasterWindPowerContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches TyphoonWindMasterWindPowerContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings TyphoonWindMasterWindPowerPlusButtonMappings { get; set; } = new();
 	public ButtonMappings TyphoonWindMasterWindPowerMinusButtonMappings { get; set; } = new();
 
@@ -8799,7 +8844,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches TyphoonWindMinimumSpeedContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches TyphoonWindMinimumSpeedContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings TyphoonWindMinimumSpeedPlusButtonMappings { get; set; } = new();
 	public ButtonMappings TyphoonWindMinimumSpeedMinusButtonMappings { get; set; } = new();
 
@@ -8858,7 +8903,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches TyphoonWindCurvingContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches TyphoonWindCurvingContextSwitches { get; set; } = new( false, false, false, false );
 	public ButtonMappings TyphoonWindCurvingPlusButtonMappings { get; set; } = new();
 	public ButtonMappings TyphoonWindCurvingMinusButtonMappings { get; set; } = new();
 
@@ -10209,7 +10254,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerAutoTuneEnabledContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerAutoTuneEnabledContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10234,7 +10279,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerAutoTuneSwayWeightContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerAutoTuneSwayWeightContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10259,7 +10304,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerAutoTuneSurgeWeightContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerAutoTuneSurgeWeightContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10282,7 +10327,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerSurgeModeContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSurgeModeContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10305,7 +10350,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerSurgeSubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSurgeSubtractGravityContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10355,7 +10400,7 @@ public class Settings : INotifyPropertyChanged
 		GTensionerSurgeMaxGString = $"{_gTensionerSurgeMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
 	}
 
-	public ContextSwitches GTensionerSurgeMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSurgeMaxGContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10405,7 +10450,7 @@ public class Settings : INotifyPropertyChanged
 		GTensionerSurgeDeadZoneString = $"{_gTensionerSurgeDeadZone * 100f:F0}%";
 	}
 
-	public ContextSwitches GTensionerSurgeDeadZoneContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSurgeDeadZoneContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10455,7 +10500,7 @@ public class Settings : INotifyPropertyChanged
 		GTensionerSurgeSmoothingString = $"{_gTensionerSurgeSmoothing * 100f:F0}%";
 	}
 
-	public ContextSwitches GTensionerSurgeSmoothingContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSurgeSmoothingContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10512,7 +10557,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerSurgeCurveContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSurgeCurveContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10535,7 +10580,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerSwayModeContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSwayModeContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10558,7 +10603,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerSwaySubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSwaySubtractGravityContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10608,7 +10653,7 @@ public class Settings : INotifyPropertyChanged
 		GTensionerSwayMaxGString = $"{_gTensionerSwayMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
 	}
 
-	public ContextSwitches GTensionerSwayMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSwayMaxGContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10658,7 +10703,7 @@ public class Settings : INotifyPropertyChanged
 		GTensionerSwayDeadZoneString = $"{_gTensionerSwayDeadZone * 100f:F0}%";
 	}
 
-	public ContextSwitches GTensionerSwayDeadZoneContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSwayDeadZoneContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10708,7 +10753,7 @@ public class Settings : INotifyPropertyChanged
 		GTensionerSwaySmoothingString = $"{_gTensionerSwaySmoothing * 100f:F0}%";
 	}
 
-	public ContextSwitches GTensionerSwaySmoothingContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSwaySmoothingContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10765,7 +10810,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerSwayCurveContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSwayCurveContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10788,7 +10833,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerHeaveModeContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerHeaveModeContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10811,7 +10856,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerHeaveSubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerHeaveSubtractGravityContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10861,7 +10906,7 @@ public class Settings : INotifyPropertyChanged
 		GTensionerHeaveMaxGString = $"{_gTensionerHeaveMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
 	}
 
-	public ContextSwitches GTensionerHeaveMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerHeaveMaxGContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10911,7 +10956,7 @@ public class Settings : INotifyPropertyChanged
 		GTensionerHeaveDeadZoneString = $"{_gTensionerHeaveDeadZone * 100f:F0}%";
 	}
 
-	public ContextSwitches GTensionerHeaveDeadZoneContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerHeaveDeadZoneContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -10961,7 +11006,7 @@ public class Settings : INotifyPropertyChanged
 		GTensionerHeaveSmoothingString = $"{_gTensionerHeaveSmoothing * 100f:F0}%";
 	}
 
-	public ContextSwitches GTensionerHeaveSmoothingContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerHeaveSmoothingContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -11018,7 +11063,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerHeaveCurveContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerHeaveCurveContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 
@@ -11041,7 +11086,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerSeatOfPantsModeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches GTensionerSeatOfPantsModeContextSwitches { get; set; } = new( false, false, false, false );
 
 	private float _gTensionerSeatOfPantsAmplitude = 120f;
 
@@ -11138,7 +11183,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches GTensionerSeatOfPantsCurveContextSwitches { get; set; } = new( false, true, false, false, false );
+	public ContextSwitches GTensionerSeatOfPantsCurveContextSwitches { get; set; } = new( true, false, false, false );
 
 	#endregion
 

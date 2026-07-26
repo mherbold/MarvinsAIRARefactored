@@ -402,9 +402,6 @@
   <data name="None" xml:space="preserve">
     <value>無</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>依輪座</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>依車輛</value>
   </data>
@@ -2418,5 +2415,8 @@
   </data>
   <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
     <value>依開關位置原樣輸出輸入 A 或輸入 B — 切換開關即可立即比較兩條訊號路徑。</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>在選擇了此圖表的所有位置更新設定</value>
   </data>
 </root>

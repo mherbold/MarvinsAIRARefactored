@@ -44,7 +44,9 @@ public class SerializableDictionary<TKey, TValue> : SortedDictionary<TKey, TValu
 
 			if ( ( key != null ) && ( value != null ) )
 			{
-				Add( key, value );
+				// indexer instead of Add - settings loading must survive a file that carries duplicate
+				// keys (e.g. hand-edited, or written by a version with a different key shape)
+				this[ key ] = value;
 			}
 
 			reader.ReadEndElement();
