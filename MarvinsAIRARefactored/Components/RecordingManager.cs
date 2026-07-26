@@ -394,7 +394,9 @@ public sealed class RecordingManager : IDisposable
 
 		var durationSeconds = (int) MathF.Round( (float) recordedSampleCount / SamplesPerSecond );
 
-		var fileName = $"{app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({durationSeconds}s)";
+		var gameName = app.GameBridge.ActiveAdapter?.GameName ?? "iRacing";
+
+		var fileName = $"{gameName} - {app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({durationSeconds}s)";
 
 		var filePath = Path.Combine( _recordingsDirectory, $"{fileName}.csv" );
 
