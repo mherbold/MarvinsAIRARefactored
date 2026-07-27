@@ -44,6 +44,8 @@ public class Sounds
 		{ SoundEffectType.FfbClipping,          new SoundEffect( "ffb_clipping",            () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingVolume,           () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingFrequencyRatio,           true,  () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingLoopStartMs,           () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingLoopEndMs ) },
 	};
 
+	public IReadOnlyDictionary<SoundEffectType, SoundEffect> SoundEffects => _soundEffects;
+
 	private SoundEffectType? _testSoundEffectType = null;
 	private int _testSoundCounter = 0;
 
