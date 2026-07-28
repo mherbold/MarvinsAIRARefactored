@@ -409,16 +409,16 @@ public sealed class RecordingManager : IDisposable
 		{
 			try
 			{
-				using var writer = new StreamWriter( filePath );
+				// the CsvWriter must be disposed before the StreamWriter closes (it flushes its buffer into the
+				// StreamWriter on dispose), and both must be closed before LoadRecording reads the file back
+				using ( var writer = new StreamWriter( filePath ) )
+				using ( var csv = new CsvWriter( writer, CultureInfo.InvariantCulture ) )
+				{
+					writer.WriteLine( Recording.FormatLine );
+					writer.WriteLine( fileName );
 
-				writer.WriteLine( Recording.FormatLine );
-				writer.WriteLine( fileName );
-
-				using var csv = new CsvWriter( writer, CultureInfo.InvariantCulture );
-
-				csv.WriteRecords( _recordingData.Take( recordedSampleCount ) );
-
-				writer.Close();
+					csv.WriteRecords( _recordingData.Take( recordedSampleCount ) );
+				}
 
 				LoadRecording( filePath );
 
