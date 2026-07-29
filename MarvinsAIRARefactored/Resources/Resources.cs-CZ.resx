@@ -1662,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Inicializuji LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Inicializuji multimediální časovač...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Inicializuji časovač přehrávání...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Inicializuji správce nahrávání...</value>

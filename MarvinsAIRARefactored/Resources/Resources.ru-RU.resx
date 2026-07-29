@@ -1662,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Инициализация LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Инициализация мультимедийного таймера...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Инициализация таймера воспроизведения...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Инициализация менеджера записи...</value>

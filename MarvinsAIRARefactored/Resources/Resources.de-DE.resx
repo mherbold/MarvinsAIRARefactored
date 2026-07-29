@@ -1665,8 +1665,8 @@ Hier ist der Link zum Spenden:</value>
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFE wird initialisiert...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Multimedia-Timer wird initialisiert...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Wiedergabe-Timer wird initialisiert...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Aufnahme-Manager wird initialisiert...</value>

@@ -263,7 +263,7 @@ public class DirectInput
 
 		// track the wheel position on the SELECTED steering device from settings, not on the initialized
 		// force feedback device - force feedback is only initialized once a simulator connects (RacingWheel
-		// runs on the multimedia timer, which is suspended until then), but the wheel position is needed
+		// runs on the playout timer, which is suspended until then), but the wheel position is needed
 		// earlier than that (the game bridge's vJoy steering passthrough runs while the game is still in
 		// its menus, before any telemetry flows)
 		var steeringDeviceInstanceGuid = ( _forceFeedbackDeviceInstanceGuid != Guid.Empty ) ? _forceFeedbackDeviceInstanceGuid : DataContext.DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid;
@@ -500,7 +500,7 @@ public class DirectInput
 	{
 		// local snapshots — ShutdownForceFeedback (app exit, suspend, device switch) nulls these fields from
 		// another thread, so the null check below must test the same references we then dereference; testing
-		// the fields directly is a race the 500 Hz playout thread eventually loses
+		// the fields directly is a race the 360 Hz playout thread eventually loses
 		var forceFeedbackEffectParameters = _forceFeedbackEffectParameters;
 		var forceFeedbackEffect = _forceFeedbackEffect;
 

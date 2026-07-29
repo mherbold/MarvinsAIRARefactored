@@ -16,7 +16,7 @@ The structs the bridges actually parse (rF2Wheel, rF2VehicleTelemetry, rF2Scorin
 represent their arrays as [InlineArray] value types (see InlineArrays.cs) instead of [MarshalAs] fields -
 byte layout is identical, but the structs stay blittable so they can be read from the shared memory bytes
 with MemoryMarshal.Read with ZERO heap allocations (Marshal.PtrToStructure allocated a new array per array
-field on every read, which was constant GC pressure on the multimedia timer worker thread). The remaining
+field on every read, which was constant GC pressure on the playout timer worker thread). The remaining
 structs are unused reference documentation and keep the original MarshalAs transcription.
 */
 

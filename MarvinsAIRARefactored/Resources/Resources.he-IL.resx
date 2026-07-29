@@ -1662,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>אתחול LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>אתחול טיימר מולטימדיה...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>אתחול טיימר הפלט...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>אתחול מנהל הקלטות...</value>

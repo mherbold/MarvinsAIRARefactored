@@ -1662,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFE başlatılıyor...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Multimedya zamanlayıcısı başlatılıyor...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Oynatma zamanlayıcısı başlatılıyor...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Kayıt yöneticisi başlatılıyor...</value>

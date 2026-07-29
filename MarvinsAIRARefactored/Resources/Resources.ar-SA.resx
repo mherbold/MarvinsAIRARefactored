@@ -1725,8 +1725,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>جارٍ تهيئة LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>جارٍ تهيئة مؤقّت الوسائط المتعددة...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>جارٍ تهيئة مؤقّت التشغيل...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>جارٍ تهيئة مدير التسجيل...</value>

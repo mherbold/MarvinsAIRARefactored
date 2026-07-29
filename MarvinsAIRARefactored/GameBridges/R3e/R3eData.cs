@@ -11,7 +11,7 @@ resize any fields - byte layout fidelity with the game is required.
 
 Arrays are represented as [InlineArray] value types (see InlineArrays.cs) instead of [MarshalAs] fields -
 byte layout is identical, but the structs stay blittable so the bridge can read them from the shared memory
-bytes with MemoryMarshal.Read with ZERO heap allocations on the multimedia timer worker thread.
+bytes with MemoryMarshal.Read with ZERO heap allocations on the playout timer worker thread.
 
 The all_drivers_data_1[128] array at the end of r3e_shared is intentionally NOT part of the R3eShared struct
 below - the map is self-describing (all_drivers_offset points at num_cars, driver_data_size is the array

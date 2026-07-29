@@ -26,7 +26,7 @@ public class AssettoCorsaRallyBridge : AssettoCorsaBridge
 	private int _lastStatusPacketId = -1;
 	private int _fillsSincePhysicsAdvance = LiveFillThreshold;
 
-	// runs at 60 Hz on the multimedia timer worker thread - must not allocate
+	// runs at 60 Hz on the playout timer worker thread - must not allocate
 	protected override void FillSlowFrameData()
 	{
 		base.FillSlowFrameData();

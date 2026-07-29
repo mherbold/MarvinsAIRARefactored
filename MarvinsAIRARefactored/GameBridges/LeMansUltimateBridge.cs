@@ -70,7 +70,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 	private GameBridgeVarTable? _varTable = null;
 	private LmuDataProvider? _provider = null;
 
-	// the bridge is pumped from the multimedia timer worker thread (see Pump); this lock keeps a Stop from
+	// the bridge is pumped from the playout timer worker thread (see Pump); this lock keeps a Stop from
 	// a background task from closing the provider while a pump is mid-read
 	private readonly object _pumpLock = new();
 	private bool _providerOpen = false;
@@ -203,7 +203,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 	#region pump
 
-	// Called from the multimedia timer worker thread (~500 Hz, kernel-scheduled) immediately before the
+	// Called from the playout timer worker thread (~360 Hz, kernel-scheduled) immediately before the
 	// racing wheel update. The 360 Hz sub-sample schedule is kept internally; zero, one, or occasionally two
 	// sub-samples are taken per timer tick, each stamped with its scheduled time.
 	public override void Pump( double totalSeconds )
@@ -815,7 +815,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		var classPosition = 1;
 
 		// the class names are compared as raw byte spans - this runs every frame, so decoding them into
-		// strings here would be steady-state garbage on the multimedia timer worker thread
+		// strings here would be steady-state garbage on the playout timer worker thread
 		foreach ( var vehicle in _scoringVehicles )
 		{
 			if ( ( vehicle.mID != playerVehicle.mID ) && ( vehicle.mPlace < playerVehicle.mPlace ) && ( (ReadOnlySpan<byte>) vehicle.mVehicleClass ).SequenceEqual( playerVehicle.mVehicleClass ) )
@@ -907,7 +907,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 	private void UpdateSessionInfo( double pumpSeconds )
 	{
 		// throttle first - the signature strings below allocate, so they are only built at 1 Hz instead of
-		// every frame (the multimedia timer worker thread must stay free of steady-state garbage)
+		// every frame (the playout timer worker thread must stay free of steady-state garbage)
 		if ( pumpSeconds - _lastSessionInfoUpdateTime < 1.0 )
 		{
 			return;

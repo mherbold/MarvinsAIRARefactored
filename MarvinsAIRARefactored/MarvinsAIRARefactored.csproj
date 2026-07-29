@@ -11,17 +11,13 @@
          so the stamp is strictly increasing with up to 100 distinct builds per day. All arithmetic is MSBuild long (integer) math. -->
     <Version>2.1.$([MSBuild]::Add($([MSBuild]::Multiply($([MSBuild]::Subtract($([MSBuild]::Divide($([System.DateTimeOffset]::UtcNow.ToUnixTimeSeconds()), 86400)), 20659)), 100)), $([MSBuild]::Divide($([MSBuild]::Multiply($([MSBuild]::Divide($([MSBuild]::Modulo($([System.DateTimeOffset]::UtcNow.ToUnixTimeSeconds()), 86400)), 60)), 100)), 1440))))</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Platforms>AnyCPU;x64</Platforms>
+    <Platforms>x64</Platforms>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
     <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
     <IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
   <!-- Scripted AdminBoxx publish (build-adminboxx.ps1) passes /p:BuildAdminBoxx=true so a
        Release build gets the ADMINBOXX define without manually toggling project settings.
        Inactive for normal builds, so it doesn't affect MAIRA or the manual VS workflow. -->

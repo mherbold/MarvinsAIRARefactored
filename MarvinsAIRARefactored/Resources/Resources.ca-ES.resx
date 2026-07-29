@@ -1662,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Inicialitzant LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Inicialitzant temporitzador multimèdia...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Inicialitzant temporitzador de reproducció...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Inicialitzant gestor de gravació...</value>

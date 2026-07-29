@@ -1662,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Yn cychwyn LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Yn cychwyn amserydd amlgyfrwng...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Yn cychwyn amserydd chwarae...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Yn cychwyn rheolwr recordio...</value>

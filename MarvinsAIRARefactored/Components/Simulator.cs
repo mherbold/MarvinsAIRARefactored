@@ -399,7 +399,7 @@ public partial class Simulator
 
 		WindowHandle = PInvoke.FindWindow( null, "iRacing.com Simulator" );
 
-		app.MultimediaTimer.Suspend = false;
+		app.PlayoutTimer.Suspend = false;
 
 		_waitingForFirstSessionInfo = true;
 
@@ -583,7 +583,7 @@ public partial class Simulator
 
 #endif
 
-		app.MultimediaTimer.Suspend = true;
+		app.PlayoutTimer.Suspend = true;
 
 		app.MainWindow.UpdateStatus();
 

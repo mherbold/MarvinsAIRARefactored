@@ -1665,8 +1665,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFEを初期化中...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>マルチメディアタイマーを初期化中...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>再生タイマーを初期化中...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>録画マネージャーを初期化中...</value>

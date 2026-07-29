@@ -8,7 +8,7 @@ namespace MarvinsAIRARefactored.GameBridges;
 // structs stay blittable and can be read straight out of a byte buffer with MemoryMarshal.Read with ZERO
 // heap allocations. The previous [MarshalAs(ByValArray)] representation forced Marshal.PtrToStructure to
 // box the struct and allocate a new managed array for every array field on every read - at the bridges'
-// 360 Hz sub-sample rate on the multimedia timer worker thread that was constant GC pressure on the FFB
+// 360 Hz sub-sample rate on the playout timer worker thread that was constant GC pressure on the FFB
 // hot path. Inline arrays index like normal arrays and convert implicitly to ReadOnlySpan<T>.
 
 [InlineArray( 2 )] public struct FloatArray2 { private float _element0; }

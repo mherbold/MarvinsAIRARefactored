@@ -1728,8 +1728,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Initializing LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Initializing multimedia timer...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Initializing playout timer...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Initializing recording manager...</value>

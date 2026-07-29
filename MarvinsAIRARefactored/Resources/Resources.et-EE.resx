@@ -1725,8 +1725,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFE lähtestamine...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Multimeediumitaimeri lähtestamine...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Taasesitustaimeri lähtestamine...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Salvestushalduri lähtestamine...</value>

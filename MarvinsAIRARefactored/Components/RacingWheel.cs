@@ -132,11 +132,11 @@ public class RacingWheel
 	private bool _lastCrashProtectionActive = false;
 	private bool _lastCurbProtectionActive = false;
 
-	// 60 Hz → 500 Hz handoff. ProcessTelemetryFrame (telemetry thread) runs the FFB graph over the six 360 Hz
+	// 60 Hz → 360 Hz handoff. ProcessTelemetryFrame (telemetry thread) runs the FFB graph over the six 360 Hz
 	// samples into the _burst* arrays, then publishes them to the _staged* arrays under the _stagedSeq seqlock
-	// (odd = writing, even = published). UpdatePlayout (multimedia timer thread) copies a published block into
+	// (odd = writing, even = published). UpdatePlayout (playout timer thread) copies a published block into
 	// the _consume* scratch, verifies the sequence didn't change, and only then shifts it into its private
-	// playout window — so a torn copy is simply discarded (≤ 2 ms of held torque), never played.
+	// playout window — so a torn copy is simply discarded (≤ 3 ms of held torque), never played.
 
 	private readonly float[] _burstOutputTorque = new float[ Simulator.SamplesPerFrame360Hz ];
 	private readonly float[] _burstInputTorque = new float[ Simulator.SamplesPerFrame360Hz ];
@@ -191,7 +191,7 @@ public class RacingWheel
 
 	/// <summary>
 	/// Rolling min/avg/max timing for one hot path, reported to the log once per second. Each instance is owned
-	/// by exactly one thread (burst = telemetry thread, playout = multimedia timer thread) — no synchronization.
+	/// by exactly one thread (burst = telemetry thread, playout = playout timer thread) — no synchronization.
 	/// The burst reporter also logs GC collection deltas, the "are we allocation-free" verification signal.
 	/// </summary>
 	private sealed class PerfStats
@@ -656,7 +656,7 @@ public class RacingWheel
 	}
 
 	/// <summary>
-	/// The 500 Hz playout — called from the multimedia timer worker thread. Owns the force feedback device state
+	/// The 360 Hz playout — called from the playout timer worker thread. Owns the force feedback device state
 	/// (suspend/resume/re-init), consumes the processed 360 Hz samples published by ProcessTelemetryFrame, and
 	/// Hermite-interpolates them up to the wheel update rate. If the next telemetry frame is late the playout
 	/// clock clamps at the newest sample (hold-last) and the underrun is counted.
@@ -794,7 +794,7 @@ public class RacingWheel
 			_playoutElapsedMilliseconds += deltaMilliseconds;
 
 			// consume a newly published block of processed 360 Hz samples (seqlock — see the field comments); a
-			// torn copy is discarded and simply plays as up to 2 ms of held torque
+			// torn copy is discarded and simply plays as up to 3 ms of held torque
 
 			var stagedSeq = Volatile.Read( ref _stagedSeq );
 
@@ -893,7 +893,7 @@ public class RacingWheel
 			app.DirectInput.UpdateForceFeedbackEffect( outputTorque );
 
 			// update graph (input traces show the staged raw samples nearest the current playout position, so the
-			// scrolling display keeps its full 500 Hz density)
+			// scrolling display keeps its full 360 Hz density)
 
 			var displaySampleIndex = Math.Min( Simulator.SamplesPerFrame360Hz - 1, (int) ( _playoutElapsedMilliseconds * 360f / 1000f ) );
 

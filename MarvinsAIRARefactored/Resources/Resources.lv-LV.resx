@@ -1725,8 +1725,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Inicializē LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Inicializē multivides taimeri...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Inicializē atskaņošanas taimeri...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Inicializē ierakstīšanas pārvaldnieku...</value>

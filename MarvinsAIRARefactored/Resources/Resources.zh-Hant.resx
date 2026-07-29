@@ -1725,8 +1725,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>正在初始化 LFE…</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>正在初始化多媒體計時器…</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>正在初始化播放計時器…</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>正在初始化錄製管理員…</value>

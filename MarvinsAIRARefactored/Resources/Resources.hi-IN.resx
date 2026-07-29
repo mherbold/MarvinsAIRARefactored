@@ -1725,8 +1725,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFE प्रारंभ हो रहा है...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>मल्टीमीडिया टाइमर प्रारंभ हो रहा है...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>प्लेबैक टाइमर प्रारंभ हो रहा है...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>रिकॉर्डिंग मैनेजर प्रारंभ हो रहा है...</value>

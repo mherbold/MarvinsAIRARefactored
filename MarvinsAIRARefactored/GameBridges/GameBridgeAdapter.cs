@@ -55,7 +55,7 @@ public abstract class GameBridgeAdapter
 	{
 	}
 
-	// called from the multimedia timer worker thread (~500 Hz, kernel-scheduled) immediately before the
+	// called from the playout timer worker thread (~360 Hz, kernel-scheduled) immediately before the
 	// racing wheel update - implementations take their 360 Hz sub-samples here on a precise clock instead
 	// of pacing their own thread with Sleep(1)
 	public virtual void Pump( double totalSeconds )

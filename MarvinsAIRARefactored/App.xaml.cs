@@ -137,7 +137,7 @@ public partial class App : Application
 	public DirectInput DirectInput { get; private set; } = null!;
 	public StreamDeck StreamDeck { get; private set; } = null!;
 	public LFE LFE { get; private set; } = null!;
-	public MultimediaTimer MultimediaTimer { get; private set; } = null!;
+	public PlayoutTimer PlayoutTimer { get; private set; } = null!;
 	public Simulator Simulator { get; private set; } = null!;
 	public RecordingManager RecordingManager { get; private set; } = null!;
 	public SteeringEffects SteeringEffects { get; private set; } = null!;
@@ -211,7 +211,7 @@ public partial class App : Application
 		DirectInput = new();
 		StreamDeck = new();
 		LFE = new();
-		MultimediaTimer = new();
+		PlayoutTimer = new();
 		Simulator = new();
 		RecordingManager = new();
 		SteeringEffects = new();
@@ -398,7 +398,7 @@ public partial class App : Application
 				RunStartupStep( "InitializingRacingWheel", RacingWheel.Initialize );
 				RunStartupStep( "InitializingSounds", Sounds.Initialize );
 				RunStartupStep( "InitializingLFE", LFE.Initialize );
-				RunStartupStep( "InitializingMultimediaTimer", MultimediaTimer.Initialize );
+				RunStartupStep( "InitializingPlayoutTimer", PlayoutTimer.Initialize );
 				RunStartupStep( "InitializingRecordingManager", RecordingManager.Initialize );
 				RunStartupStep( "InitializingTimingMarkers", TimingMarkers.Initialize );
 				RunStartupStep( "InitializingTelemetry", Telemetry.Initialize );
@@ -643,7 +643,7 @@ public partial class App : Application
 #if !ADMINBOXX
 
 		LFE.Shutdown();
-		MultimediaTimer.Shutdown();
+		PlayoutTimer.Shutdown();
 		VirtualJoystick.Shutdown();
 		Telemetry.Shutdown();
 		TradingPaints.Shutdown();
@@ -859,7 +859,7 @@ public partial class App : Application
 
 						app.RacingWheel.Tick( app );
 						app.Pedals.Tick( app );
-						app.MultimediaTimer.Tick( app );
+						app.PlayoutTimer.Tick( app );
 						app.Sounds.Tick( app );
 						app.Graph.Tick( app );
 						app.SteeringEffects.Tick( app );

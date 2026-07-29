@@ -161,7 +161,7 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 | Speech / commentary | `SpeechToText.cs`, `TextToSpeech.cs`, `Commentary.cs`, `ChatQueue.cs` |
 | Hardware integrations | `TyphoonWind.cs`, `AdminBoxx.cs`, `StreamDeck.cs`, `VirtualJoystick.cs`, `HidHotPlugMonitor.cs` |
 | Cloud / external | `CloudService.cs`, `TradingPaints.cs` |
-| App / utility | `AppManager.cs`, `Logger.cs`, `Debug.cs`, `Graph.cs`, `RecordingManager.cs`, `TimingMarkers.cs`, `SettingsFile.cs`, `MultimediaTimer.cs`, `TopLevelWindow.cs` |
+| App / utility | `AppManager.cs`, `Logger.cs`, `Debug.cs`, `Graph.cs`, `RecordingManager.cs`, `TimingMarkers.cs`, `SettingsFile.cs`, `PlayoutTimer.cs`, `TopLevelWindow.cs` |
 
 ### `DataContext/` — settings, binding, localization
 | File | Purpose |

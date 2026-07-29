@@ -1662,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>กำลังเริ่มต้น LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>กำลังเริ่มต้น Multimedia Timer...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>กำลังเริ่มต้น Playout Timer...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>กำลังเริ่มต้น Recording Manager...</value>

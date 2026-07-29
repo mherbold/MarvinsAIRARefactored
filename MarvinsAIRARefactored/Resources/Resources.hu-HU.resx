@@ -1662,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFE inicializálása...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Multimédia időzítő inicializálása...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Lejátszási időzítő inicializálása...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Felvételkezelő inicializálása...</value>

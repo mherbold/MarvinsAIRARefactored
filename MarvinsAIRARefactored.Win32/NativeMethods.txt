@@ -1,4 +1,7 @@
 ﻿AttachThreadInput
+CancelWaitableTimer
+CREATE_WAITABLE_TIMER_HIGH_RESOLUTION
+CreateWaitableTimerEx
 DBT_DEVICEARRIVAL
 DBT_DEVICEREMOVECOMPLETE
 DEV_BROADCAST_DEVICEINTERFACE_W
@@ -6,6 +9,7 @@ DEV_BROADCAST_HDR
 DEV_BROADCAST_HDR_DEVICE_TYPE
 FindWindow
 GetCurrentThreadId
+INFINITE
 GetCursorPos
 GetForegroundWindow
 GetWindowLong
@@ -22,13 +26,11 @@ SHQueryUserNotificationState
 SetForegroundWindow
 SetProcessInformation
 SetWindowLong
+SetWaitableTimer
 ShowCursor
 ShowWindow
-timeBeginPeriod
-timeEndPeriod
-timeKillEvent
-timeSetEvent
 UnregisterDeviceNotification
+WaitForSingleObject
 WINDOW_EX_STYLE
 WINDOW_STYLE
 WM_CHAR
