@@ -106,6 +106,11 @@ public class Telemetry
 		public float steeringEffectsSeatOfPantsPedalVibrationMaxFrequency;
 		public float steeringEffectsSeatOfPantsPedalVibrationCurve;
 
+		public bool soundsWheelLockIsPlaying;
+		public float soundsWheelLockVolume;
+		public bool soundsWheelSpinIsPlaying;
+		public float soundsWheelSpinVolume;
+
 		// string setters
 
 		public void SetRacingWheelAlgorithmName( string? value )
@@ -334,6 +339,13 @@ public class Telemetry
 
 		dataBuffer.pedalsThrottleFrequency = app.Pedals.ThrottleFrequency;
 		dataBuffer.pedalsThrottleAmplitude = app.Pedals.ThrottleAmplitude;
+
+		//Wheel lock and wheel spin sounds status
+
+		dataBuffer.soundsWheelLockIsPlaying = app.Sounds.SoundEffects[Sounds.SoundEffectType.WheelLock].IsPlaying;
+		dataBuffer.soundsWheelLockVolume = app.Sounds.SoundEffects[Sounds.SoundEffectType.WheelLock].Volume;
+		dataBuffer.soundsWheelSpinIsPlaying = app.Sounds.SoundEffects[Sounds.SoundEffectType.WheelSpin].IsPlaying;
+		dataBuffer.soundsWheelSpinVolume = app.Sounds.SoundEffects[Sounds.SoundEffectType.WheelSpin].Volume;
 
 		if ( _settingsUpdatesRemaining > 0 )
 		{
