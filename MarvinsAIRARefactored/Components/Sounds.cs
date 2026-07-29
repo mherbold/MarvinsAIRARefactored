@@ -48,6 +48,8 @@ public class Sounds
 		{ SoundEffectType.RecordingStopped,     new SoundEffect( "recording_stopped",       () => DataContext.DataContext.Instance.Settings.SoundsRecordingStoppedVolume,      () => DataContext.DataContext.Instance.Settings.SoundsRecordingStoppedFrequencyRatio,      false ) },
 	};
 
+	public IReadOnlyDictionary<SoundEffectType, SoundEffect> SoundEffects => _soundEffects;
+
 	private SoundEffectType? _testSoundEffectType = null;
 	private int _testSoundCounter = 0;
 

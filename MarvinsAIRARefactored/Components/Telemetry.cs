@@ -7,7 +7,7 @@ namespace MarvinsAIRARefactored.Components;
 
 public class Telemetry
 {
-	private const int Version = 7;
+	private const int Version = 8;
 
 	private const string MemoryMappedFileName = "Local\\MAIRARefactoredTelemetry";
 	private const int MaxStringLengthInBytes = 256;
@@ -105,6 +105,11 @@ public class Telemetry
 		public float steeringEffectsSeatOfPantsPedalVibrationMinFrequency;
 		public float steeringEffectsSeatOfPantsPedalVibrationMaxFrequency;
 		public float steeringEffectsSeatOfPantsPedalVibrationCurve;
+
+		public bool soundsWheelLockIsPlaying;
+		public float soundsWheelLockVolume;
+		public bool soundsWheelSpinIsPlaying;
+		public float soundsWheelSpinVolume;
 
 		// string setters
 
@@ -334,6 +339,13 @@ public class Telemetry
 
 		dataBuffer.pedalsThrottleFrequency = app.Pedals.ThrottleFrequency;
 		dataBuffer.pedalsThrottleAmplitude = app.Pedals.ThrottleAmplitude;
+
+		//Wheel lock and wheel spin sounds status
+
+		dataBuffer.soundsWheelLockIsPlaying = app.Sounds.SoundEffects[Sounds.SoundEffectType.WheelLock].IsPlaying;
+		dataBuffer.soundsWheelLockVolume = app.Sounds.SoundEffects[Sounds.SoundEffectType.WheelLock].Volume;
+		dataBuffer.soundsWheelSpinIsPlaying = app.Sounds.SoundEffects[Sounds.SoundEffectType.WheelSpin].IsPlaying;
+		dataBuffer.soundsWheelSpinVolume = app.Sounds.SoundEffects[Sounds.SoundEffectType.WheelSpin].Volume;
 
 		if ( _settingsUpdatesRemaining > 0 )
 		{
