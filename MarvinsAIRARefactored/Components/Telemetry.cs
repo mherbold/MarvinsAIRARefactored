@@ -7,7 +7,7 @@ namespace MarvinsAIRARefactored.Components;
 
 public class Telemetry
 {
-	private const int Version = 7;
+	private const int Version = 8;
 
 	private const string MemoryMappedFileName = "Local\\MAIRARefactoredTelemetry";
 	private const int MaxStringLengthInBytes = 256;
