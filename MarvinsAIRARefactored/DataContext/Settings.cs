@@ -4097,6 +4097,60 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Racing wheel - Rev lights enabled
+
+	// Stored off, so a driver on any other wheelbase is never affected. It switches itself on the first
+	// time a wheel that has a rev strip is selected, since that is what an owner of one wants, and
+	// RacingWheelRevLightsDefaultApplied below makes that a one-time thing rather than something that
+	// overrides the switch every launch.
+	private bool _racingWheelRevLightsEnabled = false;
+
+	public bool RacingWheelRevLightsEnabled
+	{
+		get => _racingWheelRevLightsEnabled;
+
+		set
+		{
+			if ( value != _racingWheelRevLightsEnabled )
+			{
+				_racingWheelRevLightsEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	// Set once, the first time a wheel with a rev strip is selected, at the same moment the switch above is
+	// turned on for them. Without it that default would reapply on every launch and quietly undo anyone who
+	// deliberately switched the lights back off.
+	public bool RacingWheelRevLightsDefaultApplied { get; set; } = false;
+
+	#endregion
+
+	#region Racing wheel - Rev lights flash at shift point
+
+	// On by default: a bar that flashes once you are past the shift point is what every other rev light
+	// does, so it is what a driver expects to see. Separate from the rev lights switch because it is
+	// purely a matter of taste, and a flashing rim is exactly the sort of thing some people cannot stand.
+	private bool _racingWheelRevLightsFlashAtShiftPoint = true;
+
+	public bool RacingWheelRevLightsFlashAtShiftPoint
+	{
+		get => _racingWheelRevLightsFlashAtShiftPoint;
+
+		set
+		{
+			if ( value != _racingWheelRevLightsFlashAtShiftPoint )
+			{
+				_racingWheelRevLightsFlashAtShiftPoint = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Racing wheel - Send chat messages
 
 	private bool _racingWheelSendChatMessages = true;

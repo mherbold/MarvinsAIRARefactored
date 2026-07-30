@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>Atualizar as configurações em todos os lugares onde este gráfico está selecionado</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Inicializando o volante Logitech...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Luzes de giro Logitech</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Acender as luzes de giro no volante</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Piscar as luzes ao passar do ponto de troca</value>
+  </data>
 </root>

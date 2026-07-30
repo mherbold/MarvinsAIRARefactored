@@ -67,6 +67,10 @@
 
 <!-- wp:list-item -->
 <li>Vibrate on gear change and ABS activation</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>RPM lights on Logitech TrueForce wheels (G PRO, RS50, G923)</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

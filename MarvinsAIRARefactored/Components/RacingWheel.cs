@@ -890,7 +890,21 @@ public class RacingWheel
 
 			// update force feedback torque
 
-			app.DirectInput.UpdateForceFeedbackEffect( outputTorque );
+			// While the Logitech rev lights are running, torque leaves on the wheel's Trueforce endpoint
+			// instead, and DirectInput is held at zero so the wheel is never driven from two places at once.
+			// The lights share an endpoint with the DirectInput force path and writing both makes the force
+			// cut out. While the Trueforce endpoint streams, the wheel takes its torque from there and
+			// ignores the shared endpoint, so the lights have nothing left to disturb.
+			if ( app.LogitechWheel.TrueforceIsStreaming )
+			{
+				app.LogitechWheel.SetOutputTorque( outputTorque );
+
+				app.DirectInput.UpdateForceFeedbackEffect( 0f );
+			}
+			else
+			{
+				app.DirectInput.UpdateForceFeedbackEffect( outputTorque );
+			}
 
 			// update graph (input traces show the staged raw samples nearest the current playout position, so the
 			// scrolling display keeps its full 360 Hz density)

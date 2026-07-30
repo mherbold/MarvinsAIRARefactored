@@ -150,6 +150,7 @@ public partial class App : Application
 	public SpeechToText SpeechToText { get; private set; } = null!;
 	public TyphoonWind TyphoonWind { get; private set; } = null!;
 	public GTensioner GTensioner { get; private set; } = null!;
+	public LogitechWheel LogitechWheel { get; private set; } = null!;
 	public HidHotPlugMonitor HidHotPlugMonitor { get; private set; } = null!;
 	public TradingPaints TradingPaints { get; private set; } = null!;
 	public AppManager AppManager { get; private set; } = null!;
@@ -224,6 +225,7 @@ public partial class App : Application
 		SpeechToText = new();
 		TyphoonWind = new();
 		GTensioner = new();
+		LogitechWheel = new();
 		HidHotPlugMonitor = new();
 		TradingPaints = new();
 		AppManager = new();
@@ -404,6 +406,7 @@ public partial class App : Application
 				RunStartupStep( "InitializingTelemetry", Telemetry.Initialize );
 				RunStartupStep( "InitializingGTensioner", GTensioner.Initialize );
 				RunStartupStep( "InitializingHidHotPlugMonitor", HidHotPlugMonitor.Initialize );
+				RunStartupStep( "InitializingLogitechWheel", LogitechWheel.Initialize );
 				RunStartupStep( "InitializingTradingPaints", TradingPaints.Initialize );
 				RunStartupStep( "InitializingGameBridge", GameBridge.Initialize );
 				RunStartupStep( "InitializingSettingsFile", SettingsFile.Initialize );
@@ -642,6 +645,7 @@ public partial class App : Application
 
 #if !ADMINBOXX
 
+		LogitechWheel.Shutdown();
 		LFE.Shutdown();
 		PlayoutTimer.Shutdown();
 		VirtualJoystick.Shutdown();
@@ -870,6 +874,7 @@ public partial class App : Application
 						app.Commentary.Tick( app );
 						app.TyphoonWind.Tick( app );
 						app.GTensioner.Tick( app );
+						app.LogitechWheel.Tick( app );
 						app.CloudService.Tick( app );
 
 						app.GripOMeterWindow?.Tick( app );

@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>Актуализиране на настройките навсякъде, където е избран този граф</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Инициализиране на волана Logitech...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Светлини за оборотите на Logitech</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Светване на светлините за оборотите на волана</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Мигане на светлините след точката за смяна на предавката</value>
+  </data>
 </root>

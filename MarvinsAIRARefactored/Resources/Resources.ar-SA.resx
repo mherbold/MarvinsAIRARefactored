@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>تحديث الإعدادات في كل مكان تم فيه اختيار هذا الرسم البياني</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>جارٍ تهيئة عجلة Logitech...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>أضواء الدوران من Logitech</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>إضاءة أضواء الدوران على عجلة القيادة</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>وميض الأضواء بعد تجاوز نقطة تغيير السرعة</value>
+  </data>
 </root>

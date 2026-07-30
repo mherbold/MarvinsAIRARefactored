@@ -159,7 +159,7 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 | Game bridge | `GameBridge.cs` (adapters for other sims live in `GameBridges/` — LMU, rFactor 2, AC / ACC / AC EVO / AC Rally, RaceRoom) |
 | Audio | `AudioManager.cs`, `Sounds.cs`, `LFE.cs` |
 | Speech / commentary | `SpeechToText.cs`, `TextToSpeech.cs`, `Commentary.cs`, `ChatQueue.cs` |
-| Hardware integrations | `TyphoonWind.cs`, `AdminBoxx.cs`, `StreamDeck.cs`, `VirtualJoystick.cs`, `HidHotPlugMonitor.cs` |
+| Hardware integrations | `TyphoonWind.cs`, `AdminBoxx.cs`, `StreamDeck.cs`, `VirtualJoystick.cs`, `HidHotPlugMonitor.cs`, `LogitechWheel.cs` |
 | Cloud / external | `CloudService.cs`, `TradingPaints.cs` |
 | App / utility | `AppManager.cs`, `Logger.cs`, `Debug.cs`, `Graph.cs`, `RecordingManager.cs`, `TimingMarkers.cs`, `SettingsFile.cs`, `PlayoutTimer.cs`, `TopLevelWindow.cs` |
 
@@ -203,7 +203,7 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 `MairaButton`, `MairaComboBox`, `MairaTextBox`, `MairaSwitch`, `MairaMappableSwitch`, `MairaKnob`, `MairaDualSlider`, `MairaTriangleBalance`, `MairaProgressBar`, `MairaExpander`, `MairaGroupBox`, `MairaTabItem`, `MairaStatusBar`, `MairaButtonMapping`, `MairaMappableButton`, `MairaAppMenuButton`, `MairaAppMenuPopup`.
 
 ### `Classes/` — helpers & data types
-Math/signal: `MathZ.cs`, `RlsWheelVelocityPredictor.cs`. Audio: `CachedSound.cs`, `CachedSoundPlayer.cs`. Recording: `Recording.cs`, `RecordingData.cs`. Serialization: `Serializer.cs`, `SerializableDictionary.cs`. Commentary/voice: `CommentaryTemplates.cs`, `UserCommentaryPhrases.cs`, `VoiceSlotSettings.cs`, `ElevenLabs.cs`, `ElevenLabsKeyStore.cs`. Graph: `GraphBase.cs`. Input/mapping: `ButtonMappings.cs`, `MappableActionCatalog.cs`, `ControllerProfile.cs`. Windows/overlays: `WindowScaler.cs`, `OverlayWindowMover.cs`, `OverlayWindowScaler.cs`. App manager: `AppManagerEntry.cs`, `AppManagerStartEntryViewModel.cs`. Hardware/util: `UsbSerialPortHelper.cs`, `CpuAffinityHelper.cs`, `HelpService.cs`, `TextBoxBehaviors.cs`, `TradingPaintsXML.cs`, `Color.cs`, `Misc.cs`.
+Math/signal: `MathZ.cs`, `RlsWheelVelocityPredictor.cs`. Audio: `CachedSound.cs`, `CachedSoundPlayer.cs`. Recording: `Recording.cs`, `RecordingData.cs`. Serialization: `Serializer.cs`, `SerializableDictionary.cs`. Commentary/voice: `CommentaryTemplates.cs`, `UserCommentaryPhrases.cs`, `VoiceSlotSettings.cs`, `ElevenLabs.cs`, `ElevenLabsKeyStore.cs`. Graph: `GraphBase.cs`. Input/mapping: `ButtonMappings.cs`, `MappableActionCatalog.cs`, `ControllerProfile.cs`. Windows/overlays: `WindowScaler.cs`, `OverlayWindowMover.cs`, `OverlayWindowScaler.cs`. App manager: `AppManagerEntry.cs`, `AppManagerStartEntryViewModel.cs`. Logitech wheel (rev lights / TrueForce): `HidDeviceHelper.cs`, `LogitechRevLightChannel.cs`, `LogitechTrueforceChannel.cs`, `LogitechTrueforceInitData.cs`. Hardware/util: `UsbSerialPortHelper.cs`, `CpuAffinityHelper.cs`, `HelpService.cs`, `TextBoxBehaviors.cs`, `TradingPaintsXML.cs`, `Color.cs`, `Misc.cs`.
 
 ### `Themes/`
 `DarkTheme.xaml`, `LightTheme.xaml`, `Generic.xaml`, plus per-control theme resources.

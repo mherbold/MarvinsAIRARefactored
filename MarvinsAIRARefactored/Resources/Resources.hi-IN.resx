@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>हर जगह सेटिंग्स अपडेट करें जहाँ यह ग्राफ़ चुना गया है</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Logitech व्हील प्रारंभ हो रहा है...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech RPM लाइटें</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>व्हील पर RPM लाइटें जलाएँ</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>शिफ्ट पॉइंट पार होने पर लाइटें ब्लिंक करें</value>
+  </data>
 </root>

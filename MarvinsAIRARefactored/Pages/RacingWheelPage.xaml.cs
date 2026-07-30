@@ -1007,6 +1007,24 @@ public partial class RacingWheelPage : UserControl
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateLFERecordingDeviceOptions" );
 	}
 
+	// The rev lights section only exists for the Logitech wheels that have a rev light strip we can drive,
+	// so it is hidden entirely on every other wheelbase rather than shown as a switch that does nothing.
+	public void UpdateRevLightsSection()
+	{
+		var app = App.Instance!;
+
+		if ( app.LogitechWheel.WheelIsSupported )
+		{
+			RevLights_MairaGroupBox.Visibility = Visibility.Visible;
+			RevLightsWheelName_TextBlock.Text = app.LogitechWheel.WheelName;
+		}
+		else
+		{
+			RevLights_MairaGroupBox.Visibility = Visibility.Collapsed;
+			RevLightsWheelName_TextBlock.Text = string.Empty;
+		}
+	}
+
 	public void UpdateSteeringDeviceSection()
 	{
 		var app = App.Instance!;

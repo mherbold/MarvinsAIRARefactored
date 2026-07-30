@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>Oppdater innstillinger overalt der denne grafen er valgt</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Initialiserer Logitech-ratt...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech turtallslys</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Tenn turtallslysene på rattet</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>La lysene blinke etter girpunktet</value>
+  </data>
 </root>

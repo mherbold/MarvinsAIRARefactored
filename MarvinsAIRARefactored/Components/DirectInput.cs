@@ -55,6 +55,11 @@ public class DirectInput
 
 	private readonly Dictionary<Guid, JoystickInfo> _joystickInfoDictionary = [];
 
+	// Product GUID per device instance, kept so callers can recover the USB vendor and product ids of a
+	// selected device (see TryGetUsbIds). Separate from _joystickInfoDictionary because it is also wanted
+	// for the force feedback device before any joystick has been polled.
+	private readonly Dictionary<Guid, Guid> _productGuidDictionary = [];
+
 	private bool _forceFeedbackInitialized = false;
 	private Guid _forceFeedbackDeviceInstanceGuid = Guid.Empty;
 	private EffectParameters? _forceFeedbackEffectParameters = null;
@@ -536,6 +541,39 @@ public class DirectInput
 		}
 	}
 
+	// True once EnumerateDevices has seen this device instance. Lets a caller tell "the device list has not
+	// been built yet" apart from "it has, and this is not a device I care about", so it knows whether a
+	// failed TryGetUsbIds is worth retrying.
+	public bool IsDeviceEnumerated( Guid deviceInstanceGuid ) => _productGuidDictionary.ContainsKey( deviceInstanceGuid );
+
+	// DirectInput packs a HID device's USB vendor and product ids into the product GUID: the first DWORD
+	// is the two ids, and the trailing bytes spell "PIDVID". Devices that are not HID (and so carry no
+	// ids) use a different GUID shape, hence the signature check before trusting the numbers.
+	public bool TryGetUsbIds( Guid deviceInstanceGuid, out ushort vendorId, out ushort productId )
+	{
+		vendorId = 0;
+		productId = 0;
+
+		if ( !_productGuidDictionary.TryGetValue( deviceInstanceGuid, out var productGuid ) )
+		{
+			return false;
+		}
+
+		var productGuidBytes = productGuid.ToByteArray();
+
+		ReadOnlySpan<byte> hidSignature = [ (byte) 'P', (byte) 'I', (byte) 'D', (byte) 'V', (byte) 'I', (byte) 'D' ];
+
+		if ( !productGuidBytes.AsSpan( 10, 6 ).SequenceEqual( hidSignature ) )
+		{
+			return false;
+		}
+
+		vendorId = (ushort) ( productGuidBytes[ 0 ] | ( productGuidBytes[ 1 ] << 8 ) );
+		productId = (ushort) ( productGuidBytes[ 2 ] | ( productGuidBytes[ 3 ] << 8 ) );
+
+		return true;
+	}
+
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	private void OnDeviceListMightHaveChanged( object? sender, EventArgs e )
 	{
@@ -570,6 +608,7 @@ public class DirectInput
 		}
 
 		_joystickInfoDictionary.Clear();
+		_productGuidDictionary.Clear();
 		ForceFeedbackDeviceList.Clear();
 
 		var deviceInstanceList = _directInput.GetDevices( DeviceClass.All, DeviceEnumerationFlags.AttachedOnly );
@@ -587,6 +626,8 @@ public class DirectInput
 				app.Logger.WriteLine( $"[DirectInput] Force feedback driver GUID: {deviceInstance.ForceFeedbackDriverGuid}" );
 
 				var description = $"{deviceInstance.ProductName} [{deviceInstance.InstanceGuid}]";
+
+				_productGuidDictionary[ deviceInstance.InstanceGuid ] = deviceInstance.ProductGuid;
 
 				if ( deviceInstance.ForceFeedbackDriverGuid != Guid.Empty )
 				{

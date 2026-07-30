@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>Aktualizovať nastavenia všade, kde je tento graf vybraný</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Inicializuje sa volant Logitech...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Kontrolky otáčok Logitech</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Rozsvietiť kontrolky otáčok na volante</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Blikať kontrolkami po prekročení bodu radenia</value>
+  </data>
 </root>

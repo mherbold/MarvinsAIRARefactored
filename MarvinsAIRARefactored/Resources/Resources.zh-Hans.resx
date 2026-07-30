@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>在选择了此图表的所有位置更新设置</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>初始化 Logitech 方向盘...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech 转速灯</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>点亮方向盘上的转速灯</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>超过换挡点后闪烁转速灯</value>
+  </data>
 </root>

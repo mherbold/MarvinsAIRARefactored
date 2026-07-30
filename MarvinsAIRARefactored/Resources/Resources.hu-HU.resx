@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>Beállítások frissítése mindenhol, ahol ez a grafikon van kiválasztva</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Logitech kormány inicializálása...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech fordulatszám-fények</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Fordulatszám-fények világítása a kormányon</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Fények villogtatása a váltási pont után</value>
+  </data>
 </root>

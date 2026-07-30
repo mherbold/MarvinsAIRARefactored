@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>Оновити налаштування всюди, де вибрано цей граф</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Ініціалізація керма Logitech...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Індикатори обертів Logitech</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Увімкнути індикатори обертів на кермі</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Блимати індикаторами після точки перемикання</value>
+  </data>
 </root>

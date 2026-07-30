@@ -2419,4 +2419,16 @@
   <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
     <value>이 그래프가 선택된 모든 곳의 설정 업데이트</value>
   </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Logitech 휠 초기화 중...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech RPM 라이트</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>휠의 RPM 라이트 켜기</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>시프트 포인트를 넘으면 라이트 깜빡이기</value>
+  </data>
 </root>

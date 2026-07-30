@@ -109,8 +109,17 @@ public partial class Simulator
 	public double SessionTime { get; private set; } = 0f;
 	public double SessionTimeRemain { get; private set; } = 0;
 	public float RedlineRPM { get; private set; } = 0f;
+	// iRacing describes a car's shift lights with four rising RPMs: First is where the first light comes
+	// on, Shift is where the shift indication begins, Last is where the final light comes on, and Blink is
+	// where they start blinking. Anything filling a rev bar wants First to Last; Shift sits in the middle
+	// and is a colour change, not the top of the range.
 	public float ShiftLightsFirstRPM { get; private set; } = 0f;
 	public float ShiftLightsShiftRPM { get; private set; } = 0f;
+	public float ShiftLightsLastRPM { get; private set; } = 0f;
+	public float ShiftLightsBlinkRPM { get; private set; } = 0f;
+
+	private float _lastLoggedShiftLightsFirstRPM = -1f;
+	private float _lastLoggedShiftLightsLastRPM = -1f;
 	public string SimMode { get; private set; } = string.Empty;
 	public float Speed { get; private set; } = 0f;
 	public bool SteeringFFBEnabled { get; private set; } = false;
@@ -501,6 +510,8 @@ public partial class Simulator
 		RedlineRPM = 0f;
 		ShiftLightsFirstRPM = 0f;
 		ShiftLightsShiftRPM = 0f;
+		ShiftLightsLastRPM = 0f;
+		ShiftLightsBlinkRPM = 0f;
 		SimMode = string.Empty;
 		SteeringFFBEnabled = false;
 		SteeringOffsetInDegrees = 0f;
@@ -617,10 +628,43 @@ public partial class Simulator
 
 		ShiftLightsFirstRPM = sessionInfo.DriverInfo.DriverCarSLFirstRPM;
 		ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLShiftRPM;
+		ShiftLightsLastRPM = sessionInfo.DriverInfo.DriverCarSLLastRPM;
+		ShiftLightsBlinkRPM = sessionInfo.DriverInfo.DriverCarSLBlinkRPM;
+
+		// Logged once per car because the four values differ a lot between cars, and anything driving a rev
+		// bar has to pick a range out of them. Session info refreshes every couple of seconds, so this only
+		// prints when the numbers actually change.
+		if ( ( ShiftLightsFirstRPM != _lastLoggedShiftLightsFirstRPM ) || ( ShiftLightsLastRPM != _lastLoggedShiftLightsLastRPM ) )
+		{
+			_lastLoggedShiftLightsFirstRPM = ShiftLightsFirstRPM;
+			_lastLoggedShiftLightsLastRPM = ShiftLightsLastRPM;
+
+			app.Logger.WriteLine( $"[Simulator] Shift lights: first={ShiftLightsFirstRPM:F0} shift={ShiftLightsShiftRPM:F0} last={ShiftLightsLastRPM:F0} blink={ShiftLightsBlinkRPM:F0} redline={RedlineRPM:F0}" );
+		}
 
 		if ( ShiftLightsShiftRPM <= ShiftLightsFirstRPM )
 		{
 			ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLBlinkRPM;
+		}
+
+		// Not every car fills all four in, and a game bridge only synthesises some of them, so each one
+		// falls back to the next value down rather than collapsing a rev bar to zero width.
+		if ( ShiftLightsLastRPM <= ShiftLightsFirstRPM )
+		{
+			ShiftLightsLastRPM = ShiftLightsShiftRPM;
+		}
+
+		if ( ShiftLightsBlinkRPM <= ShiftLightsLastRPM )
+		{
+			ShiftLightsBlinkRPM = ShiftLightsLastRPM;
+		}
+
+		// Some cars publish a blink RPM above their own redline, which the engine simply never reaches (the
+		// Global MX-5 asks for 7700 against a 7525 redline), so anything waiting on it waits forever. The
+		// limiter does hold the engine at the redline, so that is the highest point worth reacting to.
+		if ( ( RedlineRPM > 0f ) && ( ShiftLightsBlinkRPM > RedlineRPM ) )
+		{
+			ShiftLightsBlinkRPM = RedlineRPM;
 		}
 
 		// Only repaint the steering device fault message when the sim mode actually changes
