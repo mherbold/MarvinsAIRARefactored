@@ -4,14 +4,17 @@ description: >-
   Cut a new release of MarvinsAIRA Refactored: compile a Release build, publish
   via the FolderProfile, build the Inno Setup installer, then create a GitHub
   *draft* release (title "Version <ver>", tag "<ver>") with an auto-generated
-  changelog and the installer attached. The draft is a review gate: once the
+  changelog and the installer attached. Handles both stable releases from the
+  main branch and alpha releases from a feature branch (published as GitHub
+  pre-releases, never "Latest"). The draft is a review gate: once the
   maintainer reviews and approves it, the skill publishes the release and hands
   the maintainer ready-to-paste announcement text (plus the thread link) for
   their iRacing forum discussion thread. Use this whenever the user wants to
   "cut a release", "ship/publish an update", "make a
-  new release", "build the installer and put it on GitHub", "release a new
+  new release", "cut an alpha", "release the alpha branch",
+  "build the installer and put it on GitHub", "release a new
   version to my users", or anything describing shipping a new version of this app
-  to end users.
+  to end users or to alpha testers.
 ---
 
 # Release MarvinsAIRA Refactored
@@ -29,6 +32,26 @@ maintainer copy/pastes and posts it manually (see Step 6).
 
 The build/publish/installer steps are deterministic and handled by a bundled
 script. The changelog needs judgment, so that stays in this workflow.
+
+## Two release modes
+
+The current git branch decides which of two modes the whole workflow runs in.
+**Determine the mode first (Step 0) and carry it through every later step** —
+almost every step behaves differently.
+
+| | **Stable release** | **Alpha release** |
+|---|---|---|
+| Branch | `main` | any other branch (e.g. `ffb-stack`) |
+| Audience | all users | alpha testers |
+| `## This Version` covers | changes since the last **stable** release | **the branch's differences from `main`** |
+| `## Recent Updates` section | yes — curated, last 2 weeks, stable releases only | **no — omitted entirely** |
+| GitHub flags | published, marked **Latest** | **pre-release, never Latest** |
+| Forum announcement (Step 6) | yes | **no** |
+
+The two modes are deliberately kept apart on GitHub: alpha releases are flagged
+as pre-releases so they never become the `…/releases/latest` target, and stable
+release notes never mention alpha-only work (which may still be in flux, or may
+never ship in that form).
 
 ## Golden rules
 
@@ -54,6 +77,16 @@ script. The changelog needs judgment, so that stays in this workflow.
   (`Version MarvinsAIRARefactored-Setup-2.0.438.1415`) — do not let that happen.
   If the version does not match `^\d+\.\d+\.\d+\.\d+$`, stop and report it
   instead of creating a release.
+- **An alpha release is a pre-release and is never "Latest".** Create it with
+  `--prerelease` from the start (not as an afterthought at publish time) — GitHub
+  auto-promotes a newly published non-prerelease to Latest, so a draft created
+  without the flag can silently become the download every user gets. Never pass
+  `--latest` to an alpha, and never post an alpha to the forum.
+- **Stable release notes never include alpha work.** When cutting from `main`,
+  exclude pre-releases everywhere: from the "what changed since last release"
+  baseline *and* from the 2-week digest. Alpha branches carry unreleased,
+  possibly-abandoned features; announcing them to all users is wrong even if the
+  commits are recent.
 - **Run everything from the repo root** so `gh` targets the right repository.
 - **Use the personal GitHub account.** This repo belongs to `mherbold`
   (personal), but the machine also has a work account. The project is wired to a
@@ -62,6 +95,37 @@ script. The changelog needs judgment, so that stays in this workflow.
   so `gh` here should already be `mherbold`. Before the first `gh` write, sanity
   check `gh api repos/mherbold/MarvinsAIRARefactored --jq .permissions.push` is
   `true` — if it's `false` you're on the wrong account (see Troubleshooting).
+
+## Step 0 — Determine the release mode
+
+Before building anything, find out which branch you're on:
+
+```bash
+git rev-parse --abbrev-ref HEAD
+```
+
+- `main` → **stable release**.
+- anything else → **alpha release** (the branch name is the alpha's identity,
+  e.g. `ffb-stack`).
+- `HEAD` (detached) → **stop** and ask the maintainer to check out a branch. A
+  detached HEAD has no meaningful "differences from main" and no clear mode.
+
+**State the detected mode to the maintainer before you start building** — e.g.
+"You're on `ffb-stack`, so this will be an alpha release: pre-release on GitHub,
+notes scoped to the branch's differences from `main`, no forum post." A build
+takes several minutes, so a wrong-mode assumption is expensive to discover late.
+If the maintainer's request contradicts the branch (they say "cut the alpha" while
+on `main`, or "ship it to everyone" while on a feature branch), **ask** — do not
+guess. The branch is the default signal, not an override of an explicit request.
+
+For an alpha, also make sure `main` is up to date locally, since the notes are
+computed against it:
+
+```bash
+git fetch origin main
+```
+
+Use `origin/main` as the comparison base if the local `main` lags behind it.
 
 ## Step 1 — Build, publish, sign, package the installer
 
@@ -121,15 +185,61 @@ Capture `VERSION` and `INSTALLER` for the next steps.
 
 ## Step 2 — Draft the changelog from commits
 
-Find the previous release and list what changed since it:
+First establish the **baseline** — the commit that "what's new" is measured
+against. This differs by mode, and getting it wrong silently produces a wildly
+incorrect changelog.
+
+### Stable release: baseline is the last stable release *on this branch*
+
+Do **not** use bare `gh release view` — with no arguments it returns whatever
+release is flagged "Latest", which is a mutable flag that can point at the wrong
+build. Instead take the most recent release that is both **not a pre-release**
+and **an ancestor of `HEAD`**:
 
 ```bash
-# Latest existing release tag (commits since here are "new"):
-gh release view --json tagName -q .tagName
-# Then, from the repo root, the new commits (the tag still points at a commit
-# even if it was named oddly):
-git log "<lastTag>..HEAD" --no-merges --pretty=format:'%s%n%b'
+# Most recent non-prerelease tag that is actually on this branch:
+for t in $(gh release list --exclude-drafts --exclude-pre-releases --limit 20 \
+             --json tagName --jq '.[].tagName'); do
+  if git merge-base --is-ancestor "$t" HEAD 2>/dev/null; then echo "$t"; break; fi
+done
 ```
+
+The ancestor check is not paranoia — **alpha tags are not ancestors of `main`**,
+so a plain "newest tag" lookup (e.g. `git tag --sort=-creatordate | head -1`)
+lands on an alpha and produces a diff that shows the alpha's entire feature set
+as *deleted*. If the resulting baseline looks surprising, verify it before
+writing a single note:
+
+```bash
+git log --oneline --no-merges "<baseTag>..HEAD"
+git diff --stat "<baseTag>..HEAD"
+```
+
+A stable changelog built on the wrong baseline is the single most likely way this
+skill produces a badly wrong release, so confirm the commit list matches what the
+maintainer actually expects to be shipping.
+
+### Alpha release: baseline is `main`
+
+The alpha's notes describe **what this branch adds on top of `main`** — not what
+changed since the previous alpha. Testers want to know what they're getting
+relative to the shipping app, and successive alphas re-state the full feature set
+as it currently stands:
+
+```bash
+git log --no-merges "origin/main..HEAD" --pretty=format:'%s%n%b'
+git diff --stat "origin/main..HEAD"
+```
+
+(Two-dot `main..HEAD` is what you want — it's the commits reachable from `HEAD`
+but not from `main`, i.e. everything the branch adds since it diverged.)
+
+Because the baseline is a branch rather than a release, an alpha's notes are
+**cumulative and rewritten each time**: the second alpha's notes still describe
+the features the first alpha introduced, updated to reflect their current state.
+Do not write them as a delta against the previous alpha.
+
+### Then, in both modes, read the diffs
 
 **Don't stop at the commit messages — read the diffs.** The maintainer keeps
 commit messages terse, so a one-line message like "Major update to overlays
@@ -207,32 +317,77 @@ added `Resources.resx` labels.)
 
 **Show the drafted notes and the version to the user and let them edit** before
 anything is created on GitHub. This is the auto-draft-then-review step the
-maintainer asked for. (The current release's notes are what the user reviews
-here — the appended history in the next step is mechanical and doesn't need
-review.)
+maintainer asked for. On a stable release, show the Step 2.5 curated section for
+review at the same time — it is judgment work too, not a mechanical append.
+Restate the mode alongside the notes so the maintainer can catch a mis-detection
+here, while it's still free to fix.
 
-## Step 2.5 — Append the previous 4 releases' descriptions
+## Step 2.5 — Curate a "Recent Updates" section from the last 2 weeks
+
+> **Stable releases only. Skip this entire step for an alpha release** — an
+> alpha's description is just its `## This Version` notes, with no digest of past
+> releases. Jump straight to Step 3.
 
 The maintainer sometimes ships several releases a day. A user who updates
-infrequently jumps straight to the latest version and never sees the notes for
-the releases they skipped. To fix this, the final release description is the
-**current** notes followed by the descriptions of the **4 most recent existing
-releases**, so a user always sees the recent history in one place.
+infrequently jumps straight to the latest version and never sees what changed in
+the releases they skipped. So the final description has **two** sections:
 
-Pull the last 4 releases and their bodies. Exclude drafts (`isDraft=false`) —
-only already-published releases count, and the new release doesn't exist on
-GitHub yet at this point:
+1. **`## This Version`** — the Step 2 notes for the release being cut.
+2. **`## Recent Updates`** — a single **curated** bullet list summarizing the
+   releases published in the **trailing 2 weeks**, so a user who is behind sees
+   what they missed without scrolling through a wall of concatenated changelogs.
+
+This section is **written, not pasted**. Do not concatenate the prior release
+bodies verbatim — the whole point of the change is that eight releases' worth of
+raw notes is unreadable.
+
+Pull the published **stable** releases from the last 14 days. Both exclusions
+matter: `--exclude-drafts` because the new release doesn't exist on GitHub yet,
+and `--exclude-pre-releases` because **alpha releases must never leak into stable
+release notes** (see Golden rules):
 
 ```bash
-# 4 most recent published releases, newest first (tag + title):
-gh release list --exclude-drafts --limit 4 \
-  --json tagName,name,isDraft -q '.[] | select(.isDraft==false) | .tagName'
-# For each tag, fetch its description body verbatim:
-gh release view "<tag>" --json name,body -q '"\(.name)\n\(.body)"'
+# Published, non-prerelease releases from the trailing 14 days, newest first:
+gh release list --exclude-drafts --exclude-pre-releases --limit 50 \
+  --json tagName,name,publishedAt \
+  --jq '[ .[] | select((.publishedAt | fromdateiso8601) > (now - 14*24*3600)) ]
+        | .[] | "\(.tagName)\t\(.name)\t\(.publishedAt)"'
+# For each tag in that list, read its body as source material:
+gh release view "<tag>" --json name,body -q .body
 ```
 
-Keep each prior release's body **verbatim** — do not re-summarize or reword it.
-The point is to reproduce exactly what those users would have seen.
+If you ever need to double-check that nothing alpha slipped through, add
+`isPrerelease` to the `--json` field list and confirm every row is `false`.
+
+**Read only the `## This Version` portion of each prior body.** Every release
+description now carries its own `## Recent Updates` section (and older ones carry
+a `## Previous releases` section from the pre-change format). Those trailing
+sections are already-summarized history — folding them back in would double-count
+the same change across successive releases and make the list grow without bound.
+Take each release's own notes only.
+
+Curating rules:
+
+- **Exclude the release being cut right now.** `## This Version` already covers
+  it; repeating its bullets directly below is noise.
+- **Merge duplicates and supersessions.** If a feature landed over three
+  releases, or a fix was shipped and then re-fixed, it becomes **one** bullet
+  describing where things ended up — not a blow-by-blow.
+- **Collapse the churn.** "Updated translations." appears in nearly every
+  release; it earns at most one line here. Same for repeated small tweaks to one
+  feature — one bullet naming the feature.
+- **Same voice and ordering as Step 2**: features first, then fixes, translations
+  last; `!` only for genuinely brand-new capabilities; `-` bullets, sentences
+  written for end users.
+- **Keep it tight.** Roughly 6–12 bullets. If two weeks of releases won't
+  compress that far, prefer fewer, broader bullets over a long flat list — a user
+  reading this wants the shape of what changed, not an audit trail.
+- **No version numbers in the bullets.** This is a digest of the period, not a
+  per-release index; users who want the detail can open the older releases.
+
+If **no** published releases fall inside the 14-day window, omit the
+`## Recent Updates` section entirely — the description is just `## This Version`
+and its notes.
 
 ## Step 3 — Create the draft release with the installer attached
 
@@ -241,54 +396,75 @@ and write it to a temp file **outside the repo** so it can't be accidentally
 committed (use the Write tool, e.g.
 `C:\Users\marvi\AppData\Local\Temp\maira-release-notes.md`).
 
-The file's layout is: a `## This release` heading, then the current release's
-notes, then a horizontal rule, then each of the 4 prior releases under its own
-version heading (newest first), each separated by a horizontal rule so the
-boundaries are visually obvious. Use the release **title** (`Version <ver>`) as
-the per-release heading text:
+The file's layout is a `## This Version` heading with the Step 2 notes, a
+horizontal rule, then the `## Recent Updates` heading with the Step 2.5 curated
+list. A short italic line under the second heading tells the reader what they're
+looking at:
 
 ```markdown
-## This release
+## This Version
 
 - New delta monitor overlay!
-- Fixed the mapping wizard not receiving input events.
+- Fixed the mapping wizard not receiving input events while mapping a button.
 - Updated translations.
 
 ---
 
-## Previous releases
+## Recent Updates
 
-### Version 2.0.438.1100
+*Highlights from the past two weeks, in case you skipped a few versions.*
 
-- ...verbatim body of that release...
-
----
-
-### Version 2.0.437.0930
-
-- ...verbatim body of that release...
-
----
-
-### Version 2.0.436.2200
-
-- ...verbatim body of that release...
-
----
-
-### Version 2.0.435.1500
-
-- ...verbatim body of that release...
+- New Grip-O-Meter overlay!
+- Major update to the overlays system.
+    - All overlay settings are now consolidated on the Overlays page.
+    - Overlay windows can be repositioned by dragging them with a move handle.
+    - Each overlay now has its own configurable background color and opacity.
+- The game bridge now supports RaceRoom in addition to Le Mans Ultimate, rFactor 2, and the Assetto Corsa family.
+- The app now checks for updates every hour.
+- Fixed force feedback dropping out after saving a recording.
+- Fixed a mirrored track map in the Le Mans Ultimate and rFactor 2 bridges.
+- Updated translations.
 ```
 
-If fewer than 4 prior releases exist, append however many there are (and if
-there are none, the description is just the `## This release` heading and the
-current notes — no "Previous releases" section). Then create a **draft**
-release. Re-confirm the version matches `^\d+\.\d+\.\d+\.\d+$` first.
+If no releases fall in the 14-day window, the description is just the
+`## This Version` heading and its notes — no rule, no second section.
+
+### Alpha layout
+
+An alpha description is only the `## This Version` notes, under a short italic
+line making clear what the notes are relative to. There is no `## Recent Updates`
+section and no horizontal rule:
+
+```markdown
+## This Version
+
+*Alpha build from the `ffb-stack` branch — these are the changes relative to the
+current stable release.*
+
+- Brand-new modular FFB graph editor!
+    - Force feedback is now built from a graph of individual modules you can wire together.
+    - Each module has a live preview tap so you can see its output in isolation.
+- Vibration effects are now standalone nodes inside the FFB graph.
+```
+
+### Create the draft
+
+Re-confirm the version matches `^\d+\.\d+\.\d+\.\d+$` first, then create a
+**draft** release — with `--prerelease` added for an alpha:
 
 ```bash
+# Stable release (from main):
 gh release create "<ver>" \
   --draft \
+  --title "Version <ver>" \
+  --notes-file "C:/Users/marvi/AppData/Local/Temp/maira-release-notes.md" \
+  "<INSTALLER path from step 1>"
+
+# Alpha release (from a feature branch) — note --prerelease and --target:
+gh release create "<ver>" \
+  --draft \
+  --prerelease \
+  --target "<branch>" \
   --title "Version <ver>" \
   --notes-file "C:/Users/marvi/AppData/Local/Temp/maira-release-notes.md" \
   "<INSTALLER path from step 1>"
@@ -296,6 +472,15 @@ gh release create "<ver>" \
 
 This creates the tag `<ver>`, titles the release `Version <ver>`, sets the
 description, and uploads the installer as a release asset — all in one command.
+
+Two alpha-specific details:
+
+- **`--target "<branch>"`** makes the tag point at the alpha branch's commit.
+  Without it GitHub creates the tag against the repository's default branch, so
+  the tag would not contain the alpha work at all.
+- **`--prerelease` belongs here, at create time**, not at publish time. A draft
+  created without it is auto-promoted to "Latest" the moment it's published,
+  which would push an alpha build to every user checking for updates.
 
 If a release or tag named `<ver>` already exists, stop and tell the user rather
 than overwriting. (Normally the version's build number changes every build, so
@@ -306,55 +491,83 @@ collisions shouldn't happen — a collision usually means nothing was rebuilt.)
 Verify the draft looks right and report it back to the user:
 
 ```bash
-gh release view "<ver>" --json name,tagName,isDraft,url,assets \
-  --jq '{name, tag: .tagName, isDraft, url, assets: [.assets[].name]}'
+gh release view "<ver>" --json name,tagName,isDraft,isPrerelease,url,assets \
+  --jq '{name, tag: .tagName, isDraft, isPrerelease, url, assets: [.assets[].name]}'
 ```
 
 Confirm the title is `Version <ver>`, the tag is the bare `<ver>`, `isDraft` is
-`true`, and the installer is attached. Give the user the draft URL so they can
-open it on GitHub and review the notes, the version, and the attached installer.
+`true`, and the installer is attached. **Check `isPrerelease` matches the mode**:
+`true` for an alpha, `false` for a stable release. If an alpha came back `false`,
+fix it now — `gh release edit "<ver>" --prerelease` — rather than after
+publishing, when it may already have been promoted to Latest.
 
-**Then wait for explicit approval.** Ask whether to publish it — and whether they
-also want the forum announcement text (Step 6). Do not proceed to Step 5 until the
-maintainer clearly says yes. If they want changes to the notes first, edit the
-draft (`gh release edit "<ver>" --notes-file "<path>"`) and re-confirm.
+Give the user the draft URL so they can open it on GitHub and review the notes,
+the version, and the attached installer.
+
+**Then wait for explicit approval.** Ask whether to publish it — and, for a stable
+release only, whether they also want the forum announcement text (Step 6). Do not
+proceed to Step 5 until the maintainer clearly says yes. If they want changes to
+the notes first, edit the draft (`gh release edit "<ver>" --notes-file "<path>"`)
+and re-confirm.
 
 ## Step 5 — Publish the release
 
-Once the maintainer approves, flip the draft to a published release and mark it
-the latest, so the `…/releases/latest` link the forum post uses resolves to it:
+Once the maintainer approves, flip the draft to a published release. The flags
+differ by mode:
 
 ```bash
+# Stable release — publish and mark it Latest, so the …/releases/latest link
+# the forum post uses resolves to it:
 gh release edit "<ver>" --draft=false --latest
+
+# Alpha release — publish as a pre-release and explicitly keep it off Latest:
+gh release edit "<ver>" --draft=false --prerelease --latest=false
 ```
 
-Confirm it's live:
+Confirm it's live and correctly flagged:
 
 ```bash
-gh release view "<ver>" --json isDraft,isLatest,url \
-  --jq '{isDraft, isLatest, url}'
+gh release view "<ver>" --json isDraft,isLatest,isPrerelease,url \
+  --jq '{isDraft, isLatest, isPrerelease, url}'
 ```
 
-`isDraft` should now be `false` and `isLatest` `true`. **Publish before producing
-the forum announcement text** — the announcement links to `…/releases/latest`,
-which only points at this version once it's published and marked latest.
+- **Stable**: `isDraft=false`, `isLatest=true`, `isPrerelease=false`.
+- **Alpha**: `isDraft=false`, `isLatest=false`, `isPrerelease=true`.
+
+If an alpha comes back with `isLatest=true`, fix it immediately with
+`gh release edit "<ver>" --latest=false` and then re-check that the *stable*
+release still holds the Latest flag — `gh release list --limit 5` should show it
+there. Until that's true, every user's update check is pointed at the alpha
+build.
+
+For a stable release, **publish before producing the forum announcement text** —
+the announcement links to `…/releases/latest`, which only points at this version
+once it's published and marked latest.
+
+**An alpha release ends here.** There is no forum announcement (Step 6) — the
+thread is for the general user base, and its "get the latest version" link
+deliberately never resolves to an alpha. Instead, hand the maintainer the release
+URL so they can share it with their alpha testers however they normally do.
 
 ## Step 6 — Output the forum announcement text for the maintainer to post
+
+> **Stable releases only.** Alpha releases are never announced in the forum
+> thread — skip this step entirely (see the end of Step 5).
 
 If the maintainer wants the announcement (Step 4), **do not post it yourself and
 do not drive any browser.** Just output the comment text as a copy/paste block
 and give them the clickable thread link — they paste and post it manually.
 
 **The comment uses only *this* release's notes** — the current notes from Step 2,
-**not** the appended history from Step 2.5. Output it in a fenced code block (so
-it copies cleanly), exactly in this shape. The first line includes the version
+**not** the curated 2-week digest from Step 2.5. Output it in a fenced code block
+(so it copies cleanly), exactly in this shape. The first line includes the version
 number, and the `-` bullets are kept verbatim (they read fine as plain lines):
 
 ````
 ```
 New version released - version <ver>
 
-<this release's notes — the current "## This release" bullets, verbatim>
+<this release's notes — the "## This Version" bullets, verbatim>
 
 Get the latest version here: https://github.com/mherbold/MarvinsAIRARefactored/releases/latest
 ```
@@ -407,6 +620,25 @@ only if they ask.
   scope is a real `gh auth refresh -h github.com -s workflow` warranted.
 - **User wants to abort after the draft exists** → `gh release delete "<ver>"
   --yes --cleanup-tag` removes the draft and its tag.
+- **The changelog diff looks enormous and shows features being *deleted*** →
+  you picked an alpha tag as the stable baseline. Alpha tags are not ancestors of
+  `main`, so diffing `main` against one shows the whole alpha branch as removed.
+  Re-run the Step 2 baseline selector, which filters on both
+  `--exclude-pre-releases` and `git merge-base --is-ancestor`.
+- **An alpha got published as "Latest"** → `gh release edit "<alphaVer>"
+  --latest=false --prerelease`, then re-promote the correct stable release with
+  `gh release edit "<stableVer>" --latest`. Verify with `gh release list --limit 5`
+  that exactly one release shows `Latest` and it's the stable one. This is urgent:
+  while it's wrong, the app's update check and the forum's `…/releases/latest`
+  link both point at the alpha.
+- **An alpha's tag doesn't contain the alpha work** → `--target "<branch>"` was
+  omitted at create time, so GitHub tagged the default branch. Delete the release
+  and its tag (`gh release delete "<ver>" --yes --cleanup-tag`) and re-create it
+  with `--target`.
+- **Stable notes mention an alpha-only feature** → the 2-week digest query was
+  missing `--exclude-pre-releases`. Fix the notes before publishing
+  (`gh release edit "<ver>" --notes-file "<path>"`); users should never be told
+  about a feature that isn't in their build.
 - **Forum: published but `…/releases/latest` still shows the old version** →
   make sure Step 5 used `--latest`; GitHub resolves `/releases/latest` to the
   release flagged latest. (This matters because the announcement text links to
