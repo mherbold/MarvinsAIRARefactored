@@ -524,21 +524,31 @@ gh release edit "<ver>" --draft=false --latest
 gh release edit "<ver>" --draft=false --prerelease --latest=false
 ```
 
-Confirm it's live and correctly flagged:
+Confirm it's live and correctly flagged. **`isLatest` is not a valid
+`gh release view --json` field** — asking for it fails the whole command, so check
+the Latest flag separately via the API endpoint that actually backs the
+`…/releases/latest` link:
 
 ```bash
-gh release view "<ver>" --json isDraft,isLatest,isPrerelease,url \
-  --jq '{isDraft, isLatest, isPrerelease, url}'
+# Draft / pre-release state:
+gh release view "<ver>" --json isDraft,isPrerelease,tagName,url \
+  --jq '{isDraft, isPrerelease, tag: .tagName, url}'
+# What …/releases/latest actually resolves to right now:
+gh api repos/mherbold/MarvinsAIRARefactored/releases/latest --jq '.tag_name'
+# Human-readable cross-check (the Latest / Pre-release column):
+gh release list --limit 4
 ```
 
-- **Stable**: `isDraft=false`, `isLatest=true`, `isPrerelease=false`.
-- **Alpha**: `isDraft=false`, `isLatest=false`, `isPrerelease=true`.
+- **Stable**: `isDraft=false`, `isPrerelease=false`, and `/releases/latest`
+  returns **this** version.
+- **Alpha**: `isDraft=false`, `isPrerelease=true`, and `/releases/latest` still
+  returns the previous **stable** version — not the alpha.
 
-If an alpha comes back with `isLatest=true`, fix it immediately with
-`gh release edit "<ver>" --latest=false` and then re-check that the *stable*
-release still holds the Latest flag — `gh release list --limit 5` should show it
-there. Until that's true, every user's update check is pointed at the alpha
-build.
+If `/releases/latest` returns an alpha, fix it immediately with
+`gh release edit "<alphaVer>" --latest=false --prerelease`, then re-promote the
+stable release with `gh release edit "<stableVer>" --latest` and re-run the API
+check. Until it returns the stable version, every user's update check is pointed
+at the alpha build.
 
 For a stable release, **publish before producing the forum announcement text** —
 the announcement links to `…/releases/latest`, which only points at this version
@@ -627,10 +637,14 @@ only if they ask.
   `--exclude-pre-releases` and `git merge-base --is-ancestor`.
 - **An alpha got published as "Latest"** → `gh release edit "<alphaVer>"
   --latest=false --prerelease`, then re-promote the correct stable release with
-  `gh release edit "<stableVer>" --latest`. Verify with `gh release list --limit 5`
-  that exactly one release shows `Latest` and it's the stable one. This is urgent:
-  while it's wrong, the app's update check and the forum's `…/releases/latest`
-  link both point at the alpha.
+  `gh release edit "<stableVer>" --latest`. Verify with
+  `gh api repos/mherbold/MarvinsAIRARefactored/releases/latest --jq '.tag_name'`
+  that it returns the stable version (and `gh release list --limit 5` shows
+  `Latest` on exactly that one). This is urgent: while it's wrong, the app's
+  update check and the forum's `…/releases/latest` link both point at the alpha.
+- **`Unknown JSON field: "isLatest"`** → `gh release view --json` has no
+  `isLatest` field, and one bad field name fails the entire command. Use the
+  `gh api …/releases/latest` check in Step 5 instead.
 - **An alpha's tag doesn't contain the alpha work** → `--target "<branch>"` was
   omitted at create time, so GitHub tagged the default branch. Delete the release
   and its tag (`gh release delete "<ver>" --yes --cleanup-tag`) and re-create it
