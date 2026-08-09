@@ -115,6 +115,8 @@ public partial class AdminBoxx
 	private bool _globalChatEnabled = true;
 	private bool _carNumberIsRequired = false;
 
+	private bool _deviceScanAttempted = false;
+
 	// Xtreme Scoring Race Control integration — WM_APP message IDs
 	private const uint WM_APP = 0x8000;
 	private const uint XSRC_YELLOW_FLAG = WM_APP + 1;
@@ -240,22 +242,6 @@ public partial class AdminBoxx
 
 		_timer.Start();
 
-		_usbSerialPortHelper.Initialize();
-
-		if ( !_usbSerialPortHelper.DeviceFound )
-		{
-			app.Logger.WriteLine( "[AdminBoxx] Device not found" );
-
-			var localization = DataContext.DataContext.Instance.Localization;
-
-			app.Dispatcher.Invoke( () =>
-			{
-				MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.IsEnabled = false;
-				MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
-				MainWindow._adminBoxxPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
-			} );
-		}
-
 		app.Logger.WriteLine( "[AdminBoxx] <<< Initialize" );
 	}
 
@@ -270,15 +256,17 @@ public partial class AdminBoxx
 		app.Logger.WriteLine( "[AdminBoxx] <<< Shutdown" );
 	}
 
-	public void RetryDevice()
+	// The serial port device scan is slow (WMI enumeration plus handshake probes), so it does not run at
+	// startup - it runs lazily on the first Connect() and on demand from the retry button on the page.
+	public void ScanForDevice()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[AdminBoxx] RetryDevice >>>" );
+		app.Logger.WriteLine( "[AdminBoxx] ScanForDevice >>>" );
+
+		_deviceScanAttempted = true;
 
 		_usbSerialPortHelper.Initialize();
-
-		var localization = DataContext.DataContext.Instance.Localization;
 
 		app.Dispatcher.Invoke( () =>
 		{
@@ -290,9 +278,22 @@ public partial class AdminBoxx
 			}
 			else
 			{
+				MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.IsEnabled = false;
 				MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.ErrorMessage = _usbSerialPortHelper.LastErrorMessage;
+				MainWindow._adminBoxxPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
 			}
 		} );
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< ScanForDevice" );
+	}
+
+	public void RetryDevice()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] RetryDevice >>>" );
+
+		ScanForDevice();
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< RetryDevice" );
 	}
@@ -303,9 +304,18 @@ public partial class AdminBoxx
 
 		app.Logger.WriteLine( "[AdminBoxx] Connect >>>" );
 
+		var scanRanThisConnect = false;
+
+		if ( !_deviceScanAttempted )
+		{
+			ScanForDevice();
+
+			scanRanThisConnect = true;
+		}
+
 		IsConnected = _usbSerialPortHelper.Open();
 
-		if ( !IsConnected )
+		if ( !IsConnected && !scanRanThisConnect )
 		{
 			// The device may have re-enumerated on a different COM port (hard reset after a firmware update, or a replug)
 			app.Logger.WriteLine( "[AdminBoxx] Open failed - rescanning for the device and retrying" );

@@ -32,7 +32,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Turns the AdminBoxx connection on/off. If the device is not detected, MAIRA disables this control and shows <strong>Device not found</strong>.</p>
+<p>Turns the AdminBoxx connection on/off. The first connection attempt after MAIRA starts also scans your USB serial ports to find the device, so it can take a few extra seconds. If the device is not detected, MAIRA disables this control and shows <strong>Device not found</strong>.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
