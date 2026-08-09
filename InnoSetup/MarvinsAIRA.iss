@@ -75,6 +75,7 @@ Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsA
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAIRARefactored\bin\publish\*.config"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Calibration\*.csv"; DestDir: "{userdocs}\MAIRA\Calibration"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Recordings\*.csv"; DestDir: "{userdocs}\MAIRA\Recordings"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SBT\*"; DestDir: "{userdocs}\MAIRA\SBT"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\*"; DestDir: "{userdocs}\MAIRA\SimHub"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Sounds\*.wav"; DestDir: "{userdocs}\MAIRA\Sounds"; Flags: ignoreversion recursesubdirs createallsubdirs
