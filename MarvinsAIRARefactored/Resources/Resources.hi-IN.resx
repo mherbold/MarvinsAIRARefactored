@@ -2200,21 +2200,6 @@
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>अंडरस्टीयर और ओवरस्टीयर स्टीयरिंग इफेक्ट्स पेज पर अक्षम हैं</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>Alan Le के हाइब्रिड जैसा, लेकिन 60/360 Hz मिश्रण ड्राइविंग परिस्थितियों के अनुसार अपने आप ढल जाता है, जिससे लोड में अतिरिक्त स्थिरता मिलती है।</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>स्मूद 60 Hz सिग्नल को विस्तृत 360 Hz सिग्नल के साथ मिलाता है, फिर उसे मज़बूत लेकिन नियंत्रित अनुभूति के लिए संपीड़ित और आकार देता है।</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>कच्चे 360 Hz सिग्नल को स्लू और कुल संपीड़न से साधता है — कठोर चोटियों के बिना ठोस, विस्तृत अनुभूति।</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>अधिकांश ड्राइवरों के लिए अनुशंसित ग्राफ़ — प्रेडिक्शन के साथ पूरा 360 Hz सिग्नल, और सड़क की बारीक अनुभूति को बढ़ाने या घटाने के लिए एक ही डिटेल गेन।</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>क्लासिक स्मूद अनुभूति — iRacing का मूल 60 Hz सिग्नल, हल्के इंटरपोलेशन के साथ, ऊपर से सामान्य प्रभाव और सुरक्षा के साथ।</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>इस ग्राफ़ के लिए विवरण जोड़ें</value>
   </data>
@@ -2430,5 +2415,164 @@
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>शिफ्ट पॉइंट पार होने पर लाइटें ब्लिंक करें</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB ग्राफ़ सेटिंग्स</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>अधिकांश ड्राइवरों के लिए अनुशंसित — विलंब कम करने के लिए प्रेडिक्शन के साथ पूरा 360 Hz FFB सिग्नल। सड़क और टायर की डिटेल बढ़ाने या घटाने के लिए गेन को समायोजित करें।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, जिसे व्हील फ़ोर्स में बदला जाता है। इसके काम करने के लिए आपको iRacing में बेस शेकर LFE चालू करना होगा और VB-CABLE का उपयोग करना होगा।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>फ़्रिक्शन जैसा एक बल जो बहुत धीमी गति में या खड़ी कार में व्हील को दोलन करने से रोकता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग बल जो व्हील को वापस सेंटर की ओर खींचता है; यह केवल तभी प्रभावी होता है जब कार धीमी चल रही हो या खड़ी हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>सड़क और टायर की डिटेल बढ़ाने या घटाने के लिए इस मान को समायोजित करें। 1.00x का गेन मूल iRacing फ़ीलिंग को बनाए रखता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>क्रैश का पता चलने पर बल को बहुत कम कर देता है और फिर उसे सहजता से वापस बढ़ाता है — ताकि कोई बड़ी टक्कर व्हील को आपके हाथों से न छीन सके। फ़ोर्स रिडक्शन तय करता है कि कितना बल हटाया जाए।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप अगले टायरों की ग्रिप खोने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप कार के पिछले हिस्से के फिसलने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल — यानी शैसी पर लोड बढ़ने का अहसास। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>एक थ्रेशोल्ड से नीचे बहुत हल्का बदलता हुआ डिदर जोड़ता है ताकि व्हील का मैकेनिज़्म सक्रिय रहे और महीन डिटेल सामने आए — यह तब उपयोगी है जब आपके पास Logitech G29 जैसा कम पावर वाला व्हील हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>सॉफ़्ट लिमिटर FFB सिग्नल को क्लिप होने पर सपाट होने के बजाय कुछ डिटेल बनाए रखने देता है।</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, जिसे व्हील फ़ोर्स में बदला जाता है। इसके काम करने के लिए आपको iRacing में बेस शेकर LFE चालू करना होगा और VB-CABLE का उपयोग करना होगा।</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>फ़्रिक्शन जैसा एक बल जो बहुत धीमी गति में या खड़ी कार में व्हील को दोलन करने से रोकता है।</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग बल जो व्हील को वापस सेंटर की ओर खींचता है; यह केवल तभी प्रभावी होता है जब कार धीमी चल रही हो या खड़ी हो।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>क्रैश का पता चलने पर बल को बहुत कम कर देता है और फिर उसे सहजता से वापस बढ़ाता है — ताकि कोई बड़ी टक्कर व्हील को आपके हाथों से न छीन सके। फ़ोर्स रिडक्शन तय करता है कि कितना बल हटाया जाए।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप अगले टायरों की ग्रिप खोने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप कार के पिछले हिस्से के फिसलने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल — यानी शैसी पर लोड बढ़ने का अहसास। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>एक थ्रेशोल्ड से नीचे बहुत हल्का बदलता हुआ डिदर जोड़ता है ताकि व्हील का मैकेनिज़्म सक्रिय रहे और महीन डिटेल सामने आए — यह तब उपयोगी है जब आपके पास Logitech G29 जैसा कम पावर वाला व्हील हो।</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>सॉफ़्ट लिमिटर FFB सिग्नल को क्लिप होने पर सपाट होने के बजाय कुछ डिटेल बनाए रखने देता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, जिसे व्हील फ़ोर्स में बदला जाता है। इसके काम करने के लिए आपको iRacing में बेस शेकर LFE चालू करना होगा और VB-CABLE का उपयोग करना होगा।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>फ़्रिक्शन जैसा एक बल जो बहुत धीमी गति में या खड़ी कार में व्हील को दोलन करने से रोकता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग बल जो व्हील को वापस सेंटर की ओर खींचता है; यह केवल तभी प्रभावी होता है जब कार धीमी चल रही हो या खड़ी हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>क्रैश का पता चलने पर बल को बहुत कम कर देता है और फिर उसे सहजता से वापस बढ़ाता है — ताकि कोई बड़ी टक्कर व्हील को आपके हाथों से न छीन सके। फ़ोर्स रिडक्शन तय करता है कि कितना बल हटाया जाए।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप अगले टायरों की ग्रिप खोने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप कार के पिछले हिस्से के फिसलने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल — यानी शैसी पर लोड बढ़ने का अहसास। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>एक थ्रेशोल्ड से नीचे बहुत हल्का बदलता हुआ डिदर जोड़ता है ताकि व्हील का मैकेनिज़्म सक्रिय रहे और महीन डिटेल सामने आए — यह तब उपयोगी है जब आपके पास Logitech G29 जैसा कम पावर वाला व्हील हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>सॉफ़्ट लिमिटर FFB सिग्नल को क्लिप होने पर सपाट होने के बजाय कुछ डिटेल बनाए रखने देता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, जिसे व्हील फ़ोर्स में बदला जाता है। इसके काम करने के लिए आपको iRacing में बेस शेकर LFE चालू करना होगा और VB-CABLE का उपयोग करना होगा।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>फ़्रिक्शन जैसा एक बल जो बहुत धीमी गति में या खड़ी कार में व्हील को दोलन करने से रोकता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग बल जो व्हील को वापस सेंटर की ओर खींचता है; यह केवल तभी प्रभावी होता है जब कार धीमी चल रही हो या खड़ी हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>क्रैश का पता चलने पर बल को बहुत कम कर देता है और फिर उसे सहजता से वापस बढ़ाता है — ताकि कोई बड़ी टक्कर व्हील को आपके हाथों से न छीन सके। फ़ोर्स रिडक्शन तय करता है कि कितना बल हटाया जाए।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप अगले टायरों की ग्रिप खोने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप कार के पिछले हिस्से के फिसलने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल — यानी शैसी पर लोड बढ़ने का अहसास। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>एक थ्रेशोल्ड से नीचे बहुत हल्का बदलता हुआ डिदर जोड़ता है ताकि व्हील का मैकेनिज़्म सक्रिय रहे और महीन डिटेल सामने आए — यह तब उपयोगी है जब आपके पास Logitech G29 जैसा कम पावर वाला व्हील हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>सॉफ़्ट लिमिटर FFB सिग्नल को क्लिप होने पर सपाट होने के बजाय कुछ डिटेल बनाए रखने देता है।</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>उन ड्राइवरों के लिए जो सबसे तेज़ फ़ोर्स को नरम करना चाहते हैं - पूरा 360 Hz FFB सिग्नल पहले स्लू कम्प्रेसर से गुज़रता है, जो फ़ोर्स के बदलने की रफ़्तार को दबाता है, और फिर कम्प्रेसर से, जो कुल फ़ोर्स को दबाता है।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>फ़ोर्स कितनी तेज़ी से बदल सकता है, इसे दबाता है - तेज़ स्पाइक नरम हो जाते हैं जबकि धीमे फ़ोर्स बिना बदले गुज़र जाते हैं।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>कुल फ़ोर्स को दबाता है - थ्रेशोल्ड से ऊपर के फ़ोर्स कम्प्रेस हो जाते हैं ताकि सबसे तेज़ पल भी व्हील पर हावी न हों।</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>हाइब्रिड ट्यूनिंग टूलकिट - आधार के रूप में स्मूद 60 Hz FFB सिग्नल, जिसमें 360 Hz डिटेल मिलाई जाती है, और उसके बाद कम्प्रेशन, स्लू कम्प्रेशन, एक ट्रांज़िएंट एन्हांसर और एक अडैप्टिव स्मूथर लगते हैं।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>स्मूद 60 Hz सिग्नल (आधार) को 360 Hz डिटेल के साथ ब्लेंड करता है। जब फ़ोर्स की दिशा बदलती है तो ब्लेंड खुल जाता है, जिससे ट्रांज़िएंट साफ़ तौर पर उभरकर आते हैं।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>कुल फ़ोर्स को दबाता है - थ्रेशोल्ड से ऊपर के फ़ोर्स कम्प्रेस हो जाते हैं ताकि सबसे तेज़ पल भी व्हील पर हावी न हों।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>फ़ोर्स कितनी तेज़ी से बदल सकता है, इसे दबाता है। पीक मोड में यह बढ़ने की रफ़्तार सीमित करने के बजाय स्पाइक के बाद फ़ोर्स को धीरे-धीरे नीचे लाता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>अचानक होने वाले फ़ोर्स बदलावों को तेज़ करता है - यह डिटेल शाखा का नॉन-लीनियर बूस्टर है। 1.00x का गेन ट्रांज़िएंट की मूल ताक़त बनाए रखता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>सिग्नल को केवल तभी स्मूद करता है जब वह शांत हो - तेज़ ट्रांज़िएंट फिर भी गुज़र जाते हैं। ज़्यादा स्मूदिंग के लिए मात्रा बढ़ाएँ।</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>उन ड्राइवरों के लिए जो क्लासिक 60 Hz FFB सिग्नल पसंद करते हैं - लेटेंसी घटाने के लिए पूर्वानुमान के साथ।</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>कम लेटेंसी 360 Hz डिटेल बूस्टर और लिमिटर</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>कम लेटेंसी 60 Hz डिटेल बूस्टर और लिमिटर</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz स्लू और कुल कम्प्रेशन</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>हाइब्रिड ट्यूनिंग टूलकिट</value>
   </data>
 </root>

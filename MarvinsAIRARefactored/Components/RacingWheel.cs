@@ -90,8 +90,6 @@ public class RacingWheel
 	public bool SuspendForceFeedback { get; private set; } = true; // true if we want to suspend FFB (for various reasons)
 	public bool ResetForceFeedback { private get; set; } = false; // set to true manually (via reset button)
 	public bool UseSteeringWheelTorqueData { private get; set; } = false; // false if simulator is disconnected or if driver is not on track
-	public bool ActivateCrashProtection { private get; set; } = false; // set to true to activate crash protection
-	public bool ActivateCurbProtection { private get; set; } = false; // set to true to activate curb protection
 	public bool PlayTestSignal { private get; set; } = false; // set to true manually (via test button)
 	public bool ClearPeakTorque { private get; set; } = false; // set to clear peak torque
 	public bool AutoSetMaxForce { private get; set; } = false; // set to auto-set the max force setting
@@ -110,13 +108,6 @@ public class RacingWheel
 	public bool CrashProtectionIsActive { get => _liveEngine.CrashProtectionActive; }
 	public bool CurbProtectionIsActive { get => _liveEngine.CurbProtectionActive; }
 	public bool FadingIsActive { get => _fadeTimerMS > 0f; }
-
-	// Crash/curb protection thresholds published by the live engine's protection modules; Simulator reads these
-	// to decide when to trigger. Off = long/lat g-force >= 20 (disabled) / shock velocity 0 — same "disabled"
-	// semantics as the old settings guards.
-	public float CrashProtectionLongGForceThreshold { get => _liveEngine.CrashLongGForceThreshold; }
-	public float CrashProtectionLatGForceThreshold { get => _liveEngine.CrashLatGForceThreshold; }
-	public float CurbProtectionShockVelocityThreshold { get => _liveEngine.CurbShockVelocityThreshold; }
 
 	private float _unsuspendTimerMS = 0f;
 	private float _fadeTimerMS = 0f;
@@ -392,15 +383,6 @@ public class RacingWheel
 
 			var engine = _liveEngine;
 
-			// consume the one-shot triggers even while suspended so they don't go stale-active — the crash/curb
-			// pulses are set by Simulator earlier in this same telemetry frame
-
-			var crashProtectionTriggered = ActivateCrashProtection;
-			ActivateCrashProtection = false;
-
-			var curbProtectionTriggered = ActivateCurbProtection;
-			ActivateCurbProtection = false;
-
 			if ( PlayTestSignal )
 			{
 				_testSignalTimerMS = TestSignalTimeMS;
@@ -513,9 +495,10 @@ public class RacingWheel
 				var inputLFEMagnitude = app.LFE.GetNextMagnitude( FFBTickContext.TickDeltaMilliseconds );
 
 				// build the per-tick context and evaluate the whole FFB graph (algorithm + effects + vibration
-				// generators) — the one-shot protection pulses fire on the first sample of the frame only
+				// generators) — the protection modules self-trigger from the frame's raw G force / shock
+				// velocity telemetry against their own thresholds
 
-				var tickContext = BuildTickContext( in frameContext, steeringWheelTorque360Hz, inputLFEMagnitude, crashProtectionTriggered && ( sampleIndex == 0 ), curbProtectionTriggered && ( sampleIndex == 0 ), sampleIndex );
+				var tickContext = BuildTickContext( in frameContext, steeringWheelTorque360Hz, inputLFEMagnitude, sampleIndex );
 
 				engine.Process( in tickContext );
 
@@ -581,7 +564,7 @@ public class RacingWheel
 
 				SpeakMairaAnnouncement( "MairaCrashProtectionActive" );
 
-				app.Logger.WriteLine( $"[RacingWheel] Crash protection activated (force reduction {engine.CrashProtectionForceReduction * 100f:F0}%, duration {engine.CrashProtectionDuration:F1} s)" );
+				app.Logger.WriteLine( "[RacingWheel] Crash protection activated" );
 			}
 			else if ( !engine.CrashProtectionActive && _lastCrashProtectionActive )
 			{
@@ -962,6 +945,9 @@ public class RacingWheel
 		public readonly float SteeringWheelVelocity;
 		public readonly float PitchRate;
 		public readonly float WheelForce;
+		public readonly float LongitudinalGForce;
+		public readonly float LateralGForce;
+		public readonly float MaxShockVelocity;
 
 		public FrameContext( App app, float torque60Hz, float maxForce, bool usingTorqueData )
 		{
@@ -1015,15 +1001,24 @@ public class RacingWheel
 			SteeringWheelAngleMax = simulator.SteeringWheelAngleMax;
 			SteeringWheelVelocity = simulator.SteeringWheelVelocity;
 			PitchRate = simulator.PitchRate_ST[ Simulator.SamplesPerFrame360Hz - 1 ]; // the frame's newest sample
+
+			// raw protection telemetry for the crash/curb protection modules' self-triggering — zeroed while
+			// triggers are blocked (off track or inside Simulator's post-reset/tow block window) so the
+			// modules never fire from a reset teleport or garage telemetry
+			var protectionTriggersEnabled = simulator.ProtectionTriggersEnabled;
+
+			LongitudinalGForce = protectionTriggersEnabled ? simulator.LongitudinalGForce : 0f;
+			LateralGForce = protectionTriggersEnabled ? simulator.LateralGForce : 0f;
+			MaxShockVelocity = protectionTriggersEnabled ? simulator.MaxShockVelocity : 0f;
 		}
 	}
 
 	/// <summary>
 	/// Assembles the per-tick auxiliary input for the FFB graph engine from the frame-constant snapshot plus
-	/// the values that vary per 360 Hz sample (raw torque, LFE magnitude, sample-0 protection pulses). No
-	/// allocation (the struct is passed by readonly reference into every module).
+	/// the values that vary per 360 Hz sample (raw torque, LFE magnitude). No allocation (the struct is
+	/// passed by readonly reference into every module).
 	/// </summary>
-	private static FFBTickContext BuildTickContext( in FrameContext frameContext, float torque360Hz, float lfeMagnitude, bool crashProtectionTriggered, bool curbProtectionTriggered, int sampleIndex )
+	private static FFBTickContext BuildTickContext( in FrameContext frameContext, float torque360Hz, float lfeMagnitude, int sampleIndex )
 	{
 		return new FFBTickContext(
 			deltaMilliseconds: FFBTickContext.TickDeltaMilliseconds,
@@ -1055,8 +1050,9 @@ public class RacingWheel
 			steeringWheelAngleMax: frameContext.SteeringWheelAngleMax,
 			steeringWheelVelocity: frameContext.SteeringWheelVelocity,
 			pitchRate: frameContext.PitchRate,
-			crashProtectionTriggered: crashProtectionTriggered,
-			curbProtectionTriggered: curbProtectionTriggered );
+			longitudinalGForce: frameContext.LongitudinalGForce,
+			lateralGForce: frameContext.LateralGForce,
+			maxShockVelocity: frameContext.MaxShockVelocity );
 	}
 
 	public void Tick( App app )
@@ -1176,12 +1172,6 @@ public class RacingWheel
 				// force for display — except vibration generators, whose output is already normalized
 				var previewSignalScale = ( ( previewModule != null ) && previewModule.IsGenerator ) ? 1f : maxForce;
 
-				// protection trigger thresholds as published by the preview graph's protection modules on Rebuild —
-				// the replay applies them to the recorded raw telemetry the same way Simulator does live
-				var crashLongGForceThreshold = _previewEngine.CrashLongGForceThreshold;
-				var crashLatGForceThreshold = _previewEngine.CrashLatGForceThreshold;
-				var curbShockVelocityThreshold = _previewEngine.CurbShockVelocityThreshold;
-
 				var previousOutputValue = 0f;
 				var isFirstSample = true;
 
@@ -1212,12 +1202,7 @@ public class RacingWheel
 							previewFramePitchRate = recording.Data[ Math.Min( frameStart + FFBTickContext.SamplesPerFrame - 1, recording.Data.Count - 1 ) ].PitchRate;
 						}
 
-						var crashProtectionTriggered = ( ( crashLongGForceThreshold < 20f ) && ( recordingData.LongitudinalGForce >= crashLongGForceThreshold ) )
-							|| ( ( crashLatGForceThreshold < 20f ) && ( recordingData.LateralGForce >= crashLatGForceThreshold ) );
-
-						var curbProtectionTriggered = ( curbShockVelocityThreshold > 0f ) && ( recordingData.MaxShockVelocity >= curbShockVelocityThreshold );
-
-						var previewContext = FFBTickContext.FromRecording( recordingData, in previewTorqueFrame, previewFramePitchRate, maxForce, crashProtectionTriggered, curbProtectionTriggered, sampleIndex );
+						var previewContext = FFBTickContext.FromRecording( recordingData, in previewTorqueFrame, previewFramePitchRate, maxForce, sampleIndex );
 
 						_previewEngine.Process( in previewContext );
 

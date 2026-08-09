@@ -394,7 +394,12 @@ public partial class MainWindow : Window
 		// while WindowState is still Minimized - WPF then creates its render surface at the minimized
 		// (zero) size and the client area paints black until a later resize forces a recompose. Going
 		// Normal first makes WPF compose at the real window size, so content renders immediately.
-		WindowState = WindowState.Normal;
+		// Only do this when the window is hidden or minimized — dialogs call this defensively before
+		// showing themselves, and an already-visible maximized window must stay maximized.
+		if ( !IsVisible || ( WindowState == WindowState.Minimized ) )
+		{
+			WindowState = WindowState.Normal;
+		}
 
 		Show();
 

@@ -2200,21 +2200,6 @@
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Nedotáčivost a přetáčivost jsou vypnuty na stránce Efekty FFB</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>Jako hybrid Alana Le, ale směs 60/360 Hz se automaticky přizpůsobuje jízdním podmínkám pro větší stabilitu při zátěži.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>Míchá hladký signál 60 Hz s detailním signálem 360 Hz a poté jej komprimuje a tvaruje pro silný, ale kontrolovaný pocit.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>Krotí surový signál 360 Hz kompresí slew a celkovou kompresí — pevný, detailní pocit bez ostrých špiček.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>Doporučený graf pro většinu jezdců — plný signál 360 Hz s predikcí a jediným ovladačem detailu, který zesílí nebo ztlumí jemný pocit z vozovky.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>Klasický hladký pocit — nativní signál iRacingu 60 Hz, jemně interpolovaný, s obvyklými efekty a ochranami navrch.</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>Přidejte popis tohoto grafu</value>
   </data>
@@ -2430,5 +2415,164 @@
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>Blikat kontrolkami po překročení bodu řazení</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>Nastavení grafu FFB</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Doporučeno pro většinu jezdců — plný FFB signál 360 Hz s predikcí pro snížení latence. Zesílením zvýšíte nebo snížíte detaily vozovky a pneumatik.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Zvuk nízkofrekvenčních efektů (LFE) ze simulátoru převedený na sílu ve volantu. Aby to fungovalo, musíte v iRacingu zapnout bass shaker LFE a použít VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Síla podobná tření, která brání volantu v kmitání, když jedete velmi pomalu nebo stojíte.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Pružinová síla, která vrací volant zpět do středu; působí jen tehdy, když vůz jede pomalu nebo stojí.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Touto hodnotou zvýšíte nebo snížíte detaily vozovky a pneumatik. Zesílení 1,00x zachovává původní pocit z iRacingu.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Při detekci nehody sílu výrazně utlumí a pak ji plynule vrátí zpět — silný náraz vám tak nemůže vytrhnout volant z rukou. Snížení síly určuje, jak velká část síly se odebere.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem nedotáčivosti, abyste cítili, jak přední pneumatiky ztrácejí přilnavost. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem přetáčivosti, abyste cítili, jak záď vozu utíká. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem seat-of-pants — pocitem, jak se podvozek zatěžuje. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Pod nastavenou mezí přidává nepatrné střídavé chvění (dither), které udržuje mechaniku volantu v pohybu a odhalí i slabé detaily — hodí se, pokud máte slabší volant, například Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Měkký limiter umožňuje FFB signálu zachovat část detailů, místo aby se při oříznutí zploštil.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>Zvuk nízkofrekvenčních efektů (LFE) ze simulátoru převedený na sílu ve volantu. Aby to fungovalo, musíte v iRacingu zapnout bass shaker LFE a použít VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>Síla podobná tření, která brání volantu v kmitání, když jedete velmi pomalu nebo stojíte.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>Pružinová síla, která vrací volant zpět do středu; působí jen tehdy, když vůz jede pomalu nebo stojí.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Při detekci nehody sílu výrazně utlumí a pak ji plynule vrátí zpět — silný náraz vám tak nemůže vytrhnout volant z rukou. Snížení síly určuje, jak velká část síly se odebere.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem nedotáčivosti, abyste cítili, jak přední pneumatiky ztrácejí přilnavost. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem přetáčivosti, abyste cítili, jak záď vozu utíká. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem seat-of-pants — pocitem, jak se podvozek zatěžuje. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Pod nastavenou mezí přidává nepatrné střídavé chvění (dither), které udržuje mechaniku volantu v pohybu a odhalí i slabé detaily — hodí se, pokud máte slabší volant, například Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>Měkký limiter umožňuje FFB signálu zachovat část detailů, místo aby se při oříznutí zploštil.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>Zvuk nízkofrekvenčních efektů (LFE) ze simulátoru převedený na sílu ve volantu. Aby to fungovalo, musíte v iRacingu zapnout bass shaker LFE a použít VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>Síla podobná tření, která brání volantu v kmitání, když jedete velmi pomalu nebo stojíte.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>Pružinová síla, která vrací volant zpět do středu; působí jen tehdy, když vůz jede pomalu nebo stojí.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Při detekci nehody sílu výrazně utlumí a pak ji plynule vrátí zpět — silný náraz vám tak nemůže vytrhnout volant z rukou. Snížení síly určuje, jak velká část síly se odebere.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem nedotáčivosti, abyste cítili, jak přední pneumatiky ztrácejí přilnavost. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem přetáčivosti, abyste cítili, jak záď vozu utíká. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem seat-of-pants — pocitem, jak se podvozek zatěžuje. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Pod nastavenou mezí přidává nepatrné střídavé chvění (dither), které udržuje mechaniku volantu v pohybu a odhalí i slabé detaily — hodí se, pokud máte slabší volant, například Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>Měkký limiter umožňuje FFB signálu zachovat část detailů, místo aby se při oříznutí zploštil.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Zvuk nízkofrekvenčních efektů (LFE) ze simulátoru převedený na sílu ve volantu. Aby to fungovalo, musíte v iRacingu zapnout bass shaker LFE a použít VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Síla podobná tření, která brání volantu v kmitání, když jedete velmi pomalu nebo stojíte.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Pružinová síla, která vrací volant zpět do středu; působí jen tehdy, když vůz jede pomalu nebo stojí.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Při detekci nehody sílu výrazně utlumí a pak ji plynule vrátí zpět — silný náraz vám tak nemůže vytrhnout volant z rukou. Snížení síly určuje, jak velká část síly se odebere.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem nedotáčivosti, abyste cítili, jak přední pneumatiky ztrácejí přilnavost. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem přetáčivosti, abyste cítili, jak záď vozu utíká. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>Síla ve volantu řízená efektem seat-of-pants — pocitem, jak se podvozek zatěžuje. Směr určuje, zda efekt volant odlehčí, nebo přidá boční tlak.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Pod nastavenou mezí přidává nepatrné střídavé chvění (dither), které udržuje mechaniku volantu v pohybu a odhalí i slabé detaily — hodí se, pokud máte slabší volant, například Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Měkký limiter umožňuje FFB signálu zachovat část detailů, místo aby se při oříznutí zploštil.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>Pro jezdce, kteří chtějí zmírnit nejsilnější síly – celý 360 Hz FFB signál prochází kompresorem rychlosti změny, který omezuje, jak rychle se síla může měnit, a kompresorem, který stlačuje celkovou sílu.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Omezuje, jak rychle se síla může měnit – rychlé špičky jsou zmírněny, zatímco pomalejší síly procházejí beze změny.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Stlačuje celkovou sílu – síly nad prahem jsou komprimovány, aby nejsilnější okamžiky nepřemohly volant.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Hybridní ladicí sada – hladký 60 Hz FFB signál jako základ s přimíchaným 360 Hz detailem, následovaný kompresorem, kompresorem rychlosti změny, zvýrazněním transientů a adaptivním vyhlazováním.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Mísí hladký 60 Hz signál (základ) s 360 Hz detailem. Když síla změní směr, míchání se otevře, aby transienty prorazily.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Stlačuje celkovou sílu – síly nad prahem jsou komprimovány, aby nejsilnější okamžiky nepřemohly volant.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Omezuje, jak rychle se síla může měnit. V režimu špičky nechá sílu po špičce plynule klesnout, místo aby omezoval rychlost jejího nárůstu.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Zostřuje náhlé změny síly – nelineární zesilovač detailní větve. Zesílení 1,00x zachovává původní sílu transientů.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Vyhlazuje signál pouze tehdy, když je klidný – rychlé transienty stále procházejí. Pro větší vyhlazení zvyšte množství.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Pro jezdce, kteří preferují klasický 60 Hz FFB signál – s predikcí pro snížení latence.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Zvýrazňovač detailů a limiter 360 Hz s nízkou latencí</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Zvýrazňovač detailů a limiter 60 Hz s nízkou latencí</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz rychlost změny a celková komprese</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Hybridní ladicí sada</value>
   </data>
 </root>

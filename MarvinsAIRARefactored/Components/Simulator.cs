@@ -62,6 +62,7 @@ public partial class Simulator
 	public float LongitudinalGForce { get; private set; } = 0f;
 	public float LateralGForce { get; private set; } = 0f;
 	public float MaxShockVelocity { get; private set; } = 0f;
+	public bool ProtectionTriggersEnabled { get; private set; } = false;   // gates the raw telemetry the FFB graph's protection modules self-trigger from (false = they see zeros)
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
 	public bool IsReplayPlaying { get; private set; } = false;
@@ -468,6 +469,7 @@ public partial class Simulator
 		LongitudinalGForce = 0f;
 		LateralGForce = 0f;
 		MaxShockVelocity = 0f;
+		ProtectionTriggersEnabled = false;
 		IsOnTrack = false;
 		IsReplayPlaying = false;
 		Lap = 0;
@@ -1281,27 +1283,15 @@ public partial class Simulator
 			_activeResetBlockTimerFrames--;
 		}
 
-		// crash protection processing (thresholds now come from the live FFB graph's crash protection module; an
-		// off/disabled/would-do-nothing module publishes >= 20, same "disabled" semantics as the old guards)
+		// Crash/curb trigger detection moved INTO the FFB graph's protection modules — each compares the raw
+		// telemetry (fed through the tick context) against its own thresholds, so multiple protection nodes
+		// trigger independently. This flag gates the telemetry those modules see: while off track or inside
+		// the post-reset/tow block window above, RacingWheel feeds them zeros so nothing can trigger — the
+		// same gating the old Simulator-side detection applied.
+		ProtectionTriggersEnabled = IsOnTrack && ( _activeResetBlockTimerFrames <= 0 );
 
-		if ( IsOnTrack && ( _activeResetBlockTimerFrames <= 0 ) )
-		{
-			var crashLongGForceThreshold = app.RacingWheel.CrashProtectionLongGForceThreshold;
-			var crashLatGForceThreshold = app.RacingWheel.CrashProtectionLatGForceThreshold;
-
-			if ( ( crashLongGForceThreshold < 20f ) && ( LongitudinalGForce >= crashLongGForceThreshold ) )
-			{
-				app.RacingWheel.ActivateCrashProtection = true;
-			}
-
-			if ( ( crashLatGForceThreshold < 20f ) && ( LateralGForce >= crashLatGForceThreshold ) )
-			{
-				app.RacingWheel.ActivateCrashProtection = true;
-			}
-		}
-
-		// track this frame's peak absolute shock velocity across all six dampers — it drives the curb protection
-		// trigger below and is recorded so the preview replay can re-derive the trigger from the current settings
+		// track this frame's peak absolute shock velocity across all six dampers — it feeds the curb protection
+		// modules' triggers and is recorded so the preview replay re-derives the triggers from the current settings
 
 		var maxShockVelocity = 0f;
 
@@ -1316,19 +1306,6 @@ public partial class Simulator
 		}
 
 		MaxShockVelocity = maxShockVelocity;
-
-		// curb protection processing (shock-velocity threshold now comes from the live FFB graph's curb protection
-		// module; an off/disabled/would-do-nothing module publishes 0, same "disabled" semantics as the old guards)
-
-		if ( IsOnTrack && ( _activeResetBlockTimerFrames <= 0 ) )
-		{
-			var curbShockVelocityThreshold = app.RacingWheel.CurbProtectionShockVelocityThreshold;
-
-			if ( ( curbShockVelocityThreshold > 0f ) && ( MaxShockVelocity >= curbShockVelocityThreshold ) )
-			{
-				app.RacingWheel.ActivateCurbProtection = true;
-			}
-		}
 
 		// update rpm / speed ratios
 

@@ -1067,6 +1067,66 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	// Maps a retired fixed-function algorithm (the dormant RacingWheelAlgorithm settings, kept around exactly
+	// for this) onto the built-in graph that replaces it. Every algorithm family has its replacement graph
+	// now; null would leave a selection empty for a future release to migrate.
+	private static string? LegacyAlgorithmGraphName( RacingWheel.Algorithm algorithm ) => algorithm switch
+	{
+		RacingWheel.Algorithm.Native360Hz
+			or RacingWheel.Algorithm.DetailBooster
+			or RacingWheel.Algorithm.DeltaLimiter
+			or RacingWheel.Algorithm.DetailBoosterOn60Hz
+			or RacingWheel.Algorithm.DeltaLimiterOn60Hz => FFBBuiltInGraphs.FlagshipGraphName,
+
+		RacingWheel.Algorithm.Native60Hz => FFBBuiltInGraphs.LowLatency60HzGraphName,
+		RacingWheel.Algorithm.SlewAndTotalCompression => FFBBuiltInGraphs.SlewCompressionGraphName,
+		RacingWheel.Algorithm.MultiAdjustmentToolkit => FFBBuiltInGraphs.MultiAdjustmentGraphName,
+
+		_ => null
+	};
+
+	// Runs every launch (from SettingsFile.Initialize, BEFORE EnsureBuiltInFFBGraphsInitialized): migrates a
+	// settings file from a pre-graph version of MAIRA by turning each stored fixed-function algorithm choice
+	// into the matching built-in graph selection. Only EMPTY selections are ever written — a pre-graph file
+	// has an empty live selection and empty selections in every context bucket (the old ContextSettings class
+	// had no graph-name property), while anything the user or a previous migration has chosen stays untouched,
+	// so this is idempotent. Algorithms without a replacement graph yet deliberately keep their empty bucket
+	// selections: that emptiness is the marker a future release (shipping the matching graph and extending the
+	// table above) migrates on. The built-in sync's fallback repair afterwards still gives the LIVE selection a
+	// valid graph either way, so the app always starts with a working engine.
+	public bool MigrateLegacyAlgorithmSelections()
+	{
+		var app = App.Instance!;
+
+		var changed = false;
+
+		if ( string.IsNullOrEmpty( RacingWheelSelectedFFBGraphName ) && LegacyAlgorithmGraphName( RacingWheelAlgorithm ) is string liveGraphName )
+		{
+			RacingWheelSelectedFFBGraphName = liveGraphName;
+
+			app.Logger.WriteLine( $"[Settings] Migrated the live {RacingWheelAlgorithm} algorithm selection to the '{liveGraphName}' graph" );
+
+			changed = true;
+		}
+
+		foreach ( var contextSettings in ContextSettingsDictionary.Values )
+		{
+			if ( string.IsNullOrEmpty( contextSettings.RacingWheelSelectedFFBGraphName ) && LegacyAlgorithmGraphName( contextSettings.RacingWheelAlgorithm ) is string graphName )
+			{
+				contextSettings.RacingWheelSelectedFFBGraphName = graphName;
+
+				changed = true;
+			}
+		}
+
+		if ( changed )
+		{
+			app.Logger.WriteLine( "[Settings] Legacy algorithm selections migrated to FFB graphs" );
+		}
+
+		return changed;
+	}
+
 	// Runs every launch (from SettingsFile.Initialize): syncs the stored built-in graphs against the .mairagraph
 	// files shipped inside the app (see FFBBuiltInGraphs) and repairs the selections. A stored built-in is
 	// (re)created whenever its shipped file's content hash differs from the recorded one — so built-in graphs
@@ -1894,25 +1954,8 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	// Shows/hides the top row of the editor block (the node graph and the module settings column). Off by
-	// default: basic users see just the description, the pinned quick controls, and the preview row — advanced
-	// users flip this on for full control of the node graph. Global (not per graph).
-	private bool _racingWheelShowPinnedSettings = true;
-
-	public bool RacingWheelShowPinnedSettings
-	{
-		get => _racingWheelShowPinnedSettings;
-
-		set
-		{
-			if ( value != _racingWheelShowPinnedSettings )
-			{
-				_racingWheelShowPinnedSettings = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
+	// default: basic users see just the preview row and the pinned quick controls in the FFB graph settings
+	// section — advanced users flip this on for full control of the node graph. Global (not per graph).
 	private bool _racingWheelShowNodeGraph = false;
 
 	public bool RacingWheelShowNodeGraph
@@ -1924,6 +1967,24 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _racingWheelShowNodeGraph )
 			{
 				_racingWheelShowNodeGraph = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	// Shows/hides the pinned quick controls in the FFB graph settings section. Global (not per graph).
+	private bool _racingWheelShowPinnedSettings = true;
+
+	public bool RacingWheelShowPinnedSettings
+	{
+		get => _racingWheelShowPinnedSettings;
+
+		set
+		{
+			if ( value != _racingWheelShowPinnedSettings )
+			{
+				_racingWheelShowPinnedSettings = value;
 
 				OnPropertyChanged();
 			}

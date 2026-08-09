@@ -151,6 +151,11 @@ public class SettingsFile
 		// so users upgrading from a version without per-car overlays keep their current layout.
 		DataContext.DataContext.Instance.Settings.MigrateOverlayLayoutToNonCarBaseline();
 
+		// Migrate a pre-graph settings file: turn the old fixed-function algorithm choices (live + per-context)
+		// into built-in graph selections. Must run before the built-in sync below so its empty-selection guard
+		// sees the pre-migration state (the sync's fallback repair fills the live selection).
+		var legacyAlgorithmsMigrated = DataContext.DataContext.Instance.Settings.MigrateLegacyAlgorithmSelections();
+
 		// Every launch: sync the stored built-in graphs against the graph files shipped inside the app
 		// (create missing ones, refresh any whose shipped file changed, purge retired ones) and repair the
 		// selections. If anything changed, remember to persist below (the recorded file hashes must reach
@@ -178,7 +183,7 @@ public class SettingsFile
 
 		// Persist a launch-time built-in graph sync now that serialization is un-paused (the setter ignores
 		// a queue request while paused), so the recorded graph file hashes reach disk and the sync runs once.
-		if ( builtInGraphsChanged || graphIdentitiesChanged || legacyWheelbaseContextsConsolidated )
+		if ( builtInGraphsChanged || graphIdentitiesChanged || legacyWheelbaseContextsConsolidated || legacyAlgorithmsMigrated )
 		{
 			QueueForSerialization = true;
 		}

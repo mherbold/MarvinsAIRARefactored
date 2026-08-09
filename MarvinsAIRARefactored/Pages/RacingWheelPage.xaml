@@ -242,6 +242,29 @@
 
                 </Grid>
 
+                <!-- Reorders this node's pinned group among the quick controls in the FFB graph settings
+                     section (custom graphs with this node pinned only — the buttons at the ends gray out
+                     instead of hiding so the pair doesn't shift while clicking). -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="20,0,20,10"
+                            Visibility="{Binding ShowPinnedGroupReorder, Converter={StaticResource BoolToVisibility}}">
+
+                    <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/shift-up.png"
+                                          IsSmall="True"
+                                          Disabled="{Binding PinnedGroupMoveUpDisabled}"
+                                          Tag="{Binding}"
+                                          Click="MovePinnedGroupUp_MairaButton_Click" />
+
+                    <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/shift-down.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Disabled="{Binding PinnedGroupMoveDownDisabled}"
+                                          Tag="{Binding}"
+                                          Click="MovePinnedGroupDown_MairaButton_Click" />
+
+                </StackPanel>
+
             </StackPanel>
 
         </DataTemplate>
@@ -624,137 +647,6 @@
 
                 </Grid>
 
-                <!-- Pinned quick controls, grouped by node: one group per module that has pinned settings
-                     (the pin switches on the module settings cards). Each group shows the node's name and
-                     description once, then that node's pinned settings three across — so pinning several
-                     settings of the same node doesn't repeat the description beside every control. Same
-                     setting VM instances as the settings column, so both stay in sync. -->
-                <!-- Shows/hides the pinned quick controls below. Global setting. -->
-                <controls:MairaSwitch Margin="0,0,0,20"
-                                      IsOn="{Binding Settings.RacingWheelShowPinnedSettings, Mode=TwoWay}"
-                                      Label="{Binding Localization[ShowPinnedSettings]}" />
-
-                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.PinnedGroups}">
-
-                    <!-- shown only while the show-pinned-settings switch above is on AND the graph actually
-                         has pinned settings -->
-                    <ItemsControl.Style>
-                        <Style TargetType="ItemsControl">
-                            <Setter Property="Visibility"
-                                    Value="Collapsed" />
-                            <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Settings.RacingWheelShowPinnedSettings}"
-                                                   Value="True" />
-                                        <Condition Binding="{Binding RacingWheelGraphViewModel.HasPinnedSettings}"
-                                                   Value="True" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="Visibility"
-                                            Value="Visible" />
-                                </MultiDataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ItemsControl.Style>
-
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <!-- no extra bottom margin — the setting templates already carry a 20px one -->
-                            <StackPanel>
-
-                                <!-- node name with a rule stretching to the page's right edge — same idea as the
-                                     group-box header line, but dotted and fainter so it reads as a sub-heading -->
-                                <Grid>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="0"
-                                               Text="{Binding Module.DisplayName}"
-                                               Style="{StaticResource MairaTextBlockStyle}"
-                                               TextTrimming="CharacterEllipsis" />
-
-                                    <!-- the hairline's logical thickness is 1/AppUIScale so it always rasterizes as exactly one
-                                         device pixel — a fixed 1px line scaled below 100% becomes a sub-pixel band that can vanish
-                                         at some scroll offsets; aliased edges keep that single pixel row crisp (a stroked Rectangle
-                                         would draw its top AND bottom edges as two overlapping dash rows — a Line draws one) -->
-                                    <Line Grid.Column="1"
-                                          X2="1"
-                                          Stretch="Fill"
-                                          VerticalAlignment="Bottom"
-                                          Margin="10,0,0,5"
-                                          Stroke="{DynamicResource Brush.Foreground.Muted}"
-                                          StrokeThickness="{Binding Settings.AppUIScale, Source={x:Static datacontext:DataContext.Instance}, Converter={StaticResource HairlineThickness}}"
-                                          StrokeDashArray="3 3"
-                                          Opacity="0.4"
-                                          RenderOptions.EdgeMode="Aliased" />
-
-                                </Grid>
-
-                                <TextBlock Text="{Binding Module.NodeDescription}"
-                                           FontSize="16"
-                                           TextWrapping="Wrap"
-                                           Margin="0,0,0,10">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock"
-                                               BasedOn="{StaticResource MairaTextBlockStyle}">
-                                            <Setter Property="Foreground"
-                                                    Value="{DynamicResource Brush.Foreground.Muted}" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Module.NodeDescription}"
-                                                             Value="">
-                                                    <Setter Property="Visibility"
-                                                            Value="Collapsed" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-
-                                <!-- same warning the settings card shows while this module's effect is switched
-                                     off on the steering effects page — the pinned controls (especially a pinned
-                                     Enabled toggle) are inert until it is re-enabled there -->
-                                <TextBlock Text="{Binding Module.SteeringEffectDisabledNotice}"
-                                           Style="{StaticResource MairaTextBlockStyle}"
-                                           FontSize="16"
-                                           Foreground="{DynamicResource Brush.Accent}"
-                                           TextWrapping="Wrap"
-                                           Margin="0,0,0,10"
-                                           Visibility="{Binding Module.SteeringEffectDisabled, Converter={StaticResource BoolToVisibility}}" />
-
-                                <!-- Tag marks this as the quick-controls host: the pin-switch style collapses
-                                     the tiny pin switches under it, so controls here can't be accidentally
-                                     un-pinned (the style looks for the NEAREST ancestor ItemsControl, which
-                                     is this one, not the outer groups list). -->
-                                <!-- the setting templates carry a 20px inset on both sides (wanted inside the
-                                     bordered settings column) — the negative margin cancels it at the outer
-                                     edges here, so the quick controls line up flush with the rest of the page
-                                     while the 40px gutters between columns remain -->
-                                <ItemsControl ItemsSource="{Binding Settings}"
-                                              Tag="QuickControls"
-                                              Margin="-20,0,-20,0"
-                                              ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <UniformGrid Columns="3" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
-
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-
-                </ItemsControl>
-
-                <!-- Advanced users flip this on to reveal the node graph row of the editor block below;
-                     basic users leave it off and drive the pinned quick controls above. Global setting. -->
-                <controls:MairaSwitch Margin="0,0,0,20"
-                                      IsOn="{Binding Settings.RacingWheelShowNodeGraph, Mode=TwoWay}"
-                                      Label="{Binding Localization[ShowNodeGraph]}" />
-
                 <!-- The editor block is a 2x2 grid sharing one frame: the node graph on the left with the
                      selected module's settings column beside it, and the preview graph below the node graph
                      with the track map panel below the settings. The column split is a settings-driven star
@@ -1080,6 +972,29 @@
 
                     </Border>
 
+                    <!-- show/hide toggle for the node graph row (advanced users flip it on for full control of
+                         the graph; basic users leave it off and drive the pinned quick controls in the FFB graph
+                         settings section below). Floats over the block's top-left corner on an opaque rounded
+                         plate — the twin of the record-buttons plate on the preview row's top-right — row-spanned
+                         with top alignment so it stays in that corner whether the node graph row is visible or
+                         collapsed. Global setting. -->
+                    <Border Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Margin="8,8,0,0"
+                            Panel.ZIndex="1"
+                            Background="{DynamicResource Brush.Background.Default}"
+                            CornerRadius="20"
+                            Padding="12,6">
+
+                        <controls:MairaSwitch Margin="0"
+                                              IsOn="{Binding Settings.RacingWheelShowNodeGraph, Mode=TwoWay}"
+                                              Label="{Binding Localization[ShowNodeGraph]}" />
+
+                    </Border>
+
                     <Popup x:Name="PreviewZoom_Popup"
                            Placement="Relative"
                            PlacementTarget="{Binding ElementName=AlgorithmPreview_Image}"
@@ -1225,6 +1140,140 @@
                     </Popup>
 
                 </Grid>
+
+            </StackPanel>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[FFBGraphSettings]}"
+                                HelpTopic="advanced/racing-wheel/#ffb-graph">
+
+            <StackPanel>
+
+                <!-- Pinned quick controls, grouped by node: one group per module that has pinned settings
+                     (the pin switches on the module settings cards). Each group shows the node's name and
+                     description once, then that node's pinned settings three across — so pinning several
+                     settings of the same node doesn't repeat the description beside every control. Same
+                     setting VM instances as the settings column, so both stay in sync. -->
+                <!-- Shows/hides the pinned quick controls below. Global setting. -->
+                <controls:MairaSwitch Margin="0,0,0,20"
+                                      IsOn="{Binding Settings.RacingWheelShowPinnedSettings, Mode=TwoWay}"
+                                      Label="{Binding Localization[ShowPinnedSettings]}" />
+
+                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.PinnedGroups}">
+
+                    <!-- shown only while the show-pinned-settings switch above is on AND the graph actually
+                         has pinned settings -->
+                    <ItemsControl.Style>
+                        <Style TargetType="ItemsControl">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Settings.RacingWheelShowPinnedSettings}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding RacingWheelGraphViewModel.HasPinnedSettings}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ItemsControl.Style>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- no extra bottom margin — the setting templates already carry a 20px one -->
+                            <StackPanel>
+
+                                <!-- node name with a rule stretching to the page's right edge — same idea as the
+                                     group-box header line, but dotted and fainter so it reads as a sub-heading -->
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding Module.DisplayName}"
+                                               Style="{StaticResource MairaTextBlockStyle}"
+                                               TextTrimming="CharacterEllipsis" />
+
+                                    <!-- the hairline's logical thickness is 1/AppUIScale so it always rasterizes as exactly one
+                                         device pixel — a fixed 1px line scaled below 100% becomes a sub-pixel band that can vanish
+                                         at some scroll offsets; aliased edges keep that single pixel row crisp (a stroked Rectangle
+                                         would draw its top AND bottom edges as two overlapping dash rows — a Line draws one) -->
+                                    <Line Grid.Column="1"
+                                          X2="1"
+                                          Stretch="Fill"
+                                          VerticalAlignment="Bottom"
+                                          Margin="10,0,0,5"
+                                          Stroke="{DynamicResource Brush.Foreground.Muted}"
+                                          StrokeThickness="{Binding Settings.AppUIScale, Source={x:Static datacontext:DataContext.Instance}, Converter={StaticResource HairlineThickness}}"
+                                          StrokeDashArray="3 3"
+                                          Opacity="0.4"
+                                          RenderOptions.EdgeMode="Aliased" />
+
+                                </Grid>
+
+                                <TextBlock Text="{Binding Module.NodeDescription}"
+                                           FontSize="16"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,10">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock"
+                                               BasedOn="{StaticResource MairaTextBlockStyle}">
+                                            <Setter Property="Foreground"
+                                                    Value="{DynamicResource Brush.Foreground.Muted}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Module.NodeDescription}"
+                                                             Value="">
+                                                    <Setter Property="Visibility"
+                                                            Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+
+                                <!-- same warning the settings card shows while this module's effect is switched
+                                     off on the steering effects page — the pinned controls (especially a pinned
+                                     Enabled toggle) are inert until it is re-enabled there -->
+                                <TextBlock Text="{Binding Module.SteeringEffectDisabledNotice}"
+                                           Style="{StaticResource MairaTextBlockStyle}"
+                                           FontSize="16"
+                                           Foreground="{DynamicResource Brush.Accent}"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,10"
+                                           Visibility="{Binding Module.SteeringEffectDisabled, Converter={StaticResource BoolToVisibility}}" />
+
+                                <!-- Tag marks this as the quick-controls host: the pin-switch style collapses
+                                     the tiny pin switches under it, so controls here can't be accidentally
+                                     un-pinned (the style looks for the NEAREST ancestor ItemsControl, which
+                                     is this one, not the outer groups list). -->
+                                <!-- the setting templates carry a 20px inset on both sides (wanted inside the
+                                     bordered settings column) — the negative margin cancels it at the outer
+                                     edges here, so the quick controls line up flush with the rest of the page
+                                     while the 40px gutters between columns remain -->
+                                <ItemsControl ItemsSource="{Binding Settings}"
+                                              Tag="QuickControls"
+                                              Margin="-20,0,-20,0"
+                                              ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <UniformGrid Columns="3" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
 
             </StackPanel>
 

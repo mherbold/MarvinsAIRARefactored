@@ -90,12 +90,6 @@ public abstract class FFBModule
 	/// <summary>Compute this module's output from its (already-computed) input signals. Hot path.</summary>
 	public abstract float Process( in FFBTickContext ctx, float inputA, float inputB );
 
-	/// <summary>
-	/// Publish any engine-level aggregates this module owns (e.g. protection thresholds read by Simulator).
-	/// Called on Rebuild and after every edit-time SetValue, never on the hot path.
-	/// </summary>
-	public virtual void PublishAggregates() { }
-
 	/// <summary>Edit-time atomic write of a single resolved setting value (effective-list index), followed by a
 	/// refresh of the cached Enabled flag and the module's cached value derivations.</summary>
 	public void SetValue( int settingIndex, float value )

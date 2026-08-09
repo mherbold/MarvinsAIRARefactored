@@ -2203,21 +2203,6 @@
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>アンダーステアとオーバーステアはステアリングエフェクトページで無効になっています</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>Alan Le のハイブリッドと同様ですが、60/360 Hz のブレンドが走行状況に自動適応し、負荷時の安定性が向上します。</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>滑らかな 60 Hz 信号と精細な 360 Hz 信号をブレンドし、圧縮・整形して力強くも制御された感触に仕上げます。</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>生の 360 Hz 信号をスルー圧縮とトータル圧縮で飼いならします — 荒いスパイクのない、しっかりとした精細な感触。</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>ほとんどのドライバーにおすすめのグラフ — 予測付きのフル 360 Hz 信号と、路面の細かな感触を強めたり弱めたりできる単一のディテールゲイン。</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>クラシックで滑らかな感触 — iRacing ネイティブの 60 Hz 信号をやさしく補間し、おなじみのエフェクトと保護機能を追加。</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>このグラフの説明を追加</value>
   </data>
@@ -2433,5 +2418,164 @@
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>シフトポイントを超えたらライトを点滅させる</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB グラフ設定</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>ほとんどのドライバーにおすすめです。遅延を抑える予測処理を備えた、フル 360 Hz の FFB 信号です。ゲインを調整すると、路面やタイヤのディテールを増減できます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト音をステアリングの力に変換します。動作させるには、iRacing でベースシェイカーの LFE を有効にし、VB-CABLE を使用する必要があります。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>非常にゆっくり走行しているときや停車中に、ステアリングが振動するのを抑えるフリクションのような力です。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>ステアリングを中央へ引き戻すスプリング力です。車がゆっくり走っているときや停車中にのみ効きます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>この値を調整して、路面やタイヤのディテールを増減します。ゲイン 1.00x では iRacing 本来のフィーリングが保たれます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>クラッシュを検知すると力を大きく下げ、その後なめらかに戻します。大きな衝撃でステアリングが手から弾き飛ばされるのを防ぎます。力の低減量で、どれだけ力を取り除くかを設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>アンダーステアエフェクトによって生成されるステアリングの力で、フロントタイヤがグリップを失う感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>オーバーステアエフェクトによって生成されるステアリングの力で、リアが流れ出す感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>シート・オブ・パンツエフェクト（シャシーに荷重がかかる感触）によって生成されるステアリングの力です。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>しきい値を下回る範囲でごく小さな交互のディザーを加え、ステアリングの機構を動かし続けて微細なディテールを引き出します。Logitech G29 のような低出力のホイールで効果的です。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>ソフトリミッターにより、FFB 信号はクリップしたときに頭打ちになるのではなく、ディテールをある程度残せます。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト音をステアリングの力に変換します。動作させるには、iRacing でベースシェイカーの LFE を有効にし、VB-CABLE を使用する必要があります。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>非常にゆっくり走行しているときや停車中に、ステアリングが振動するのを抑えるフリクションのような力です。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>ステアリングを中央へ引き戻すスプリング力です。車がゆっくり走っているときや停車中にのみ効きます。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>クラッシュを検知すると力を大きく下げ、その後なめらかに戻します。大きな衝撃でステアリングが手から弾き飛ばされるのを防ぎます。力の低減量で、どれだけ力を取り除くかを設定します。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>アンダーステアエフェクトによって生成されるステアリングの力で、フロントタイヤがグリップを失う感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>オーバーステアエフェクトによって生成されるステアリングの力で、リアが流れ出す感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>シート・オブ・パンツエフェクト（シャシーに荷重がかかる感触）によって生成されるステアリングの力です。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>しきい値を下回る範囲でごく小さな交互のディザーを加え、ステアリングの機構を動かし続けて微細なディテールを引き出します。Logitech G29 のような低出力のホイールで効果的です。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>ソフトリミッターにより、FFB 信号はクリップしたときに頭打ちになるのではなく、ディテールをある程度残せます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト音をステアリングの力に変換します。動作させるには、iRacing でベースシェイカーの LFE を有効にし、VB-CABLE を使用する必要があります。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>非常にゆっくり走行しているときや停車中に、ステアリングが振動するのを抑えるフリクションのような力です。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>ステアリングを中央へ引き戻すスプリング力です。車がゆっくり走っているときや停車中にのみ効きます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>クラッシュを検知すると力を大きく下げ、その後なめらかに戻します。大きな衝撃でステアリングが手から弾き飛ばされるのを防ぎます。力の低減量で、どれだけ力を取り除くかを設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>アンダーステアエフェクトによって生成されるステアリングの力で、フロントタイヤがグリップを失う感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>オーバーステアエフェクトによって生成されるステアリングの力で、リアが流れ出す感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>シート・オブ・パンツエフェクト（シャシーに荷重がかかる感触）によって生成されるステアリングの力です。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>しきい値を下回る範囲でごく小さな交互のディザーを加え、ステアリングの機構を動かし続けて微細なディテールを引き出します。Logitech G29 のような低出力のホイールで効果的です。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>ソフトリミッターにより、FFB 信号はクリップしたときに頭打ちになるのではなく、ディテールをある程度残せます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト音をステアリングの力に変換します。動作させるには、iRacing でベースシェイカーの LFE を有効にし、VB-CABLE を使用する必要があります。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>非常にゆっくり走行しているときや停車中に、ステアリングが振動するのを抑えるフリクションのような力です。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>ステアリングを中央へ引き戻すスプリング力です。車がゆっくり走っているときや停車中にのみ効きます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>クラッシュを検知すると力を大きく下げ、その後なめらかに戻します。大きな衝撃でステアリングが手から弾き飛ばされるのを防ぎます。力の低減量で、どれだけ力を取り除くかを設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>アンダーステアエフェクトによって生成されるステアリングの力で、フロントタイヤがグリップを失う感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>オーバーステアエフェクトによって生成されるステアリングの力で、リアが流れ出す感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>シート・オブ・パンツエフェクト（シャシーに荷重がかかる感触）によって生成されるステアリングの力です。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>しきい値を下回る範囲でごく小さな交互のディザーを加え、ステアリングの機構を動かし続けて微細なディテールを引き出します。Logitech G29 のような低出力のホイールで効果的です。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>ソフトリミッターにより、FFB 信号はクリップしたときに頭打ちになるのではなく、ディテールをある程度残せます。</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>最も強いフォースを和らげたいドライバー向け。360 Hz のFFB信号をそのまま、フォースの変化速度を抑えるスルーコンプレッサーと、フォース全体を抑えるコンプレッサーに通します。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>フォースの変化速度を抑えます。急激なピークは和らげられ、ゆるやかなフォースはそのまま通過します。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>フォース全体を抑えます。スレッショルドを超えたフォースが圧縮され、最も強い瞬間でもステアリングを押し負かすことがなくなります。</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>ハイブリッド調整ツールキット。滑らかな 60 Hz のFFB信号を土台とし、そこに 360 Hz のディテールをブレンドしたうえで、コンプレッサー、スルーコンプレッサー、トランジェントエンハンサー、アダプティブスムーザーを順に通します。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>滑らかな 60 Hz 信号（土台）に 360 Hz のディテールをブレンドします。フォースの向きが変わるとブレンドが開き、トランジェントがしっかり前に出ます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>フォース全体を抑えます。スレッショルドを超えたフォースが圧縮され、最も強い瞬間でもステアリングを押し負かすことがなくなります。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>フォースの変化速度を抑えます。ピークモードでは立ち上がりの速さを制限するのではなく、ピークの後にフォースを緩やかに戻します。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>急なフォース変化を際立たせます。ディテール系統の非線形ブースターです。ゲインが 1.00x のときはトランジェントの強さが元のまま保たれます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>信号が穏やかなときだけスムージングします。速いトランジェントはそのまま通過します。スムージングを強めたい場合は量を上げてください。</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>従来どおりの 60 Hz のFFB信号を好むドライバー向け。予測によりレイテンシーを低減します。</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>低遅延 360 Hz ディテールブースター・リミッター</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>低遅延 60 Hz ディテールブースター・リミッター</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz スルーレートと総圧縮</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>ハイブリッドマルチ調整ツールキット</value>
   </data>
 </root>

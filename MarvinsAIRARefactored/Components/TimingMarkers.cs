@@ -30,18 +30,25 @@ public class TimingMarkers
 
 	public void Initialize( int numCars )
 	{
-		cars = new Car[ numCars ];
+		// Build the array fully populated BEFORE publishing it — this runs on the telemetry thread while
+		// Tick (app tick thread) is iterating the field, so the field must never expose a half-filled
+		// (null-element) array. Every reader snapshots the field once for the same reason.
+		var newCars = new Car[ numCars ];
 
-		for ( var i = 0; i < cars.Length; i++ )
+		for ( var i = 0; i < newCars.Length; i++ )
 		{
-			cars[ i ] = new Car();
+			newCars[ i ] = new Car();
 		}
+
+		cars = newCars;
 
 		Reset();
 	}
 
 	public void Reset()
 	{
+		var cars = this.cars;
+
 		for ( int i = 0; i < cars.Length; i++ )
 		{
 			cars[ i ].lastMarkerIndex = 0;
@@ -68,6 +75,8 @@ public class TimingMarkers
 
 	public bool TryGetMarkerTimeAtLapPct( int carIdx, float lapPct, out int markerIndex, out double time )
 	{
+		var cars = this.cars;
+
 		markerIndex = -1;
 		time = 0f;
 
@@ -114,6 +123,8 @@ public class TimingMarkers
 
 	public bool TryGetLapStartTimes( int carIdx, out double currentLapStartTime, out double previousLapStartTime )
 	{
+		var cars = this.cars;
+
 		currentLapStartTime = 0;
 		previousLapStartTime = 0;
 
@@ -133,6 +144,10 @@ public class TimingMarkers
 
 	public void Tick( App app )
 	{
+		// snapshot — Initialize swaps the field from the telemetry thread, and mixing the old and new
+		// arrays mid-loop (or racing the swap itself) must not be possible
+		var cars = this.cars;
+
 		if ( app.Simulator.SessionNum != lastSessionNum )
 		{
 			lastSessionNum = app.Simulator.SessionNum;

@@ -27,16 +27,11 @@ public sealed class FFBGraphEngine
 	public float MainOutput;              // Output module result (normalized, pre-fade)
 	public float VibrationOutput;         // sum of generator modules (normalized)
 
-	// published per-tick / edit-time aggregates
+	// "any protection node active" flags — cleared at the top of every Process tick, then OR'd back in by each
+	// crash/curb protection module's PrePass (the modules self-trigger against their own thresholds, so these
+	// are the only shared protection state left; they drive the graph gutter, G Tensioner, and announcements)
 	public bool CrashProtectionActive;
 	public bool CurbProtectionActive;
-
-	// aggregates refreshed on Rebuild/SetValue, read by Simulator triggers (thresholds) and the activation log
-	public float CrashLongGForceThreshold = 20f;
-	public float CrashLatGForceThreshold = 20f;
-	public float CurbShockVelocityThreshold = 0f;
-	public float CrashProtectionForceReduction = 0f;
-	public float CrashProtectionDuration = 0f;
 
 	/// <summary>The graph model this engine was last built from (for the preview replay / editor).</summary>
 	public FFBGraph? Graph { get; private set; }
@@ -125,8 +120,6 @@ public sealed class FFBGraphEngine
 		_signals = new float[ moduleCount ];
 		_prePassModules = [ .. prePassModules ];
 		_outputModuleIndex = outputModuleIndex;
-
-		RefreshAggregates();
 	}
 
 	/// <summary>An input reference is valid only if it resolves to an EARLIER module; otherwise fall back to the fallback source.</summary>
@@ -154,22 +147,7 @@ public sealed class FFBGraphEngine
 		CurbProtectionActive = false;
 	}
 
-	/// <summary>Recompute the edit-time aggregates (the protection thresholds) by asking each module to publish.</summary>
-	public void RefreshAggregates()
-	{
-		CrashLongGForceThreshold = 20f;
-		CrashLatGForceThreshold = 20f;
-		CurbShockVelocityThreshold = 0f;
-		CrashProtectionForceReduction = 0f;
-		CrashProtectionDuration = 0f;
-
-		for ( var i = 0; i < _modules.Length; i++ )
-		{
-			_modules[ i ].PublishAggregates();
-		}
-	}
-
-	/// <summary>Edit-time write of a module's session-only test override (see <see cref="FFBModule.TestActive"/>).
+/// <summary>Edit-time write of a module's session-only test override (see <see cref="FFBModule.TestActive"/>).
 	/// Atomic bool write, tolerated by the 360 Hz reader. Lost on Rebuild by design — the editor re-applies it
 	/// to the preview engine on every preview refresh.</summary>
 	public void SetTestActive( string moduleId, bool active )
@@ -196,8 +174,6 @@ public sealed class FFBGraphEngine
 		}
 
 		_modules[ index ].SetValue( settingIndex, value );
-
-		RefreshAggregates();
 	}
 
 	/// <summary>Index of a module in the signal array, or -1 when the id is unknown. Preview taps only.</summary>

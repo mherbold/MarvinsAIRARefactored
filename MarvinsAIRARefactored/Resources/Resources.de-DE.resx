@@ -2203,21 +2203,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Untersteuern und Übersteuern sind auf der Seite „Lenkeffekte“ deaktiviert</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>Wie Alan Les Hybrid, aber die 60/360-Hz-Mischung passt sich automatisch den Fahrbedingungen an — für zusätzliche Stabilität unter Last.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>Mischt das weiche 60-Hz-Signal mit dem detaillierten 360-Hz-Signal und komprimiert und formt es anschließend für ein kräftiges, aber kontrolliertes Gefühl.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>Zähmt das rohe 360-Hz-Signal mit Slew- und Gesamtkompression — ein festes, detailliertes Gefühl ohne harte Spitzen.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>Der empfohlene Graph für die meisten Fahrer — das volle 360-Hz-Signal mit Prädiktion und einem einzigen Detail-Regler, um das feine Fahrbahngefühl zu verstärken oder abzuschwächen.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>Das klassische weiche Gefühl — iRacings natives 60-Hz-Signal, sanft interpoliert, mit den üblichen Effekten und Schutzfunktionen obendrauf.</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>Beschreibung für diesen Graphen hinzufügen</value>
   </data>
@@ -2433,5 +2418,164 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>LEDs nach dem Schaltpunkt blinken lassen</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB-Diagramm-Einstellungen</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Für die meisten Fahrer empfohlen — das volle FFB-Signal mit 360 Hz und Prädiktion zur Verringerung der Latenz. Passe die Verstärkung an, um die Fahrbahn- und Reifendetails zu erhöhen oder abzuschwächen.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Das Tieftoneffekt-Audio (LFE) des Simulators, umgesetzt in Kraft am Lenkrad. Damit das funktioniert, musst du in iRacing das Bass-Shaker-LFE aktivieren und VB-CABLE verwenden.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Eine reibungsähnliche Kraft, die das Lenkrad am Schwingen hindert, während du sehr langsam fährst oder stehst.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Eine Federkraft, die das Lenkrad zurück zur Mitte zieht; sie wirkt nur, wenn das Auto langsam fährt oder steht.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Passe diesen Wert an, um die Fahrbahn- und Reifendetails zu erhöhen oder abzuschwächen. Eine Verstärkung von 1,00x behält das originale iRacing-Gefühl bei.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Der weiche Limiter lässt dem FFB-Signal noch etwas Detail, statt es beim Clipping flach abzuschneiden.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>Das Tieftoneffekt-Audio (LFE) des Simulators, umgesetzt in Kraft am Lenkrad. Damit das funktioniert, musst du in iRacing das Bass-Shaker-LFE aktivieren und VB-CABLE verwenden.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>Eine reibungsähnliche Kraft, die das Lenkrad am Schwingen hindert, während du sehr langsam fährst oder stehst.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>Eine Federkraft, die das Lenkrad zurück zur Mitte zieht; sie wirkt nur, wenn das Auto langsam fährt oder steht.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>Der weiche Limiter lässt dem FFB-Signal noch etwas Detail, statt es beim Clipping flach abzuschneiden.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>Das Tieftoneffekt-Audio (LFE) des Simulators, umgesetzt in Kraft am Lenkrad. Damit das funktioniert, musst du in iRacing das Bass-Shaker-LFE aktivieren und VB-CABLE verwenden.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>Eine reibungsähnliche Kraft, die das Lenkrad am Schwingen hindert, während du sehr langsam fährst oder stehst.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>Eine Federkraft, die das Lenkrad zurück zur Mitte zieht; sie wirkt nur, wenn das Auto langsam fährt oder steht.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>Der weiche Limiter lässt dem FFB-Signal noch etwas Detail, statt es beim Clipping flach abzuschneiden.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Das Tieftoneffekt-Audio (LFE) des Simulators, umgesetzt in Kraft am Lenkrad. Damit das funktioniert, musst du in iRacing das Bass-Shaker-LFE aktivieren und VB-CABLE verwenden.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Eine reibungsähnliche Kraft, die das Lenkrad am Schwingen hindert, während du sehr langsam fährst oder stehst.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Eine Federkraft, die das Lenkrad zurück zur Mitte zieht; sie wirkt nur, wenn das Auto langsam fährt oder steht.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Der weiche Limiter lässt dem FFB-Signal noch etwas Detail, statt es beim Clipping flach abzuschneiden.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>Für Fahrer, die die stärksten Kräfte abgemildert haben möchten – das volle 360 Hz FFB-Signal durch einen Slew-Kompressor, der begrenzt, wie schnell sich die Kraft ändern kann, und einen Kompressor, der die Gesamtkraft zusammendrückt.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Begrenzt, wie schnell sich die Kraft ändern kann – schnelle Spitzen werden abgemildert, während langsamere Kräfte unverändert durchgelassen werden.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Drückt die Gesamtkraft zusammen – Kräfte oberhalb des Threshold werden komprimiert, damit die stärksten Momente das Lenkrad nicht überfordern.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Das hybride Tuning-Toolkit – das glatte 60 Hz FFB-Signal als Basis mit eingemischtem 360 Hz Detail, gefolgt von Kompressor, Slew-Kompressor, Transientenverstärker und adaptiver Glättung.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Mischt das glatte 60 Hz Signal (die Basis) mit dem 360 Hz Detail. Wenn die Kraft die Richtung wechselt, öffnet sich die Überblendung, damit Transienten durchkommen.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Drückt die Gesamtkraft zusammen – Kräfte oberhalb des Threshold werden komprimiert, damit die stärksten Momente das Lenkrad nicht überfordern.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Begrenzt, wie schnell sich die Kraft ändern kann. Im Peak-Modus wird die Kraft nach einer Spitze sanft zurückgeführt, statt den Anstieg zu begrenzen.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Schärft plötzliche Kraftänderungen – der nichtlineare Booster des Detailzweigs. Ein Gain von 1,00x behält die ursprüngliche Transientenstärke bei.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Glättet das Signal nur, solange es ruhig ist – schnelle Transienten kommen weiterhin durch. Erhöhe die Intensität für mehr Glättung.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Für Fahrer, die das klassische 60 Hz FFB-Signal bevorzugen – mit Vorhersage zur Verringerung der Latenz.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>360 Hz Detailverstärker &amp; Limiter mit geringer Latenz</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>60 Hz Detailverstärker &amp; Limiter mit geringer Latenz</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz Slew &amp; Gesamtkompression</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Hybrides Tuning-Toolkit</value>
   </data>
 </root>

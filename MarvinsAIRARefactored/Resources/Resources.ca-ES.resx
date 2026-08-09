@@ -2200,21 +2200,6 @@
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>El subviratge i el sobreviratge estan desactivats a la pàgina d'efectes de direcció</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>Com l'híbrid d'Alan Le, però la barreja 60/360 Hz s'adapta automàticament a les condicions de conducció per a més estabilitat sota càrrega.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>Barreja el senyal suau de 60 Hz amb el senyal detallat de 360 Hz, i després el comprimeix i el modela per a una sensació forta però controlada.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>Doma el senyal cru de 360 Hz amb compressió de slew i total — una sensació ferma i detallada sense pics bruscos.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>El graf recomanat per a la majoria de pilots — el senyal complet de 360 Hz amb predicció, i un sol guany de detall per apujar o abaixar la sensació fina de la carretera.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>La sensació suau clàssica — el senyal natiu de 60 Hz d'iRacing, interpolat suaument, amb els efectes i proteccions habituals.</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>Afegeix una descripció per a aquest graf</value>
   </data>
@@ -2430,5 +2415,164 @@
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>Fer parpellejar els llums en superar el punt de canvi de marxa</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>Configuració del gràfic FFB</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Recomanat per a la majoria de pilots — el senyal FFB complet de 360 Hz amb predicció per reduir la latència. Ajusta el guany per augmentar o reduir el detall de la carretera i dels pneumàtics.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Cal que activis el bass shaker LFE a iRacing i que facis servir VB-CABLE perquè això funcioni.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Una força semblant a la fricció que evita que el volant oscil·li quan vas molt a poc a poc o estàs aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre; només actua quan el cotxe va a poc a poc o està aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Ajusta aquest valor per augmentar o reduir el detall de la carretera i dels pneumàtics. Un guany d'1,00x manté la sensació original d'iRacing.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Abaixa molt la força quan detecta un accident i després la recupera de manera suau — així un impacte fort no et pot arrencar el volant de les mans. La reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de subviratge, perquè notis com els pneumàtics davanters perden adherència. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de sobreviratge, perquè notis com el darrere del cotxe se'n va. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte seat-of-pants — la sensació que el xassís es va carregant. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Afegeix un dither alternant molt petit per sota d'un llindar per mantenir viu el mecanisme del volant i deixar sortir el detall més feble — útil si tens un volant de poca potència com el Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>El limitador suau permet que el senyal FFB conservi una part del detall en comptes d'aplanar-se quan es retalla.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Cal que activis el bass shaker LFE a iRacing i que facis servir VB-CABLE perquè això funcioni.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>Una força semblant a la fricció que evita que el volant oscil·li quan vas molt a poc a poc o estàs aturat.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre; només actua quan el cotxe va a poc a poc o està aturat.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Abaixa molt la força quan detecta un accident i després la recupera de manera suau — així un impacte fort no et pot arrencar el volant de les mans. La reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de subviratge, perquè notis com els pneumàtics davanters perden adherència. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de sobreviratge, perquè notis com el darrere del cotxe se'n va. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte seat-of-pants — la sensació que el xassís es va carregant. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Afegeix un dither alternant molt petit per sota d'un llindar per mantenir viu el mecanisme del volant i deixar sortir el detall més feble — útil si tens un volant de poca potència com el Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>El limitador suau permet que el senyal FFB conservi una part del detall en comptes d'aplanar-se quan es retalla.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Cal que activis el bass shaker LFE a iRacing i que facis servir VB-CABLE perquè això funcioni.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>Una força semblant a la fricció que evita que el volant oscil·li quan vas molt a poc a poc o estàs aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre; només actua quan el cotxe va a poc a poc o està aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Abaixa molt la força quan detecta un accident i després la recupera de manera suau — així un impacte fort no et pot arrencar el volant de les mans. La reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de subviratge, perquè notis com els pneumàtics davanters perden adherència. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de sobreviratge, perquè notis com el darrere del cotxe se'n va. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte seat-of-pants — la sensació que el xassís es va carregant. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Afegeix un dither alternant molt petit per sota d'un llindar per mantenir viu el mecanisme del volant i deixar sortir el detall més feble — útil si tens un volant de poca potència com el Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>El limitador suau permet que el senyal FFB conservi una part del detall en comptes d'aplanar-se quan es retalla.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Cal que activis el bass shaker LFE a iRacing i que facis servir VB-CABLE perquè això funcioni.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Una força semblant a la fricció que evita que el volant oscil·li quan vas molt a poc a poc o estàs aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre; només actua quan el cotxe va a poc a poc o està aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Abaixa molt la força quan detecta un accident i després la recupera de manera suau — així un impacte fort no et pot arrencar el volant de les mans. La reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de subviratge, perquè notis com els pneumàtics davanters perden adherència. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de sobreviratge, perquè notis com el darrere del cotxe se'n va. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte seat-of-pants — la sensació que el xassís es va carregant. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Afegeix un dither alternant molt petit per sota d'un llindar per mantenir viu el mecanisme del volant i deixar sortir el detall més feble — útil si tens un volant de poca potència com el Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>El limitador suau permet que el senyal FFB conservi una part del detall en comptes d'aplanar-se quan es retalla.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>Per a pilots que volen suavitzar les forces més intenses: tot el senyal FFB de 360 Hz passa per un compressor de variació que limita la rapidesa amb què pot canviar la força, i per un compressor que comprimeix la força total.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Limita la rapidesa amb què pot canviar la força: els pics ràpids se suavitzen mentre que les forces més lentes passen intactes.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Comprimeix la força total: les forces per damunt del llindar es comprimeixen perquè els moments més intensos no desbordin el volant.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>El kit d'ajust híbrid: el senyal FFB suau de 60 Hz com a base, amb el detall de 360 Hz barrejat, seguit de compressor, compressor de variació, realçador de transitoris i suavitzador adaptatiu.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Barreja el senyal suau de 60 Hz (la base) amb el detall de 360 Hz. Quan la força canvia de direcció, la fusió s'obre perquè els transitoris travessin.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Comprimeix la força total: les forces per damunt del llindar es comprimeixen perquè els moments més intensos no desbordin el volant.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Limita la rapidesa amb què pot canviar la força. En mode pic, fa baixar la força suaument després d'un pic en lloc de limitar-ne la pujada.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Accentua els canvis sobtats de força: el potenciador no lineal de la branca de detall. Un guany d'1,00x manté la intensitat original dels transitoris.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Suavitza el senyal només mentre està tranquil: els transitoris ràpids continuen passant. Augmenta la quantitat per obtenir més suavitzat.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Per a pilots que prefereixen el senyal FFB clàssic de 60 Hz, amb predicció per reduir la latència.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Potenciador de detall i limitador 360 Hz de baixa latència</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Potenciador de detall i limitador 60 Hz de baixa latència</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>Variació i compressió total a 360 Hz</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Kit d'ajust híbrid</value>
   </data>
 </root>

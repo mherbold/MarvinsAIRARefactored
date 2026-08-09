@@ -587,17 +587,20 @@ public partial class RacingWheelPage : UserControl
 
 		var items = new List<KeyValuePair<string, string>>();
 
-		var builtInNames = graphs.Where( pair => pair.Value.IsBuiltIn ).Select( pair => pair.Key ).OrderBy( name => name, StringComparer.OrdinalIgnoreCase ).ToList();
+		// built-ins display their LOCALIZED name (the raw name stays the item value — it is the stable
+		// identifier the selection and settings store), sorted by what the user actually reads
+		var builtInItems = graphs.Where( pair => pair.Value.IsBuiltIn )
+			.Select( pair => new KeyValuePair<string, string>( pair.Key, FFBGraphViewModel.GraphDisplayName( pair.Key, isBuiltIn: true ) ) )
+			.OrderBy( pair => pair.Value, StringComparer.CurrentCultureIgnoreCase )
+			.ToList();
+
 		var customNames = graphs.Where( pair => !pair.Value.IsBuiltIn ).Select( pair => pair.Key ).OrderBy( name => name, StringComparer.OrdinalIgnoreCase ).ToList();
 
-		if ( builtInNames.Count > 0 )
+		if ( builtInItems.Count > 0 )
 		{
 			items.Add( new KeyValuePair<string, string>( "_builtIn", localization[ "BuiltInGraphs" ] ) );
 
-			foreach ( var graphName in builtInNames )
-			{
-				items.Add( new KeyValuePair<string, string>( graphName, graphName ) );
-			}
+			items.AddRange( builtInItems );
 		}
 
 		if ( customNames.Count > 0 )
@@ -913,6 +916,22 @@ public partial class RacingWheelPage : UserControl
 		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
 		{
 			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.ToggleTestActive( moduleViewModel );
+		}
+	}
+
+	private void MovePinnedGroupUp_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.MovePinnedGroup( moduleViewModel, -1 );
+		}
+	}
+
+	private void MovePinnedGroupDown_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.MovePinnedGroup( moduleViewModel, 1 );
 		}
 	}
 

@@ -2200,21 +2200,6 @@
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Недозавиването и презавиването са деактивирани на страницата с ефекти на управлението</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>Като хибрида на Alan Le, но смесването 60/360 Hz се адаптира автоматично към условията на карането за допълнителна стабилност под натоварване.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>Смесва гладкия 60 Hz сигнал с детайлния 360 Hz сигнал, след което го компресира и оформя за силно, но контролирано усещане.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>Укротява суровия 360 Hz сигнал със slew и обща компресия — стегнато, детайлно усещане без резки върхове.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>Препоръчаният граф за повечето пилоти — пълният сигнал от 360 Hz с предсказване и един регулатор на детайла, който усилва или намалява финото усещане за пътя.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>Класическото гладко усещане — родният 60 Hz сигнал на iRacing, меко интерполиран, с обичайните ефекти и защити отгоре.</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>Добавете описание за този граф</value>
   </data>
@@ -2430,5 +2415,164 @@
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>Мигане на светлините след точката за смяна на предавката</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>Настройки на FFB графиката</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Препоръчва се за повечето пилоти — пълният FFB сигнал от 360 Hz с предсказване за намаляване на закъснението. Настройте усилването, за да увеличите или намалите детайла от пътя и гумите.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Звукът на нискочестотните ефекти (LFE) от симулатора, превърнат в сила върху волана. За да работи това, трябва да включите bass shaker LFE в iRacing и да използвате VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Сила, подобна на триене, която не позволява на волана да осцилира, докато се движите много бавно или сте спрели.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Пружинна сила, която връща волана към центъра; действа само когато колата се движи бавно или е спряла.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Настройте тази стойност, за да увеличите или намалите детайла от пътя и гумите. Усилване от 1,00x запазва оригиналното усещане на iRacing.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Силно приглушава силата при засичане на удар и след това я връща плавно — така че тежък сблъсък да не може да изтръгне волана от ръцете ви. Намаляването на силата задава каква част от силата се премахва.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на недозавиване, за да усетите как предните гуми губят сцепление. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на презавиване, за да усетите как задницата на колата поднася. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на усещане с тялото — усещането за натоварване на шасито. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Добавя съвсем малък редуващ се дитер под даден праг, за да поддържа механиката на волана жива и да разкрие едва доловимите детайли — полезно, ако имате волан с ниска мощност като Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Мекият ограничител позволява на FFB сигнала да запази част от детайла, вместо да се изравни, когато бъде отрязан.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>Звукът на нискочестотните ефекти (LFE) от симулатора, превърнат в сила върху волана. За да работи това, трябва да включите bass shaker LFE в iRacing и да използвате VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>Сила, подобна на триене, която не позволява на волана да осцилира, докато се движите много бавно или сте спрели.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>Пружинна сила, която връща волана към центъра; действа само когато колата се движи бавно или е спряла.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Силно приглушава силата при засичане на удар и след това я връща плавно — така че тежък сблъсък да не може да изтръгне волана от ръцете ви. Намаляването на силата задава каква част от силата се премахва.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на недозавиване, за да усетите как предните гуми губят сцепление. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на презавиване, за да усетите как задницата на колата поднася. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на усещане с тялото — усещането за натоварване на шасито. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Добавя съвсем малък редуващ се дитер под даден праг, за да поддържа механиката на волана жива и да разкрие едва доловимите детайли — полезно, ако имате волан с ниска мощност като Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>Мекият ограничител позволява на FFB сигнала да запази част от детайла, вместо да се изравни, когато бъде отрязан.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>Звукът на нискочестотните ефекти (LFE) от симулатора, превърнат в сила върху волана. За да работи това, трябва да включите bass shaker LFE в iRacing и да използвате VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>Сила, подобна на триене, която не позволява на волана да осцилира, докато се движите много бавно или сте спрели.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>Пружинна сила, която връща волана към центъра; действа само когато колата се движи бавно или е спряла.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Силно приглушава силата при засичане на удар и след това я връща плавно — така че тежък сблъсък да не може да изтръгне волана от ръцете ви. Намаляването на силата задава каква част от силата се премахва.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на недозавиване, за да усетите как предните гуми губят сцепление. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на презавиване, за да усетите как задницата на колата поднася. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на усещане с тялото — усещането за натоварване на шасито. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Добавя съвсем малък редуващ се дитер под даден праг, за да поддържа механиката на волана жива и да разкрие едва доловимите детайли — полезно, ако имате волан с ниска мощност като Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>Мекият ограничител позволява на FFB сигнала да запази част от детайла, вместо да се изравни, когато бъде отрязан.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Звукът на нискочестотните ефекти (LFE) от симулатора, превърнат в сила върху волана. За да работи това, трябва да включите bass shaker LFE в iRacing и да използвате VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Сила, подобна на триене, която не позволява на волана да осцилира, докато се движите много бавно или сте спрели.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Пружинна сила, която връща волана към центъра; действа само когато колата се движи бавно или е спряла.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Силно приглушава силата при засичане на удар и след това я връща плавно — така че тежък сблъсък да не може да изтръгне волана от ръцете ви. Намаляването на силата задава каква част от силата се премахва.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на недозавиване, за да усетите как предните гуми губят сцепление. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на презавиване, за да усетите как задницата на колата поднася. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>Сила в кормилото, задвижвана от ефекта на усещане с тялото — усещането за натоварване на шасито. Посоката определя дали ефектът олекотява волана, или добавя страничен натиск.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Добавя съвсем малък редуващ се дитер под даден праг, за да поддържа механиката на волана жива и да разкрие едва доловимите детайли — полезно, ако имате волан с ниска мощност като Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Мекият ограничител позволява на FFB сигнала да запази част от детайла, вместо да се изравни, когато бъде отрязан.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>За пилоти, които искат най-силните сили да бъдат смекчени – целият 360 Hz FFB сигнал преминава през компресор на нарастване, който ограничава колко бързо може да се променя силата, и компресор, който притиска общата сила.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Ограничава колко бързо може да се променя силата – бързите пикове се смекчават, докато по-бавните сили преминават непроменени.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Притиска общата сила – силите над прага се компресират, така че най-силните моменти да не надвият волана.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Хибридният комплект за настройка – гладкият 60 Hz FFB сигнал като основа, с примесен 360 Hz детайл, следван от компресор, компресор на нарастване, усилвател на транзиенти и адаптивно изглаждане.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Смесва гладкия 60 Hz сигнал (основата) с 360 Hz детайла. Когато силата смени посоката си, смесването се отваря, за да пробият транзиентите.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Притиска общата сила – силите над прага се компресират, така че най-силните моменти да не надвият волана.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Ограничава колко бързо може да се променя силата. В режим на пик оставя силата да спадне плавно след пик, вместо да ограничава скоростта на нарастването ѝ.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Изостря внезапните промени в силата – нелинейният усилвател на детайлния клон. Усилване 1,00x запазва оригиналната сила на транзиентите.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Изглажда сигнала само докато е спокоен – бързите транзиенти продължават да преминават. Увеличете количеството за повече изглаждане.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>За пилоти, които предпочитат класическия 60 Hz FFB сигнал – с прогнозиране за намаляване на закъснението.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Усилвател на детайла и лимитер 360 Hz с ниско закъснение</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Усилвател на детайла и лимитер 60 Hz с ниско закъснение</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz нарастване и обща компресия</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Хибриден комплект за настройка</value>
   </data>
 </root>

@@ -53,17 +53,23 @@ itself ever carries a wrong id, restore from this table):
 
 | Graph | GraphId |
 |---|---|
-| Marvin's easy detail adjustment (flagship) | `2a29dfcbc2d04dba9608242de14b443e` |
-| Marvin's native 60 Hz | `d75319b27eaa4baeba4bfffedbdb8a40` |
-| Alan Le's slew and total compression | `14970d6d086a4a7f81369e91b484d586` |
-| Alan Le's hybrid | `b6112552140541f8b5de865319836480` |
-| Alan Le's adaptive hybrid | `eb1200e27491419f9677efa9f82f0b45` |
+| Low latency 360 Hz detail booster & limiter (flagship) | `87582264ef2c4b2c8cf3532d33c91c6a` |
+| Low latency 60 Hz detail booster & limiter | `415930263cef4bf8955112282f81e451` |
+| 360 Hz slew & total compression | `4707d38812774e2b9144f1c081759e57` |
+| Hybrid multi adjustment toolkit | `0c3fd50625f342c393fe013eb43fa355` |
 
 ## Step 2 — Sync descriptions into the localization tables
 
 Built-in graphs render their descriptions **translated** via resx keys, with
 the text stored in the graph file as the English fallback:
 
+- Graph display NAME → key `FFBGraphName<Name alnum-only>`
+  (e.g. `FFBGraphNameLowlatency60Hzdetailboosterlimiter`) — see
+  `FFBGraphViewModel.NameLocalizationKey`. The raw English name stays the
+  stable identifier (dictionary key, stored selection, migration targets,
+  export file name); ONLY the graph-selector display localizes. A renamed or
+  brand-new built-in needs its name key added + translated, and the old name's
+  key removed.
 - Graph description → key `FFBGraphDescription<Name alnum-only>`
   (e.g. `FFBGraphDescriptionMarvinsnative60Hz`) — see
   `FFBGraphViewModel.DescriptionLocalizationKey`.

@@ -11,7 +11,7 @@ This document explains what changed versus the released (main branch) version, a
 ## Before you install
 
 - **This build is invisible to the update checker.** The app will not offer it, and it is not the "Latest" release on GitHub. Download and run the installer manually from the release page above. The installer is code-signed like normal releases.
-- **Your force feedback settings will NOT carry over.** There is no migration from the old algorithm settings to the graph system — everyone starts on the built-in graph. All of your *other* settings (pedals, sounds, overlays, commentary, G Tensioner, controller profiles, wheel force / max force, etc.) are preserved.
+- **Your old algorithm *choice* now migrates — your algorithm knob values do not.** Every old fixed algorithm maps to the built-in graph that replaces it (per car/track context, matching your old per-context algorithm choices): the 360 Hz family (Native 360 Hz, Detail booster, Delta limiter, and both low latency variants) lands on the flagship graph, Native 60 Hz on the 60 Hz graph, and Slew and total compression and the Multi adjustment toolkit on their namesake graphs. The old algorithms' knob values are not translated into graph settings. All of your *other* settings (pedals, sounds, overlays, commentary, G Tensioner, controller profiles, wheel force / max force, etc.) are preserved.
 - **FFB recordings from earlier builds are incompatible.** The recording file format changed in the fourth alpha (v5 — it captures the car's redline RPM for the engine RPM vibration); recordings made with any build before it no longer load. Fourteen fresh sample recordings covering a wide spread of cars and tracks are installed for the preview graph, and you can record your own (see [Recordings](#recordings-and-the-preview-graph)).
 - **Rolling back is safe.** Install the previous version over this one at any time. Note the graph data this alpha writes into `Settings.xml` will simply be ignored by the old version, and your old (dormant) algorithm settings are still in the file, so the old version picks up right where you left it.
 
@@ -39,7 +39,7 @@ Changes since the eighth alpha (2.0.478.83), for testers who already ran it:
 | Processing rate | 60 Hz update with per-algorithm upsampling | Entire chain at **360 Hz**, dedicated high-rate output thread |
 | Racing Wheel page | Algorithm / Output / Effects / Parked sections | One FFB graph section (vibrations included) |
 | Steering Effects page | Wheel force + vibration groups | Wheel groups moved into the graphs (thresholds/calibration remain) |
-| FFB defaults | Per-algorithm defaults | **Five built-in graphs** shipped with the app, one per old algorithm family |
+| FFB defaults | Per-algorithm defaults | **Four built-in graphs** shipped with the app, one per old algorithm family |
 | Sharing setups | Not possible | **Export / import** graphs as `.mairagraph` files |
 | Latency compensation | — | **360 Hz and 60 Hz prediction modules** — adaptive lookahead up to 33.3 ms |
 | Recordings | Fixed 60-second, 2 channels | Toggle record up to 5 min, 36 channels, auto-stop on lap completion |
@@ -183,13 +183,12 @@ The graph dropdowns are split into two categories:
   - are **updated automatically** when a new app version ships an updated copy — so alpha fixes to the built-in graphs reach you on the next install without touching your custom graphs.
 - **Custom** — yours. To modify a built-in's structure, press **New graph** and choose **Clone current graph**; the clone is fully editable.
 
-Five built-in graphs ship, each one the replacement for one of the old fixed algorithms. All five share the same back half — the steering-effect forces, crash protection, parked ramp-down, interpolated low-speed wheel centering and friction branches, LFE, soft lock, the Output soft limiter, and the full set of vibration generator nodes — and differ in how the torque signal is produced and conditioned up front:
+Four built-in graphs ship, one per old fixed-algorithm family (your old algorithm choice migrates to the matching graph automatically — see [Before you install](#before-you-install)). All four share the same back half — the steering-effect forces, crash protection, the parked branch (low-speed damping with a friction alternative behind an A/B switch, plus parked wheel centering, faded out above walking speed), a torque dither for low-power wheels, the LFE and soft lock sources, the Output soft limiter, and the full set of vibration generator nodes — and differ in how the torque signal is produced and conditioned up front:
 
-- **Marvin's easy detail adjustment** *(the flagship — the wizard tunes it, and fresh installs start on it; replaces Native 360 Hz, Detail booster, and Delta limiter)* — splits the 360 Hz torque into two branches: the slow body goes through the **360 Hz prediction module** and a low-pass filter (prediction on the body only, so no noise is amplified), while the high-pass detail branch gets its own **detail gain** (the gain the first-run wizard tunes) and curb protection.
-- **Marvin's native 60 Hz** *(replaces Native 60 Hz)* — the 60 Hz torque through the new **60 Hz prediction module** and an interpolator, with curb protection.
-- **Alan Le's slew and total compression** *(replaces Slew and total compression)* — the 360 Hz torque through a **slew compressor** (75 Nm/s, 3:1 — squeezes how *fast* torque can change) and a **compressor** (30 Nm, 4:1 — squeezes total torque), then curb protection.
-- **Alan Le's hybrid** *(replaces the Multi adjustment toolkit's fixed hybrid mode)* — an **adaptive blend** rides the 60 Hz torque as the anchor while letting the 360 Hz detail through (8 Hz fixed corner), followed by the toolkit's whole adjustment chain: compressor and peak-mode slew compressor (both off by default), the detail stage (7.2 Hz low-pass + transient enhancer at a neutral 1.00×), and an adaptive smoother (0%).
-- **Alan Le's adaptive hybrid** *(replaces the toolkit's variable hybrid mode)* — the same chain, but the blend's corner drops from 20 Hz to 6 Hz whenever the force direction flips and eases back over 28 ms, letting transients punch through with less anchor pull; ships with gentle peak-mode slew compression (180 Nm/s, 1.5:1) and 10% adaptive smoothing switched on.
+- **Low latency 360 Hz detail booster & limiter** *(the flagship — the default graph, and the one the first-run wizard tunes; replaces Native 360 Hz, Detail booster, Delta limiter, and both low latency variants)* — splits the 360 Hz torque into two branches: the slow body goes through the **360 Hz prediction module** and a low-pass filter (prediction on the body only, so no noise is amplified), while the high-pass detail branch gets its own **detail gain** — the knob the wizard tunes, and the graph's main "more or less road and tire detail" control. Each branch has its own curb protection (a gentle 35% reduction on the body, a full cut on the boosted detail).
+- **Low latency 60 Hz detail booster & limiter** *(replaces Native 60 Hz)* — the classic 60 Hz torque through the new **60 Hz prediction module**, with curb protection.
+- **360 Hz slew & total compression** *(replaces Slew and total compression)* — the full 360 Hz torque through a **slew compressor** (75 Nm/s, 3:1 — squeezes how *fast* the force can change) and a **compressor** (30 Nm, 4:1 — squeezes the total force), then curb protection.
+- **Hybrid multi adjustment toolkit** *(replaces the Multi adjustment toolkit)* — an **adaptive blend** rides the smooth 60 Hz torque as the anchor while letting the 360 Hz detail through (the corner drops from 20 Hz to 6 Hz whenever the force direction flips, easing back over 28 ms so transients punch through), followed by the toolkit's adjustment chain: a compressor (off by default), gentle peak-mode slew compression (180 Nm/s, 1.5:1), the detail stage (7.2 Hz low-pass + transient enhancer at a neutral 1.00x), 10% adaptive smoothing, and curb protection.
 
 ---
 
@@ -331,7 +330,7 @@ On the test bench the default 33.3 ms horizon / 100% strength / 5 Nm limit achie
 
 ## First-run wizard
 
-The wizard's FFB style step no longer picks an algorithm. Its 7-position slider now selects **Marvin's easy detail adjustment** and sets its **detail gain**: 25% / 50% / 75% / 100% / 125% / 150% / 200%, from "Silky smooth" to "A lot of boost". You can re-run the wizard, or just turn the Gain knob in the graph yourself.
+The wizard's FFB style step no longer picks an algorithm. Its 7-position slider now selects the **Low latency 360 Hz detail booster & limiter** built-in graph and sets its **detail gain**: 25% / 50% / 75% / 100% / 125% / 150% / 200%, from "Silky smooth" to "A lot of boost". You can re-run the wizard, or just turn the Gain knob in the graph yourself.
 
 ---
 
@@ -346,7 +345,7 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 ## Known gaps in this alpha
 
 - **Online documentation still describes the old UI.** The racing wheel page docs will be rewritten before general release; until then, this document is the reference.
-- The old algorithm settings are still stored (dormant) in `Settings.xml` for rollback safety; they'll be removed in a later release.
+- The old algorithm settings are still stored (dormant) in `Settings.xml` — they drive the automatic algorithm-to-graph migration and keep rollback safe; they'll be removed in a later release.
 
 ## What to test / feedback
 
@@ -354,10 +353,10 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 - **Live with the node graph hidden for a session** (the new default): drive using only the pinned quick controls and the preview. Does anything feel missing? Then flip "Show node graph" on and off a few times mid-session and report any layout oddities.
 - **Pin a few settings** on a custom graph (the tiny switch on each setting in the module settings column), confirm they appear above the editor with the right module captions, stay in sync with the settings column, and survive an export/import round trip.
 - **Vibration test buttons:** with the car on track, walk through every vibration node's test button — each should shake the wheel on its own, the gear change one should fire once and re-arm, and all of them should gray out the moment you leave the car.
-- **Try all five built-in graphs** back to back on the same car — especially the one matching the algorithm you used on the released version. Does its graph replacement feel like the algorithm it replaces?
+- **Algorithm migration:** confirm the app automatically selected the built-in graph replacing the algorithm you used on the released version (per car, if your algorithm choice was per-car) — and does it feel like the algorithm it replaces? Try all four built-ins back to back on the same car.
 - **Game bridges (if you own any of the seven supported games):** the bridges are wired into the FFB graph engine and this combination has had the least real-world time of anything in the alpha — the six bridges new in 2.0.478.66 especially. Drive with a few built-in graphs and confirm the forces, soft lock, and the engine RPM vibration all behave like they do in iRacing. Remember the safety warning: keep overall strength low the first time you activate a bridge.
 - **Graph isolation:** disable a module (say the 360 Hz source) in one graph, switch to another graph, and confirm it is NOT disabled there — then switch back and confirm your change stuck. Same for knob values on sources and the Output module.
-- Prediction modules: does the wheel feel more connected — less "rubber band" between what the car does and what your hands feel? On the flagship graph try the 360 Hz prediction's Strength at OFF vs. 150%, and on Marvin's native 60 Hz try the 60 Hz prediction's Strength at OFF vs. 100%, back to back on the same car. Report any oscillation or buzzing at high Strength/Horizon settings (and which car).
+- Prediction: does the wheel feel more connected — less "rubber band" between what the car does and what your hands feel? On the built-in graph try the 360 Hz prediction's Strength at OFF vs. 150%, back to back on the same car. Report any oscillation or buzzing at high Strength/Horizon settings (and which car).
 - Give the prediction a few corners after loading into a car before judging it — it learns as you drive.
 - Friction feel: bump the wheel at a standstill — it should thunk and hold with zero buzz or oscillation. Try different Stick region values (small = crisp, large = softer before breakaway).
 - Engine RPM vibration: turn its Strength up, play with Roughness (0% pure tone ↔ 100% V8 burble), and confirm it goes silent the moment the engine dies.

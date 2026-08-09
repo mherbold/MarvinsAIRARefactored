@@ -2200,21 +2200,6 @@
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Understyring og overstyring er deaktivert på siden for styringseffekter</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>Som Alan Les hybrid, men 60/360 Hz-blandingen tilpasser seg kjøreforholdene automatisk for ekstra stabilitet under belastning.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>Blander det myke 60 Hz-signalet med det detaljerte 360 Hz-signalet, og komprimerer og former det deretter til en sterk, men kontrollert følelse.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>Temmer det rå 360 Hz-signalet med slew- og totalkompresjon — en fast, detaljert følelse uten harde topper.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>Den anbefalte grafen for de fleste førere — det fulle 360 Hz-signalet med prediksjon og én detaljknapp for å skru den fine veifølelsen opp eller ned.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>Den klassiske myke følelsen — iRacings native 60 Hz-signal, mykt interpolert, med de vanlige effektene og beskyttelsene på toppen.</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>Legg til en beskrivelse av denne grafen</value>
   </data>
@@ -2430,5 +2415,164 @@
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>La lysene blinke etter girpunktet</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>Innstillinger for FFB-graf</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Anbefales for de fleste førere – hele 360 Hz FFB-signalet med prediksjon for å redusere forsinkelsen. Juster forsterkningen for å øke eller redusere bane- og dekkdetaljene.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Simulatorens lavfrekvente lydeffekter (LFE) gjort om til kraft i rattet. Du må aktivere bass shaker LFE i iRacing og bruke VB-CABLE for at dette skal fungere.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>En friksjonslignende kraft som hindrer rattet i å oscillere når du kjører svært sakte eller står stille.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>En fjærkraft som trekker rattet tilbake mot midten, og som bare virker når bilen kjører sakte eller står stille.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Juster denne verdien for å øke eller redusere bane- og dekkdetaljene. En forsterkning på 1,00x beholder den originale iRacing-følelsen.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Demper kraften kraftig ned når en kollisjon oppdages, og trapper den deretter jevnt opp igjen – slik at et hardt sammenstøt ikke kan rive rattet ut av hendene dine. Kraftreduksjon angir hvor mye av kraften som fjernes.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>En styrekraft drevet av understyringseffekten, slik at du kjenner at framdekkene mister grepet. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>En styrekraft drevet av overstyringseffekten, slik at du kjenner at bakenden av bilen løsner. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>En styrekraft drevet av seat-of-pants-effekten – følelsen av at chassiset lastes opp. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Legger til en bitteliten vekslende dither under en terskel for å holde rattmekanismen levende og få fram svake detaljer – nyttig hvis du har et ratt med lite kraft, for eksempel Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Den myke begrenseren lar FFB-signalet beholde noe detalj i stedet for å flate ut når det klippes.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>Simulatorens lavfrekvente lydeffekter (LFE) gjort om til kraft i rattet. Du må aktivere bass shaker LFE i iRacing og bruke VB-CABLE for at dette skal fungere.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>En friksjonslignende kraft som hindrer rattet i å oscillere når du kjører svært sakte eller står stille.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>En fjærkraft som trekker rattet tilbake mot midten, og som bare virker når bilen kjører sakte eller står stille.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Demper kraften kraftig ned når en kollisjon oppdages, og trapper den deretter jevnt opp igjen – slik at et hardt sammenstøt ikke kan rive rattet ut av hendene dine. Kraftreduksjon angir hvor mye av kraften som fjernes.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>En styrekraft drevet av understyringseffekten, slik at du kjenner at framdekkene mister grepet. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>En styrekraft drevet av overstyringseffekten, slik at du kjenner at bakenden av bilen løsner. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>En styrekraft drevet av seat-of-pants-effekten – følelsen av at chassiset lastes opp. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Legger til en bitteliten vekslende dither under en terskel for å holde rattmekanismen levende og få fram svake detaljer – nyttig hvis du har et ratt med lite kraft, for eksempel Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>Den myke begrenseren lar FFB-signalet beholde noe detalj i stedet for å flate ut når det klippes.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>Simulatorens lavfrekvente lydeffekter (LFE) gjort om til kraft i rattet. Du må aktivere bass shaker LFE i iRacing og bruke VB-CABLE for at dette skal fungere.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>En friksjonslignende kraft som hindrer rattet i å oscillere når du kjører svært sakte eller står stille.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>En fjærkraft som trekker rattet tilbake mot midten, og som bare virker når bilen kjører sakte eller står stille.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Demper kraften kraftig ned når en kollisjon oppdages, og trapper den deretter jevnt opp igjen – slik at et hardt sammenstøt ikke kan rive rattet ut av hendene dine. Kraftreduksjon angir hvor mye av kraften som fjernes.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>En styrekraft drevet av understyringseffekten, slik at du kjenner at framdekkene mister grepet. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>En styrekraft drevet av overstyringseffekten, slik at du kjenner at bakenden av bilen løsner. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>En styrekraft drevet av seat-of-pants-effekten – følelsen av at chassiset lastes opp. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Legger til en bitteliten vekslende dither under en terskel for å holde rattmekanismen levende og få fram svake detaljer – nyttig hvis du har et ratt med lite kraft, for eksempel Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>Den myke begrenseren lar FFB-signalet beholde noe detalj i stedet for å flate ut når det klippes.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Simulatorens lavfrekvente lydeffekter (LFE) gjort om til kraft i rattet. Du må aktivere bass shaker LFE i iRacing og bruke VB-CABLE for at dette skal fungere.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>En friksjonslignende kraft som hindrer rattet i å oscillere når du kjører svært sakte eller står stille.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>En fjærkraft som trekker rattet tilbake mot midten, og som bare virker når bilen kjører sakte eller står stille.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Demper kraften kraftig ned når en kollisjon oppdages, og trapper den deretter jevnt opp igjen – slik at et hardt sammenstøt ikke kan rive rattet ut av hendene dine. Kraftreduksjon angir hvor mye av kraften som fjernes.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>En styrekraft drevet av understyringseffekten, slik at du kjenner at framdekkene mister grepet. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>En styrekraft drevet av overstyringseffekten, slik at du kjenner at bakenden av bilen løsner. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>En styrekraft drevet av seat-of-pants-effekten – følelsen av at chassiset lastes opp. Retning velger om effekten gjør rattet lettere eller legger til et sidelengs trykk.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Legger til en bitteliten vekslende dither under en terskel for å holde rattmekanismen levende og få fram svake detaljer – nyttig hvis du har et ratt med lite kraft, for eksempel Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Den myke begrenseren lar FFB-signalet beholde noe detalj i stedet for å flate ut når det klippes.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>For førere som vil ha de sterkeste kreftene dempet – hele 360 Hz FFB-signalet gjennom en slew-kompressor som komprimerer hvor raskt kraften kan endre seg, og en kompressor som komprimerer den samlede kraften.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Komprimerer hvor raskt kraften kan endre seg – raske topper blir dempet, mens langsommere krefter slipper uendret gjennom.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Komprimerer den samlede kraften – krefter over terskelen komprimeres slik at de kraftigste øyeblikkene ikke overmanner rattet.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Den hybride verktøykassen for finjustering – det jevne 60 Hz FFB-signalet som anker, med 360 Hz-detaljene blandet inn, etterfulgt av kompresjon, slew-kompresjon, en transientforsterker og en adaptiv utjevning.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Blander det jevne 60 Hz-signalet (ankeret) med 360 Hz-detaljene. Når kraften skifter retning, åpner blandingen seg slik at transientene slår gjennom.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Komprimerer den samlede kraften – krefter over terskelen komprimeres slik at de kraftigste øyeblikkene ikke overmanner rattet.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Komprimerer hvor raskt kraften kan endre seg. I toppmodus slipper den kraften rolig ned igjen etter en topp i stedet for å begrense hvor raskt den stiger.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Skjerper plutselige kraftendringer – detaljgrenens ikke-lineære forsterker. En forsterkning på 1,00x beholder den opprinnelige transientstyrken.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Jevner ut signalet bare når det er rolig – raske transienter slipper fortsatt gjennom. Øk mengden for mer utjevning.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>For førere som foretrekker det klassiske 60 Hz FFB-signalet – med prediksjon for å redusere forsinkelsen.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Lav latens 360 Hz detaljforsterker og begrenser</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Lav latens 60 Hz detaljforsterker og begrenser</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz slew og total kompresjon</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Hybrid justeringsverktøykasse</value>
   </data>
 </root>

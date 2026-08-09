@@ -18,8 +18,15 @@ namespace MarvinsAIRARefactored.FFB;
 /// </summary>
 public static class FFBBuiltInGraphs
 {
-	/// <summary>The flagship built-in FFB graph — the first-run wizard selects it and tunes its first Gain module.</summary>
-	public const string FlagshipGraphName = "Marvin's easy detail adjustment";
+	/// <summary>The flagship built-in FFB graph — the default graph, selected by the first-run wizard (which
+	/// tunes its first Gain module) and the migration target for the old 360 Hz algorithm family.</summary>
+	public const string FlagshipGraphName = "Low latency 360 Hz detail booster & limiter";
+
+	// The other built-in graphs, each the migration target for one old fixed-function algorithm family
+	// (see Settings.LegacyAlgorithmGraphName).
+	public const string LowLatency60HzGraphName = "Low latency 60 Hz detail booster & limiter";
+	public const string SlewCompressionGraphName = "360 Hz slew & total compression";
+	public const string MultiAdjustmentGraphName = "Hybrid multi adjustment toolkit";
 
 	public sealed record BuiltInGraph( string GraphType, FFBGraph Graph, string Hash );
 

@@ -17,15 +17,15 @@ public struct FFBTorqueFrame
 /// Per-tick auxiliary input for the FFB graph engine. Built once per 360 Hz tick (no allocation) by the
 /// telemetry-thread frame burst and passed by readonly reference into every module's PrePass/Process.
 /// Everything a module might need from the outside world (torque samples, telemetry, wheel state,
-/// protection pulses) lives here so the modules themselves stay free of App/Simulator references and
+/// protection telemetry) lives here so the modules themselves stay free of App/Simulator references and
 /// remain testable in isolation.
 /// </summary>
 /// <remarks>
 /// Torque samples are in Newton-metres (the main signal bus is Nm until the Output module). The vibration
 /// bus is normalized. In the preview path the context is rebuilt per sample from a recording via
 /// <see cref="FromRecording"/>, so effect and generator modules see the telemetry they saw live and render
-/// working effects in the preview; only the crash/curb trigger pulses are re-derived at replay time from the
-/// recorded raw telemetry against the protection modules' current thresholds.
+/// working effects in the preview — including the protection modules, which compare the raw G force / shock
+/// velocity telemetry here against their own thresholds (live and replay alike).
 /// </remarks>
 public readonly struct FFBTickContext
 {
@@ -85,10 +85,13 @@ public readonly struct FFBTickContext
 	public readonly float SteeringWheelVelocity;   // rad/s from 60 Hz telemetry (rotation-range independent); positive = counterclockwise
 	public readonly float PitchRate;               // rad/s — the frame's NEWEST 360 Hz sample (PitchRate_ST); Prediction module aux input
 
-	// one-tick protection pulses (rising edge drives the protection modules' timers)
+	// raw protection telemetry (frame-constant; zeroed while protection triggers are blocked — off track or
+	// inside the post-reset/tow block window). Each crash/curb protection module compares these against its
+	// OWN thresholds, so multiple protection nodes in one graph trigger independently.
 
-	public readonly bool CrashProtectionTriggered;
-	public readonly bool CurbProtectionTriggered;
+	public readonly float LongitudinalGForce;
+	public readonly float LateralGForce;
+	public readonly float MaxShockVelocity;   // the frame's peak absolute shock velocity across all six dampers (m/s)
 
 	/// <summary>True only for the preview replay's neutral context. Modules whose behavior depends on live
 	/// telemetry that is zeroed here (e.g. SpeedGain's velocity) can substitute a representative value so the
@@ -125,8 +128,9 @@ public readonly struct FFBTickContext
 		float steeringWheelAngleMax,
 		float steeringWheelVelocity,
 		float pitchRate,
-		bool crashProtectionTriggered,
-		bool curbProtectionTriggered,
+		float longitudinalGForce,
+		float lateralGForce,
+		float maxShockVelocity,
 		bool isPreview = false )
 	{
 		DeltaMilliseconds = deltaMilliseconds;
@@ -158,8 +162,9 @@ public readonly struct FFBTickContext
 		SteeringWheelAngleMax = steeringWheelAngleMax;
 		SteeringWheelVelocity = steeringWheelVelocity;
 		PitchRate = pitchRate;
-		CrashProtectionTriggered = crashProtectionTriggered;
-		CurbProtectionTriggered = curbProtectionTriggered;
+		LongitudinalGForce = longitudinalGForce;
+		LateralGForce = lateralGForce;
+		MaxShockVelocity = maxShockVelocity;
 		IsPreview = isPreview;
 	}
 
@@ -175,12 +180,12 @@ public readonly struct FFBTickContext
 	/// The preview replay context: one recorded 360 Hz sample expanded back into a full tick context, so every
 	/// module — effects, generators, and protections included — behaves as it did when the recording was made.
 	/// Recordings only run while on track with live torque data, so those two flags are hard-wired true. The
-	/// crash/curb trigger pulses are passed in because the caller re-derives them from the recorded raw telemetry
-	/// (G forces, peak shock velocity) against the protection modules' CURRENT thresholds. The torque frame and
-	/// the frame's newest pitch-rate sample are passed in because the caller reassembles them from the
-	/// recording's six samples around this one (matching what the live FrameContext carries).
+	/// recorded raw G forces and peak shock velocity feed the protection modules directly — each compares them
+	/// against its own CURRENT thresholds, exactly like the live path. The torque frame and the frame's newest
+	/// pitch-rate sample are passed in because the caller reassembles them from the recording's six samples
+	/// around this one (matching what the live FrameContext carries).
 	/// </summary>
-	public static FFBTickContext FromRecording( Classes.RecordingData recordingData, in FFBTorqueFrame torqueFrame, float framePitchRate, float maxForce, bool crashProtectionTriggered, bool curbProtectionTriggered, int sampleIndex )
+	public static FFBTickContext FromRecording( Classes.RecordingData recordingData, in FFBTorqueFrame torqueFrame, float framePitchRate, float maxForce, int sampleIndex )
 	{
 		// half-lock-normalized wheel state, derived exactly like the live FrameContext derives it
 		var halfLock = recordingData.SteeringWheelAngleMax * 0.5f;
@@ -222,8 +227,9 @@ public readonly struct FFBTickContext
 			steeringWheelAngleMax: recordingData.SteeringWheelAngleMax,
 			steeringWheelVelocity: recordingData.SteeringWheelVelocity,
 			pitchRate: framePitchRate,
-			crashProtectionTriggered: crashProtectionTriggered,
-			curbProtectionTriggered: curbProtectionTriggered,
+			longitudinalGForce: recordingData.LongitudinalGForce,
+			lateralGForce: recordingData.LateralGForce,
+			maxShockVelocity: recordingData.MaxShockVelocity,
 			isPreview: true );
 	}
 }

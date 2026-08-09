@@ -2200,21 +2200,6 @@
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>언더스티어와 오버스티어가 스티어링 효과 페이지에서 비활성화되어 있습니다</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>Alan Le의 하이브리드와 같지만 60/360 Hz 혼합이 주행 조건에 자동으로 적응하여 부하 상황에서 안정성이 더 높습니다.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>부드러운 60 Hz 신호와 섬세한 360 Hz 신호를 혼합한 뒤 압축하고 다듬어 강하면서도 절제된 감각을 만듭니다.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>슬루 압축과 전체 압축으로 원시 360 Hz 신호를 길들입니다 — 거친 스파이크 없이 단단하고 섬세한 감각.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>대부분의 드라이버에게 권장되는 그래프 — 예측이 포함된 전체 360 Hz 신호와, 섬세한 노면 감각을 키우거나 줄일 수 있는 단일 디테일 게인.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>클래식한 부드러운 감각 — iRacing 기본 60 Hz 신호를 부드럽게 보간하고, 익숙한 효과와 보호 기능을 더했습니다.</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>이 그래프에 대한 설명 추가</value>
   </data>
@@ -2430,5 +2415,164 @@
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>시프트 포인트를 넘으면 라이트 깜빡이기</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB 그래프 설정</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>대부분의 드라이버에게 권장됩니다. 지연을 줄이는 예측 처리를 적용한 완전한 360 Hz FFB 신호입니다. 게인을 조정해 노면과 타이어 디테일을 늘리거나 줄일 수 있습니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>이 값을 조정해 노면과 타이어 디테일을 늘리거나 줄입니다. 게인이 1.00x이면 iRacing 본래의 느낌이 유지됩니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>가장 강한 포스를 부드럽게 다듬고 싶은 드라이버를 위한 그래프입니다. 360 Hz FFB 신호 전체를, 포스가 변할 수 있는 속도를 눌러 주는 슬루 컴프레서와 전체 포스를 눌러 주는 컴프레서에 차례로 통과시킵니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>포스가 변할 수 있는 속도를 눌러 줍니다. 빠른 피크는 부드러워지고, 느리게 변하는 포스는 그대로 통과합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>전체 포스를 눌러 줍니다. 임계값을 넘는 포스가 압축되어, 가장 강한 순간에도 휠을 압도하지 않습니다.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>하이브리드 튜닝 툴킷입니다. 부드러운 60 Hz FFB 신호를 기준으로 삼고 360 Hz 디테일을 섞은 뒤, 컴프레서, 슬루 컴프레서, 트랜지언트 인핸서, 적응형 스무더를 차례로 거칩니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>부드러운 60 Hz 신호(기준)에 360 Hz 디테일을 섞습니다. 포스의 방향이 바뀌면 블렌드가 열려 트랜지언트가 뚜렷하게 드러납니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>전체 포스를 눌러 줍니다. 임계값을 넘는 포스가 압축되어, 가장 강한 순간에도 휠을 압도하지 않습니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>포스가 변할 수 있는 속도를 눌러 줍니다. 피크 모드에서는 상승 속도를 제한하는 대신, 피크가 지나간 뒤 포스를 서서히 낮춰 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>갑작스러운 포스 변화를 더 날카롭게 만듭니다. 디테일 경로의 비선형 부스터입니다. 게인이 1.00x이면 트랜지언트의 원래 세기가 그대로 유지됩니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>신호가 잔잔할 때만 부드럽게 다듬습니다. 빠른 트랜지언트는 그대로 통과합니다. 더 강한 스무딩을 원하면 양을 높이세요.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>기존의 60 Hz FFB 신호를 선호하는 드라이버를 위한 그래프로, 예측을 사용해 지연을 줄입니다.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>저지연 360 Hz 디테일 부스터 및 리미터</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>저지연 60 Hz 디테일 부스터 및 리미터</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz 슬루 및 전체 압축</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>하이브리드 멀티 조정 툴킷</value>
   </data>
 </root>

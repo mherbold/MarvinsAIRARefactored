@@ -18,6 +18,7 @@ public class FFBModuleData
 	public string InputBModuleId { get; set; } = FFBGraph.Source360ModuleId;
 	public SerializableDictionary<string, float> SettingValues { get; set; } = [];  // bools 0/1, choices as index
 	public List<string> PinnedSettings { get; set; } = [];              // setting keys surfaced as the graph's quick controls above the editor
+	public int PinnedOrder { get; set; } = 0;                           // sort key for this node's pinned group in the quick controls (ties fall back to module order)
 	public float NodeX { get; set; } = 0f;                              // node editor canvas position; 0,0 everywhere = needs auto-layout
 	public float NodeY { get; set; } = 0f;
 
@@ -37,6 +38,7 @@ public class FFBModuleData
 			Description = Description,
 			InputAModuleId = InputAModuleId,
 			InputBModuleId = InputBModuleId,
+			PinnedOrder = PinnedOrder,
 			NodeX = NodeX,
 			NodeY = NodeY
 		};

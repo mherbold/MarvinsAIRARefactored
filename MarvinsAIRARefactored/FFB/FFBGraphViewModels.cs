@@ -803,6 +803,30 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	/// on modules whose toggle exists at all (the Output module has none).</summary>
 	public bool ShowPinSwitch => CanToggleEnabled && !_owner.IsFFBGraphBuiltIn;
 
+	/// <summary>Sort key for this node's pinned group in the quick controls — stored in the graph (rides
+	/// export/import) and rewritten by <see cref="FFBGraphViewModel.MovePinnedGroup"/>.</summary>
+	public int PinnedOrder
+	{
+		get => _model.PinnedOrder;
+		set => _model.PinnedOrder = value;
+	}
+
+	/// <summary>The reorder buttons at the bottom of the module card — custom graphs only (same rule as the
+	/// pins; built-ins ship a curated pinned order), and only while this node actually has a pinned group to
+	/// move. Re-raised via <see cref="NotifyPinnedGroupOrderChanged"/> on every pin toggle and reorder.</summary>
+	public bool ShowPinnedGroupReorder => !_owner.IsFFBGraphBuiltIn && ( _owner.PinnedGroupIndex( this ) != -1 );
+
+	public bool PinnedGroupMoveUpDisabled => _owner.PinnedGroupIndex( this ) <= 0;
+
+	public bool PinnedGroupMoveDownDisabled => _owner.PinnedGroupIndex( this ) >= _owner.PinnedGroups.Count - 1;
+
+	public void NotifyPinnedGroupOrderChanged()
+	{
+		OnPropertyChanged( nameof( ShowPinnedGroupReorder ) );
+		OnPropertyChanged( nameof( PinnedGroupMoveUpDisabled ) );
+		OnPropertyChanged( nameof( PinnedGroupMoveDownDisabled ) );
+	}
+
 	public string InputASelectedId
 	{
 		get => _model.InputAModuleId;
@@ -886,9 +910,10 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	/// <summary>Display-only wires between the graph canvas nodes.</summary>
 	public ObservableCollection<FFBNodeWireViewModel> Wires { get; } = [];
 
-	/// <summary>The selected graph's pinned settings — its quick controls, rendered above the editor block in
-	/// module order. Each entry pairs the SHARED setting VM with its owning module VM (for the caption — labels
-	/// like "Strength" repeat across modules). Rebuilt on graph switch and on every pin toggle.</summary>
+	/// <summary>The selected graph's pinned settings — its quick controls, rendered in the FFB graph settings
+	/// section in each node's PinnedOrder (ties fall back to module order). Each entry pairs the SHARED setting
+	/// VM with its owning module VM (for the caption — labels like "Strength" repeat across modules). Rebuilt
+	/// on graph switch, on every pin toggle, and on every group reorder.</summary>
 	public ObservableCollection<FFBPinnedGroupViewModel> PinnedGroups { get; } = [];
 
 	public bool HasPinnedSettings => PinnedGroups.Count > 0;
@@ -896,6 +921,8 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	public void RefreshPinnedSettings()
 	{
 		PinnedGroups.Clear();
+
+		var groups = new List<FFBPinnedGroupViewModel>();
 
 		foreach ( var module in Modules )
 		{
@@ -921,11 +948,65 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 			if ( group != null )
 			{
-				PinnedGroups.Add( group );
+				groups.Add( group );
 			}
 		}
 
+		// OrderBy is a stable sort, so nodes sharing a PinnedOrder (e.g. a graph that has never been
+		// reordered, where every node still carries 0) keep their module order
+		foreach ( var group in groups.OrderBy( group => group.Module.PinnedOrder ) )
+		{
+			PinnedGroups.Add( group );
+		}
+
 		OnPropertyChanged( nameof( HasPinnedSettings ) );
+
+		// the reorder buttons on every module card track this group list (visibility and up/down enablement)
+		foreach ( var module in Modules )
+		{
+			module.NotifyPinnedGroupOrderChanged();
+		}
+	}
+
+	/// <summary>This module's position in <see cref="PinnedGroups"/>, or -1 when it has no pinned settings.</summary>
+	public int PinnedGroupIndex( FFBModuleViewModel module )
+	{
+		for ( var index = 0; index < PinnedGroups.Count; index++ )
+		{
+			if ( PinnedGroups[ index ].Module == module )
+			{
+				return index;
+			}
+		}
+
+		return -1;
+	}
+
+	/// <summary>Moves the module's pinned group one slot up (direction -1) or down (+1) in the quick controls.
+	/// The stored per-node sort keys are first normalized to the currently displayed order so a single swap is
+	/// enough, whatever stale keys unpinned nodes still carry.</summary>
+	public void MovePinnedGroup( FFBModuleViewModel module, int direction )
+	{
+		var index = PinnedGroupIndex( module );
+
+		var targetIndex = index + direction;
+
+		if ( ( index == -1 ) || ( targetIndex < 0 ) || ( targetIndex >= PinnedGroups.Count ) )
+		{
+			return;
+		}
+
+		for ( var i = 0; i < PinnedGroups.Count; i++ )
+		{
+			PinnedGroups[ i ].Module.PinnedOrder = i;
+		}
+
+		PinnedGroups[ index ].Module.PinnedOrder = targetIndex;
+		PinnedGroups[ targetIndex ].Module.PinnedOrder = index;
+
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+
+		RefreshPinnedSettings();
 	}
 
 	// Built on access (not in the constructor) so it is not evaluated during DataContext static construction,
@@ -972,14 +1053,32 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		}
 	}
 
-	/// <summary>"Marvin's easy detail adjustment" -> "FFBGraphDescriptionMarvinseasydetailadjustment" — the
-	/// non-alphanumerics are dropped, casing kept, so each built-in graph maps to a stable resource key.</summary>
+	/// <summary>"Low latency 360 Hz detail booster & limiter" -> "FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter"
+	/// — the non-alphanumerics are dropped, casing kept, so each built-in graph maps to a stable resource key.</summary>
 	public static string DescriptionLocalizationKey( string graphName )
 	{
 		return "FFBGraphDescription" + string.Concat( graphName.Where( char.IsLetterOrDigit ) );
 	}
 
-	/// <summary>"Marvin's native 60 Hz" + "Source360" -> "FFBNodeDescriptionMarvinsnative60HzSource360" — the
+	/// <summary>"Low latency 360 Hz detail booster & limiter" -> "FFBGraphNameLowlatency360Hzdetailboosterlimiter"
+	/// — the localized DISPLAY name key for a built-in graph (same alnum-only derivation as the description
+	/// key). The raw English name stays the stable identifier everywhere else: it is the graph dictionary key,
+	/// the stored per-context selection, the migration targets, the export file name, and the seed every other
+	/// localization key derives from — only what the user sees in the graph selector localizes.</summary>
+	public static string NameLocalizationKey( string graphName )
+	{
+		return "FFBGraphName" + string.Concat( graphName.Where( char.IsLetterOrDigit ) );
+	}
+
+	/// <summary>The user-facing name of a graph: built-ins render localized (falling back to the raw name
+	/// when a translation is missing), custom graphs always show the name the user typed.</summary>
+	public static string GraphDisplayName( string graphName, bool isBuiltIn )
+	{
+		return isBuiltIn ? FFBDisplayNames.Localize( NameLocalizationKey( graphName ), graphName ) : graphName;
+	}
+
+	/// <summary>"Low latency 360 Hz detail booster & limiter" + "SourceLFE" ->
+	/// "FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" — the
 	/// per-node description override keys for BUILT-IN graphs (same alnum-only derivation as the graph
 	/// description key; module ids are canonical source/output names or GUIDs, both stable across the clone →
 	/// save-over-the-shipped-file update workflow). Maintained by the update-builtin-graphs skill.</summary>

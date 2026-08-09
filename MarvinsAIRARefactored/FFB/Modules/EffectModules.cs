@@ -9,15 +9,17 @@ namespace MarvinsAIRARefactored.FFB.Modules;
 // their contribution by ctx.MaxForce because the old code added a normalized contribution to the normalized
 // bus. (The old purely-additive effects — LFE, friction, soft lock, wheel centering — are source modules in
 // SourceModules.cs now, summed in with Add.) The preview replay rebuilds the context from the
-// recording's telemetry (with the protection pulses re-derived from the recorded raw G forces / shock
-// velocity against the current thresholds), so effects render in the preview just as they behaved live;
-// older two-column recordings replay with zero telemetry, leaving these modules inert like the old preview.
+// recording's telemetry (including the raw G forces / shock velocity the protection modules compare against
+// their own thresholds), so effects render in the preview just as they behaved live; older two-column
+// recordings replay with zero telemetry, leaving these modules inert like the old preview.
 
 /// <summary>
-/// Crash protection (old 1266–1290 + scale 1398). PrePass advances the timer (re-armed by the one-tick
-/// <c>ctx.CrashProtectionTriggered</c> pulse) and Process multiplies by the scale, which ramps back to
-/// unity over the user-set recovery time (0 = instant snap-back) after the hold duration expires. Publishes
-/// the active flag and the long/lat g-force thresholds read by Simulator.
+/// Crash protection (old 1266–1290 + scale 1398). PrePass detects the trigger ITSELF — comparing the raw
+/// G-force telemetry in the context against this module's own thresholds, so multiple crash protection nodes
+/// in one graph trigger independently — and advances the timer (re-armed every tick the telemetry stays over
+/// a threshold, so a sustained impact holds it at full). Process multiplies by the scale, which ramps back to
+/// unity over the user-set recovery time (0 = instant snap-back) after the hold duration expires. ORs itself
+/// into the engine's active flag (any-node-active drives the graph gutter, G Tensioner, and announcements).
 /// </summary>
 public sealed class CrashProtectionModule : FFBModule
 {
@@ -54,7 +56,16 @@ public sealed class CrashProtectionModule : FFBModule
 			return;
 		}
 
-		if ( ctx.CrashProtectionTriggered || TestActive )
+		// Self-triggered from the raw telemetry against this module's OWN thresholds. A threshold parked at the
+		// top of its range (20 g) is "off", and a would-do-nothing configuration (zero duration or zero force
+		// reduction) never triggers — the same guards the old Simulator-side detection applied to the published
+		// aggregate. The context telemetry is zeroed off track / inside the post-reset block window, so those
+		// gates ride along for free.
+		var triggered = ( _v[ Duration ] > 0f ) && ( _v[ ForceReduction ] > 0f )
+			&& ( ( ( _v[ LongGForce ] < 20f ) && ( ctx.LongitudinalGForce >= _v[ LongGForce ] ) )
+				|| ( ( _v[ LatGForce ] < 20f ) && ( ctx.LateralGForce >= _v[ LatGForce ] ) ) );
+
+		if ( triggered || TestActive )
 		{
 			_timerMS = _v[ Duration ] * 1000f + _recoveryTimeMS;
 		}
@@ -70,42 +81,26 @@ public sealed class CrashProtectionModule : FFBModule
 			_timerMS -= ctx.DeltaMilliseconds;
 		}
 
-		Owner.CrashProtectionActive = _timerMS > 0f;
+		// OR — the engine clears the flag at the top of every tick, and any active crash protection node
+		// should light it (another node's PrePass must not un-light it)
+		Owner.CrashProtectionActive |= _timerMS > 0f;
 	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
 		return inputA * _scale;
 	}
-
-	public override void PublishAggregates()
-	{
-		// A protection that is disabled or would do nothing (zero duration or zero force reduction) publishes an
-		// "off" threshold so Simulator never triggers it — same effect as the old Duration/ForceReduction guards.
-		if ( !Enabled || ( _v[ Duration ] <= 0f ) || ( _v[ ForceReduction ] <= 0f ) )
-		{
-			Owner.CrashLongGForceThreshold = 20f;
-			Owner.CrashLatGForceThreshold = 20f;
-			Owner.CrashProtectionForceReduction = 0f;
-			Owner.CrashProtectionDuration = 0f;
-		}
-		else
-		{
-			Owner.CrashLongGForceThreshold = _v[ LongGForce ];
-			Owner.CrashLatGForceThreshold = _v[ LatGForce ];
-			Owner.CrashProtectionForceReduction = _v[ ForceReduction ];
-			Owner.CrashProtectionDuration = _v[ Duration ];
-		}
-	}
 }
 
 /// <summary>
-/// Curb protection (old 1294–1318, rebuilt as a direct force reduction). PrePass advances the timer
-/// (re-armed by <c>ctx.CurbProtectionTriggered</c>, so continuous curb strikes hold it at full) and Process
-/// multiplies by the scale, which ramps back to unity over the user-set recovery time (0 = instant
-/// snap-back) after the hold duration expires — same shape as <see cref="CrashProtectionModule"/>. (The old
-/// algorithm instead pulled back each DSP stage's detail parameters; those couplings were dropped in the
-/// graph redesign, so this module now owns the reduction itself.)
+/// Curb protection (old 1294–1318, rebuilt as a direct force reduction). PrePass detects the trigger ITSELF —
+/// comparing the frame's peak shock velocity in the context against this module's own threshold, so multiple
+/// curb protection nodes in one graph trigger independently — and advances the timer (re-armed every tick the
+/// telemetry stays over the threshold, so continuous curb strikes hold it at full). Process multiplies by the
+/// scale, which ramps back to unity over the user-set recovery time (0 = instant snap-back) after the hold
+/// duration expires — same shape as <see cref="CrashProtectionModule"/>. (The old algorithm instead pulled
+/// back each DSP stage's detail parameters; those couplings were dropped in the graph redesign, so this
+/// module now owns the reduction itself.)
 /// </summary>
 public sealed class CurbProtectionModule : FFBModule
 {
@@ -141,7 +136,14 @@ public sealed class CurbProtectionModule : FFBModule
 			return;
 		}
 
-		if ( ctx.CurbProtectionTriggered || TestActive )
+		// Self-triggered from the raw telemetry against this module's OWN threshold. A zero threshold is "off",
+		// and a would-do-nothing configuration (zero duration or zero force reduction) never triggers — the
+		// same guards the old Simulator-side detection applied to the published aggregate. The context
+		// telemetry is zeroed off track / inside the post-reset block window, so those gates ride along for free.
+		var triggered = ( _v[ ShockVelocity ] > 0f ) && ( _v[ Duration ] > 0f ) && ( _v[ ForceReduction ] > 0f )
+			&& ( ctx.MaxShockVelocity >= _v[ ShockVelocity ] );
+
+		if ( triggered || TestActive )
 		{
 			_timerMS = _v[ Duration ] * 1000f + _recoveryTimeMS;
 		}
@@ -157,19 +159,14 @@ public sealed class CurbProtectionModule : FFBModule
 			_timerMS -= ctx.DeltaMilliseconds;
 		}
 
-		Owner.CurbProtectionActive = _timerMS > 0f;
+		// OR — the engine clears the flag at the top of every tick, and any active curb protection node
+		// should light it (another node's PrePass must not un-light it)
+		Owner.CurbProtectionActive |= _timerMS > 0f;
 	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
 		return inputA * _scale;
-	}
-
-	public override void PublishAggregates()
-	{
-		// Disabled or a would-do-nothing configuration (zero duration or zero force reduction) publishes an "off"
-		// threshold (0) so Simulator never triggers it — same effect as the old ShockVelocity/Duration/ForceReduction guards.
-		Owner.CurbShockVelocityThreshold = ( !Enabled || ( _v[ Duration ] <= 0f ) || ( _v[ ForceReduction ] <= 0f ) ) ? 0f : _v[ ShockVelocity ];
 	}
 }
 

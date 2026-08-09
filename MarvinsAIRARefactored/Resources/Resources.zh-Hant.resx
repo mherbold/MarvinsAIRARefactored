@@ -2200,21 +2200,6 @@
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>轉向不足和轉向過度已在轉向效果頁面中停用</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>與 Alan Le 的混合圖類似，但 60/360 Hz 的混合比例會隨駕駛狀況自動調整，在負載下更穩定。</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>將順滑的 60 Hz 訊號與細膩的 360 Hz 訊號混合，再經壓縮與塑形，帶來強勁而可控的手感。</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>用轉換速率壓縮與總量壓縮馴服原始 360 Hz 訊號 — 手感紮實細膩，沒有生硬的尖峰。</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>推薦給大多數車手的圖 — 帶預測的完整 360 Hz 訊號，加上單一細節增益旋鈕，可增強或減弱細膩的路感。</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>經典的順滑手感 — iRacing 原生 60 Hz 訊號經柔和插值，並疊加常用的效果與保護。</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>為該圖新增描述</value>
   </data>
@@ -2430,5 +2415,164 @@
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>超過換檔點後閃爍轉速燈</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB 圖表設定</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>建議大多數車手使用——完整的 360 Hz FFB 訊號，並透過預測降低延遲。調整增益即可增強或減弱路面與輪胎的細節。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>將模擬器的低頻效果音訊轉換為方向盤力。必須在 iRacing 中啟用 bass shaker LFE 並使用 VB-CABLE 才能運作。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>一種類似摩擦的力，可在你極慢行駛或停車時防止方向盤來回震盪。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>一種將方向盤拉回中心的彈簧力，僅在車輛緩慢行駛或停車時生效。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>調整此數值可增強或減弱路面與輪胎的細節。增益為 1.00x 時可保持 iRacing 的原始手感。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>偵測到碰撞時大幅衰減力道，隨後平順恢復——這樣劇烈撞擊就不會把方向盤從你手中扯開。力道衰減用於設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>由轉向不足效果驅動的方向盤力，讓你感受到前輪正在失去抓地力。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>由轉向過度效果驅動的方向盤力，讓你感受到車尾正在滑出。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>由體感效果驅動的方向盤力——車身負載變化的感覺。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>在低於閾值時疊加極微小的交替抖動，使方向盤機構保持活躍並呈現細微的細節——如果你使用 Logitech G29 這類低功率方向盤會很有用。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>軟限幅器讓 FFB 訊號在被削峰時仍能保留部分細節，而不會變得平直。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>將模擬器的低頻效果音訊轉換為方向盤力。必須在 iRacing 中啟用 bass shaker LFE 並使用 VB-CABLE 才能運作。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>一種類似摩擦的力，可在你極慢行駛或停車時防止方向盤來回震盪。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>一種將方向盤拉回中心的彈簧力，僅在車輛緩慢行駛或停車時生效。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>偵測到碰撞時大幅衰減力道，隨後平順恢復——這樣劇烈撞擊就不會把方向盤從你手中扯開。力道衰減用於設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>由轉向不足效果驅動的方向盤力，讓你感受到前輪正在失去抓地力。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>由轉向過度效果驅動的方向盤力，讓你感受到車尾正在滑出。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>由體感效果驅動的方向盤力——車身負載變化的感覺。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>在低於閾值時疊加極微小的交替抖動，使方向盤機構保持活躍並呈現細微的細節——如果你使用 Logitech G29 這類低功率方向盤會很有用。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>軟限幅器讓 FFB 訊號在被削峰時仍能保留部分細節，而不會變得平直。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>將模擬器的低頻效果音訊轉換為方向盤力。必須在 iRacing 中啟用 bass shaker LFE 並使用 VB-CABLE 才能運作。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>一種類似摩擦的力，可在你極慢行駛或停車時防止方向盤來回震盪。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>一種將方向盤拉回中心的彈簧力，僅在車輛緩慢行駛或停車時生效。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>偵測到碰撞時大幅衰減力道，隨後平順恢復——這樣劇烈撞擊就不會把方向盤從你手中扯開。力道衰減用於設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>由轉向不足效果驅動的方向盤力，讓你感受到前輪正在失去抓地力。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>由轉向過度效果驅動的方向盤力，讓你感受到車尾正在滑出。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>由體感效果驅動的方向盤力——車身負載變化的感覺。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>在低於閾值時疊加極微小的交替抖動，使方向盤機構保持活躍並呈現細微的細節——如果你使用 Logitech G29 這類低功率方向盤會很有用。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>軟限幅器讓 FFB 訊號在被削峰時仍能保留部分細節，而不會變得平直。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>將模擬器的低頻效果音訊轉換為方向盤力。必須在 iRacing 中啟用 bass shaker LFE 並使用 VB-CABLE 才能運作。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>一種類似摩擦的力，可在你極慢行駛或停車時防止方向盤來回震盪。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>一種將方向盤拉回中心的彈簧力，僅在車輛緩慢行駛或停車時生效。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>偵測到碰撞時大幅衰減力道，隨後平順恢復——這樣劇烈撞擊就不會把方向盤從你手中扯開。力道衰減用於設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>由轉向不足效果驅動的方向盤力，讓你感受到前輪正在失去抓地力。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>由轉向過度效果驅動的方向盤力，讓你感受到車尾正在滑出。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>由體感效果驅動的方向盤力——車身負載變化的感覺。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>在低於閾值時疊加極微小的交替抖動，使方向盤機構保持活躍並呈現細微的細節——如果你使用 Logitech G29 這類低功率方向盤會很有用。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>軟限幅器讓 FFB 訊號在被削峰時仍能保留部分細節，而不會變得平直。</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>適合希望削弱最強力道的車手——完整的 360 Hz FFB 訊號先經過變化率壓縮器，壓縮力的變化速度，再經過壓縮器，壓縮總的力道。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>壓縮力的變化速度——快速的尖峰會被柔化，較慢的力則原樣通過。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>壓縮總的力道——超過閾值的力會被壓縮，使最強的瞬間不會蓋過方向盤。</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>混合調校工具箱——以平滑的 60 Hz FFB 訊號為基底，混入 360 Hz 細節，接著依序經過壓縮、變化率壓縮、瞬態增強器與自適應平滑器。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>將平滑的 60 Hz 訊號（基底）與 360 Hz 細節混合。當力改變方向時，混合會放開，讓瞬態穿透而出。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>壓縮總的力道——超過閾值的力會被壓縮，使最強的瞬間不會蓋過方向盤。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>壓縮力的變化速度。在峰值模式下，它會在尖峰之後讓力平緩回落，而不是限制力上升的速度。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>銳化突然的力變化——細節分支的非線性增強器。增益為 1.00x 時保持原始的瞬態強度。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>僅在訊號平靜時進行平滑——快速瞬態仍可通過。提高量值可獲得更強的平滑化。</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>適合偏好經典 60 Hz FFB 訊號的車手——並搭配預測以降低延遲。</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>低延遲 360 Hz 細節增強器與限制器</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>低延遲 60 Hz 細節增強器與限制器</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz 變化率與總壓縮</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>混合多重調整工具組</value>
   </data>
 </root>

@@ -2200,21 +2200,6 @@
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Onderstuur en overstuur zijn uitgeschakeld op de pagina met stuureffecten</value>
   </data>
-  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
-    <value>Zoals Alan Le's hybride, maar de 60/360 Hz-menging past zich automatisch aan de rijomstandigheden aan voor extra stabiliteit onder belasting.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
-    <value>Mengt het soepele 60 Hz-signaal met het gedetailleerde 360 Hz-signaal en comprimeert en vormt het daarna tot een krachtig maar beheerst gevoel.</value>
-  </data>
-  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
-    <value>Temt het rauwe 360 Hz-signaal met slew- en totale compressie — een stevig, gedetailleerd gevoel zonder harde pieken.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
-    <value>De aanbevolen graaf voor de meeste coureurs — het volledige 360 Hz-signaal met predictie, en één detailregelaar om het fijne weggevoel te versterken of te dempen.</value>
-  </data>
-  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
-    <value>Het klassieke soepele gevoel — het native 60 Hz-signaal van iRacing, zacht geïnterpoleerd, met de gebruikelijke effecten en beschermingen erbovenop.</value>
-  </data>
   <data name="GraphDescriptionPlaceholder" xml:space="preserve">
     <value>Voeg een beschrijving toe voor deze graaf</value>
   </data>
@@ -2430,5 +2415,164 @@
   </data>
   <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
     <value>Lampjes laten knipperen voorbij het schakelpunt</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB-grafiekinstellingen</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Aanbevolen voor de meeste coureurs - het volledige 360 Hz FFB-signaal met predictie om de latency te verlagen. Pas de gain aan om meer of minder baan- en banddetail te krijgen.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>De low-frequency effects-audio van de simulator, omgezet naar kracht op het stuur. Je moet bass shaker LFE inschakelen in iRacing en VB-CABLE gebruiken om dit te laten werken.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Een wrijvingsachtige kracht die voorkomt dat het stuur gaat oscilleren wanneer je heel langzaam rijdt of stilstaat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Een veerkracht die het stuur terug naar het midden trekt, alleen actief wanneer de auto langzaam rijdt of stilstaat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Pas deze waarde aan om meer of minder baan- en banddetail te krijgen. Een gain van 1,00x behoudt het originele iRacing-gevoel.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Zwakt de kracht sterk af zodra een crash wordt gedetecteerd en bouwt hem daarna weer soepel op - zo kan een zware klap het stuur niet uit je handen rukken. Krachtreductie bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Een stuurkracht op basis van het onderstuureffect, zodat je de voorbanden grip voelt verliezen. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Een stuurkracht op basis van het overstuureffect, zodat je voelt hoe de achterkant van de auto uitbreekt. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Een stuurkracht op basis van het seat-of-pants-effect - het gevoel dat het chassis wordt belast. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Voegt onder een drempelwaarde een minieme afwisselende dither toe om het stuurmechanisme levendig te houden en zwak detail zichtbaar te maken - handig als je een stuur met weinig kracht hebt, zoals de Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>De soft limiter laat het FFB-signaal wat detail behouden in plaats van vlak te worden wanneer het clipt.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>De low-frequency effects-audio van de simulator, omgezet naar kracht op het stuur. Je moet bass shaker LFE inschakelen in iRacing en VB-CABLE gebruiken om dit te laten werken.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>Een wrijvingsachtige kracht die voorkomt dat het stuur gaat oscilleren wanneer je heel langzaam rijdt of stilstaat.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>Een veerkracht die het stuur terug naar het midden trekt, alleen actief wanneer de auto langzaam rijdt of stilstaat.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Zwakt de kracht sterk af zodra een crash wordt gedetecteerd en bouwt hem daarna weer soepel op - zo kan een zware klap het stuur niet uit je handen rukken. Krachtreductie bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Een stuurkracht op basis van het onderstuureffect, zodat je de voorbanden grip voelt verliezen. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Een stuurkracht op basis van het overstuureffect, zodat je voelt hoe de achterkant van de auto uitbreekt. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Een stuurkracht op basis van het seat-of-pants-effect - het gevoel dat het chassis wordt belast. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Voegt onder een drempelwaarde een minieme afwisselende dither toe om het stuurmechanisme levendig te houden en zwak detail zichtbaar te maken - handig als je een stuur met weinig kracht hebt, zoals de Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>De soft limiter laat het FFB-signaal wat detail behouden in plaats van vlak te worden wanneer het clipt.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>De low-frequency effects-audio van de simulator, omgezet naar kracht op het stuur. Je moet bass shaker LFE inschakelen in iRacing en VB-CABLE gebruiken om dit te laten werken.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>Een wrijvingsachtige kracht die voorkomt dat het stuur gaat oscilleren wanneer je heel langzaam rijdt of stilstaat.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>Een veerkracht die het stuur terug naar het midden trekt, alleen actief wanneer de auto langzaam rijdt of stilstaat.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Zwakt de kracht sterk af zodra een crash wordt gedetecteerd en bouwt hem daarna weer soepel op - zo kan een zware klap het stuur niet uit je handen rukken. Krachtreductie bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Een stuurkracht op basis van het onderstuureffect, zodat je de voorbanden grip voelt verliezen. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Een stuurkracht op basis van het overstuureffect, zodat je voelt hoe de achterkant van de auto uitbreekt. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Een stuurkracht op basis van het seat-of-pants-effect - het gevoel dat het chassis wordt belast. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Voegt onder een drempelwaarde een minieme afwisselende dither toe om het stuurmechanisme levendig te houden en zwak detail zichtbaar te maken - handig als je een stuur met weinig kracht hebt, zoals de Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>De soft limiter laat het FFB-signaal wat detail behouden in plaats van vlak te worden wanneer het clipt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>De low-frequency effects-audio van de simulator, omgezet naar kracht op het stuur. Je moet bass shaker LFE inschakelen in iRacing en VB-CABLE gebruiken om dit te laten werken.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Een wrijvingsachtige kracht die voorkomt dat het stuur gaat oscilleren wanneer je heel langzaam rijdt of stilstaat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Een veerkracht die het stuur terug naar het midden trekt, alleen actief wanneer de auto langzaam rijdt of stilstaat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Zwakt de kracht sterk af zodra een crash wordt gedetecteerd en bouwt hem daarna weer soepel op - zo kan een zware klap het stuur niet uit je handen rukken. Krachtreductie bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>Een stuurkracht op basis van het onderstuureffect, zodat je de voorbanden grip voelt verliezen. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>Een stuurkracht op basis van het overstuureffect, zodat je voelt hoe de achterkant van de auto uitbreekt. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>Een stuurkracht op basis van het seat-of-pants-effect - het gevoel dat het chassis wordt belast. Richting bepaalt of het effect het stuur lichter maakt of een zijwaartse duw toevoegt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Voegt onder een drempelwaarde een minieme afwisselende dither toe om het stuurmechanisme levendig te houden en zwak detail zichtbaar te maken - handig als je een stuur met weinig kracht hebt, zoals de Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>De soft limiter laat het FFB-signaal wat detail behouden in plaats van vlak te worden wanneer het clipt.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>Voor coureurs die de sterkste krachten getemperd willen hebben - het volledige 360 Hz FFB-signaal door een slew-compressor die comprimeert hoe snel de kracht kan veranderen, en een compressor die de totale kracht comprimeert.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Comprimeert hoe snel de kracht kan veranderen - snelle pieken worden verzacht, terwijl tragere krachten onaangetast doorgaan.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Comprimeert de totale kracht - krachten boven de drempel worden gecomprimeerd, zodat de sterkste momenten het stuur niet overweldigen.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>De hybride afstemgereedschapskist - het vloeiende 60 Hz FFB-signaal als anker met het 360 Hz-detail erin gemengd, gevolgd door compressie, slew-compressie, een transiëntversterker en een adaptieve verzachting.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Mengt het vloeiende 60 Hz-signaal (het anker) met het 360 Hz-detail. Wanneer de kracht van richting verandert, opent de menging zich zodat transiënten erdoorheen breken.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Comprimeert de totale kracht - krachten boven de drempel worden gecomprimeerd, zodat de sterkste momenten het stuur niet overweldigen.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Comprimeert hoe snel de kracht kan veranderen. In piekmodus laat hij de kracht na een piek rustig weer zakken in plaats van te beperken hoe snel hij stijgt.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Verscherpt plotselinge krachtveranderingen - de niet-lineaire booster van de detailtak. Een gain van 1,00x behoudt de originele transiëntsterkte.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Verzacht het signaal alleen wanneer het rustig is - snelle transiënten komen nog steeds door. Verhoog de intensiteit voor meer verzachting.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Voor coureurs die het klassieke 60 Hz FFB-signaal verkiezen - met predictie om de latency te verlagen.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Lage latency 360 Hz detailversterker en begrenzer</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Lage latency 60 Hz detailversterker en begrenzer</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz slew en totale compressie</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Hybride multi-aanpassingswerkset</value>
   </data>
 </root>
