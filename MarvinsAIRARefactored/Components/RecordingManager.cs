@@ -29,7 +29,9 @@ public sealed class RecordingManager : IDisposable
 	{
 		get
 		{
-			if ( Recordings.TryGetValue( DataContext.DataContext.Instance.Settings.RacingWheelSelectedRecording, out var value ) )
+			var selectedRecording = DataContext.DataContext.Instance.Settings.RacingWheelSelectedRecording;
+
+			if ( ( selectedRecording != null ) && Recordings.TryGetValue( selectedRecording, out var value ) )
 			{
 				return value;
 			}
@@ -92,7 +94,7 @@ public sealed class RecordingManager : IDisposable
 			LoadRecording( filePath );
 		}
 
-		if ( ( settings.RacingWheelSelectedRecording == string.Empty ) || !Recordings.ContainsKey( settings.RacingWheelSelectedRecording ) )
+		if ( string.IsNullOrEmpty( settings.RacingWheelSelectedRecording ) || !Recordings.ContainsKey( settings.RacingWheelSelectedRecording ) )
 		{
 			// all recordings may have been rejected (e.g. old pre-version-line format) — never store a null key
 			settings.RacingWheelSelectedRecording = Recordings.FirstOrDefault().Key ?? string.Empty;
