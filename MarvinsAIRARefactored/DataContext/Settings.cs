@@ -2087,6 +2087,8 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
+			value ??= string.Empty;
+
 			if ( value != _racingWheelSelectedRecording )
 			{
 				_racingWheelSelectedRecording = value;
