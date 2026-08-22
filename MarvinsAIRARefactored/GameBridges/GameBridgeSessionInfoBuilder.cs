@@ -82,7 +82,14 @@ public class GameBridgeSessionInfoBuilder
 		stringBuilder.AppendLine( $" DriverCarSLShiftRPM: {FormatFloat( DriverCarSLShiftRPM )}" );
 		stringBuilder.AppendLine( $" DriverCarSLBlinkRPM: {FormatFloat( DriverCarSLBlinkRPM )}" );
 
-		if ( DriverTires.Count > 0 )
+		// an empty list has to be written as an explicit flow sequence - a bare "Key:" with no items under it
+		// is a null value in YAML, and the deserialized list would come back null instead of empty
+
+		if ( DriverTires.Count == 0 )
+		{
+			stringBuilder.AppendLine( " DriverTires: []" );
+		}
+		else
 		{
 			stringBuilder.AppendLine( " DriverTires:" );
 
@@ -93,7 +100,14 @@ public class GameBridgeSessionInfoBuilder
 			}
 		}
 
-		stringBuilder.AppendLine( " Drivers:" );
+		if ( Drivers.Count == 0 )
+		{
+			stringBuilder.AppendLine( " Drivers: []" );
+		}
+		else
+		{
+			stringBuilder.AppendLine( " Drivers:" );
+		}
 
 		foreach ( var driver in Drivers )
 		{
@@ -111,7 +125,15 @@ public class GameBridgeSessionInfoBuilder
 		}
 
 		stringBuilder.AppendLine( "SessionInfo:" );
-		stringBuilder.AppendLine( " Sessions:" );
+
+		if ( Sessions.Count == 0 )
+		{
+			stringBuilder.AppendLine( " Sessions: []" );
+		}
+		else
+		{
+			stringBuilder.AppendLine( " Sessions:" );
+		}
 
 		foreach ( var session in Sessions )
 		{
