@@ -182,13 +182,18 @@ public class TradingPaints
 
 						using ( _lock.EnterScope() )
 						{
-							foreach ( var driver in sessionInfo.DriverInfo.Drivers )
-							{
-								if ( !_seenUserIds.Contains( driver.UserID ) )
-								{
-									_seenUserIds.Add( driver.UserID );
+							// the driver list is missing when the session has no cars in it yet
 
-									newDriverList.Add( driver );
+							if ( sessionInfo?.DriverInfo?.Drivers != null )
+							{
+								foreach ( var driver in sessionInfo.DriverInfo.Drivers )
+								{
+									if ( !_seenUserIds.Contains( driver.UserID ) )
+									{
+										_seenUserIds.Add( driver.UserID );
+
+										newDriverList.Add( driver );
+									}
 								}
 							}
 						}

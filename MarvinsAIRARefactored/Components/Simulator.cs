@@ -611,7 +611,17 @@ public partial class Simulator
 
 		var sessionInfo = _irsdk.Data.SessionInfo;
 
-		CarSetupName = Path.GetFileNameWithoutExtension( sessionInfo.DriverInfo.DriverSetupName ).ToLower();
+		// everything below reads these two nodes, and a session info document that is missing either of them
+		// is not worth acting on - skip this update and pick the next one up instead of taking the app down
+
+		if ( ( sessionInfo?.DriverInfo == null ) || ( sessionInfo.WeekendInfo == null ) )
+		{
+			app.Logger.WriteLine( "[Simulator] Session info is missing its driver or weekend node - ignoring this update" );
+
+			return;
+		}
+
+		CarSetupName = Path.GetFileNameWithoutExtension( sessionInfo.DriverInfo.DriverSetupName ?? string.Empty ).ToLower();
 
 		var newDriverIsAdmin = ( sessionInfo.DriverInfo.DriverIsAdmin != 0 );
 
@@ -688,13 +698,19 @@ public partial class Simulator
 		var previousTrackDisplayName = TrackDisplayName;
 		var previousTrackConfigName = TrackConfigName;
 
-		foreach ( var driver in sessionInfo.DriverInfo.Drivers )
+		// the driver list is missing whenever the session has no cars in it yet (a game bridge connected
+		// while the game sits in its menus, for example), so it must not be walked unconditionally
+
+		if ( sessionInfo.DriverInfo.Drivers != null )
 		{
-			if ( driver.CarIdx == sessionInfo.DriverInfo.DriverCarIdx )
+			foreach ( var driver in sessionInfo.DriverInfo.Drivers )
 			{
-				CarScreenName = driver.CarScreenName ?? string.Empty;
-				UserName = driver.UserName ?? string.Empty;
-				break;
+				if ( driver.CarIdx == sessionInfo.DriverInfo.DriverCarIdx )
+				{
+					CarScreenName = driver.CarScreenName ?? string.Empty;
+					UserName = driver.UserName ?? string.Empty;
+					break;
+				}
 			}
 		}
 
@@ -739,9 +755,9 @@ public partial class Simulator
 
 		SeriesID = sessionInfo.WeekendInfo.SeriesID;
 		LeagueID = sessionInfo.WeekendInfo.LeagueID;
-		TimeOfDay = sessionInfo.WeekendInfo.WeekendOptions.TimeOfDay;
+		TimeOfDay = sessionInfo.WeekendInfo.WeekendOptions?.TimeOfDay ?? string.Empty;
 
-		var match = TrackLengthRegex().Match( sessionInfo.WeekendInfo.TrackLength );
+		var match = TrackLengthRegex().Match( sessionInfo.WeekendInfo.TrackLength ?? string.Empty );
 
 		if ( match.Success )
 		{
