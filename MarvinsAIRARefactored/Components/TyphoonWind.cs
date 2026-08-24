@@ -6,15 +6,27 @@ using System.Text.RegularExpressions;
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Windows;
 
+using Timer = System.Timers.Timer;
+
 namespace MarvinsAIRARefactored.Components;
 
 public partial class TyphoonWind
 {
 	private const int UpdateInterval = 12;
 
+	// TOP value of the 25 kHz PWM in the wind box firmware - fan duty is commanded as 0..MaxFanPower
+	private const int MaxFanPower = 320;
+
+	// The fan test buttons drive the device from their own timer instead of the app tick, so they work
+	// with or without a simulator connected. The interval has to stay well under the two second
+	// inactivity watchdog in the firmware, which zeroes both fans when commands stop arriving.
+	private const int TestKeepAliveIntervalInMilliseconds = 200;
+
 	public bool IsConnected { get; private set; } = false;
 
 	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( "MAIRA WIND" );
+
+	private readonly Timer _testKeepAliveTimer = new( TestKeepAliveIntervalInMilliseconds );
 
 	private float _leftFanPower = 0f;
 	private float _rightFanPower = 0f;
@@ -46,6 +58,8 @@ public partial class TyphoonWind
 		_usbSerialPortHelper.DataReceived += OnDataReceived;
 		_usbSerialPortHelper.PortClosed += OnPortClosed;
 
+		_testKeepAliveTimer.Elapsed += OnTestKeepAliveTimer;
+
 		app.Logger.WriteLine( "[TyphoonWind] <<< Constructor" );
 	}
 
@@ -54,6 +68,11 @@ public partial class TyphoonWind
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[TyphoonWind] Shutdown >>>" );
+
+		_testingLeft = false;
+		_testingRight = false;
+
+		UpdateTestState();
 
 		Disconnect();
 
@@ -139,11 +158,56 @@ public partial class TyphoonWind
 	public void TestLeft( bool enable )
 	{
 		_testingLeft = enable;
+
+		UpdateTestState();
 	}
 
 	public void TestRight( bool enable )
 	{
 		_testingRight = enable;
+
+		UpdateTestState();
+	}
+
+	// Pushes the current test button states straight to the device and keeps them refreshed from the
+	// keep alive timer. The test deliberately does not go through Update() - that path zeroes the fans
+	// whenever the car is not on track, so it would only ever spin the fans during an actual session.
+	private void UpdateTestState()
+	{
+		if ( _testingLeft || _testingRight )
+		{
+			SendTestFanPowerToDevice();
+
+			_testKeepAliveTimer.Start();
+		}
+		else
+		{
+			_testKeepAliveTimer.Stop();
+
+			_leftFanPower = 0f;
+			_rightFanPower = 0f;
+
+			SendFanPowerToDevice();
+		}
+	}
+
+	// The tested fan spins at the master wind power setting, and this is recomputed on every keep alive
+	// so turning the master wind power knob during a test is heard right away.
+	private void SendTestFanPowerToDevice()
+	{
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		var testFanPower = settings.TyphoonWindMasterWindPower * MaxFanPower;
+
+		_leftFanPower = _testingLeft ? testFanPower : 0f;
+		_rightFanPower = _testingRight ? testFanPower : 0f;
+
+		SendFanPowerToDevice();
+	}
+
+	private void OnTestKeepAliveTimer( object? sender, System.Timers.ElapsedEventArgs e )
+	{
+		SendTestFanPowerToDevice();
 	}
 
 	public void StartPreview( float normalizedPower )
@@ -197,6 +261,13 @@ public partial class TyphoonWind
 
 	private void Update( App app )
 	{
+		// A running fan test owns the device until it is switched off again - see UpdateTestState
+
+		if ( _testingLeft || _testingRight )
+		{
+			return;
+		}
+
 		var settings = DataContext.DataContext.Instance.Settings;
 
 		Span<float> speedArray = stackalloc float[ 10 ];
@@ -269,15 +340,15 @@ public partial class TyphoonWind
 
 		if ( _previewActive )
 		{
-			var previewFanPower = _previewPowerNormalized * settings.TyphoonWindMasterWindPower * 320f;
+			var previewFanPower = _previewPowerNormalized * settings.TyphoonWindMasterWindPower * MaxFanPower;
 
 			_leftFanPower = previewFanPower;
 			_rightFanPower = previewFanPower;
 		}
 		else if ( app.Simulator.IsOnTrack )
 		{
-			_leftFanPower = fanPower * ( 1f + MathF.Min( 0, curveFactor ) ) * settings.TyphoonWindMasterWindPower * 320f;
-			_rightFanPower = fanPower * ( 1f - MathF.Max( 0, curveFactor ) ) * settings.TyphoonWindMasterWindPower * 320f;
+			_leftFanPower = fanPower * ( 1f + MathF.Min( 0, curveFactor ) ) * settings.TyphoonWindMasterWindPower * MaxFanPower;
+			_rightFanPower = fanPower * ( 1f - MathF.Max( 0, curveFactor ) ) * settings.TyphoonWindMasterWindPower * MaxFanPower;
 		}
 		else
 		{
@@ -285,13 +356,21 @@ public partial class TyphoonWind
 			_rightFanPower = 0f;
 		}
 
-		_leftFanPower = _testingLeft ? 320 : Math.Max( 0f, _leftFanPower );
-		_rightFanPower = _testingRight ? 320 : Math.Max( 0f, _rightFanPower );
+		_leftFanPower = Math.Max( 0f, _leftFanPower );
+		_rightFanPower = Math.Max( 0f, _rightFanPower );
+
+		SendFanPowerToDevice();
+	}
+
+	private void SendFanPowerToDevice()
+	{
+		// Values outside 0..MaxFanPower would make the firmware reject the whole command and leave both
+		// fans where they were, so clamp here rather than trusting whatever produced the fan powers
+
+		var leftVal = Math.Clamp( (int) MathF.Round( _leftFanPower ), 0, MaxFanPower );
+		var rightVal = Math.Clamp( (int) MathF.Round( _rightFanPower ), 0, MaxFanPower );
 
 		// Format command into a stack-allocated UTF-8 buffer to avoid allocating a string
-
-		var leftVal = (int) MathF.Round( _leftFanPower );
-		var rightVal = (int) MathF.Round( _rightFanPower );
 
 		Span<byte> buf = stackalloc byte[ 32 ];
 
@@ -322,8 +401,8 @@ public partial class TyphoonWind
 
 			Update( app );
 
-			MainWindow._typhoonWindPage.LeftFanPower_TextBlock.Text = $"{_leftFanPower * 100f / 320f:F0}";
-			MainWindow._typhoonWindPage.RightFanPower_TextBlock.Text = $"{_rightFanPower * 100f / 320f:F0}";
+			MainWindow._typhoonWindPage.LeftFanPower_TextBlock.Text = $"{_leftFanPower * 100f / MaxFanPower:F0}";
+			MainWindow._typhoonWindPage.RightFanPower_TextBlock.Text = $"{_rightFanPower * 100f / MaxFanPower:F0}";
 
 			MainWindow._typhoonWindPage.LeftFanRPM_TextBlock.Text = $"{_leftFanRPM}";
 			MainWindow._typhoonWindPage.RightFanRPM_TextBlock.Text = $"{_rightFanRPM}";
