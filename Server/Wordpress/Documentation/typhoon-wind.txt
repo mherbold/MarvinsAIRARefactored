@@ -141,15 +141,19 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Test (Left): toggles the left fan to 100%</p>
+<p>Test (Left): toggles the left fan to the master wind power setting</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Test (Right): toggles the right fan to 100%</p>
+<p>Test (Right): toggles the right fan to the master wind power setting</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
 <p>This is handy for confirming wiring, confirming fan direction, and verifying RPM feedback.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The test buttons work whenever you are connected to the wind controller — you do not need a simulator running or a car on track.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->
