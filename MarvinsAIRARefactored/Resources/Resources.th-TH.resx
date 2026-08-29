@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>ชุดเครื่องมือปรับแต่งหลายรายการแบบไฮบริด</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>โปรไฟล์การจูน</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>คลิกเพื่อจัดการโปรไฟล์การจูนของคุณ</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>ตามสภาพอากาศ</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>ตามรถ</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>ตามรถ + สนาม</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>ตามรถ + สนาม + การกำหนดค่า</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>เปลี่ยนแปลง {0} รายการ</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>การตั้งค่า {0} รายการ</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>ใช้งานอยู่</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>โปรไฟล์นี้</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>โปรไฟล์ค่าเริ่มต้น</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>โปรไฟล์นี้ไม่มีการเปลี่ยนแปลง</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>คืนค่าเป็นค่าเริ่มต้น</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>ซิมูเลเตอร์ไม่ได้ทำงานอยู่ — การเปลี่ยนแปลงการตั้งค่าจะถูกบันทึกลงในโปรไฟล์ค่าเริ่มต้น</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>คัดลอกไปยัง…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>ตั้งเป็นค่าเริ่มต้น</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>ล้างข้อมูล</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>คัดลอกการตั้งค่าไปยังโปรไฟล์ใด</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>การดำเนินการนี้จะลบการเปลี่ยนแปลงของโปรไฟล์ — การตั้งค่าทุกรายการจะกลับไปเป็นค่าของโปรไฟล์ค่าเริ่มต้น</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>การดำเนินการนี้จะคัดลอกการตั้งค่าที่เปลี่ยนแปลงทุกรายการในโปรไฟล์นี้ไปยังโปรไฟล์ค่าเริ่มต้น ทำให้กลายเป็นค่าพื้นฐานใหม่</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>การดำเนินการนี้จะลบค่าโมดูลที่ล้าสมัย {0} รายการ ซ่อมแซมการเลือกกราฟ {1} รายการ และลบโปรไฟล์ที่ไม่ได้ใช้ {2} รายการ ดำเนินการต่อหรือไม่</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>ไม่มีสิ่งที่ต้องล้าง</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(ไม่มีกราฟ)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>ค่าเริ่มต้นจากโรงงาน</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>ตามรถ + สภาพอากาศ</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>ตามรถ + สนาม + สภาพอากาศ</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>ตามรถ + สนาม + การกำหนดค่า + สภาพอากาศ</value>
+  </data>
 </root>

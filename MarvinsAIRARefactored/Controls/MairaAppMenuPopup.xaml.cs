@@ -28,6 +28,12 @@ namespace MarvinsAIRARefactored.Controls
 			public AppPage AppPage { get; init; }
 			public UserControl PageUserControl { get; init; } = new UserControl();
 
+			// Most menu items navigate to a page. A few are actions instead - they run OnInvoke (e.g. the
+			// tuning profiles item opens the manager window) and leave the current page alone. An action
+			// item has no AppPage to switch on, so it carries its own localization key for its label.
+			public string? LocalizationKey { get; init; }
+			public Action? OnInvoke { get; init; }
+
 			private string _displayName = string.Empty;
 			private string _suffix = string.Empty;
 			private bool _isSelected = false;
@@ -208,6 +214,18 @@ namespace MarvinsAIRARefactored.Controls
 			{
 				e.Handled = true;
 
+				// Action items do not navigate anywhere - close the menu first so the popup is not left
+				// sitting behind the modal window the action opens, then run the action once the popup
+				// has actually gone away.
+				if ( appMenuItem.OnInvoke != null )
+				{
+					IsMenuOpen = false;
+
+					Dispatcher.BeginInvoke( DispatcherPriority.Loaded, appMenuItem.OnInvoke );
+
+					return;
+				}
+
 				// Re-clicking the current page just closes the menu; otherwise navigate (which also
 				// closes the menu via the page-change handler below).
 				if ( SelectedAppPage != appMenuItem.AppPage )
@@ -336,7 +354,8 @@ namespace MarvinsAIRARefactored.Controls
 
 				foreach ( var appMenuItem in mairaAppMenuPopup.AllMenuItems )
 				{
-					var isSelected = appMenuItem.AppPage == appPage;
+					// Action items have no page of their own, so they never light up as the selected item.
+					var isSelected = ( appMenuItem.OnInvoke == null ) && ( appMenuItem.AppPage == appPage );
 
 					appMenuItem.IsSelected = isSelected;
 
@@ -368,6 +387,28 @@ namespace MarvinsAIRARefactored.Controls
 				AppPage = appPage,
 				PageUserControl = pageUserControl
 			} );
+		}
+
+		private static void AddAction( ObservableCollection<AppMenuItem> column, string localizationKey, Action onInvoke )
+		{
+			column.Add( new AppMenuItem
+			{
+				LocalizationKey = localizationKey,
+				OnInvoke = onInvoke
+			} );
+		}
+
+		// The tuning profiles manager is a modal window rather than a page, so the menu item runs this
+		// instead of navigating. The status bar opens the same window (see MainWindow.StatusBar_Click).
+		private static void OpenTuningProfilesWindow()
+		{
+			var app = App.Instance!;
+
+			app.Logger.WriteLine( "[MairaAppMenuPopup] OpenTuningProfilesWindow >>>" );
+
+			app.MainWindow.OpenTuningProfilesWindow();
+
+			app.Logger.WriteLine( "[MairaAppMenuPopup] <<< OpenTuningProfilesWindow" );
 		}
 
 		public void Initialize()
@@ -407,10 +448,12 @@ namespace MarvinsAIRARefactored.Controls
 
 			// AdminBoxx uses a single column, so keep App Settings beneath AdminBoxx in column 1.
 			Add( AppMenuItemsColumn1, AppPage.AppSettings, _appSettingsPage );
+			AddAction( AppMenuItemsColumn1, "TuningProfiles", OpenTuningProfilesWindow );
 
 #else
 
 			Add( AppMenuItemsColumn2, AppPage.AppSettings, _appSettingsPage );
+			AddAction( AppMenuItemsColumn2, "TuningProfiles", OpenTuningProfilesWindow );
 			Add( AppMenuItemsColumn2, AppPage.ControllerProfiles, _controllerProfilesPage );
 			Add( AppMenuItemsColumn2, AppPage.Simulator, _simulatorPage );
 			Add( AppMenuItemsColumn2, AppPage.GameBridge, _gameBridgePage );
@@ -445,7 +488,8 @@ namespace MarvinsAIRARefactored.Controls
 
 			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-			var defaultMenuItem = AllMenuItems.FirstOrDefault( appMenuItem => appMenuItem.AppPage == settings.AppDefaultPage ) ?? AllMenuItems.FirstOrDefault();
+			// Action items are not pages, so they can never be the page the app starts on.
+			var defaultMenuItem = AllMenuItems.FirstOrDefault( appMenuItem => ( appMenuItem.OnInvoke == null ) && ( appMenuItem.AppPage == settings.AppDefaultPage ) ) ?? AllMenuItems.FirstOrDefault( appMenuItem => appMenuItem.OnInvoke == null );
 
 			if ( defaultMenuItem != null )
 			{
@@ -471,6 +515,14 @@ namespace MarvinsAIRARefactored.Controls
 
 			foreach ( var menuItem in AllMenuItems )
 			{
+				// Action items are labeled from their own localization key - they have no page to switch on.
+				if ( menuItem.LocalizationKey != null )
+				{
+					menuItem.DisplayName = localization[ menuItem.LocalizationKey ];
+
+					continue;
+				}
+
 				switch ( menuItem.AppPage )
 				{
 					case AppPage.Help:

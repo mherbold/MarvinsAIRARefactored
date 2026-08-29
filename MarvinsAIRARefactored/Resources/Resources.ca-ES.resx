@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Kit d'ajust híbrid</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Perfils d'ajust</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Feu clic per gestionar els vostres perfils d'ajust</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Per meteorologia</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Per cotxe</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Per cotxe + circuit</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Per cotxe + circuit + configuració</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} canviats</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} paràmetres</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Actiu</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Aquest perfil</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Perfil per defecte</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Aquest perfil no té canvis.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Reverteix al valor per defecte</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>El simulador no s'està executant — els canvis de configuració es desen al perfil per defecte.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Copia a…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Fes-lo per defecte</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Neteja</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>A quin perfil voleu copiar els paràmetres?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Això suprimeix els canvis del perfil — cada paràmetre torna al valor del perfil per defecte.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Això copia cada paràmetre canviat d'aquest perfil al perfil per defecte, convertint-lo en la nova base.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Això eliminarà {0} valors de mòdul obsolets, repararà {1} seleccions de gràfic i suprimirà {2} perfils no utilitzats. Voleu continuar?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>No hi ha res per netejar.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(sense gràfic)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Valor de fàbrica</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Per cotxe + meteorologia</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Per cotxe + circuit + meteorologia</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Per cotxe + circuit + configuració + meteorologia</value>
+  </data>
 </root>

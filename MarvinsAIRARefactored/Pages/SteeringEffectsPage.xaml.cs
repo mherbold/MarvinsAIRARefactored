@@ -5,6 +5,7 @@ using System.Windows.Controls;
 
 using ComboBox = System.Windows.Controls.ComboBox;
 using UserControl = System.Windows.Controls.UserControl;
+using Settings = MarvinsAIRARefactored.DataContext.Settings;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
@@ -121,16 +122,16 @@ public partial class SteeringEffectsPage : UserControl
 
 		app.Logger.WriteLine( "[SteeringEffectsPage] UpdateSeatOfPantsAlgorithmOptions >>>" );
 
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		SteeringEffects.SeatOfPantsAlgorithm[] orderedAlgorithms =
+		[
+			SteeringEffects.SeatOfPantsAlgorithm.YAcceleration,
+			SteeringEffects.SeatOfPantsAlgorithm.YVelocity,
+			SteeringEffects.SeatOfPantsAlgorithm.YVelocityOverXVelocity
+		];
 
-		var dictionary = new Dictionary<SteeringEffects.SeatOfPantsAlgorithm, string>
-		{
-			{ SteeringEffects.SeatOfPantsAlgorithm.YAcceleration, localization[ "LateralAcceleration" ] },
-			{ SteeringEffects.SeatOfPantsAlgorithm.YVelocity, localization[ "LateralVelocity" ] },
-			{ SteeringEffects.SeatOfPantsAlgorithm.YVelocityOverXVelocity, localization[ "RatioOfVelocities" ] }
-		};
-
-		SeatOfPantsAlgorithm_MairaComboBox.ItemsSource = dictionary.ToList();
+		// the labels come from the shared settings helper, so this combo box and the tuning profile manager can
+		// never say different things about the same setting
+		SeatOfPantsAlgorithm_MairaComboBox.ItemsSource = orderedAlgorithms.Select( algorithm => new KeyValuePair<SteeringEffects.SeatOfPantsAlgorithm, string>( algorithm, Settings.FormatSeatOfPantsAlgorithmString( algorithm ) ) ).ToList();
 
 		app.Logger.WriteLine( "[SteeringEffectsPage] <<< UpdateSeatOfPantsAlgorithmOptions" );
 	}

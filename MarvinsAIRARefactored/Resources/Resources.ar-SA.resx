@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>مجموعة أدوات الضبط الهجينة</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>ملفات الضبط</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>انقر لإدارة ملفات الضبط الخاصة بك</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>لكل حالة طقس</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>لكل سيارة</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>لكل سيارة + مسار</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>لكل سيارة + مسار + تهيئة</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>تم تغيير {0}</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} إعدادات</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>نشط</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>هذا الملف</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>الملف الافتراضي</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>لا توجد تغييرات في هذا الملف.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>إعادة إلى الافتراضي</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>المحاكي غير قيد التشغيل — يتم حفظ تغييرات الإعدادات في الملف الافتراضي.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>نسخ إلى…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>جعله الافتراضي</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>تنظيف</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>إلى أي ملف تريد نسخ الإعدادات؟</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>سيؤدي هذا إلى حذف تغييرات الملف — كل إعداد فيه سيعود إلى قيمة الملف الافتراضي.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>سيؤدي هذا إلى نسخ كل إعداد معدّل في هذا الملف إلى الملف الافتراضي، ليصبح الأساس الجديد.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>سيؤدي هذا إلى إزالة {0} من قيم الوحدات القديمة، وإصلاح {1} من اختيارات المخططات، وحذف {2} من الملفات غير المستخدمة. متابعة؟</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>لا يوجد شيء للتنظيف.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(بدون مخطط)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>افتراضي المصنع</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>لكل سيارة + طقس</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>لكل سيارة + مسار + طقس</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>لكل سيارة + مسار + تهيئة + طقس</value>
+  </data>
 </root>

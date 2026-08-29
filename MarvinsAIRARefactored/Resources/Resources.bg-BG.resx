@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Хибриден комплект за настройка</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Профили за настройка</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Щракнете, за да управлявате профилите си за настройка</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>За времето</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>За кола</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>За кола + писта</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>За кола + писта + конфигурация</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} променени</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} настройки</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Активен</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Този профил</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Профил по подразбиране</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Този профил няма промени.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Връщане към стойността по подразбиране</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Симулаторът не работи — промените в настройките се записват в профила по подразбиране.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Копиране в…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Направи по подразбиране</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Почистване</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>В кой профил да се копират настройките?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Това изтрива промените на профила — всяка настройка в него се връща към стойността от профила по подразбиране.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Това копира всяка променена настройка от този профил в профила по подразбиране, превръщайки го в новата основа.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Това ще премахне {0} остарели стойности на модули, ще поправи {1} избора на графики и ще изтрие {2} неизползвани профила. Продължаване?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Няма нищо за почистване.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(без графика)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Фабрична стойност</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>За кола + време</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>За кола + писта + време</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>За кола + писта + конфигурация + време</value>
+  </data>
 </root>

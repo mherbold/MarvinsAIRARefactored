@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>하이브리드 멀티 조정 툴킷</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>튜닝 프로필</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>클릭하여 튜닝 프로필 관리</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>날씨별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>차량별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>차량 + 트랙별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>차량 + 트랙 + 구성별</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0}개 변경됨</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>설정 {0}개</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>사용 중</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>이 프로필</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>기본 프로필</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>이 프로필에는 변경 사항이 없습니다.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>기본값으로 되돌리기</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>시뮬레이터가 실행 중이 아닙니다 — 설정 변경 사항은 기본 프로필에 저장됩니다.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>복사 대상…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>기본값으로 설정</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>정리</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>어느 프로필로 설정을 복사할까요?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>프로필의 변경 사항이 삭제되며 모든 설정이 기본 프로필의 값으로 되돌아갑니다.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>이 프로필의 모든 변경된 설정이 기본 프로필로 복사되어 새로운 기준이 됩니다.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>오래된 모듈 값 {0}개를 제거하고, 그래프 선택 {1}개를 복구하고, 사용하지 않는 프로필 {2}개를 삭제합니다. 계속할까요?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>정리할 항목이 없습니다.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(그래프 없음)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>공장 기본값</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>차량 + 날씨별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>차량 + 트랙 + 날씨별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>차량 + 트랙 + 구성 + 날씨별</value>
+  </data>
 </root>

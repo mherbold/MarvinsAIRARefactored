@@ -47,8 +47,9 @@
                 <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Hover}" />
               </Trigger>
               <Trigger Property="IsSelected" Value="True">
-                <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.Accent.Blue}" />
+                <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Selected}" />
                 <Setter TargetName="Bg" Property="BorderBrush" Value="{DynamicResource Brush.Border.Normal}" />
+                <Setter TargetName="Bg" Property="TextElement.Foreground" Value="{DynamicResource Brush.ListItem.Selected.Text}" />
               </Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
@@ -115,13 +116,11 @@
         <DataTemplate>
           <StackPanel Margin="0,2">
             <TextBlock Text="{Binding Name}"
-                       FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
-                       FontSize="18"
-                       Foreground="{DynamicResource Brush.Foreground.Primary}" />
+                       Style="{StaticResource MairaListItemTextStyle}"
+                       FontSize="18" />
             <TextBlock Text="{Binding Path}"
-                       FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+                       Style="{StaticResource MairaListItemMutedTextStyle}"
                        FontSize="14"
-                       Foreground="{DynamicResource Brush.Foreground.Muted}"
                        TextTrimming="CharacterEllipsis" />
           </StackPanel>
         </DataTemplate>

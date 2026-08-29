@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>हाइब्रिड ट्यूनिंग टूलकिट</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>ट्यूनिंग प्रोफ़ाइल</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>अपनी ट्यूनिंग प्रोफ़ाइल प्रबंधित करने के लिए क्लिक करें</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>प्रति मौसम</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>प्रति कार</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>प्रति कार + ट्रैक</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>प्रति कार + ट्रैक + कॉन्फ़िगरेशन</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} बदले गए</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} सेटिंग्स</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>सक्रिय</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>यह प्रोफ़ाइल</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>डिफ़ॉल्ट प्रोफ़ाइल</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>इस प्रोफ़ाइल में कोई बदलाव नहीं है।</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>डिफ़ॉल्ट पर वापस लाएँ</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>सिम्युलेटर नहीं चल रहा है — सेटिंग परिवर्तन डिफ़ॉल्ट प्रोफ़ाइल में सहेजे जा रहे हैं।</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>इसमें कॉपी करें…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>डिफ़ॉल्ट बनाएँ</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>साफ़ करें</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>सेटिंग्स किस प्रोफ़ाइल में कॉपी करें?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>इससे प्रोफ़ाइल के बदलाव हट जाएँगे — इसकी हर सेटिंग डिफ़ॉल्ट प्रोफ़ाइल के मान पर वापस चली जाएगी।</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>इससे इस प्रोफ़ाइल की हर बदली हुई सेटिंग डिफ़ॉल्ट प्रोफ़ाइल में कॉपी हो जाएगी, जो नया आधार बन जाएगी।</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>इससे {0} पुराने मॉड्यूल मान हटेंगे, {1} ग्राफ़ चयन ठीक होंगे और {2} अप्रयुक्त प्रोफ़ाइल हटेंगी। जारी रखें?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>साफ़ करने के लिए कुछ नहीं है।</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(कोई ग्राफ़ नहीं)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>फ़ैक्टरी डिफ़ॉल्ट</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>प्रति कार + मौसम</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>प्रति कार + ट्रैक + मौसम</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>प्रति कार + ट्रैक + कॉन्फ़िगरेशन + मौसम</value>
+  </data>
 </root>

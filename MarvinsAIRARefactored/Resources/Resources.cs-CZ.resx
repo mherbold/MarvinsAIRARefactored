@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Hybridní ladicí sada</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Ladicí profily</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Kliknutím spravujete své ladicí profily</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Pro počasí</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Pro vozidlo</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Pro vozidlo + trať</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Pro vozidlo + trať + konfiguraci</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} změněno</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} nastavení</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Aktivní</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Tento profil</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Výchozí profil</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Tento profil nemá žádné změny.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Vrátit na výchozí</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Simulátor neběží — změny nastavení se ukládají do výchozího profilu.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Kopírovat do…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Nastavit jako výchozí</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Vyčistit</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Do kterého profilu zkopírovat nastavení?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Tím se smažou změny profilu — každé nastavení se vrátí na hodnotu z výchozího profilu.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Tím se každé změněné nastavení z tohoto profilu zkopíruje do výchozího profilu, který se tak stane novým základem.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Tím se odstraní {0} zastaralých hodnot modulů, opraví {1} výběrů grafů a smaže {2} nepoužívaných profilů. Pokračovat?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Není co vyčistit.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(žádný graf)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Tovární výchozí hodnota</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Pro vozidlo + počasí</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Pro vozidlo + trať + počasí</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Pro vozidlo + trať + konfiguraci + počasí</value>
+  </data>
 </root>

@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Гібридний набір інструментів налаштування</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Профілі налаштування</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Натисніть, щоб керувати профілями налаштування</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Для погоди</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Для автомобілю</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Для автомобілю + треку</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Для автомобілю + треку + конфігурації</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>змінено: {0}</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>налаштувань: {0}</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Активний</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Цей профіль</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Профіль за замовчуванням</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>У цьому профілі немає змін.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Повернути до типового значення</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Симулятор не запущено — зміни налаштувань зберігаються до профілю за замовчуванням.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Копіювати до…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Зробити типовим</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Очистити</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>До якого профілю скопіювати налаштування?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Це видалить зміни профілю — кожне налаштування повернеться до значення профілю за замовчуванням.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Це скопіює кожне змінене налаштування цього профілю до профілю за замовчуванням, зробивши його новою основою.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Буде видалено {0} застарілих значень модулів, виправлено {1} виборів графіків і видалено {2} невикористаних профілів. Продовжити?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Немає чого очищати.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(немає графіка)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Заводське значення</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Для автомобілю + погоди</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Для автомобілю + треку + погоди</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Для автомобілю + треку + конфігурації + погоди</value>
+  </data>
 </root>

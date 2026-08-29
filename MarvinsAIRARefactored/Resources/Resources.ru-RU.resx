@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Гибридный набор инструментов настройки</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Профили настройки</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Нажмите, чтобы управлять профилями настройки</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>для погоды</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>для машины</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>для машины + трека</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>для машины + трека + конфигурации</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>изменено: {0}</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>настроек: {0}</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Активен</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Этот профиль</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Профиль по умолчанию</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>В этом профиле нет изменений.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Вернуть значение по умолчанию</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Симулятор не запущен — изменения настроек сохраняются в профиль по умолчанию.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Копировать в…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Сделать профилем по умолчанию</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>В какой профиль скопировать настройки?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Это удалит изменения профиля — каждая настройка вернётся к значению профиля по умолчанию.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Это скопирует каждую изменённую настройку этого профиля в профиль по умолчанию, сделав его новой основой.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Будут удалены устаревшие значения модулей ({0}), исправлены выборы графиков ({1}) и удалены неиспользуемые профили ({2}). Продолжить?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Нечего очищать.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(нет графика)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Заводское значение</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>для машины + погоды</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>для машины + трека + погоды</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>для машины + трека + конфигурации + погоды</value>
+  </data>
 </root>

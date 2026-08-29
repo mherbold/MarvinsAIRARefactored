@@ -40,6 +40,26 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="settings-backups">Settings Backups and Recovery</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA saves everything you configure to <strong>Settings.xml</strong> in its Documents folder, and keeps two kinds of backup beside it. Every time it saves, it first copies the previous settings file to <strong>Settings.xml.bak</strong>. On top of that, it keeps a folder of timestamped backups in a <strong>Backups</strong> sub-folder, each one named after the date and time it was taken (for example <strong>Settings 2026-07-04 14-30-15.xml</strong>). The <strong>Open documents folder</strong> button on the <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a> page takes you straight there.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The first save after each app launch always makes a fresh timestamped backup, and after that at most one every 15 minutes — so you end up with a trail of snapshots going back over many sessions rather than dozens of copies of the same one. MAIRA keeps the newest 50 and deletes the rest. Anything else you put in that folder is left alone.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the settings file is ever damaged — a power cut in the middle of a save, for example — MAIRA repairs itself at startup without asking. It tries <strong>Settings.xml</strong> first, then <strong>Settings.xml.bak</strong>, then the timestamped backups newest first, and carries on with whichever one loads. It writes down what it did in the log file, so if your settings ever look like they jumped back in time, the log will tell you which backup they came from.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can also do it by hand. Close MAIRA, copy the backup you want out of the Backups folder over <strong>Settings.xml</strong>, and start MAIRA again.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="controlled-folder-access">Controlled Folder Access</p>
 <!-- /wp:paragraph -->
 

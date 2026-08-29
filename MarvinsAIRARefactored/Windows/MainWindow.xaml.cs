@@ -678,6 +678,36 @@ public partial class MainWindow : Window
 		AppMenuButton.IsMenuOpen = true;
 	}
 
+	// The status bar shows which car / track / configuration / weather the app is currently tuning for, so it is
+	// also the way into the manager for the tuning profiles behind that.
+	private void StatusBar_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[MainWindow] StatusBar_Click >>>" );
+
+		OpenTuningProfilesWindow();
+
+		app.Logger.WriteLine( "[MainWindow] <<< StatusBar_Click" );
+	}
+
+	// Shared by the status bar and the tuning profiles app menu item - both show the same modal manager.
+	public void OpenTuningProfilesWindow()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[MainWindow] OpenTuningProfilesWindow >>>" );
+
+		var tuningProfilesWindow = new TuningProfilesWindow
+		{
+			Owner = this
+		};
+
+		tuningProfilesWindow.ShowDialog();
+
+		app.Logger.WriteLine( "[MainWindow] <<< OpenTuningProfilesWindow" );
+	}
+
 	public void NavigateToOverlaySection( OverlaysPage.OverlaySection section )
 	{
 		AppMenuButton.IsMenuOpen = false;

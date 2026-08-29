@@ -56,6 +56,47 @@
 
             </Style>
 
+            <!-- Text inside a list row. A styled text block does not inherit the foreground the selected row sets on
+                 its container, so row text has to switch to the selected colors itself. -->
+
+            <Style TargetType="{x:Type TextBlock}"
+                   x:Key="MairaListItemTextStyle"
+                   BasedOn="{StaticResource MairaTextBlockStyle}">
+
+                <Setter Property="Foreground"
+                        Value="{DynamicResource Brush.Foreground.Primary}" />
+
+                <Style.Triggers>
+
+                    <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                                 Value="True">
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource Brush.ListItem.Selected.Text}" />
+                    </DataTrigger>
+
+                </Style.Triggers>
+
+            </Style>
+
+            <Style TargetType="{x:Type TextBlock}"
+                   x:Key="MairaListItemMutedTextStyle"
+                   BasedOn="{StaticResource MairaTextBlockStyle}">
+
+                <Setter Property="Foreground"
+                        Value="{DynamicResource Brush.Foreground.Muted}" />
+
+                <Style.Triggers>
+
+                    <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                                 Value="True">
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource Brush.ListItem.Selected.Muted}" />
+                    </DataTrigger>
+
+                </Style.Triggers>
+
+            </Style>
+
             <!-- TextBox -->
 
             <Style TargetType="{x:Type TextBox}"

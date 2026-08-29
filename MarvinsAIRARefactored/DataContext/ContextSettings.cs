@@ -55,7 +55,9 @@ public class ContextSettings
 
 	// Modular FFB graph (replaces the old per-algorithm settings above). The selected graph name is synced by
 	// the existing UpdateSettings reflection loop (it has a matching Settings property + ContextSwitches). The
-	// module values are a purpose-built snapshot keyed by "{moduleId}/{settingKey}" (see Settings.SyncFFBGraphModuleValues).
+	// module values are a purpose-built snapshot keyed by "{graphId}/{moduleId}/{settingKey}" (see FFBGraphValues.ComposeKey
+	// and Settings.SyncFFBGraphModuleValues) - the graph id scopes the overlay so values never leak between graphs that
+	// share the well-known source / output module ids.
 	public string RacingWheelSelectedFFBGraphName { get; set; } = "";
 	public FFBGraphValues RacingWheelFFBGraphModuleValues { get; set; } = [];
 
@@ -175,8 +177,8 @@ public class ContextSettings
 	public float PedalsABSEngagedAmplitude { get; set; } = 1f;
 	public bool PedalsABSEngagedFadeWithBrakeEnabled { get; set; } = true;
 	public float PedalsStartingRPM { get; set; } = 0.25f;
-	public bool PedalsVibrateInTopGearEnabled { get; set; } = false;
-	public bool PedalsFadeWithThrottleEnabled { get; set; } = true;
+	public bool PedalsRPMVibrateInTopGearEnabled { get; set; } = false;
+	public bool PedalsRPMFadeWithThrottleEnabled { get; set; } = true;
 	public float PedalsShiftRPMFrequency { get; set; } = 1f;
 	public float PedalsShiftRPMAmplitude { get; set; } = 1f;
 	public bool PedalsShiftRPMPulsateEnabled { get; set; } = true;

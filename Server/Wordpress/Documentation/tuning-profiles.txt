@@ -1,0 +1,243 @@
+<!-- wp:paragraph -->
+<p>MAIRA does not save most of your settings just once. It saves them into <strong>tuning profiles</strong>, so the same setting can hold a different value depending on what you are driving and where. When you jump in a car and go on track, MAIRA works out which profiles apply and loads their values for you — there is nothing to select and nothing to remember.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Every profile comes from the context switches on the settings themselves. Right-clicking the name of a setting lets you choose whether it is saved per car, per track, per track configuration, and per wet/dry condition — see <a href="https://mairapp.com/home/documentation/basic/common-controls/" data-type="page" data-id="508">Common Controls</a> for how that works. The switches you turn on decide which profile that setting's value lands in.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>That gives you a stack of profiles, from the most general to the most specific:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Default</strong> — the bottom of the stack. Settings that are not saved per anything live here, and every context that has no value of its own falls back to it.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Per car</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Per car + track</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Per car + track + configuration</strong></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Any of those can also be split by weather, giving you separate wet and dry values, and the weather can be used on its own as well.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The status display in the top right corner of the MAIRA window always shows the car, track, track configuration and wet/dry condition MAIRA is currently tuning for. This page describes the window behind it, where you can see every profile MAIRA has saved, exactly what each one changes, and tidy the whole collection up.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="opening-the-manager">Opening the tuning profiles window</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>There are two ways in:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Click the car / track / weather status display in the top right corner of the MAIRA window.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Open the app menu and choose <strong>Tuning profiles</strong>, right below <strong>App settings</strong>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The window rebuilds itself every time it comes back to the front, so if the simulator moves you to another car or track while it is sitting behind the app, what it shows stays correct.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="profile-list">The profile list</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The list on the left holds every profile MAIRA has saved, grouped by how specific it is. <strong>Default</strong> is pinned to the top, followed by <strong>Per weather</strong>, <strong>Per car</strong>, <strong>Per car + track</strong> and <strong>Per car + track + configuration</strong>. A group with nothing in it is not shown at all, so a fresh install starts out with just the default profile.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each row names the context the profile belongs to — the car, the track, and the track configuration, as far as its group goes — followed by up to three markers:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Wet</strong> or <strong>Dry</strong> — shown when the profile is one half of a weather split. Profiles that are not split by weather have no badge.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>x changed</strong> — how many settings this profile changes compared to the default profile. The default profile shows <strong>x settings</strong> instead, because it is not a list of changes but the complete set of values everything else falls back to.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Active</strong> — this profile is one of the ones in use right now. More than one row can be marked at a time: a per car profile and a per car + track profile both apply when you are in that car at that track, and the default profile is always active.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>A profile only appears in this list while it actually changes something. As soon as its last difference is reverted, copied over, or promoted away, it drops off the list.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="what-this-profile-changes">What the selected profile changes</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The panel on the right lists what the profile you selected changes, one row per setting, laid out in three levels: the page the setting comes from, the section or FFB graph node it sits in, and the setting's own name. Settings from the FFB graph are grouped by graph and then by module, so a row reads the same way the graph editor names it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Every row shows two values. <strong>This profile</strong> is what the profile holds, and <strong>Default profile</strong> is what the setting would be without it — the value you would get back by reverting. Values are formatted exactly the way their own settings page formats them, so you read <strong>25%</strong>, <strong>28 Nm</strong> or the name of a mode rather than a raw number.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The default profile is shown differently, because nothing sits below it. It lists <em>every</em> context-based setting rather than a list of changes, and its second column is headed <strong>Factory default</strong>. Rows where you have moved a setting off its factory value are highlighted, so you can see at a glance what has been tuned away from how MAIRA shipped.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the selected profile has nothing to show, the panel reads <strong>This profile has no changes.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Revert to default</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The small reset button at the end of each row puts that one setting back to the value in the column beside it — the default profile's value on a normal profile, or the factory value on the default profile. This is the surgical option: it undoes a single setting without touching anything else in the profile.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="scope-icons">Scope icons</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Rows in the <strong>default</strong> profile can carry a cluster of small round icons between the setting name and its value. They say which contexts that setting is saved per, which is another way of saying what the value on that row is the fallback <em>for</em>. There is one icon per context dimension:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>A <strong>car</strong> — saved per car</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>A <strong>road</strong> — saved per track</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>A <strong>wrench</strong> — saved per track configuration</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>A <strong>raindrop</strong> — saved per wet/dry condition</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Hover over the icons to read the whole scope as a sentence — <strong>Per car</strong>, <strong>Per car + track + weather</strong>, and so on. A setting with no icons at all is not saved per anything, so the value on that row is simply the value, everywhere.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Other profiles never show these icons. Every row they have is tuned at the profile's own scope, which the group in the list on the left already tells you.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="operations">Profile operations</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The buttons along the bottom of the window act on the profile selected in the list. The first three are disabled while the default profile is selected — it is the bottom of the stack, so it cannot be deleted, copied from, or promoted into itself.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Delete profile</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Throws away everything the selected profile changes. Every setting in it goes back to the default profile's value, and the profile disappears from the list because it no longer says anything different. MAIRA asks you to confirm first.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Copy to…</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Copies everything the selected profile changes onto another profile. MAIRA asks <strong>Copy settings to which profile?</strong> and offers only profiles of the same kind — a per car profile can be copied onto another per car profile, but not onto a per car + track one, because the two own different sets of settings. This is the quick way to give a second car the feel you just dialled in on the first. The button is disabled when there is no other profile of the same kind to copy to.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Promote to default</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Copies every changed setting in the selected profile into the default profile, making it the new baseline for every context that has nothing of its own. Use this when you have tuned one car until you are happy with it and want that to be your starting point everywhere. The profile you promoted is left alone, but since its values now match the default profile it no longer changes anything and drops off the list. MAIRA asks you to confirm first.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Clean up</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Housekeeping for the whole collection. Clean up does four things:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Removes saved FFB module values that no longer point at anything — left behind by a graph you deleted or a node you removed.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Repairs profiles whose FFB graph selection is empty or points at a graph that no longer exists.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Deletes profiles saved at a scope you have since turned off, so nothing can reach them any more.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Deletes profiles that no longer change anything.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Nothing happens until you say so. MAIRA does a dry run first and tells you exactly what it found — <strong>This will remove x stale module values, repair x graph selections, and delete x unused profiles. Continue?</strong> — and only carries it out once you confirm. If there is nothing to do it simply says <strong>Nothing to clean up.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="simulator-not-running">When the simulator is not running</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA needs the simulator to tell it which car and track you are on. With no simulator running there is no context to key on, so every scope collapses onto the default profile and the window shows a reminder at the top: <strong>The simulator is not running — setting changes are being saved to the default profile.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is worth knowing, because it applies to the rest of the app too. Any setting you change while the simulator is closed goes into the default profile, no matter what scope that setting is saved at. If you want to tune a particular car, or a particular car at a particular track, be in that car on that track while you do it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/controller-profiles/" data-type="page" data-id="1034">Controller Profiles</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

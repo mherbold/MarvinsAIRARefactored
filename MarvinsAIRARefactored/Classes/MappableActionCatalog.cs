@@ -127,6 +127,85 @@ public static class MappableActionCatalog
 		return set;
 	}
 
+	// The retired knobs above plus the retired NON-knob settings: the legacy fixed-function algorithm selection and
+	// its soft limiter / multi source switches, the two wheel centering switches, and the steering effects wheel
+	// vibration pattern / constant force direction selectors. All of them moved into the modular FFB graph - no page
+	// control binds any of them any more (they survive only for migration and the legacy telemetry export), so the
+	// tuning profile manager hides them. Kept as its own set so the button mapping coverage check below keeps
+	// reporting exactly what it reported before.
+	private static readonly HashSet<string> RetiredSettingBaseNames = BuildRetiredSettingBaseNames();
+
+	private static HashSet<string> BuildRetiredSettingBaseNames()
+	{
+		var set = new HashSet<string>( RetiredKnobBaseNames, StringComparer.Ordinal )
+		{
+			"RacingWheelAlgorithm", "RacingWheelAutoMargin", "RacingWheelEnableSoftLimiter",
+			"RacingWheelMultiEnableSlewPeakMode", "RacingWheelMultiFFBSourceSelection",
+			"RacingWheelCenterWheelWhileRacing", "RacingWheelCenterWheelWhileParked"
+		};
+
+		foreach ( var effect in new[] { "Understeer", "Oversteer", "SeatOfPants" } )
+		{
+			set.Add( $"SteeringEffects{effect}WheelVibrationPattern" );
+			set.Add( $"SteeringEffects{effect}WheelConstantForceDirection" );
+		}
+
+		return set;
+	}
+
+	// True when propBase names a setting that has no UI left anywhere (see above).
+	public static bool IsRetiredSetting( string propertyBaseName )
+	{
+		return RetiredSettingBaseNames.Contains( propertyBaseName );
+	}
+
+	// propBase -> the action that drives the same control. The catalog is the only place that already carries a
+	// localized category / section / label for a settings property, and the mapping property names it is keyed by
+	// differ from the property base name only by the +/- suffix pair (or by no suffix at all, for a trigger).
+	private static readonly Dictionary<string, MappableAction> _actionsByBaseName = BuildActionsByBaseName();
+
+	private static Dictionary<string, MappableAction> BuildActionsByBaseName()
+	{
+		var actionsByBaseName = new Dictionary<string, MappableAction>( StringComparer.Ordinal );
+
+		foreach ( var action in Actions )
+		{
+			foreach ( var suffix in new[] { "PlusButtonMappings", "MinusButtonMappings", "ButtonMappings" } )
+			{
+				if ( action.SettingsPropertyName.EndsWith( suffix, StringComparison.Ordinal ) )
+				{
+					actionsByBaseName.TryAdd( action.SettingsPropertyName[ ..^suffix.Length ], action );
+
+					break;
+				}
+			}
+		}
+
+		return actionsByBaseName;
+	}
+
+	// The localization keys describing propBase (a settings property base name like "RacingWheelStrength"), taken
+	// from the mappable action of the same control. False when the catalog does not cover that setting.
+	public static bool TryGetLabels( string propertyBaseName, out string categoryKey, out string groupLabelKey, out string labelKey, out int index )
+	{
+		if ( _actionsByBaseName.TryGetValue( propertyBaseName, out var action ) )
+		{
+			categoryKey = action.CategoryKey;
+			groupLabelKey = action.GroupLabelKey;
+			labelKey = action.LabelKey;
+			index = action.Index;
+
+			return true;
+		}
+
+		categoryKey = string.Empty;
+		groupLabelKey = string.Empty;
+		labelKey = string.Empty;
+		index = 0;
+
+		return false;
+	}
+
 	private static bool IsRetiredMapping( string propertyName )
 	{
 		foreach ( var suffix in new[] { "PlusButtonMappings", "MinusButtonMappings" } )
@@ -482,7 +561,7 @@ public static class MappableActionCatalog
 		PlainKnob( list, "Pedals", "Brake", "Strength", "PedalsBrakeStrength2", 0.05f, index: 2 );
 		Trigger( list, "PedalsBrakeTest2ButtonMappings", "Pedals", "Brake", "Test", app => app.Pedals.StartTest( 1, 1 ), index: 2 );
 		PlainKnob( list, "Pedals", "Brake", "Strength", "PedalsBrakeStrength3", 0.05f, index: 3 );
-		Trigger( list, "PedalsBrakeTest3ButtonMappings", "Pedals", "Brake", "Test", app => app.Pedals.StartTest( 2, 1 ), index: 3 );
+		Trigger( list, "PedalsBrakeTest3ButtonMappings", "Pedals", "Brake", "Test", app => app.Pedals.StartTest( 1, 2 ), index: 3 );
 
 		PlainKnob( list, "Pedals", "Throttle", "Strength", "PedalsThrottleStrength1", 0.05f, index: 1 );
 		Trigger( list, "PedalsThrottleTest1ButtonMappings", "Pedals", "Throttle", "Test", app => app.Pedals.StartTest( 2, 0 ), index: 1 );

@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Kit di regolazione ibrido</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Profili di regolazione</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Fai clic per gestire i tuoi profili di regolazione</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Per meteo</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Per auto</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Per auto + pista</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Per auto + pista + configurazione</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} modificati</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} impostazioni</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Attivo</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Questo profilo</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Profilo predefinito</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Questo profilo non contiene modifiche.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Ripristina il valore predefinito</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Il simulatore non è in esecuzione — le modifiche alle impostazioni vengono salvate nel profilo predefinito.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Copia in…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Imposta come predefinito</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Pulisci</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>In quale profilo copiare le impostazioni?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Questo elimina le modifiche del profilo — ogni impostazione torna al valore del profilo predefinito.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Questo copia ogni impostazione modificata di questo profilo nel profilo predefinito, che diventa la nuova base.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Questo rimuoverà {0} valori di modulo obsoleti, riparerà {1} selezioni di grafico ed eliminerà {2} profili inutilizzati. Continuare?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Niente da pulire.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(nessun grafico)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Valore di fabbrica</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Per auto + meteo</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Per auto + pista + meteo</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Per auto + pista + configurazione + meteo</value>
+  </data>
 </root>

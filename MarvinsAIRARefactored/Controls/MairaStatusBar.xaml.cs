@@ -1,5 +1,6 @@
 ﻿
 using System.Windows;
+using System.Windows.Input;
 
 using UserControl = System.Windows.Controls.UserControl;
 
@@ -14,10 +15,52 @@ public partial class MairaStatusBar : UserControl
 		Error
 	};
 
+	/// <summary>Raised when the user clicks anywhere on the bar - the main window opens the tuning profile
+	/// manager from it. Fires in every status state, including "the simulator is not running".</summary>
+	public event RoutedEventHandler? Click;
+
+	// True between a left press that landed on the bar and its release. The app menu's scrim closes on mouse DOWN,
+	// so the click that dismisses the menu releases over the bar - and a bar that fired on the release alone would
+	// open the tuning profile manager unbidden. Pairing the press with the release (with the mouse captured in
+	// between) makes the bar respond only to clicks that actually started on it.
+	private bool _pressed = false;
+
 	public MairaStatusBar()
 	{
 		InitializeComponent();
 	}
+
+	#region User Control Events
+
+	private void Status_Border_MouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		_pressed = Status_Border.CaptureMouse();
+	}
+
+	private void Status_Border_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
+	{
+		if ( !_pressed )
+		{
+			return;
+		}
+
+		_pressed = false;
+
+		Status_Border.ReleaseMouseCapture();
+
+		// a press dragged off the bar before it was released is not a click
+		if ( Status_Border.InputHitTest( e.GetPosition( Status_Border ) ) != null )
+		{
+			Click?.Invoke( this, e );
+		}
+	}
+
+	private void Status_Border_LostMouseCapture( object sender, System.Windows.Input.MouseEventArgs e )
+	{
+		_pressed = false;
+	}
+
+	#endregion
 
 	#region Dependency Properties
 

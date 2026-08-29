@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Hibrit çoklu ayar araç seti</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Ayar profilleri</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Ayar profillerinizi yönetmek için tıklayın</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Hava durumu başına</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Araç başına</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Araç + pist başına</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Araç + pist + ayarlama başına</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} değiştirildi</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} ayar</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Etkin</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Bu profil</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Varsayılan profil</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Bu profilde değişiklik yok.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Varsayılana döndür</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Simülatör çalışmıyor — ayar değişiklikleri varsayılan profile kaydediliyor.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Şuraya kopyala…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Varsayılan yap</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Temizle</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Ayarlar hangi profile kopyalansın?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Bu, profilin değişikliklerini siler — içindeki her ayar varsayılan profilin değerine döner.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Bu, bu profildeki değiştirilen her ayarı varsayılan profile kopyalayarak onu yeni temel yapar.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Bu, {0} eski modül değerini kaldıracak, {1} grafik seçimini onaracak ve {2} kullanılmayan profili silecek. Devam edilsin mi?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Temizlenecek bir şey yok.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(grafik yok)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Fabrika varsayılanı</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Araç + hava durumu başına</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Araç + pist + hava durumu başına</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Araç + pist + ayarlama + hava durumu başına</value>
+  </data>
 </root>

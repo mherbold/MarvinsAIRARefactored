@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Kit de ajustes múltiplos híbrido</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Perfis de ajuste</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Clique para gerenciar seus perfis de ajuste</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Por clima</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Por carro</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Por carro + pista</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Por carro + pista + configuração</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} alterados</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} configurações</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Ativo</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Este perfil</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Perfil padrão</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Este perfil não tem alterações.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Reverter para o padrão</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>O simulador não está em execução — as alterações de configurações estão sendo salvas no perfil padrão.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Copiar para…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Definir como padrão</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Limpar</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Copiar as configurações para qual perfil?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Isso exclui as alterações do perfil — cada configuração volta ao valor do perfil padrão.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Isso copia cada configuração alterada deste perfil para o perfil padrão, tornando-o a nova base.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Isso removerá {0} valores de módulo obsoletos, reparará {1} seleções de gráfico e excluirá {2} perfis não utilizados. Continuar?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Nada para limpar.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(sem gráfico)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Padrão de fábrica</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Por carro + clima</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Por carro + pista + clima</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Por carro + pista + configuração + clima</value>
+  </data>
 </root>

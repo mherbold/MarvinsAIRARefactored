@@ -2578,4 +2578,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>ハイブリッドマルチ調整ツールキット</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>チューニングプロファイル</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>クリックしてチューニングプロファイルを管理</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>天候ごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>車ごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>車 + コースごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>車 + コース + 設定ごと</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} 件変更</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} 件の設定</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>このプロファイル</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>既定のプロファイル</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>このプロファイルに変更はありません。</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>既定に戻す</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>シミュレーターが起動していません — 設定の変更は既定のプロファイルに保存されます。</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>コピー先…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>既定にする</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>クリーンアップ</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>どのプロファイルに設定をコピーしますか？</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>プロファイルの変更が削除され、すべての設定が既定のプロファイルの値に戻ります。</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>このプロファイルで変更されたすべての設定が既定のプロファイルにコピーされ、新しい基準になります。</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>古いモジュール値 {0} 件を削除し、グラフ選択 {1} 件を修復し、未使用のプロファイル {2} 件を削除します。続行しますか？</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>クリーンアップするものはありません。</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>（グラフなし）</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>工場出荷時の既定値</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>車 + 天候ごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>車 + コース + 天候ごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>車 + コース + 設定 + 天候ごと</value>
+  </data>
 </root>

@@ -66,6 +66,37 @@ public class ContextSwitches : INotifyPropertyChanged
 		_initializing = false;
 	}
 
+	#region Hierarchy
+
+	// The context dimensions form a hierarchy: a per track scope only means something inside a per car scope, and a
+	// per track configuration scope only means something inside a per track scope (per wet/dry is independent of all
+	// of them). Turns any orphaned child dimension off and returns true when something had to be turned off. This is
+	// deliberately NOT enforced inside the property setters - deserialization has to be able to load an illegal
+	// combination so the load-time migration can spot it, fix it, and re-serialize the settings file.
+	public bool Normalize()
+	{
+		var changed = false;
+
+		if ( !PerCar && ( PerTrack || PerTrackConfiguration ) )
+		{
+			PerTrack = false;
+			PerTrackConfiguration = false;
+
+			changed = true;
+		}
+
+		if ( !PerTrack && PerTrackConfiguration )
+		{
+			PerTrackConfiguration = false;
+
+			changed = true;
+		}
+
+		return changed;
+	}
+
+	#endregion
+
 	#region Per car
 
 	private bool _perCar;

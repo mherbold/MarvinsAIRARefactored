@@ -256,6 +256,6 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/controller-profiles/" data-type="page" data-id="1034">Controller Profiles</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/tuning-profiles/" data-type="page">Tuning Profiles</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

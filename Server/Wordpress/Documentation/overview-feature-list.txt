@@ -20,6 +20,14 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
+<li>Tuning profiles - see every per-car, per-track and wet/dry set of settings MAIRA has saved, what each one changes, and revert, copy, promote or clean them up</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Automatic timestamped settings backups, with recovery at startup if the settings file is ever damaged</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li>SimHub plugin</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->

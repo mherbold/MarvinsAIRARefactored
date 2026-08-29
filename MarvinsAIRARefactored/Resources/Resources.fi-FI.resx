@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Hybridiviritystyökalupakki</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Viritysprofiilit</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Napsauta hallitaksesi viritysprofiilejasi</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Sään mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Auton mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Auton + radan mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Auton + radan + kokoonpanon mukaan</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} muutettu</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} asetusta</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Aktiivinen</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Tämä profiili</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Oletusprofiili</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Tässä profiilissa ei ole muutoksia.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Palauta oletukseen</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Simulaattori ei ole käynnissä — asetusten muutokset tallennetaan oletusprofiiliin.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Kopioi kohteeseen…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Aseta oletukseksi</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Siivoa</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Mihin profiiliin asetukset kopioidaan?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Tämä poistaa profiilin muutokset — jokainen asetus palautuu oletusprofiilin arvoon.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Tämä kopioi jokaisen tämän profiilin muutetun asetuksen oletusprofiiliin, josta tulee uusi perustaso.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Tämä poistaa {0} vanhentunutta moduuliarvoa, korjaa {1} graafivalintaa ja poistaa {2} käyttämätöntä profiilia. Jatketaanko?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Ei mitään siivottavaa.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(ei graafia)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Tehdasoletus</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Auton + sään mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Auton + radan + sään mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Auton + radan + kokoonpanon + sään mukaan</value>
+  </data>
 </root>

@@ -85,6 +85,18 @@
     <Color x:Key="Color.ListItem.Hover">#1a000000</Color>
     <SolidColorBrush x:Key="Brush.ListItem.Hover" Color="{StaticResource Color.ListItem.Hover}" />
 
+    <!-- Selected list row: a mid sky blue that keeps the light theme's dark-on-light direction. The row's own text
+         sets its color explicitly, so the three text colors below are what a selected row switches its text to -
+         primary, muted / badge, and accent badge (the orange washes out on the blue, so it goes to the dark rust). -->
+    <Color x:Key="Color.ListItem.Selected">#7aa9e0</Color>
+    <SolidColorBrush x:Key="Brush.ListItem.Selected" Color="{StaticResource Color.ListItem.Selected}" />
+    <Color x:Key="Color.ListItem.Selected.Text">#1a1a1a</Color>
+    <SolidColorBrush x:Key="Brush.ListItem.Selected.Text" Color="{StaticResource Color.ListItem.Selected.Text}" />
+    <Color x:Key="Color.ListItem.Selected.Muted">#2b4260</Color>
+    <SolidColorBrush x:Key="Brush.ListItem.Selected.Muted" Color="{StaticResource Color.ListItem.Selected.Muted}" />
+    <Color x:Key="Color.ListItem.Selected.Accent">#983418</Color>
+    <SolidColorBrush x:Key="Brush.ListItem.Selected.Accent" Color="{StaticResource Color.ListItem.Selected.Accent}" />
+
     <!-- MairaListButton background / hover -->
     <Color x:Key="Color.ListButton.Background">#d8d8d8</Color>
     <SolidColorBrush x:Key="Brush.ListButton.Background" Color="{StaticResource Color.ListButton.Background}" />
@@ -141,6 +153,14 @@
     <SolidColorBrush x:Key="Brush.SteeringEffects.Oversteer" Color="{StaticResource Color.SteeringEffects.Oversteer}" />
     <Color x:Key="Color.SteeringEffects.SeatOfPants">#357f77</Color>
     <SolidColorBrush x:Key="Brush.SteeringEffects.SeatOfPants" Color="{StaticResource Color.SteeringEffects.SeatOfPants}" />
+
+    <!-- Scope icon (the small round car / track / configuration / weather badges beside a tuning profile row): the
+         dark theme's disc and glyph flipped over - the disc sits just under the page background and the glyph is
+         lighter than primary text, keeping the same muted metadata weight -->
+    <Color x:Key="Color.ScopeIcon.Background">#c0c0c0</Color>
+    <SolidColorBrush x:Key="Brush.ScopeIcon.Background" Color="{StaticResource Color.ScopeIcon.Background}" />
+    <Color x:Key="Color.ScopeIcon.Glyph">#525252</Color>
+    <SolidColorBrush x:Key="Brush.ScopeIcon.Glyph" Color="{StaticResource Color.ScopeIcon.Glyph}" />
 
     <!-- Logo variants with black text for light theme -->
     <BitmapImage x:Key="Image.SimagicLogo" UriSource="/MarvinsAIRARefactored;component/Artwork/Misc/simagic-logo-light.png" />

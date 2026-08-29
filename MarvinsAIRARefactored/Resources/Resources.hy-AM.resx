@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Հիբրիդային կարգավորման գործիքակազմ</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Կարգաբերման պրոֆիլներ</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Սեղմեք՝ ձեր կարգաբերման պրոֆիլները կառավարելու համար</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Ըստ եղանակի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Ըստ մեքենայի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Ըստ մեքենայի + տրասսայի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Ըստ մեքենայի + տրասսայի + կազմաձևման</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} փոփոխված</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} կարգավորում</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Ակտիվ</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Այս պրոֆիլը</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Լռելյայն պրոֆիլ</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Այս պրոֆիլը փոփոխություններ չունի։</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Վերադարձնել լռելյայն արժեքին</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Սիմուլյատորը գործարկված չէ — կարգավորումների փոփոխությունները պահվում են լռելյայն պրոֆիլում։</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Պատճենել…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Դարձնել լռելյայն</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Մաքրել</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Ո՞ր պրոֆիլում պատճենել կարգավորումները։</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Սա կջնջի պրոֆիլի փոփոխությունները — դրա բոլոր կարգավորումները կվերադառնան լռելյայն պրոֆիլի արժեքներին։</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Սա այս պրոֆիլի բոլոր փոփոխված կարգավորումները կպատճենի լռելյայն պրոֆիլում՝ դարձնելով այն նոր հիմք։</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Սա կհեռացնի {0} հնացած մոդուլի արժեք, կվերականգնի {1} գրաֆիկի ընտրություն և կջնջի {2} չօգտագործվող պրոֆիլ։ Շարունակե՞լ։</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Մաքրելու ոչինչ չկա։</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(գրաֆիկ չկա)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Գործարանային լռելյայն</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Ըստ մեքենայի + եղանակի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Ըստ մեքենայի + տրասսայի + եղանակի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Ըստ մեքենայի + տրասսայի + կազմաձևման + եղանակի</value>
+  </data>
 </root>

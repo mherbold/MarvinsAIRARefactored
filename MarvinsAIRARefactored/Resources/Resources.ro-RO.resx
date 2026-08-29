@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Trusă hibridă de reglaje multiple</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Profiluri de reglare</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Faceți clic pentru a vă gestiona profilurile de reglare</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Per vreme</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Per mașină</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Per mașină + circuit</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Per mașină + circuit + configurație</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} modificate</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} setări</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Activ</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Acest profil</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Profil implicit</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Acest profil nu are modificări.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Revenire la valoarea implicită</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Simulatorul nu rulează — modificările setărilor sunt salvate în profilul implicit.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Copiere în…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Setează ca implicit</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Curățare</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>În ce profil copiați setările?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Aceasta șterge modificările profilului — fiecare setare revine la valoarea profilului implicit.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Aceasta copiază fiecare setare modificată din acest profil în profilul implicit, făcându-l noua referință.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Aceasta va elimina {0} valori de modul învechite, va repara {1} selecții de grafic și va șterge {2} profiluri nefolosite. Continuați?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Nimic de curățat.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(fără grafic)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Valoare din fabrică</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Per mașină + vreme</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Per mașină + circuit + vreme</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Per mașină + circuit + configurație + vreme</value>
+  </data>
 </root>

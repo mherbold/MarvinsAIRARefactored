@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Hibrid hangolókészlet</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Hangolási profilok</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Kattintson a hangolási profilok kezeléséhez</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Időjárás alapján</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Autó alapján</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Autó + pálya alapján</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Autó + pálya + konfiguráció alapján</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} módosítva</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} beállítás</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Aktív</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Ez a profil</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Alapértelmezett profil</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Ez a profil nem tartalmaz módosításokat.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Visszaállítás alapértelmezettre</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>A szimulátor nem fut — a beállítások módosításai az alapértelmezett profilba kerülnek.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Másolás ide…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Alapértelmezetté tétel</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Tisztítás</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Melyik profilba másolja a beállításokat?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Ez törli a profil módosításait — minden beállítás visszaáll az alapértelmezett profil értékére.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Ez a profil minden módosított beállítását az alapértelmezett profilba másolja, amely így az új alap lesz.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Ez eltávolít {0} elavult modulértéket, kijavít {1} grafikonkiválasztást, és töröl {2} nem használt profilt. Folytatja?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Nincs mit tisztítani.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(nincs grafikon)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Gyári alapértelmezés</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Autó + időjárás alapján</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Autó + pálya + időjárás alapján</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Autó + pálya + konfiguráció + időjárás alapján</value>
+  </data>
 </root>

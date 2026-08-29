@@ -1,0 +1,116 @@
+<Window x:Class="MarvinsAIRARefactored.Windows.PickTuningProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[TuningProfilesCopyTarget]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        Width="600"
+        Height="520"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner"
+        KeyDown="Window_KeyDown">
+
+    <!-- Copy target picker for the tuning profile manager: it only ever lists profiles of the same shape as the
+         source, since two profiles of different shapes own different sets of settings. -->
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </Window.DataContext>
+
+    <Window.Resources>
+
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="{DynamicResource Brush.Background.Popup}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Subtle}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="{DynamicResource Brush.Foreground.Primary}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Bg"
+                                Background="Transparent"
+                                BorderBrush="{DynamicResource Brush.Border.Normal}"
+                                BorderThickness="0,0,0,1"
+                                Padding="12,8">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Hover}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Selected}" />
+                                <Setter TargetName="Bg" Property="BorderBrush" Value="{DynamicResource Brush.Border.Normal}" />
+                                <Setter TargetName="Bg" Property="TextElement.Foreground" Value="{DynamicResource Brush.ListItem.Selected.Text}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ListBox x:Name="Profiles_ListBox"
+                 Grid.Row="0"
+                 MouseDoubleClick="Profiles_ListBox_MouseDoubleClick"
+                 KeyDown="Profiles_ListBox_KeyDown">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding LabelWithWeather}"
+                               Style="{StaticResource MairaListItemTextStyle}"
+                               FontSize="18"
+                               TextTrimming="CharacterEllipsis" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
+        <Grid Grid.Row="2"
+              HorizontalAlignment="Center">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <controls:MairaButton Grid.Column="0"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[OK]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/ok.png"
+                                  Click="OK_MairaButton_Click" />
+
+            <controls:MairaButton Grid.Column="2"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[Cancel]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                  Click="Cancel_MairaButton_Click" />
+
+        </Grid>
+
+    </Grid>
+
+</Window>

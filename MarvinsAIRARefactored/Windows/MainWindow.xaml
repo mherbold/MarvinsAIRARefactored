@@ -117,6 +117,7 @@
                                      Grid.Column="4"
                                      HorizontalAlignment="Right"
                                      VerticalAlignment="Center"
+                                     Click="StatusBar_Click"
                                      d:StatusText1="Mazda MX-5 Cup"
                                      d:StatusText2="Virginia International Raceway"
                                      d:StatusText3="Grand Course"

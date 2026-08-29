@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Pecyn tiwnio hybrid</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Proffiliau tiwnio</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Cliciwch i reoli eich proffiliau tiwnio</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Fesul tywydd</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Fesul car</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Fesul car + trac</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Fesul car + trac + cyfluniad</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} wedi newid</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} gosodiad</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Gweithredol</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Y proffil hwn</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Proffil rhagosodedig</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Nid oes newidiadau yn y proffil hwn.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Dychwelyd i'r rhagosodiad</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Nid yw'r efelychydd yn rhedeg — mae newidiadau gosodiadau'n cael eu cadw i'r proffil rhagosodedig.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Copïo i…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Gwneud yn rhagosodiad</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Tacluso</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>I ba broffil ddylid copïo'r gosodiadau?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Bydd hyn yn dileu newidiadau'r proffil — bydd pob gosodiad ynddo'n dychwelyd i werth y proffil rhagosodedig.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Bydd hyn yn copïo pob gosodiad a newidiwyd yn y proffil hwn i'r proffil rhagosodedig, gan ei wneud yn sylfaen newydd.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Bydd hyn yn tynnu {0} hen werth modiwl, yn trwsio {1} dewisiad graff, ac yn dileu {2} proffil nas defnyddir. Parhau?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Dim byd i'w dacluso.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(dim graff)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Rhagosodiad ffatri</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Fesul car + tywydd</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Fesul car + trac + tywydd</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Fesul car + trac + cyfluniad + tywydd</value>
+  </data>
 </root>

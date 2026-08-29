@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -25,6 +26,29 @@ public static class Serializer
 
 	public static void Save( string filePath, object data )
 	{
+		SaveBytes( filePath, SaveToBytes( data ) );
+	}
+
+	/// <summary>Serializes to the exact bytes <see cref="Save"/> would write - UTF-8 with no byte order mark,
+	/// which is what a plain <c>StreamWriter</c> produces. Lets a caller build the file content while holding a
+	/// lock (see SettingsFile.Tick) and do the disk write afterwards, outside it.</summary>
+	public static byte[] SaveToBytes( object data )
+	{
+		var xmlSerializer = new XmlSerializer( data.GetType() );
+
+		using var memoryStream = new MemoryStream();
+
+		using ( var streamWriter = new StreamWriter( memoryStream, new UTF8Encoding( encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true ) ) )
+		{
+			xmlSerializer.Serialize( streamWriter, data );
+		}
+
+		return memoryStream.ToArray();
+	}
+
+	/// <summary>Writes bytes produced by <see cref="SaveToBytes"/> to disk, creating the directory if needed.</summary>
+	public static void SaveBytes( string filePath, byte[] bytes )
+	{
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( $"[Serializer] Save >>> ({filePath})" );
@@ -36,13 +60,7 @@ public static class Serializer
 			Directory.CreateDirectory( directoryName );
 		}
 
-		var xmlSerializer = new XmlSerializer( data.GetType() );
-
-		using var streamWriter = new StreamWriter( filePath );
-
-		xmlSerializer.Serialize( streamWriter, data );
-
-		streamWriter.Close();
+		File.WriteAllBytes( filePath, bytes );
 
 		app.Logger.WriteLine( $"[Serializer] <<< Save" );
 	}

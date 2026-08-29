@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Hybrid justeringsverktøykasse</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Tuningprofiler</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Klikk for å administrere tuningprofilene dine</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Per vær</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Per bil</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Per bil + bane</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Per bil + bane + konfigurasjon</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} endret</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} innstillinger</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Denne profilen</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Standardprofil</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Denne profilen har ingen endringer.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Tilbakestill til standard</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Simulatoren kjører ikke — endringer i innstillinger lagres i standardprofilen.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Kopier til…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Gjør til standard</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Rydd opp</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Hvilken profil skal innstillingene kopieres til?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Dette sletter profilens endringer — hver innstilling går tilbake til standardprofilens verdi.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Dette kopierer hver endrede innstilling i denne profilen til standardprofilen, som blir det nye utgangspunktet.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Dette fjerner {0} utdaterte modulverdier, reparerer {1} grafvalg og sletter {2} ubrukte profiler. Fortsette?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Ingenting å rydde opp.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(ingen graf)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Fabrikkstandard</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Per bil + vær</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Per bil + bane + vær</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Per bil + bane + konfigurasjon + vær</value>
+  </data>
 </root>

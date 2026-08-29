@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Hibrīda vairāku pielāgojumu rīkkopa</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Regulēšanas profili</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Noklikšķiniet, lai pārvaldītu savus regulēšanas profilus</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Pēc laikapstākļiem</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Pēc auto</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Pēc auto + trases</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Pēc auto + trases + konfigurācijas</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} mainīti</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} iestatījumi</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Aktīvs</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Šis profils</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Noklusējuma profils</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Šim profilam nav izmaiņu.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Atjaunot noklusējumu</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Simulators nedarbojas — iestatījumu izmaiņas tiek saglabātas noklusējuma profilā.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Kopēt uz…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Iestatīt kā noklusējumu</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Sakārtot</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Kurā profilā kopēt iestatījumus?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Tas dzēš profila izmaiņas — katrs iestatījums atgriežas pie noklusējuma profila vērtības.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Tas kopē katru šī profila mainīto iestatījumu noklusējuma profilā, padarot to par jauno pamatu.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Tas noņems {0} novecojušas moduļu vērtības, salabos {1} grafiku izvēles un dzēsīs {2} neizmantotus profilus. Turpināt?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Nav ko sakārtot.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(nav grafika)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Rūpnīcas noklusējums</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Pēc auto + laikapstākļiem</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Pēc auto + trases + laikapstākļiem</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Pēc auto + trases + konfigurācijas + laikapstākļiem</value>
+  </data>
 </root>

@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>混合多重調整工具組</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>調校設定檔</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>點擊以管理您的調校設定檔</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>依天氣</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>依車輛</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>依車輛 + 賽道</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>依車輛 + 賽道 + 配置</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>已變更 {0} 項</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} 項設定</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>此設定檔</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>預設設定檔</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>此設定檔沒有變更。</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>還原為預設值</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>模擬器未執行 — 設定變更將儲存到預設設定檔。</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>複製到…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>設為預設</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>清理</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>將設定複製到哪個設定檔？</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>這將刪除該設定檔的變更 — 其中每項設定都會還原為預設設定檔的值。</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>這會將此設定檔中每項已變更的設定複製到預設設定檔，使其成為新的基準。</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>這將移除 {0} 個過時的模組值、修復 {1} 個圖表選擇並刪除 {2} 個未使用的設定檔。是否繼續？</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>沒有需要清理的內容。</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>（無圖表）</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>出廠預設值</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>依車輛 + 天氣</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>依車輛 + 賽道 + 天氣</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>依車輛 + 賽道 + 配置 + 天氣</value>
+  </data>
 </root>

@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>Hybride multi-aanpassingswerkset</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Tuningprofielen</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Klik om je tuningprofielen te beheren</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Per weer</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Per auto</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Per auto + baan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Per auto + baan + configuratie</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} gewijzigd</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} instellingen</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Actief</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Dit profiel</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Standaardprofiel</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Dit profiel bevat geen wijzigingen.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Terugzetten naar standaard</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>De simulator draait niet — wijzigingen in instellingen worden opgeslagen in het standaardprofiel.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Kopiëren naar…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Instellen als standaard</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Opschonen</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Naar welk profiel wil je de instellingen kopiëren?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Dit verwijdert de wijzigingen van het profiel — elke instelling gaat terug naar de waarde van het standaardprofiel.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Dit kopieert elke gewijzigde instelling van dit profiel naar het standaardprofiel, dat zo de nieuwe basis wordt.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Dit verwijdert {0} verouderde modulewaarden, herstelt {1} grafiekselecties en verwijdert {2} ongebruikte profielen. Doorgaan?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Niets om op te schonen.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(geen grafiek)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Fabrieksstandaard</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Per auto + weer</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Per auto + baan + weer</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Per auto + baan + configuratie + weer</value>
+  </data>
 </root>

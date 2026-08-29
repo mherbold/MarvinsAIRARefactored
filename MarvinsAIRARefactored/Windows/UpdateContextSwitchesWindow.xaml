@@ -25,23 +25,29 @@
 
         <UniformGrid Columns="2">
 
-            <controls:MairaSwitch Margin="0,10,0,0"
+            <controls:MairaSwitch x:Name="PerCar_MairaSwitch"
+                                  Margin="0,10,0,0"
                                   IsOn="{Binding PerCar, Mode=TwoWay}"
                                   Label="{Binding DataContext.Instance.Localization[PerCar]}"
                                   VerticalAlignment="Bottom" />
 
-            <controls:MairaSwitch Margin="0,10,0,0"
+            <controls:MairaSwitch x:Name="PerTrack_MairaSwitch"
+                                  Margin="0,10,0,0"
                                   IsOn="{Binding PerTrack, Mode=TwoWay}"
+                                  IsEnabled="{Binding PerCar}"
                                   Label="{Binding DataContext.Instance.Localization[PerTrack]}"
                                   VerticalAlignment="Bottom" />
 
-            <controls:MairaSwitch Margin="0,10,0,0"
+            <controls:MairaSwitch x:Name="PerWetDry_MairaSwitch"
+                                  Margin="0,10,0,0"
                                   IsOn="{Binding PerWetDry, Mode=TwoWay}"
                                   Label="{Binding DataContext.Instance.Localization[PerWetDry]}"
                                   VerticalAlignment="Bottom" />
 
-            <controls:MairaSwitch Margin="0,10,0,0"
+            <controls:MairaSwitch x:Name="PerTrackConfiguration_MairaSwitch"
+                                  Margin="0,10,0,0"
                                   IsOn="{Binding PerTrackConfiguration, Mode=TwoWay}"
+                                  IsEnabled="{Binding PerTrack}"
                                   Label="{Binding DataContext.Instance.Localization[PerTrackConfiguration]}"
                                   VerticalAlignment="Bottom" />
 

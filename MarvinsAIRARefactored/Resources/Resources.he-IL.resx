@@ -2575,4 +2575,85 @@
   <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
     <value>ערכת כוונון היברידית</value>
   </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>פרופילי כוונון</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>לחץ לניהול פרופילי הכוונון שלך</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>לפי מזג אוויר</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>לפי רכב</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>לפי רכב + מסלול</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>לפי רכב + מסלול + הגדרה</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} שונו</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} הגדרות</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>פעיל</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>פרופיל זה</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>פרופיל ברירת מחדל</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>לפרופיל זה אין שינויים.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>שחזור לברירת מחדל</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>הסימולטור אינו פועל — שינויי הגדרות נשמרים בפרופיל ברירת המחדל.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>העתקה אל…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>הפוך לברירת מחדל</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>ניקוי</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>לאיזה פרופיל להעתיק את ההגדרות?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>פעולה זו מוחקת את שינויי הפרופיל — כל הגדרה בו תחזור לערך של פרופיל ברירת המחדל.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>פעולה זו מעתיקה כל הגדרה ששונתה בפרופיל זה אל פרופיל ברירת המחדל, והופכת אותו לבסיס החדש.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>פעולה זו תסיר {0} ערכי מודולים מיושנים, תתקן {1} בחירות גרף ותמחק {2} פרופילים שאינם בשימוש. להמשיך?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>אין מה לנקות.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(אין גרף)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>ברירת מחדל של היצרן</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>לפי רכב + מזג אוויר</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>לפי רכב + מסלול + מזג אוויר</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>לפי רכב + מסלול + הגדרה + מזג אוויר</value>
+  </data>
 </root>
