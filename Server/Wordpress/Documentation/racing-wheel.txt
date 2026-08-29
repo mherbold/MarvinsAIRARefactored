@@ -653,6 +653,10 @@
 <p>Tip: Hover the preview graph to get a zoomed view.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>Tip: You can scroll the preview graph by holding the left mouse button down on it and dragging left or right (or by using the scroll bar underneath it).</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="wheel-lfe">Wheel LFE</p>
 <!-- /wp:paragraph -->

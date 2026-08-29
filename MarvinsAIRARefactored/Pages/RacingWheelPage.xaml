@@ -741,7 +741,10 @@
                                    RenderOptions.BitmapScalingMode="HighQuality"
                                    MouseEnter="AlgorithmPreview_Image_MouseEnter"
                                    MouseLeave="AlgorithmPreview_Image_MouseLeave"
-                                   MouseMove="AlgorithmPreview_Image_MouseMove" />
+                                   MouseMove="AlgorithmPreview_Image_MouseMove"
+                                   MouseLeftButtonDown="AlgorithmPreview_Image_MouseLeftButtonDown"
+                                   MouseLeftButtonUp="AlgorithmPreview_Image_MouseLeftButtonUp"
+                                   LostMouseCapture="AlgorithmPreview_Image_LostMouseCapture" />
 
                         </ScrollViewer>
 

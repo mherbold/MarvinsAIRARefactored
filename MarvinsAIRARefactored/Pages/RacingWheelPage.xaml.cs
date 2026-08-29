@@ -6,6 +6,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
+using Cursors = System.Windows.Input.Cursors;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
@@ -44,6 +45,13 @@ public partial class RacingWheelPage : UserControl
 	private bool _previewZoomAnchorPending = false;
 	private double _previewZoomAnchorSample = 0.0;
 	private double _previewZoomAnchorViewportX = 0.0;
+
+	// preview drag-scroll (hold left button + move) — the same grab gesture as the node graph's pan, horizontal
+	// only. The grab point is tracked in the scroll viewer's frame, not the image's: the image scrolls under the
+	// cursor mid-drag, so an image-relative delta would collapse back to zero as soon as the scroll applied.
+	private bool _previewDragging = false;
+	private Point _previewDragStartPoint;
+	private double _previewDragStartOffset = 0.0;
 
 	public RacingWheelPage()
 	{
@@ -272,6 +280,15 @@ public partial class RacingWheelPage : UserControl
 
 	private void AlgorithmPreview_Image_MouseMove( object sender, MouseEventArgs e )
 	{
+		if ( _previewDragging )
+		{
+			var deltaX = e.GetPosition( Preview_ScrollViewer ).X - _previewDragStartPoint.X;
+
+			Preview_ScrollViewer.ScrollToHorizontalOffset( Math.Clamp( _previewDragStartOffset - deltaX, 0.0, Preview_ScrollViewer.ScrollableWidth ) );
+
+			return;
+		}
+
 		if ( !PreviewZoom_Popup.IsOpen )
 		{
 			return;
@@ -282,6 +299,51 @@ public partial class RacingWheelPage : UserControl
 		UpdatePreviewZoom( cursorPosition );
 		UpdatePreviewSampleData( cursorPosition );
 		UpdatePreviewPopupPosition( cursorPosition );
+	}
+
+	// Left-dragging the preview scrolls it horizontally, same grab gesture as panning the node graph. The zoom
+	// popup hides for the duration of the drag and comes back on release if the cursor is still over the graph
+	// (no MouseEnter refires then — the capture means the cursor never "left").
+	private void AlgorithmPreview_Image_MouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		_previewDragging = true;
+		_previewDragStartPoint = e.GetPosition( Preview_ScrollViewer );
+		_previewDragStartOffset = Preview_ScrollViewer.HorizontalOffset;
+
+		AlgorithmPreview_Image.Cursor = Cursors.SizeWE;
+		AlgorithmPreview_Image.CaptureMouse();
+
+		PreviewZoom_Popup.IsOpen = false;
+	}
+
+	private void AlgorithmPreview_Image_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
+	{
+		if ( !_previewDragging )
+		{
+			return;
+		}
+
+		AlgorithmPreview_Image.ReleaseMouseCapture();
+
+		if ( AlgorithmPreview_Image.IsMouseOver && ( AlgorithmPreview_Image.Source != null ) )
+		{
+			var cursorPosition = e.GetPosition( AlgorithmPreview_Image );
+
+			UpdatePreviewZoom( cursorPosition );
+			UpdatePreviewSampleData( cursorPosition );
+			UpdatePreviewPopupPosition( cursorPosition );
+
+			PreviewZoom_Popup.IsOpen = true;
+		}
+	}
+
+	// Fires on ReleaseMouseCapture and whenever capture is torn away (alt-tab, popups) — the one reliable place
+	// to end the drag, so a stolen capture can't leave the gesture stuck on.
+	private void AlgorithmPreview_Image_LostMouseCapture( object sender, MouseEventArgs e )
+	{
+		_previewDragging = false;
+
+		AlgorithmPreview_Image.Cursor = null;
 	}
 
 	private void UpdatePreviewZoom( Point position )
