@@ -77,6 +77,14 @@ public class RaceRoomBridge : GameBridgeAdapter
 	private double _lastOpenAttemptSeconds = double.MinValue;
 	private double _nextSubSampleSeconds = 0.0;
 
+	// if the game ever recreates its shared memory map, a reader holding the old section keeps reading its
+	// orphaned frozen copy forever - same failure the LMU bridge hit across session loads - so the pump
+	// recycles the map while the physics output is frozen (see the stale-map recycle in Pump)
+	private const double StaleMapRecycleSeconds = 2.0;
+
+	private double _lastMapRecycleSeconds = double.MinValue;
+	private bool _recyclingStaleMap = false;
+
 	private byte[] _sharedBuffer = [];
 
 	private long _frameCounter = 0;
@@ -159,6 +167,9 @@ public class RaceRoomBridge : GameBridgeAdapter
 		_lastOpenAttemptSeconds = double.MinValue;
 		_nextSubSampleSeconds = 0.0;
 
+		_lastMapRecycleSeconds = double.MinValue;
+		_recyclingStaleMap = false;
+
 		_frameCounter = 0;
 
 		_hasShared = false;
@@ -222,7 +233,34 @@ public class RaceRoomBridge : GameBridgeAdapter
 
 				_nextSubSampleSeconds = totalSeconds;
 
-				App.Instance!.Logger.WriteLine( "[RaceRoomBridge] Shared memory opened - pumping" );
+				// during a stale-map recycle the map is reopened every couple of seconds until the physics
+				// output resumes, so the recycle logs its own start/resume lines instead of spamming this one
+				if ( !_recyclingStaleMap )
+				{
+					App.Instance!.Logger.WriteLine( "[RaceRoomBridge] Shared memory opened - pumping" );
+				}
+			}
+
+			// if the game ever recreates its shared memory map, holding the handle to the old section means
+			// reading its orphaned frozen copy forever - so while the physics output has been frozen for a
+			// while, periodically drop and reopen the map to reattach to the live section (reopening the same
+			// still-valid map while the game is merely paused or in a menu is cheap and harmless)
+			if ( ( LastDataActivitySeconds != double.MinValue ) && ( totalSeconds - LastDataActivitySeconds >= StaleMapRecycleSeconds ) && ( totalSeconds - _lastMapRecycleSeconds >= StaleMapRecycleSeconds ) )
+			{
+				if ( !_recyclingStaleMap )
+				{
+					_recyclingStaleMap = true;
+
+					App.Instance!.Logger.WriteLine( "[RaceRoomBridge] Telemetry stopped advancing - recycling the shared memory map until it resumes" );
+				}
+
+				_lastMapRecycleSeconds = totalSeconds;
+
+				_provider.Close();
+
+				_providerOpen = false;
+
+				return;
 			}
 
 			// if the timer stalled for a while, resynchronize instead of bursting a backlog of sub-samples
@@ -297,6 +335,13 @@ public class RaceRoomBridge : GameBridgeAdapter
 		}
 
 		LastDataActivitySeconds = pumpSeconds;
+
+		if ( _recyclingStaleMap )
+		{
+			_recyclingStaleMap = false;
+
+			App.Instance!.Logger.WriteLine( "[RaceRoomBridge] Telemetry resumed - reattached to the live shared memory map" );
+		}
 
 		var shared = ReadStruct<R3eShared>( _sharedBuffer, 0 );
 

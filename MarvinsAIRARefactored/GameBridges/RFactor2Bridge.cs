@@ -78,6 +78,14 @@ public class RFactor2Bridge : GameBridgeAdapter
 	private double _lastOpenAttemptSeconds = double.MinValue;
 	private double _nextSubSampleSeconds = 0.0;
 
+	// if the plugin ever recreates its shared memory maps, a reader holding the old sections keeps reading
+	// their orphaned frozen copies forever - same failure the LMU bridge hit across session loads - so the
+	// pump recycles the maps while the physics output is frozen (see the stale-map recycle in Pump)
+	private const double StaleMapRecycleSeconds = 2.0;
+
+	private double _lastMapRecycleSeconds = double.MinValue;
+	private bool _recyclingStaleMap = false;
+
 	private byte[] _telemetryBuffer = [];
 	private byte[] _scoringBuffer = [];
 
@@ -166,6 +174,9 @@ public class RFactor2Bridge : GameBridgeAdapter
 		_lastOpenAttemptSeconds = double.MinValue;
 		_nextSubSampleSeconds = 0.0;
 
+		_lastMapRecycleSeconds = double.MinValue;
+		_recyclingStaleMap = false;
+
 		LastDataActivitySeconds = double.MinValue;
 
 		_frameCounter = 0;
@@ -234,7 +245,34 @@ public class RFactor2Bridge : GameBridgeAdapter
 
 				_nextSubSampleSeconds = totalSeconds;
 
-				App.Instance!.Logger.WriteLine( "[RFactor2Bridge] Shared memory plugin buffers opened - pumping" );
+				// during a stale-map recycle the maps are reopened every couple of seconds until the physics
+				// output resumes, so the recycle logs its own start/resume lines instead of spamming this one
+				if ( !_recyclingStaleMap )
+				{
+					App.Instance!.Logger.WriteLine( "[RFactor2Bridge] Shared memory plugin buffers opened - pumping" );
+				}
+			}
+
+			// if the plugin ever recreates its shared memory maps, holding the handles to the old sections
+			// means reading their orphaned frozen copies forever - so while the physics output has been frozen
+			// for a while, periodically drop and reopen the maps to reattach to the live sections (reopening
+			// the same still-valid maps while the game is merely paused or in a menu is cheap and harmless)
+			if ( ( LastDataActivitySeconds != double.MinValue ) && ( totalSeconds - LastDataActivitySeconds >= StaleMapRecycleSeconds ) && ( totalSeconds - _lastMapRecycleSeconds >= StaleMapRecycleSeconds ) )
+			{
+				if ( !_recyclingStaleMap )
+				{
+					_recyclingStaleMap = true;
+
+					App.Instance!.Logger.WriteLine( "[RFactor2Bridge] Telemetry stopped advancing - recycling the shared memory maps until it resumes" );
+				}
+
+				_lastMapRecycleSeconds = totalSeconds;
+
+				_provider.Close();
+
+				_providerOpen = false;
+
+				return;
 			}
 
 			// if the timer stalled for a while, resynchronize instead of bursting a backlog of sub-samples
@@ -390,6 +428,13 @@ public class RFactor2Bridge : GameBridgeAdapter
 		}
 
 		LastDataActivitySeconds = pumpSeconds;
+
+		if ( _recyclingStaleMap )
+		{
+			_recyclingStaleMap = false;
+
+			App.Instance!.Logger.WriteLine( "[RFactor2Bridge] Telemetry resumed - reattached to the live shared memory maps" );
+		}
 
 		var playerTelemetry = ReadStruct<rF2VehicleTelemetry>( _telemetryBuffer, vehicleOffset );
 
