@@ -58,6 +58,10 @@
 <p>The window rebuilds itself every time it comes back to the front, so if the simulator moves you to another car or track while it is sitting behind the app, what it shows stays correct.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>The window can be resized by dragging its edges. The seam between the profile list and the details panel carries a small grab handle too — drag it to give the list more or less of the width. The list width is remembered.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="profile-list">The profile list</p>
 <!-- /wp:paragraph -->
@@ -67,7 +71,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Each row names the context the profile belongs to — the car, the track, and the track configuration, as far as its group goes — followed by up to three markers:</p>
+<p>Each row names the context the profile belongs to — the car, the track, and the track configuration, as far as its group goes — with each name on its own line, so a long track or configuration name is not cut short behind the car. A profile split by weather alone is simply named <strong>Wet</strong> or <strong>Dry</strong>. Beside the name sit up to three markers:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->

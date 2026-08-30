@@ -1,6 +1,7 @@
 
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 using MarvinsAIRARefactored.DataContext;
 
@@ -8,13 +9,23 @@ namespace MarvinsAIRARefactored.Windows;
 
 // One row of the profile list on the left. Rows whose Key starts with an underscore are the non-selectable group
 // headers (same convention as the add-module picker), and only those have a null Profile.
+//
+// A profile row spreads its name over up to three lines - car, track, track configuration - so a deeply scoped
+// profile's track and configuration are not ellipsized away behind the car name. The trailing badges sit on the
+// first two lines: the weather (when the profile has one) and the live marker on line 1, and the changed count on
+// line 1 unless the weather badge is already there, in which case it moves down to line 2. A line with no text on
+// either side collapses, so a shallow profile is still the single row it always was.
 public sealed class TuningProfileListItem
 {
 	public required string Key { get; init; }
 	public required string Label { get; init; }
+	public string Line1Text { get; init; } = string.Empty;
 	public string WeatherBadge { get; init; } = string.Empty;
-	public string ChangedCount { get; init; } = string.Empty;
+	public string Line1ChangedCount { get; init; } = string.Empty;
 	public string LiveMarker { get; init; } = string.Empty;
+	public string Line2Text { get; init; } = string.Empty;
+	public string Line2ChangedCount { get; init; } = string.Empty;
+	public string Line3Text { get; init; } = string.Empty;
 	public TuningProfile? Profile { get; init; } = null;
 }
 
@@ -106,6 +117,41 @@ public partial class TuningProfilesWindow : Window
 		SelectProfile( ( Profiles_ListBox.SelectedItem as TuningProfileListItem )?.Profile );
 	}
 
+	// The widest the profile list can go at the window's current size - the detail panel keeps its 20 pixel gap,
+	// its two 200 pixel value columns plus the 44 pixel revert column, and some room for the setting labels.
+	private double MaximumListWidth()
+	{
+		return ListSplit_Grid.ActualWidth - 614.0;
+	}
+
+	// Grab handle on the seam between the profile list and the detail panel - dragging resizes the list column
+	// (the setting's setter clamps the far ends, so overshooting a limit just parks there; the thumb reports
+	// deltas relative to its own grab point, so the handle never jumps when the drag comes back inside the
+	// limits).
+	private void ListWidth_Thumb_DragDelta( object sender, DragDeltaEventArgs e )
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		settings.TuningProfilesListWidth = Math.Min( settings.TuningProfilesListWidth + e.HorizontalChange, MaximumListWidth() );
+	}
+
+	private void ListWidth_Thumb_DragCompleted( object sender, DragCompletedEventArgs e )
+	{
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+	}
+
+	// Shrinking the window below a widened list would push the detail panel's fixed value columns out of view,
+	// so the list gives the width back (the settings setter's own minimum still wins over this clamp).
+	private void ListSplit_Grid_SizeChanged( object sender, SizeChangedEventArgs e )
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		if ( settings.TuningProfilesListWidth > MaximumListWidth() )
+		{
+			settings.TuningProfilesListWidth = MaximumListWidth();
+		}
+	}
+
 	#endregion
 
 	#region Model
@@ -192,17 +238,34 @@ public partial class TuningProfilesWindow : Window
 				} );
 			}
 
+			var weatherText = ( profile.Weather == TuningProfileWeather.Any ) ? string.Empty : localization[ ( profile.Weather == TuningProfileWeather.Wet ) ? "Wet" : "Dry" ];
+
+			// the first line is the car - except for the default profile ("Default") and the weather-only profiles,
+			// which have no dimension names at all, so there the weather IS the name and it moves out of the badge
+			var line1Text = profile.IsDefaultProfile ? profile.Label : profile.CarLabel;
+
+			var weatherBadge = weatherText;
+
+			if ( ( line1Text.Length == 0 ) && ( weatherText.Length > 0 ) )
+			{
+				line1Text = weatherText;
+				weatherBadge = string.Empty;
+			}
+
+			// the default profile lists every setting rather than a diff, so its number is a total, not a count of changes
+			var changedCount = string.Format( localization[ profile.IsDefaultProfile ? "TuningProfilesSettingCount" : "TuningProfilesChangedCount" ], profile.Rows.Count );
+
 			items.Add( new TuningProfileListItem
 			{
 				Key = "Profile",
-
-				// the engine's label leaves the weather out - the badge beside it carries that
 				Label = profile.Label,
-				WeatherBadge = ( profile.Weather == TuningProfileWeather.Any ) ? string.Empty : localization[ ( profile.Weather == TuningProfileWeather.Wet ) ? "Wet" : "Dry" ],
-
-				// the default profile lists every setting rather than a diff, so its number is a total, not a count of changes
-				ChangedCount = string.Format( localization[ profile.IsDefaultProfile ? "TuningProfilesSettingCount" : "TuningProfilesChangedCount" ], profile.Rows.Count ),
+				Line1Text = line1Text,
+				WeatherBadge = weatherBadge,
+				Line1ChangedCount = ( weatherBadge.Length == 0 ) ? changedCount : string.Empty,
 				LiveMarker = profile.IsLive ? localization[ "TuningProfilesLive" ] : string.Empty,
+				Line2Text = profile.TrackLabel,
+				Line2ChangedCount = ( weatherBadge.Length > 0 ) ? changedCount : string.Empty,
+				Line3Text = profile.TrackConfigurationLabel,
 				Profile = profile
 			} );
 		}

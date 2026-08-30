@@ -143,6 +143,13 @@ public sealed class TuningProfile
 	// scoped to nothing but the weather is left with an empty label (there the badge is the whole identity).
 	public string Label { get; internal set; } = string.Empty;
 
+	// The same dimensions split out one per line, for the manager's profile list - a joined label ellipsized the
+	// track and configuration away behind the car name. A dimension the shape does not own, or whose key part sits
+	// at "Default", is left empty and its line collapses.
+	public string CarLabel { get; internal set; } = string.Empty;
+	public string TrackLabel { get; internal set; } = string.Empty;
+	public string TrackConfigurationLabel { get; internal set; } = string.Empty;
+
 	// The same label with the weather folded back in, for the places that show a profile on one line with no
 	// badge column of their own (the copy target picker, the log lines).
 	public string LabelWithWeather { get; internal set; } = string.Empty;
@@ -573,6 +580,9 @@ public partial class Settings
 						IsDefaultProfile = false,
 						Weather = !shape.PerWetDry ? TuningProfileWeather.Any : ( ( context.WetDryName == Context.WetContextName ) ? TuningProfileWeather.Wet : TuningProfileWeather.Dry ),
 						Label = DescribeTuningProfileContext( context, shape ),
+						CarLabel = ( ( shape.Dims >= TuningProfileDims.Car ) && ( context.CarName != Context.DefaultContextName ) ) ? context.CarName : string.Empty,
+						TrackLabel = ( ( shape.Dims >= TuningProfileDims.CarTrack ) && ( context.TrackName != Context.DefaultContextName ) ) ? context.TrackName : string.Empty,
+						TrackConfigurationLabel = ( ( shape.Dims >= TuningProfileDims.CarTrackConfig ) && ( context.TrackConfigurationName != Context.DefaultContextName ) ) ? context.TrackConfigurationName : string.Empty,
 						LabelWithWeather = DescribeContext( context, shape.ToSwitches() ),
 						IsLive = scope.LiveContexts[ shapeIndex ].CompareTo( context ) == 0
 					};

@@ -17287,6 +17287,36 @@ public partial class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region App - Tuning profiles window profile list width
+
+	// Width in pixels of the tuning profile manager's profile list column - resized by dragging the grab handle
+	// on the seam between the list and the detail panel. Clamped here so a hand-edited settings file cannot
+	// collapse or blow up the layout; the drag handler additionally clamps against the window's current width so
+	// the detail panel's fixed value columns always keep their room.
+	public const double MinTuningProfilesListWidth = 300.0;
+	public const double MaxTuningProfilesListWidth = 900.0;
+
+	private double _tuningProfilesListWidth = 380.0;
+
+	public double TuningProfilesListWidth
+	{
+		get => _tuningProfilesListWidth;
+
+		set
+		{
+			value = Math.Clamp( value, MinTuningProfilesListWidth, MaxTuningProfilesListWidth );
+
+			if ( value != _tuningProfilesListWidth )
+			{
+				_tuningProfilesListWidth = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region App - Check for updates
 
 	private bool _appCheckForUpdates = true;

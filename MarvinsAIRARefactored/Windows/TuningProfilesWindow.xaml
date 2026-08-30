@@ -12,7 +12,9 @@
         Icon="/Artwork/AppIcon/maira-universal.ico"
         Width="1180"
         Height="680"
-        ResizeMode="NoResize"
+        MinWidth="1180"
+        MinHeight="680"
+        ResizeMode="CanResize"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterOwner"
         Activated="Window_Activated">
@@ -64,6 +66,10 @@
                              Value="True">
                     <Setter Property="Foreground" Value="{DynamicResource Brush.ListItem.Selected.Text}" />
                 </DataTrigger>
+                <!-- a profile name line the profile does not have collapses, taking its grid row's height with it -->
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -387,23 +393,37 @@
                    Visibility="Collapsed"
                    Text="{Binding Localization[TuningProfilesDisconnectedHint]}" />
 
-        <Grid Grid.Row="1">
+        <Grid x:Name="ListSplit_Grid"
+              Grid.Row="1"
+              SizeChanged="ListSplit_Grid_SizeChanged">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <ListBox x:Name="Profiles_ListBox"
                      Grid.Column="0"
+                     Width="{Binding Settings.TuningProfilesListWidth}"
                      SelectionChanged="Profiles_ListBox_SelectionChanged">
 
                 <ListBox.ItemTemplate>
 
+                    <!-- up to three name lines - car, track, track configuration - with the weather and live badges
+                         on the first line and the changed count beside whichever of the first two lines the weather
+                         badge left room on. The name lines collapse when the profile does not have them (via the
+                         text styles' empty-text triggers), so a shallow profile is still a single row. -->
+
                     <DataTemplate>
 
                         <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -412,23 +432,47 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0"
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
                                        Style="{StaticResource TuningProfilesListRowTextStyle}"
-                                       Text="{Binding Label}"
+                                       Text="{Binding Line1Text}"
                                        TextTrimming="CharacterEllipsis" />
 
-                            <TextBlock Grid.Column="1"
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
                                        Style="{StaticResource TuningProfilesListAccentBadgeStyle}"
                                        Text="{Binding WeatherBadge}" />
 
-                            <TextBlock Grid.Column="2"
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="2"
                                        Style="{StaticResource TuningProfilesListMutedBadgeStyle}"
-                                       Text="{Binding ChangedCount}" />
+                                       Text="{Binding Line1ChangedCount}" />
 
-                            <TextBlock Grid.Column="3"
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="3"
                                        Style="{StaticResource TuningProfilesListAccentBadgeStyle}"
                                        FontWeight="Bold"
                                        Text="{Binding LiveMarker}" />
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Style="{StaticResource TuningProfilesListRowTextStyle}"
+                                       Text="{Binding Line2Text}"
+                                       TextTrimming="CharacterEllipsis" />
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="3"
+                                       HorizontalAlignment="Right"
+                                       Style="{StaticResource TuningProfilesListMutedBadgeStyle}"
+                                       Text="{Binding Line2ChangedCount}" />
+
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="4"
+                                       Style="{StaticResource TuningProfilesListRowTextStyle}"
+                                       Text="{Binding Line3Text}"
+                                       TextTrimming="CharacterEllipsis" />
 
                         </Grid>
 
@@ -437,6 +481,64 @@
                 </ListBox.ItemTemplate>
 
             </ListBox>
+
+            <!-- grab handle for resizing the profile list: the same grip pill as the FFB graph editor's seams,
+                 centered in the gap between the list and the detail panel. Dragging changes the list column's
+                 width, which persists in settings. -->
+            <Thumb x:Name="ListWidth_Thumb"
+                   Grid.Column="1"
+                   Width="14"
+                   Height="56"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Cursor="SizeWE"
+                   DragDelta="ListWidth_Thumb_DragDelta"
+                   DragCompleted="ListWidth_Thumb_DragCompleted">
+
+                <Thumb.Template>
+                    <ControlTemplate TargetType="Thumb">
+
+                        <Border x:Name="Handle_Border"
+                                Background="{DynamicResource Brush.Background.Default}"
+                                BorderBrush="{DynamicResource Brush.Border.Normal}"
+                                BorderThickness="2"
+                                CornerRadius="7">
+
+                            <StackPanel Orientation="Vertical"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+
+                                <Ellipse Width="3"
+                                         Height="3"
+                                         Fill="{DynamicResource Brush.Foreground.Muted}" />
+
+                                <Ellipse Width="3"
+                                         Height="3"
+                                         Fill="{DynamicResource Brush.Foreground.Muted}"
+                                         Margin="0,5,0,0" />
+
+                                <Ellipse Width="3"
+                                         Height="3"
+                                         Fill="{DynamicResource Brush.Foreground.Muted}"
+                                         Margin="0,5,0,0" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Border.Active}" />
+                            </Trigger>
+                            <Trigger Property="IsDragging" Value="True">
+                                <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Thumb.Template>
+
+            </Thumb>
 
             <Grid Grid.Column="2">
 
