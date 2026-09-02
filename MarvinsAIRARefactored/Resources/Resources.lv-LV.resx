@@ -1905,6 +1905,15 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Stūres šūpošana</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (kustības papildinājuma programmaparatūra)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (jostas spriegotāja spraudņa programmaparatūra)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Saites</value>
   </data>

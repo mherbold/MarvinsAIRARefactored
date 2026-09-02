@@ -1918,6 +1918,15 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ղեկի ճոճում</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (շարժման հավելման որոնվածք)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (գոտու ձգիչի պլագինի որոնվածք)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Հղումներ</value>
   </data>

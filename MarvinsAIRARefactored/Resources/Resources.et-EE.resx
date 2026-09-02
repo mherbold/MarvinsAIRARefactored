@@ -1905,6 +1905,15 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Rool edasi-tagasi</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (liikumislisandi püsivara)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (turvavööpinguti plugina püsivara)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Lingid</value>
   </data>

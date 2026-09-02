@@ -58,6 +58,35 @@ public partial class GTensionerPage : UserControl, INotifyPropertyChanged
 		InitializeComponent();
 	}
 
+	public void UpdateDeviceTypeOptions()
+	{
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var dictionary = new Dictionary<GTensioner.DeviceType, string>
+		{
+			{ GTensioner.DeviceType.MairaSbt,        localization[ "GTensionerDeviceMairaSbt" ] },
+			{ GTensioner.DeviceType.SimHubDiyMotion, localization[ "GTensionerDeviceSimHubDiyMotion" ] },
+			{ GTensioner.DeviceType.SimHubDiyLegacy, localization[ "GTensionerDeviceSimHubDiyLegacy" ] }
+		};
+
+		Dispatcher.Invoke( () =>
+		{
+			Device_MairaComboBox.ItemsSource = dictionary.ToList();
+			Device_MairaComboBox.SelectedValue = settings.GTensionerDeviceType;
+
+			UpdateDeviceTypeDependentControls();
+		} );
+	}
+
+	// The inverted arms switch only applies to the MAIRA SBT - the SimHub DIY firmwares fix motor direction at compile time
+	private void UpdateDeviceTypeDependentControls()
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		InvertedArms_MairaSwitch.IsEnabled = settings.GTensionerDeviceType == GTensioner.DeviceType.MairaSbt;
+	}
+
 	public void UpdateAxisModeOptions()
 	{
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
@@ -164,6 +193,16 @@ public partial class GTensionerPage : UserControl, INotifyPropertyChanged
 		var app = App.Instance!;
 
 		app.GTensioner.ScanForDevice();
+	}
+
+	private void Device_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
+	{
+		if ( sender is MairaComboBox combo && combo.SelectedValue is GTensioner.DeviceType deviceType )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.GTensionerDeviceType = deviceType;
+
+			UpdateDeviceTypeDependentControls();
+		}
 	}
 
 	private void SurgeMode_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )

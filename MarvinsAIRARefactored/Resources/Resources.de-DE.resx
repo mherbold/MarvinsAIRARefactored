@@ -1923,6 +1923,15 @@ Hier ist der Link zum Spenden:</value>
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Lenkrad hin und her</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (Motion-Addon-Firmware)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (Gurtstraffer-Plugin-Firmware)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Links</value>
   </data>

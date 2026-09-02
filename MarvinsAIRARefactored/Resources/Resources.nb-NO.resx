@@ -1918,6 +1918,15 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ratt frem og tilbake</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (fastvare for motion-tillegget)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (fastvare for beltestrammer-plugin)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Lenker</value>
   </data>

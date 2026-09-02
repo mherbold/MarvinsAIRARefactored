@@ -1918,6 +1918,15 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Varredura do volante</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (firmware do addon de movimento)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (firmware do plugin do tensionador de cinto)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Links</value>
   </data>

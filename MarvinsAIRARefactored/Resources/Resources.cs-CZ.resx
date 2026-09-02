@@ -1918,6 +1918,15 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Kývání volantem</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (firmware doplňku pohybu)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (firmware pluginu napínáku pásů)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Odkazy</value>
   </data>

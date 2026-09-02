@@ -1918,6 +1918,15 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>方向盘左右摆动</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (运动附加组件固件)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (安全带张紧器插件固件)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>链接</value>
   </data>

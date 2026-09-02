@@ -21,7 +21,26 @@
 
             <StackPanel>
 
-                <StackPanel Orientation="Horizontal">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaComboBox x:Name="Device_MairaComboBox"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[Device]}"
+                                            SelectionChanged="Device_MairaComboBox_SelectionChanged"
+                                            SelectedValue="{Binding Settings.GTensionerDeviceType, Mode=TwoWay}" />
+
+                </Grid>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0">
 
                     <controls:MairaSwitch x:Name="ConnectToGt_MairaSwitch"
                                           Label="{Binding Localization[ConnectToGT]}"
@@ -103,7 +122,8 @@
                                         DragStepSize="0.0408"
                                         DefaultValue="180" />
 
-                    <controls:MairaSwitch Grid.Column="2"
+                    <controls:MairaSwitch x:Name="InvertedArms_MairaSwitch"
+                                          Grid.Column="2"
                                           Label="{Binding Localization[InvertedArms]}"
                                           HorizontalAlignment="Center"
                                           VerticalAlignment="Center"

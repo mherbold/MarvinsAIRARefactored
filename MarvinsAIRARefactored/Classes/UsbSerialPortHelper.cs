@@ -9,7 +9,7 @@ namespace MarvinsAIRARefactored.Classes;
 // Set to true to enable verbose logging of the noisy read/write functions. Leave false for daily use to keep the log file small.
 #pragma warning disable CS0162 // Unreachable code detected (intentional: _verboseLogging is a compile-time toggle)
 
-public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdToAvoid = "", string vid = "", string pid = "", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One, byte[]? probeData = null, Regex? probeResponseRegex = null ) : IDisposable
+public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdToAvoid = "", string vid = "", string pid = "", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One, byte[]? probeData = null, Regex? probeResponseRegex = null, byte[]? handshakeRequestData = null ) : IDisposable
 {
 	private const bool _verboseLogging = false;
 	private const int _probeTimeoutMilliseconds = 1500;
@@ -30,6 +30,11 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdT
 
 	private readonly string _handshake = handshake;
 	private readonly string _deviceIdToAvoid = deviceIdToAvoid;
+
+	// Handshake request sent to each candidate port in handshake mode. Null = the default "WHAT ARE YOU?" text line,
+	// empty array = passive mode (write nothing, just listen for the token - e.g. a boot banner after the DTR reset),
+	// non-empty = these raw bytes (e.g. a binary query frame for the SimHub DIY belt tensioner motion firmware).
+	private readonly byte[]? _handshakeRequestData = handshakeRequestData;
 
 	private readonly byte[]? _probeData = probeData;
 	private readonly Regex? _probeResponseRegex = probeResponseRegex;
@@ -146,7 +151,14 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdT
 
 						while ( !handshakeSucceeded && ( handshakeStopwatch.ElapsedMilliseconds < _handshakeTimeoutMilliseconds ) )
 						{
-							testPort.WriteLine( "WHAT ARE YOU?" );
+							if ( _handshakeRequestData == null )
+							{
+								testPort.WriteLine( "WHAT ARE YOU?" );
+							}
+							else if ( _handshakeRequestData.Length > 0 )
+							{
+								testPort.Write( _handshakeRequestData, 0, _handshakeRequestData.Length );
+							}
 
 							var attemptStopwatch = System.Diagnostics.Stopwatch.StartNew();
 

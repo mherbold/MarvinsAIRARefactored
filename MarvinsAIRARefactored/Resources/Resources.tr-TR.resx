@@ -1918,6 +1918,15 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Direksiyon simidi tarama</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (hareket eklentisi donanım yazılımı)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (kemer gerdirici eklentisi donanım yazılımı)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Bağlantılar</value>
   </data>

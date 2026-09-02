@@ -1903,6 +1903,15 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Steering wheel sweep</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (motion addon firmware)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (belt tensioner plugin firmware)</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Links</value>
   </data>
