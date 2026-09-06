@@ -132,9 +132,7 @@ graph's name line, plain `<p>` for the description; sentence case; preserve the
 prev/next nav footer; defaults come from code, not XAML. **Do not deploy to
 WordPress from this skill** — deployment and verification belong to
 `/commitpush`, which ships the doc together with the graph/resx changes in the
-same commit. While the FFB graph system is still alpha-only (ffb-stack not yet
-released), ALSO check whether ALPHA-TESTING.md's built-in graph descriptions
-need the same content refresh — testers read that file, not the live docs.
+same commit.
 
 ## Report
 
