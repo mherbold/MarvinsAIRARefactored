@@ -97,7 +97,7 @@ public sealed class RecordingManager : IDisposable
 		if ( string.IsNullOrEmpty( settings.RacingWheelSelectedRecording ) || !Recordings.ContainsKey( settings.RacingWheelSelectedRecording ) )
 		{
 			// all recordings may have been rejected (e.g. old pre-version-line format) — never store a null key
-			settings.RacingWheelSelectedRecording = Recordings.FirstOrDefault().Key ?? string.Empty;
+			settings.RacingWheelSelectedRecording = Recordings.Keys.FirstOrDefault() ?? string.Empty;
 		}
 
 		for ( var i = 0; i < _recordingData.Length; i++ )
