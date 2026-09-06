@@ -1210,6 +1210,381 @@ public partial class Settings : INotifyPropertyChanged
 		return changed;
 	}
 
+	#region Legacy FFB value migration (2.0 fixed-function tuning -> built-in graph module values)
+
+	// The 2.0 defaults of the settings migrated by MigrateLegacyFFBValues. A value still at its 2.0 default is NOT
+	// migrated: the user never tuned it, so the (retuned) 2.1 built-in graph default is the better value. The
+	// steering effect settings are the exception - they migrate whenever the effect was switched on, because
+	// their 2.0 defaults were live values the user was feeling.
+	private static class LegacyFFBDefaults
+	{
+		public const float DetailBoost = 0.5f;
+		public const float DeltaLimit = 500f;
+		public const float SlewCompressionThreshold = 2f;
+		public const float SlewCompressionRate = 0.65f;
+		public const float TotalCompressionThreshold = 0.65f;
+		public const float TotalCompressionRate = 0.75f;
+		public const float MultiTorqueCompression = 0f;
+		public const float MultiSlewRateReduction = 0f;
+		public const float MultiDetailGain = 0f;
+		public const float MultiOutputSmoothing = 0f;
+		public const float SoftLockStrength = 0.25f;
+		public const float WheelCenteringStrength = 0.75f;
+		public const float CrashProtectionLongitudalGForce = 8f;
+		public const float CrashProtectionLateralGForce = 6f;
+		public const float CrashProtectionDuration = 1f;
+		public const float CrashProtectionForceReduction = 0.95f;
+		public const float CurbProtectionShockVelocity = 0.5f;
+		public const float CurbProtectionDuration = 0.1f;
+		public const float CurbProtectionForceReduction = 0.75f;
+		public const float ShiftRPMVibrateStrength = 0f;
+		public const float GearChangeVibrateStrength = 0f;
+		public const float ABSVibrateStrength = 0f;
+	}
+
+	private readonly record struct LegacyFFBWrite( FFBGraph Graph, FFBModuleData Module, string Key, float Value );
+
+	private static bool LegacyValueChanged( float value, float legacyDefault ) => MathF.Abs( value - legacyDefault ) > 0.0001f;
+
+	// audio-style N:1 ratio from the old "fraction removed" compression rate; the descriptor clamp caps it at the knob's maximum
+	private static float LegacyRateToRatio( float rate ) => 1f / MathF.Max( 1f - rate, 0.05f );
+
+	private static FFBModuleData? FindModule( FFBGraph graph, string moduleType ) => graph.Modules.FirstOrDefault( module => module.ModuleType == moduleType );
+
+	// One-shot, pre-graph (2.0) settings files only: SettingsFile.Initialize calls this in the launch that converts
+	// such a file (the live graph selection was empty before MigrateLegacyAlgorithmSelections ran). Files that
+	// already carry graph selections are never touched - their dormant 2.0 values would stomp graph tuning done
+	// since. Translates the 2.0 fixed-function tuning into built-in graph module values, bucket by bucket:
+	//
+	//   - the bucket's dormant algorithm choice decides which graph its algorithm knobs land in (same table as
+	//     MigrateLegacyAlgorithmSelections), and the old effect settings (soft lock, wheel centering, crash /
+	//     curb protection, steering effect forces and vibrations, ABS / gear / shift vibrations) land in all four
+	//     built-in graphs so a later graph switch keeps them;
+	//   - every value goes through its setting descriptor's clamp, and into the bucket's module value overlay
+	//     under the graph-selection scope (the same place SyncGraphModuleValues reads from); the default profile's
+	//     values are mirrored into the graph objects too, exactly as ApplyBuiltInFFBGraphGain does, so the
+	//     in-memory graphs match before the first context reload;
+	//   - percentage strengths become Nm at the wheel via the bucket's wheel force; the compression thresholds
+	//     (fractions of max force in 2.0) become Nm and Nm/s via the (global) max force.
+	//
+	// Runs on a fresh install too (its live selection is also empty) - harmlessly, because nothing differs from
+	// the 2.0 defaults there. Returns true when any value was written so the caller persists the file.
+	public bool MigrateLegacyFFBValues()
+	{
+		var app = App.Instance!;
+
+		var builtInGraphs = new List<FFBGraph>();
+
+		foreach ( var graphName in new[] { FFBBuiltInGraphs.FlagshipGraphName, FFBBuiltInGraphs.LowLatency60HzGraphName, FFBBuiltInGraphs.SlewCompressionGraphName, FFBBuiltInGraphs.MultiAdjustmentGraphName } )
+		{
+			if ( RacingWheelFFBGraphs.TryGetValue( graphName, out var graph ) && graph.IsBuiltIn )
+			{
+				builtInGraphs.Add( graph );
+			}
+		}
+
+		if ( builtInGraphs.Count == 0 )
+		{
+			return false;
+		}
+
+		var maxForce = MathF.Max( RacingWheelMaxForce, 1f );
+		var baselineContext = new Context();
+		var migratedValueCount = 0;
+		var migratedBucketCount = 0;
+
+		lock ( ContextSettingsLock )
+		{
+			// the default profile bucket is the baseline everything else falls back to - make sure it exists
+			FindContextSettings( baselineContext );
+
+			foreach ( var (context, contextSettings) in ContextSettingsDictionary )
+			{
+				var isBaseline = context.CompareTo( baselineContext ) == 0;
+				var wheelForce = MathF.Max( contextSettings.RacingWheelWheelForce, 1f );
+
+				var writes = new List<LegacyFFBWrite>();
+
+				CollectLegacyAlgorithmValues( contextSettings, maxForce, writes );
+
+				foreach ( var graph in builtInGraphs )
+				{
+					CollectLegacyEffectValues( graph, contextSettings, wheelForce, writes );
+				}
+
+				foreach ( var write in writes )
+				{
+					var descriptor = FFBModuleRegistry.TryGet( write.Module.ModuleType )?.Settings.FirstOrDefault( setting => setting.Key == write.Key );
+
+					// the reserved Enabled switch has no descriptor - it is always 0 / 1
+					var value = descriptor?.Clamp( write.Value ) ?? write.Value;
+
+					contextSettings.RacingWheelFFBGraphModuleValues[ FFBGraphValues.ComposeKey( write.Graph.GraphId, write.Module.ModuleId, write.Key ) ] = value;
+
+					if ( isBaseline )
+					{
+						write.Module.SettingValues[ write.Key ] = value;
+					}
+
+					migratedValueCount++;
+				}
+
+				if ( writes.Count > 0 )
+				{
+					migratedBucketCount++;
+				}
+			}
+		}
+
+		if ( migratedValueCount > 0 )
+		{
+			app.Logger.WriteLine( $"[Settings] Legacy FFB tuning migrated to graph module values ({migratedValueCount} values across {migratedBucketCount} tuning profiles)" );
+		}
+
+		return migratedValueCount > 0;
+	}
+
+	private void CollectLegacyAlgorithmValues( ContextSettings contextSettings, float maxForce, List<LegacyFFBWrite> writes )
+	{
+		var graphName = LegacyAlgorithmGraphName( contextSettings.RacingWheelAlgorithm );
+
+		if ( ( graphName == null ) || !RacingWheelFFBGraphs.TryGetValue( graphName, out var graph ) || !graph.IsBuiltIn )
+		{
+			return;
+		}
+
+		void Add( string moduleType, string key, float value )
+		{
+			if ( FindModule( graph, moduleType ) is FFBModuleData module )
+			{
+				writes.Add( new LegacyFFBWrite( graph, module, key, value ) );
+			}
+		}
+
+		switch ( contextSettings.RacingWheelAlgorithm )
+		{
+			case RacingWheel.Algorithm.DetailBooster or RacingWheel.Algorithm.DetailBoosterOn60Hz:
+			{
+				// the old boosted-delta recursion is, at the frequencies that matter, a detail gain of 1 + boost
+				// on the high-passed signal - the flagship's Gain module sits on exactly that branch
+				if ( LegacyValueChanged( contextSettings.RacingWheelDetailBoost, LegacyFFBDefaults.DetailBoost ) )
+				{
+					Add( FFBModuleRegistry.GainType, "Gain", 1f + contextSettings.RacingWheelDetailBoost );
+				}
+
+				break;
+			}
+
+			case RacingWheel.Algorithm.DeltaLimiter or RacingWheel.Algorithm.DeltaLimiterOn60Hz:
+			{
+				// the flagship has no slew stage - the old delta limit becomes a detail attenuation instead, anchored
+				// so the old default (500 Nm/s) lands on the flagship's default gain and anything looser than about
+				// 670 Nm/s counts as "no limiting"
+				if ( LegacyValueChanged( contextSettings.RacingWheelDeltaLimit, LegacyFFBDefaults.DeltaLimit ) )
+				{
+					Add( FFBModuleRegistry.GainType, "Gain", MathF.Min( 1f, 0.75f * contextSettings.RacingWheelDeltaLimit / 500f ) );
+				}
+
+				break;
+			}
+
+			case RacingWheel.Algorithm.SlewAndTotalCompression:
+			{
+				var slewThresholdChanged = LegacyValueChanged( contextSettings.RacingWheelSlewCompressionThreshold, LegacyFFBDefaults.SlewCompressionThreshold );
+				var slewRateChanged = LegacyValueChanged( contextSettings.RacingWheelSlewCompressionRate, LegacyFFBDefaults.SlewCompressionRate );
+				var totalThresholdChanged = LegacyValueChanged( contextSettings.RacingWheelTotalCompressionThreshold, LegacyFFBDefaults.TotalCompressionThreshold );
+				var totalRateChanged = LegacyValueChanged( contextSettings.RacingWheelTotalCompressionRate, LegacyFFBDefaults.TotalCompressionRate );
+
+				if ( slewThresholdChanged || slewRateChanged || totalThresholdChanged || totalRateChanged )
+				{
+					// old slew threshold was a fraction of max force per second; the old corner was hard (no knee)
+					Add( FFBModuleRegistry.SlewCompressorType, "Threshold", contextSettings.RacingWheelSlewCompressionThreshold * maxForce );
+					Add( FFBModuleRegistry.SlewCompressorType, "Ratio", LegacyRateToRatio( contextSettings.RacingWheelSlewCompressionRate ) );
+					Add( FFBModuleRegistry.SlewCompressorType, "Knee", 0f );
+					Add( FFBModuleRegistry.SlewCompressorType, "PeakMode", 0f );
+
+					// old total compression: normalized threshold with a knee as wide as the threshold; rate 0 = off
+					if ( contextSettings.RacingWheelTotalCompressionRate > 0f )
+					{
+						Add( FFBModuleRegistry.CompressorType, "Enabled", 1f );
+						Add( FFBModuleRegistry.CompressorType, "Threshold", contextSettings.RacingWheelTotalCompressionThreshold * maxForce );
+						Add( FFBModuleRegistry.CompressorType, "Knee", contextSettings.RacingWheelTotalCompressionThreshold * maxForce );
+						Add( FFBModuleRegistry.CompressorType, "Ratio", LegacyRateToRatio( contextSettings.RacingWheelTotalCompressionRate ) );
+					}
+					else
+					{
+						Add( FFBModuleRegistry.CompressorType, "Enabled", 0f );
+					}
+				}
+
+				break;
+			}
+
+			case RacingWheel.Algorithm.MultiAdjustmentToolkit:
+			{
+				// torque compression: the old knob derived rate / threshold / width from one amount
+				if ( LegacyValueChanged( contextSettings.RacingWheelMultiTorqueCompression, LegacyFFBDefaults.MultiTorqueCompression ) )
+				{
+					var amount = contextSettings.RacingWheelMultiTorqueCompression;
+
+					if ( amount > 0f )
+					{
+						Add( FFBModuleRegistry.CompressorType, "Enabled", 1f );
+						Add( FFBModuleRegistry.CompressorType, "Ratio", LegacyRateToRatio( MathF.Min( 2f * amount, 0.75f ) ) );
+						Add( FFBModuleRegistry.CompressorType, "Threshold", ( 1f - 0.75f * amount ) * maxForce );
+						Add( FFBModuleRegistry.CompressorType, "Knee", MathF.Min( amount, 0.5f ) * maxForce );
+					}
+					else
+					{
+						Add( FFBModuleRegistry.CompressorType, "Enabled", 0f );
+					}
+				}
+
+				// slew rate reduction: the old soft mode's derived per-tick (500 Hz) threshold / rate / width, in
+				// Nm/s; the peak mode switch only matters while the reduction is active
+				if ( LegacyValueChanged( contextSettings.RacingWheelMultiSlewRateReduction, LegacyFFBDefaults.MultiSlewRateReduction ) )
+				{
+					var amount = contextSettings.RacingWheelMultiSlewRateReduction;
+
+					if ( amount > 0f )
+					{
+						Add( FFBModuleRegistry.SlewCompressorType, "Enabled", 1f );
+						Add( FFBModuleRegistry.SlewCompressorType, "Threshold", ( 0.01f - 0.0095f * amount ) * 500f * maxForce );
+						Add( FFBModuleRegistry.SlewCompressorType, "Ratio", LegacyRateToRatio( MathF.Min( MathF.Pow( amount, 0.55f ), 0.9f ) ) );
+						Add( FFBModuleRegistry.SlewCompressorType, "Knee", 0.0025f * 500f * maxForce );
+						Add( FFBModuleRegistry.SlewCompressorType, "PeakMode", contextSettings.RacingWheelMultiEnableSlewPeakMode ? 1f : 0f );
+					}
+					else
+					{
+						Add( FFBModuleRegistry.SlewCompressorType, "Enabled", 0f );
+					}
+				}
+
+				// detail gain: the old enhancer scaled attacks by 1 + gain (its body cutoff stays at the graph's value)
+				if ( LegacyValueChanged( contextSettings.RacingWheelMultiDetailGain, LegacyFFBDefaults.MultiDetailGain ) )
+				{
+					Add( FFBModuleRegistry.TransientEnhancerType, "Gain", 1f + contextSettings.RacingWheelMultiDetailGain );
+				}
+
+				// output smoothing: a different smoother design - approximate one-to-one, both 0 = off
+				if ( LegacyValueChanged( contextSettings.RacingWheelMultiOutputSmoothing, LegacyFFBDefaults.MultiOutputSmoothing ) )
+				{
+					Add( FFBModuleRegistry.AdaptiveSmootherType, "Amount", contextSettings.RacingWheelMultiOutputSmoothing );
+				}
+
+				break;
+			}
+		}
+	}
+
+	private static void CollectLegacyEffectValues( FFBGraph graph, ContextSettings contextSettings, float wheelForce, List<LegacyFFBWrite> writes )
+	{
+		void Add( FFBModuleData? module, string key, float value )
+		{
+			if ( module != null )
+			{
+				writes.Add( new LegacyFFBWrite( graph, module, key, value ) );
+			}
+		}
+
+		void AddIfChanged( string moduleType, string key, float value, float legacyDefault )
+		{
+			if ( LegacyValueChanged( value, legacyDefault ) )
+			{
+				Add( FindModule( graph, moduleType ), key, value );
+			}
+		}
+
+		// sources - same percentage units on both sides
+		AddIfChanged( FFBModuleRegistry.SourceSoftLockType, "Strength", contextSettings.RacingWheelSoftLockStrength, LegacyFFBDefaults.SoftLockStrength );
+		AddIfChanged( FFBModuleRegistry.SourceWheelCenteringType, "Strength", contextSettings.RacingWheelWheelCenteringStrength, LegacyFFBDefaults.WheelCenteringStrength );
+
+		// crash protection - same units on both sides (the recovery time is new and keeps its default)
+		AddIfChanged( FFBModuleRegistry.CrashProtectionType, "LongGForce", contextSettings.RacingWheelCrashProtectionLongitudalGForce, LegacyFFBDefaults.CrashProtectionLongitudalGForce );
+		AddIfChanged( FFBModuleRegistry.CrashProtectionType, "LatGForce", contextSettings.RacingWheelCrashProtectionLateralGForce, LegacyFFBDefaults.CrashProtectionLateralGForce );
+		AddIfChanged( FFBModuleRegistry.CrashProtectionType, "Duration", contextSettings.RacingWheelCrashProtectionDuration, LegacyFFBDefaults.CrashProtectionDuration );
+		AddIfChanged( FFBModuleRegistry.CrashProtectionType, "ForceReduction", contextSettings.RacingWheelCrashProtectionForceReduction, LegacyFFBDefaults.CrashProtectionForceReduction );
+
+		// curb protection - only the flagship's detail-branch module (the one fed by the Gain module; it ships at
+		// 100% reduction). The body-branch module and the single modules in the other graphs keep their tuning.
+		if ( ( graph.Name == FFBBuiltInGraphs.FlagshipGraphName ) && ( FindModule( graph, FFBModuleRegistry.GainType ) is FFBModuleData gainModule ) )
+		{
+			var detailCurbProtection = graph.Modules.FirstOrDefault( module => ( module.ModuleType == FFBModuleRegistry.CurbProtectionType ) && ( module.InputAModuleId == gainModule.ModuleId ) );
+
+			if ( LegacyValueChanged( contextSettings.RacingWheelCurbProtectionShockVelocity, LegacyFFBDefaults.CurbProtectionShockVelocity ) )
+			{
+				Add( detailCurbProtection, "ShockVelocity", contextSettings.RacingWheelCurbProtectionShockVelocity );
+			}
+
+			if ( LegacyValueChanged( contextSettings.RacingWheelCurbProtectionDuration, LegacyFFBDefaults.CurbProtectionDuration ) )
+			{
+				Add( detailCurbProtection, "Duration", contextSettings.RacingWheelCurbProtectionDuration );
+			}
+
+			if ( LegacyValueChanged( contextSettings.RacingWheelCurbProtectionForceReduction, LegacyFFBDefaults.CurbProtectionForceReduction ) )
+			{
+				Add( detailCurbProtection, "ForceReduction", contextSettings.RacingWheelCurbProtectionForceReduction );
+			}
+		}
+
+		// steering effects - migrate whenever the effect was switched on. The 2.0 percentages become Nm at the
+		// wheel (2.1 divides by the wheel force again on playout); the enum orders match the 2.1 choice lists;
+		// 2.0 played the maximum vibration frequency while the effect was active, so that is the frequency kept.
+		void AddSteeringEffect( bool enabled, string forceModuleType, RacingWheel.ConstantForceDirection direction, float forceStrength, float forceCurve, string vibrationModuleType, RacingWheel.VibrationPattern pattern, float vibrationStrength, float vibrationFrequency, float vibrationCurve )
+		{
+			if ( !enabled )
+			{
+				return;
+			}
+
+			var forceModule = FindModule( graph, forceModuleType );
+
+			Add( forceModule, "Enabled", ( ( direction != RacingWheel.ConstantForceDirection.None ) && ( forceStrength > 0f ) ) ? 1f : 0f );
+			Add( forceModule, "Direction", (float) direction );
+			Add( forceModule, "Strength", forceStrength * wheelForce );
+			Add( forceModule, "Curve", forceCurve );
+
+			var vibrationModule = FindModule( graph, vibrationModuleType );
+
+			Add( vibrationModule, "Enabled", ( ( pattern != RacingWheel.VibrationPattern.None ) && ( vibrationStrength > 0f ) ) ? 1f : 0f );
+			Add( vibrationModule, "Pattern", (float) pattern );
+			Add( vibrationModule, "Strength", vibrationStrength * wheelForce );
+			Add( vibrationModule, "Frequency", vibrationFrequency );
+			Add( vibrationModule, "Curve", vibrationCurve );
+		}
+
+		AddSteeringEffect( contextSettings.SteeringEffectsUndersteerEnabled,
+			FFBModuleRegistry.UndersteerForceType, contextSettings.SteeringEffectsUndersteerWheelConstantForceDirection, contextSettings.SteeringEffectsUndersteerWheelConstantForceStrength, contextSettings.SteeringEffectsUndersteerWheelConstantForceCurve,
+			FFBModuleRegistry.UndersteerVibrationType, contextSettings.SteeringEffectsUndersteerWheelVibrationPattern, contextSettings.SteeringEffectsUndersteerWheelVibrationStrength, contextSettings.SteeringEffectsUndersteerWheelVibrationMaximumFrequency, contextSettings.SteeringEffectsUndersteerWheelVibrationCurve );
+
+		AddSteeringEffect( contextSettings.SteeringEffectsOversteerEnabled,
+			FFBModuleRegistry.OversteerForceType, contextSettings.SteeringEffectsOversteerWheelConstantForceDirection, contextSettings.SteeringEffectsOversteerWheelConstantForceStrength, contextSettings.SteeringEffectsOversteerWheelConstantForceCurve,
+			FFBModuleRegistry.OversteerVibrationType, contextSettings.SteeringEffectsOversteerWheelVibrationPattern, contextSettings.SteeringEffectsOversteerWheelVibrationStrength, contextSettings.SteeringEffectsOversteerWheelVibrationMaximumFrequency, contextSettings.SteeringEffectsOversteerWheelVibrationCurve );
+
+		AddSteeringEffect( contextSettings.SteeringEffectsSeatOfPantsEnabled,
+			FFBModuleRegistry.SeatOfPantsForceType, contextSettings.SteeringEffectsSeatOfPantsWheelConstantForceDirection, contextSettings.SteeringEffectsSeatOfPantsWheelConstantForceStrength, contextSettings.SteeringEffectsSeatOfPantsWheelConstantForceCurve,
+			FFBModuleRegistry.SeatOfPantsVibrationType, contextSettings.SteeringEffectsSeatOfPantsWheelVibrationPattern, contextSettings.SteeringEffectsSeatOfPantsWheelVibrationStrength, contextSettings.SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequency, contextSettings.SteeringEffectsSeatOfPantsWheelVibrationCurve );
+
+		// other vibrations - 2.0 defaulted these to off, so any non-zero strength was the user's choice; the
+		// frequencies and pulse timings were fixed constants in 2.0 and keep the 2.1 defaults
+		void AddVibrationStrength( string moduleType, float strength, float legacyDefault )
+		{
+			if ( LegacyValueChanged( strength, legacyDefault ) )
+			{
+				var module = FindModule( graph, moduleType );
+
+				Add( module, "Enabled", strength > 0f ? 1f : 0f );
+				Add( module, "Strength", strength * wheelForce );
+			}
+		}
+
+		AddVibrationStrength( FFBModuleRegistry.ShiftRPMVibrationType, contextSettings.RacingWheelShiftRPMVibrateStrength, LegacyFFBDefaults.ShiftRPMVibrateStrength );
+		AddVibrationStrength( FFBModuleRegistry.GearChangeVibrationType, contextSettings.RacingWheelGearChangeVibrateStrength, LegacyFFBDefaults.GearChangeVibrateStrength );
+		AddVibrationStrength( FFBModuleRegistry.ABSVibrationType, contextSettings.RacingWheelABSVibrateStrength, LegacyFFBDefaults.ABSVibrateStrength );
+	}
+
+	#endregion
+
 	// Runs every launch (from SettingsFile.Initialize): syncs the stored built-in graphs against the .mairagraph
 	// files shipped inside the app (see FFBBuiltInGraphs) and repairs the selections. A stored built-in is
 	// (re)created whenever its shipped file's content hash differs from the recorded one — so built-in graphs

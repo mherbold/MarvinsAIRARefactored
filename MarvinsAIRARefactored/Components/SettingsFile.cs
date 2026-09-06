@@ -221,6 +221,11 @@ public partial class SettingsFile
 		// so users upgrading from a version without per-car overlays keep their current layout.
 		DataContext.DataContext.Instance.Settings.MigrateOverlayLayoutToNonCarBaseline();
 
+		// A pre-graph (2.0) settings file has an empty live graph selection - every file that has been through a
+		// 2.1 launch has one (the built-in sync's fallback repair guarantees it). Captured here, before the
+		// selection migration fills it, to gate the one-shot tuning value migration below.
+		var isPreGraphSettingsFile = string.IsNullOrEmpty( DataContext.DataContext.Instance.Settings.RacingWheelSelectedFFBGraphName );
+
 		// Migrate a pre-graph settings file: turn the old fixed-function algorithm choices (live + per-context)
 		// into built-in graph selections. Must run before the built-in sync below so its empty-selection guard
 		// sees the pre-migration state (the sync's fallback repair fills the live selection).
@@ -231,6 +236,12 @@ public partial class SettingsFile
 		// selections. If anything changed, remember to persist below (the recorded file hashes must reach
 		// disk or the sync would re-run on every launch).
 		var builtInGraphsChanged = DataContext.DataContext.Instance.Settings.EnsureBuiltInFFBGraphsInitialized();
+
+		// One-shot, pre-graph files only: translate the 2.0 fixed-function FFB tuning (algorithm knobs, soft lock,
+		// centering, protections, steering effect forces and vibrations) into built-in graph module values. Needs
+		// the built-in graphs, so it runs after the sync above; never runs on a file that already had a graph
+		// selection (alpha-era files), whose dormant 2.0 values would otherwise stomp graph tuning done since.
+		var legacyFFBValuesMigrated = isPreGraphSettingsFile && DataContext.DataContext.Instance.Settings.MigrateLegacyFFBValues();
 
 		// Backfill stable graph identities for any legacy graph that predates them (built-ins already carry
 		// their fixed id from the shipped file). Persisted below so the ids never change across launches.
@@ -253,7 +264,7 @@ public partial class SettingsFile
 
 		// Persist a launch-time built-in graph sync now that serialization is un-paused (the setter ignores
 		// a queue request while paused), so the recorded graph file hashes reach disk and the sync runs once.
-		if ( builtInGraphsChanged || graphIdentitiesChanged || legacyWheelbaseContextsConsolidated || legacyAlgorithmsMigrated || contextSwitchHierarchyNormalized || pedalsRPMContextSettingsMigrated )
+		if ( builtInGraphsChanged || graphIdentitiesChanged || legacyWheelbaseContextsConsolidated || legacyAlgorithmsMigrated || legacyFFBValuesMigrated || contextSwitchHierarchyNormalized || pedalsRPMContextSettingsMigrated )
 		{
 			QueueForSerialization = true;
 		}
