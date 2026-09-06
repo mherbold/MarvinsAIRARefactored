@@ -102,6 +102,12 @@ public class RacingWheel
 
 	public int AlgorithmPreviewSkip { private get; set; } = 1;
 
+	// The visible window of the preview, in drawn-sample columns, reported by the page on every scroll / resize
+	// of the preview scroll viewer. The preview bitmap only ever covers this window (see Tick), so the GPU
+	// texture stays viewport-sized no matter how long the recording is. In-memory view state, never serialized.
+	public int AlgorithmPreviewFirstColumn { get; set; } = 0;
+	public int AlgorithmPreviewViewportWidth { get; set; } = 0;
+
 	public float AutoTorque { get => _autoTorque; }
 	public float OutputTorque { get => _outputTorque; }
 	public bool IsFFBClipping { get => !_isSuspended && MathF.Abs( _outputTorque ) >= 0.99f; }
@@ -163,7 +169,8 @@ public class RacingWheel
 	public int PlayoutUnderrunEpisodeCount { get; private set; } = 0;
 	public int PlayoutTornHandoffCount { get; private set; } = 0;
 
-	// preview bitmap width when no recording is loaded — with a recording it's one pixel per recorded sample
+	// preview extent (virtual width, in columns) when no recording is loaded — with a recording it's one column
+	// per drawn sample
 	private const int DefaultAlgorithmPreviewWidth = 3840;
 
 	private readonly GraphBase _algorithmPreviewGraphBase = new();
@@ -269,7 +276,8 @@ public class RacingWheel
 		app.Graph.SetLayerColors( Graph.LayerIndex.InputLFE, 0f, 0f, 1f );
 		app.Graph.SetLayerColors( Graph.LayerIndex.OutputTorque, 0f, 1f, 1f );
 
-		_algorithmPreviewGraphBase.Initialize( MainWindow._racingWheelPage.AlgorithmPreview_Image );
+		// placeholder size — the first preview update sizes the bitmap to the preview viewport (see Tick)
+		_algorithmPreviewGraphBase.Initialize( MainWindow._racingWheelPage.AlgorithmPreview_Image, 1, (int) MainWindow._racingWheelPage.AlgorithmPreview_Image.Height );
 
 		app.Logger.WriteLine( "[RacingWheel] <<< Initialize" );
 	}
@@ -1080,7 +1088,10 @@ public class RacingWheel
 			// module (the default selection) red/green show the two sources and blue shows the final normalized
 			// output, like the old whole-graph preview.
 
-			if ( UpdateAlgorithmPreview )
+			// the preview can't be drawn until its scroll viewer has a viewport (the page hasn't been laid out yet);
+			// leave the request pending — the viewer's first ScrollChanged reports the viewport and the render
+			// happens on the next tick
+			if ( UpdateAlgorithmPreview && ( AlgorithmPreviewViewportWidth > 0 ) )
 			{
 				UpdateAlgorithmPreview = false;
 
@@ -1093,25 +1104,47 @@ public class RacingWheel
 					app.RecordingManager.RequestRecordingData( recording );
 				}
 
-				// the preview bitmap is one pixel per DRAWN sample — every previewSkip'th recorded sample — so it
-				// shrinks as the preview zooms out; resize it when the recording length or the zoom changes
-				// (recordings are dynamic-length now); the default width covers the no-recording case
+				// The preview is one virtual column per DRAWN sample — every previewSkip'th recorded sample — so
+				// its extent shrinks as the preview zooms out. The scroll viewer's extent is a canvas of that
+				// virtual width, but the bitmap inside it only ever covers the columns in the viewport: the page
+				// reports the visible window on every scroll / resize, the replay below paints just that slice,
+				// and the image is parked at the slice's column inside the canvas. That keeps the GPU texture at
+				// viewport size instead of one pixel per recorded sample (a four-minute 360 Hz recording is
+				// ~95,000 columns — wider than some graphics drivers will render; see GitHub issue #51).
 				var previewSkip = Math.Clamp( AlgorithmPreviewSkip, 1, MaxAlgorithmPreviewSkip );
 
 				var recordingSampleCount = recording?.Data?.Count ?? 0;
 
-				var desiredPreviewWidth = ( recordingSampleCount > 0 ) ? ( recordingSampleCount + previewSkip - 1 ) / previewSkip : DefaultAlgorithmPreviewWidth;
+				var virtualPreviewWidth = ( recordingSampleCount > 0 ) ? ( recordingSampleCount + previewSkip - 1 ) / previewSkip : DefaultAlgorithmPreviewWidth;
 
-				if ( desiredPreviewWidth != _algorithmPreviewGraphBase.BitmapWidth )
+				var previewImage = _racingWheelPage.AlgorithmPreview_Image;
+				var previewExtentCanvas = _racingWheelPage.PreviewExtent_Canvas;
+
+				if ( (int) previewExtentCanvas.Width != virtualPreviewWidth )
 				{
-					_racingWheelPage.AlgorithmPreview_Image.Width = desiredPreviewWidth;
-
-					_algorithmPreviewGraphBase.Initialize( _racingWheelPage.AlgorithmPreview_Image );
+					previewExtentCanvas.Width = virtualPreviewWidth;
 
 					_racingWheelPage.OnPreviewImageResized();
 				}
 
+				// a short (or zoomed-out) recording narrower than the viewport gets a bitmap of its own width
+				var previewBitmapWidth = Math.Min( AlgorithmPreviewViewportWidth, virtualPreviewWidth );
+
+				var previewFirstColumn = Math.Clamp( AlgorithmPreviewFirstColumn, 0, virtualPreviewWidth - previewBitmapWidth );
+				var previewEndColumn = previewFirstColumn + previewBitmapWidth; // exclusive
+
+				if ( previewBitmapWidth != _algorithmPreviewGraphBase.BitmapWidth )
+				{
+					previewImage.Width = previewBitmapWidth;
+
+					_algorithmPreviewGraphBase.Initialize( previewImage, previewBitmapWidth, (int) previewImage.Height );
+				}
+
+				System.Windows.Controls.Canvas.SetLeft( previewImage, previewFirstColumn );
+
 				_algorithmPreviewGraphBase.Reset();
+
+				var paintedColumnCount = 0;
 
 				if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var previewGraph ) )
 				{
@@ -1214,6 +1247,14 @@ public class RacingWheel
 							continue;
 						}
 
+						var column = x / previewSkip;
+
+						// everything past the viewport is invisible — nothing more to paint, so stop replaying
+						if ( column >= previewEndColumn )
+						{
+							break;
+						}
+
 						// draw the output value first because it fill the space below the line with black
 						// (the Output node trace matches what the wheel actually plays: main bus + vibration bus)
 						var outputValue = outputIndex >= 0 ? _previewEngine.GetSignal( outputIndex ) / previewSignalScale : ( _previewEngine.MainOutput + _previewEngine.VibrationOutput );
@@ -1222,6 +1263,14 @@ public class RacingWheel
 						{
 							previousOutputValue = outputValue;
 							isFirstSample = false;
+						}
+
+						// left of the viewport — keep the line's previous value current but paint nothing
+						if ( column < previewFirstColumn )
+						{
+							previousOutputValue = outputValue;
+
+							continue;
 						}
 
 						// the output renders as a connected line over the solid-filled inputs
@@ -1267,15 +1316,18 @@ public class RacingWheel
 						_algorithmPreviewGraphBase.SetClearColor( clearColor );
 
 						_algorithmPreviewGraphBase.FinishUpdates();
+
+						paintedColumnCount++;
 					}
 				}
-				else
+
+				// no recording — just paint the empty grid across the bitmap (and, defensively, pad out any
+				// columns a recording left unpainted, so no column carries pixels from the previous window)
+				_algorithmPreviewGraphBase.SetClearColor( 0 );
+
+				for ( ; paintedColumnCount < _algorithmPreviewGraphBase.BitmapWidth; paintedColumnCount++ )
 				{
-					// no recording — just paint the empty grid across the default-width bitmap
-					for ( var x = 0; x < _algorithmPreviewGraphBase.BitmapWidth; x++ )
-					{
-						_algorithmPreviewGraphBase.FinishUpdates();
-					}
+					_algorithmPreviewGraphBase.FinishUpdates();
 				}
 
 				_algorithmPreviewGraphBase.WritePixels();

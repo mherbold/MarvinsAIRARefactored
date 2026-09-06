@@ -79,10 +79,18 @@ public class GraphBase
 	// solid flash color while a protection/clipping condition is active (see SetClearColor).
 	private uint _clearColor = 0;
 
+	/// <summary>Sizes the bitmap to the image element's declared Width/Height.</summary>
 	public void Initialize( Image image )
 	{
-		BitmapWidth = (int) image.Width;
-		BitmapHeight = (int) image.Height;
+		Initialize( image, (int) image.Width, (int) image.Height );
+	}
+
+	/// <summary>Sizes the bitmap explicitly - for images whose element width is not the bitmap width (the FFB
+	/// preview draws a viewport-sized window of a much wider virtual graph).</summary>
+	public void Initialize( Image image, int bitmapWidth, int bitmapHeight )
+	{
+		BitmapWidth = Math.Max( 1, bitmapWidth );
+		BitmapHeight = Math.Max( 1, bitmapHeight );
 
 		_bitmapStride = BitmapWidth * 4;
 		_bitmapHeightMinusOne = BitmapHeight - 1;

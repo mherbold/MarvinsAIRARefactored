@@ -240,6 +240,12 @@ public partial class App : Application
 		_autoResetEvent.Set();
 	}
 
+	// UCEERR_RENDERTHREADFAILURE - WPF's composition (render) thread died, usually inside the graphics driver
+	private const int RenderThreadFailureHResult = unchecked((int) 0x88980406);
+
+	// 0 until the first fatal error is being handled - later fatal errors are logged and otherwise ignored
+	private static int _fatalErrorHandled = 0;
+
 	public void ShowFatalError( string? message = null, Exception? exception = null )
 	{
 		var app = App.Instance!;
@@ -247,9 +253,41 @@ public partial class App : Application
 		app.Logger.WriteLine( "[App] ShowFatalError >>>" );
 		app.Logger.WriteLine( $"\r\n\r\n{exception?.ToString() ?? string.Empty}\r\n" );
 
+		// Single-shot. The error dialog pumps messages while it is up, so anything that keeps failing on the
+		// window message path (e.g. every WM_WINDOWPOSCHANGED once the render thread is dead) would otherwise
+		// re-enter here from the dispatcher exception handler and stack up a modal dialog per failure. The
+		// first fatal error owns the dialog and the shutdown; the rest are only logged.
+		if ( Interlocked.Exchange( ref _fatalErrorHandled, 1 ) != 0 )
+		{
+			app.Logger.WriteLine( "[App] <<< ShowFatalError (already handling a fatal error)" );
+
+			return;
+		}
+
 		var uiDispatcher = app.Dispatcher;
 
 		message ??= DataContext.DataContext.Instance.Localization[ "ExceptionThrown" ];
+
+		// With a dead render thread no WPF window can be drawn - not the error dialog, and not the message pump
+		// behind an orderly Shutdown (every window sync throws again). Show a plain Win32 message box, which
+		// does not go through WPF's composition, flush the log, and leave without pumping any more messages.
+		if ( exception is System.Runtime.InteropServices.COMException { HResult: RenderThreadFailureHResult } )
+		{
+			app.Logger.WriteLine( "[App] Render thread failure - exiting without the WPF error dialog" );
+
+			try
+			{
+				System.Windows.MessageBox.Show( $"{message}\r\n\r\n{exception.Message}", AppName, MessageBoxButton.OK, MessageBoxImage.Error );
+			}
+			catch
+			{
+				// nothing else to try
+			}
+
+			app.Logger.Shutdown();
+
+			Environment.Exit( -1 );
+		}
 
 		void ShowAndExit()
 		{
@@ -642,6 +680,20 @@ public partial class App : Application
 		Simulator.Shutdown();
 		AdminBoxx.Shutdown();
 		DirectInput.Shutdown();
+
+		// The hidden DirectInput host window is the only HwndSource the app creates outside a WPF Window.
+		// Nothing else disposes it, so WPF would destroy it from its dispatcher-shutdown hook - after this
+		// handler, after the logger is gone, and outside any exception handler - and a DestroyWindow failure
+		// there (invalid window handle) takes the process down on exit. Tear it down here instead, where a
+		// failure is just a log line.
+		try
+		{
+			TopLevelWindow.Dispose();
+		}
+		catch ( Exception exception )
+		{
+			Logger.WriteLine( $"[App] TopLevelWindow.Dispose failed: {exception.Message}" );
+		}
 
 #if !ADMINBOXX
 

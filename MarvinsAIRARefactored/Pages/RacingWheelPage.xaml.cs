@@ -257,14 +257,16 @@ public partial class RacingWheelPage : UserControl
 		} );
 	}
 
-	private void AlgorithmPreview_Image_MouseEnter( object sender, MouseEventArgs e )
+	// The mouse handlers below work in extent-canvas coordinates: one canvas unit is one drawn sample (times
+	// the zoom skip = the recorded sample index), no matter where the viewport-sized image is parked inside it.
+	private void PreviewExtent_Canvas_MouseEnter( object sender, MouseEventArgs e )
 	{
 		if ( AlgorithmPreview_Image.Source == null )
 		{
 			return;
 		}
 
-		var cursorPosition = e.GetPosition( AlgorithmPreview_Image );
+		var cursorPosition = e.GetPosition( PreviewExtent_Canvas );
 
 		UpdatePreviewZoom( cursorPosition );
 		UpdatePreviewSampleData( cursorPosition );
@@ -273,12 +275,12 @@ public partial class RacingWheelPage : UserControl
 		PreviewZoom_Popup.IsOpen = true;
 	}
 
-	private void AlgorithmPreview_Image_MouseLeave( object sender, MouseEventArgs e )
+	private void PreviewExtent_Canvas_MouseLeave( object sender, MouseEventArgs e )
 	{
 		PreviewZoom_Popup.IsOpen = false;
 	}
 
-	private void AlgorithmPreview_Image_MouseMove( object sender, MouseEventArgs e )
+	private void PreviewExtent_Canvas_MouseMove( object sender, MouseEventArgs e )
 	{
 		if ( _previewDragging )
 		{
@@ -294,7 +296,7 @@ public partial class RacingWheelPage : UserControl
 			return;
 		}
 
-		var cursorPosition = e.GetPosition( AlgorithmPreview_Image );
+		var cursorPosition = e.GetPosition( PreviewExtent_Canvas );
 
 		UpdatePreviewZoom( cursorPosition );
 		UpdatePreviewSampleData( cursorPosition );
@@ -304,30 +306,30 @@ public partial class RacingWheelPage : UserControl
 	// Left-dragging the preview scrolls it horizontally, same grab gesture as panning the node graph. The zoom
 	// popup hides for the duration of the drag and comes back on release if the cursor is still over the graph
 	// (no MouseEnter refires then — the capture means the cursor never "left").
-	private void AlgorithmPreview_Image_MouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+	private void PreviewExtent_Canvas_MouseLeftButtonDown( object sender, MouseButtonEventArgs e )
 	{
 		_previewDragging = true;
 		_previewDragStartPoint = e.GetPosition( Preview_ScrollViewer );
 		_previewDragStartOffset = Preview_ScrollViewer.HorizontalOffset;
 
-		AlgorithmPreview_Image.Cursor = Cursors.SizeWE;
-		AlgorithmPreview_Image.CaptureMouse();
+		PreviewExtent_Canvas.Cursor = Cursors.SizeWE;
+		PreviewExtent_Canvas.CaptureMouse();
 
 		PreviewZoom_Popup.IsOpen = false;
 	}
 
-	private void AlgorithmPreview_Image_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
+	private void PreviewExtent_Canvas_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
 	{
 		if ( !_previewDragging )
 		{
 			return;
 		}
 
-		AlgorithmPreview_Image.ReleaseMouseCapture();
+		PreviewExtent_Canvas.ReleaseMouseCapture();
 
-		if ( AlgorithmPreview_Image.IsMouseOver && ( AlgorithmPreview_Image.Source != null ) )
+		if ( PreviewExtent_Canvas.IsMouseOver && ( AlgorithmPreview_Image.Source != null ) )
 		{
-			var cursorPosition = e.GetPosition( AlgorithmPreview_Image );
+			var cursorPosition = e.GetPosition( PreviewExtent_Canvas );
 
 			UpdatePreviewZoom( cursorPosition );
 			UpdatePreviewSampleData( cursorPosition );
@@ -339,14 +341,16 @@ public partial class RacingWheelPage : UserControl
 
 	// Fires on ReleaseMouseCapture and whenever capture is torn away (alt-tab, popups) — the one reliable place
 	// to end the drag, so a stolen capture can't leave the gesture stuck on.
-	private void AlgorithmPreview_Image_LostMouseCapture( object sender, MouseEventArgs e )
+	private void PreviewExtent_Canvas_LostMouseCapture( object sender, MouseEventArgs e )
 	{
 		_previewDragging = false;
 
-		AlgorithmPreview_Image.Cursor = null;
+		PreviewExtent_Canvas.Cursor = null;
 	}
 
-	private void UpdatePreviewZoom( Point position )
+	// The zoom square magnifies the bitmap under the cursor — the bitmap covers only the viewport slice of the
+	// extent, so the extent-canvas position is shifted by where the image is parked to get bitmap coordinates.
+	private void UpdatePreviewZoom( Point canvasPosition )
 	{
 		var imageWidth = AlgorithmPreview_Image.ActualWidth;
 		var imageHeight = AlgorithmPreview_Image.ActualHeight;
@@ -355,6 +359,8 @@ public partial class RacingWheelPage : UserControl
 		{
 			return;
 		}
+
+		var position = new Point( canvasPosition.X - Canvas.GetLeft( AlgorithmPreview_Image ), canvasPosition.Y );
 
 		var regionWidth = PreviewZoomSize / PreviewZoomFactor;
 		var regionHeight = PreviewZoomSize / PreviewZoomFactor;
@@ -464,9 +470,27 @@ public partial class RacingWheelPage : UserControl
 		PreviewDataSkidSlip_TextBlock.Text = $"{recordingData.SkidSlip * 100f:F0}{localization[ "Percent" ]}";
 	}
 
-	// every scroll, zoom, resize, or recording change moves the visible range — re-highlight the map segment
+	// Every scroll, zoom, resize, or recording change moves the visible range — hand the new window to the
+	// preview renderer (which only paints the visible slice of the extent) and re-highlight the map segment.
+	// The renderer clamps the window to the extent; the +1 covers the fractional column a non-integer scroll
+	// offset leaves at the viewport's right edge.
 	private void Preview_ScrollViewer_ScrollChanged( object sender, ScrollChangedEventArgs e )
 	{
+		var app = App.Instance;
+
+		if ( app != null )
+		{
+			var firstColumn = (int) Math.Floor( e.HorizontalOffset );
+			var viewportWidth = (int) Math.Ceiling( e.ViewportWidth ) + 1;
+
+			if ( ( firstColumn != app.RacingWheel.AlgorithmPreviewFirstColumn ) || ( viewportWidth != app.RacingWheel.AlgorithmPreviewViewportWidth ) )
+			{
+				app.RacingWheel.AlgorithmPreviewFirstColumn = firstColumn;
+				app.RacingWheel.AlgorithmPreviewViewportWidth = viewportWidth;
+				app.RacingWheel.UpdateAlgorithmPreview = true;
+			}
+		}
+
 		UpdateTrackMapPanel();
 	}
 

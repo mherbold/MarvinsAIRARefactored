@@ -735,16 +735,32 @@
                                       ScrollChanged="Preview_ScrollViewer_ScrollChanged"
                                       Loaded="Preview_ScrollViewer_Loaded">
 
-                            <Image x:Name="AlgorithmPreview_Image"
-                                   Height="301"
-                                   Width="3840"
-                                   RenderOptions.BitmapScalingMode="HighQuality"
-                                   MouseEnter="AlgorithmPreview_Image_MouseEnter"
-                                   MouseLeave="AlgorithmPreview_Image_MouseLeave"
-                                   MouseMove="AlgorithmPreview_Image_MouseMove"
-                                   MouseLeftButtonDown="AlgorithmPreview_Image_MouseLeftButtonDown"
-                                   MouseLeftButtonUp="AlgorithmPreview_Image_MouseLeftButtonUp"
-                                   LostMouseCapture="AlgorithmPreview_Image_LostMouseCapture" />
+                            <!-- The canvas is the scroll extent: one column per drawn sample, sized by the preview
+                                 renderer. The image inside is only ever viewport-wide — the renderer repaints it
+                                 with the visible slice and parks it at that slice's column on every scroll (see
+                                 RacingWheel.Tick), so the GPU texture stays small however long the recording is.
+                                 The canvas owns the mouse (hover card, zoom square, drag-to-scroll) so the gesture
+                                 works over the whole extent, including the not-yet-repainted edges mid-scroll. -->
+                            <Canvas x:Name="PreviewExtent_Canvas"
+                                    Height="301"
+                                    Width="3840"
+                                    Background="Transparent"
+                                    ClipToBounds="True"
+                                    MouseEnter="PreviewExtent_Canvas_MouseEnter"
+                                    MouseLeave="PreviewExtent_Canvas_MouseLeave"
+                                    MouseMove="PreviewExtent_Canvas_MouseMove"
+                                    MouseLeftButtonDown="PreviewExtent_Canvas_MouseLeftButtonDown"
+                                    MouseLeftButtonUp="PreviewExtent_Canvas_MouseLeftButtonUp"
+                                    LostMouseCapture="PreviewExtent_Canvas_LostMouseCapture">
+
+                                <Image x:Name="AlgorithmPreview_Image"
+                                       Canvas.Left="0"
+                                       Height="301"
+                                       Width="1"
+                                       IsHitTestVisible="False"
+                                       RenderOptions.BitmapScalingMode="HighQuality" />
+
+                            </Canvas>
 
                         </ScrollViewer>
 
@@ -1000,7 +1016,7 @@
 
                     <Popup x:Name="PreviewZoom_Popup"
                            Placement="Relative"
-                           PlacementTarget="{Binding ElementName=AlgorithmPreview_Image}"
+                           PlacementTarget="{Binding ElementName=PreviewExtent_Canvas}"
                            AllowsTransparency="True"
                            PopupAnimation="Fade"
                            StaysOpen="True">
