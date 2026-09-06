@@ -19,6 +19,10 @@ public class DataContext : INotifyPropertyChanged
 
 	public Localization Localization { get; }
 
+	// Root VM for the RacingWheelPage FFB graph editor. Rebuilt from the currently selected graph on selection /
+	// graph-management / per-context changes (see FFBGraphViewModel.RebuildFromCurrentSelection).
+	public FFB.FFBGraphViewModel RacingWheelGraphViewModel { get; } = new();
+
 	private Settings _settings;
 	public Settings Settings
 	{

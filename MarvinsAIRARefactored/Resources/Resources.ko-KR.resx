@@ -346,7 +346,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>커브 보호</value>
+    <value>연석 보호</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>충격 속도</value>
@@ -401,9 +401,6 @@
   </data>
   <data name="None" xml:space="preserve">
     <value>없음</value>
-  </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>휠베이스별</value>
   </data>
   <data name="PerCar" xml:space="preserve">
     <value>차량별</value>
@@ -633,9 +630,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[녹음을 찾을 수 없음]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>간단 모드 활성화</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>감도</value>
   </data>
@@ -679,13 +673,13 @@
     <value>충돌 보호가 활성화되었습니다!</value>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>커브 보호가 활성화되었습니다!</value>
+    <value>연석 보호가 활성화되었습니다!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
     <value>비공개 메시지</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>커브 보호 메시지 활성화</value>
+    <value>연석 보호 메시지 활성화</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
     <value>충돌 보호 메시지 활성화</value>
@@ -1405,10 +1399,10 @@
     <value>아래 목록에서 포스 피드백 스티어링 휠을 선택하세요.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> 휠이 보이지 않나요? 전원이 켜져 있고 연결되어 있는지 확인하면 목록이 자동으로 새로 고쳐집니다.</value>
+    <value>휠이 보이지 않나요? 전원이 켜져 있고 연결되어 있는지 확인하면 목록이 자동으로 새로 고쳐집니다.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec 사용자: Fanatec 휠은 일반적으로 목록에 두 개의 별도 장치로 나타납니다. 선택한 것이 작동하지 않으면 다른 것을 선택해 보세요!</value>
+    <value>Fanatec 사용자: Fanatec 휠은 일반적으로 목록에 두 개의 별도 장치로 나타납니다. 선택한 것이 작동하지 않으면 다른 것을 선택해 보세요!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>최대 휠 포스</value>
@@ -1417,10 +1411,10 @@
     <value>휠베이스가 낼 수 있는 최대 포스를 뉴턴미터(Nm) 단위로 입력하세요. MAIRA는 이 값을 사용하여 하드웨어에 맞게 모든 포스 피드백 출력을 올바르게 조정합니다.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> 선택한 휠을 기반으로 최선의 추정값을 제시했지만, 필요하면 자유롭게 조정하세요.</value>
+    <value>선택한 휠을 기반으로 최선의 추정값을 제시했지만, 필요하면 자유롭게 조정하세요.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> 중요: 휠 제조사 소프트웨어(예: Fanatec Wheel Control Panel, Moza Pit House 등) 내에서 이미 휠의 최대 토크 출력을 제한했다면, 하드웨어의 물리적 최대값 대신 그 감소된 값을 여기에 입력하세요. MAIRA는 휠이 이론적으로 낼 수 있는 값이 아니라 실제로 전달할 값을 알아야 합니다.</value>
+    <value>중요: 휠 제조사 소프트웨어(예: Fanatec Wheel Control Panel, Moza Pit House 등) 내에서 이미 휠의 최대 토크 출력을 제한했다면, 하드웨어의 물리적 최대값 대신 그 감소된 값을 여기에 입력하세요. MAIRA는 휠이 이론적으로 낼 수 있는 값이 아니라 실제로 전달할 값을 알아야 합니다.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>강도 컨트롤</value>
@@ -1432,7 +1426,7 @@
     <value>아래의 - 및 + 버튼을 클릭하여 각각에 입력을 할당하세요. 이 단계는 선택 사항입니다. 건너뛰고 나중에 레이싱 휠 페이지에서 바인딩을 설정할 수 있습니다.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> 입력이 매핑되면 버튼 테두리가 주황색으로 변해 확인됩니다.</value>
+    <value>입력이 매핑되면 버튼 테두리가 주황색으로 변해 확인됩니다.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>강도</value>
@@ -1459,7 +1453,7 @@
     <value>먼저 자동 타겟 헤드룸을 취향에 맞게 조정한 다음, 설정 및 초기화 버튼을 매핑하세요.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> 자동 타겟은 측정된 최대값이 휠 포스 범위의 어디에 위치해야 하는지를 설정합니다. 타겟을 낮추면 최대값 위로 더 많은 헤드룸을 유지하고, 높이면 휠 범위를 더 많이 사용합니다.</value>
+    <value>자동 타겟은 측정된 최대값이 휠 포스 범위의 어디에 위치해야 하는지를 설정합니다. 타겟을 낮추면 최대값 위로 더 많은 헤드룸을 유지하고, 높이면 휠 범위를 더 많이 사용합니다.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>알고리즘</value>
@@ -1550,9 +1544,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>루프 끝</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>해설</value>
@@ -1705,7 +1696,7 @@
     <value>시뮬레이터 초기화 중...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Direct Input 초기화 중...</value>
+    <value>DirectInput 초기화 중...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Stream Deck 초기화 중...</value>
@@ -1734,8 +1725,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFE 초기화 중...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>멀티미디어 타이머 초기화 중...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>재생 타이머 초기화 중...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>녹음 매니저 초기화 중...</value>
@@ -1763,45 +1754,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>메인 창 초기화 중...</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>실행 중인 프로세스</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>이름 또는 경로로 필터링...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>실행 중인 앱 검색 중...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>창 표시 여부</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>창 표시 / 숨기기</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>스텝 크기</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>업데이트 확인 간격</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> 시간</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing 종료 시 페인트 삭제</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>주기적으로 업데이트 확인</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>연습</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>예선</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>레이스</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>상태</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>대기</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>활성</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>억제됨</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>오래된 설치 프로그램 삭제</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>기타</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>문서 폴더 열기</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1809,7 +1820,8 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>밸런스</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>차량별 오버레이 위치 및 크기 조정 활성화</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>이 차량에 대한 보정 파일이 아직 없습니다.</value>
@@ -1828,41 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz 소스</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz 소스</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE 소스</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>출력</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>로우패스 필터</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>하이패스 필터</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>게인</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>합산</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>블렌드</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>슬루 리미터</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>슬루 컴프레서</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>컴프레서</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>트랜지언트 인핸서</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>적응형 스무더</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>적응형 블렌드</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>커브</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>소프트 리미터</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>충돌 보호</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>연석 보호</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>정차 강도</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>소프트 락 소스</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>마찰 소스</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>휠 센터링 소스</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>언더스티어 포스</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>오버스티어 포스</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>체감 포스</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>언더스티어 진동</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>오버스티어 진동</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>체감 진동</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>변속 RPM 진동</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>기어 변속 진동</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS 진동</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>속도 게인</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>노면 텍스처</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>슬립 텍스처</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>토크 디더</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>슬로프</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>컷오프</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>게인</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>믹스</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>리미트</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>임계값</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>전환점</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>비율</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>피크 모드</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>양</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>피크 컷오프</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>종방향 G</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>횡방향 G</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>레이싱 중</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>정차 중</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>패턴</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>최소 속도</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>최대 속도</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>최소 속도 게인</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>최대 속도 게인</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>1폴</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>2폴</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>모듈 추가</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>녹음 선택</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>현재 그래프 복제</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB 그래프</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>그래프 이름</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>새 그래프</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>빈 그래프로 시작</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>감산</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>휠 속도 소스</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>소스</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>범용 DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>믹서</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>효과</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>기타 효과</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>그래프 내보내기</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>그래프 가져오기</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA 그래프 파일</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>가져온 그래프</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>이 그래프를 내보낼 수 없습니다.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>이 그래프 파일을 가져올 수 없습니다.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>이 파일은 MAIRA 그래프 파일이 아닙니다.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>이 파일에는 진동 효과 그래프가 포함되어 있습니다. 진동 효과에서 가져오세요.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>이 파일에는 FFB 그래프가 포함되어 있습니다. FFB 그래프에서 가져오세요.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>이 그래프 파일은 최신 버전의 MAIRA로 만들어졌습니다. MAIRA를 업데이트한 후 다시 시도하세요.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>기록 시작됨</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>기록 중지됨</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>시간</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>트랙 위치</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz 토크</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz 토크</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>조향 각도</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>조향 속도</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>휠 위치</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>휠 속도</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>기어</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>종방향 G-포스</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>스키드/슬립</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>기본 제공</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>사용자 지정</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>그래프 설정 가져오기</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>이미 “{0}” 그래프가 있습니다. 이 파일의 설정을 어떻게 하시겠습니까?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>{0} 설정 업데이트</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>기준(기본) 설정 업데이트</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>{0} 및 기준 설정 업데이트</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>새 복사본으로 가져오기</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz 보간기</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>예측 (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>예측 시간</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>블렌드</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>보정 한계</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>고착 영역</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>이 효과는 스티어링 효과 페이지에서 비활성화되어 있습니다</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>펄스 지속 시간</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>고착 영역</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>엔진 RPM 진동</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>레드라인 RPM에서의 주파수</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>거칠기</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>언더스티어와 오버스티어가 스티어링 효과 페이지에서 비활성화되어 있습니다</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>이 그래프에 대한 설명 추가</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>이 설정을 이 그래프의 주요 컨트롤 중 하나로 고정</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>노드 그래프 표시</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>예측 (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>게임 브리지</value>
   </data>
@@ -1905,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>스티어링 휠 스윕</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>설명 편집</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing의 기본 60 Hz 포스 피드백 신호로, 시뮬레이터가 보내는 그대로입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing의 고속 포스 피드백 신호입니다. 60 Hz 프레임당 6개의 샘플로, 가장 세밀한 디테일을 담고 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과(LFE) 오디오를 휠의 힘으로 변환한 것입니다. 더하기 모듈로 믹스해서 사용하세요.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>휠을 돌리는 속도에 반대로 작용하는 힘입니다. 믹스하면 댐핑 효과를 냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>진짜 건식 마찰: 휠이 놓아둔 위치에 그대로 머무르고, 정지 영역을 벗어나면 일정한 미끄럼 저항이 걸립니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>차량의 조향 락을 넘어 휠을 돌리면 물리적인 엔드 스톱처럼 강하게 밀어냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘입니다. 정차 중에만 작동하게 하려면 속도 게인 모듈을 거치게 하세요.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>체인의 끝입니다. 신호를 휠 출력으로 변환하며, 선택적으로 응답 곡선과 소프트 리미터를 적용할 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>신호의 느린 몸통은 유지하고, 컷오프보다 빠른 성분은 매끄럽게 걸러냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>신호의 느린 몸통을 제거하고, 컷오프 위의 빠른 디테일만 남깁니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>신호를 고정 배율로 스케일합니다. 음수 게인을 쓰면 신호가 반전됩니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>두 신호를 더합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>입력 A에서 입력 B를 뺍니다. 예를 들어 신호의 로우패스 사본을 빼면 디테일만 남습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>두 신호를 크로스페이드합니다. 0%는 입력 A만, 100%는 입력 B만 출력됩니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>신호가 변할 수 있는 속도에 상한을 둡니다. 상한 이하는 그대로 통과하고, 더 빠른 변화는 느려집니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>빠른 신호 변화를 하드 리미팅 대신 압축합니다. 느린 변화는 그대로 통과합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>임계값을 넘는 신호를 압축하여 하드 클리핑 없이 피크를 제어합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>빠른 디테일을 추출해 어택을 강조합니다. 감쇠 부분은 키우지 않으면서 범프와 연석의 느낌이 도드라집니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>신호에 적응하는 원 노브 스무더입니다. 신호가 조용할 때는 강하게 스무딩하고, 빠른 트랜지언트에서는 지연을 최소화합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>각 프레임에 걸쳐 매끄럽게 램프시켜 60 Hz 신호의 계단 현상을 제거합니다. 대신 1 프레임의 지연이 생깁니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>360 Hz 신호를 미래로 이동시켜 지연을 상쇄합니다. 주행하는 동안 차량마다 학습하는 적응 필터입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>60 Hz 신호를 미래로 이동시켜 지연을 상쇄합니다. 주행 중의 조향과 차량 움직임에서 학습합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>입력 A의 디테일을 따라가면서 입력 B 쪽으로 끌려갑니다. 피크마다 끌림이 풀리므로 트랜지언트는 그대로 통과합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>충돌이 감지되면 힘을 크게 줄였다가 부드럽게 되돌립니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>연석을 세게 밟았을 때 힘을 줄였다가 부드럽게 되돌립니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>언더스티어 효과로 구동되는 조향력입니다. 앞 타이어의 그립이 빠지는 것을 느낄 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>오버스티어 효과로 구동되는 조향력입니다. 차 뒤쪽이 흘러나가는 것을 느낄 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>시트 오브 팬츠(체감) 효과로 구동되는 조향력입니다. 섀시에 하중이 실리는 느낌입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>앞 타이어가 미끄러지기 시작하면 휠을 진동시킵니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>뒤 타이어가 미끄러지기 시작하면 휠을 진동시킵니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>섀시의 움직임에 맞춰 휠을 진동시킵니다. 무게 이동을 손으로 느낄 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>엔진 회전수가 시프트 포인트에 도달하면 휠을 펄스 형태로 진동시킵니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>기어를 바꿀 때마다 짧은 진동을 냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>브레이크의 ABS가 작동하는 동안 휠에 펄스를 보냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>엔진 회전수를 따라가는 럼블로, V8 같은 소리를 냅니다. 엔진이 꺼져 있으면 무음입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>차량 속도에 따라 신호를 스케일합니다. 속도가 올라감에 따라 힘을 서서히 켜거나 끌 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>차 속도와 함께 빨라지는 럼블로, 노면 텍스처 같은 느낌입니다. 정차 중에는 무음입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>차의 앞이나 뒤 어느 쪽이든 미끄러질 때 나타나는 럼블입니다. 언더스티어와 오버스티어 효과로 구동됩니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>임계값 이하에서 미세한 교대 디더를 더해 휠 메커니즘을 깨어 있게 유지하고 희미한 디테일을 드러냅니다.</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>링크</value>
   </data>
@@ -1919,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>메가 기부자</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>고정된 설정 표시</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B 전환</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>입력 B 사용</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>스위치 상태에 따라 입력 A 또는 입력 B를 그대로 통과시킵니다 — 전환하여 두 신호 경로를 즉시 비교할 수 있습니다.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>이 그래프가 선택된 모든 곳의 설정 업데이트</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Logitech 휠 초기화 중...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech RPM 라이트</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>휠의 RPM 라이트 켜기</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>시프트 포인트를 넘으면 라이트 깜빡이기</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB 그래프 설정</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>대부분의 드라이버에게 권장됩니다. 지연을 줄이는 예측 처리를 적용한 완전한 360 Hz FFB 신호입니다. 게인을 조정해 노면과 타이어 디테일을 늘리거나 줄일 수 있습니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>이 값을 조정해 노면과 타이어 디테일을 늘리거나 줄입니다. 게인이 1.00x이면 iRacing 본래의 느낌이 유지됩니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>가장 강한 포스를 부드럽게 다듬고 싶은 드라이버를 위한 그래프입니다. 360 Hz FFB 신호 전체를, 포스가 변할 수 있는 속도를 눌러 주는 슬루 컴프레서와 전체 포스를 눌러 주는 컴프레서에 차례로 통과시킵니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>포스가 변할 수 있는 속도를 눌러 줍니다. 빠른 피크는 부드러워지고, 느리게 변하는 포스는 그대로 통과합니다.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>전체 포스를 눌러 줍니다. 임계값을 넘는 포스가 압축되어, 가장 강한 순간에도 휠을 압도하지 않습니다.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>하이브리드 튜닝 툴킷입니다. 부드러운 60 Hz FFB 신호를 기준으로 삼고 360 Hz 디테일을 섞은 뒤, 컴프레서, 슬루 컴프레서, 트랜지언트 인핸서, 적응형 스무더를 차례로 거칩니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>부드러운 60 Hz 신호(기준)에 360 Hz 디테일을 섞습니다. 포스의 방향이 바뀌면 블렌드가 열려 트랜지언트가 뚜렷하게 드러납니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>전체 포스를 눌러 줍니다. 임계값을 넘는 포스가 압축되어, 가장 강한 순간에도 휠을 압도하지 않습니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>포스가 변할 수 있는 속도를 눌러 줍니다. 피크 모드에서는 상승 속도를 제한하는 대신, 피크가 지나간 뒤 포스를 서서히 낮춰 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>갑작스러운 포스 변화를 더 날카롭게 만듭니다. 디테일 경로의 비선형 부스터입니다. 게인이 1.00x이면 트랜지언트의 원래 세기가 그대로 유지됩니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>신호가 잔잔할 때만 부드럽게 다듬습니다. 빠른 트랜지언트는 그대로 통과합니다. 더 강한 스무딩을 원하면 양을 높이세요.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>기존의 60 Hz FFB 신호를 선호하는 드라이버를 위한 그래프로, 예측을 사용해 지연을 줄입니다.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>저지연 360 Hz 디테일 부스터 및 리미터</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>저지연 60 Hz 디테일 부스터 및 리미터</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz 슬루 및 전체 압축</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>하이브리드 멀티 조정 툴킷</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>튜닝 프로필</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>클릭하여 튜닝 프로필 관리</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>날씨별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>차량별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>차량 + 트랙별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>차량 + 트랙 + 구성별</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0}개 변경됨</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>설정 {0}개</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>사용 중</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>이 프로필</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>기본 프로필</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>이 프로필에는 변경 사항이 없습니다.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>기본값으로 되돌리기</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>시뮬레이터가 실행 중이 아닙니다 — 설정 변경 사항은 기본 프로필에 저장됩니다.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>복사 대상…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>기본값으로 설정</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>정리</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>어느 프로필로 설정을 복사할까요?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>프로필의 변경 사항이 삭제되며 모든 설정이 기본 프로필의 값으로 되돌아갑니다.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>이 프로필의 모든 변경된 설정이 기본 프로필로 복사되어 새로운 기준이 됩니다.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>오래된 모듈 값 {0}개를 제거하고, 그래프 선택 {1}개를 복구하고, 사용하지 않는 프로필 {2}개를 삭제합니다. 계속할까요?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>정리할 항목이 없습니다.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(그래프 없음)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>공장 기본값</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>차량 + 날씨별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>차량 + 트랙 + 날씨별</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>차량 + 트랙 + 구성 + 날씨별</value>
   </data>
 </root>

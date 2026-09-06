@@ -1,5 +1,6 @@
 
 using System.IO;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +21,10 @@ public partial class App : Application
 {
 #if !ADMINBOXX
 
-	public const string AppName = "MarvinsAIRA Refactored";
+	public const string AppName = "MAIRA";
+
+	// the documents folder's name before the "Refactored" naming was retired - see MigrateLegacyDocumentsFolder
+	private const string LegacyAppName = "MarvinsAIRA Refactored";
 
 #else
 
@@ -36,6 +40,81 @@ public partial class App : Application
 	{
 		return Path.GetDirectoryName( callerFile ) ?? string.Empty;
 	}
+
+	private static string? _documentsFolderMigrationMessage = null;
+
+	// The documents folder was renamed from "MarvinsAIRA Refactored" to "MAIRA" when the "Refactored" naming
+	// was retired. The installer normally renames the old folder before it copies any files, but handle it
+	// here too for the cases it can't cover (dev builds, or a rename the installer couldn't complete because
+	// something in the folder was locked). Runs before the logger exists, so the outcome is stashed in
+	// _documentsFolderMigrationMessage and logged once the logger is up. Never throws - a failed migration
+	// must not stop the app from starting.
+	private static void MigrateLegacyDocumentsFolder()
+	{
+#if !ADMINBOXX
+		try
+		{
+			var legacyFolder = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), LegacyAppName );
+
+			if ( !Directory.Exists( legacyFolder ) )
+			{
+				return;
+			}
+
+			if ( !Directory.Exists( DocumentsFolder ) )
+			{
+				Directory.Move( legacyFolder, DocumentsFolder );
+
+				_documentsFolderMigrationMessage = $"Renamed the documents folder from '{legacyFolder}' to '{DocumentsFolder}'";
+			}
+			else
+			{
+				// both folders exist (e.g. the installer's rename was blocked but it still deployed the default
+				// assets into the new folder) - move everything across, preferring the old folder's copy on a
+				// name collision (anything already in the new folder is a freshly installed default, while the
+				// old folder holds the user's data), then remove whatever empty old directories remain
+				MergeMoveDirectory( legacyFolder, DocumentsFolder );
+
+				_documentsFolderMigrationMessage = $"Merged the old documents folder '{legacyFolder}' into '{DocumentsFolder}'";
+			}
+		}
+		catch ( Exception exception )
+		{
+			_documentsFolderMigrationMessage = $"Documents folder migration failed: {exception.Message.Trim()}";
+		}
+#endif
+	}
+
+#if !ADMINBOXX
+
+	private static void MergeMoveDirectory( string sourceFolder, string targetFolder )
+	{
+		Directory.CreateDirectory( targetFolder );
+
+		foreach ( var sourceFilePath in Directory.GetFiles( sourceFolder ) )
+		{
+			try
+			{
+				File.Move( sourceFilePath, Path.Combine( targetFolder, Path.GetFileName( sourceFilePath ) ), overwrite: true );
+			}
+			catch ( Exception )
+			{
+				// a locked file stays behind in the old folder and is retried on the next launch
+			}
+		}
+
+		foreach ( var sourceSubFolder in Directory.GetDirectories( sourceFolder ) )
+		{
+			MergeMoveDirectory( sourceSubFolder, Path.Combine( targetFolder, Path.GetFileName( sourceSubFolder ) ) );
+		}
+
+		if ( Directory.GetFileSystemEntries( sourceFolder ).Length == 0 )
+		{
+			Directory.Delete( sourceFolder );
+		}
+	}
+
+#endif
 
 	private static bool IsInDesignMode => System.ComponentModel.DesignerProperties.GetIsInDesignMode( new DependencyObject() );
 
@@ -58,7 +137,7 @@ public partial class App : Application
 	public DirectInput DirectInput { get; private set; } = null!;
 	public StreamDeck StreamDeck { get; private set; } = null!;
 	public LFE LFE { get; private set; } = null!;
-	public MultimediaTimer MultimediaTimer { get; private set; } = null!;
+	public PlayoutTimer PlayoutTimer { get; private set; } = null!;
 	public Simulator Simulator { get; private set; } = null!;
 	public RecordingManager RecordingManager { get; private set; } = null!;
 	public SteeringEffects SteeringEffects { get; private set; } = null!;
@@ -71,6 +150,7 @@ public partial class App : Application
 	public SpeechToText SpeechToText { get; private set; } = null!;
 	public TyphoonWind TyphoonWind { get; private set; } = null!;
 	public GTensioner GTensioner { get; private set; } = null!;
+	public LogitechWheel LogitechWheel { get; private set; } = null!;
 	public HidHotPlugMonitor HidHotPlugMonitor { get; private set; } = null!;
 	public TradingPaints TradingPaints { get; private set; } = null!;
 	public AppManager AppManager { get; private set; } = null!;
@@ -132,7 +212,7 @@ public partial class App : Application
 		DirectInput = new();
 		StreamDeck = new();
 		LFE = new();
-		MultimediaTimer = new();
+		PlayoutTimer = new();
 		Simulator = new();
 		RecordingManager = new();
 		SteeringEffects = new();
@@ -145,6 +225,7 @@ public partial class App : Application
 		SpeechToText = new();
 		TyphoonWind = new();
 		GTensioner = new();
+		LogitechWheel = new();
 		HidHotPlugMonitor = new();
 		TradingPaints = new();
 		AppManager = new();
@@ -209,9 +290,17 @@ public partial class App : Application
 			return;
 		}
 
+		// must run before the logger comes up - the log files live inside the documents folder
+		MigrateLegacyDocumentsFolder();
+
 		Logger = new();
 
 		Logger.Initialize();
+
+		if ( _documentsFolderMigrationMessage != null )
+		{
+			Logger.WriteLine( $"[App] {_documentsFolderMigrationMessage}" );
+		}
 
 		// Mirror every window's layout for right-to-left languages. Registered before any window is
 		// shown so the splash screen and all dialogs/overlays pick it up automatically.
@@ -311,12 +400,13 @@ public partial class App : Application
 				RunStartupStep( "InitializingRacingWheel", RacingWheel.Initialize );
 				RunStartupStep( "InitializingSounds", Sounds.Initialize );
 				RunStartupStep( "InitializingLFE", LFE.Initialize );
-				RunStartupStep( "InitializingMultimediaTimer", MultimediaTimer.Initialize );
+				RunStartupStep( "InitializingPlayoutTimer", PlayoutTimer.Initialize );
 				RunStartupStep( "InitializingRecordingManager", RecordingManager.Initialize );
 				RunStartupStep( "InitializingTimingMarkers", TimingMarkers.Initialize );
 				RunStartupStep( "InitializingTelemetry", Telemetry.Initialize );
 				RunStartupStep( "InitializingGTensioner", GTensioner.Initialize );
 				RunStartupStep( "InitializingHidHotPlugMonitor", HidHotPlugMonitor.Initialize );
+				RunStartupStep( "InitializingLogitechWheel", LogitechWheel.Initialize );
 				RunStartupStep( "InitializingTradingPaints", TradingPaints.Initialize );
 				RunStartupStep( "InitializingGameBridge", GameBridge.Initialize );
 				RunStartupStep( "InitializingSettingsFile", SettingsFile.Initialize );
@@ -476,6 +566,13 @@ public partial class App : Application
 				Simulator.Start();
 
 				GC.Collect();
+
+				// from here on the app is a soft-realtime device — prefer deferring blocking gen2 collections
+				// (the startup GC.Collect calls above still ran in the default mode, fully compacting the
+				// startup garbage first); the FFB hot paths are allocation-free in steady state, so collections
+				// should be rare and UI-driven either way
+
+				GCSettings.LatencyMode = GCLatencyMode.SustainedLowLatency;
 			}
 		}
 
@@ -548,8 +645,9 @@ public partial class App : Application
 
 #if !ADMINBOXX
 
+		LogitechWheel.Shutdown();
 		LFE.Shutdown();
-		MultimediaTimer.Shutdown();
+		PlayoutTimer.Shutdown();
 		VirtualJoystick.Shutdown();
 		Telemetry.Shutdown();
 		TradingPaints.Shutdown();
@@ -592,10 +690,8 @@ public partial class App : Application
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		foreach ( var action in MappableActionCatalog.Actions )
+		void AddToIndex( MappableAction action, ButtonMappings buttonMappings )
 		{
-			var buttonMappings = action.GetButtonMappings( settings );
-
 			foreach ( var mappedButton in buttonMappings.MappedButtons )
 			{
 				var clickButton = mappedButton.ClickButton;
@@ -616,6 +712,68 @@ public partial class App : Application
 
 				candidates.Add( ( action, mappedButton ) );
 			}
+		}
+
+		foreach ( var action in MappableActionCatalog.Actions )
+		{
+			AddToIndex( action, action.GetButtonMappings( settings ) );
+		}
+
+		// FFB graph module knob mappings are dynamic (modules come and go with the user's graphs), so they are
+		// indexed straight from their settings store rather than the static catalog. The fire body resolves the
+		// module view-model at fire time, so switching graphs never needs an index rebuild — only mapping edits
+		// and module/graph removal do, and both already land here.
+		foreach ( var ( mappingKey, buttonMappings ) in settings.RacingWheelFFBModuleButtonMappings )
+		{
+			if ( buttonMappings.MappedButtons.Count == 0 )
+			{
+				continue;
+			}
+
+			// mappingKey = "{ModuleId}/{SettingKey}/Plus|Minus|Toggle" (see Settings.GetFFBModuleButtonMappings)
+			var firstSlashIndex = mappingKey.IndexOf( '/' );
+			var lastSlashIndex = mappingKey.LastIndexOf( '/' );
+
+			if ( ( firstSlashIndex <= 0 ) || ( lastSlashIndex <= firstSlashIndex ) )
+			{
+				continue;
+			}
+
+			var moduleId = mappingKey[ ..firstSlashIndex ];
+			var settingKey = mappingKey[ ( firstSlashIndex + 1 )..lastSlashIndex ];
+			var suffix = mappingKey[ ( lastSlashIndex + 1 ).. ];
+
+			MappableAction action;
+
+			if ( suffix == "Toggle" )
+			{
+				// a module switch setting — the mapped input flips it
+				action = new MappableAction
+				{
+					SettingsPropertyName = mappingKey,   // identifier only — never resolved against Settings
+					CategoryKey = "RacingWheel",
+					GroupLabelKey = "FFBGraph",
+					LabelKey = settingKey,
+					Direction = MappableActionDirection.None,
+					OnFire = _ => DataContext.DataContext.Instance.RacingWheelGraphViewModel.ToggleModuleSwitch( moduleId, settingKey )
+				};
+			}
+			else
+			{
+				var direction = suffix == "Plus" ? 1f : -1f;
+
+				action = new MappableAction
+				{
+					SettingsPropertyName = mappingKey,   // identifier only — never resolved against Settings
+					CategoryKey = "RacingWheel",
+					GroupLabelKey = "FFBGraph",
+					LabelKey = settingKey,
+					Direction = ( direction > 0f ) ? MappableActionDirection.Increase : MappableActionDirection.Decrease,
+					OnFire = _ => DataContext.DataContext.Instance.RacingWheelGraphViewModel.AdjustModuleKnob( moduleId, settingKey, direction )
+				};
+			}
+
+			AddToIndex( action, buttonMappings );
 		}
 	}
 
@@ -671,7 +829,7 @@ public partial class App : Application
 		{
 			if ( !app.Simulator.IsConnected )
 			{
-				app.DirectInput.PollDevices( 1f );
+				app.DirectInput.PollDevices();
 
 				TriggerWorkerThread();
 			}
@@ -705,7 +863,7 @@ public partial class App : Application
 
 						app.RacingWheel.Tick( app );
 						app.Pedals.Tick( app );
-						app.MultimediaTimer.Tick( app );
+						app.PlayoutTimer.Tick( app );
 						app.Sounds.Tick( app );
 						app.Graph.Tick( app );
 						app.SteeringEffects.Tick( app );
@@ -716,6 +874,7 @@ public partial class App : Application
 						app.Commentary.Tick( app );
 						app.TyphoonWind.Tick( app );
 						app.GTensioner.Tick( app );
+						app.LogitechWheel.Tick( app );
 						app.CloudService.Tick( app );
 
 						app.GripOMeterWindow?.Tick( app );

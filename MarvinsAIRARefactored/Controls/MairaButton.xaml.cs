@@ -168,6 +168,16 @@ public partial class MairaButton : UserControl
 		set => SetValue( IsColorIconProperty, value );
 	}
 
+	public static readonly DependencyProperty HighlightIconProperty = DependencyProperty.Register( nameof( HighlightIcon ), typeof( bool ), typeof( MairaButton ), new PropertyMetadata( false ) );
+
+	/// <summary>When true, the (tinted) icon is filled with the accent brush instead of the theme foreground —
+	/// toggle-style buttons use this to show their "on" state in MAIRA orange.</summary>
+	public bool HighlightIcon
+	{
+		get => (bool) GetValue( HighlightIconProperty );
+		set => SetValue( HighlightIconProperty, value );
+	}
+
 	#endregion
 
 	#region Dependency Property Changed Events

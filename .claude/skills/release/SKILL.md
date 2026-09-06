@@ -1,7 +1,7 @@
 ---
 name: release
 description: >-
-  Cut a new release of MarvinsAIRA Refactored: compile a Release build, publish
+  Cut a new release of MAIRA: compile a Release build, publish
   via the FolderProfile, build the Inno Setup installer, then create a GitHub
   *draft* release (title "Version <ver>", tag "<ver>") with an auto-generated
   changelog and the installer attached. Handles both stable releases from the
@@ -17,9 +17,9 @@ description: >-
   to end users or to alpha testers.
 ---
 
-# Release MarvinsAIRA Refactored
+# Release MAIRA
 
-This skill automates the release pipeline for **MarvinsAIRA Refactored**
+This skill automates the release pipeline for **MAIRA**
 (repo `mherbold/MarvinsAIRARefactored`): build → publish → **sign** → installer
 → GitHub **draft** release → (after the maintainer reviews and approves) publish
 the release and hand the maintainer ready-to-paste announcement text for the
@@ -70,12 +70,14 @@ never ship in that form).
   markdown auto-formatting mangled bullets and Chrome blocked the clipboard path —
   so copy/paste is the supported path.) Never handle or ask for iRacing
   credentials.
-- **The version is the four-part number from the installer filename**
-  (`MarvinsAIRARefactored-Setup-<x.y.z.w>.exe`), e.g. `2.0.439.1234`. The
-  release **title** is `Version <ver>` and the **tag** is `<ver>` (no prefix).
-  A past release was mistakenly titled/tagged with the whole filename
+- **The version is the number from the installer filename**
+  (`MAIRA-Setup-<ver>.exe`) — three-part `2.1.[buildStamp]`
+  (e.g. `2.1.2050`) since the 2026-07-26 versioning change; releases before it
+  were four-part (e.g. `2.0.439.1234`). The release **title** is `Version <ver>`
+  and the **tag** is `<ver>` (no prefix). A past release was mistakenly
+  titled/tagged with the whole filename
   (`Version MarvinsAIRARefactored-Setup-2.0.438.1415`) — do not let that happen.
-  If the version does not match `^\d+\.\d+\.\d+\.\d+$`, stop and report it
+  If the version does not match `^\d+\.\d+\.\d+(\.\d+)?$`, stop and report it
   instead of creating a release.
 - **An alpha release is a pre-release and is never "Latest".** Create it with
   `--prerelease` from the start (not as an afterthought at publish time) — GitHub
@@ -174,7 +176,7 @@ The script's final lines are the result block you parse:
 ```
 RELEASE_BUILD_OK
 VERSION=2.0.439.1234
-INSTALLER=C:\Users\marvi\OneDrive\Documents\MarvinsAIRA Refactored\MarvinsAIRARefactored-Setup-2.0.439.1234.exe
+INSTALLER=C:\Users\marvi\OneDrive\Documents\MAIRA\MAIRA-Setup-2.1.2050.exe
 ```
 
 If you instead see `RELEASE_BUILD_FAILED` (or a non-zero exit), **stop** and
@@ -449,7 +451,7 @@ current stable release.*
 
 ### Create the draft
 
-Re-confirm the version matches `^\d+\.\d+\.\d+\.\d+$` first, then create a
+Re-confirm the version matches `^\d+\.\d+\.\d+(\.\d+)?$` first, then create a
 **draft** release — with `--prerelease` added for an alpha:
 
 ```bash
@@ -611,8 +613,8 @@ only if they ask.
   - As a last resort to get a build out the door, `-SkipSigning` produces an
     unsigned installer — but do not publish it to users; fix signing instead.
 - **Wrong version extracted** → the script refuses to guess and fails; check
-  that Inno Setup wrote `MarvinsAIRARefactored-Setup-*.exe` to
-  `Documents\MarvinsAIRA Refactored`.
+  that Inno Setup wrote `MAIRA-Setup-*.exe` to
+  `Documents\MAIRA`.
 - **`gh` not authenticated** → `gh auth status`; have the user re-auth.
 - **`gh release create` fails with "workflow scope may be required"** → this
   message is usually a red herring. The real cause is almost always the **wrong

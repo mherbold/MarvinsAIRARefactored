@@ -402,9 +402,6 @@
   <data name="None" xml:space="preserve">
     <value>無</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>依輪座</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>依車輛</value>
   </data>
@@ -632,9 +629,6 @@
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[找不到錄製檔]</value>
-  </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>啟用簡易模式</value>
   </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>靈敏度</value>
@@ -1405,10 +1399,10 @@
     <value>從下方清單中選擇您的力回饋賽車方向盤。</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> 沒看到您的方向盤嗎？請確認它已開啟電源並連線，清單便會自動重新整理。</value>
+    <value>沒看到您的方向盤嗎？請確認它已開啟電源並連線，清單便會自動重新整理。</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec 使用者：Fanatec 方向盤通常會在清單中顯示為兩個獨立的裝置。如果您選擇的那個無法運作，請試著選擇另一個！</value>
+    <value>Fanatec 使用者：Fanatec 方向盤通常會在清單中顯示為兩個獨立的裝置。如果您選擇的那個無法運作，請試著選擇另一個！</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>最大方向盤力道</value>
@@ -1417,10 +1411,10 @@
     <value>輸入您的輪座能夠產生的最大力道，以牛頓米（Nm）為單位。MAIRA 會使用此數值正確地為您的硬體縮放所有力回饋輸出。</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> 我們已根據您所選的方向盤做出最佳猜測——但如有需要，歡迎自行調整。</value>
+    <value>我們已根據您所選的方向盤做出最佳猜測——但如有需要，歡迎自行調整。</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> 重要：如果您已在方向盤製造商的軟體中（例如 Fanatec Wheel Control Panel、Moza Pit House 等）限制了方向盤的最大扭力輸出，請在此處輸入該縮減後的數值，而非硬體的實體最大值。MAIRA 需要知道您的方向盤實際會傳遞多少力，而非理論上的能力。</value>
+    <value>重要：如果您已在方向盤製造商的軟體中（例如 Fanatec Wheel Control Panel、Moza Pit House 等）限制了方向盤的最大扭力輸出，請在此處輸入該縮減後的數值，而非硬體的實體最大值。MAIRA 需要知道您的方向盤實際會傳遞多少力，而非理論上的能力。</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>強度控制</value>
@@ -1432,7 +1426,7 @@
     <value>點擊下方的 - 與 + 按鈕，為每個按鈕指派輸入。此步驟為選用——您可以略過，稍後在賽車方向盤頁面設定綁定。</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> 一旦對應了輸入，按鈕邊框便會變成橘色以確認。</value>
+    <value>一旦對應了輸入，按鈕邊框便會變成橘色以確認。</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>強度</value>
@@ -1459,7 +1453,7 @@
     <value>首先，依喜好調整自動目標餘裕，然後對應您的「設定」與「清除」按鈕。</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> 自動目標設定測得的峰值應落在方向盤力道範圍中的位置。降低目標可在峰值之上保留更多餘裕；提高目標則可運用更多方向盤範圍。</value>
+    <value>自動目標設定測得的峰值應落在方向盤力道範圍中的位置。降低目標可在峰值之上保留更多餘裕；提高目標則可運用更多方向盤範圍。</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>演算法</value>
@@ -1550,9 +1544,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>循環終點</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>解說</value>
@@ -1705,7 +1696,7 @@
     <value>正在初始化模擬器…</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>正在初始化 Direct Input…</value>
+    <value>正在初始化 DirectInput…</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>正在初始化 Stream Deck…</value>
@@ -1734,8 +1725,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>正在初始化 LFE…</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>正在初始化多媒體計時器…</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>正在初始化播放計時器…</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>正在初始化錄製管理員…</value>
@@ -1763,45 +1754,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>正在初始化主視窗…</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>執行中的處理程序</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>依名稱或路徑篩選...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>正在搜尋執行中的應用程式...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>視窗可見性</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>顯示 / 隱藏視窗</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>步進值</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>更新檢查間隔</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> 小時</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing 關閉時刪除塗裝</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>依間隔檢查更新</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>練習</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>排位賽</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>正賽</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>狀態</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>閒置</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>啟用中</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>已抑制</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>刪除舊的安裝程式</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>雜項</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>開啟文件資料夾</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1809,7 +1820,8 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>平衡</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>啟用每輛車的疊加層位置與縮放</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>此車輛的校準檔案尚未提供。</value>
@@ -1828,41 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz 訊號源</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz 訊號源</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE 訊號源</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>輸出</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>低通濾波器</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>高通濾波器</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>增益</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>疊加</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>混合</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>變化率限制器</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>變化率壓縮器</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>壓縮器</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>瞬態增強器</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>自適應平滑器</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>自適應混合</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>曲線</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>軟限制器</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>碰撞保護</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>路緣保護</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>停車強度</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>軟鎖訊號源</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>摩擦力訊號源</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>方向盤回正訊號源</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>轉向不足力道</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>轉向過度力道</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>體感力道</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>轉向不足震動</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>轉向過度震動</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>體感震動</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>換檔 RPM 震動</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>換檔震動</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS 震動</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>速度增益</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>路面紋理</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>打滑紋理</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>扭力抖動</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>斜率</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>截止頻率</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>增益</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>混合比</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>限制</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>閾值</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>拐點</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>壓縮比</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>峰值模式</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>量</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>峰值截止頻率</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>縱向 G 力</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>橫向 G 力</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>行駛時</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>停車時</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>最低速度</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>最高速度</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>最低速度增益</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>最高速度增益</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>一階</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>二階</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>新增模組</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>選擇錄製檔</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>複製目前圖表</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB 圖表</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>圖表名稱</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>新圖表</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>從空白圖表開始</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>相減</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>方向盤速度訊號源</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>訊號源</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>通用 DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>混合器</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>效果</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>其他效果</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>匯出圖表</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>匯入圖表</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA 圖表檔案</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>已匯入的圖表</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>無法匯出此圖表。</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>無法匯入此圖表檔案。</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>此檔案不是 MAIRA 圖表檔案。</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>此檔案包含振動效果圖表，請改在振動效果下匯入。</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>此檔案包含 FFB 圖表，請改在 FFB 圖表下匯入。</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>此圖表檔案由較新版本的 MAIRA 建立。請更新 MAIRA 後再試一次。</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>已開始錄製</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>已停止錄製</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>賽道位置</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz 扭力</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz 扭力</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>轉向角度</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>轉向速度</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>方向盤位置</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>方向盤速度</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>檔位</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>縱向 G 力</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>打滑/滑移</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>內建</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>自訂</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>匯入圖表設定</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>您已有圖表「{0}」。要如何處理此檔案中的設定？</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>更新 {0} 設定</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>更新基準（預設）設定</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>更新 {0} 與基準設定</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>以新副本匯入</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz 內插器</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>預測 (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>前瞻時間</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>混合</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>校正上限</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>黏著區域</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>此效果已在轉向效果頁面中停用</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>脈衝持續時間</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>黏著區域</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>引擎轉速震動</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>紅線轉速時的頻率</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>粗糙度</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>轉向不足和轉向過度已在轉向效果頁面中停用</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>為該圖新增描述</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>將此設定釘選為該圖的主要控制項之一</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>顯示節點圖</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>預測 (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>遊戲橋接</value>
   </data>
@@ -1905,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>方向盤左右擺動</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>編輯描述</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing 原生的 60 Hz 力回饋訊號，與模擬器送出的完全相同。</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing 的高取樣率力回饋訊號——每個 60 Hz 影格包含六個取樣，細節最豐富。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>將模擬器的低頻效果（LFE）音訊轉換為方向盤力道。請用加法模組將其混入。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>一種與方向盤轉動速度相反的力——混入後可提供阻尼效果。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>真實的乾摩擦：方向盤會停在你放開的位置，越過黏滯區後有固定的滑動阻力。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>當方向盤轉超過車輛的轉向鎖定角度時強力回推，就像實體的行程末端擋塊。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>將方向盤拉回中心的彈簧力。讓它經過速度增益模組，即可只在停車時作用。</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>訊號鏈的終點——將訊號轉換為方向盤輸出，可選擇加上響應曲線與軟性限制器。</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>保留訊號中緩慢的主體，平滑濾除快於截止頻率的所有成分。</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>移除訊號中緩慢的主體，只保留截止頻率以上的快速細節。</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>以固定倍率縮放訊號——使用負增益可將訊號反相。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>將兩個訊號相加。</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>以輸入 A 減去輸入 B——例如，減去訊號的低通副本後就只剩下細節。</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>在兩個訊號之間交叉淡變——0% 時全為輸入 A，100% 時全為輸入 B。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>限制訊號的變化速度——低於限制的部分原樣通過，較快的變化會被減緩。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>壓縮快速的訊號變化而非硬性限制——緩慢的變化原樣通過。</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>壓縮超過閾值的訊號，在不硬削波的情況下控制峰值。</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>擷取快速細節並強調起音——顛簸與路緣更突出，而不會放大衰減部分。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>單旋鈕的自適應平滑器——訊號平靜時平滑力道強，快速暫態時延遲極小。</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>在每個影格內平滑漸變，消除 60 Hz 訊號的階梯感，代價是一個影格的延遲。</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>將 360 Hz 訊號往未來偏移以抵消延遲——這是一個自適應濾波器，會在你駕駛時學習每輛車的特性。</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>將 60 Hz 訊號往未來偏移以抵消延遲——在你駕駛時根據轉向與車輛運動進行學習。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>跟隨輸入 A 的細節，同時被拉向輸入 B——每到峰值時拉力放鬆，讓暫態得以通過。</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>偵測到撞車時大幅降低力道，之後再平滑恢復。</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>猛烈輾過路緣時降低力道，之後再平滑恢復。</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>由轉向不足效果驅動的轉向力，讓你感覺到前輪抓地力的流失。</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>由轉向過度效果驅動的轉向力，讓你感覺到車尾開始滑出。</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>由體感（seat-of-pants）效果驅動的轉向力——底盤承受負載的感覺。</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>前輪開始打滑時讓方向盤震動。</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>後輪開始打滑時讓方向盤震動。</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>隨底盤運動震動方向盤——讓你感受到重量轉移。</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>引擎轉速到達換檔點時，方向盤以脈衝方式震動提示。</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>每次換檔時發出短促的震動。</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>煞車的 ABS 作動期間讓方向盤脈衝震動。</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>跟隨引擎轉速的隆隆震動，音色像 V8——引擎熄火時靜音。</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>依車速縮放訊號——讓力道隨車速提高而淡入或淡出。</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>隨車速加快的隆隆震動，如同路面紋理——停車時靜音。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>只要車頭或車尾任一端打滑就會出現的隆隆震動，由轉向不足與轉向過度效果驅動。</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>在閾值以下加入微小的交替抖動，讓方向盤機構保持活動並呈現微弱的細節。</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>連結</value>
   </data>
@@ -1919,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>頂級捐款者</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>顯示釘選的設定</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B 切換</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>使用輸入 B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>依開關位置原樣輸出輸入 A 或輸入 B — 切換開關即可立即比較兩條訊號路徑。</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>在選擇了此圖表的所有位置更新設定</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>正在初始化 Logitech 方向盤…</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech 轉速燈</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>點亮方向盤上的轉速燈</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>超過換檔點後閃爍轉速燈</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB 圖表設定</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>建議大多數車手使用——完整的 360 Hz FFB 訊號，並透過預測降低延遲。調整增益即可增強或減弱路面與輪胎的細節。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>將模擬器的低頻效果音訊轉換為方向盤力。必須在 iRacing 中啟用 bass shaker LFE 並使用 VB-CABLE 才能運作。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>一種類似摩擦的力，可在你極慢行駛或停車時防止方向盤來回震盪。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>一種將方向盤拉回中心的彈簧力，僅在車輛緩慢行駛或停車時生效。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>調整此數值可增強或減弱路面與輪胎的細節。增益為 1.00x 時可保持 iRacing 的原始手感。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>偵測到碰撞時大幅衰減力道，隨後平順恢復——這樣劇烈撞擊就不會把方向盤從你手中扯開。力道衰減用於設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>由轉向不足效果驅動的方向盤力，讓你感受到前輪正在失去抓地力。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>由轉向過度效果驅動的方向盤力，讓你感受到車尾正在滑出。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>由體感效果驅動的方向盤力——車身負載變化的感覺。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>在低於閾值時疊加極微小的交替抖動，使方向盤機構保持活躍並呈現細微的細節——如果你使用 Logitech G29 這類低功率方向盤會很有用。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>軟限幅器讓 FFB 訊號在被削峰時仍能保留部分細節，而不會變得平直。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>將模擬器的低頻效果音訊轉換為方向盤力。必須在 iRacing 中啟用 bass shaker LFE 並使用 VB-CABLE 才能運作。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>一種類似摩擦的力，可在你極慢行駛或停車時防止方向盤來回震盪。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>一種將方向盤拉回中心的彈簧力，僅在車輛緩慢行駛或停車時生效。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>偵測到碰撞時大幅衰減力道，隨後平順恢復——這樣劇烈撞擊就不會把方向盤從你手中扯開。力道衰減用於設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>由轉向不足效果驅動的方向盤力，讓你感受到前輪正在失去抓地力。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>由轉向過度效果驅動的方向盤力，讓你感受到車尾正在滑出。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>由體感效果驅動的方向盤力——車身負載變化的感覺。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>在低於閾值時疊加極微小的交替抖動，使方向盤機構保持活躍並呈現細微的細節——如果你使用 Logitech G29 這類低功率方向盤會很有用。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>軟限幅器讓 FFB 訊號在被削峰時仍能保留部分細節，而不會變得平直。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>將模擬器的低頻效果音訊轉換為方向盤力。必須在 iRacing 中啟用 bass shaker LFE 並使用 VB-CABLE 才能運作。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>一種類似摩擦的力，可在你極慢行駛或停車時防止方向盤來回震盪。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>一種將方向盤拉回中心的彈簧力，僅在車輛緩慢行駛或停車時生效。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>偵測到碰撞時大幅衰減力道，隨後平順恢復——這樣劇烈撞擊就不會把方向盤從你手中扯開。力道衰減用於設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>由轉向不足效果驅動的方向盤力，讓你感受到前輪正在失去抓地力。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>由轉向過度效果驅動的方向盤力，讓你感受到車尾正在滑出。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>由體感效果驅動的方向盤力——車身負載變化的感覺。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>在低於閾值時疊加極微小的交替抖動，使方向盤機構保持活躍並呈現細微的細節——如果你使用 Logitech G29 這類低功率方向盤會很有用。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>軟限幅器讓 FFB 訊號在被削峰時仍能保留部分細節，而不會變得平直。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>將模擬器的低頻效果音訊轉換為方向盤力。必須在 iRacing 中啟用 bass shaker LFE 並使用 VB-CABLE 才能運作。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>一種類似摩擦的力，可在你極慢行駛或停車時防止方向盤來回震盪。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>一種將方向盤拉回中心的彈簧力，僅在車輛緩慢行駛或停車時生效。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>偵測到碰撞時大幅衰減力道，隨後平順恢復——這樣劇烈撞擊就不會把方向盤從你手中扯開。力道衰減用於設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>由轉向不足效果驅動的方向盤力，讓你感受到前輪正在失去抓地力。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>由轉向過度效果驅動的方向盤力，讓你感受到車尾正在滑出。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>由體感效果驅動的方向盤力——車身負載變化的感覺。方向決定此效果是讓方向盤變輕，還是施加一個橫向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>在低於閾值時疊加極微小的交替抖動，使方向盤機構保持活躍並呈現細微的細節——如果你使用 Logitech G29 這類低功率方向盤會很有用。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>軟限幅器讓 FFB 訊號在被削峰時仍能保留部分細節，而不會變得平直。</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>適合希望削弱最強力道的車手——完整的 360 Hz FFB 訊號先經過變化率壓縮器，壓縮力的變化速度，再經過壓縮器，壓縮總的力道。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>壓縮力的變化速度——快速的尖峰會被柔化，較慢的力則原樣通過。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>壓縮總的力道——超過閾值的力會被壓縮，使最強的瞬間不會蓋過方向盤。</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>混合調校工具箱——以平滑的 60 Hz FFB 訊號為基底，混入 360 Hz 細節，接著依序經過壓縮、變化率壓縮、瞬態增強器與自適應平滑器。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>將平滑的 60 Hz 訊號（基底）與 360 Hz 細節混合。當力改變方向時，混合會放開，讓瞬態穿透而出。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>壓縮總的力道——超過閾值的力會被壓縮，使最強的瞬間不會蓋過方向盤。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>壓縮力的變化速度。在峰值模式下，它會在尖峰之後讓力平緩回落，而不是限制力上升的速度。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>銳化突然的力變化——細節分支的非線性增強器。增益為 1.00x 時保持原始的瞬態強度。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>僅在訊號平靜時進行平滑——快速瞬態仍可通過。提高量值可獲得更強的平滑化。</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>適合偏好經典 60 Hz FFB 訊號的車手——並搭配預測以降低延遲。</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>低延遲 360 Hz 細節增強器與限制器</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>低延遲 60 Hz 細節增強器與限制器</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz 變化率與總壓縮</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>混合多重調整工具組</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>調校設定檔</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>點擊以管理您的調校設定檔</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>依天氣</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>依車輛</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>依車輛 + 賽道</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>依車輛 + 賽道 + 配置</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>已變更 {0} 項</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} 項設定</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>此設定檔</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>預設設定檔</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>此設定檔沒有變更。</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>還原為預設值</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>模擬器未執行 — 設定變更將儲存到預設設定檔。</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>複製到…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>設為預設</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>清理</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>將設定複製到哪個設定檔？</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>這將刪除該設定檔的變更 — 其中每項設定都會還原為預設設定檔的值。</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>這會將此設定檔中每項已變更的設定複製到預設設定檔，使其成為新的基準。</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>這將移除 {0} 個過時的模組值、修復 {1} 個圖表選擇並刪除 {2} 個未使用的設定檔。是否繼續？</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>沒有需要清理的內容。</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>（無圖表）</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>出廠預設值</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>依車輛 + 天氣</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>依車輛 + 賽道 + 天氣</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>依車輛 + 賽道 + 配置 + 天氣</value>
   </data>
 </root>

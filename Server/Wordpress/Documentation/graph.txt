@@ -121,7 +121,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Shows timing jitter in the multimedia timer loop (how stable MAIRA’s 500 Hz timing is).</p>
+<p>Shows timing jitter in the playout timer loop (how stable MAIRA’s 360 Hz timing is).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

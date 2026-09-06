@@ -1,14 +1,23 @@
 ﻿
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
+using Cursors = System.Windows.Input.Cursors;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Point = System.Windows.Point;
+using Size = System.Windows.Size;
 using UserControl = System.Windows.Controls.UserControl;
 
-using MarvinsAIRARefactored.Components;
+using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.Controls;
+using MarvinsAIRARefactored.FFB;
+using MarvinsAIRARefactored.Windows;
 
 namespace MarvinsAIRARefactored.Pages;
 
@@ -17,6 +26,32 @@ public partial class RacingWheelPage : UserControl
 	private const double PreviewZoomSize = 256.0;
 	private const double PreviewZoomFactor = 6.0;
 	private const double PreviewZoomPopupOffset = 32.0;
+
+	// the whole recorded segment is fitted into the track map panel's actual rectangle (uniform scale,
+	// centered, north up) inside this margin, so the track never touches the panel edges
+	private const double TrackMapPanelMargin = 14.0;
+
+	// track map cache — the path is rebuilt when the loaded recording data changes (reference comparison),
+	// and the fit matrix + geometry are recomputed when either the data or the panel size changes
+	private List<RecordingData>? _trackMapDataList = null;
+	private Point[]? _trackMapPath = null;
+	private Matrix _trackMapFitMatrix = Matrix.Identity;
+	private Size _trackMapFitPanelSize = Size.Empty;
+
+	// preview horizontal zoom (Ctrl+wheel): the skip factor mirrored into RacingWheel.AlgorithmPreviewSkip —
+	// 1 = 100% (every sample drawn), 2 = 50%, ... 20 = 5%. The anchor keeps the recorded sample under the
+	// cursor stationary across the deferred redraw/resize. In-memory view state, never serialized.
+	private int _previewSkip = 1;
+	private bool _previewZoomAnchorPending = false;
+	private double _previewZoomAnchorSample = 0.0;
+	private double _previewZoomAnchorViewportX = 0.0;
+
+	// preview drag-scroll (hold left button + move) — the same grab gesture as the node graph's pan, horizontal
+	// only. The grab point is tracked in the scroll viewer's frame, not the image's: the image scrolls under the
+	// cursor mid-drag, so an image-relative delta would collapse back to zero as soon as the scroll applied.
+	private bool _previewDragging = false;
+	private Point _previewDragStartPoint;
+	private double _previewDragStartOffset = 0.0;
 
 	public RacingWheelPage()
 	{
@@ -58,9 +93,18 @@ public partial class RacingWheelPage : UserControl
 		app.RacingWheel.ClearPeakTorque = true;
 	}
 
+	// Ctrl+wheel zooms the preview horizontally; a plain wheel is handed back to the page so it keeps scrolling
+	// when the cursor is over the preview graph.
 	private void Preview_ScrollViewer_PreviewMouseWheel( object sender, MouseWheelEventArgs e )
 	{
 		e.Handled = true;
+
+		if ( Keyboard.Modifiers.HasFlag( ModifierKeys.Control ) )
+		{
+			ZoomPreview( e );
+
+			return;
+		}
 
 		var eventArg = new MouseWheelEventArgs( e.MouseDevice, e.Timestamp, e.Delta )
 		{
@@ -73,12 +117,144 @@ public partial class RacingWheelPage : UserControl
 		parent?.RaiseEvent( eventArg );
 	}
 
-	private void Preview_ScrollViewer_Loaded( object sender, RoutedEventArgs e )
+	// Module settings column — let the inner scroll viewer consume the wheel only while it can actually
+	// scroll in that direction; otherwise hand the event to the page so the wheel never feels trapped.
+	private void ModuleSettings_ScrollViewer_PreviewMouseWheel( object sender, MouseWheelEventArgs e )
 	{
 		var scrollViewer = (ScrollViewer) sender;
-		var half = scrollViewer.ScrollableWidth / 2;
 
-		scrollViewer.ScrollToHorizontalOffset( half );
+		var scrollingUpAtTop = ( e.Delta > 0 ) && ( scrollViewer.VerticalOffset <= 0 );
+		var scrollingDownAtBottom = ( e.Delta < 0 ) && ( scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight );
+
+		if ( ( scrollViewer.ScrollableHeight <= 0 ) || scrollingUpAtTop || scrollingDownAtBottom )
+		{
+			e.Handled = true;
+
+			var eventArg = new MouseWheelEventArgs( e.MouseDevice, e.Timestamp, e.Delta )
+			{
+				RoutedEvent = MouseWheelEvent,
+				Source = sender
+			};
+
+			var parent = scrollViewer.Parent as UIElement;
+
+			parent?.RaiseEvent( eventArg );
+		}
+	}
+
+	/// <summary>
+	/// Step the preview's horizontal zoom: wheel up zooms OUT (skip more recorded samples per drawn pixel — 100%,
+	/// 50%, 33%, ... 5%), wheel down zooms back in. Zoom only thins out the DRAWN data points; there is no
+	/// vertical zoom. The redraw happens on the wheel's next preview update, so the scroll anchor (keeping the
+	/// sample under the cursor put) is stashed here and applied by <see cref="OnPreviewImageResized"/>.
+	/// </summary>
+	private void ZoomPreview( MouseWheelEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var recording = app.RecordingManager.Recording;
+
+		// with no recording there is nothing to zoom (and no resize would come to consume a stale anchor)
+		if ( !( recording?.Data?.Count > 0 ) )
+		{
+			return;
+		}
+
+		var newSkip = Math.Clamp( _previewSkip + ( ( e.Delta > 0 ) ? 1 : -1 ), 1, Components.RacingWheel.MaxAlgorithmPreviewSkip );
+
+		if ( newSkip == _previewSkip )
+		{
+			return;
+		}
+
+		var anchorViewportX = e.GetPosition( Preview_ScrollViewer ).X;
+
+		_previewZoomAnchorSample = ( Preview_ScrollViewer.HorizontalOffset + anchorViewportX ) * _previewSkip;
+		_previewZoomAnchorViewportX = anchorViewportX;
+		_previewZoomAnchorPending = true;
+
+		_previewSkip = newSkip;
+
+		app.RacingWheel.AlgorithmPreviewSkip = newSkip;
+		app.RacingWheel.UpdateAlgorithmPreview = true;
+	}
+
+	/// <summary>
+	/// Called by the preview renderer right after it resized the preview image (recording change or zoom step).
+	/// A zoom step re-anchors the scroll so the sample under the cursor stays put; any other resize (a newly
+	/// loaded recording) centers the view as before. Deferred so ScrollableWidth reflects the new image width.
+	/// </summary>
+	public void OnPreviewImageResized()
+	{
+		if ( _previewZoomAnchorPending )
+		{
+			_previewZoomAnchorPending = false;
+
+			var offset = _previewZoomAnchorSample / _previewSkip - _previewZoomAnchorViewportX;
+
+			Dispatcher.BeginInvoke( System.Windows.Threading.DispatcherPriority.Loaded, () =>
+			{
+				Preview_ScrollViewer.ScrollToHorizontalOffset( Math.Clamp( offset, 0.0, Preview_ScrollViewer.ScrollableWidth ) );
+			} );
+		}
+		else
+		{
+			CenterPreviewScrollViewer();
+		}
+	}
+
+	private void Preview_ScrollViewer_Loaded( object sender, RoutedEventArgs e )
+	{
+		CenterPreviewScrollViewer();
+	}
+
+	// Grab handle on the node graph / preview graph seam — dragging resizes the node graph viewport only (the
+	// setting's setter clamps, so overshooting a limit just parks there; the thumb reports deltas relative to
+	// its own grab point, so the handle never jumps when the drag comes back inside the limits).
+	private void GraphEditorHeight_Thumb_DragDelta( object sender, DragDeltaEventArgs e )
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		settings.RacingWheelFFBGraphEditorHeight += e.VerticalChange;
+	}
+
+	private void GraphEditorHeight_Thumb_DragCompleted( object sender, DragCompletedEventArgs e )
+	{
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+	}
+
+	// Grab handle on the vertical seam between the two columns — the pixel delta is converted to a fraction of
+	// the block's width because the split is stored as a ratio (the setting's setter clamps, and the thumb
+	// reports deltas relative to its own grab point, so overshooting a limit just parks there).
+	private void GraphEditorSplit_Thumb_DragDelta( object sender, DragDeltaEventArgs e )
+	{
+		var blockWidth = GraphEditorBlock_Grid.ActualWidth;
+
+		if ( blockWidth > 0.0 )
+		{
+			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+			settings.RacingWheelFFBGraphEditorSplit += e.HorizontalChange / blockWidth;
+		}
+	}
+
+	private void GraphEditorSplit_Thumb_DragCompleted( object sender, DragCompletedEventArgs e )
+	{
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+	}
+
+	/// <summary>
+	/// Scrolls the preview graph to its horizontal middle — called when the scroll viewer first loads and
+	/// whenever the preview image is resized to a newly loaded recording (recordings are dynamic-length, so the
+	/// image width changes per recording). The scroll is deferred until after the pending layout pass so
+	/// ScrollableWidth reflects the new image width.
+	/// </summary>
+	public void CenterPreviewScrollViewer()
+	{
+		Dispatcher.BeginInvoke( System.Windows.Threading.DispatcherPriority.Loaded, () =>
+		{
+			Preview_ScrollViewer.ScrollToHorizontalOffset( Preview_ScrollViewer.ScrollableWidth / 2d );
+		} );
 	}
 
 	private void AlgorithmPreview_Image_MouseEnter( object sender, MouseEventArgs e )
@@ -91,6 +267,7 @@ public partial class RacingWheelPage : UserControl
 		var cursorPosition = e.GetPosition( AlgorithmPreview_Image );
 
 		UpdatePreviewZoom( cursorPosition );
+		UpdatePreviewSampleData( cursorPosition );
 		UpdatePreviewPopupPosition( cursorPosition );
 
 		PreviewZoom_Popup.IsOpen = true;
@@ -103,6 +280,15 @@ public partial class RacingWheelPage : UserControl
 
 	private void AlgorithmPreview_Image_MouseMove( object sender, MouseEventArgs e )
 	{
+		if ( _previewDragging )
+		{
+			var deltaX = e.GetPosition( Preview_ScrollViewer ).X - _previewDragStartPoint.X;
+
+			Preview_ScrollViewer.ScrollToHorizontalOffset( Math.Clamp( _previewDragStartOffset - deltaX, 0.0, Preview_ScrollViewer.ScrollableWidth ) );
+
+			return;
+		}
+
 		if ( !PreviewZoom_Popup.IsOpen )
 		{
 			return;
@@ -111,7 +297,53 @@ public partial class RacingWheelPage : UserControl
 		var cursorPosition = e.GetPosition( AlgorithmPreview_Image );
 
 		UpdatePreviewZoom( cursorPosition );
+		UpdatePreviewSampleData( cursorPosition );
 		UpdatePreviewPopupPosition( cursorPosition );
+	}
+
+	// Left-dragging the preview scrolls it horizontally, same grab gesture as panning the node graph. The zoom
+	// popup hides for the duration of the drag and comes back on release if the cursor is still over the graph
+	// (no MouseEnter refires then — the capture means the cursor never "left").
+	private void AlgorithmPreview_Image_MouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		_previewDragging = true;
+		_previewDragStartPoint = e.GetPosition( Preview_ScrollViewer );
+		_previewDragStartOffset = Preview_ScrollViewer.HorizontalOffset;
+
+		AlgorithmPreview_Image.Cursor = Cursors.SizeWE;
+		AlgorithmPreview_Image.CaptureMouse();
+
+		PreviewZoom_Popup.IsOpen = false;
+	}
+
+	private void AlgorithmPreview_Image_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
+	{
+		if ( !_previewDragging )
+		{
+			return;
+		}
+
+		AlgorithmPreview_Image.ReleaseMouseCapture();
+
+		if ( AlgorithmPreview_Image.IsMouseOver && ( AlgorithmPreview_Image.Source != null ) )
+		{
+			var cursorPosition = e.GetPosition( AlgorithmPreview_Image );
+
+			UpdatePreviewZoom( cursorPosition );
+			UpdatePreviewSampleData( cursorPosition );
+			UpdatePreviewPopupPosition( cursorPosition );
+
+			PreviewZoom_Popup.IsOpen = true;
+		}
+	}
+
+	// Fires on ReleaseMouseCapture and whenever capture is torn away (alt-tab, popups) — the one reliable place
+	// to end the drag, so a stolen capture can't leave the gesture stuck on.
+	private void AlgorithmPreview_Image_LostMouseCapture( object sender, MouseEventArgs e )
+	{
+		_previewDragging = false;
+
+		AlgorithmPreview_Image.Cursor = null;
 	}
 
 	private void UpdatePreviewZoom( Point position )
@@ -167,11 +399,206 @@ public partial class RacingWheelPage : UserControl
 		PreviewZoom_Popup.VerticalOffset = cursorPosition.Y + PreviewZoomPopupOffset;
 	}
 
+	/// <summary>
+	/// Fills the data card next to the zoom square with the recorded telemetry at the sample under the cursor —
+	/// the preview bitmap is one pixel per DRAWN sample (every _previewSkip'th recorded sample), so the cursor X
+	/// position times the skip is the sample index. The card hides itself when there's no recorded sample under
+	/// the cursor (no recording loaded, or the cursor is past the end of a short recording).
+	/// </summary>
+	private void UpdatePreviewSampleData( Point cursorPosition )
+	{
+		var app = App.Instance!;
+
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		var recordingDataList = app.RecordingManager.Recording?.Data;
+
+		var sampleIndex = (int) cursorPosition.X * _previewSkip;
+
+		if ( ( recordingDataList == null ) || ( sampleIndex < 0 ) || ( sampleIndex >= recordingDataList.Count ) )
+		{
+			PreviewData_Border.Visibility = Visibility.Collapsed;
+
+			return;
+		}
+
+		PreviewData_Border.Visibility = Visibility.Visible;
+
+		var recordingData = recordingDataList[ sampleIndex ];
+
+		const float radiansToDegrees = 180f / MathF.PI;
+
+		PreviewDataTime_TextBlock.Text = $"{sampleIndex / 360f:F2}{localization[ "SecondsUnits" ]}";
+		PreviewDataTrackPosition_TextBlock.Text = $"{recordingData.TrackPosition:F0}{localization[ "MetersUnits" ]}";
+
+		PreviewDataTorque60Hz_TextBlock.Text = $"{recordingData.InputTorque60Hz:F2}{localization[ "TorqueUnits" ]}";
+		PreviewDataTorque360Hz_TextBlock.Text = $"{recordingData.InputTorque360Hz:F2}{localization[ "TorqueUnits" ]}";
+		PreviewDataLFE_TextBlock.Text = $"{recordingData.LFEMagnitude:F2}";
+
+		PreviewDataSteeringAngle_TextBlock.Text = $"{recordingData.SteeringWheelAngle * radiansToDegrees:F1}{localization[ "Degrees" ]}";
+		PreviewDataSteeringVelocity_TextBlock.Text = $"{recordingData.SteeringWheelVelocity * radiansToDegrees:F0}{localization[ "DegreesPerSecond" ]}";
+
+		// half-lock-normalized wheel state — derived from the steering telemetry, same as the replay context
+		var halfLock = recordingData.SteeringWheelAngleMax * 0.5f;
+
+		PreviewDataWheelPosition_TextBlock.Text = $"{( halfLock > 0f ? recordingData.SteeringWheelAngle / halfLock : 0f ):F2}";
+		PreviewDataWheelVelocity_TextBlock.Text = $"{( halfLock > 0f ? recordingData.SteeringWheelVelocity / halfLock : 0f ):F2}";
+
+		PreviewDataSpeed_TextBlock.Text = $"{recordingData.VelocityMS:F1}{localization[ "MPSUnits" ]}";
+		PreviewDataRPM_TextBlock.Text = $"{recordingData.RPM:F0}";
+		PreviewDataGear_TextBlock.Text = recordingData.Gear switch
+		{
+			< 0 => "R",
+			0 => "N",
+			_ => recordingData.Gear.ToString()
+		};
+		PreviewDataABS_TextBlock.Text = recordingData.ABSActive ? localization[ "ON" ] : localization[ "OFF" ];
+
+		PreviewDataLateralGForce_TextBlock.Text = $"{recordingData.LateralGForce:F2}{localization[ "GForceUnits" ]}";
+		PreviewDataLongitudinalGForce_TextBlock.Text = $"{recordingData.LongitudinalGForce:F2}{localization[ "GForceUnits" ]}";
+		PreviewDataShockVelocity_TextBlock.Text = $"{recordingData.MaxShockVelocity:F2}{localization[ "MPSUnits" ]}";
+
+		PreviewDataUndersteer_TextBlock.Text = $"{recordingData.UndersteerEffect * 100f:F0}{localization[ "Percent" ]}";
+		PreviewDataOversteer_TextBlock.Text = $"{recordingData.OversteerEffect * 100f:F0}{localization[ "Percent" ]}";
+		PreviewDataSeatOfPants_TextBlock.Text = $"{recordingData.SeatOfPantsEffect * 100f:F0}{localization[ "Percent" ]}";
+		PreviewDataSkidSlip_TextBlock.Text = $"{recordingData.SkidSlip * 100f:F0}{localization[ "Percent" ]}";
+	}
+
+	// every scroll, zoom, resize, or recording change moves the visible range — re-highlight the map segment
+	private void Preview_ScrollViewer_ScrollChanged( object sender, ScrollChangedEventArgs e )
+	{
+		UpdateTrackMapPanel();
+	}
+
+	// the panel resizes with the window (it sits in a star-sized column) — refit the map to the new rectangle
+	private void TrackMap_Canvas_SizeChanged( object sender, SizeChangedEventArgs e )
+	{
+		UpdateTrackMapPanel();
+	}
+
+	/// <summary>
+	/// Keeps the track map panel (right of the preview graph) in sync: the recorded segment's polyline
+	/// (integrated once per loaded recording, see <see cref="TrackMap"/>) is fitted whole into the panel's
+	/// actual rectangle, north up, and the slice of the recording currently visible in the preview viewport
+	/// is drawn over it in orange. Driven by the preview's ScrollChanged, which fires on scrolls, zoom steps,
+	/// resizes, and recording swaps (the image extent changes), plus the map canvas's own SizeChanged so the
+	/// track refits when the panel resizes.
+	/// </summary>
+	private void UpdateTrackMapPanel()
+	{
+		var recordingDataList = App.Instance?.RecordingManager.Recording?.Data;
+
+		if ( ( recordingDataList == null ) || ( recordingDataList.Count == 0 ) )
+		{
+			// no recording — blank panel; drop the cached map so the old samples can be collected
+			// (RecordingManager unloads the other recordings when a new one loads — don't keep them alive here)
+			_trackMapDataList = null;
+			_trackMapPath = null;
+
+			TrackMap_Path.Data = null;
+			TrackMapSegment_Path.Data = null;
+
+			TrackMapStart_Ellipse.Visibility = Visibility.Collapsed;
+			TrackMapEnd_Ellipse.Visibility = Visibility.Collapsed;
+
+			return;
+		}
+
+		var panelSize = new Size( TrackMap_Canvas.ActualWidth, TrackMap_Canvas.ActualHeight );
+
+		if ( ( panelSize.Width <= 0d ) || ( panelSize.Height <= 0d ) )
+		{
+			// not laid out yet — the canvas's SizeChanged calls back in once it has a real size
+			return;
+		}
+
+		if ( !ReferenceEquals( recordingDataList, _trackMapDataList ) || ( panelSize != _trackMapFitPanelSize ) )
+		{
+			if ( !ReferenceEquals( recordingDataList, _trackMapDataList ) )
+			{
+				_trackMapDataList = recordingDataList;
+				_trackMapPath = TrackMap.BuildPath( recordingDataList );
+			}
+
+			_trackMapFitPanelSize = panelSize;
+
+			// uniform scale fitting the whole segment into the panel rectangle, centered both ways inside the
+			// margin so the track never touches the edges (extent floors guard a degenerate
+			// straight-line/parked recording)
+			double minX = double.MaxValue, maxX = double.MinValue, minY = double.MaxValue, maxY = double.MinValue;
+
+			foreach ( var point in _trackMapPath! )
+			{
+				minX = Math.Min( minX, point.X );
+				maxX = Math.Max( maxX, point.X );
+				minY = Math.Min( minY, point.Y );
+				maxY = Math.Max( maxY, point.Y );
+			}
+
+			var extentX = Math.Max( maxX - minX, 1.0 );
+			var extentY = Math.Max( maxY - minY, 1.0 );
+
+			var fitWidth = Math.Max( panelSize.Width - TrackMapPanelMargin * 2.0, 1.0 );
+			var fitHeight = Math.Max( panelSize.Height - TrackMapPanelMargin * 2.0, 1.0 );
+
+			var scale = Math.Min( fitWidth / extentX, fitHeight / extentY );
+
+			_trackMapFitMatrix = new Matrix( scale, 0d, 0d, scale, ( panelSize.Width - scale * ( minX + maxX ) ) / 2.0, ( panelSize.Height - scale * ( minY + maxY ) ) / 2.0 );
+
+			TrackMap_Path.Data = BuildTrackMapGeometry( 0, _trackMapPath.Length - 1 );
+
+			// start (green) / end (red) markers sit at the fitted endpoints
+			var startPoint = _trackMapFitMatrix.Transform( _trackMapPath[ 0 ] );
+			var endPoint = _trackMapFitMatrix.Transform( _trackMapPath[ ^1 ] );
+
+			Canvas.SetLeft( TrackMapStart_Ellipse, startPoint.X - TrackMapStart_Ellipse.Width / 2d );
+			Canvas.SetTop( TrackMapStart_Ellipse, startPoint.Y - TrackMapStart_Ellipse.Height / 2d );
+
+			Canvas.SetLeft( TrackMapEnd_Ellipse, endPoint.X - TrackMapEnd_Ellipse.Width / 2d );
+			Canvas.SetTop( TrackMapEnd_Ellipse, endPoint.Y - TrackMapEnd_Ellipse.Height / 2d );
+
+			TrackMapStart_Ellipse.Visibility = Visibility.Visible;
+			TrackMapEnd_Ellipse.Visibility = Visibility.Visible;
+		}
+
+		// the orange highlight = the recorded samples currently visible in the preview viewport (the preview
+		// bitmap is one pixel per DRAWN sample, so image x times the zoom skip is the sample index)
+		var lastIndex = _trackMapPath!.Length - 1;
+
+		var firstVisibleSample = Math.Clamp( (int) ( Preview_ScrollViewer.HorizontalOffset * _previewSkip ), 0, lastIndex );
+		var lastVisibleSample = Math.Clamp( (int) ( ( Preview_ScrollViewer.HorizontalOffset + Preview_ScrollViewer.ViewportWidth ) * _previewSkip ), 0, lastIndex );
+
+		TrackMapSegment_Path.Data = BuildTrackMapGeometry( firstVisibleSample, lastVisibleSample );
+	}
+
+	/// <summary>A polyline over the fitted track path from one sample to another (both clamped by the caller).</summary>
+	private StreamGeometry BuildTrackMapGeometry( int firstSample, int lastSample )
+	{
+		var geometry = new StreamGeometry();
+
+		using ( var context = geometry.Open() )
+		{
+			context.BeginFigure( _trackMapFitMatrix.Transform( _trackMapPath![ firstSample ] ), false, false );
+
+			// one point per 60 Hz telemetry frame is plenty for the polyline (values repeat 6× at 360 Hz)
+			for ( var i = firstSample + 6; i < lastSample; i += 6 )
+			{
+				context.LineTo( _trackMapFitMatrix.Transform( _trackMapPath[ i ] ), true, true );
+			}
+
+			context.LineTo( _trackMapFitMatrix.Transform( _trackMapPath[ lastSample ] ), true, true );
+		}
+
+		geometry.Freeze();
+
+		return geometry;
+	}
+
 	private void StartRecording_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
-		app.RecordingManager.StartRecording();
+		app.RecordingManager.ToggleRecording();
 	}
 
 	#endregion
@@ -211,109 +638,424 @@ public partial class RacingWheelPage : UserControl
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateSteeringDeviceOptions" );
 	}
 
-	public void UpdateAlgorithmOptions()
+	private bool _refreshingGraphSelector = false;
+
+	// The graph selectors group their options into "Built-in" and "Custom" categories using the underscore-key
+	// header convention MairaComboBox renders as non-selectable accent rows (an underscore key never collides
+	// with a real graph name selection). Categories with no graphs are omitted.
+	private static List<KeyValuePair<string, string>> BuildGraphSelectorItems( SerializableDictionary<string, FFBGraph> graphs )
+	{
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		var items = new List<KeyValuePair<string, string>>();
+
+		// built-ins display their LOCALIZED name (the raw name stays the item value — it is the stable
+		// identifier the selection and settings store), sorted by what the user actually reads
+		var builtInItems = graphs.Where( pair => pair.Value.IsBuiltIn )
+			.Select( pair => new KeyValuePair<string, string>( pair.Key, FFBGraphViewModel.GraphDisplayName( pair.Key, isBuiltIn: true ) ) )
+			.OrderBy( pair => pair.Value, StringComparer.CurrentCultureIgnoreCase )
+			.ToList();
+
+		var customNames = graphs.Where( pair => !pair.Value.IsBuiltIn ).Select( pair => pair.Key ).OrderBy( name => name, StringComparer.OrdinalIgnoreCase ).ToList();
+
+		if ( builtInItems.Count > 0 )
+		{
+			items.Add( new KeyValuePair<string, string>( "_builtIn", localization[ "BuiltInGraphs" ] ) );
+
+			items.AddRange( builtInItems );
+		}
+
+		if ( customNames.Count > 0 )
+		{
+			items.Add( new KeyValuePair<string, string>( "_custom", localization[ "CustomGraphs" ] ) );
+
+			foreach ( var graphName in customNames )
+			{
+				items.Add( new KeyValuePair<string, string>( graphName, graphName ) );
+			}
+		}
+
+		return items;
+	}
+
+	public void UpdateFFBGraphOptions()
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		_refreshingGraphSelector = true;
+
+		Graph_MairaComboBox.ItemsSource = BuildGraphSelectorItems( settings.RacingWheelFFBGraphs );
+		Graph_MairaComboBox.SelectedValue = settings.RacingWheelSelectedFFBGraphName;
+
+		var isBuiltIn = settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) && graph.IsBuiltIn;
+
+		// Built-in graphs cannot be renamed or deleted, but can be reset to their shipped defaults.
+		RenameGraph_MairaButton.Disabled = isBuiltIn;
+		DeleteGraph_MairaButton.Disabled = isBuiltIn;
+		ResetGraph_MairaButton.Visibility = isBuiltIn ? Visibility.Visible : Visibility.Collapsed;
+
+		_refreshingGraphSelector = false;
+
+		// Rebuild the module cards so their (localized) module names and setting labels refresh — this runs from
+		// MainWindow.RefreshWindow, which is the app's relocalization entry point, so the editor follows a
+		// runtime language switch.
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.RebuildFromCurrentSelection();
+	}
+
+	private void Graph_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
+	{
+		if ( _refreshingGraphSelector )
+		{
+			return;
+		}
+
+		if ( Graph_MairaComboBox.SelectedValue is not string graphName )
+		{
+			return;
+		}
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		if ( graphName == settings.RacingWheelSelectedFFBGraphName )
+		{
+			return;
+		}
+
+		settings.SelectFFBGraph( graphName );
+
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
+	}
+
+	private void NewGraph_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[RacingWheelPage] UpdateAlgorithmOptions >>>" );
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var window = new NewFFBGraphWindow { Owner = app.MainWindow };
 
-		var dictionary = new Dictionary<RacingWheel.Algorithm, string>
+		window.ShowDialog();
+
+		if ( !window.Confirmed )
 		{
-			{ RacingWheel.Algorithm.Native60Hz, localization[ "Native60Hz" ] },
-			{ RacingWheel.Algorithm.Native360Hz, localization[ "Native360Hz" ] },
-			{ RacingWheel.Algorithm.DetailBooster, localization[ "DetailBooster" ] },
-			{ RacingWheel.Algorithm.DeltaLimiter, localization[ "DeltaLimiter" ] },
-			{ RacingWheel.Algorithm.DetailBoosterOn60Hz, localization[ "DetailBoosterOn60Hz" ] },
-			{ RacingWheel.Algorithm.DeltaLimiterOn60Hz, localization[ "DeltaLimiterOn60Hz" ] },
-			{ RacingWheel.Algorithm.SlewAndTotalCompression, localization[ "SlewAndTotalCompression" ] },
-			{ RacingWheel.Algorithm.MultiAdjustmentToolkit, localization[ "MultiAdjustmentToolkit" ] }
-		};
+			return;
+		}
 
-		Algorithm_MairaComboBox.ItemsSource = dictionary.ToList();
+		var name = window.GraphName.Trim();
 
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateAlgorithmOptions" );
+		if ( ( name == string.Empty ) || settings.RacingWheelFFBGraphs.ContainsKey( name ) )
+		{
+			return;
+		}
+
+		settings.CreateFFBGraph( name, window.CopyFromCurrent );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
 	}
 
-	public void UpdateMultiFFBSourceOptions()
+	private void RenameGraph_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[RacingWheelPage] UpdateFFBSourceOptions >>>" );
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var currentName = settings.RacingWheelSelectedFFBGraphName;
 
-		var dictionary = new Dictionary<RacingWheel.MultiFFBSourceOptions, string>
+		if ( settings.RacingWheelFFBGraphs.TryGetValue( currentName, out var currentGraph ) && currentGraph.IsBuiltIn )
 		{
-			{ RacingWheel.MultiFFBSourceOptions.Native60Hz, localization[ "Native60Hz" ] },
-			{ RacingWheel.MultiFFBSourceOptions.HybridVariable30, localization[ "HybridVariable30" ] },
-			{ RacingWheel.MultiFFBSourceOptions.Hybrid10, localization[ "Hybrid10" ] },
-			{ RacingWheel.MultiFFBSourceOptions.Native360Hz, localization[ "Native360Hz" ] },
-			{ RacingWheel.MultiFFBSourceOptions._Dummy1_, "_" },
-			{ RacingWheel.MultiFFBSourceOptions.DefaultsNative60Hz, localization[ "DefaultsNative60Hz" ] },
-			{ RacingWheel.MultiFFBSourceOptions.DefaultsHybridVariable30, localization[ "DefaultsHybridVariable30" ] },
-			{ RacingWheel.MultiFFBSourceOptions.DefaultsHybrid10, localization[ "DefaultsHybrid10" ] },
-			{ RacingWheel.MultiFFBSourceOptions.DefaultsNative360Hz, localization[ "DefaultsNative360Hz" ] },
-			{ RacingWheel.MultiFFBSourceOptions._Dummy2_, "_" },
-			{ RacingWheel.MultiFFBSourceOptions.PresetBasicFFB, localization[ "PresetBasicFFB" ] },
-			{ RacingWheel.MultiFFBSourceOptions.PresetBalancedFFB, localization[ "PresetBalancedFFB" ] },
-			{ RacingWheel.MultiFFBSourceOptions.PresetBoostDetail, localization[ "PresetBoostDetail" ] },
-			{ RacingWheel.MultiFFBSourceOptions.PresetReduceDetail, localization[ "PresetReduceDetail" ] },
-			{ RacingWheel.MultiFFBSourceOptions.PresetReduceBigBumps, localization[ "PresetReduceBigBumps" ] }
-		};
+			return;
+		}
 
-		MultiFFBSource_MairaComboBox.ItemsSource = dictionary;
+		var window = new RenameControllerProfileWindow( currentName ) { Owner = app.MainWindow };
 
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateFFBSourceOptions" );
+		window.ShowDialog();
+
+		if ( !window.Confirmed )
+		{
+			return;
+		}
+
+		var newName = window.ProfileName.Trim();
+
+		if ( ( newName == string.Empty ) || ( newName == currentName ) || settings.RacingWheelFFBGraphs.ContainsKey( newName ) )
+		{
+			return;
+		}
+
+		settings.RenameFFBGraph( currentName, newName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
 	}
 
-	public void UpdatePredictionModeOptions()
+	private void DeleteGraph_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[RacingWheelPage] UpdatePredictionModeOptions >>>" );
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var currentName = settings.RacingWheelSelectedFFBGraphName;
 
-		var dictionary = new Dictionary<RacingWheel.PredictionMode, string>
+		if ( settings.RacingWheelFFBGraphs.TryGetValue( currentName, out var currentGraph ) && currentGraph.IsBuiltIn )
 		{
-			{ RacingWheel.PredictionMode.Disabled, localization[ "Disabled" ] },
-			{ RacingWheel.PredictionMode.PredictK1, localization[ "PredictK1" ] },
-			{ RacingWheel.PredictionMode.PredictK2, localization[ "PredictK2" ] }
-		};
+			return;
+		}
 
-		PredictionMode_MairaComboBox.ItemsSource = dictionary.ToList();
+		var window = new DeleteControllerProfileWindow( currentName ) { Owner = app.MainWindow };
 
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdatePredictionModeOptions" );
+		window.ShowDialog();
+
+		if ( !window.Confirmed )
+		{
+			return;
+		}
+
+		settings.DeleteFFBGraph( currentName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
 	}
 
+	private void ResetGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		settings.ResetBuiltInFFBGraph( settings.RacingWheelSelectedFFBGraphName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
+	}
+
+	private void ExportGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) )
+		{
+			ExportGraph( graph );
+		}
+	}
+
+	// Pick a file, write the graph. The suggested file name is the graph name with any filesystem-invalid
+	// characters stripped.
+	private static void ExportGraph( FFBGraph graph )
+	{
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		var fileName = string.Concat( graph.Name.Split( Path.GetInvalidFileNameChars() ) ).Trim();
+
+		var dialog = new SaveFileDialog
+		{
+			Title = localization[ "ExportGraph" ],
+			FileName = fileName,
+			DefaultExt = FFBGraphPort.FileExtension,
+			AddExtension = true,
+			Filter = $"{localization[ "MairaGraphFiles" ]} (*{FFBGraphPort.FileExtension})|*{FFBGraphPort.FileExtension}"
+		};
+
+		if ( dialog.ShowDialog() != true )
+		{
+			return;
+		}
+
+		try
+		{
+			FFBGraphPort.Export( graph, dialog.FileName );
+		}
+		catch ( Exception exception )
+		{
+			ErrorWindow.ShowModal( localization[ "ExportGraphFailed" ], exception );
+		}
+	}
+
+	// Pick a file and validate + load it. A graph the user does not already have is added as a new user graph
+	// (unique name, fresh module ids, the file's GraphId kept so a later re-import is recognized). A graph they
+	// already have (same GraphId) opens the import-settings dialog, letting them apply the file's module settings
+	// onto the existing graph (current context / baseline / both) or import a separate copy. Validation failures
+	// show their own localized message; anything unexpected shows the generic one.
+	private void ImportGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		var dialog = new OpenFileDialog
+		{
+			Title = localization[ "ImportGraph" ],
+			Filter = $"{localization[ "MairaGraphFiles" ]} (*{FFBGraphPort.FileExtension})|*{FFBGraphPort.FileExtension}",
+			CheckFileExists = true
+		};
+
+		if ( dialog.ShowDialog() != true )
+		{
+			return;
+		}
+
+		FFBGraph graph;
+
+		try
+		{
+			graph = FFBGraphPort.Import( dialog.FileName );
+		}
+		catch ( FFBGraphPort.ImportException importException )
+		{
+			ErrorWindow.ShowModal( importException.Message );
+
+			return;
+		}
+		catch ( Exception exception )
+		{
+			ErrorWindow.ShowModal( localization[ "ImportGraphFailed" ], exception );
+
+			return;
+		}
+
+		try
+		{
+			var matchingGraphName = settings.FindMatchingGraphName( graph );
+
+			if ( matchingGraphName == null )
+			{
+				settings.ImportFFBGraph( graph );
+			}
+			else
+			{
+				var ( contextAvailable, contextLabel ) = settings.GetGraphImportContextInfo();
+
+				var choice = ImportGraphSettingsWindow.ShowModal( matchingGraphName, contextLabel, contextAvailable );
+
+				switch ( choice )
+				{
+					case ImportGraphSettingsWindow.Choice.UpdateCurrentContext:
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, toCurrentContext: true, toBaseline: false );
+						break;
+
+					case ImportGraphSettingsWindow.Choice.UpdateBaseline:
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, toCurrentContext: false, toBaseline: true );
+						break;
+
+					case ImportGraphSettingsWindow.Choice.UpdateBoth:
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, toCurrentContext: true, toBaseline: true );
+						break;
+
+					case ImportGraphSettingsWindow.Choice.UpdateEverywhere:
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, toCurrentContext: true, toBaseline: false, toEveryContextWithGraphSelected: true );
+						break;
+
+					case ImportGraphSettingsWindow.Choice.NewCopy:
+						settings.ImportFFBGraph( graph, asNewCopy: true );
+						break;
+
+					case ImportGraphSettingsWindow.Choice.Cancel:
+						return;
+				}
+			}
+		}
+		catch ( Exception exception )
+		{
+			ErrorWindow.ShowModal( localization[ "ImportGraphFailed" ], exception );
+
+			return;
+		}
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
+	}
+
+	private void TestModule_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.ToggleTestActive( moduleViewModel );
+		}
+	}
+
+	private void MovePinnedGroupUp_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.MovePinnedGroup( moduleViewModel, -1 );
+		}
+	}
+
+	private void MovePinnedGroupDown_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.MovePinnedGroup( moduleViewModel, 1 );
+		}
+	}
+
+	private void EditGraphDescription_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var graphViewModel = MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel;
+
+		if ( !graphViewModel.IsFFBGraphCustom )
+		{
+			return;
+		}
+
+		var window = new EditDescriptionWindow( graphViewModel.GraphDescription ) { Owner = app.MainWindow };
+
+		window.ShowDialog();
+
+		if ( window.Confirmed )
+		{
+			graphViewModel.GraphDescription = window.DescriptionText.Trim();
+		}
+	}
+
+	private void EditNodeDescription_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) && moduleViewModel.CanEditNodeDescription )
+		{
+			var app = App.Instance!;
+
+			// the editor is seeded with the resolved description (the localized default when the node has no
+			// override yet), so the user can start from the shipped text; clearing it reverts to the default
+			var window = new EditDescriptionWindow( moduleViewModel.NodeDescription ) { Owner = app.MainWindow };
+
+			window.ShowDialog();
+
+			if ( window.Confirmed )
+			{
+				moduleViewModel.NodeDescription = window.DescriptionText.Trim();
+			}
+		}
+	}
+
+	private void ChooseRecording_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var window = new ChooseRecordingWindow { Owner = app.MainWindow };
+
+		window.ShowDialog();
+	}
+
+	// The recordings list now lives in the choose-recording dialog; refresh it if one is open (this is still
+	// called when the recording manager loads or saves recordings).
 	public void UpdatePreviewRecordingsOptions()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[RacingWheelPage] UpdatePreviewRecordingsOptions >>>" );
-
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-
-		var dictionary = new Dictionary<string, string>();
-
-		if ( app.RecordingManager.Recordings.Count == 0 )
-		{
-			dictionary.Add( string.Empty, localization[ "NoRecordingsFound" ] );
-		}
-
-		foreach ( var recording in app.RecordingManager.Recordings )
-		{
-			dictionary.Add( recording.Key, recording.Value.Description! );
-		}
-
 		app.Dispatcher.Invoke( () =>
 		{
-			PreviewRecordings_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
+			ChooseRecordingWindow.Current?.RefreshRecordingsList();
 		} );
-
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdatePreviewRecordingsOptions" );
 	}
 
 	public void UpdateLFERecordingDeviceOptions()
@@ -344,6 +1086,24 @@ public partial class RacingWheelPage : UserControl
 		LFERecordingDevice_MairaComboBox.OffValue = Components.LFE.DisabledDeviceName;
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateLFERecordingDeviceOptions" );
+	}
+
+	// The rev lights section only exists for the Logitech wheels that have a rev light strip we can drive,
+	// so it is hidden entirely on every other wheelbase rather than shown as a switch that does nothing.
+	public void UpdateRevLightsSection()
+	{
+		var app = App.Instance!;
+
+		if ( app.LogitechWheel.WheelIsSupported )
+		{
+			RevLights_MairaGroupBox.Visibility = Visibility.Visible;
+			RevLightsWheelName_TextBlock.Text = app.LogitechWheel.WheelName;
+		}
+		else
+		{
+			RevLights_MairaGroupBox.Visibility = Visibility.Collapsed;
+			RevLightsWheelName_TextBlock.Text = string.Empty;
+		}
 	}
 
 	public void UpdateSteeringDeviceSection()

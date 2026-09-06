@@ -119,7 +119,7 @@
                 </Grid.ColumnDefinitions>
 
                 <controls:MairaMappableButton Grid.Column="0"
-                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-minus.png"
                                               IconWidth="32"
                                               IconHeight="32"
                                               DefaultFrame="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-minus-default.png"
@@ -141,7 +141,7 @@
                                       LostMouseCapture="Middle_MairaButton_LostMouseCapture" />
 
                 <controls:MairaMappableButton Grid.Column="2"
-                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-plus.png"
                                               IconWidth="32"
                                               IconHeight="32"
                                               DefaultFrame="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-plus-default.png"

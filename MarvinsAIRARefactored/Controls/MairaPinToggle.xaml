@@ -1,0 +1,74 @@
+<UserControl x:Class="MarvinsAIRARefactored.Controls.MairaPinToggle"
+             x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Cursor="Hand">
+
+    <!-- Pin-shaped toggle: gray (muted) when off, MAIRA orange when pinned. The glyph is the Segoe MDL2
+         Assets pushpin (guaranteed present on the supported Windows versions), so the icon tints via
+         Foreground with no bitmap assets. The transparent Grid gives a click target larger than the
+         glyph's inked pixels. -->
+    <Grid Background="Transparent">
+
+        <!-- Unpinned shows the outline pin (E718, the sideways Windows-style pin); pinned swaps to its
+             filled sibling E841 via the style trigger below, so shape reinforces the gray/orange color
+             cue. The toggle sits inline right after its setting's label, where the sideways pin reads
+             like the familiar Windows "pin this" affordance. -->
+        <TextBlock FontFamily="Segoe MDL2 Assets"
+                   FontSize="{Binding IconSize, ElementName=Root}"
+                   Margin="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+
+
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text"
+                            Value="&#xE718;" />
+                    <Setter Property="Foreground"
+                            Value="{DynamicResource Brush.Foreground.Muted}" />
+                    <Setter Property="Opacity"
+                            Value="0.6" />
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <TranslateTransform X="0" />
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsOn, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="Text"
+                                    Value="&#xE841;" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource Brush.Accent}" />
+                            <Setter Property="Opacity"
+                                    Value="1" />
+                            <!-- E841 is the pushed-in pin: the tip is gone because it is "embedded in the
+                                 surface". Shifting the head the tip's length to the left sells that — the
+                                 head visibly travels in the push direction instead of the tip just vanishing.
+                                 Render-only transform so nothing around the icon reflows. -->
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform X="-6" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <!-- hover brightens (declared after the IsOn trigger so a hovered unpinned icon
+                             also reaches full opacity; the orange foreground still wins when pinned) -->
+                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="Opacity"
+                                    Value="1" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+
+        </TextBlock>
+
+    </Grid>
+
+</UserControl>

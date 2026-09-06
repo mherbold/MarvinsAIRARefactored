@@ -103,7 +103,7 @@ public partial class GameBridge
 		return false;
 	}
 
-	// called from the multimedia timer worker thread at ~500 Hz, immediately before the racing wheel update,
+	// called from the playout timer worker thread at ~360 Hz, immediately before the racing wheel update,
 	// so bridge sub-samples are taken on the precise kernel timer and the freshest torque reading is in the
 	// frame with near zero added latency. Exceptions must never propagate into the worker thread (it treats
 	// them as fatal), so a failing bridge is logged and deactivated instead.
@@ -280,10 +280,10 @@ public partial class GameBridge
 
 				ActiveAdapter = adapter;
 
-				// the bridges are pumped from the multimedia timer worker thread, but that timer only runs
+				// the bridges are pumped from the playout timer worker thread, but that timer only runs
 				// while the simulator is connected - and the simulator cannot connect until the bridge has
 				// pumped its first frames, so the timer is resumed here to break the circle
-				app.MultimediaTimer.Suspend = false;
+				app.PlayoutTimer.Suspend = false;
 			}
 			catch ( Exception exception )
 			{
@@ -293,7 +293,7 @@ public partial class GameBridge
 
 				if ( !app.Simulator.IsConnected )
 				{
-					app.MultimediaTimer.Suspend = true;
+					app.PlayoutTimer.Suspend = true;
 				}
 			}
 			finally

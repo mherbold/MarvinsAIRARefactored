@@ -55,11 +55,14 @@ public partial class Simulator
 	public string CurrentTireCompoundType { get; private set; } = string.Empty;
 	public int DisplayUnits { get; private set; } = 0;
 	public bool DriverIsAdmin { get; private set; } = false;
+	public bool EngineRunning { get; private set; } = false;
 	public float FrameRate { get; private set; } = 0;
 	public int Gear { get; private set; } = 0;
 	public float GpuUsage { get; private set; } = 0f;
 	public float LongitudinalGForce { get; private set; } = 0f;
 	public float LateralGForce { get; private set; } = 0f;
+	public float MaxShockVelocity { get; private set; } = 0f;
+	public bool ProtectionTriggersEnabled { get; private set; } = false;   // gates the raw telemetry the FFB graph's protection modules self-trigger from (false = they see zeros)
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
 	public bool IsReplayPlaying { get; private set; } = false;
@@ -106,8 +109,18 @@ public partial class Simulator
 	public IRacingSdkEnum.SessionState SessionState { get; private set; } = IRacingSdkEnum.SessionState.Invalid;
 	public double SessionTime { get; private set; } = 0f;
 	public double SessionTimeRemain { get; private set; } = 0;
+	public float RedlineRPM { get; private set; } = 0f;
+	// iRacing describes a car's shift lights with four rising RPMs: First is where the first light comes
+	// on, Shift is where the shift indication begins, Last is where the final light comes on, and Blink is
+	// where they start blinking. Anything filling a rev bar wants First to Last; Shift sits in the middle
+	// and is a colour change, not the top of the range.
 	public float ShiftLightsFirstRPM { get; private set; } = 0f;
 	public float ShiftLightsShiftRPM { get; private set; } = 0f;
+	public float ShiftLightsLastRPM { get; private set; } = 0f;
+	public float ShiftLightsBlinkRPM { get; private set; } = 0f;
+
+	private float _lastLoggedShiftLightsFirstRPM = -1f;
+	private float _lastLoggedShiftLightsLastRPM = -1f;
 	public string SimMode { get; private set; } = string.Empty;
 	public float Speed { get; private set; } = 0f;
 	public bool SteeringFFBEnabled { get; private set; } = false;
@@ -115,6 +128,7 @@ public partial class Simulator
 	public float SteeringRatio { get; private set; } = 10f;
 	public float SteeringWheelAngle { get; private set; } = 0f;
 	public float SteeringWheelAngleMax { get; private set; } = 0f;
+	public float SteeringWheelVelocity { get; private set; } = 0f;   // rad/s, derived from SteeringWheelAngle across telemetry frames (60 Hz)
 	public float[] SteeringWheelTorque_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float Throttle { get; private set; } = 0f;
 	public float ThrottleRaw { get; private set; } = 0f;
@@ -136,6 +150,17 @@ public partial class Simulator
 	public float Yaw { get; private set; } = 0f;
 	public float YawNorth { get; private set; } = 0f;
 	public float YawRate { get; private set; } = 0f;
+	public float[] YawRate_ST { get; private set; } = new float[ SamplesPerFrame360Hz ]; // true 360 Hz yaw rate; falls back to the 60 Hz YawRate when the sim doesn't expose it
+
+	// prediction-audit 360 Hz channels (recorded for the PredictionLab telemetry audit; nothing else consumes
+	// them) — zeros when the sim doesn't expose the ST arrays, except VelocityY_ST which falls back to the
+	// 60 Hz VelocityY
+	public float[] VelocityY_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] LatAccel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] RollRate_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] PitchRate_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] LFShockDefl_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] RFShockDefl_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 
 	private bool _telemetryDataInitialized = false;
 	private bool _waitingForFirstSessionInfo = false;
@@ -169,6 +194,8 @@ public partial class Simulator
 	private IRacingSdkDatum? _carIdxOnPitRoadDatum = null;
 	private IRacingSdkDatum? _carIdxSessionFlagsDatum = null;
 	private IRacingSdkDatum? _carIdxTireCompoundDatum = null;
+
+	private int[] _carIdxTireCompounds = [];
 	private IRacingSdkDatum? _carDistAheadDatum = null;
 	private IRacingSdkDatum? _carDistBehindDatum = null;
 	private IRacingSdkDatum? _carLeftRightDatum = null;
@@ -176,6 +203,7 @@ public partial class Simulator
 	private IRacingSdkDatum? _clutchDatum = null;
 	private IRacingSdkDatum? _crShockVel_STDatum = null;
 	private IRacingSdkDatum? _displayUnitsDatum = null;
+	private IRacingSdkDatum? _engineWarningsDatum = null;
 	private IRacingSdkDatum? _frameRateDatum = null;
 	private IRacingSdkDatum? _gearDatum = null;
 	private IRacingSdkDatum? _gpuUsageDatum = null;
@@ -236,6 +264,13 @@ public partial class Simulator
 	private IRacingSdkDatum? _yawDatum = null;
 	private IRacingSdkDatum? _yawNorthDatum = null;
 	private IRacingSdkDatum? _yawRateDatum = null;
+	private IRacingSdkDatum? _yawRate_STDatum = null;
+	private IRacingSdkDatum? _velocityY_STDatum = null;
+	private IRacingSdkDatum? _latAccel_STDatum = null;
+	private IRacingSdkDatum? _rollRate_STDatum = null;
+	private IRacingSdkDatum? _pitchRate_STDatum = null;
+	private IRacingSdkDatum? _lfShockDefl_STDatum = null;
+	private IRacingSdkDatum? _rfShockDefl_STDatum = null;
 
 	private readonly float[] _rpmSpeedRatioAccumulator = new float[ MaxNumGears ];
 	private readonly int[] _rpmSpeedRatioSampleCount = new int[ MaxNumGears ];
@@ -374,7 +409,7 @@ public partial class Simulator
 
 		WindowHandle = PInvoke.FindWindow( null, "iRacing.com Simulator" );
 
-		app.MultimediaTimer.Suspend = false;
+		app.PlayoutTimer.Suspend = false;
 
 		_waitingForFirstSessionInfo = true;
 
@@ -429,9 +464,12 @@ public partial class Simulator
 		CurrentTireCompoundType = string.Empty;
 		DisplayUnits = 0;
 		DriverIsAdmin = false;
+		EngineRunning = false;
 		Gear = 0;
 		LongitudinalGForce = 0f;
 		LateralGForce = 0f;
+		MaxShockVelocity = 0f;
+		ProtectionTriggersEnabled = false;
 		IsOnTrack = false;
 		IsReplayPlaying = false;
 		Lap = 0;
@@ -471,14 +509,18 @@ public partial class Simulator
 		SessionTime = 0;
 		SessionTimeRemain = 0;
 		Speed = 0f;
+		RedlineRPM = 0f;
 		ShiftLightsFirstRPM = 0f;
 		ShiftLightsShiftRPM = 0f;
+		ShiftLightsLastRPM = 0f;
+		ShiftLightsBlinkRPM = 0f;
 		SimMode = string.Empty;
 		SteeringFFBEnabled = false;
 		SteeringOffsetInDegrees = 0f;
 		SteeringRatio = 10f;
 		SteeringWheelAngle = 0f;
 		SteeringWheelAngleMax = 0f;
+		SteeringWheelVelocity = 0f;
 		Throttle = 0f;
 		ThrottleRaw = 0f;
 		TireLF_RumblePitch = 0f;
@@ -499,6 +541,13 @@ public partial class Simulator
 		YawNorth = 0f;
 		YawRate = 0f;
 
+		Array.Clear( YawRate_ST );
+		Array.Clear( VelocityY_ST );
+		Array.Clear( LatAccel_ST );
+		Array.Clear( RollRate_ST );
+		Array.Clear( PitchRate_ST );
+		Array.Clear( LFShockDefl_ST );
+		Array.Clear( RFShockDefl_ST );
 		Array.Clear( CFShockVel_ST );
 		Array.Clear( CRShockVel_ST );
 		Array.Clear( LFShockVel_ST );
@@ -547,7 +596,7 @@ public partial class Simulator
 
 #endif
 
-		app.MultimediaTimer.Suspend = true;
+		app.PlayoutTimer.Suspend = true;
 
 		app.MainWindow.UpdateStatus();
 
@@ -587,12 +636,47 @@ public partial class Simulator
 
 		NumForwardGears = sessionInfo.DriverInfo.DriverCarGearNumForward;
 
+		RedlineRPM = sessionInfo.DriverInfo.DriverCarRedLine;
+
 		ShiftLightsFirstRPM = sessionInfo.DriverInfo.DriverCarSLFirstRPM;
 		ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLShiftRPM;
+		ShiftLightsLastRPM = sessionInfo.DriverInfo.DriverCarSLLastRPM;
+		ShiftLightsBlinkRPM = sessionInfo.DriverInfo.DriverCarSLBlinkRPM;
+
+		// Logged once per car because the four values differ a lot between cars, and anything driving a rev
+		// bar has to pick a range out of them. Session info refreshes every couple of seconds, so this only
+		// prints when the numbers actually change.
+		if ( ( ShiftLightsFirstRPM != _lastLoggedShiftLightsFirstRPM ) || ( ShiftLightsLastRPM != _lastLoggedShiftLightsLastRPM ) )
+		{
+			_lastLoggedShiftLightsFirstRPM = ShiftLightsFirstRPM;
+			_lastLoggedShiftLightsLastRPM = ShiftLightsLastRPM;
+
+			app.Logger.WriteLine( $"[Simulator] Shift lights: first={ShiftLightsFirstRPM:F0} shift={ShiftLightsShiftRPM:F0} last={ShiftLightsLastRPM:F0} blink={ShiftLightsBlinkRPM:F0} redline={RedlineRPM:F0}" );
+		}
 
 		if ( ShiftLightsShiftRPM <= ShiftLightsFirstRPM )
 		{
 			ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLBlinkRPM;
+		}
+
+		// Not every car fills all four in, and a game bridge only synthesises some of them, so each one
+		// falls back to the next value down rather than collapsing a rev bar to zero width.
+		if ( ShiftLightsLastRPM <= ShiftLightsFirstRPM )
+		{
+			ShiftLightsLastRPM = ShiftLightsShiftRPM;
+		}
+
+		if ( ShiftLightsBlinkRPM <= ShiftLightsLastRPM )
+		{
+			ShiftLightsBlinkRPM = ShiftLightsLastRPM;
+		}
+
+		// Some cars publish a blink RPM above their own redline, which the engine simply never reaches (the
+		// Global MX-5 asks for 7700 against a 7525 redline), so anything waiting on it waits forever. The
+		// limiter does hold the engine at the redline, so that is the highest point worth reacting to.
+		if ( ( RedlineRPM > 0f ) && ( ShiftLightsBlinkRPM > RedlineRPM ) )
+		{
+			ShiftLightsBlinkRPM = RedlineRPM;
 		}
 
 		// Only repaint the steering device fault message when the sim mode actually changes
@@ -767,6 +851,7 @@ public partial class Simulator
 			_carLeftRightDatum = _irsdk.Data.TelemetryDataProperties[ "CarLeftRight" ];
 			_clutchDatum = _irsdk.Data.TelemetryDataProperties[ "Clutch" ];
 			_displayUnitsDatum = _irsdk.Data.TelemetryDataProperties[ "DisplayUnits" ];
+			_engineWarningsDatum = _irsdk.Data.TelemetryDataProperties[ "EngineWarnings" ];
 			_frameRateDatum = _irsdk.Data.TelemetryDataProperties[ "FrameRate" ];
 			_gearDatum = _irsdk.Data.TelemetryDataProperties[ "Gear" ];
 			_gpuUsageDatum = _irsdk.Data.TelemetryDataProperties[ "GpuUsage" ];
@@ -834,6 +919,8 @@ public partial class Simulator
 			CarIdxOnPitRoad = new bool[ _carIdxOnPitRoadDatum.Count ];
 			CarIdxSessionFlags = new uint[ _carIdxSessionFlagsDatum.Count ];
 
+			_carIdxTireCompounds = new int[ _carIdxTireCompoundDatum.Count ];
+
 			_cfShockVel_STDatum = null;
 			_crShockVel_STDatum = null;
 			_lfShockVel_STDatum = null;
@@ -843,10 +930,18 @@ public partial class Simulator
 
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "CFshockVel_ST", out _cfShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "CRshockVel_ST", out _crShockVel_STDatum );
-			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LRshockVel_ST", out _lfShockVel_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LFshockVel_ST", out _lfShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LRshockVel_ST", out _lrShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RFshockVel_ST", out _rfShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RRshockVel_ST", out _rrShockVel_STDatum );
+
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "YawRate_ST", out _yawRate_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "VelocityY_ST", out _velocityY_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LatAccel_ST", out _latAccel_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RollRate_ST", out _rollRate_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "PitchRate_ST", out _pitchRate_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LFshockDefl_ST", out _lfShockDefl_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RFshockDefl_ST", out _rfShockDefl_STDatum );
 
 			// log array datum counts so we can detect if any exceed our destination array sizes
 			var logger = app.Logger;
@@ -868,6 +963,13 @@ public partial class Simulator
 			logger.WriteLine( $"[Simulator]   LRShockVel_ST.Count       = {_lrShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 			logger.WriteLine( $"[Simulator]   RFShockVel_ST.Count       = {_rfShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 			logger.WriteLine( $"[Simulator]   RRShockVel_ST.Count       = {_rrShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   YawRate_ST.Count          = {_yawRate_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   VelocityY_ST.Count        = {_velocityY_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   LatAccel_ST.Count         = {_latAccel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   RollRate_ST.Count         = {_rollRate_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   PitchRate_ST.Count        = {_pitchRate_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   LFShockDefl_ST.Count      = {_lfShockDefl_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   RFShockDefl_ST.Count      = {_rfShockDefl_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 
 			app.TimingMarkers.Initialize( _carIdxLapDistPctDatum.Count );
 
@@ -897,15 +999,14 @@ public partial class Simulator
 			return;
 		}
 
-		// poll directinput devices right before we process the algorithm (setting app.RacingWheel.UpdateSteeringWheelTorqueBuffer = true updates the prediction on the multimedia timer thread)
+		// poll directinput devices (button/POV input) right before we process the FFB frame; wheel position and
+		// velocity now come from iRacing's steering telemetry (read above), not our own DirectInput axis sampling
 
-		app.DirectInput.PollDevices( deltaSeconds );
+		app.DirectInput.PollDevices();
 
 		// get next 360 Hz steering wheel torque samples
 
 		_irsdk.Data.GetFloatArray( _steeringWheelTorque_STDatum, SteeringWheelTorque_ST, 0, SteeringWheelTorque_ST.Length );
-
-		app.RacingWheel.UpdateSteeringWheelTorqueBuffer = true;
 
 		// save last frame values
 
@@ -931,6 +1032,7 @@ public partial class Simulator
 		CarDistBehind = _irsdk.Data.GetFloat( _carDistBehindDatum );
 		CarLeftRight = (IRacingSdkEnum.CarLeftRight) _irsdk.Data.GetInt( _carLeftRightDatum );
 		DisplayUnits = _irsdk.Data.GetInt( _displayUnitsDatum );
+		EngineRunning = ( (IRacingSdkEnum.EngineWarnings) _irsdk.Data.GetBitField( _engineWarningsDatum ) & IRacingSdkEnum.EngineWarnings.EngineStalled ) == 0;
 		FrameRate = _irsdk.Data.GetFloat( _frameRateDatum );
 		Gear = _irsdk.Data.GetInt( _gearDatum );
 		GpuUsage = _irsdk.Data.GetFloat( _gpuUsageDatum );
@@ -975,8 +1077,11 @@ public partial class Simulator
 		SessionTimeRemain = _irsdk.Data.GetDouble( _sessionTimeRemainDatum );
 		Speed = _irsdk.Data.GetFloat( _speedDatum );
 		SteeringFFBEnabled = _irsdk.Data.GetBool( _steeringFFBEnabledDatum );
+		var steeringWheelAngleLastFrame = SteeringWheelAngle;
+
 		SteeringWheelAngle = _irsdk.Data.GetFloat( _steeringWheelAngleDatum );
 		SteeringWheelAngleMax = _irsdk.Data.GetFloat( _steeringWheelAngleMaxDatum );
+		SteeringWheelVelocity = ( SteeringWheelAngle - steeringWheelAngleLastFrame ) / deltaSeconds;
 		Throttle = _irsdk.Data.GetFloat( _throttleDatum );
 		ThrottleRaw = _irsdk.Data.GetFloat( _throttleRawDatum );
 		TireLF_RumblePitch = _irsdk.Data.GetFloat( _tireLF_RumblePitchDatum );
@@ -1040,6 +1145,53 @@ public partial class Simulator
 		if ( _rrShockVel_STDatum != null )
 		{
 			_irsdk.Data.GetFloatArray( _rrShockVel_STDatum, RRShockVel_ST, 0, RRShockVel_ST.Length );
+		}
+
+		// get next 360 Hz yaw rate samples — fall back to the frame's 60 Hz value when the sim doesn't expose the ST array
+
+		if ( _yawRate_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _yawRate_STDatum, YawRate_ST, 0, YawRate_ST.Length );
+		}
+		else
+		{
+			Array.Fill( YawRate_ST, YawRate );
+		}
+
+		// get next prediction-audit 360 Hz samples (zeros when not exposed, except VelocityY's 60 Hz fallback)
+
+		if ( _velocityY_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _velocityY_STDatum, VelocityY_ST, 0, VelocityY_ST.Length );
+		}
+		else
+		{
+			Array.Fill( VelocityY_ST, VelocityY );
+		}
+
+		if ( _latAccel_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _latAccel_STDatum, LatAccel_ST, 0, LatAccel_ST.Length );
+		}
+
+		if ( _rollRate_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _rollRate_STDatum, RollRate_ST, 0, RollRate_ST.Length );
+		}
+
+		if ( _pitchRate_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _pitchRate_STDatum, PitchRate_ST, 0, PitchRate_ST.Length );
+		}
+
+		if ( _lfShockDefl_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _lfShockDefl_STDatum, LFShockDefl_ST, 0, LFShockDefl_ST.Length );
+		}
+
+		if ( _rfShockDefl_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _rfShockDefl_STDatum, RFShockDefl_ST, 0, RFShockDefl_ST.Length );
 		}
 
 		// update racing wheel
@@ -1117,11 +1269,9 @@ public partial class Simulator
 
 		if ( ( PlayerCarIdx >= 0 ) && ( PlayerCarIdx < _carIdxTireCompoundDatum!.Count ) )
 		{
-			int[] carIdxTireCompounds = new int[ _carIdxTireCompoundDatum!.Count ];
+			_irsdk.Data.GetIntArray( _carIdxTireCompoundDatum, _carIdxTireCompounds, 0, _carIdxTireCompoundDatum.Count );
 
-			_irsdk.Data.GetIntArray( _carIdxTireCompoundDatum, carIdxTireCompounds, 0, _carIdxTireCompoundDatum.Count );
-
-			CurrentTireIndex = carIdxTireCompounds[ PlayerCarIdx ]; // iracing's "carIdxTireCompound" data name is wrong - it should probably have been "carIdxTireIdx"
+			CurrentTireIndex = _carIdxTireCompounds[ PlayerCarIdx ]; // iracing's "carIdxTireCompound" data name is wrong - it should probably have been "carIdxTireIdx"
 
 			if ( _currentTireIndexLastFrame != null )
 			{
@@ -1149,60 +1299,29 @@ public partial class Simulator
 			_activeResetBlockTimerFrames--;
 		}
 
-		// crash protection processing
+		// Crash/curb trigger detection moved INTO the FFB graph's protection modules — each compares the raw
+		// telemetry (fed through the tick context) against its own thresholds, so multiple protection nodes
+		// trigger independently. This flag gates the telemetry those modules see: while off track or inside
+		// the post-reset/tow block window above, RacingWheel feeds them zeros so nothing can trigger — the
+		// same gating the old Simulator-side detection applied.
+		ProtectionTriggersEnabled = IsOnTrack && ( _activeResetBlockTimerFrames <= 0 );
 
-		if ( IsOnTrack )
+		// track this frame's peak absolute shock velocity across all six dampers — it feeds the curb protection
+		// modules' triggers and is recorded so the preview replay re-derives the triggers from the current settings
+
+		var maxShockVelocity = 0f;
+
+		for ( var i = 0; i < SamplesPerFrame360Hz; i++ )
 		{
-			if ( ( settings.RacingWheelCrashProtectionDuration > 0f ) && ( settings.RacingWheelCrashProtectionForceReduction > 0f ) )
-			{
-				if ( _activeResetBlockTimerFrames <= 0 )
-				{
-					if ( settings.RacingWheelCrashProtectionLongitudalGForce < 20f )
-					{
-						if ( LongitudinalGForce >= settings.RacingWheelCrashProtectionLongitudalGForce )
-						{
-							app.RacingWheel.ActivateCrashProtection = true;
-						}
-					}
-
-					if ( settings.RacingWheelCrashProtectionLateralGForce < 20f )
-					{
-						if ( LateralGForce >= settings.RacingWheelCrashProtectionLateralGForce )
-						{
-							app.RacingWheel.ActivateCrashProtection = true;
-						}
-					}
-				}
-			}
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LFShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LRShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RFShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
 		}
 
-		// curb protection processing
-
-		if ( IsOnTrack )
-		{
-			if ( ( settings.RacingWheelCurbProtectionShockVelocity > 0f ) && ( settings.RacingWheelCurbProtectionDuration > 0f ) && ( settings.RacingWheelCurbProtectionForceReduction > 0f ) )
-			{
-				if ( _activeResetBlockTimerFrames <= 0 )
-				{
-					var maxShockVelocity = 0f;
-
-					for ( var i = 0; i < SamplesPerFrame360Hz; i++ )
-					{
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LFShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LRShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RFShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
-					}
-
-					if ( maxShockVelocity >= settings.RacingWheelCurbProtectionShockVelocity )
-					{
-						app.RacingWheel.ActivateCurbProtection = true;
-					}
-				}
-			}
-		}
+		MaxShockVelocity = maxShockVelocity;
 
 		// update rpm / speed ratios
 
@@ -1259,6 +1378,11 @@ public partial class Simulator
 		// update steering effects
 
 		app.SteeringEffects.Update( app, deltaSeconds );
+
+		// run the FFB graph over this frame's six 360 Hz torque samples — after the crash/curb protection triggers
+		// and steering effects above, so the whole frame's context is fresh
+
+		app.RacingWheel.ProcessTelemetryFrame();
 
 		// trigger the app worker thread
 
@@ -1387,7 +1511,7 @@ public partial class Simulator
 		{
 			_updateCounter = UpdateInterval;
 
-			_racingWheelPage.CurrentForce_TextBlock.Text = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
+			_racingWheelPage.CurrentForce_TextBlock.Text = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1}{DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 		}
 	}
 

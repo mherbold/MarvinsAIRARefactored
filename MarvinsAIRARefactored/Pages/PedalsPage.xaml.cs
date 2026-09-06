@@ -8,6 +8,7 @@ using Color = System.Windows.Media.Color;
 using TextBlock = System.Windows.Controls.TextBlock;
 using UserControl = System.Windows.Controls.UserControl;
 using Localization = MarvinsAIRARefactored.Components.Localization;
+using Settings = MarvinsAIRARefactored.DataContext.Settings;
 
 using MarvinsAIRARefactored.Components;
 
@@ -116,34 +117,37 @@ public partial class PedalsPage : UserControl
 
 		app.Logger.WriteLine( "[PedalsPage] UpdateEffectOptions >>>" );
 
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		// the display order deliberately keeps shift RPM next to RPM rather than following the enum declaration
+		Pedals.Effect[] orderedEffects =
+		[
+			Pedals.Effect.None,
+			Pedals.Effect.GearChange,
+			Pedals.Effect.ABSEngaged,
+			Pedals.Effect.RPM,
+			Pedals.Effect.ShiftRPM,
+			Pedals.Effect.UndersteerEffect,
+			Pedals.Effect.OversteerEffect,
+			Pedals.Effect.SeatOfPantsEffect,
+			Pedals.Effect.WheelLock,
+			Pedals.Effect.WheelSpin,
+			Pedals.Effect.ClutchSlip
+		];
 
-		var dictionary = new Dictionary<Pedals.Effect, string>
-		{
-			{ Pedals.Effect.None, localization[ "None" ] },
-			{ Pedals.Effect.GearChange, localization[ "GearChange" ] },
-			{ Pedals.Effect.ABSEngaged, localization[ "ABSEngaged" ] },
-			{ Pedals.Effect.RPM, localization[ "RPM" ] },
-			{ Pedals.Effect.ShiftRPM, localization[ "ShiftRPM" ] },
-			{ Pedals.Effect.UndersteerEffect, localization[ "UndersteerEffect" ] },
-			{ Pedals.Effect.OversteerEffect, localization[ "OversteerEffect" ] },
-			{ Pedals.Effect.SeatOfPantsEffect, localization[ "SeatOfPantsEffect" ] },
-			{ Pedals.Effect.WheelLock, localization[ "WheelLock" ] },
-			{ Pedals.Effect.WheelSpin, localization[ "WheelSpin" ] },
-			{ Pedals.Effect.ClutchSlip, localization[ "ClutchSlip" ] },
-		};
+		// the labels come from the shared settings helper, so these combo boxes and the tuning profile manager can
+		// never say different things about the same setting
+		var effectOptions = orderedEffects.Select( effect => new KeyValuePair<Pedals.Effect, string>( effect, Settings.FormatPedalsEffectString( effect ) ) ).ToList();
 
-		ClutchEffect1_MairaComboBox.ItemsSource = dictionary.ToList();
-		ClutchEffect2_MairaComboBox.ItemsSource = dictionary.ToList();
-		ClutchEffect3_MairaComboBox.ItemsSource = dictionary.ToList();
+		ClutchEffect1_MairaComboBox.ItemsSource = effectOptions.ToList();
+		ClutchEffect2_MairaComboBox.ItemsSource = effectOptions.ToList();
+		ClutchEffect3_MairaComboBox.ItemsSource = effectOptions.ToList();
 
-		BrakeEffect1_MairaComboBox.ItemsSource = dictionary.ToList();
-		BrakeEffect2_MairaComboBox.ItemsSource = dictionary.ToList();
-		BrakeEffect3_MairaComboBox.ItemsSource = dictionary.ToList();
+		BrakeEffect1_MairaComboBox.ItemsSource = effectOptions.ToList();
+		BrakeEffect2_MairaComboBox.ItemsSource = effectOptions.ToList();
+		BrakeEffect3_MairaComboBox.ItemsSource = effectOptions.ToList();
 
-		ThrottleEffect1_MairaComboBox.ItemsSource = dictionary.ToList();
-		ThrottleEffect2_MairaComboBox.ItemsSource = dictionary.ToList();
-		ThrottleEffect3_MairaComboBox.ItemsSource = dictionary.ToList();
+		ThrottleEffect1_MairaComboBox.ItemsSource = effectOptions.ToList();
+		ThrottleEffect2_MairaComboBox.ItemsSource = effectOptions.ToList();
+		ThrottleEffect3_MairaComboBox.ItemsSource = effectOptions.ToList();
 
 		app.Logger.WriteLine( "[PedalsPage] <<< UpdateEffectOptions" );
 	}

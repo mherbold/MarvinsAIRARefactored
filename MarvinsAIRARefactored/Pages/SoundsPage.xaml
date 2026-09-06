@@ -780,6 +780,124 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[RecordingStarted]}"
+                                HelpTopic="advanced/sounds/#recording-started">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="64" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls:MairaSwitch Grid.Row="0" Grid.Column="0"
+                                      IsOn="{Binding Settings.SoundsRecordingStartedEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[Enabled]}"
+                                      LabelPosition="Top" />
+
+                <controls:MairaKnob Grid.Row="0" Grid.Column="2"
+                                    Label="{Binding Localization[Volume]}"
+                                    Value="{Binding Settings.SoundsRecordingStartedVolume, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsRecordingStartedVolumeString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
+                                    PlusButtonMappings="{Binding Settings.SoundsRecordingStartedVolumePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsRecordingStartedVolumeMinusButtonMappings}"
+                                    DefaultValue="0.75" />
+
+                <controls:MairaKnob Grid.Row="2" Grid.Column="2"
+                                    Label="{Binding Localization[FrequencyRatio]}"
+                                    Value="{Binding Settings.SoundsRecordingStartedFrequencyRatio, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsRecordingStartedFrequencyRatioString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
+                                    PlusButtonMappings="{Binding Settings.SoundsRecordingStartedFrequencyRatioPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsRecordingStartedFrequencyRatioMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaButton Grid.Row="0" Grid.Column="8" Grid.RowSpan="3"
+                                      VerticalAlignment="Center"
+                                      Label="{Binding Localization[Test]}"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                      Click="RecordingStarted_Test_MairaButton_Click"
+                                      IsSmall="True" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[RecordingStopped]}"
+                                HelpTopic="advanced/sounds/#recording-stopped">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="64" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls:MairaSwitch Grid.Row="0" Grid.Column="0"
+                                      IsOn="{Binding Settings.SoundsRecordingStoppedEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[Enabled]}"
+                                      LabelPosition="Top" />
+
+                <controls:MairaKnob Grid.Row="0" Grid.Column="2"
+                                    Label="{Binding Localization[Volume]}"
+                                    Value="{Binding Settings.SoundsRecordingStoppedVolume, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsRecordingStoppedVolumeString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
+                                    PlusButtonMappings="{Binding Settings.SoundsRecordingStoppedVolumePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsRecordingStoppedVolumeMinusButtonMappings}"
+                                    DefaultValue="0.75" />
+
+                <controls:MairaKnob Grid.Row="2" Grid.Column="2"
+                                    Label="{Binding Localization[FrequencyRatio]}"
+                                    Value="{Binding Settings.SoundsRecordingStoppedFrequencyRatio, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsRecordingStoppedFrequencyRatioString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
+                                    PlusButtonMappings="{Binding Settings.SoundsRecordingStoppedFrequencyRatioPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsRecordingStoppedFrequencyRatioMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaButton Grid.Row="0" Grid.Column="8" Grid.RowSpan="3"
+                                      VerticalAlignment="Center"
+                                      Label="{Binding Localization[Test]}"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                      Click="RecordingStopped_Test_MairaButton_Click"
+                                      IsSmall="True" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
     </StackPanel>
 
 </UserControl>

@@ -70,12 +70,20 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 	private GameBridgeVarTable? _varTable = null;
 	private LmuDataProvider? _provider = null;
 
-	// the bridge is pumped from the multimedia timer worker thread (see Pump); this lock keeps a Stop from
+	// the bridge is pumped from the playout timer worker thread (see Pump); this lock keeps a Stop from
 	// a background task from closing the provider while a pump is mid-read
 	private readonly object _pumpLock = new();
 	private bool _providerOpen = false;
 	private double _lastOpenAttemptSeconds = double.MinValue;
 	private double _nextSubSampleSeconds = 0.0;
+
+	// the game recreates the LMU_Data mapping when it loads a new session, and a reader holding the old
+	// section keeps reading the orphaned frozen copy forever (the map has no version counter, so a frozen
+	// mElapsedTime is the only tell) - see the stale-map recycle in Pump
+	private const double StaleMapRecycleSeconds = 2.0;
+
+	private double _lastMapRecycleSeconds = double.MinValue;
+	private bool _recyclingStaleMap = false;
 
 	private byte[] _nativeBuffer = [];
 
@@ -164,6 +172,9 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		_lastOpenAttemptSeconds = double.MinValue;
 		_nextSubSampleSeconds = 0.0;
 
+		_lastMapRecycleSeconds = double.MinValue;
+		_recyclingStaleMap = false;
+
 		LastDataActivitySeconds = double.MinValue;
 
 		_frameCounter = 0;
@@ -203,7 +214,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 	#region pump
 
-	// Called from the multimedia timer worker thread (~500 Hz, kernel-scheduled) immediately before the
+	// Called from the playout timer worker thread (~360 Hz, kernel-scheduled) immediately before the
 	// racing wheel update. The 360 Hz sub-sample schedule is kept internally; zero, one, or occasionally two
 	// sub-samples are taken per timer tick, each stamped with its scheduled time.
 	public override void Pump( double totalSeconds )
@@ -233,7 +244,35 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 				_nextSubSampleSeconds = totalSeconds;
 
-				App.Instance!.Logger.WriteLine( "[LeMansUltimateBridge] Native shared memory opened - pumping" );
+				// during a stale-map recycle the map is reopened every couple of seconds until the physics
+				// output resumes, so the recycle logs its own start/resume lines instead of spamming this one
+				if ( !_recyclingStaleMap )
+				{
+					App.Instance!.Logger.WriteLine( "[LeMansUltimateBridge] Native shared memory opened - pumping" );
+				}
+			}
+
+			// the game recreates the LMU_Data mapping when it loads a new session, and holding the handle to
+			// the old section means reading its orphaned frozen copy forever - so while the physics output has
+			// been frozen for a while, periodically drop and reopen the mapping to reattach to the live section
+			// as soon as the game publishes it (reopening the same still-valid map while the game is merely
+			// paused or sitting in a menu is cheap and harmless)
+			if ( ( LastDataActivitySeconds != double.MinValue ) && ( totalSeconds - LastDataActivitySeconds >= StaleMapRecycleSeconds ) && ( totalSeconds - _lastMapRecycleSeconds >= StaleMapRecycleSeconds ) )
+			{
+				if ( !_recyclingStaleMap )
+				{
+					_recyclingStaleMap = true;
+
+					App.Instance!.Logger.WriteLine( "[LeMansUltimateBridge] Telemetry stopped advancing - recycling the shared memory map until it resumes" );
+				}
+
+				_lastMapRecycleSeconds = totalSeconds;
+
+				_provider.Close();
+
+				_providerOpen = false;
+
+				return;
 			}
 
 			// if the timer stalled for a while, resynchronize instead of bursting a backlog of sub-samples
@@ -354,6 +393,13 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		}
 
 		LastDataActivitySeconds = pumpSeconds;
+
+		if ( _recyclingStaleMap )
+		{
+			_recyclingStaleMap = false;
+
+			App.Instance!.Logger.WriteLine( "[LeMansUltimateBridge] Telemetry resumed - reattached to the live shared memory map" );
+		}
 
 		var playerTelemetry = ReadStruct<rF2VehicleTelemetry>( _nativeBuffer, vehicleOffset );
 
@@ -534,6 +580,11 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		dataSource.SetBool( varTable.BrakeABSactive, _playerAbsActive );
 		dataSource.SetInt( varTable.Gear, telemetry.mGear );
 		dataSource.SetFloat( varTable.RPM, (float) telemetry.mEngineRPM );
+
+		// LMU has no warning-lights bitfield - synthesize the engine stalled flag from ignition and RPM
+		var engineStalled = ( telemetry.mIgnitionStarter == 0 ) || ( telemetry.mEngineRPM < 10.0 );
+
+		dataSource.SetBitField( varTable.EngineWarnings, engineStalled ? (uint) IRacingSdkEnum.EngineWarnings.EngineStalled : 0u );
 
 		// motion - the local frame is x=left, y=up, z=rearward; iRacing is x=forward, y=left, z=up
 
@@ -810,7 +861,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		var classPosition = 1;
 
 		// the class names are compared as raw byte spans - this runs every frame, so decoding them into
-		// strings here would be steady-state garbage on the multimedia timer worker thread
+		// strings here would be steady-state garbage on the playout timer worker thread
 		foreach ( var vehicle in _scoringVehicles )
 		{
 			if ( ( vehicle.mID != playerVehicle.mID ) && ( vehicle.mPlace < playerVehicle.mPlace ) && ( (ReadOnlySpan<byte>) vehicle.mVehicleClass ).SequenceEqual( playerVehicle.mVehicleClass ) )
@@ -902,7 +953,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 	private void UpdateSessionInfo( double pumpSeconds )
 	{
 		// throttle first - the signature strings below allocate, so they are only built at 1 Hz instead of
-		// every frame (the multimedia timer worker thread must stay free of steady-state garbage)
+		// every frame (the playout timer worker thread must stay free of steady-state garbage)
 		if ( pumpSeconds - _lastSessionInfoUpdateTime < 1.0 )
 		{
 			return;
@@ -933,6 +984,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 			DriverCarIdx = GetCarIdx( _playerVehicleId ),
 			DriverSetupName = "bridge",
 			DriverCarGearNumForward = Math.Max( 1, (int) _playerTelemetry.mMaxGears ),
+			DriverCarRedLine = (float) _playerTelemetry.mEngineMaxRPM,
 			DriverCarSLFirstRPM = (float) ( _playerTelemetry.mEngineMaxRPM * 0.88 ),
 			DriverCarSLShiftRPM = (float) ( _playerTelemetry.mEngineMaxRPM * 0.96 ),
 			DriverCarSLBlinkRPM = (float) ( _playerTelemetry.mEngineMaxRPM * 0.98 )

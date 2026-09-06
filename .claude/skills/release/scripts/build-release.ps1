@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Builds, publishes, signs, and packages a MarvinsAIRA Refactored release installer.
+    Builds, publishes, signs, and packages a MAIRA release installer.
 
 .DESCRIPTION
     Runs the deterministic part of the release pipeline:
@@ -12,7 +12,7 @@
 
     On success the final lines of stdout are a machine-readable result block:
         RELEASE_BUILD_OK
-        VERSION=<four-part version, e.g. 2.0.439.1234>
+        VERSION=<three-part version, e.g. 2.1.2050 (older four-part 2.0.x.y also accepted)>
         INSTALLER=<full path to the installer .exe>
 
     Any failure writes an error and exits non-zero, so the caller can stop the pipeline.
@@ -76,7 +76,7 @@ $project      = Join-Path $repoRoot 'MarvinsAIRARefactored\MarvinsAIRARefactored
 $issScript    = Join-Path $repoRoot 'InnoSetup\MarvinsAIRA.iss'
 $publishDir   = Join-Path $repoRoot 'MarvinsAIRARefactored\bin\publish'
 $publishedExe = Join-Path $publishDir 'MarvinsAIRARefactored.exe'
-$installerDir = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'MarvinsAIRA Refactored'
+$installerDir = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'MAIRA'
 
 foreach ($p in @($solution, $project, $issScript)) {
     if (-not (Test-Path $p)) { Fail "Expected file not found: $p" }
@@ -213,12 +213,12 @@ if ($LASTEXITCODE -ne 0) { Fail "Inno Setup compile failed (exit $LASTEXITCODE).
 Write-Host "[release] Step 5/5: Locating installer, verifying signature, extracting version..."
 if (-not (Test-Path $installerDir)) { Fail "Installer output folder not found: $installerDir" }
 
-$installer = Get-ChildItem -Path $installerDir -Filter 'MarvinsAIRARefactored-Setup-*.exe' |
+$installer = Get-ChildItem -Path $installerDir -Filter 'MAIRA-Setup-*.exe' |
     Where-Object { $_.LastWriteTime -ge $beforeIscc.AddSeconds(-5) } |
     Sort-Object LastWriteTime -Descending | Select-Object -First 1
 
 if (-not $installer) {
-    Fail "No freshly built installer (MarvinsAIRARefactored-Setup-*.exe) found in $installerDir. Did ISCC actually write output there?"
+    Fail "No freshly built installer (MAIRA-Setup-*.exe) found in $installerDir. Did ISCC actually write output there?"
 }
 
 # Confirm the installer Inno produced is actually signed (belt-and-suspenders over the
@@ -229,8 +229,8 @@ if (-not $SkipSigning) {
     Write-Host "[release] Installer signature verified."
 }
 
-if ($installer.Name -notmatch '^MarvinsAIRARefactored-Setup-(?<ver>\d+\.\d+\.\d+\.\d+)\.exe$') {
-    Fail "Installer filename '$($installer.Name)' did not match the expected pattern MarvinsAIRARefactored-Setup-<x.y.z.w>.exe. Refusing to guess a version."
+if ($installer.Name -notmatch '^MAIRA-Setup-(?<ver>\d+\.\d+\.\d+(\.\d+)?)\.exe$') {
+    Fail "Installer filename '$($installer.Name)' did not match the expected pattern MAIRA-Setup-<x.y.buildStamp>.exe. Refusing to guess a version."
 }
 $version = $Matches['ver']
 

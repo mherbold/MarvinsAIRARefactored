@@ -402,9 +402,6 @@
   <data name="None" xml:space="preserve">
     <value>कोई नहीं</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>प्रति व्हीलबेस</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>प्रति कार</value>
   </data>
@@ -632,9 +629,6 @@
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[कोई रिकॉर्डिंग नहीं मिली]</value>
-  </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>सरल मोड सक्षम करें</value>
   </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>संवेदनशीलता</value>
@@ -1405,10 +1399,10 @@
     <value>नीचे दी गई सूची से अपना फोर्स-फीडबैक स्टीयरिंग व्हील चुनें।</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> अपना व्हील नहीं दिख रहा? सुनिश्चित करें कि यह चालू और कनेक्ट है, फिर सूची स्वचालित रूप से रीफ्रेश हो जाएगी।</value>
+    <value>अपना व्हील नहीं दिख रहा? सुनिश्चित करें कि यह चालू और कनेक्ट है, फिर सूची स्वचालित रूप से रीफ्रेश हो जाएगी।</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec उपयोगकर्ता: Fanatec व्हील आमतौर पर सूची में दो अलग-अलग डिवाइस के रूप में दिखाई देते हैं। यदि आपने जो चुना वह काम नहीं करता, तो दूसरा चुनने का प्रयास करें!</value>
+    <value>Fanatec उपयोगकर्ता: Fanatec व्हील आमतौर पर सूची में दो अलग-अलग डिवाइस के रूप में दिखाई देते हैं। यदि आपने जो चुना वह काम नहीं करता, तो दूसरा चुनने का प्रयास करें!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>अधिकतम व्हील फोर्स</value>
@@ -1417,10 +1411,10 @@
     <value>अपने व्हीलबेस द्वारा उत्पादित अधिकतम फोर्स को न्यूटन-मीटर (Nm) में दर्ज करें। MAIRA आपके हार्डवेयर के लिए सभी फोर्स फीडबैक आउटपुट को सही ढंग से स्केल करने के लिए इस मान का उपयोग करता है।</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> हमने आपके चयनित व्हील के आधार पर अपना सर्वोत्तम अनुमान लगाया है — लेकिन आवश्यकता होने पर इसे समायोजित करने के लिए स्वतंत्र महसूस करें।</value>
+    <value>हमने आपके चयनित व्हील के आधार पर अपना सर्वोत्तम अनुमान लगाया है — लेकिन आवश्यकता होने पर इसे समायोजित करने के लिए स्वतंत्र महसूस करें।</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> महत्वपूर्ण: यदि आपने अपने व्हील निर्माता के सॉफ़्टवेयर (जैसे, Fanatec Wheel Control Panel, Moza Pit House, आदि) के अंदर पहले से ही अपने व्हील का अधिकतम टॉर्क आउटपुट सीमित कर दिया है, तो यहां हार्डवेयर के भौतिक अधिकतम के बजाय वह कम किया गया मान दर्ज करें। MAIRA को यह जानने की आवश्यकता है कि आपका व्हील वास्तव में क्या देगा, न कि सिद्धांत में यह क्या करने में सक्षम है।</value>
+    <value>महत्वपूर्ण: यदि आपने अपने व्हील निर्माता के सॉफ़्टवेयर (जैसे, Fanatec Wheel Control Panel, Moza Pit House, आदि) के अंदर पहले से ही अपने व्हील का अधिकतम टॉर्क आउटपुट सीमित कर दिया है, तो यहां हार्डवेयर के भौतिक अधिकतम के बजाय वह कम किया गया मान दर्ज करें। MAIRA को यह जानने की आवश्यकता है कि आपका व्हील वास्तव में क्या देगा, न कि सिद्धांत में यह क्या करने में सक्षम है।</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>स्ट्रेंथ नियंत्रण</value>
@@ -1432,7 +1426,7 @@
     <value>प्रत्येक को इनपुट असाइन करने के लिए नीचे - और + बटन पर क्लिक करें। यह चरण वैकल्पिक है — आप इसे छोड़ सकते हैं और बाद में रेसिंग व्हील पेज से बाइंडिंग सेट कर सकते हैं।</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> एक बार इनपुट मैप हो जाने के बाद, इसकी पुष्टि के लिए बटन का बॉर्डर नारंगी हो जाएगा।</value>
+    <value>एक बार इनपुट मैप हो जाने के बाद, इसकी पुष्टि के लिए बटन का बॉर्डर नारंगी हो जाएगा।</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>स्ट्रेंथ</value>
@@ -1459,7 +1453,7 @@
     <value>पहले, ऑटो टारगेट हेडरूम को अपने स्वाद के अनुसार समायोजित करें, फिर अपने सेट और क्लियर बटन मैप करें।</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> ऑटो टारगेट यह निर्धारित करता है कि आपके व्हील की फोर्स रेंज में मापा गया पीक कहां आना चाहिए। पीक के ऊपर अधिक हेडरूम रखने के लिए टारगेट कम करें; व्हील की रेंज का अधिक उपयोग करने के लिए इसे बढ़ाएं।</value>
+    <value>ऑटो टारगेट यह निर्धारित करता है कि आपके व्हील की फोर्स रेंज में मापा गया पीक कहां आना चाहिए। पीक के ऊपर अधिक हेडरूम रखने के लिए टारगेट कम करें; व्हील की रेंज का अधिक उपयोग करने के लिए इसे बढ़ाएं।</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>एल्गोरिथम</value>
@@ -1550,9 +1544,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>लूप समाप्त</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>कमेंट्री</value>
@@ -1705,7 +1696,7 @@
     <value>सिम्युलेटर प्रारंभ हो रहा है...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>डायरेक्ट इनपुट प्रारंभ हो रहा है...</value>
+    <value>DirectInput प्रारंभ हो रहा है...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>स्ट्रीम डेक प्रारंभ हो रहा है...</value>
@@ -1734,8 +1725,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFE प्रारंभ हो रहा है...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>मल्टीमीडिया टाइमर प्रारंभ हो रहा है...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>प्लेबैक टाइमर प्रारंभ हो रहा है...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>रिकॉर्डिंग मैनेजर प्रारंभ हो रहा है...</value>
@@ -1763,45 +1754,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>मुख्य विंडो प्रारंभ हो रही है...</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>चालू प्रक्रियाएं</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>नाम या पथ से फ़िल्टर करें...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>चालू ऐप्स खोज रहे हैं...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>विंडो दृश्यता</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>विंडो दिखाएं / छिपाएं</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>स्टेप आकार</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>अपडेट जांच अंतराल</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> घं</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing बंद होने पर पेंट हटाएं</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>अंतराल पर अपडेट जांचें</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>अभ्यास</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>क्वालिफाइंग</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>रेस</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>स्थिति</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>निष्क्रिय</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>सक्रिय</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>दबा हुआ</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>पुराने इंस्टॉलर हटाएँ</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>विविध</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>दस्तावेज़ फ़ोल्डर खोलें</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1809,7 +1820,8 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>संतुलन</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>प्रति कार ओवरले स्थिति और स्केलिंग सक्षम करें</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>इस कार के लिए कैलिब्रेशन फ़ाइल अभी उपलब्ध नहीं है।</value>
@@ -1828,41 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz स्रोत</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz स्रोत</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE स्रोत</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>आउटपुट</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>लो-पास फ़िल्टर</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>हाई-पास फ़िल्टर</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>गेन</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>योग</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>ब्लेंड</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>स्लू लिमिटर</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>स्लू कम्प्रेसर</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>कम्प्रेसर</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>ट्रांज़िएंट एन्हांसर</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>अडैप्टिव स्मूथर</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>अडैप्टिव ब्लेंड</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>कर्व</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>सॉफ्ट लिमिटर</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>क्रैश सुरक्षा</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>कर्ब सुरक्षा</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>पार्क्ड स्ट्रेंथ</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>सॉफ्ट लॉक स्रोत</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>फ्रिक्शन स्रोत</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>व्हील सेंटरिंग स्रोत</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>अंडरस्टीयर फ़ोर्स</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>ओवरस्टीयर फ़ोर्स</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>सीट-ऑफ-पैंट्स फ़ोर्स</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>अंडरस्टीयर कंपन</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>ओवरस्टीयर कंपन</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>सीट-ऑफ-पैंट्स कंपन</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>शिफ्ट RPM कंपन</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>गियर चेंज कंपन</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS कंपन</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>स्पीड गेन</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>रोड टेक्सचर</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>स्लिप टेक्सचर</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>टॉर्क डिथर</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>स्लोप</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>कटऑफ़</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>गेन</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>मिक्स</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>लिमिट</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>थ्रेशोल्ड</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>मोड़ बिंदु</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>रेशियो</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>पीक मोड</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>मात्रा</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>पीक कटऑफ़</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>अनुदैर्ध्य G फ़ोर्स</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>पार्श्व G फ़ोर्स</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>रेसिंग के दौरान</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>पार्क होने पर</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>पैटर्न</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>न्यूनतम गति</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>अधिकतम गति</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>न्यूनतम गति पर गेन</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>अधिकतम गति पर गेन</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>एक पोल</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>दो पोल</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>मॉड्यूल जोड़ें</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>रिकॉर्डिंग चुनें</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>मौजूदा ग्राफ़ क्लोन करें</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB ग्राफ़</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>ग्राफ़ का नाम</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>नया ग्राफ़</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>खाली ग्राफ़ से शुरू करें</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>घटाव</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>स्टीयरिंग व्हील गति स्रोत</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>स्रोत</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>सामान्य DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>मिक्सर</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>प्रभाव</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>अन्य प्रभाव</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>ग्राफ़ निर्यात करें</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>ग्राफ़ आयात करें</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA ग्राफ़ फ़ाइलें</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>आयातित ग्राफ़</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>यह ग्राफ़ निर्यात नहीं किया जा सका।</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>यह ग्राफ़ फ़ाइल आयात नहीं की जा सकी।</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>यह फ़ाइल MAIRA ग्राफ़ फ़ाइल नहीं है।</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>इस फ़ाइल में कंपन प्रभाव ग्राफ़ है - इसके बजाय इसे कंपन प्रभाव के अंतर्गत आयात करें।</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>इस फ़ाइल में FFB ग्राफ़ है - इसके बजाय इसे FFB ग्राफ़ के अंतर्गत आयात करें।</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>यह ग्राफ़ फ़ाइल MAIRA के नए संस्करण द्वारा बनाई गई थी। कृपया MAIRA अपडेट करें और पुनः प्रयास करें।</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>रिकॉर्डिंग शुरू हुई</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>रिकॉर्डिंग रुकी</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>समय</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>ट्रैक स्थिति</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz टॉर्क</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz टॉर्क</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>स्टीयरिंग कोण</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>स्टीयरिंग वेग</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>व्हील स्थिति</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>व्हील वेग</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>गियर</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>अनुदैर्ध्य G-Force</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>स्किड/स्लिप</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>अंतर्निहित</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>कस्टम</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>ग्राफ़ सेटिंग्स आयात करें</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>आपके पास पहले से ही ग्राफ़ “{0}” है। इस फ़ाइल की सेटिंग्स के साथ आप क्या करना चाहेंगे?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>{0} सेटिंग्स अपडेट करें</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>आधारभूत (डिफ़ॉल्ट) सेटिंग्स अपडेट करें</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>{0} और आधारभूत सेटिंग्स अपडेट करें</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>नई प्रति के रूप में आयात करें</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz इंटरपोलेटर</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>पूर्वानुमान (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>क्षितिज</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>मिश्रण</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>सुधार सीमा</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>चिपकन क्षेत्र</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>यह इफेक्ट स्टीयरिंग इफेक्ट्स पेज पर अक्षम है</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>पल्स अवधि</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>आसंजन क्षेत्र</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>इंजन RPM कंपन</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>रेडलाइन RPM पर आवृत्ति</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>खुरदरापन</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>अंडरस्टीयर और ओवरस्टीयर स्टीयरिंग इफेक्ट्स पेज पर अक्षम हैं</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>इस ग्राफ़ के लिए विवरण जोड़ें</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>इस सेटिंग को इस ग्राफ़ के मुख्य नियंत्रणों में से एक के रूप में पिन करें</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>नोड ग्राफ़ दिखाएँ</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>पूर्वानुमान (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>गेम ब्रिज</value>
   </data>
@@ -1905,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>स्टीयरिंग व्हील स्वीप</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>विवरण संपादित करें</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing का मूल 60 Hz फ़ोर्स फ़ीडबैक सिग्नल, ठीक वैसा ही जैसा सिम्युलेटर भेजता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing का उच्च-दर फ़ोर्स फ़ीडबैक सिग्नल — हर 60 Hz फ़्रेम में छह सैंपल, सबसे अधिक डिटेल के साथ।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, व्हील फ़ोर्स में बदला हुआ। इसे ऐड मॉड्यूल से सिग्नल में मिलाएँ।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>एक फ़ोर्स जो व्हील घुमाने की गति का विरोध करता है — डैम्पिंग के लिए इसे सिग्नल में मिलाएँ।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>सच्चा ड्राई फ़्रिक्शन: व्हील वहीं टिका रहता है जहाँ आप उसे छोड़ते हैं, और स्टिक क्षेत्र से आगे घुमाने पर स्थिर स्लाइडिंग ड्रैग मिलता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>जब व्हील कार के स्टीयरिंग लॉक से आगे घुमाया जाता है तो ज़ोर से वापस धकेलता है, एक भौतिक एंड स्टॉप की तरह।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग फ़ोर्स जो व्हील को वापस केंद्र की ओर खींचता है। इसे केवल खड़ी कार तक सीमित रखने के लिए स्पीड गेन मॉड्यूल से गुज़ारें।</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>चेन का अंत — सिग्नल को व्हील आउटपुट में बदलता है, वैकल्पिक रिस्पॉन्स कर्व और सॉफ्ट लिमिटर के साथ।</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>सिग्नल का धीमा मुख्य भाग रखता है और कटऑफ़ से तेज़ हर चीज़ को चिकना कर देता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>सिग्नल का धीमा मुख्य भाग हटाता है और कटऑफ़ से ऊपर की केवल तेज़ डिटेल रखता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>सिग्नल को एक निश्चित गुणक से स्केल करता है — सिग्नल उलटने के लिए नेगेटिव गेन का उपयोग करें।</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>दो सिग्नलों को आपस में जोड़ता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>इनपुट A में से इनपुट B घटाता है — उदाहरण के लिए, सिग्नल की लो-पास कॉपी घटाने पर केवल डिटेल बचती है।</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>दो सिग्नलों के बीच क्रॉसफ़ेड करता है — 0% पूरा इनपुट A है, 100% पूरा इनपुट B।</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>सिग्नल कितनी तेज़ी से बदल सकता है इसकी सीमा तय करता है — सीमा के भीतर सब कुछ अछूता गुज़रता है, तेज़ बदलाव धीमे कर दिए जाते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>तेज़ सिग्नल बदलावों को हार्ड-लिमिट करने के बजाय दबाता है — धीमे बदलाव अछूते गुज़रते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>थ्रेशोल्ड से ऊपर सिग्नल को दबाता है, जिससे पीक बिना हार्ड क्लिपिंग के नियंत्रण में रहते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>तेज़ डिटेल निकालता है और अटैक पर ज़ोर देता है — उभार और कर्ब बिना डिके को बढ़ाए उभरकर महसूस होते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>एक-नॉब स्मूदर जो सिग्नल के अनुसार ढलता है — शांत सिग्नल पर मज़बूत स्मूदिंग, तेज़ ट्रांज़िएंट पर न्यूनतम लैग।</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>हर फ़्रेम में आसानी से रैंप करके 60 Hz सिग्नल की सीढ़ीनुमा पायदानें हटाता है, एक फ़्रेम की लेटेंसी की कीमत पर।</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>लेटेंसी की भरपाई के लिए 360 Hz सिग्नल को भविष्य में शिफ्ट करता है — एक अनुकूली फ़िल्टर जो आपके ड्राइव करते-करते हर कार को सीखता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>लेटेंसी की भरपाई के लिए 60 Hz सिग्नल को भविष्य में शिफ्ट करता है — आपकी स्टीयरिंग और कार की गति से सीखता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>इनपुट A की डिटेल का अनुसरण करता है और साथ ही इनपुट B की ओर खिंचा रहता है — हर पीक पर खिंचाव ढीला पड़ता है ताकि ट्रांज़िएंट गुज़र सकें।</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>क्रैश का पता चलने पर फ़ोर्स को बहुत कम कर देता है, फिर धीरे-धीरे पूरी ताक़त पर लौटाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>तेज़ कर्ब टकराव के दौरान फ़ोर्स घटाता है, फिर धीरे-धीरे पूरी ताक़त पर लौटाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला स्टीयरिंग फ़ोर्स, ताकि आप आगे के टायरों की पकड़ छूटती महसूस कर सकें।</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला स्टीयरिंग फ़ोर्स, ताकि आप कार का पिछला हिस्सा फिसलता महसूस कर सकें।</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला स्टीयरिंग फ़ोर्स — चेसिस पर भार पड़ने का अहसास।</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>जब आगे के टायर फिसलने लगते हैं तो व्हील को कंपाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>जब पीछे के टायर फिसलने लगते हैं तो व्हील को कंपाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>चेसिस की गति के साथ व्हील को कंपाता है — वज़न का स्थानांतरण जिसे आप महसूस कर सकते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>जब इंजन शिफ्ट पॉइंट पर पहुँचता है तो व्हील को स्पंदनों में कंपाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>हर गियर बदलाव पर कंपन का एक छोटा झोंका।</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>जब ब्रेक का ABS सक्रिय होता है तो व्हील को स्पंदित करता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>एक गड़गड़ाहट जो इंजन की गति के साथ चलती है, V8 जैसी आवाज़ में — इंजन बंद होने पर मौन।</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>कार की गति के साथ सिग्नल को स्केल करता है — कार की रफ़्तार बढ़ने पर फ़ोर्स को धीरे-धीरे बढ़ाएँ या घटाएँ।</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>एक गड़गड़ाहट जो कार के साथ तेज़ होती है, सड़क की सतह की बनावट जैसी — खड़ी कार में मौन।</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>एक गड़गड़ाहट जो कार का कोई भी सिरा फिसलने पर उभरती है, अंडरस्टीयर और ओवरस्टीयर इफ़ेक्ट्स से चालित।</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>थ्रेशोल्ड के नीचे एक सूक्ष्म बारी-बारी बदलता डिदर जोड़ता है ताकि व्हील का तंत्र सजीव रहे और हल्की डिटेल उभर सके।</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>लिंक</value>
   </data>
@@ -1919,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>मेगा दानदाता</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>पिन की गई सेटिंग्स दिखाएँ</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B स्विच</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>इनपुट B उपयोग करें</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>स्विच की स्थिति के अनुसार इनपुट A या इनपुट B को ज्यों का त्यों आगे भेजता है — दो सिग्नल पथों की तुरंत तुलना करने के लिए स्विच बदलें।</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>हर जगह सेटिंग्स अपडेट करें जहाँ यह ग्राफ़ चुना गया है</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Logitech व्हील प्रारंभ हो रहा है...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech RPM लाइटें</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>व्हील पर RPM लाइटें जलाएँ</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>शिफ्ट पॉइंट पार होने पर लाइटें ब्लिंक करें</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB ग्राफ़ सेटिंग्स</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>अधिकांश ड्राइवरों के लिए अनुशंसित — विलंब कम करने के लिए प्रेडिक्शन के साथ पूरा 360 Hz FFB सिग्नल। सड़क और टायर की डिटेल बढ़ाने या घटाने के लिए गेन को समायोजित करें।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, जिसे व्हील फ़ोर्स में बदला जाता है। इसके काम करने के लिए आपको iRacing में बेस शेकर LFE चालू करना होगा और VB-CABLE का उपयोग करना होगा।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>फ़्रिक्शन जैसा एक बल जो बहुत धीमी गति में या खड़ी कार में व्हील को दोलन करने से रोकता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग बल जो व्हील को वापस सेंटर की ओर खींचता है; यह केवल तभी प्रभावी होता है जब कार धीमी चल रही हो या खड़ी हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>सड़क और टायर की डिटेल बढ़ाने या घटाने के लिए इस मान को समायोजित करें। 1.00x का गेन मूल iRacing फ़ीलिंग को बनाए रखता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>क्रैश का पता चलने पर बल को बहुत कम कर देता है और फिर उसे सहजता से वापस बढ़ाता है — ताकि कोई बड़ी टक्कर व्हील को आपके हाथों से न छीन सके। फ़ोर्स रिडक्शन तय करता है कि कितना बल हटाया जाए।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप अगले टायरों की ग्रिप खोने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप कार के पिछले हिस्से के फिसलने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल — यानी शैसी पर लोड बढ़ने का अहसास। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>एक थ्रेशोल्ड से नीचे बहुत हल्का बदलता हुआ डिदर जोड़ता है ताकि व्हील का मैकेनिज़्म सक्रिय रहे और महीन डिटेल सामने आए — यह तब उपयोगी है जब आपके पास Logitech G29 जैसा कम पावर वाला व्हील हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>सॉफ़्ट लिमिटर FFB सिग्नल को क्लिप होने पर सपाट होने के बजाय कुछ डिटेल बनाए रखने देता है।</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, जिसे व्हील फ़ोर्स में बदला जाता है। इसके काम करने के लिए आपको iRacing में बेस शेकर LFE चालू करना होगा और VB-CABLE का उपयोग करना होगा।</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>फ़्रिक्शन जैसा एक बल जो बहुत धीमी गति में या खड़ी कार में व्हील को दोलन करने से रोकता है।</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग बल जो व्हील को वापस सेंटर की ओर खींचता है; यह केवल तभी प्रभावी होता है जब कार धीमी चल रही हो या खड़ी हो।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>क्रैश का पता चलने पर बल को बहुत कम कर देता है और फिर उसे सहजता से वापस बढ़ाता है — ताकि कोई बड़ी टक्कर व्हील को आपके हाथों से न छीन सके। फ़ोर्स रिडक्शन तय करता है कि कितना बल हटाया जाए।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप अगले टायरों की ग्रिप खोने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप कार के पिछले हिस्से के फिसलने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल — यानी शैसी पर लोड बढ़ने का अहसास। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>एक थ्रेशोल्ड से नीचे बहुत हल्का बदलता हुआ डिदर जोड़ता है ताकि व्हील का मैकेनिज़्म सक्रिय रहे और महीन डिटेल सामने आए — यह तब उपयोगी है जब आपके पास Logitech G29 जैसा कम पावर वाला व्हील हो।</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>सॉफ़्ट लिमिटर FFB सिग्नल को क्लिप होने पर सपाट होने के बजाय कुछ डिटेल बनाए रखने देता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, जिसे व्हील फ़ोर्स में बदला जाता है। इसके काम करने के लिए आपको iRacing में बेस शेकर LFE चालू करना होगा और VB-CABLE का उपयोग करना होगा।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>फ़्रिक्शन जैसा एक बल जो बहुत धीमी गति में या खड़ी कार में व्हील को दोलन करने से रोकता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग बल जो व्हील को वापस सेंटर की ओर खींचता है; यह केवल तभी प्रभावी होता है जब कार धीमी चल रही हो या खड़ी हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>क्रैश का पता चलने पर बल को बहुत कम कर देता है और फिर उसे सहजता से वापस बढ़ाता है — ताकि कोई बड़ी टक्कर व्हील को आपके हाथों से न छीन सके। फ़ोर्स रिडक्शन तय करता है कि कितना बल हटाया जाए।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप अगले टायरों की ग्रिप खोने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप कार के पिछले हिस्से के फिसलने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल — यानी शैसी पर लोड बढ़ने का अहसास। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>एक थ्रेशोल्ड से नीचे बहुत हल्का बदलता हुआ डिदर जोड़ता है ताकि व्हील का मैकेनिज़्म सक्रिय रहे और महीन डिटेल सामने आए — यह तब उपयोगी है जब आपके पास Logitech G29 जैसा कम पावर वाला व्हील हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>सॉफ़्ट लिमिटर FFB सिग्नल को क्लिप होने पर सपाट होने के बजाय कुछ डिटेल बनाए रखने देता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, जिसे व्हील फ़ोर्स में बदला जाता है। इसके काम करने के लिए आपको iRacing में बेस शेकर LFE चालू करना होगा और VB-CABLE का उपयोग करना होगा।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>फ़्रिक्शन जैसा एक बल जो बहुत धीमी गति में या खड़ी कार में व्हील को दोलन करने से रोकता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग बल जो व्हील को वापस सेंटर की ओर खींचता है; यह केवल तभी प्रभावी होता है जब कार धीमी चल रही हो या खड़ी हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>क्रैश का पता चलने पर बल को बहुत कम कर देता है और फिर उसे सहजता से वापस बढ़ाता है — ताकि कोई बड़ी टक्कर व्हील को आपके हाथों से न छीन सके। फ़ोर्स रिडक्शन तय करता है कि कितना बल हटाया जाए।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप अगले टायरों की ग्रिप खोने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल, जिससे आप कार के पिछले हिस्से के फिसलने को महसूस कर सकते हैं। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला एक स्टीयरिंग बल — यानी शैसी पर लोड बढ़ने का अहसास। डायरेक्शन तय करता है कि इफ़ेक्ट व्हील को हल्का करे या बगल की ओर धक्का जोड़े।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>एक थ्रेशोल्ड से नीचे बहुत हल्का बदलता हुआ डिदर जोड़ता है ताकि व्हील का मैकेनिज़्म सक्रिय रहे और महीन डिटेल सामने आए — यह तब उपयोगी है जब आपके पास Logitech G29 जैसा कम पावर वाला व्हील हो।</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>सॉफ़्ट लिमिटर FFB सिग्नल को क्लिप होने पर सपाट होने के बजाय कुछ डिटेल बनाए रखने देता है।</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>उन ड्राइवरों के लिए जो सबसे तेज़ फ़ोर्स को नरम करना चाहते हैं - पूरा 360 Hz FFB सिग्नल पहले स्लू कम्प्रेसर से गुज़रता है, जो फ़ोर्स के बदलने की रफ़्तार को दबाता है, और फिर कम्प्रेसर से, जो कुल फ़ोर्स को दबाता है।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>फ़ोर्स कितनी तेज़ी से बदल सकता है, इसे दबाता है - तेज़ स्पाइक नरम हो जाते हैं जबकि धीमे फ़ोर्स बिना बदले गुज़र जाते हैं।</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>कुल फ़ोर्स को दबाता है - थ्रेशोल्ड से ऊपर के फ़ोर्स कम्प्रेस हो जाते हैं ताकि सबसे तेज़ पल भी व्हील पर हावी न हों।</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>हाइब्रिड ट्यूनिंग टूलकिट - आधार के रूप में स्मूद 60 Hz FFB सिग्नल, जिसमें 360 Hz डिटेल मिलाई जाती है, और उसके बाद कम्प्रेशन, स्लू कम्प्रेशन, एक ट्रांज़िएंट एन्हांसर और एक अडैप्टिव स्मूथर लगते हैं।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>स्मूद 60 Hz सिग्नल (आधार) को 360 Hz डिटेल के साथ ब्लेंड करता है। जब फ़ोर्स की दिशा बदलती है तो ब्लेंड खुल जाता है, जिससे ट्रांज़िएंट साफ़ तौर पर उभरकर आते हैं।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>कुल फ़ोर्स को दबाता है - थ्रेशोल्ड से ऊपर के फ़ोर्स कम्प्रेस हो जाते हैं ताकि सबसे तेज़ पल भी व्हील पर हावी न हों।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>फ़ोर्स कितनी तेज़ी से बदल सकता है, इसे दबाता है। पीक मोड में यह बढ़ने की रफ़्तार सीमित करने के बजाय स्पाइक के बाद फ़ोर्स को धीरे-धीरे नीचे लाता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>अचानक होने वाले फ़ोर्स बदलावों को तेज़ करता है - यह डिटेल शाखा का नॉन-लीनियर बूस्टर है। 1.00x का गेन ट्रांज़िएंट की मूल ताक़त बनाए रखता है।</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>सिग्नल को केवल तभी स्मूद करता है जब वह शांत हो - तेज़ ट्रांज़िएंट फिर भी गुज़र जाते हैं। ज़्यादा स्मूदिंग के लिए मात्रा बढ़ाएँ।</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>उन ड्राइवरों के लिए जो क्लासिक 60 Hz FFB सिग्नल पसंद करते हैं - लेटेंसी घटाने के लिए पूर्वानुमान के साथ।</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>कम लेटेंसी 360 Hz डिटेल बूस्टर और लिमिटर</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>कम लेटेंसी 60 Hz डिटेल बूस्टर और लिमिटर</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz स्लू और कुल कम्प्रेशन</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>हाइब्रिड ट्यूनिंग टूलकिट</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>ट्यूनिंग प्रोफ़ाइल</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>अपनी ट्यूनिंग प्रोफ़ाइल प्रबंधित करने के लिए क्लिक करें</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>प्रति मौसम</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>प्रति कार</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>प्रति कार + ट्रैक</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>प्रति कार + ट्रैक + कॉन्फ़िगरेशन</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} बदले गए</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} सेटिंग्स</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>सक्रिय</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>यह प्रोफ़ाइल</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>डिफ़ॉल्ट प्रोफ़ाइल</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>इस प्रोफ़ाइल में कोई बदलाव नहीं है।</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>डिफ़ॉल्ट पर वापस लाएँ</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>सिम्युलेटर नहीं चल रहा है — सेटिंग परिवर्तन डिफ़ॉल्ट प्रोफ़ाइल में सहेजे जा रहे हैं।</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>इसमें कॉपी करें…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>डिफ़ॉल्ट बनाएँ</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>साफ़ करें</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>सेटिंग्स किस प्रोफ़ाइल में कॉपी करें?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>इससे प्रोफ़ाइल के बदलाव हट जाएँगे — इसकी हर सेटिंग डिफ़ॉल्ट प्रोफ़ाइल के मान पर वापस चली जाएगी।</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>इससे इस प्रोफ़ाइल की हर बदली हुई सेटिंग डिफ़ॉल्ट प्रोफ़ाइल में कॉपी हो जाएगी, जो नया आधार बन जाएगी।</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>इससे {0} पुराने मॉड्यूल मान हटेंगे, {1} ग्राफ़ चयन ठीक होंगे और {2} अप्रयुक्त प्रोफ़ाइल हटेंगी। जारी रखें?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>साफ़ करने के लिए कुछ नहीं है।</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(कोई ग्राफ़ नहीं)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>फ़ैक्टरी डिफ़ॉल्ट</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>प्रति कार + मौसम</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>प्रति कार + ट्रैक + मौसम</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>प्रति कार + ट्रैक + कॉन्फ़िगरेशन + मौसम</value>
   </data>
 </root>

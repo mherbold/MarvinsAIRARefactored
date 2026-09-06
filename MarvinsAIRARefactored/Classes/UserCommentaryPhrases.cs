@@ -7,7 +7,7 @@ namespace MarvinsAIRARefactored.Classes;
 
 /// <summary>
 /// Manages per-language user-customized commentary phrase JSON files stored in the user's
-/// Documents folder (<c>Documents\MarvinsAIRA Refactored\TTS\{language}.json</c>).
+/// Documents folder (<c>Documents\MAIRA\TTS\{language}.json</c>).
 ///
 /// The user file is a full replacement for the built-in embedded phrases for that language.
 /// <see cref="CommentaryTemplates"/> prefers the user file when one exists.

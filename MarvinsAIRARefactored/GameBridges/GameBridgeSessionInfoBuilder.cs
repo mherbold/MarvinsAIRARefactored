@@ -49,6 +49,7 @@ public class GameBridgeSessionInfoBuilder
 	public int DriverCarIdx { get; set; } = 0;
 	public string DriverSetupName { get; set; } = string.Empty;
 	public int DriverCarGearNumForward { get; set; } = 6;
+	public float DriverCarRedLine { get; set; } = 0f;
 	public float DriverCarSLFirstRPM { get; set; } = 0f;
 	public float DriverCarSLShiftRPM { get; set; } = 0f;
 	public float DriverCarSLBlinkRPM { get; set; } = 0f;
@@ -78,6 +79,7 @@ public class GameBridgeSessionInfoBuilder
 		stringBuilder.AppendLine( $" DriverCarIdx: {DriverCarIdx}" );
 		stringBuilder.AppendLine( $" DriverSetupName: {Quote( DriverSetupName )}" );
 		stringBuilder.AppendLine( $" DriverCarGearNumForward: {DriverCarGearNumForward}" );
+		stringBuilder.AppendLine( $" DriverCarRedLine: {FormatFloat( DriverCarRedLine )}" );
 		stringBuilder.AppendLine( $" DriverCarSLFirstRPM: {FormatFloat( DriverCarSLFirstRPM )}" );
 		stringBuilder.AppendLine( $" DriverCarSLShiftRPM: {FormatFloat( DriverCarSLShiftRPM )}" );
 		stringBuilder.AppendLine( $" DriverCarSLBlinkRPM: {FormatFloat( DriverCarSLBlinkRPM )}" );

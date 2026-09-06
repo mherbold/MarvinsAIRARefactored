@@ -24,23 +24,19 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Per <strong>Wheelbase</strong></li>
+<li>Per <strong>car</strong></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Per <strong>Car</strong></li>
+<li>Per <strong>track</strong></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Per <strong>Track</strong></li>
+<li>Per <strong>track configuration</strong></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Per <strong>Track Configuration</strong></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Per <strong>Wet/Dry</strong> condition</li>
+<li>Per <strong>wet/dry</strong> condition</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -50,6 +46,18 @@
 
 <!-- wp:paragraph -->
 <p>For example, selecting "Per car" + "Per wet/dry" means that not only will you have separate settings for each car, you will also have separate dry and wet settings for each car.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The car, track and track configuration switches form a hierarchy, and MAIRA only lets you turn them on from the top down. <strong>Per track</strong> is available only while <strong>Per car</strong> is on, and <strong>Per track configuration</strong> is available only while <strong>Per track</strong> is on. Turning off a switch turns off the ones underneath it. A track scope without a car scope would key the setting to the track no matter which car you were driving, which is almost never what you want — so that combination is not offered. <strong>Per wet/dry</strong> is independent of the other three and can be combined with any of them, or used on its own.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If you are coming from an older version of MAIRA that allowed those combinations, the first time your settings are loaded MAIRA corrects any it finds by turning the orphaned switches off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Every setting saved this way ends up in a <strong>tuning profile</strong>. The <a href="https://mairapp.com/home/documentation/advanced/tuning-profiles/" data-type="page">Tuning Profiles</a> page shows you every profile MAIRA has saved, what each one changes, and lets you revert, copy, promote, and clean them up.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

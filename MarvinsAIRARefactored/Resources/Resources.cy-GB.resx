@@ -208,7 +208,7 @@
     <value>Ffenestr uchaf</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>Nm</value>
+    <value> Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
     <value>Hwbiwr manylion (lledrith isel)</value>
@@ -280,7 +280,7 @@
     <value>Amddiffyniad damwain</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value>g</value>
+    <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
     <value>Grym g hydredol</value>
@@ -292,7 +292,7 @@
     <value>Lleihad grym</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>eil</value>
+    <value> eil</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
     <value> m/s</value>
@@ -328,7 +328,7 @@
     <value>Cryfder</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>Hz</value>
+    <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>Amledd byd-eang</value>
@@ -353,9 +353,6 @@
   </data>
   <data name="None" xml:space="preserve">
     <value>Dim</value>
-  </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Fesul bas olwyn</value>
   </data>
   <data name="PerCar" xml:space="preserve">
     <value>Fesul car</value>
@@ -585,9 +582,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Heb ddod o hyd i recordiadau]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Galluogi modd syml</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensitifrwydd</value>
   </data>
@@ -724,7 +718,7 @@
     <value>Mae eithriad wedi'i daflu</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>KPH</value>
+    <value> KPH</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Dyma'r bobl sydd wedi cyfrannu'n hael o'u hamser sbâr i redeg calibradau effeithiau llywio ar rai o'u hoff geir, ac i uwchlwytho'r ffeiliau calibradu hynny!</value>
@@ -883,7 +877,7 @@
     <value>Grip-o-fedr</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>MYA</value>
+    <value> MYA</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon gwynt</value>
@@ -1345,10 +1339,10 @@
     <value>Dewiswch eich llyw adborth grym o'r rhestr isod.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Ddim yn gweld eich llyw? Gwnewch yn siŵr ei fod wedi'i bweru a'i gysylltu a bydd y rhestr yn diweddaru'n awtomatig.</value>
+    <value>Ddim yn gweld eich llyw? Gwnewch yn siŵr ei fod wedi'i bweru a'i gysylltu a bydd y rhestr yn diweddaru'n awtomatig.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Defnyddwyr Fanatec: mae llywiau Fanatec fel arfer yn ymddangos fel dwy ddyfais ar wahân ar y rhestr. Os nad yw'r un a ddewiswyd yn gweithio, rhowch gynnig ar y llall!</value>
+    <value>Defnyddwyr Fanatec: mae llywiau Fanatec fel arfer yn ymddangos fel dwy ddyfais ar wahân ar y rhestr. Os nad yw'r un a ddewiswyd yn gweithio, rhowch gynnig ar y llall!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Grym mwyaf y llyw</value>
@@ -1357,10 +1351,10 @@
     <value>Rhowch y grym mwyaf y gall eich sylfaen ei gynhyrchu, mewn Newton-metrau (Nm). Mae MAIRA yn defnyddio'r gwerth hwn i raddio holl allbwn adborth grym yn gywir ar gyfer eich caledwedd.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Rydym wedi gwneud ein hamcangyfrif gorau yn seiliedig ar eich llyw a ddewiswyd, ond mae croeso i chi ei addasu os oes angen.</value>
+    <value>Rydym wedi gwneud ein hamcangyfrif gorau yn seiliedig ar eich llyw a ddewiswyd, ond mae croeso i chi ei addasu os oes angen.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Pwysig: os ydych eisoes wedi cyfyngu trorym mwyaf eich llyw yng meddalwedd y gwneuthurwr (e.e.: Fanatec Wheel Control Panel, Moza Pit House, ac ati), rhowch y gwerth llai hwnnw yma yn lle uchafswm ffisegol y caledwedd. Mae angen i MAIRA wybod beth fydd eich llyw yn ei ddarparu mewn gwirionedd, nid beth y mae'n alluog o'i wneud yn ddamcaniaethol.</value>
+    <value>Pwysig: os ydych eisoes wedi cyfyngu trorym mwyaf eich llyw yng meddalwedd y gwneuthurwr (e.e.: Fanatec Wheel Control Panel, Moza Pit House, ac ati), rhowch y gwerth llai hwnnw yma yn lle uchafswm ffisegol y caledwedd. Mae angen i MAIRA wybod beth fydd eich llyw yn ei ddarparu mewn gwirionedd, nid beth y mae'n alluog o'i wneud yn ddamcaniaethol.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Rheolaethau grym</value>
@@ -1372,7 +1366,7 @@
     <value>Cliciwch y botymau - a + isod i neilltuo mewnbynnau i bob un. Mae'r cam hwn yn ddewisol; gallwch ei hepgor a ffurfweddu'r neilltuo'n ddiweddarach o dudalen y Llyw.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Unwaith y caiff mewnbwn ei neilltuo, bydd ymyl y botwm yn troi'n oren i gadarnhau.</value>
+    <value>Unwaith y caiff mewnbwn ei neilltuo, bydd ymyl y botwm yn troi'n oren i gadarnhau.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Cryfder</value>
@@ -1399,7 +1393,7 @@
     <value>Yn gyntaf, addasu'r ymyl targed awtomatig yn ôl eich dymuniad, yna neilltuo'r botymau Gosod a Clirio.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Mae'r targed awtomatig yn gosod lle yn ystod grym y llyw y dylai'r brig mesuredig ddisgyn. Gostwngwch y targed i gadw mwy o ymyl uwchben y brig; codwch ef i ddefnyddio mwy o ystod y llyw.</value>
+    <value>Mae'r targed awtomatig yn gosod lle yn ystod grym y llyw y dylai'r brig mesuredig ddisgyn. Gostwngwch y targed i gadw mwy o ymyl uwchben y brig; codwch ef i ddefnyddio mwy o ystod y llyw.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algorithm</value>
@@ -1490,9 +1484,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Diwedd dolen</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Sylwebaeth</value>
@@ -1642,7 +1633,7 @@
     <value>Yn cychwyn efelychydd...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Yn cychwyn mewnbwn uniongyrchol...</value>
+    <value>Yn cychwyn DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Yn cychwyn Stream Deck...</value>
@@ -1671,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Yn cychwyn LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Yn cychwyn amserydd amlgyfrwng...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Yn cychwyn amserydd chwarae...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Yn cychwyn rheolwr recordio...</value>
@@ -1715,52 +1706,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Proffiliau rheolydd</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Ailenwi proffil</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Ailenwi proffil rheolydd</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Prosesau sy'n rhedeg</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Hidlo yn ôl enw neu lwybr...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Yn chwilio am apiau sy'n rhedeg...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Gwelededd ffenestr</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Dangos / cuddio ffenestr</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Maint y cam</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Cyfwng gwirio am ddiweddariadau</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> awr</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Dileu paent pan fydd iRacing yn cau</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Gwirio am ddiweddariadau ar gyfwng</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Ymarfer</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Cymhwyso</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Ras</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Statws</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Segur</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Gweithredol</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Ataliedig</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Dileu hen osodwyr</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Amrywiol</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Agor ffolder dogfennau</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1807,7 +1820,8 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(heb ei fapio)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Galluogi safle a graddfa haen fesul car</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Nid yw'r ffeil galibradu ar gael eto ar gyfer y car hwn.</value>
@@ -1826,56 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>Ffynhonnell 60 Hz</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>Ffynhonnell 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>Ffynhonnell LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Allbwn</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Hidlydd pas isel</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Hidlydd pas uchel</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Adio</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Cymysgedd</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Cyfyngydd slew</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Cywasgydd slew</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Cywasgydd</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Gwella transients</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Llyfnhau addasol</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Cymysgedd addasol</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Cromlin</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Cyfyngydd meddal</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Amddiffyniad damwain</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Amddiffyniad cwrbyn</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Cryfder parcio</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Ffynhonnell clo meddal</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Ffynhonnell ffrithiant</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Ffynhonnell canol-osod llyw</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Grym tanllywio</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Grym gorllywio</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Grym teimlad sedd</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Dirgryniad tanllywio</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Dirgryniad gorllywio</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Dirgryniad teimlad sedd</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Dirgryniad RPM newid</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Dirgryniad newid gêr</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>Dirgryniad ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Gain cyflymder</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Gwead ffordd</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Gwead llithro</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Dither trorym</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Llethr</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Torbwynt</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Cymysgedd</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Terfyn</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Trothwy</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Trobwynt</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Cymhareb</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Modd brig</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Maint</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Torbwynt brig</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Grym G hydredol</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Grym G ochrol</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Wrth rasio</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Wrth barcio</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Patrwm</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Cyflymder lleiafswm</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Cyflymder mwyafswm</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Gain ar gyflymder lleiafswm</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Gain ar gyflymder mwyafswm</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Un pôl</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Dau bôl</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Ychwanegu modiwl</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Dewis recordiad</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Clonio'r graff cyfredol</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>Graff FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Enw'r graff</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Graff newydd</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Dechrau graff gwag</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Tynnu</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Ffynhonnell cyflymder yr olwyn</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Ffynonellau</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP cyffredinol</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Cymysgwyr</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Effeithiau</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Effeithiau eraill</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Allforio graff</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Mewnforio graff</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>Ffeiliau graff MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Graff a fewnforiwyd</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Ni ellid allforio'r graff hwn.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Ni ellid mewnforio'r ffeil graff hon.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Nid ffeil graff MAIRA yw'r ffeil hon.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Mae'r ffeil hon yn cynnwys graff effeithiau dirgryniad - mewnforiwch ef o dan effeithiau dirgryniad yn lle hynny.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Mae'r ffeil hon yn cynnwys graff FFB - mewnforiwch ef o dan y graff FFB yn lle hynny.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Crëwyd y ffeil graff hon gan fersiwn mwy newydd o MAIRA. Diweddarwch MAIRA a rhowch gynnig arall arni.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Dechreuwyd recordio</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Stopiwyd recordio</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Amser</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Safle ar y trac</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>Trorym 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>Trorym 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Ongl lywio</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Cyflymder llywio</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Safle'r olwyn</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Cyflymder yr olwyn</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Gêr</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Grym-G hydredol</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Sglefrio/llithro</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Adeiledig</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Addasedig</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Mewnforio gosodiadau graff</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Mae gennych y graff ‘{0}’ eisoes. Beth hoffech chi ei wneud gyda'r gosodiadau yn y ffeil hon?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Diweddaru gosodiadau {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Diweddaru gosodiadau sylfaenol (rhagosodedig)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Diweddaru gosodiadau {0} a rhai sylfaenol</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Mewnforio fel copi newydd</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>Rhyngosodydd 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Rhagfynegiad (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Gorwel</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Cymysgu</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Terfyn cywiro</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Rhanbarth glynu</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Mae'r effaith hon wedi'i hanalluogi ar y dudalen effeithiau llywio</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Hyd y pwls</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Ardal glynu</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Dirgryniad RPM yr injan</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Amledd ar RPM llinell goch</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Garwedd</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>Mae tanlywio a gorlywio wedi'u hanalluogi ar y dudalen effeithiau llywio</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Ychwanegwch ddisgrifiad ar gyfer y graff hwn</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Pinio'r gosodiad hwn fel un o brif reolyddion y graff hwn</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Dangos y graff nodau</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>Rhagfynegiad (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>Pont gemau</value>
   </data>
@@ -1918,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ysgubo'r llyw</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Golygu'r disgrifiad</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Signal force feedback brodorol 60 Hz iRacing, yn union fel y mae'r efelychydd yn ei anfon.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Signal force feedback cyfradd uchel iRacing — chwe sampl ym mhob ffrâm 60 Hz, gyda'r manylder mwyaf.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Sain effeithiau amledd isel (LFE) yr efelychydd, wedi'i throi'n rym ar yr olwyn. Cymysgwch hi i mewn gyda modiwl adio.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Grym sy'n gwrthwynebu pa mor gyflym mae'r olwyn yn cael ei throi — cymysgwch ef i mewn ar gyfer dampio.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Ffrithiant sych go iawn: mae'r olwyn yn aros lle rydych yn ei gadael, gyda llusgiad llithro cyson y tu hwnt i'r rhanbarth glynu.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Yn gwthio'n ôl yn galed pan gaiff yr olwyn ei throi y tu hwnt i glo llywio'r car, fel stop pen ffisegol.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Grym sbring sy'n tynnu'r olwyn yn ôl tua'r canol. Anfonwch ef drwy fodiwl cynnydd cyflymder i'w gadw ar gyfer parcio'n unig.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Diwedd y gadwyn — yn trosi'r signal yn allbwn i'r olwyn, gyda chromlin ymateb ddewisol a chyfyngydd meddal.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Yn cadw corff araf y signal ac yn llyfnhau popeth sy'n gyflymach na'r amledd torri.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Yn tynnu corff araf y signal ac yn cadw dim ond y manylder cyflym uwchben yr amledd torri.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Yn graddio'r signal â lluosydd sefydlog — defnyddiwch gynnydd negatif i'w wrthdroi.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Yn adio dau signal at ei gilydd.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Yn tynnu mewnbwn B oddi wrth fewnbwn A — er enghraifft, mae tynnu copi pas-isel o signal yn gadael dim ond y manylder.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Yn croes-doddi rhwng dau signal — mae 0% yn fewnbwn A i gyd, ac mae 100% yn fewnbwn B i gyd.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Yn capio pa mor gyflym y gall y signal newid — mae unrhyw beth o dan y terfyn yn pasio heb ei gyffwrdd, a chaiff symudiad cyflymach ei arafu.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Yn gwasgu newidiadau cyflym yn y signal yn hytrach na'u cyfyngu'n galed — mae symudiad araf yn pasio heb ei gyffwrdd.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Yn gwasgu'r signal uwchben trothwy, gan gadw'r brigau dan reolaeth heb glipio caled.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Yn echdynnu'r manylder cyflym ac yn pwysleisio'r ymosodiadau — mae twmpathau a chyrbau'n sefyll allan heb hybu'r dirywiad.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Llyfnydd un nob sy'n addasu i'r signal — llyfnhau cryf pan fo'r signal yn dawel, oedi lleiaf posibl ar drawsnewidiau cyflym.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Yn tynnu'r grisiau o signal 60 Hz drwy rampio'n llyfn ar draws pob ffrâm, ar gost un ffrâm o hwyrni.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Yn symud signal 360 Hz i'r dyfodol i wrthweithio hwyrni — hidlydd addasol sy'n dysgu pob car wrth i chi yrru.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Yn symud y signal 60 Hz i'r dyfodol i wrthweithio hwyrni — yn dysgu o'ch llywio a symudiad y car wrth i chi yrru.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Yn dilyn manylder mewnbwn A tra'n cael ei dynnu tuag at fewnbwn B — mae'r tyniad yn llacio ar bob brig fel bod trawsnewidiau'n mynd drwodd.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Yn pylu'r grym i lawr yn sylweddol pan ganfyddir damwain, yna'n rampio'n ôl yn llyfn.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Yn lleihau'r grym yn ystod trawiadau cyrb caled, yna'n rampio'n ôl yn llyfn.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Grym llywio a yrrir gan yr effaith tanlywio, fel y gallwch deimlo'r teiars blaen yn colli gafael.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Grym llywio a yrrir gan yr effaith gorlywio, fel y gallwch deimlo cefn y car yn llithro allan.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Grym llywio a yrrir gan effaith teimlad y corff — teimlad y siasi'n llwytho.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Yn dirgrynu'r olwyn pan fydd y teiars blaen yn dechrau llithro.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Yn dirgrynu'r olwyn pan fydd y teiars cefn yn dechrau llithro.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Yn dirgrynu'r olwyn gyda symudiad y siasi — trosglwyddiad pwysau y gallwch ei deimlo.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Yn suo'r olwyn mewn pylsau pan fydd yr injan yn cyrraedd y pwynt newid gêr.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Pwl byr o ddirgryniad ar bob newid gêr.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Yn pylsu'r olwyn tra bo ABS y breciau'n weithredol.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Rymblan sy'n dilyn cyflymder yr injan, wedi'i leisio fel V8 — yn dawel tra bo'r injan i ffwrdd.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Yn graddio'r signal gyda chyflymder y car — pylwch rymoedd i mewn neu allan wrth i'r car gyflymu.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Rymblan sy'n cyflymu gyda'r car, fel gwead wyneb y ffordd — yn dawel pan fo'r car wedi'i barcio.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Rymblan sy'n ymddangos pryd bynnag y bydd naill ben neu'r llall o'r car yn llithro, wedi'i yrru gan yr effeithiau tanlywio a gorlywio.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Yn ychwanegu dither bychan bob yn ail o dan drothwy i gadw mecanwaith yr olwyn yn fyw a datgelu manylder gwan.</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Dolenni</value>
   </data>
@@ -1932,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>Prif gyfranwyr</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Dangos y gosodiadau wedi'u pinio</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Switsh A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Defnyddio mewnbwn B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Yn pasio naill ai mewnbwn A neu fewnbwn B drwodd heb ei newid, yn ôl safle'r switsh — newidiwch i gymharu dau lwybr signal ar unwaith.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Diweddaru gosodiadau ym mhobman lle mae'r graff hwn wedi'i ddewis</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Yn cychwyn olwyn Logitech...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Goleuadau refio Logitech</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Goleuo'r goleuadau refio ar yr olwyn</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Fflachio'r goleuadau ar ôl pasio'r pwynt newid gêr</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>Gosodiadau graff FFB</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Argymhellir ar gyfer y rhan fwyaf o yrwyr — y signal FFB llawn 360 Hz gyda rhagfynegi i leihau'r oedi. Addaswch y cynnydd i gynyddu neu leihau manylder y ffordd a'r teiars.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Sain effeithiau amledd isel (LFE) yr efelychydd, wedi'i throi'n rym ar yr olwyn. Rhaid i chi alluogi bass shaker LFE yn iRacing a defnyddio VB-CABLE er mwyn i hyn weithio.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Grym tebyg i ffrithiant sy'n atal yr olwyn rhag osgiliadu pan fyddwch yn symud yn araf iawn neu wedi stopio.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Grym sbring sy'n tynnu'r olwyn yn ôl tuag at y canol; dim ond pan fydd y car yn symud yn araf neu wedi stopio y mae'n gweithio.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Addaswch y gwerth hwn i gynyddu neu leihau manylder y ffordd a'r teiars. Mae cynnydd o 1.00x yn cadw teimlad gwreiddiol iRacing.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Mae'n gostwng y grym yn sylweddol pan ganfyddir gwrthdrawiad, ac yna'n ei godi'n ôl yn llyfn — fel na all ergyd fawr rwygo'r olwyn o'ch dwylo. Mae'r lleihad grym yn pennu faint o'r grym sy'n cael ei dynnu.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith tanllywio, fel y gallwch deimlo'r teiars blaen yn colli gafael. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith gorllywio, fel y gallwch deimlo cefn y car yn llithro allan. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith teimlad sedd — teimlad y siasi yn llwytho. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Yn ychwanegu dither bychan bob yn ail o dan drothwy er mwyn cadw mecanwaith yr olwyn yn fyw a datgelu manylion gwan — defnyddiol os oes gennych olwyn pŵer isel fel y Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Mae'r cyfyngydd meddal yn caniatáu i'r signal FFB gadw rhywfaint o fanylder yn lle gwastatáu pan gaiff ei docio.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>Sain effeithiau amledd isel (LFE) yr efelychydd, wedi'i throi'n rym ar yr olwyn. Rhaid i chi alluogi bass shaker LFE yn iRacing a defnyddio VB-CABLE er mwyn i hyn weithio.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>Grym tebyg i ffrithiant sy'n atal yr olwyn rhag osgiliadu pan fyddwch yn symud yn araf iawn neu wedi stopio.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>Grym sbring sy'n tynnu'r olwyn yn ôl tuag at y canol; dim ond pan fydd y car yn symud yn araf neu wedi stopio y mae'n gweithio.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Mae'n gostwng y grym yn sylweddol pan ganfyddir gwrthdrawiad, ac yna'n ei godi'n ôl yn llyfn — fel na all ergyd fawr rwygo'r olwyn o'ch dwylo. Mae'r lleihad grym yn pennu faint o'r grym sy'n cael ei dynnu.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith tanllywio, fel y gallwch deimlo'r teiars blaen yn colli gafael. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith gorllywio, fel y gallwch deimlo cefn y car yn llithro allan. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith teimlad sedd — teimlad y siasi yn llwytho. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Yn ychwanegu dither bychan bob yn ail o dan drothwy er mwyn cadw mecanwaith yr olwyn yn fyw a datgelu manylion gwan — defnyddiol os oes gennych olwyn pŵer isel fel y Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>Mae'r cyfyngydd meddal yn caniatáu i'r signal FFB gadw rhywfaint o fanylder yn lle gwastatáu pan gaiff ei docio.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>Sain effeithiau amledd isel (LFE) yr efelychydd, wedi'i throi'n rym ar yr olwyn. Rhaid i chi alluogi bass shaker LFE yn iRacing a defnyddio VB-CABLE er mwyn i hyn weithio.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>Grym tebyg i ffrithiant sy'n atal yr olwyn rhag osgiliadu pan fyddwch yn symud yn araf iawn neu wedi stopio.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>Grym sbring sy'n tynnu'r olwyn yn ôl tuag at y canol; dim ond pan fydd y car yn symud yn araf neu wedi stopio y mae'n gweithio.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Mae'n gostwng y grym yn sylweddol pan ganfyddir gwrthdrawiad, ac yna'n ei godi'n ôl yn llyfn — fel na all ergyd fawr rwygo'r olwyn o'ch dwylo. Mae'r lleihad grym yn pennu faint o'r grym sy'n cael ei dynnu.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith tanllywio, fel y gallwch deimlo'r teiars blaen yn colli gafael. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith gorllywio, fel y gallwch deimlo cefn y car yn llithro allan. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith teimlad sedd — teimlad y siasi yn llwytho. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Yn ychwanegu dither bychan bob yn ail o dan drothwy er mwyn cadw mecanwaith yr olwyn yn fyw a datgelu manylion gwan — defnyddiol os oes gennych olwyn pŵer isel fel y Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>Mae'r cyfyngydd meddal yn caniatáu i'r signal FFB gadw rhywfaint o fanylder yn lle gwastatáu pan gaiff ei docio.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Sain effeithiau amledd isel (LFE) yr efelychydd, wedi'i throi'n rym ar yr olwyn. Rhaid i chi alluogi bass shaker LFE yn iRacing a defnyddio VB-CABLE er mwyn i hyn weithio.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Grym tebyg i ffrithiant sy'n atal yr olwyn rhag osgiliadu pan fyddwch yn symud yn araf iawn neu wedi stopio.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Grym sbring sy'n tynnu'r olwyn yn ôl tuag at y canol; dim ond pan fydd y car yn symud yn araf neu wedi stopio y mae'n gweithio.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Mae'n gostwng y grym yn sylweddol pan ganfyddir gwrthdrawiad, ac yna'n ei godi'n ôl yn llyfn — fel na all ergyd fawr rwygo'r olwyn o'ch dwylo. Mae'r lleihad grym yn pennu faint o'r grym sy'n cael ei dynnu.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith tanllywio, fel y gallwch deimlo'r teiars blaen yn colli gafael. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith gorllywio, fel y gallwch deimlo cefn y car yn llithro allan. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>Grym llywio wedi'i yrru gan yr effaith teimlad sedd — teimlad y siasi yn llwytho. Mae'r cyfeiriad yn dewis a yw'r effaith yn ysgafnhau'r olwyn neu'n ychwanegu gwthiad i'r ochr.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Yn ychwanegu dither bychan bob yn ail o dan drothwy er mwyn cadw mecanwaith yr olwyn yn fyw a datgelu manylion gwan — defnyddiol os oes gennych olwyn pŵer isel fel y Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Mae'r cyfyngydd meddal yn caniatáu i'r signal FFB gadw rhywfaint o fanylder yn lle gwastatáu pan gaiff ei docio.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>I yrwyr sydd am feddalu'r grymoedd cryfaf – y signal FFB 360 Hz llawn drwy gywasgydd slew sy'n cyfyngu ar ba mor gyflym y gall y grym newid, a chywasgydd sy'n gwasgu'r grym cyfan.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Yn cyfyngu ar ba mor gyflym y gall y grym newid – caiff pigau cyflym eu meddalu tra bo grymoedd arafach yn mynd drwodd yn ddigyfnewid.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Yn gwasgu'r grym cyfan – caiff grymoedd uwchlaw'r trothwy eu cywasgu fel nad yw'r eiliadau cryfaf yn gorlethu'r llyw.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Y pecyn tiwnio hybrid – y signal FFB 60 Hz llyfn fel sylfaen gyda'r manylder 360 Hz wedi'i gymysgu i mewn, wedi'i ddilyn gan gywasgydd, cywasgydd slew, gwella transients a llyfnhau addasol.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Yn cymysgu'r signal 60 Hz llyfn (y sylfaen) gyda'r manylder 360 Hz. Pan fydd y grym yn newid cyfeiriad, mae'r cymysgedd yn agor fel bod transients yn torri drwodd.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Yn gwasgu'r grym cyfan – caiff grymoedd uwchlaw'r trothwy eu cywasgu fel nad yw'r eiliadau cryfaf yn gorlethu'r llyw.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Yn cyfyngu ar ba mor gyflym y gall y grym newid. Yn y modd brig, mae'n gadael i'r grym ostwng yn raddol ar ôl pig yn lle cyfyngu ar ba mor gyflym y mae'n codi.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Yn miniogi newidiadau sydyn yn y grym – hwb aflinol y gangen fanylder. Mae gain o 1.00x yn cadw cryfder gwreiddiol y transients.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Yn llyfnhau'r signal dim ond tra bo'n dawel – mae transients cyflym yn dal i fynd drwodd. Cynyddwch y maint am fwy o lyfnhau.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>I yrwyr sy'n ffafrio'r signal FFB 60 Hz clasurol – gyda rhagfynegiad i leihau hwyrni.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Hybydd manylder a chyfyngydd 360 Hz hwyrni isel</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Hybydd manylder a chyfyngydd 60 Hz hwyrni isel</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>Slew a chywasgiad cyfan 360 Hz</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Pecyn tiwnio hybrid</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Proffiliau tiwnio</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Cliciwch i reoli eich proffiliau tiwnio</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Fesul tywydd</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Fesul car</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Fesul car + trac</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Fesul car + trac + cyfluniad</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} wedi newid</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} gosodiad</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Gweithredol</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Y proffil hwn</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Proffil rhagosodedig</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Nid oes newidiadau yn y proffil hwn.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Dychwelyd i'r rhagosodiad</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Nid yw'r efelychydd yn rhedeg — mae newidiadau gosodiadau'n cael eu cadw i'r proffil rhagosodedig.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Copïo i…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Gwneud yn rhagosodiad</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Tacluso</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>I ba broffil ddylid copïo'r gosodiadau?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Bydd hyn yn dileu newidiadau'r proffil — bydd pob gosodiad ynddo'n dychwelyd i werth y proffil rhagosodedig.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Bydd hyn yn copïo pob gosodiad a newidiwyd yn y proffil hwn i'r proffil rhagosodedig, gan ei wneud yn sylfaen newydd.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Bydd hyn yn tynnu {0} hen werth modiwl, yn trwsio {1} dewisiad graff, ac yn dileu {2} proffil nas defnyddir. Parhau?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Dim byd i'w dacluso.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(dim graff)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Rhagosodiad ffatri</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Fesul car + tywydd</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Fesul car + trac + tywydd</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Fesul car + trac + cyfluniad + tywydd</value>
   </data>
 </root>

@@ -1,0 +1,677 @@
+<Window x:Class="MarvinsAIRARefactored.Windows.TuningProfilesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:converters="clr-namespace:MarvinsAIRARefactored.Converters"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        xmlns:windows="clr-namespace:MarvinsAIRARefactored.Windows"
+        mc:Ignorable="d"
+        Title="{Binding Localization[TuningProfiles]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        Width="1180"
+        Height="680"
+        MinWidth="1180"
+        MinHeight="680"
+        ResizeMode="CanResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner"
+        Activated="Window_Activated">
+
+    <!-- The tuning profile manager. Left: every logical profile the settings file holds, grouped by how specific
+         it is. Right: what the selected profile changes relative to the default profile, one revertable row per
+         setting. Both lists are built in code-behind and rebuilt from scratch after every operation (and whenever
+         the window is activated), since the simulator can move the app onto another context behind its back. -->
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </Window.DataContext>
+
+    <Window.Resources>
+
+        <converters:StartsWithUnderscoreConverter x:Key="StartsWithUnderscoreConverter" />
+
+        <!-- List text -->
+
+        <Style x:Key="TuningProfilesListTextStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource MairaTextBlockStyle}">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <!-- The trailing bits of a profile row (weather badge, changed count, live marker) are only there some of
+             the time, and an empty text block would still contribute its margin -->
+
+        <Style x:Key="TuningProfilesListBadgeStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource TuningProfilesListTextStyle}">
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- A profile row sets its own text colors, so it cannot inherit the ones the selected row puts on its
+             container - each of the three text roles switches itself over instead -->
+
+        <Style x:Key="TuningProfilesListRowTextStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource TuningProfilesListTextStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                             Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource Brush.ListItem.Selected.Text}" />
+                </DataTrigger>
+                <!-- a profile name line the profile does not have collapses, taking its grid row's height with it -->
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TuningProfilesListMutedBadgeStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource TuningProfilesListBadgeStyle}">
+            <Setter Property="Foreground" Value="{DynamicResource Brush.Foreground.Muted}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                             Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource Brush.ListItem.Selected.Muted}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TuningProfilesListAccentBadgeStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource TuningProfilesListBadgeStyle}">
+            <Setter Property="Foreground" Value="{DynamicResource Brush.Accent}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                             Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource Brush.ListItem.Selected.Accent}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Profile list (same grouped-list convention as the add-module picker: rows whose Key starts with an
+             underscore are non-selectable group headers) -->
+
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="{DynamicResource Brush.Background.Popup}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Subtle}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="{DynamicResource Brush.Foreground.Primary}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Bg"
+                                Background="Transparent"
+                                BorderBrush="{DynamicResource Brush.Border.Normal}"
+                                BorderThickness="0,0,0,1"
+                                Padding="12,8">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Hover}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Selected}" />
+                                <Setter TargetName="Bg" Property="BorderBrush" Value="{DynamicResource Brush.Border.Normal}" />
+                                <Setter TargetName="Bg" Property="TextElement.Foreground" Value="{DynamicResource Brush.ListItem.Selected.Text}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <!-- group header rows: not clickable, accent-colored, with breathing room above (the template is
+                     replaced so the disabled gray-out cannot override the accent color) -->
+                <DataTrigger Binding="{Binding Key, Converter={StaticResource StartsWithUnderscoreConverter}}"
+                             Value="True">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Setter Property="Focusable" Value="False" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <TextBlock Text="{Binding Label}"
+                                           FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+                                           FontSize="18"
+                                           Foreground="{DynamicResource Brush.Accent}"
+                                           FontWeight="Bold"
+                                           Margin="12,14,12,4" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- The scope badge beside a detail row's label (default profile only): one small round icon per context
+             dimension the setting is tuned per - car, track, track configuration, weather - with the full localized
+             scope sentence as the cluster's tooltip. That sentence used to be the badge itself, and the longer
+             combinations of it ate most of the setting name beside it. The whole cluster is collapsed when the
+             setting is tuned at the default scope, which is most of them (and every row of every other profile) -
+             the sentence is empty exactly when none of the four flags is set. -->
+
+        <!-- The glyphs are solid silhouettes authored on a shared 24x24 frame: thin strokes fall apart at this size,
+             and the shared frame keeps the four of them in proportion to each other once the cluster scales them all
+             down by the same amount. -->
+
+        <!-- car, side view: body with a raised cabin, wheels unioned in underneath it -->
+        <PathGeometry x:Key="TuningProfilesScopeCarGeometry"
+                      FillRule="Nonzero"
+                      Figures="M 2.2,15.2 L 2.2,12.2 C 2.2,11.6 2.6,11.1 3.2,11 L 5.4,10.6 L 7.9,7.1 C 8.4,6.4 9.2,6 10.1,6 L 14.2,6 C 15,6 15.7,6.3 16.2,6.9 L 19.4,10.6 L 21,11 C 21.7,11.2 22.2,11.8 22.2,12.5 L 22.2,15.2 Z M 4.4,15.2 A 2.6,2.6 0 1 1 9.6,15.2 A 2.6,2.6 0 1 1 4.4,15.2 Z M 14.4,15.2 A 2.6,2.6 0 1 1 19.6,15.2 A 2.6,2.6 0 1 1 14.4,15.2 Z" />
+
+        <!-- road: a trapezoid running to a vanishing point, with two center line dashes punched back out of it (only
+             two, and chunky ones - three would close up into a solid line at this size) -->
+        <PathGeometry x:Key="TuningProfilesScopeTrackGeometry"
+                      FillRule="EvenOdd"
+                      Figures="M 9.8,4.5 L 14.2,4.5 L 20.5,19.5 L 3.5,19.5 Z M 11.1,7 L 12.9,7 L 13.35,11 L 10.65,11 Z M 10.35,13.5 L 13.65,13.5 L 14.25,18.6 L 9.75,18.6 Z" />
+
+        <!-- wrench: an open jaw (a ring with a wide gap facing up and left) on a rounded handle running down to the
+             opposite corner -->
+        <PathGeometry x:Key="TuningProfilesScopeTrackConfigurationGeometry"
+                      FillRule="Nonzero"
+                      Figures="M 8.95,3.32 A 5.2,5.2 0 1 1 3.32,8.95 L 5.91,8.73 A 2.6,2.6 0 1 0 8.73,5.91 Z M 12.14,9.46 L 20.94,18.26 A 1.9,1.9 0 0 1 18.26,20.94 L 9.46,12.14 Z" />
+
+        <!-- raindrop: a point on top of a circle, joined along the circle's tangents -->
+        <PathGeometry x:Key="TuningProfilesScopeWeatherGeometry"
+                      FillRule="Nonzero"
+                      Figures="M 12,3.8 L 7.32,11.9 A 5.4,5.4 0 1 0 16.68,11.9 Z" />
+
+        <Style x:Key="TuningProfilesScopeClusterStyle"
+               TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <!-- the last icon carries the other 3 of the badge's old 10 pixel gap -->
+            <Setter Property="Margin" Value="10,0,7,0" />
+            <!-- so the gaps between the icons answer the tooltip too, not just the discs -->
+            <Setter Property="Background" Value="Transparent" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ScopeLabel}"
+                             Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TuningProfilesScopeIconStyle"
+               TargetType="Border">
+            <Setter Property="Width" Value="18" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="CornerRadius" Value="9" />
+            <Setter Property="Margin" Value="0,0,3,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="{DynamicResource Brush.ScopeIcon.Background}" />
+        </Style>
+
+        <!-- the 24x24 frame scaled into the middle of the 18 pixel disc, leaving the widest glyph (the car) about 3
+             pixels of disc on either side of it -->
+        <Style x:Key="TuningProfilesScopeGlyphBoxStyle"
+               TargetType="Viewbox">
+            <Setter Property="Width" Value="14" />
+            <Setter Property="Height" Value="14" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="TuningProfilesScopeGlyphStyle"
+               TargetType="Path">
+            <Setter Property="Fill" Value="{DynamicResource Brush.ScopeIcon.Glyph}" />
+        </Style>
+
+        <!-- The default profile lists every setting, so its value column says which of them have actually been moved
+             off the factory value by going accent colored. No other profile lights any row up - every row it has is a
+             change by construction. -->
+
+        <Style x:Key="TuningProfilesRowValueStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource TuningProfilesListTextStyle}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsChanged}"
+                             Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource Brush.Accent}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Detail list items -->
+
+        <DataTemplate DataType="{x:Type windows:TuningProfileDetailSection}">
+            <TextBlock Text="{Binding Label}"
+                       Style="{StaticResource TuningProfilesListTextStyle}"
+                       Foreground="{DynamicResource Brush.Accent}"
+                       FontWeight="Bold"
+                       Margin="0,14,0,4"
+                       TextTrimming="CharacterEllipsis" />
+        </DataTemplate>
+
+        <!-- The sub-group inside a section (the page section a run of settings sits in, or the FFB module), one
+             indent step in from the section header with the setting rows another step in from it -->
+
+        <DataTemplate DataType="{x:Type windows:TuningProfileDetailSubSection}">
+            <TextBlock Text="{Binding Label}"
+                       Style="{StaticResource TuningProfilesListTextStyle}"
+                       Foreground="{DynamicResource Brush.Foreground.Muted}"
+                       FontSize="15"
+                       Margin="14,8,0,2"
+                       TextTrimming="CharacterEllipsis" />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type windows:TuningProfileDetailRow}">
+
+            <Grid Margin="0,1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="44" />
+                </Grid.ColumnDefinitions>
+
+                <!-- the label keeps the star column so it still trims, which leaves the scope icons lined up
+                     against the value column. Its indent under the section and sub-group headers is a margin on
+                     the text alone - the value columns have to stay lined up with the column headers. -->
+
+                <Grid Grid.Column="0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Style="{StaticResource TuningProfilesListTextStyle}"
+                               Margin="28,0,0,0"
+                               Text="{Binding Label}"
+                               TextTrimming="CharacterEllipsis" />
+
+                    <StackPanel Grid.Column="1"
+                                Style="{StaticResource TuningProfilesScopeClusterStyle}"
+                                ToolTip="{Binding ScopeLabel}">
+
+                        <Border Style="{StaticResource TuningProfilesScopeIconStyle}"
+                                Visibility="{Binding ScopePerCar, Converter={StaticResource BooleanToVisibility}}">
+                            <Viewbox Style="{StaticResource TuningProfilesScopeGlyphBoxStyle}">
+                                <Canvas Width="24"
+                                        Height="24">
+                                    <Path Style="{StaticResource TuningProfilesScopeGlyphStyle}"
+                                          Data="{StaticResource TuningProfilesScopeCarGeometry}" />
+                                </Canvas>
+                            </Viewbox>
+                        </Border>
+
+                        <Border Style="{StaticResource TuningProfilesScopeIconStyle}"
+                                Visibility="{Binding ScopePerTrack, Converter={StaticResource BooleanToVisibility}}">
+                            <Viewbox Style="{StaticResource TuningProfilesScopeGlyphBoxStyle}">
+                                <Canvas Width="24"
+                                        Height="24">
+                                    <Path Style="{StaticResource TuningProfilesScopeGlyphStyle}"
+                                          Data="{StaticResource TuningProfilesScopeTrackGeometry}" />
+                                </Canvas>
+                            </Viewbox>
+                        </Border>
+
+                        <Border Style="{StaticResource TuningProfilesScopeIconStyle}"
+                                Visibility="{Binding ScopePerTrackConfiguration, Converter={StaticResource BooleanToVisibility}}">
+                            <Viewbox Style="{StaticResource TuningProfilesScopeGlyphBoxStyle}">
+                                <Canvas Width="24"
+                                        Height="24">
+                                    <Path Style="{StaticResource TuningProfilesScopeGlyphStyle}"
+                                          Data="{StaticResource TuningProfilesScopeTrackConfigurationGeometry}" />
+                                </Canvas>
+                            </Viewbox>
+                        </Border>
+
+                        <Border Style="{StaticResource TuningProfilesScopeIconStyle}"
+                                Visibility="{Binding ScopePerWetDry, Converter={StaticResource BooleanToVisibility}}">
+                            <Viewbox Style="{StaticResource TuningProfilesScopeGlyphBoxStyle}">
+                                <Canvas Width="24"
+                                        Height="24">
+                                    <Path Style="{StaticResource TuningProfilesScopeGlyphStyle}"
+                                          Data="{StaticResource TuningProfilesScopeWeatherGeometry}" />
+                                </Canvas>
+                            </Viewbox>
+                        </Border>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <TextBlock Grid.Column="1"
+                           Style="{StaticResource TuningProfilesRowValueStyle}"
+                           Text="{Binding ValueString}"
+                           TextTrimming="CharacterEllipsis" />
+
+                <TextBlock Grid.Column="2"
+                           Style="{StaticResource TuningProfilesListTextStyle}"
+                           Foreground="{DynamicResource Brush.Foreground.Muted}"
+                           Text="{Binding DefaultValueString}"
+                           TextTrimming="CharacterEllipsis" />
+
+                <controls:MairaButton Grid.Column="3"
+                                      IsSmall="True"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                      ToolTip="{Binding Localization[TuningProfilesRevert], Source={x:Static datacontext:DataContext.Instance}}"
+                                      Click="Revert_MairaButton_Click" />
+
+            </Grid>
+
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Every shape collapses onto the default profile while the simulator is not running -->
+
+        <TextBlock x:Name="DisconnectedHint_TextBlock"
+                   Grid.Row="0"
+                   Style="{StaticResource TuningProfilesListTextStyle}"
+                   Foreground="{DynamicResource Brush.Foreground.Muted}"
+                   Margin="0,0,0,12"
+                   TextWrapping="Wrap"
+                   Visibility="Collapsed"
+                   Text="{Binding Localization[TuningProfilesDisconnectedHint]}" />
+
+        <Grid x:Name="ListSplit_Grid"
+              Grid.Row="1"
+              SizeChanged="ListSplit_Grid_SizeChanged">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ListBox x:Name="Profiles_ListBox"
+                     Grid.Column="0"
+                     Width="{Binding Settings.TuningProfilesListWidth}"
+                     SelectionChanged="Profiles_ListBox_SelectionChanged">
+
+                <ListBox.ItemTemplate>
+
+                    <!-- up to three name lines - car, track, track configuration - with the weather and live badges
+                         on the first line and the changed count beside whichever of the first two lines the weather
+                         badge left room on. The name lines collapse when the profile does not have them (via the
+                         text styles' empty-text triggers), so a shallow profile is still a single row. -->
+
+                    <DataTemplate>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Style="{StaticResource TuningProfilesListRowTextStyle}"
+                                       Text="{Binding Line1Text}"
+                                       TextTrimming="CharacterEllipsis" />
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       Style="{StaticResource TuningProfilesListAccentBadgeStyle}"
+                                       Text="{Binding WeatherBadge}" />
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="2"
+                                       Style="{StaticResource TuningProfilesListMutedBadgeStyle}"
+                                       Text="{Binding Line1ChangedCount}" />
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="3"
+                                       Style="{StaticResource TuningProfilesListAccentBadgeStyle}"
+                                       FontWeight="Bold"
+                                       Text="{Binding LiveMarker}" />
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Style="{StaticResource TuningProfilesListRowTextStyle}"
+                                       Text="{Binding Line2Text}"
+                                       TextTrimming="CharacterEllipsis" />
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="3"
+                                       HorizontalAlignment="Right"
+                                       Style="{StaticResource TuningProfilesListMutedBadgeStyle}"
+                                       Text="{Binding Line2ChangedCount}" />
+
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="4"
+                                       Style="{StaticResource TuningProfilesListRowTextStyle}"
+                                       Text="{Binding Line3Text}"
+                                       TextTrimming="CharacterEllipsis" />
+
+                        </Grid>
+
+                    </DataTemplate>
+
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+            <!-- grab handle for resizing the profile list: the same grip pill as the FFB graph editor's seams,
+                 centered in the gap between the list and the detail panel. Dragging changes the list column's
+                 width, which persists in settings. -->
+            <Thumb x:Name="ListWidth_Thumb"
+                   Grid.Column="1"
+                   Width="14"
+                   Height="56"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Cursor="SizeWE"
+                   DragDelta="ListWidth_Thumb_DragDelta"
+                   DragCompleted="ListWidth_Thumb_DragCompleted">
+
+                <Thumb.Template>
+                    <ControlTemplate TargetType="Thumb">
+
+                        <Border x:Name="Handle_Border"
+                                Background="{DynamicResource Brush.Background.Default}"
+                                BorderBrush="{DynamicResource Brush.Border.Normal}"
+                                BorderThickness="2"
+                                CornerRadius="7">
+
+                            <StackPanel Orientation="Vertical"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+
+                                <Ellipse Width="3"
+                                         Height="3"
+                                         Fill="{DynamicResource Brush.Foreground.Muted}" />
+
+                                <Ellipse Width="3"
+                                         Height="3"
+                                         Fill="{DynamicResource Brush.Foreground.Muted}"
+                                         Margin="0,5,0,0" />
+
+                                <Ellipse Width="3"
+                                         Height="3"
+                                         Fill="{DynamicResource Brush.Foreground.Muted}"
+                                         Margin="0,5,0,0" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Border.Active}" />
+                            </Trigger>
+                            <Trigger Property="IsDragging" Value="True">
+                                <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Thumb.Template>
+
+            </Thumb>
+
+            <Grid Grid.Column="2">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- The column headers sit outside the scroll viewer, so they carry the width of its always
+                     reserved scroll bar as a right margin to stay lined up with the rows -->
+
+                <Border Grid.Row="0"
+                        BorderBrush="{DynamicResource Brush.Border.Normal}"
+                        BorderThickness="0,0,0,1"
+                        Margin="0,0,12,0"
+                        Padding="0,0,0,4">
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="44" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="1"
+                                   Style="{StaticResource TuningProfilesListTextStyle}"
+                                   Foreground="{DynamicResource Brush.Foreground.Secondary}"
+                                   FontWeight="Bold"
+                                   Text="{Binding Localization[TuningProfilesValueColumn]}"
+                                   TextTrimming="CharacterEllipsis" />
+
+                        <!-- header text is set from code - the default profile compares against factory defaults, every other profile against the default profile -->
+                        <TextBlock x:Name="DefaultColumn_TextBlock"
+                                   Grid.Column="2"
+                                   Style="{StaticResource TuningProfilesListTextStyle}"
+                                   Foreground="{DynamicResource Brush.Foreground.Secondary}"
+                                   FontWeight="Bold"
+                                   d:Text="Default profile"
+                                   TextTrimming="CharacterEllipsis" />
+
+                    </Grid>
+
+                </Border>
+
+                <ScrollViewer Grid.Row="1"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Visible">
+
+                    <ItemsControl x:Name="Rows_ItemsControl" />
+
+                </ScrollViewer>
+
+                <TextBlock x:Name="NoChanges_TextBlock"
+                           Grid.Row="1"
+                           Style="{StaticResource TuningProfilesListTextStyle}"
+                           Foreground="{DynamicResource Brush.Foreground.Muted}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False"
+                           Visibility="Collapsed"
+                           Text="{Binding Localization[TuningProfilesNoChanges]}" />
+
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="3"
+              HorizontalAlignment="Center">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <controls:MairaButton x:Name="Delete_MairaButton"
+                                  Grid.Column="0"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[DeleteProfile]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                  Click="Delete_MairaButton_Click" />
+
+            <controls:MairaButton x:Name="Copy_MairaButton"
+                                  Grid.Column="2"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[TuningProfilesCopyTo]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/copy.png"
+                                  Click="Copy_MairaButton_Click" />
+
+            <controls:MairaButton x:Name="Promote_MairaButton"
+                                  Grid.Column="4"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[TuningProfilesPromote]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Click="Promote_MairaButton_Click" />
+
+            <controls:MairaButton x:Name="CleanUp_MairaButton"
+                                  Grid.Column="6"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[TuningProfilesCleanUp]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/wand.png"
+                                  Click="CleanUp_MairaButton_Click" />
+
+            <controls:MairaButton Grid.Column="8"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[Close]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/ok.png"
+                                  Click="Close_MairaButton_Click" />
+
+        </Grid>
+
+        <TextBlock x:Name="CleanUpStatus_TextBlock"
+                   Grid.Row="4"
+                   Style="{StaticResource TuningProfilesListTextStyle}"
+                   Foreground="{DynamicResource Brush.Foreground.Muted}"
+                   HorizontalAlignment="Center"
+                   Margin="0,10,0,0"
+                   Visibility="Collapsed"
+                   Text="{Binding Localization[TuningProfilesNothingToCleanUp]}" />
+
+    </Grid>
+
+</Window>

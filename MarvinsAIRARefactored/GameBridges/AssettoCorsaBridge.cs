@@ -56,7 +56,7 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 	private GameBridgeVarTable? _varTable = null;
 	private AcDataProvider? _provider = null;
 
-	// the bridge is pumped from the multimedia timer worker thread (see Pump); this lock keeps a Stop from
+	// the bridge is pumped from the playout timer worker thread (see Pump); this lock keeps a Stop from
 	// a background task from closing the provider while a pump is mid-read
 	private readonly object _pumpLock = new();
 	private bool _providerOpen = false;
@@ -100,6 +100,14 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 	protected virtual int PhysicsBufferSize => AcConstants.PhysicsMapSize;
 	protected virtual int GraphicsBufferSize => AcConstants.GraphicsMapSize;
 	protected virtual int StaticBufferSize => AcConstants.StaticMapSize;
+
+	// if the game ever recreates its shared memory pages, a reader holding the old sections keeps reading
+	// their orphaned frozen copies forever - same failure the LMU bridge hit across session loads - so the
+	// pump recycles the pages while the physics output is frozen (see the stale-map recycle in Pump)
+	private const double StaleMapRecycleSeconds = 2.0;
+
+	private double _lastMapRecycleSeconds = double.MinValue;
+	private bool _recyclingStaleMap = false;
 
 	// per-frame accumulators for the six real 360 Hz sub-samples (torque + per-wheel shock velocity)
 	private int _subSampleIndex = 0;
@@ -172,6 +180,9 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 		_lastOpenAttemptSeconds = double.MinValue;
 		_nextSubSampleSeconds = 0.0;
 
+		_lastMapRecycleSeconds = double.MinValue;
+		_recyclingStaleMap = false;
+
 		_hasStatic = false;
 		_slowFrame = default;
 
@@ -196,7 +207,7 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 
 	#region pump
 
-	// Called from the multimedia timer worker thread (~500 Hz, kernel-scheduled) immediately before the
+	// Called from the playout timer worker thread (~360 Hz, kernel-scheduled) immediately before the
 	// racing wheel update. The 360 Hz sub-sample schedule is kept internally; zero, one, or occasionally two
 	// sub-samples are taken per timer tick, each stamped with its scheduled time.
 	public override void Pump( double totalSeconds )
@@ -226,7 +237,34 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 
 				_nextSubSampleSeconds = totalSeconds;
 
-				App.Instance!.Logger.WriteLine( $"[{GetType().Name}] Shared memory opened - pumping" );
+				// during a stale-map recycle the pages are reopened every couple of seconds until the physics
+				// output resumes, so the recycle logs its own start/resume lines instead of spamming this one
+				if ( !_recyclingStaleMap )
+				{
+					App.Instance!.Logger.WriteLine( $"[{GetType().Name}] Shared memory opened - pumping" );
+				}
+			}
+
+			// if the game ever recreates its shared memory pages, holding the handles to the old sections
+			// means reading their orphaned frozen copies forever - so while the physics output has been frozen
+			// for a while, periodically drop and reopen the pages to reattach to the live sections (reopening
+			// the same still-valid pages while the game is merely paused or in a menu is cheap and harmless)
+			if ( ( LastDataActivitySeconds != double.MinValue ) && ( totalSeconds - LastDataActivitySeconds >= StaleMapRecycleSeconds ) && ( totalSeconds - _lastMapRecycleSeconds >= StaleMapRecycleSeconds ) )
+			{
+				if ( !_recyclingStaleMap )
+				{
+					_recyclingStaleMap = true;
+
+					App.Instance!.Logger.WriteLine( $"[{GetType().Name}] Telemetry stopped advancing - recycling the shared memory pages until it resumes" );
+				}
+
+				_lastMapRecycleSeconds = totalSeconds;
+
+				_provider.Close();
+
+				_providerOpen = false;
+
+				return;
 			}
 
 			// if the timer stalled for a while, resynchronize instead of bursting a backlog of sub-samples
@@ -267,6 +305,13 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 			_previousPacketId = _physics.packetId;
 
 			LastDataActivitySeconds = pumpSeconds;
+
+			if ( _recyclingStaleMap )
+			{
+				_recyclingStaleMap = false;
+
+				App.Instance!.Logger.WriteLine( $"[{GetType().Name}] Telemetry resumed - reattached to the live shared memory pages" );
+			}
 
 			UpdateShockVelocities( pumpSeconds );
 		}
@@ -322,7 +367,7 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 		_graphics = ReadStruct<AcGraphics>( _graphicsBuffer );
 	}
 
-	// runs at 60 Hz on the multimedia timer worker thread - must not allocate
+	// runs at 60 Hz on the playout timer worker thread - must not allocate
 	protected virtual void FillSlowFrameData()
 	{
 		_slowFrame.Status = (AcStatus) _graphics.status;
@@ -669,7 +714,7 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 	private void UpdateSessionInfo( double pumpSeconds )
 	{
 		// throttle first - the signature strings below allocate, so they are only built at 1 Hz instead of
-		// every frame (the multimedia timer worker thread must stay free of steady-state garbage)
+		// every frame (the playout timer worker thread must stay free of steady-state garbage)
 		if ( pumpSeconds - _lastSessionInfoUpdateTime < 1.0 )
 		{
 			return;
@@ -702,6 +747,7 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 			DriverCarIdx = 0,
 			DriverSetupName = "bridge",
 			DriverCarGearNumForward = 6,
+			DriverCarRedLine = maxRpm,
 			DriverCarSLFirstRPM = maxRpm * 0.88f,
 			DriverCarSLShiftRPM = maxRpm * 0.96f,
 			DriverCarSLBlinkRPM = maxRpm * 0.98f

@@ -208,7 +208,7 @@
     <value>חלון עליון</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>ניוטונמטר</value>
+    <value> ניוטונמטר</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
     <value>מגבר פרטים (השהיה נמוכה)</value>
@@ -280,7 +280,7 @@
     <value>הגנה מפני התנגשות</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value>כוחות ג'י</value>
+    <value> כוחות ג'י</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
     <value>כוח G אורכי</value>
@@ -295,10 +295,10 @@
     <value> שנ'</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>מייל בשנייה</value>
+    <value> מייל בשנייה</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>הגנה מפני שפות</value>
+    <value>הגנה מפני אבני שפה</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>מהירות זעזוע</value>
@@ -328,7 +328,7 @@
     <value>עוצמה</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>הרץ</value>
+    <value> הרץ</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>תדר גלובלי</value>
@@ -353,9 +353,6 @@
   </data>
   <data name="None" xml:space="preserve">
     <value>ללא</value>
-  </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>לפי בסיס גלגלים</value>
   </data>
   <data name="PerCar" xml:space="preserve">
     <value>לפי רכב</value>
@@ -585,9 +582,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[לא נמצאו הקלטות]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>הפעל מצב פשוט</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>רגישות</value>
   </data>
@@ -631,13 +625,13 @@
     <value>הגנת ההתנגשות הופעלה!</value>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>הגנת השפות הופעלה!</value>
+    <value>הגנת אבני השפה הופעלה!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
     <value>הודעות פרטיות</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>הפעל הודעות הגנת שפות</value>
+    <value>הפעל הודעות הגנת אבני שפה</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
     <value>הפעל הודעות הגנת התנגשות</value>
@@ -724,7 +718,7 @@
     <value>נזרק חריג</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>קמ"ש</value>
+    <value> קמ"ש</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>אלה האנשים שתרמו בנדיבות מזמנם החופשי להפעיל כיולי אפקטי היגוי על חלק ממכוניות האהובות עליהם ולהעלות קבצי כיול אלה!</value>
@@ -883,7 +877,7 @@
     <value>גריפ-אומטר</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>מייל בשעה</value>
+    <value> מייל בשעה</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon רוח</value>
@@ -1491,9 +1485,6 @@
   <data name="LoopEnd" xml:space="preserve">
     <value>סוף לולאה</value>
   </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
-  </data>
   <data name="Commentary" xml:space="preserve">
     <value>פרשנות</value>
   </data>
@@ -1642,7 +1633,7 @@
     <value>אתחול סימולטור...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>אתחול קלט ישיר...</value>
+    <value>אתחול DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>אתחול Stream Deck...</value>
@@ -1671,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>אתחול LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>אתחול טיימר מולטימדיה...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>אתחול טיימר הפלט...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>אתחול מנהל הקלטות...</value>
@@ -1715,52 +1706,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>מול P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>פרופילי בקר</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>שינוי שם פרופיל</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>שינוי שם פרופיל בקר</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>תהליכים פעילים</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>סינון לפי שם או נתיב...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>מחפש יישומים פעילים...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>נראות החלון</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>הצג / הסתר חלון</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>גודל צעד</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>מרווח בדיקת עדכונים</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> שע'</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>מחק צביעות בעת סגירת iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>בדיקת עדכונים במרווחים</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>אימון</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>מקצה דירוג</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>מרוץ</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>סטטוס</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>מנוחה</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>פעיל</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>מדוכא</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>מחק תוכניות התקנה ישנות</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>שונות</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>פתח את תיקיית המסמכים</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1807,7 +1820,8 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(לא ממופה)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>הפעלת מיקום וקנה מידה של שכבת-על לכל רכב</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>קובץ הכיול עדיין אינו זמין עבור מכונית זו.</value>
@@ -1826,56 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>מקור 60 Hz</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>מקור 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>מקור LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>פלט</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>מסנן מעביר נמוכים</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>מסנן מעביר גבוהים</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>הגבר</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>חיבור</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>מיזוג</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>מגביל קצב שינוי</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>מדחס קצב שינוי</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>מדחס</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>משפר טרנזיינטים</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>מחליק אדפטיבי</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>מיזוג אדפטיבי</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>עקומה</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>מגביל רך</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>הגנה מפני התנגשות</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>הגנה מפני אבני שפה</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>עוצמה בחניה</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>מקור נעילה רכה</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>מקור חיכוך</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>מקור מרכוז הגה</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>כוח אנדרסטיר</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>כוח אוברסטיר</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>כוח תחושת מושב</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>רטט אנדרסטיר</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>רטט אוברסטיר</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>רטט תחושת מושב</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>רטט סל״ד החלפה</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>רטט החלפת הילוך</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>רטט ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>הגבר מהירות</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>מרקם כביש</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>מרקם סליפ</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>דית'ר מומנט</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>שיפוע</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>תדירות חיתוך</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>הגבר</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>מיקס</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>גבול</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>סף</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>נקודת ברך</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>יחס</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>מצב שיא</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>כמות</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>חיתוך בשיא</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>כוח G אורכי</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>כוח G צידי</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>בזמן מירוץ</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>בזמן חניה</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>דפוס</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>מהירות מינימלית</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>מהירות מקסימלית</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>הגבר במהירות מינימלית</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>הגבר במהירות מקסימלית</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>קוטב אחד</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>שני קטבים</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>הוסף מודול</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>בחירת הקלטה</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>שכפל את הגרף הנוכחי</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>גרף FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>שם הגרף</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>גרף חדש</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>התחל גרף ריק</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>חיסור</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>מקור מהירות ההגה</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>מקורות</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP כללי</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>מערבלים</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>אפקטים</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>אפקטים אחרים</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>ייצוא גרף</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>ייבוא גרף</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>קובצי גרף של MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>גרף מיובא</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>לא ניתן היה לייצא גרף זה.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>לא ניתן היה לייבא קובץ גרף זה.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>קובץ זה אינו קובץ גרף של MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>קובץ זה מכיל גרף אפקטי רטט - ייבא אותו תחת אפקטי רטט במקום זאת.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>קובץ זה מכיל גרף FFB - ייבא אותו תחת גרף ה-FFB במקום זאת.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>קובץ גרף זה נוצר על ידי גרסה חדשה יותר של MAIRA. אנא עדכן את MAIRA ונסה שוב.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>ההקלטה החלה</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>ההקלטה הופסקה</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>זמן</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>מיקום במסלול</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>מומנט 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>מומנט 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>זווית היגוי</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>מהירות היגוי</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>מיקום ההגה</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>מהירות ההגה</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>הילוך</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>כוח G אורכי</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>החלקה/גלישה</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>מובנה</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>מותאם אישית</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>ייבוא הגדרות גרף</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>כבר יש לך את הגרף „{0}”. מה תרצה לעשות עם ההגדרות שבקובץ זה?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>עדכן הגדרות {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>עדכן הגדרות בסיס (ברירת מחדל)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>עדכן הגדרות {0} והגדרות בסיס</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>ייבא כעותק חדש</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>אינטרפולטור 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>חיזוי (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>אופק</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>מיזוג</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>מגבלת תיקון</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>אזור הידבקות</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>אפקט זה מושבת בדף אפקטי ההיגוי</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>משך הפולס</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>אזור הידבקות</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>רטט סל"ד מנוע</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>תדר בסל"ד מרבי</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>חספוס</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>היגוי חסר והיגוי יתר מושבתים בדף אפקטי ההיגוי</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>הוסיפו תיאור לגרף הזה</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>הצמד הגדרה זו כאחד מפקדי הבקרה הראשיים של הגרף הזה</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>הצג את גרף הצמתים</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>חיזוי (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>גשר משחקים</value>
   </data>
@@ -1918,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>הגה הלוך ושוב</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>עריכת תיאור</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>אות הפורס פידבק המקורי של iRacing בקצב 60 Hz, בדיוק כפי שהסימולטור שולח אותו.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>אות הפורס פידבק בקצב הגבוה של iRacing — שש דגימות בכל פריים של 60 Hz, עם רמת הפירוט הגבוהה ביותר.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>אודיו אפקטי התדר הנמוך (LFE) של הסימולטור, מומר לכוח בהגה. ערבבו אותו פנימה עם מודול חיבור.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>כוח שמתנגד למהירות שבה מסובבים את ההגה — ערבבו אותו פנימה כדי לקבל ריסון.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>חיכוך יבש אמיתי: ההגה נשאר במקום שבו עזבתם אותו, עם גרר החלקה קבוע מעבר לאזור ההיצמדות.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>דוחף חזרה בחוזקה כשההגה מסובב מעבר לנעילת ההיגוי של הרכב, כמו מעצור קצה פיזי.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>כוח קפיץ שמושך את ההגה חזרה למרכז. העבירו אותו דרך מודול הגבר לפי מהירות כדי שיפעל רק בעמידה.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>סוף השרשרת — ממיר את האות לפלט ההגה, עם עקומת תגובה ומגביל רך אופציונליים.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>שומר על החלק האיטי של האות ומחליק החוצה כל מה שמהיר מתדר החיתוך.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>מסיר את החלק האיטי של האות ומשאיר רק את הפרטים המהירים שמעל תדר החיתוך.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>מכפיל את האות במקדם קבוע — השתמשו בהגבר שלילי כדי להפוך את האות.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>מחבר שני אותות יחד.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>מחסיר את כניסה B מכניסה A — למשל, חיסור עותק מסונן במעביר-נמוכים של האות משאיר רק את הפרטים.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>מבצע מעבר הדרגתי בין שני אותות — 0% הוא כולו כניסה A, ‏100% הוא כולו כניסה B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>מגביל את קצב השינוי של האות — כל מה שמתחת לגבול עובר ללא שינוי, ותנועה מהירה יותר מואטת.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>דוחס שינויים מהירים באות במקום לחתוך אותם בחדות — תנועה איטית עוברת ללא שינוי.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>דוחס את האות מעל סף, ושומר על השיאים בשליטה בלי חיתוך קשה.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>מחלץ את הפרטים המהירים ומדגיש את ההתקפים — מהמורות ואבני שפה קופצות החוצה בלי להגביר את הדעיכה.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>מחליק בכפתור אחד שמסתגל לאות — החלקה חזקה כשהאות שקט, והשהיה מזערית במעברים מהירים.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>מסיר את המדרגות מאות של 60 Hz על ידי מעבר חלק לאורך כל פריים, במחיר של פריים אחד של השהיה.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>מזיז אות 360 Hz קדימה בזמן כדי לפצות על השהיה — מסנן אדפטיבי שלומד כל מכונית תוך כדי נהיגה.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>מזיז את אות ה-60 Hz קדימה בזמן כדי לפצות על השהיה — לומד מההיגוי שלכם ומתנועת המכונית תוך כדי נהיגה.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>עוקב אחרי הפרטים של כניסה A תוך משיכה לעבר כניסה B — המשיכה מתרפה בכל שיא כך שמעברים חדים עוברים.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>מנמיך מאוד את הכוח כשמזוהה תאונה, ואז מחזיר אותו בהדרגה וברכות.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>מפחית את הכוח בפגיעות חזקות באבני שפה, ואז מחזיר אותו בהדרגה וברכות.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>כוח היגוי שמונע מאפקט תת-ההיגוי, כך שתרגישו את הצמיגים הקדמיים מאבדים אחיזה.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>כוח היגוי שמונע מאפקט יתר-ההיגוי, כך שתרגישו את אחורי המכונית מתחיל לברוח.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>כוח היגוי שמונע מאפקט תחושת המושב (seat of pants) — התחושה של השלדה שנטענת במשקל.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>מרטיט את ההגה כשהצמיגים הקדמיים מתחילים להחליק.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>מרטיט את ההגה כשהצמיגים האחוריים מתחילים להחליק.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>מרטיט את ההגה עם תנועת השלדה — העברת משקל שאפשר להרגיש.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>מזמזם את ההגה בפולסים כשהמנוע מגיע לנקודת ההעברה.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>פרץ רטט קצר בכל החלפת הילוך.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>פועם בהגה בזמן שה-ABS של הבלמים פעיל.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>רעד עמוק שעוקב אחרי סל״ד המנוע, בקול שנשמע כמו V8 — שקט כשהמנוע כבוי.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>משנה את עוצמת האות לפי מהירות המכונית — הכניסו או הוציאו כוחות בהדרגה ככל שהמכונית מאיצה.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>רעד שמתגבר עם מהירות המכונית, כמו מרקם פני הכביש — שקט בעמידה.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>רעד שמופיע בכל פעם שאחד מקצות המכונית מחליק, מונע מאפקטי תת-ההיגוי ויתר-ההיגוי.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>מוסיף ריצוד מתחלף זעיר מתחת לסף כדי לשמור על מנגנון ההגה ער ולחשוף פרטים עדינים.</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>קישורים</value>
   </data>
@@ -1932,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>מגה-תורמים</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>הצג הגדרות מוצמדות</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>מתג A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>השתמש בכניסה B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>מעביר ללא שינוי את כניסה A או את כניסה B, בהתאם למצב המתג — החליפו כדי להשוות מיד בין שני נתיבי אות.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>עדכן הגדרות בכל מקום שבו הגרף הזה נבחר</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>אתחול הגה Logitech...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>נורות סל"ד של Logitech</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>הדלקת נורות הסל"ד על ההגה</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>הבהוב הנורות אחרי נקודת החלפת ההילוך</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>הגדרות גרף FFB</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>מומלץ לרוב הנהגים – אות ה-FFB המלא ב-360 Hz עם חיזוי להפחתת ההשהיה. כוונן את ההגבר כדי להגביר או להחליש את פירוט המסלול והצמיגים.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>אודיו אפקטי התדר הנמוך של הסימולטור, שמומר לכוח בהגה. כדי שזה יעבוד יש להפעיל LFE של בס שייקר ב-iRacing ולהשתמש ב-VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>כוח דמוי חיכוך שמונע מההגה להתנדנד בנסיעה איטית מאוד או בעמידה במקום.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>כוח קפיץ שמושך את ההגה חזרה למרכז, ופועל רק כשהרכב נוסע לאט או עומד במקום.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>כוונן ערך זה כדי להגביר או להחליש את פירוט המסלול והצמיגים. הגבר של 1.00x שומר על התחושה המקורית של iRacing.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>מנמיך מאוד את הכוח כשמזוהה תאונה, ואז מחזיר אותו בהדרגה ובחלקות – כך שפגיעה חזקה לא תוכל לחטוף לך את ההגה מהידיים. הפחתת הכוח קובעת כמה מהכוח מוסר.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט תת-ההיגוי, כדי שתרגיש את הצמיגים הקדמיים מאבדים אחיזה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט יתר-ההיגוי, כדי שתרגיש את החלק האחורי של הרכב מחליק החוצה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט תחושת הגוף (seat of pants) – התחושה של העמסת השלדה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>מוסיף רעידה מתחלפת זעירה מתחת לסף מסוים, כדי לשמור על מנגנון ההגה ער ולחשוף פרטים עדינים – שימושי אם יש לך הגה חלש כמו Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>המגביל הרך מאפשר לאות ה-FFB לשמור על מעט פירוט במקום להשתטח כשהוא נחתך.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>אודיו אפקטי התדר הנמוך של הסימולטור, שמומר לכוח בהגה. כדי שזה יעבוד יש להפעיל LFE של בס שייקר ב-iRacing ולהשתמש ב-VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>כוח דמוי חיכוך שמונע מההגה להתנדנד בנסיעה איטית מאוד או בעמידה במקום.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>כוח קפיץ שמושך את ההגה חזרה למרכז, ופועל רק כשהרכב נוסע לאט או עומד במקום.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>מנמיך מאוד את הכוח כשמזוהה תאונה, ואז מחזיר אותו בהדרגה ובחלקות – כך שפגיעה חזקה לא תוכל לחטוף לך את ההגה מהידיים. הפחתת הכוח קובעת כמה מהכוח מוסר.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט תת-ההיגוי, כדי שתרגיש את הצמיגים הקדמיים מאבדים אחיזה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט יתר-ההיגוי, כדי שתרגיש את החלק האחורי של הרכב מחליק החוצה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט תחושת הגוף (seat of pants) – התחושה של העמסת השלדה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>מוסיף רעידה מתחלפת זעירה מתחת לסף מסוים, כדי לשמור על מנגנון ההגה ער ולחשוף פרטים עדינים – שימושי אם יש לך הגה חלש כמו Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>המגביל הרך מאפשר לאות ה-FFB לשמור על מעט פירוט במקום להשתטח כשהוא נחתך.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>אודיו אפקטי התדר הנמוך של הסימולטור, שמומר לכוח בהגה. כדי שזה יעבוד יש להפעיל LFE של בס שייקר ב-iRacing ולהשתמש ב-VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>כוח דמוי חיכוך שמונע מההגה להתנדנד בנסיעה איטית מאוד או בעמידה במקום.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>כוח קפיץ שמושך את ההגה חזרה למרכז, ופועל רק כשהרכב נוסע לאט או עומד במקום.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>מנמיך מאוד את הכוח כשמזוהה תאונה, ואז מחזיר אותו בהדרגה ובחלקות – כך שפגיעה חזקה לא תוכל לחטוף לך את ההגה מהידיים. הפחתת הכוח קובעת כמה מהכוח מוסר.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט תת-ההיגוי, כדי שתרגיש את הצמיגים הקדמיים מאבדים אחיזה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט יתר-ההיגוי, כדי שתרגיש את החלק האחורי של הרכב מחליק החוצה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט תחושת הגוף (seat of pants) – התחושה של העמסת השלדה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>מוסיף רעידה מתחלפת זעירה מתחת לסף מסוים, כדי לשמור על מנגנון ההגה ער ולחשוף פרטים עדינים – שימושי אם יש לך הגה חלש כמו Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>המגביל הרך מאפשר לאות ה-FFB לשמור על מעט פירוט במקום להשתטח כשהוא נחתך.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>אודיו אפקטי התדר הנמוך של הסימולטור, שמומר לכוח בהגה. כדי שזה יעבוד יש להפעיל LFE של בס שייקר ב-iRacing ולהשתמש ב-VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>כוח דמוי חיכוך שמונע מההגה להתנדנד בנסיעה איטית מאוד או בעמידה במקום.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>כוח קפיץ שמושך את ההגה חזרה למרכז, ופועל רק כשהרכב נוסע לאט או עומד במקום.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>מנמיך מאוד את הכוח כשמזוהה תאונה, ואז מחזיר אותו בהדרגה ובחלקות – כך שפגיעה חזקה לא תוכל לחטוף לך את ההגה מהידיים. הפחתת הכוח קובעת כמה מהכוח מוסר.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט תת-ההיגוי, כדי שתרגיש את הצמיגים הקדמיים מאבדים אחיזה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט יתר-ההיגוי, כדי שתרגיש את החלק האחורי של הרכב מחליק החוצה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>כוח הגה המונע מאפקט תחושת הגוף (seat of pants) – התחושה של העמסת השלדה. הכיוון קובע אם האפקט מקל על ההגה או מוסיף דחיפה צידית.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>מוסיף רעידה מתחלפת זעירה מתחת לסף מסוים, כדי לשמור על מנגנון ההגה ער ולחשוף פרטים עדינים – שימושי אם יש לך הגה חלש כמו Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>המגביל הרך מאפשר לאות ה-FFB לשמור על מעט פירוט במקום להשתטח כשהוא נחתך.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>לנהגים שרוצים לרכך את הכוחות החזקים ביותר – אות ה-FFB המלא ב-360 Hz עובר דרך מדחס קצב שינוי שדוחס את המהירות שבה הכוח יכול להשתנות, ודרך מדחס שדוחס את הכוח הכולל.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>דוחס את המהירות שבה הכוח יכול להשתנות – קפיצות מהירות מתרככות, בעוד שכוחות איטיים יותר עוברים ללא שינוי.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>דוחס את הכוח הכולל – כוחות מעל הסף נדחסים כך שהרגעים החזקים ביותר לא ישתלטו על ההגה.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>ערכת הכוונון ההיברידית – אות ה-FFB החלק ב-60 Hz כבסיס, עם פירוט ה-360 Hz ממוזג מעליו, ואחריהם דחיסה, דחיסת קצב שינוי, משפר טרנזיינטים ומחליק אדפטיבי.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>ממזג את האות החלק ב-60 Hz (הבסיס) עם הפירוט של 360 Hz. כשהכוח משנה כיוון, המיזוג נפתח כך שהטרנזיינטים פורצים החוצה.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>דוחס את הכוח הכולל – כוחות מעל הסף נדחסים כך שהרגעים החזקים ביותר לא ישתלטו על ההגה.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>דוחס את המהירות שבה הכוח יכול להשתנות. במצב שיא הוא מוריד את הכוח בחזרה בהדרגה אחרי קפיצה, במקום להגביל את מהירות העלייה.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>מחדד שינויי כוח פתאומיים – המגבר הלא-לינארי של ענף הפירוט. הגבר של 1.00x שומר על עוצמת הטרנזיינטים המקורית.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>מחליק את האות רק כשהוא שקט – טרנזיינטים מהירים ממשיכים לעבור. הגדילו את הכמות לקבלת החלקה חזקה יותר.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>לנהגים שמעדיפים את אות ה-FFB הקלאסי ב-60 Hz – עם חיזוי להפחתת ההשהיה.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>מגביר פירוט ומגביל 360 Hz בהשהיה נמוכה</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>מגביר פירוט ומגביל 60 Hz בהשהיה נמוכה</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>קצב שינוי ודחיסה כוללת ב-360 Hz</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>ערכת כוונון היברידית</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>פרופילי כוונון</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>לחץ לניהול פרופילי הכוונון שלך</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>לפי מזג אוויר</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>לפי רכב</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>לפי רכב + מסלול</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>לפי רכב + מסלול + הגדרה</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} שונו</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} הגדרות</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>פעיל</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>פרופיל זה</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>פרופיל ברירת מחדל</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>לפרופיל זה אין שינויים.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>שחזור לברירת מחדל</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>הסימולטור אינו פועל — שינויי הגדרות נשמרים בפרופיל ברירת המחדל.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>העתקה אל…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>הפוך לברירת מחדל</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>ניקוי</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>לאיזה פרופיל להעתיק את ההגדרות?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>פעולה זו מוחקת את שינויי הפרופיל — כל הגדרה בו תחזור לערך של פרופיל ברירת המחדל.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>פעולה זו מעתיקה כל הגדרה ששונתה בפרופיל זה אל פרופיל ברירת המחדל, והופכת אותו לבסיס החדש.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>פעולה זו תסיר {0} ערכי מודולים מיושנים, תתקן {1} בחירות גרף ותמחק {2} פרופילים שאינם בשימוש. להמשיך?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>אין מה לנקות.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(אין גרף)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>ברירת מחדל של היצרן</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>לפי רכב + מזג אוויר</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>לפי רכב + מסלול + מזג אוויר</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>לפי רכב + מסלול + הגדרה + מזג אוויר</value>
   </data>
 </root>

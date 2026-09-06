@@ -99,8 +99,27 @@ public partial class MairaTextBox : UserControl
 
 	public bool IsNumericOnly
 	{
-		get => (bool) GetValue( ValueProperty );
-		set => SetValue( ValueProperty, value );
+		get => (bool) GetValue( IsNumericOnlyProperty );
+		set => SetValue( IsNumericOnlyProperty, value );
+	}
+
+	public static readonly DependencyProperty IsMultiLineProperty = DependencyProperty.Register( nameof( IsMultiLine ), typeof( bool ), typeof( MairaTextBox ), new PropertyMetadata( false ) );
+
+	/// <summary>When true, the value field becomes a tall wrapping editor (<see cref="MultiLineHeight"/> pixels)
+	/// where Enter inserts a newline instead of committing — used for free-form description text.</summary>
+	public bool IsMultiLine
+	{
+		get => (bool) GetValue( IsMultiLineProperty );
+		set => SetValue( IsMultiLineProperty, value );
+	}
+
+	public static readonly DependencyProperty MultiLineHeightProperty = DependencyProperty.Register( nameof( MultiLineHeight ), typeof( double ), typeof( MairaTextBox ), new PropertyMetadata( 160.0 ) );
+
+	/// <summary>Height of the value field while <see cref="IsMultiLine"/> is on.</summary>
+	public double MultiLineHeight
+	{
+		get => (double) GetValue( MultiLineHeightProperty );
+		set => SetValue( MultiLineHeightProperty, value );
 	}
 
 	public static readonly DependencyProperty IsPasswordProperty = DependencyProperty.Register( nameof( IsPassword ), typeof( bool ), typeof( MairaTextBox ), new PropertyMetadata( false ) );

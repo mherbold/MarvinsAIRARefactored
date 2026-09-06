@@ -2,9 +2,12 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppFile "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAIRARefactored\bin\publish\MarvinsAIRARefactored.exe"
-#define MyAppName "Marvins Awesome iRacing App - Refactored"
-#define MyAppIconName "MarvinsAIRA Refactored"
-#define MyAppVersion GetVersionNumbersString(MyAppFile)
+#define MyAppName "Marvin's Awesome iRacing App"
+#define MyAppIconName "MAIRA"
+; the app's version scheme is three-part (2.1.[buildStamp]) but the exe's numeric version resource is
+; always padded to four parts with a trailing ".0" - trim it so the installer name matches the app version
+#define MyAppVersionFull GetVersionNumbersString(MyAppFile)
+#define MyAppVersion Copy(MyAppVersionFull, 1, Len(MyAppVersionFull) - 2)
 #define MyAppPublisher "Marvin Herbold"
 #define MyAppURL "https://herboldracing.com"
 #define MyAppExeName "MarvinsAIRARefactored.exe"
@@ -33,8 +36,8 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users).
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=MarvinsAIRARefactored-Setup-{#MyAppVersion}
-OutputDir=userdocs:MarvinsAIRA Refactored
+OutputBaseFilename=MAIRA-Setup-{#MyAppVersion}
+OutputDir=userdocs:MAIRA
 SetupIconFile=C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAIRARefactored\Artwork\AppIcon\maira-universal.ico
 SolidCompression=yes
 WizardStyle=modern
@@ -57,12 +60,12 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Dirs]
-Name: "{userdocs}\MarvinsAIRA Refactored"
-Name: "{userdocs}\MarvinsAIRA Refactored\Sounds"
-Name: "{userdocs}\MarvinsAIRA Refactored\Recordings"
-Name: "{userdocs}\MarvinsAIRA Refactored\Calibration"
-Name: "{userdocs}\MarvinsAIRA Refactored\TTS"
-Name: "{userdocs}\MarvinsAIRA Refactored\SimHub"
+Name: "{userdocs}\MAIRA"
+Name: "{userdocs}\MAIRA\Sounds"
+Name: "{userdocs}\MAIRA\Recordings"
+Name: "{userdocs}\MAIRA\Calibration"
+Name: "{userdocs}\MAIRA\TTS"
+Name: "{userdocs}\MAIRA\SimHub"
 
 [Files]
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAIRARefactored\bin\publish\*.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -71,14 +74,14 @@ Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsA
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAIRARefactored\bin\publish\*.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAIRARefactored\bin\publish\*.config"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Calibration\*.csv"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Calibration"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Recordings\*.csv"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Recordings"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SBT\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\SBT"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\SimHub"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Sounds\*.wav"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Sounds"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\TTS\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\TTS"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Calibration\*.csv"; DestDir: "{userdocs}\MAIRA\Calibration"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Recordings\*.csv"; DestDir: "{userdocs}\MAIRA\Recordings"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SBT\*"; DestDir: "{userdocs}\MAIRA\SBT"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\*"; DestDir: "{userdocs}\MAIRA\SimHub"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Sounds\*.wav"; DestDir: "{userdocs}\MAIRA\Sounds"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\TTS\*"; DestDir: "{userdocs}\MAIRA\TTS"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\MarvinsAIRARefactoredSimHub.dll"; DestDir: "{code:SimHubRoot}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\MairaSimHubPlugin.dll"; DestDir: "{code:SimHubRoot}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\MairaTyphoonWindSimHubPlugin.dll"; DestDir: "{code:SimHubRoot}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\MairaSbtSimHubPlugin.dll"; DestDir: "{code:SimHubRoot}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
@@ -92,10 +95,19 @@ Name: "{autodesktop}\{#MyAppIconName}"; Filename: "{app}\{#MyAppExeName}"; Tasks
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [InstallDelete]
+Type: files; Name: "{userstartup}\MAIRA.lnk"
+; leftovers from the retired "Refactored" naming - old startup / start menu / desktop shortcuts and the
+; old-named SimHub plugin (both the copy inside the SimHub install and the staged copy in the documents
+; folder, which the PrepareToInstall migration may have just carried over into the MAIRA folder)
 Type: files; Name: "{userstartup}\MarvinsAIRA Refactored.lnk"
+Type: files; Name: "{autoprograms}\MarvinsAIRA Refactored.lnk"
+Type: files; Name: "{autodesktop}\MarvinsAIRA Refactored.lnk"
+Type: files; Name: "{code:SimHubRoot}\MarvinsAIRARefactoredSimHub.dll"
+Type: files; Name: "{userdocs}\MAIRA\SimHub\MarvinsAIRARefactoredSimHub.dll"
+Type: files; Name: "{userdocs}\MAIRA\SimHub\MAIRA Refactored - Grip-o-Meter.simhubdash"
 
 [UninstallDelete]
-Type: files; Name: "{userstartup}\MarvinsAIRA Refactored.lnk"
+Type: files; Name: "{userstartup}\MAIRA.lnk"
 
 [Code]
 var
@@ -236,9 +248,32 @@ begin
     Log('SimHub was running but its exe could not be resolved; not restarting it.');
 end;
 
+// The documents folder was renamed from "MarvinsAIRA Refactored" to "MAIRA" when the "Refactored"
+// naming was retired. Rename the old folder (settings, recordings, calibration, everything) before any
+// files are installed, so the [Dirs]/[Files] entries land in the migrated folder instead of creating a
+// fresh one beside it. If the rename fails (folder locked etc.) the app performs its own merge
+// migration on next startup, so this is best-effort.
+procedure MigrateLegacyDocumentsFolder;
+var
+  OldDir, NewDir: string;
+begin
+  OldDir := ExpandConstant('{userdocs}\MarvinsAIRA Refactored');
+  NewDir := ExpandConstant('{userdocs}\MAIRA');
+
+  if DirExists(OldDir) and not DirExists(NewDir) then
+  begin
+    if RenameFile(OldDir, NewDir) then
+      Log('Migrated documents folder: ' + OldDir + ' -> ' + NewDir)
+    else
+      Log('Could not rename ' + OldDir + ' to ' + NewDir + '; the app will migrate it on next startup.');
+  end;
+end;
+
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
   Result := '';
+
+  MigrateLegacyDocumentsFolder;
 
   GSimHubWasRunning := DetectRunningSimHub(GRunningSimHubExe);
   if not GSimHubWasRunning then
@@ -424,7 +459,7 @@ begin
     else
     begin
       // Silent fallback (no UI) — still place the DLL somewhere predictable
-      GSimHubRoot := ExpandConstant('{userdocs}\MarvinsAIRA Refactored\SimHub Plugin');
+      GSimHubRoot := ExpandConstant('{userdocs}\MAIRA\SimHub Plugin');
       ForceDirectories(GSimHubRoot);
       GSimHubExe := '';
       Log('Fallback plugin folder: ' + GSimHubRoot);

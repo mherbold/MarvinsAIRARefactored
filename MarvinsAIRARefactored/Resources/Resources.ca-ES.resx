@@ -208,7 +208,7 @@
     <value>Finestra principal</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>Nm</value>
+    <value> Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
     <value>Potenciador de detalls (baixa latència)</value>
@@ -244,7 +244,7 @@
     <value>Límit delta</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value>Nm/s</value>
+    <value> Nm/s</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
     <value>Limitador delta (baixa latència)</value>
@@ -280,7 +280,7 @@
     <value>Protecció contra xocs</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value>G</value>
+    <value> G</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
     <value>Força g</value>
@@ -292,13 +292,13 @@
     <value>Reducció de força</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>s</value>
+    <value> s</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>m/s</value>
+    <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Protecció de voreres</value>
+    <value>Protecció de pianos</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Velocitat de xoc</value>
@@ -328,7 +328,7 @@
     <value>Intensitat</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>Hz</value>
+    <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>Freqüència global</value>
@@ -353,9 +353,6 @@
   </data>
   <data name="None" xml:space="preserve">
     <value>Cap</value>
-  </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Per base de rodes</value>
   </data>
   <data name="PerCar" xml:space="preserve">
     <value>Per cotxe</value>
@@ -571,7 +568,7 @@
     <value>Llindar total</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Nm/ms</value>
+    <value> Nm/ms</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
     <value>Força del volant</value>
@@ -584,9 +581,6 @@
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[No s'han trobat enregistraments]</value>
-  </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Activa el mode simple</value>
   </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensibilitat</value>
@@ -631,13 +625,13 @@
     <value>S'ha activat la protecció contra xocs!</value>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>La protecció de voreres s'ha activat!</value>
+    <value>La protecció de pianos s'ha activat!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
     <value>Missatges privats</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>Activa els missatges de protecció de voreres</value>
+    <value>Activa els missatges de protecció de pianos</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
     <value>Activa els missatges de protecció contra xocs</value>
@@ -724,7 +718,7 @@
     <value>S'ha generat una excepció</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>km/h</value>
+    <value> km/h</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Aquestes són les persones que han contribuït generosament amb part del seu temps lliure per executar calibratges d'efectes de direcció en alguns dels seus cotxes favorits i per carregar aquests fitxers de calibratge.</value>
@@ -883,7 +877,7 @@
     <value>Grip-o-metre</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>mi/h</value>
+    <value> mi/h</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon vent</value>
@@ -1345,10 +1339,10 @@
     <value>Selecciona el teu volant amb force feedback de la llista de sota.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> No veus el teu volant? Assegura't que estigui encès i connectat i la llista s'actualitzarà automàticament.</value>
+    <value>No veus el teu volant? Assegura't que estigui encès i connectat i la llista s'actualitzarà automàticament.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Usuaris Fanatec: els volants Fanatec normalment apareixen com a dos dispositius separats a la llista. Si el seleccionat no funciona, prova l'altre!</value>
+    <value>Usuaris Fanatec: els volants Fanatec normalment apareixen com a dos dispositius separats a la llista. Si el seleccionat no funciona, prova l'altre!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Força màxima del volant</value>
@@ -1357,10 +1351,10 @@
     <value>Introdueix la força màxima que la teva base pot produir, en Newton-metres (Nm). MAIRA utilitza aquest valor per escalar correctament tota la sortida de force feedback per al teu maquinari.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Hem fet la nostra millor estimació basant-nos en el volant seleccionat, però pots ajustar-la si cal.</value>
+    <value>Hem fet la nostra millor estimació basant-nos en el volant seleccionat, però pots ajustar-la si cal.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Important: si ja has limitat el parell màxim del volant al programari del fabricant (p. ex.: Fanatec Wheel Control Panel, Moza Pit House, etc.), introdueix aquí aquell valor reduït en lloc del màxim físic del maquinari. MAIRA necessita saber el que el teu volant realment produirà, no el que és capaç de fer en teoria.</value>
+    <value>Important: si ja has limitat el parell màxim del volant al programari del fabricant (p. ex.: Fanatec Wheel Control Panel, Moza Pit House, etc.), introdueix aquí aquell valor reduït en lloc del màxim físic del maquinari. MAIRA necessita saber el que el teu volant realment produirà, no el que és capaç de fer en teoria.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Controls de força</value>
@@ -1372,7 +1366,7 @@
     <value>Fes clic als botons - i + de sota per assignar les entrades a cadascun. Aquest pas és opcional; el pots ometre i configurar les assignacions més tard des de la pàgina del Volant.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Un cop assignada una entrada, la vora del botó es tornarà taronja per confirmar-ho.</value>
+    <value>Un cop assignada una entrada, la vora del botó es tornarà taronja per confirmar-ho.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Força</value>
@@ -1399,7 +1393,7 @@
     <value>Primer, ajusta el marge objectiu automàtic al teu gust i després assigna els botons Definir i Esborra.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> L'objectiu automàtic estableix on dins de la gamma de força del volant ha de caure el pic mesurat. Baixa l'objectiu per mantenir més marge per sobre del pic; puja'l per utilitzar més de la gamma del volant.</value>
+    <value>L'objectiu automàtic estableix on dins de la gamma de força del volant ha de caure el pic mesurat. Baixa l'objectiu per mantenir més marge per sobre del pic; puja'l per utilitzar més de la gamma del volant.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algorisme</value>
@@ -1490,9 +1484,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Fi del bucle</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Comentari</value>
@@ -1642,7 +1633,7 @@
     <value>Inicialitzant simulador...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inicialitzant entrada directa...</value>
+    <value>Inicialitzant DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inicialitzant Stream Deck...</value>
@@ -1671,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Inicialitzant LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Inicialitzant temporitzador multimèdia...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Inicialitzant temporitzador de reproducció...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Inicialitzant gestor de gravació...</value>
@@ -1715,52 +1706,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Perfils de controlador</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Canvia el nom del perfil</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Canvia el nom del perfil del controlador</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Processos en execució</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtra per nom o camí...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>S'estan cercant aplicacions en execució...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Visibilitat de la finestra</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Mostra / amaga la finestra</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Mida del pas</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Interval de comprovació d'actualitzacions</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Elimina les pintures en tancar iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Comprova actualitzacions a intervals</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Entrenament</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Classificació</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Cursa</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Estat</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inactiu</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Actiu</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Suprimit</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Suprimeix els instal·ladors antics</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Miscel·lània</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Obre la carpeta de documents</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1807,7 +1820,8 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(sense assignar)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activa la posició i l'escala de la superposició per cotxe</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>El fitxer de calibració encara no està disponible per a aquest cotxe.</value>
@@ -1826,56 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>Font de 60 Hz</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>Font de 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>Font LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Sortida</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Filtre passabaix</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Filtre passaalt</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Guany</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Suma</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Fusió</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Limitador de variació</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Compressor de variació</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Compressor</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Realçador de transitoris</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Suavitzador adaptatiu</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Fusió adaptativa</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Corba</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Limitador suau</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Protecció contra xocs</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Protecció de pianos</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Intensitat aparcat</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Font de bloqueig suau</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Font de fricció</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Font de recentratge del volant</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Força de subviratge</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Força de sobreviratge</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Força seat-of-pants</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Vibració de subviratge</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Vibració de sobreviratge</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibració seat-of-pants</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Vibració de RPM de canvi</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Vibració de canvi de marxa</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>Vibració d'ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Guany segons la velocitat</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Textura de carretera</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Textura de lliscament</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Dither de parell</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Pendent</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Tall</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Guany</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Mescla</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Límit</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Llindar</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Colze</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Ràtio</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Mode de pic</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Quantitat</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Tall de pic</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Força G longitudinal</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Força G lateral</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>En cursa</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Aparcat</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Patró</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Velocitat mínima</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Velocitat màxima</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Guany a velocitat mínima</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Guany a velocitat màxima</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Un pol</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Dos pols</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Afegeix un mòdul</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Tria un enregistrament</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Clona el gràfic actual</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>Gràfic FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Nom del gràfic</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Gràfic nou</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Comença amb un gràfic buit</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Resta</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Font de velocitat del volant</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Fonts</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP genèric</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mescladors</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Efectes</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Altres efectes</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Exporta el gràfic</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importa el gràfic</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>Fitxers de gràfic de MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Gràfic importat</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>No s'ha pogut exportar aquest gràfic.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>No s'ha pogut importar aquest fitxer de gràfic.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Aquest fitxer no és un fitxer de gràfic de MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Aquest fitxer conté un gràfic d'efectes de vibració; importa'l als efectes de vibració.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Aquest fitxer conté un gràfic de FFB; importa'l al gràfic de FFB.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Aquest fitxer de gràfic s'ha creat amb una versió més recent de MAIRA. Actualitza MAIRA i torna-ho a provar.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Gravació iniciada</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Gravació aturada</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Temps</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Posició al circuit</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>Parell a 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>Parell a 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Angle de direcció</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Velocitat de direcció</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Posició del volant</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Velocitat del volant</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Marxa</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Força G longitudinal</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Derrapatge/lliscament</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Integrats</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Personalitzats</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importa la configuració del gràfic</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Ja tens el gràfic «{0}». Què vols fer amb la configuració d'aquest fitxer?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Actualitza la configuració de {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Actualitza la configuració de base (per defecte)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Actualitza la configuració de {0} i la de base</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importa com a còpia nova</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>Interpolador de 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Predicció (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horitzó</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Barreja</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Límit de correcció</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Zona d'adherència</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Aquest efecte està desactivat a la pàgina d'efectes de direcció</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Durada del pols</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Zona d'adherència</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Vibració de RPM del motor</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Freqüència a RPM màximes</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Rugositat</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>El subviratge i el sobreviratge estan desactivats a la pàgina d'efectes de direcció</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Afegeix una descripció per a aquest graf</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Fixa aquest ajust com un dels controls principals d'aquest graf</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Mostra el graf de nodes</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>Predicció (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>Pont de jocs</value>
   </data>
@@ -1918,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Escombrat del volant</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Edita la descripció</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>El senyal natiu de force feedback a 60 Hz d'iRacing, exactament tal com l'envia el simulador.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>El senyal de force feedback d'alta freqüència d'iRacing — sis mostres per cada quadre de 60 Hz, amb el màxim de detall.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Barregeu-lo amb un mòdul de suma.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Una força que s'oposa a la velocitat amb què es gira el volant — barregeu-la per obtenir esmorteïment.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Fricció seca real: el volant es queda on el deixeu, amb una resistència de lliscament constant més enllà de la zona d'adherència.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Empeny amb força quan el volant es gira més enllà del límit de direcció del cotxe, com un topall físic.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre. Passeu-la per un mòdul de guany per velocitat perquè només actuï amb el cotxe aturat.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>El final de la cadena — converteix el senyal en sortida cap al volant, amb una corba de resposta opcional i un limitador suau.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Conserva el cos lent del senyal i suavitza tot el que és més ràpid que la freqüència de tall.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Elimina el cos lent del senyal i conserva només el detall ràpid per sobre de la freqüència de tall.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Escala el senyal amb un multiplicador fix — feu servir un guany negatiu per invertir-lo.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Suma dos senyals.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Resta l'entrada B de l'entrada A — per exemple, restar una còpia passabaix d'un senyal deixa només el detall.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Fa una transició gradual entre dos senyals — 0% és tot entrada A, 100% és tot entrada B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Limita la velocitat de canvi del senyal — tot el que queda per sota del límit passa intacte, i els moviments més ràpids s'alenteixen.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Comprimeix els canvis ràpids del senyal en lloc de limitar-los bruscament — els moviments lents passen intactes.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Comprimeix el senyal per sobre d'un llindar, mantenint els pics sota control sense retallades brusques.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Extreu el detall ràpid i emfatitza els atacs — els sotracs i els pianos ressalten sense potenciar la cua.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Suavitzador d'un sol control que s'adapta al senyal — suavitzat fort quan el senyal és tranquil, latència mínima en els transitoris ràpids.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Elimina els esglaons d'un senyal de 60 Hz fent una rampa suau dins de cada quadre, a canvi d'un quadre de latència.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Desplaça un senyal de 360 Hz cap al futur per contrarestar la latència — un filtre adaptatiu que aprèn cada cotxe mentre conduïu.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Desplaça el senyal de 60 Hz cap al futur per contrarestar la latència — aprèn de la vostra direcció i del moviment del cotxe mentre conduïu.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Segueix el detall de l'entrada A mentre és atret cap a l'entrada B — l'atracció es relaxa a cada pic perquè els transitoris passin sencers.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Redueix molt la força quan es detecta un accident, i després la recupera suaument.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Redueix la força durant els impactes forts contra els pianos, i després la recupera suaument.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Una força de direcció controlada per l'efecte de subviratge, perquè sentiu com les rodes davanteres perden adherència.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Una força de direcció controlada per l'efecte de sobreviratge, perquè sentiu com el cotxe se'n va de darrere.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Una força de direcció controlada per l'efecte de sensació corporal — la sensació del xassís quan es carrega.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Fa vibrar el volant quan les rodes davanteres comencen a lliscar.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Fa vibrar el volant quan les rodes del darrere comencen a lliscar.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Fa vibrar el volant amb el moviment del xassís — una transferència de pes que es pot sentir.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Fa brunzir el volant a impulsos quan el motor arriba al punt de canvi de marxa.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Una ràfega curta de vibració a cada canvi de marxa.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Fa polsar el volant mentre l'ABS dels frens està actiu.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Un retruny que segueix el règim del motor, amb veu de V8 — silenciós quan el motor està apagat.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Escala el senyal amb la velocitat del cotxe — feu aparèixer o desaparèixer forces a mesura que el cotxe agafa velocitat.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Un retruny que s'accelera amb el cotxe, com la textura de l'asfalt — silenciós amb el cotxe aturat.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Un retruny que apareix quan qualsevol extrem del cotxe llisca, controlat pels efectes de subviratge i sobreviratge.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Afegeix un petit dithering altern per sota d'un llindar per mantenir viu el mecanisme del volant i revelar els detalls més febles.</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Enllaços</value>
   </data>
@@ -1932,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>Megadonants</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Mostra els paràmetres fixats</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Commutador A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Fes servir l'entrada B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Deixa passar sense canvis l'entrada A o l'entrada B, segons la posició del commutador — commuta per comparar a l'instant dos camins de senyal.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Actualitza la configuració a tot arreu on estigui seleccionat aquest gràfic</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Inicialitzant el volant Logitech...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Llums de revolucions de Logitech</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Il·luminar els llums de revolucions del volant</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Fer parpellejar els llums en superar el punt de canvi de marxa</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>Configuració del gràfic FFB</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Recomanat per a la majoria de pilots — el senyal FFB complet de 360 Hz amb predicció per reduir la latència. Ajusta el guany per augmentar o reduir el detall de la carretera i dels pneumàtics.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Cal que activis el bass shaker LFE a iRacing i que facis servir VB-CABLE perquè això funcioni.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Una força semblant a la fricció que evita que el volant oscil·li quan vas molt a poc a poc o estàs aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre; només actua quan el cotxe va a poc a poc o està aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Ajusta aquest valor per augmentar o reduir el detall de la carretera i dels pneumàtics. Un guany d'1,00x manté la sensació original d'iRacing.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Abaixa molt la força quan detecta un accident i després la recupera de manera suau — així un impacte fort no et pot arrencar el volant de les mans. La reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de subviratge, perquè notis com els pneumàtics davanters perden adherència. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de sobreviratge, perquè notis com el darrere del cotxe se'n va. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte seat-of-pants — la sensació que el xassís es va carregant. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Afegeix un dither alternant molt petit per sota d'un llindar per mantenir viu el mecanisme del volant i deixar sortir el detall més feble — útil si tens un volant de poca potència com el Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>El limitador suau permet que el senyal FFB conservi una part del detall en comptes d'aplanar-se quan es retalla.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Cal que activis el bass shaker LFE a iRacing i que facis servir VB-CABLE perquè això funcioni.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>Una força semblant a la fricció que evita que el volant oscil·li quan vas molt a poc a poc o estàs aturat.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre; només actua quan el cotxe va a poc a poc o està aturat.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Abaixa molt la força quan detecta un accident i després la recupera de manera suau — així un impacte fort no et pot arrencar el volant de les mans. La reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de subviratge, perquè notis com els pneumàtics davanters perden adherència. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de sobreviratge, perquè notis com el darrere del cotxe se'n va. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte seat-of-pants — la sensació que el xassís es va carregant. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Afegeix un dither alternant molt petit per sota d'un llindar per mantenir viu el mecanisme del volant i deixar sortir el detall més feble — útil si tens un volant de poca potència com el Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>El limitador suau permet que el senyal FFB conservi una part del detall en comptes d'aplanar-se quan es retalla.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Cal que activis el bass shaker LFE a iRacing i que facis servir VB-CABLE perquè això funcioni.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>Una força semblant a la fricció que evita que el volant oscil·li quan vas molt a poc a poc o estàs aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre; només actua quan el cotxe va a poc a poc o està aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Abaixa molt la força quan detecta un accident i després la recupera de manera suau — així un impacte fort no et pot arrencar el volant de les mans. La reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de subviratge, perquè notis com els pneumàtics davanters perden adherència. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de sobreviratge, perquè notis com el darrere del cotxe se'n va. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte seat-of-pants — la sensació que el xassís es va carregant. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Afegeix un dither alternant molt petit per sota d'un llindar per mantenir viu el mecanisme del volant i deixar sortir el detall més feble — útil si tens un volant de poca potència com el Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>El limitador suau permet que el senyal FFB conservi una part del detall en comptes d'aplanar-se quan es retalla.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Cal que activis el bass shaker LFE a iRacing i que facis servir VB-CABLE perquè això funcioni.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Una força semblant a la fricció que evita que el volant oscil·li quan vas molt a poc a poc o estàs aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre; només actua quan el cotxe va a poc a poc o està aturat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Abaixa molt la força quan detecta un accident i després la recupera de manera suau — així un impacte fort no et pot arrencar el volant de les mans. La reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de subviratge, perquè notis com els pneumàtics davanters perden adherència. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte de sobreviratge, perquè notis com el darrere del cotxe se'n va. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>Una força a la direcció generada per l'efecte seat-of-pants — la sensació que el xassís es va carregant. La direcció tria si l'efecte alleugereix el volant o hi afegeix una empenta lateral.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Afegeix un dither alternant molt petit per sota d'un llindar per mantenir viu el mecanisme del volant i deixar sortir el detall més feble — útil si tens un volant de poca potència com el Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>El limitador suau permet que el senyal FFB conservi una part del detall en comptes d'aplanar-se quan es retalla.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>Per a pilots que volen suavitzar les forces més intenses: tot el senyal FFB de 360 Hz passa per un compressor de variació que limita la rapidesa amb què pot canviar la força, i per un compressor que comprimeix la força total.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Limita la rapidesa amb què pot canviar la força: els pics ràpids se suavitzen mentre que les forces més lentes passen intactes.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Comprimeix la força total: les forces per damunt del llindar es comprimeixen perquè els moments més intensos no desbordin el volant.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>El kit d'ajust híbrid: el senyal FFB suau de 60 Hz com a base, amb el detall de 360 Hz barrejat, seguit de compressor, compressor de variació, realçador de transitoris i suavitzador adaptatiu.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Barreja el senyal suau de 60 Hz (la base) amb el detall de 360 Hz. Quan la força canvia de direcció, la fusió s'obre perquè els transitoris travessin.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Comprimeix la força total: les forces per damunt del llindar es comprimeixen perquè els moments més intensos no desbordin el volant.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Limita la rapidesa amb què pot canviar la força. En mode pic, fa baixar la força suaument després d'un pic en lloc de limitar-ne la pujada.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Accentua els canvis sobtats de força: el potenciador no lineal de la branca de detall. Un guany d'1,00x manté la intensitat original dels transitoris.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Suavitza el senyal només mentre està tranquil: els transitoris ràpids continuen passant. Augmenta la quantitat per obtenir més suavitzat.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Per a pilots que prefereixen el senyal FFB clàssic de 60 Hz, amb predicció per reduir la latència.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Potenciador de detall i limitador 360 Hz de baixa latència</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Potenciador de detall i limitador 60 Hz de baixa latència</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>Variació i compressió total a 360 Hz</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Kit d'ajust híbrid</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Perfils d'ajust</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Feu clic per gestionar els vostres perfils d'ajust</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Per meteorologia</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Per cotxe</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Per cotxe + circuit</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Per cotxe + circuit + configuració</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} canviats</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} paràmetres</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Actiu</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Aquest perfil</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Perfil per defecte</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Aquest perfil no té canvis.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Reverteix al valor per defecte</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>El simulador no s'està executant — els canvis de configuració es desen al perfil per defecte.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Copia a…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Fes-lo per defecte</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Neteja</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>A quin perfil voleu copiar els paràmetres?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Això suprimeix els canvis del perfil — cada paràmetre torna al valor del perfil per defecte.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Això copia cada paràmetre canviat d'aquest perfil al perfil per defecte, convertint-lo en la nova base.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Això eliminarà {0} valors de mòdul obsolets, repararà {1} seleccions de gràfic i suprimirà {2} perfils no utilitzats. Voleu continuar?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>No hi ha res per netejar.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(sense gràfic)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Valor de fàbrica</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Per cotxe + meteorologia</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Per cotxe + circuit + meteorologia</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Per cotxe + circuit + configuració + meteorologia</value>
   </data>
 </root>

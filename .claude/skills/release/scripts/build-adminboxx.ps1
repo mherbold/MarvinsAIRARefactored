@@ -19,7 +19,7 @@
 
     On success the final lines of stdout are:
         ADMINBOXX_BUILD_OK
-        VERSION=<four-part version>
+        VERSION=<three-part version>
         INSTALLER=<full path to the AdminBoxx installer .exe>
     Then hand that installer to Fish. This script does NOT touch GitHub.
 
@@ -195,8 +195,8 @@ if (-not $SkipSigning) {
     Write-Host "[adminboxx] Installer signature verified."
 }
 
-if ($installer.Name -notmatch '^AdminBoxx-Setup-(?<ver>\d+\.\d+\.\d+\.\d+)\.exe$') {
-    Fail "Installer filename '$($installer.Name)' did not match the expected pattern AdminBoxx-Setup-<x.y.z.w>.exe. Refusing to guess a version."
+if ($installer.Name -notmatch '^AdminBoxx-Setup-(?<ver>\d+\.\d+\.\d+(\.\d+)?)\.exe$') {
+    Fail "Installer filename '$($installer.Name)' did not match the expected pattern AdminBoxx-Setup-<x.y.buildStamp>.exe. Refusing to guess a version."
 }
 $version = $Matches['ver']
 

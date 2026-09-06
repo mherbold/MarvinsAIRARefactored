@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Ingen</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Per hjulbas</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Per bil</value>
   </data>
@@ -584,9 +581,6 @@
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Inga inspelningar hittades]</value>
-  </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Aktivera enkelt läge</value>
   </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Känslighet</value>
@@ -1345,10 +1339,10 @@
     <value>Välj din kraftåterkopplingsratt från listan nedan.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Ser du inte din ratt? Se till att den är påslagen och ansluten, så uppdateras listan automatiskt.</value>
+    <value>Ser du inte din ratt? Se till att den är påslagen och ansluten, så uppdateras listan automatiskt.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec-användare: Fanatec-ratter visas vanligtvis som två separata enheter i listan. Om den du valde inte fungerar, prova att välja den andra!</value>
+    <value>Fanatec-användare: Fanatec-ratter visas vanligtvis som två separata enheter i listan. Om den du valde inte fungerar, prova att välja den andra!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Maximal rattkraft</value>
@@ -1357,10 +1351,10 @@
     <value>Ange den maximala kraft din rattbas kan producera, i Newtonmeter (Nm). MAIRA använder detta värde för att korrekt skala all kraftåterkoppling för din hårdvara.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Vi har gjort vår bästa gissning baserat på din valda ratt – men justera gärna om det behövs.</value>
+    <value>Vi har gjort vår bästa gissning baserat på din valda ratt – men justera gärna om det behövs.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Viktigt: Om du redan har begränsat rattens maximala vridmoment i rattleverantörens programvara (t.ex. Fanatec Wheel Control Panel, Moza Pit House), ange det reducerade värdet här istället för hårdvarans fysiska maximum. MAIRA behöver veta vad din ratt faktiskt levererar, inte vad den är kapabel till i teorin.</value>
+    <value>Viktigt: Om du redan har begränsat rattens maximala vridmoment i rattleverantörens programvara (t.ex. Fanatec Wheel Control Panel, Moza Pit House), ange det reducerade värdet här istället för hårdvarans fysiska maximum. MAIRA behöver veta vad din ratt faktiskt levererar, inte vad den är kapabel till i teorin.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Styrkakontroller</value>
@@ -1372,7 +1366,7 @@
     <value>Klicka på - och + knapparna nedan för att tilldela inmatningar till var och en. Det här steget är valfritt – du kan hoppa över det och ställa in bindningar senare från Racing Wheel-sidan.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> När en inmatning är mappad, blir knappens kant orange för att bekräfta.</value>
+    <value>När en inmatning är mappad, blir knappens kant orange för att bekräfta.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Styrka</value>
@@ -1399,7 +1393,7 @@
     <value>Justera först Auto Target-utrymmet efter smak och mappa sedan dina Set- och Clear-knappar.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Auto Target ställer in var i rattens krafträckvidd det uppmätta toppen ska landa. Sänk målet för att behålla mer utrymme ovanför toppen; höj det för att använda mer av rattens räckvidd.</value>
+    <value>Auto Target ställer in var i rattens krafträckvidd det uppmätta toppen ska landa. Sänk målet för att behålla mer utrymme ovanför toppen; höj det för att använda mer av rattens räckvidd.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritm</value>
@@ -1490,9 +1484,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Loopslut</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Kommentar</value>
@@ -1642,7 +1633,7 @@
     <value>Initierar simulator...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Initierar direkt inmatning...</value>
+    <value>Initierar DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Initierar Stream Deck...</value>
@@ -1671,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Initierar LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Initierar multimediatimer...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Initierar uppspelningstimer...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Initierar inspelningshanterare...</value>
@@ -1715,52 +1706,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Kontrollerprofiler</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Byt namn på profil</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Byt namn på kontrollprofil</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Pågående processer</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtrera efter namn eller sökväg...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Söker efter pågående appar...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Fönstersynlighet</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Visa / dölj fönster</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Stegstorlek</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Intervall för uppdateringskontroll</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> tim</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Ta bort målningar när iRacing stängs</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Sök efter uppdateringar med intervall</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Träning</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Kval</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Lopp</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Status</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inaktiv</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Aktiv</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Undertryckt</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Ta bort gamla installationsprogram</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Diverse</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Öppna dokumentmapp</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1807,7 +1820,8 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(ej tilldelad)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Aktivera överläggsposition och -skalning per bil</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Kalibreringsfilen är ännu inte tillgänglig för den här bilen.</value>
@@ -1826,56 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz-källa</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz-källa</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE-källa</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Utdata</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Lågpassfilter</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Högpassfilter</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Addera</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Blandning</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Slew-begränsare</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Slew-kompressor</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Kompressor</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Transientförstärkare</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Adaptiv utjämning</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Adaptiv blandning</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Kurva</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Mjuk begränsare</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Krockskydd</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Kantskydd</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Parkeringsstyrka</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Mjukt lås-källa</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Friktionskälla</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Ratcentrerings-källa</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Understyringskraft</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Överstyringskraft</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Säteskänslakraft</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Understyringsvibration</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Överstyringsvibration</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Säteskänslavibration</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Växlingsvarvsvibration</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Växlingsvibration</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS-vibration</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Hastighets-gain</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Vägtextur</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Sliptextur</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Momentdither</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Flankbranthet</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Brytfrekvens</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Mix</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Gräns</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Tröskel</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Brytpunkt</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Ratio</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Toppläge</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Mängd</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Toppbrytfrekvens</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Longitudinell G-kraft</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Lateral G-kraft</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Under körning</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Vid parkering</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Mönster</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Minimihastighet</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Maximihastighet</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Gain vid min. hastighet</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Gain vid max. hastighet</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Enpolig</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Tvåpolig</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Lägg till modul</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Välj inspelning</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Klona aktuell graf</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB-graf</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Grafnamn</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Ny graf</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Börja med tom graf</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Subtrahera</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Ratthastighets-källa</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Källor</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Generisk DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mixrar</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Effekter</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Övriga effekter</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Exportera graf</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importera graf</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA-graffiler</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Importerad graf</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Den här grafen kunde inte exporteras.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Den här graffilen kunde inte importeras.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Den här filen är inte en MAIRA-graffil.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Den här filen innehåller en graf med vibrationseffekter – importera den under vibrationseffekter i stället.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Den här filen innehåller en FFB-graf – importera den under FFB-grafen i stället.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Den här graffilen skapades av en nyare version av MAIRA. Uppdatera MAIRA och försök igen.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Inspelning startad</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Inspelning stoppad</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Tid</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Banposition</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz-vridmoment</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz-vridmoment</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Styrvinkel</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Styrhastighet</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Rattposition</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Ratthastighet</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Växel</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Longitudinell G-kraft</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Sladd/slirning</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Inbyggd</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Anpassad</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importera grafinställningar</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Du har redan grafen ”{0}”. Vad vill du göra med inställningarna i den här filen?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Uppdatera inställningar för {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Uppdatera basinställningar (standard)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Uppdatera inställningar för {0} och basinställningar</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importera som en ny kopia</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz-interpolator</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Prediktion (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horisont</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Blandning</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Korrigeringsgräns</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Vidhäftningsområde</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Den här effekten är inaktiverad på sidan med styrningseffekter</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Pulslängd</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Vidhäftningsområde</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Motorvarvtalsvibration</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Frekvens vid maxvarvtal</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Råhet</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>Understyrning och överstyrning är inaktiverade på sidan med styrningseffekter</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Lägg till en beskrivning av den här grafen</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Fäst den här inställningen som en av grafens huvudkontroller</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Visa nodgraf</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>Prediktion (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>Spelbrygga</value>
   </data>
@@ -1918,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Rat fram och tillbaka</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Redigera beskrivning</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacings inbyggda 60 Hz force feedback-signal, exakt som simulatorn skickar den.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacings högfrekventa force feedback-signal — sex samplingar per 60 Hz-bildruta, med mest detaljer.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Simulatorns lågfrekventa effektljud (LFE), omvandlat till rattkraft. Blanda in den med en additionsmodul.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>En kraft som motverkar hur snabbt ratten vrids — blanda in den för dämpning.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Äkta torrfriktion: ratten stannar där du släpper den, med konstant glidmotstånd utanför greppzonen.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Trycker hårt tillbaka när ratten vrids förbi bilens styrutslag, som ett fysiskt ändstopp.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>En fjäderkraft som drar ratten tillbaka mot mitten. Led den genom en modul med hastighetsberoende förstärkning så att den bara är aktiv när bilen står stilla.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Slutet på kedjan — omvandlar signalen till rattutgång, med valfri responskurva och mjuk begränsare.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Behåller signalens långsamma del och jämnar ut allt som är snabbare än brytfrekvensen.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Tar bort signalens långsamma del och behåller bara de snabba detaljerna ovanför brytfrekvensen.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Skalar signalen med en fast faktor — använd negativ förstärkning för att invertera den.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Adderar två signaler.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Subtraherar ingång B från ingång A — subtraherar man t.ex. en lågpasskopia av en signal återstår bara detaljerna.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Tonar mjukt mellan två signaler — 0% är enbart ingång A, 100% enbart ingång B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Begränsar hur snabbt signalen kan ändras — allt under gränsen passerar orört, snabbare rörelser bromsas.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Komprimerar snabba signaländringar i stället för att hårdbegränsa dem — långsamma rörelser passerar orörda.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Komprimerar signalen ovanför ett tröskelvärde och håller topparna under kontroll utan hård klippning.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Plockar ut de snabba detaljerna och betonar attackerna — gupp och curbs framträder utan att avklingningen förstärks.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>En enknapps-utjämnare som anpassar sig till signalen — kraftig utjämning i lugna partier, minimal fördröjning vid snabba transienter.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Tar bort trappstegen ur en 60 Hz-signal genom att rampa mjukt över varje bildruta, till priset av en bildrutas fördröjning.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Förskjuter en 360 Hz-signal in i framtiden för att motverka latens — ett adaptivt filter som lär sig varje bil medan du kör.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Förskjuter 60 Hz-signalen in i framtiden för att motverka latens — lär sig av din styrning och bilens rörelser medan du kör.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Följer detaljerna i ingång A samtidigt som den dras mot ingång B — dragningen släpper vid varje topp så att transienter tar sig igenom.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Tonar ned kraften rejält när en krasch upptäcks och rampar sedan mjukt upp igen.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Minskar kraften vid hårda curbträffar och rampar sedan mjukt upp igen.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>En styrkraft driven av understyrningseffekten, så att du känner när framdäcken tappar greppet.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>En styrkraft driven av överstyrningseffekten, så att du känner när bilens bakvagn släpper.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>En styrkraft driven av sittkänslo-effekten — känslan av att chassit lastas upp.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Vibrerar ratten när framdäcken börjar glida.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Vibrerar ratten när bakdäcken börjar glida.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibrerar ratten i takt med chassits rörelser — viktförflyttning du kan känna.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Får ratten att surra i pulser när motorn når växlingspunkten.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>En kort vibrationsstöt vid varje växling.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulserar ratten medan bromsarnas ABS är aktivt.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Ett muller som följer motorns varvtal, med karaktären av en V8 — tyst när motorn är avstängd.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Skalar signalen med bilens fart — tona in eller ut krafter i takt med att bilen ökar farten.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Ett muller som ökar med farten, som vägbanans textur — tyst när bilen står stilla.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Ett muller som dyker upp så snart någon ände av bilen glider, drivet av under- och överstyrningseffekterna.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Lägger till en pytteliten alternerande dither under ett tröskelvärde för att hålla rattmekanismen vaken och avslöja svaga detaljer.</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Länkar</value>
   </data>
@@ -1932,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>Megadonatorer</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Visa fästa inställningar</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B-omkopplare</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Använd ingång B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Släpper igenom antingen ingång A eller ingång B oförändrad beroende på omkopplarens läge — växla för att direkt jämföra två signalvägar.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Uppdatera inställningar överallt där den här grafen är vald</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Initierar Logitech-ratt...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech varvtalsljus</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Tänd varvtalsljusen på ratten</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Låt ljusen blinka efter växlingspunkten</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB-grafinställningar</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Rekommenderas för de flesta förare – hela 360 Hz FFB-signalen med prediktion som minskar fördröjningen. Justera förstärkningen för att öka eller minska detaljerna från banan och däcken.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Simulatorns lågfrekvensljud omvandlat till kraft i ratten. Du måste aktivera bass shaker LFE i iRacing och använda VB-CABLE för att det ska fungera.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>En friktionsliknande kraft som hindrar ratten från att svänga fram och tillbaka när du kör mycket långsamt eller står stilla.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>En fjäderkraft som drar tillbaka ratten mot mitten, aktiv endast när bilen kör långsamt eller står stilla.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Justera det här värdet för att öka eller minska detaljerna från banan och däcken. En förstärkning på 1.00x behåller iRacings ursprungliga känsla.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Dämpar kraften kraftigt när en krock upptäcks och trappar sedan upp den mjukt igen – så att en hård smäll inte kan rycka ratten ur händerna på dig. Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>En styrkraft som drivs av understyrningseffekten, så att du känner när framdäcken tappar greppet. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>En styrkraft som drivs av överstyrningseffekten, så att du känner när bakvagnen släpper. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>En styrkraft som drivs av rumpkänsloeffekten – känslan av att chassit lastas upp. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Lägger till en pytteliten växlande dither under ett tröskelvärde för att hålla rattens mekanik levande och få fram svaga detaljer – användbart om du har en svag ratt, till exempel Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Den mjuka begränsaren gör att FFB-signalen behåller en del detaljer i stället för att plattas ut när den klipps.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>Simulatorns lågfrekvensljud omvandlat till kraft i ratten. Du måste aktivera bass shaker LFE i iRacing och använda VB-CABLE för att det ska fungera.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>En friktionsliknande kraft som hindrar ratten från att svänga fram och tillbaka när du kör mycket långsamt eller står stilla.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>En fjäderkraft som drar tillbaka ratten mot mitten, aktiv endast när bilen kör långsamt eller står stilla.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Dämpar kraften kraftigt när en krock upptäcks och trappar sedan upp den mjukt igen – så att en hård smäll inte kan rycka ratten ur händerna på dig. Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>En styrkraft som drivs av understyrningseffekten, så att du känner när framdäcken tappar greppet. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>En styrkraft som drivs av överstyrningseffekten, så att du känner när bakvagnen släpper. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>En styrkraft som drivs av rumpkänsloeffekten – känslan av att chassit lastas upp. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Lägger till en pytteliten växlande dither under ett tröskelvärde för att hålla rattens mekanik levande och få fram svaga detaljer – användbart om du har en svag ratt, till exempel Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>Den mjuka begränsaren gör att FFB-signalen behåller en del detaljer i stället för att plattas ut när den klipps.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>Simulatorns lågfrekvensljud omvandlat till kraft i ratten. Du måste aktivera bass shaker LFE i iRacing och använda VB-CABLE för att det ska fungera.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>En friktionsliknande kraft som hindrar ratten från att svänga fram och tillbaka när du kör mycket långsamt eller står stilla.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>En fjäderkraft som drar tillbaka ratten mot mitten, aktiv endast när bilen kör långsamt eller står stilla.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Dämpar kraften kraftigt när en krock upptäcks och trappar sedan upp den mjukt igen – så att en hård smäll inte kan rycka ratten ur händerna på dig. Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>En styrkraft som drivs av understyrningseffekten, så att du känner när framdäcken tappar greppet. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>En styrkraft som drivs av överstyrningseffekten, så att du känner när bakvagnen släpper. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>En styrkraft som drivs av rumpkänsloeffekten – känslan av att chassit lastas upp. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Lägger till en pytteliten växlande dither under ett tröskelvärde för att hålla rattens mekanik levande och få fram svaga detaljer – användbart om du har en svag ratt, till exempel Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>Den mjuka begränsaren gör att FFB-signalen behåller en del detaljer i stället för att plattas ut när den klipps.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Simulatorns lågfrekvensljud omvandlat till kraft i ratten. Du måste aktivera bass shaker LFE i iRacing och använda VB-CABLE för att det ska fungera.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>En friktionsliknande kraft som hindrar ratten från att svänga fram och tillbaka när du kör mycket långsamt eller står stilla.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>En fjäderkraft som drar tillbaka ratten mot mitten, aktiv endast när bilen kör långsamt eller står stilla.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Dämpar kraften kraftigt när en krock upptäcks och trappar sedan upp den mjukt igen – så att en hård smäll inte kan rycka ratten ur händerna på dig. Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>En styrkraft som drivs av understyrningseffekten, så att du känner när framdäcken tappar greppet. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>En styrkraft som drivs av överstyrningseffekten, så att du känner när bakvagnen släpper. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>En styrkraft som drivs av rumpkänsloeffekten – känslan av att chassit lastas upp. Riktning avgör om effekten gör ratten lättare eller lägger till ett tryck i sidled.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Lägger till en pytteliten växlande dither under ett tröskelvärde för att hålla rattens mekanik levande och få fram svaga detaljer – användbart om du har en svag ratt, till exempel Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Den mjuka begränsaren gör att FFB-signalen behåller en del detaljer i stället för att plattas ut när den klipps.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>För förare som vill mjuka upp de starkaste krafterna – hela 360 Hz FFB-signalen genom en slew-kompressor som komprimerar hur snabbt kraften får ändras, och en kompressor som komprimerar den totala kraften.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Komprimerar hur snabbt kraften får ändras – snabba toppar mjukas upp medan långsammare krafter passerar orörda.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Komprimerar den totala kraften – krafter över tröskeln komprimeras så att de starkaste ögonblicken inte överväldigar ratten.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Den hybrida trimverktygslådan – den mjuka 60 Hz FFB-signalen som grund med 360 Hz-detaljen inblandad, följt av kompression, slew-kompression, en transientförstärkare och en adaptiv utjämning.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Blandar den mjuka 60 Hz-signalen (grunden) med 360 Hz-detaljen.  När kraften byter riktning öppnas blandningen upp så att transienter slår igenom.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Komprimerar den totala kraften – krafter över tröskeln komprimeras så att de starkaste ögonblicken inte överväldigar ratten.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Komprimerar hur snabbt kraften får ändras.  I toppläge lättar den ned kraften igen efter en topp i stället för att begränsa hur snabbt den stiger.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Skärper plötsliga kraftändringar – detaljgrenens olinjära förstärkare.  Ett gain på 1.00x behåller den ursprungliga transientstyrkan.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Utjämnar signalen endast när den är lugn – snabba transienter passerar fortfarande.  Öka mängden för mer utjämning.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>För förare som föredrar den klassiska 60 Hz FFB-signalen – med prediktion för att minska latensen.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Låg latens 360 Hz detaljförstärkare och begränsare</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Låg latens 60 Hz detaljförstärkare och begränsare</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz slew och total kompression</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Hybrid trimverktygslåda</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Tuningprofiler</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Klicka för att hantera dina tuningprofiler</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Per väder</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Per bil</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Per bil + bana</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Per bil + bana + konfiguration</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} ändrade</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} inställningar</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Den här profilen</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Standardprofil</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Den här profilen har inga ändringar.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Återställ till standard</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Simulatorn körs inte — ändringar av inställningar sparas i standardprofilen.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Kopiera till…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Gör till standard</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Rensa</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Till vilken profil ska inställningarna kopieras?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Detta raderar profilens ändringar — varje inställning återgår till standardprofilens värde.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Detta kopierar varje ändrad inställning i den här profilen till standardprofilen, som blir den nya utgångspunkten.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Detta tar bort {0} inaktuella modulvärden, reparerar {1} grafval och raderar {2} oanvända profiler. Fortsätta?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Inget att rensa.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(ingen graf)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Fabriksstandard</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Per bil + väder</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Per bil + bana + väder</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Per bil + bana + konfiguration + väder</value>
   </data>
 </root>

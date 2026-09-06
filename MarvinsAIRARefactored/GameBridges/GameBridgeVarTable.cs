@@ -33,6 +33,7 @@ public class GameBridgeVarTable
 	public IRacingSdkDatum CarLeftRight { get; }
 	public IRacingSdkDatum Clutch { get; }
 	public IRacingSdkDatum DisplayUnits { get; }
+	public IRacingSdkDatum EngineWarnings { get; }
 	public IRacingSdkDatum FrameRate { get; }
 	public IRacingSdkDatum Gear { get; }
 	public IRacingSdkDatum GpuUsage { get; }
@@ -117,6 +118,7 @@ public class GameBridgeVarTable
 		CarLeftRight = DataSource.AddVar( "CarLeftRight", IRacingSdkEnum.VarType.Int, 1, "irsdk_CarLeftRight", "Notify if car is to the left or right of driver" );
 		Clutch = DataSource.AddVar( "Clutch", IRacingSdkEnum.VarType.Float, 1, "%", "0=disengaged to 1=fully engaged" );
 		DisplayUnits = DataSource.AddVar( "DisplayUnits", IRacingSdkEnum.VarType.Int, 1, "", "Default units for the user interface 0 = english 1 = metric" );
+		EngineWarnings = DataSource.AddVar( "EngineWarnings", IRacingSdkEnum.VarType.BitField, 1, "irsdk_EngineWarnings", "Bitfield for warning lights" );
 		FrameRate = DataSource.AddVar( "FrameRate", IRacingSdkEnum.VarType.Float, 1, "fps", "Average frames per second" );
 		Gear = DataSource.AddVar( "Gear", IRacingSdkEnum.VarType.Int, 1, "", "-1=reverse 0=neutral 1..n=current gear" );
 		GpuUsage = DataSource.AddVar( "GpuUsage", IRacingSdkEnum.VarType.Float, 1, "%", "Percent of available tim gpu took with a 1 sec avg" );

@@ -4,7 +4,10 @@
 #define MyAppFile "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAIRARefactored\bin\publish\MarvinsAIRARefactored.exe"
 #define MyAppName "AdminBoxx"
 #define MyAppIconName "AdminBoxx"
-#define MyAppVersion GetFileVersion(MyAppFile)
+; the app's version scheme is three-part (2.1.[buildStamp]) but the exe's numeric version resource is
+; always padded to four parts with a trailing ".0" - trim it so the installer name matches the app version
+#define MyAppVersionFull GetFileVersion(MyAppFile)
+#define MyAppVersion Copy(MyAppVersionFull, 1, Len(MyAppVersionFull) - 2)
 #define MyAppPublisher "Marvin Herbold"
 #define MyAppURL "https://adminboxx.com"
 #define MyAppExeName "AdminBoxx.exe"

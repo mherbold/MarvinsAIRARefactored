@@ -20,6 +20,14 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
+<li>Tuning profiles - see every per-car, per-track and wet/dry set of settings MAIRA has saved, what each one changes, and revert, copy, promote or clean them up</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Automatic timestamped settings backups, with recovery at startup if the settings file is ever damaged</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li>SimHub plugin</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
@@ -30,7 +38,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>360 Hz (upscaled to 500 Hz) force feedback for all wheelbases</li>
+<li>360 Hz force feedback for all wheelbases</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -67,6 +75,10 @@
 
 <!-- wp:list-item -->
 <li>Vibrate on gear change and ABS activation</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>RPM lights on Logitech TrueForce wheels (G PRO, RS50, G923)</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

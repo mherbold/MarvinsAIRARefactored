@@ -653,6 +653,10 @@
 <p>Tip: Hover the preview graph to get a zoomed view.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>Tip: You can scroll the preview graph by holding the left mouse button down on it and dragging left or right (or by using the scroll bar underneath it).</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="wheel-lfe">Wheel LFE</p>
 <!-- /wp:paragraph -->
@@ -683,6 +687,42 @@
 
 <!-- wp:paragraph {"className":"default"} -->
 <p class="default">Default: 5%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="logitech-rpm-lights">Logitech RPM lights</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Logitech TrueForce wheels (G PRO Racing Wheel, RS50, G923) have a strip of RPM lights on the rim that normally only the game can light up. MAIRA drives these lights for you, using the simulator's own per-car shift light ranges, so the strip fills as the engine approaches the shift point. This section only appears when one of these wheels is selected as your steering device.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>While the RPM lights are enabled, MAIRA sends its force feedback to the wheel through the TrueForce channel instead of DirectInput - this is required for the lights and force feedback to coexist, and the force itself is unchanged. The wheel is released whenever the simulator is not running, so other games can use TrueForce normally while MAIRA is open.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Light up the RPM lights on the wheel</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Turns the RPM lights on or off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: on (turns itself on the first time a supported wheel is selected)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Flash the lights once past the shift point</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Flashes the whole strip once the revs pass the car's blink point, instead of holding a full bar - much easier to catch out of the corner of your eye.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: on</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

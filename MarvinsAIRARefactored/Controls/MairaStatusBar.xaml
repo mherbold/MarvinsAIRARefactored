@@ -5,12 +5,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
              mc:Ignorable="d">
 
+    <!-- The whole bar is a button into the tuning profile manager. The background has to be an explicit
+         (transparent) brush or the border would have no hit-test surface between its texts, and the tooltip is
+         bound against the localization singleton by hand because this control's own DataContext belongs to
+         whoever hosts it (its texts come in through dependency properties, not bindings). -->
+
     <Border x:Name="Status_Border"
+            Background="Transparent"
             BorderThickness="2"
             CornerRadius="8"
-            Padding="10,1">
+            Cursor="Hand"
+            Padding="10,1"
+            ToolTip="{Binding Localization[TuningProfilesStatusBarTooltip], Source={x:Static datacontext:DataContext.Instance}}"
+            MouseLeftButtonDown="Status_Border_MouseLeftButtonDown"
+            MouseLeftButtonUp="Status_Border_MouseLeftButtonUp"
+            LostMouseCapture="Status_Border_LostMouseCapture">
 
         <Border.Style>
 

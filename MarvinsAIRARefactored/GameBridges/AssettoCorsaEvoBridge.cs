@@ -39,7 +39,7 @@ public class AssettoCorsaEvoBridge : AssettoCorsaBridge
 	{
 	}
 
-	// runs at 60 Hz on the multimedia timer worker thread - BitConverter reads only, no allocation
+	// runs at 60 Hz on the playout timer worker thread - BitConverter reads only, no allocation
 	protected override void FillSlowFrameData()
 	{
 		var graphicsBuffer = _graphicsBuffer;

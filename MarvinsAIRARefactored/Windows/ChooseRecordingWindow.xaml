@@ -1,0 +1,93 @@
+<Window x:Class="MarvinsAIRARefactored.Windows.ChooseRecordingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[ChooseRecording]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        Width="600"
+        Height="480"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner"
+        KeyDown="Window_KeyDown">
+
+	<Window.DataContext>
+		<Binding Source="{x:Static datacontext:DataContext.Instance}" />
+	</Window.DataContext>
+
+	<!-- Pick-and-go recording picker (matches AddFFBModuleWindow): clicking a recording selects it and closes
+	     the window immediately; the title-bar X (or Escape) cancels. The currently selected recording is
+	     highlighted when the window opens. -->
+
+	<Window.Resources>
+
+		<Style TargetType="ListBox">
+			<Setter Property="Background" Value="{DynamicResource Brush.Background.Popup}" />
+			<Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Subtle}" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+			<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+		</Style>
+
+		<Style TargetType="ListBoxItem">
+			<Setter Property="Foreground" Value="{DynamicResource Brush.Foreground.Primary}" />
+			<Setter Property="Cursor" Value="Hand" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListBoxItem">
+						<Border x:Name="Bg"
+						        Background="Transparent"
+						        BorderBrush="{DynamicResource Brush.Border.Normal}"
+						        BorderThickness="0,0,0,1"
+						        Padding="12,8">
+							<ContentPresenter />
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Hover}" />
+							</Trigger>
+							<Trigger Property="IsSelected" Value="True">
+								<Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Selected}" />
+								<Setter TargetName="Bg" Property="BorderBrush" Value="{DynamicResource Brush.Border.Normal}" />
+								<Setter TargetName="Bg" Property="TextElement.Foreground" Value="{DynamicResource Brush.ListItem.Selected.Text}" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<EventSetter Event="PreviewMouseLeftButtonUp" Handler="RecordingItem_PreviewMouseLeftButtonUp" />
+		</Style>
+
+	</Window.Resources>
+
+	<Grid Margin="20">
+
+		<ListBox x:Name="Recordings_ListBox">
+
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Value}"
+					           Style="{StaticResource MairaListItemTextStyle}"
+					           FontSize="18"
+					           TextTrimming="CharacterEllipsis" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+
+		</ListBox>
+
+		<TextBlock x:Name="NoRecordings_TextBlock"
+		           Text="{Binding Localization[NoRecordingsFound]}"
+		           HorizontalAlignment="Center"
+		           VerticalAlignment="Center"
+		           FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+		           FontSize="18"
+		           Foreground="{DynamicResource Brush.Foreground.Muted}"
+		           IsHitTestVisible="False"
+		           Visibility="Collapsed" />
+
+	</Grid>
+
+</Window>

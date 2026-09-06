@@ -10,7 +10,7 @@ namespace MarvinsAIRARefactored.GameBridges.Ac;
 //
 // Arrays and wchar strings are represented as [InlineArray] value types (see InlineArrays.cs) instead of
 // [MarshalAs] fields, keeping the structs blittable so the bridge can read them from the shared memory bytes
-// with MemoryMarshal.Read and ZERO heap allocations - the physics page is read at 360 Hz on the multimedia
+// with MemoryMarshal.Read and ZERO heap allocations - the physics page is read at 360 Hz on the playout
 // timer worker thread. The byte layout is identical to the marshaled representation.
 
 public static class AcConstants

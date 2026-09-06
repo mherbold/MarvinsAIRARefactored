@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 using UserControl = System.Windows.Controls.UserControl;
+using Settings = MarvinsAIRARefactored.DataContext.Settings;
 
 using MarvinsAIRARefactored.Components;
 using MarvinsAIRARefactored.Controls;
@@ -60,17 +61,13 @@ public partial class GTensionerPage : UserControl, INotifyPropertyChanged
 
 	public void UpdateAxisModeOptions()
 	{
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var dictionary = new Dictionary<GTensioner.AxisMode, string>
-		{
-			{ GTensioner.AxisMode.Disabled, localization[ "AxisModeDisabled" ] },
-			{ GTensioner.AxisMode.Normal,   localization[ "AxisModeNormal" ] },
-			{ GTensioner.AxisMode.Inverted, localization[ "AxisModeInverted" ] }
-		};
+		GTensioner.AxisMode[] orderedAxisModes = [ GTensioner.AxisMode.Disabled, GTensioner.AxisMode.Normal, GTensioner.AxisMode.Inverted ];
 
-		_axisModeOptions = dictionary.ToList();
+		// the labels come from the shared settings helper, so these combo boxes and the tuning profile manager can
+		// never say different things about the same setting
+		_axisModeOptions = orderedAxisModes.Select( axisMode => new KeyValuePair<GTensioner.AxisMode, string>( axisMode, Settings.FormatGTensionerAxisModeString( axisMode ) ) ).ToList();
 
 		Dispatcher.Invoke( () =>
 		{
@@ -90,19 +87,22 @@ public partial class GTensionerPage : UserControl, INotifyPropertyChanged
 
 	public void UpdateSeatOfPantsAlgorithmOptions()
 	{
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var dictionary = new Dictionary<Components.SteeringEffects.SeatOfPantsAlgorithm, string>
-		{
-			{ Components.SteeringEffects.SeatOfPantsAlgorithm.YAcceleration,          localization[ "LateralAcceleration" ] },
-			{ Components.SteeringEffects.SeatOfPantsAlgorithm.YVelocity,              localization[ "LateralVelocity" ] },
-			{ Components.SteeringEffects.SeatOfPantsAlgorithm.YVelocityOverXVelocity, localization[ "RatioOfVelocities" ] }
-		};
+		SteeringEffects.SeatOfPantsAlgorithm[] orderedAlgorithms =
+		[
+			SteeringEffects.SeatOfPantsAlgorithm.YAcceleration,
+			SteeringEffects.SeatOfPantsAlgorithm.YVelocity,
+			SteeringEffects.SeatOfPantsAlgorithm.YVelocityOverXVelocity
+		];
+
+		// the labels come from the shared settings helper, so this combo box and the tuning profile manager can
+		// never say different things about the same setting
+		var algorithmOptions = orderedAlgorithms.Select( algorithm => new KeyValuePair<SteeringEffects.SeatOfPantsAlgorithm, string>( algorithm, Settings.FormatSeatOfPantsAlgorithmString( algorithm ) ) ).ToList();
 
 		Dispatcher.Invoke( () =>
 		{
-			SeatOfPantsAlgorithm_MairaComboBox.ItemsSource = dictionary.ToList();
+			SeatOfPantsAlgorithm_MairaComboBox.ItemsSource = algorithmOptions;
 			SeatOfPantsAlgorithm_MairaComboBox.SelectedValue = settings.SteeringEffectsSeatOfPantsAlgorithm;
 		} );
 	}

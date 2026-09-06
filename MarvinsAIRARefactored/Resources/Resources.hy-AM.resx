@@ -244,7 +244,7 @@
     <value>Դելտայի սահման</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value>Ն·մ/վ</value>
+    <value> Ն·մ/վ</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
     <value>Դելտայի սահմանափակիչ (60 հց)</value>
@@ -292,10 +292,10 @@
     <value>Ուժի քչացում</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>վ</value>
+    <value> վ</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>մ/վ</value>
+    <value> մ/վ</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
     <value>Բորդյուրի պաշտպանություն</value>
@@ -353,9 +353,6 @@
   </data>
   <data name="None" xml:space="preserve">
     <value>Չկա</value>
-  </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Ըստ բազայի</value>
   </data>
   <data name="PerCar" xml:space="preserve">
     <value>Ըստ մեքենայի</value>
@@ -571,7 +568,7 @@
     <value>Ընդամենը․ սեղմման շեմ</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Ն·մ/մվ</value>
+    <value> Ն·մ/մվ</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
     <value>Ղեկի ուժ</value>
@@ -584,9 +581,6 @@
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Ձայնագրություններ չեն գտնվել]</value>
-  </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Միացնել պարզ ռեժիմը</value>
   </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Զգայունություն</value>
@@ -724,7 +718,7 @@
     <value>Բացառություն է նետվել</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>կմ/ժ</value>
+    <value> կմ/ժ</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Սրանք մարդիկ են, ովքեր մեծահոգաբար տրամադրել են իրենց սիրելի մեքենաների կալիբրացիոն ֆայլերը… Խնդրում ենք նաև կիսվել ձեր սիրելի մեքենաների կալիբրացիաներով և վերբեռնել այդ ֆայլերը։</value>
@@ -1345,10 +1339,10 @@
     <value>Ընտրեք ձեր ուժային հետադարձ կապի ղեկը ստորև բերված ցանկից:</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Չե՞ք տեսնում ձեր ղեկը: Համոզվեք, որ այն միացված և կցված է, ցանկն ավտոմատ կերպով կթարմացվի:</value>
+    <value>Չե՞ք տեսնում ձեր ղեկը: Համոզվեք, որ այն միացված և կցված է, ցանկն ավտոմատ կերպով կթարմացվի:</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec-ի օգտատերեր. Fanatec ղեկները սովորաբար ցանկում երևում են երկու առանձին սարքի տեսքով: Եթե ընտրվածը չի աշխատում, փորձեք մյուսը!</value>
+    <value>Fanatec-ի օգտատերեր. Fanatec ղեկները սովորաբար ցանկում երևում են երկու առանձին սարքի տեսքով: Եթե ընտրվածը չի աշխատում, փորձեք մյուսը!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Ղեկի առավելագույն ուժ</value>
@@ -1357,10 +1351,10 @@
     <value>Մուտքագրեք ձեր հիմքի կողմից կարողանալ արտադրվող առավելագույն ուժը Նյուտոն-մետրով (Նm): MAIRA-ն այս արժեքն օգտագործում է ապարատային սարքի ուժային հետադարձ կապի բոլոր ելքերի ճիշտ մեծացման համար:</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Ընտրված ղեկի հիման վրա ամենալավ կանխատեսումն արել ենք, բայց ազատ եք կարգավորել, եթե անհրաժեշտ է:</value>
+    <value>Ընտրված ղեկի հիման վրա ամենալավ կանխատեսումն արել ենք, բայց ազատ եք կարգավորել, եթե անհրաժեշտ է:</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Կարևոր. Եթե արտադրողի ծրագրաշարում (օր.՝ Fanatec Wheel Control Panel, Moza Pit House) արդեն սահմանափակել եք ղեկի առավելագույն ոլորող ուժը, մուտքագրեք այդ նվազեցված արժեքը, ոչ թե ապարատի ֆիզիկական առավելագույնը: MAIRA-ն պետք է իմանա, թե ձեր ղեկն իրականում ինչ կտա, ոչ թե ինչի ընդունակ է տեսականորեն:</value>
+    <value>Կարևոր. Եթե արտադրողի ծրագրաշարում (օր.՝ Fanatec Wheel Control Panel, Moza Pit House) արդեն սահմանափակել եք ղեկի առավելագույն ոլորող ուժը, մուտքագրեք այդ նվազեցված արժեքը, ոչ թե ապարատի ֆիզիկական առավելագույնը: MAIRA-ն պետք է իմանա, թե ձեր ղեկն իրականում ինչ կտա, ոչ թե ինչի ընդունակ է տեսականորեն:</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Ուժի կառավարում</value>
@@ -1372,7 +1366,7 @@
     <value>Ստորև բերված - և + կոճակներին սեղմեք՝ մուտք հատկացնելու համար: Այս քայլն ըստ ցանկության է. կարող եք բաց թողնել և կարգավորել կախումները ավելի ուշ Ղեկ էջից:</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Հենց մուտք հատկացվի, կոճակի եզրը կդառնա նարնջագույն՝ հաստատելու համար:</value>
+    <value>Հենց մուտք հատկացվի, կոճակի եզրը կդառնա նարնջագույն՝ հաստատելու համար:</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Ուժ</value>
@@ -1399,7 +1393,7 @@
     <value>Նախ կարգավորեք ավտոմատ թիրախ-մարժինը ըստ նախընտրության, ապա հատկացրեք «Սահմանել» և «Մաքրել» կոճակները:</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Ավտոմատ թիրախը սահմանում է, թե ղեկի ուժի շրջանակի որ կետում պետք է ընկնի չափված գագաթը: Թիրախն իջեցրեք՝ գագաթից վերև ավելի շատ մարժին պահելու համար. բարձրացրեք՝ ղեկի ուժի ավելի մեծ մասն օգտագործելու համար:</value>
+    <value>Ավտոմատ թիրախը սահմանում է, թե ղեկի ուժի շրջանակի որ կետում պետք է ընկնի չափված գագաթը: Թիրախն իջեցրեք՝ գագաթից վերև ավելի շատ մարժին պահելու համար. բարձրացրեք՝ ղեկի ուժի ավելի մեծ մասն օգտագործելու համար:</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Ալգորիթմ</value>
@@ -1490,9 +1484,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Հանգույցի վերջ</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Մեկնաբանություն</value>
@@ -1671,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFE-ի նախաստեղծում...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Մուլտիմեդիա ժամաչափի նախաստեղծում...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Նվագարկման ժամաչափի նախաստեղծում...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Գրանցման կառավարչի նախաստեղծում...</value>
@@ -1715,52 +1706,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Կարգավորիչի պրոֆիլներ</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Վերանվանել պրոֆիլը</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Վերանվանել կարգավորիչի պրոֆիլը</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Աշխատող գործընթացներ</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Զտել ըստ անվան կամ ուղու...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Աշխատող ծրագրերի որոնում...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Պատուհանի տեսանելիություն</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Ցույց տալ / թաքցնել պատուհանը</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Քայլի չափ</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Թարմացումների ստուգման ընդմիջում</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> ժ</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Ջնջել ներկերը iRacing-ը փակվելիս</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Թարմացումների ստուգում ընդմիջումով</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Մարզում</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Որակավորում</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Մրցավազք</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Կարգավիճակ</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Պարապ</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Ակտիվ</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Ճնշված</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Ջնջել հին տեղադրիչները</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Տարբեր</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Բացել փաստաթղթերի թղթապանակը</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1807,7 +1820,8 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(չնշանակված)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Միացնել վրադրման դիրքն ու չափը յուրաքանչյուր մեքենայի համար</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Այս մեքենայի համար չափաբերման ֆայլը դեռ հասանելի չէ:</value>
@@ -1826,56 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz աղբյուր</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz աղբյուր</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE աղբյուր</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Ելք</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Ցածրանցիկ զտիչ</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Բարձրանցիկ զտիչ</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Ուժեղացում</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Գումարում</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Խառնուրդ</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Փոփոխման արագության սահմանափակիչ</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Փոփոխման արագության սեղմիչ</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Սեղմիչ</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Տրանզիենտների ուժեղարար</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Հարմարվողական հարթեցում</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Հարմարվողական խառնուրդ</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Կոր</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Փափուկ սահմանափակիչ</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Վթարի պաշտպանություն</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Բորդյուրի պաշտպանություն</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Կայանած վիճակում ուժ</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Փափուկ սահմանափակման աղբյուր</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Շփման աղբյուր</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Ղեկի կենտրոնացման աղբյուր</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Անդերստիրի ուժ</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Օվերստիրի ուժ</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Աթոռի զգացողության ուժ</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Անդերստիրի թրթռում</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Օվերստիրի թրթռում</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Աթոռի զգացողության թրթռում</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Փոխանցման RPM թրթռում</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Փոխանցման փոփոխության թրթռում</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS թրթռում</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Արագության ուժեղացում</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Ճանապարհի հյուսվածք</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Սահքի հյուսվածք</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Մոմենտի դիթեր</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Թեքություն</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Կտրման հաճախականություն</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Ուժեղացում</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Միքս</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Սահման</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Շեմ</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Անցման կետ</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Հարաբերակցություն</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Պիկ ռեժիմ</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Քանակ</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Պիկի կտրում</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Երկայնական G ուժ</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Կողային G ուժ</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Մրցարշավի ընթացքում</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Կայանած վիճակում</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Նախշ</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Նվազագույն արագություն</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Առավելագույն արագություն</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Ուժեղացում նվազագույն արագությամբ</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Ուժեղացում առավելագույն արագությամբ</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Մեկ բևեռ</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Երկու բևեռ</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Ավելացնել մոդուլ</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Ընտրել ձայնագրություն</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Կլոնավորել ընթացիկ գրաֆը</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB գրաֆ</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Գրաֆի անուն</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Նոր գրաֆ</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Սկսել դատարկ գրաֆ</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Հանում</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Ղեկի արագության աղբյուր</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Աղբյուրներ</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Ընդհանուր DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Խառնիչներ</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Էֆեկտներ</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Այլ էֆեկտներ</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Արտահանել գրաֆիկը</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Ներմուծել գրաֆիկը</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA գրաֆիկի ֆայլեր</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Ներմուծված գրաֆիկ</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Այս գրաֆիկը հնարավոր չեղավ արտահանել։</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Այս գրաֆիկի ֆայլը հնարավոր չեղավ ներմուծել։</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Այս ֆայլը MAIRA գրաֆիկի ֆայլ չէ։</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Այս ֆայլը պարունակում է թրթռման էֆեկտների գրաֆիկ․ փոխարենը ներմուծեք այն թրթռման էֆեկտների բաժնում։</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Այս ֆայլը պարունակում է FFB գրաֆիկ․ փոխարենը ներմուծեք այն FFB գրաֆիկի բաժնում։</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Այս գրաֆիկի ֆայլը ստեղծվել է MAIRA-ի ավելի նոր տարբերակով։ Խնդրում ենք թարմացնել MAIRA-ն և կրկին փորձել։</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Ձայնագրումը սկսվեց</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Ձայնագրումը դադարեցվեց</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Ժամանակ</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Ուղեգծի դիրք</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz ոլորող ուժ</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz ոլորող ուժ</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Ուղղորդման անկյուն</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Ուղղորդման արագություն</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Ղեկի դիրք</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Ղեկի արագություն</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Փոխանցում</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Երկայնական G-ուժ</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Սահք/սահում</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Ներկառուցված</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Հատուկ</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Ներմուծել գրաֆիկի կարգավորումները</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Դուք արդեն ունեք «{0}» գրաֆիկը։ Ի՞նչ եք ցանկանում անել այս ֆայլի կարգավորումների հետ։</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Թարմացնել {0} կարգավորումները</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Թարմացնել բազային (կանխադրված) կարգավորումները</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Թարմացնել {0} և բազային կարգավորումները</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Ներմուծել որպես նոր պատճեն</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz ինտերպոլյատոր</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Կանխատեսում (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Հորիզոն</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Խառնուրդ</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Ուղղման սահման</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Կպչման տիրույթ</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Այս էֆեկտն անջատված է ղեկի էֆեկտների էջում</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Իմպուլսի տևողություն</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Կպչման գոտի</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Շարժիչի պտույտների թրթռում</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Հաճախություն առավելագույն պտույտների դեպքում</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Կոպտություն</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>Թերշրջելիությունը և գերշրջելիությունը անջատված են ղեկի էֆեկտների էջում</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Ավելացրեք նկարագրություն այս գրաֆի համար</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Ամրացնել այս կարգավորումը որպես այս գրաֆի հիմնական կառավարման տարրերից մեկը</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Ցուցադրել հանգույցների գրաֆը</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>Կանխատեսում (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>Խաղերի կամուրջ</value>
   </data>
@@ -1918,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ղեկի ճոճում</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Խմբագրել նկարագրությունը</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing-ի բնօրինակ 60 Hz հետադարձ ուժի (force feedback) ազդանշանը՝ ճիշտ այնպես, ինչպես այն ուղարկում է սիմուլյատորը։</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing-ի բարձր հաճախականության հետադարձ ուժի ազդանշանը՝ վեց նմուշ յուրաքանչյուր 60 Hz կադրում, առավելագույն մանրամասնությամբ։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Սիմուլյատորի ցածր հաճախականության էֆեկտների (LFE) ձայնը՝ վերածված ղեկի ուժի։ Խառնեք այն գումարման մոդուլի միջոցով։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Ուժ, որը հակազդում է ղեկի պտտման արագությանը. խառնեք այն՝ մեղմացում (դեմպֆերացում) ստանալու համար։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Իսկական չոր շփում. ղեկը մնում է այնտեղ, որտեղ թողնում եք, իսկ կպչման գոտուց դուրս գործում է հաստատուն սահքի դիմադրություն։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Ուժգին հակազդում է, երբ ղեկը պտտվում է մեքենայի ղեկի սահմանից այն կողմ՝ ինչպես ֆիզիկական սահմանափակիչ։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Զսպանակային ուժ, որը ղեկը վերադարձնում է կենտրոն։ Անցկացրեք այն արագության ուժեղացման մոդուլով, որ գործի միայն կանգնած ժամանակ։</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Շղթայի վերջը. ազդանշանը վերածում է ղեկի ելքային ուժի՝ ընտրովի արձագանքի կորով և փափուկ սահմանափակիչով։</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Պահպանում է ազդանշանի դանդաղ հիմքը և հարթեցնում այն ամենը, ինչ ավելի արագ է, քան կտրման հաճախականությունը։</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Հեռացնում է ազդանշանի դանդաղ հիմքը և պահում միայն կտրման հաճախականությունից բարձր արագ մանրամասները։</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Բազմապատկում է ազդանշանը հաստատուն գործակցով. օգտագործեք բացասական ուժեղացում՝ այն շրջելու համար։</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Գումարում է երկու ազդանշան։</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Հանում է B մուտքը A մուտքից. օրինակ՝ ազդանշանից նրա ցածր հաճախականության պատճենը հանելով՝ մնում են միայն մանրամասները։</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Սահուն անցում է կատարում երկու ազդանշանների միջև. 0%-ը ամբողջությամբ A մուտքն է, 100%-ը՝ ամբողջությամբ B մուտքը։</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Սահմանափակում է, թե որքան արագ կարող է փոխվել ազդանշանը. սահմանից ցածր ամեն ինչ անցնում է անփոփոխ, ավելի արագ շարժումները դանդաղեցվում են։</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Սեղմում է ազդանշանի արագ փոփոխությունները՝ կոշտ սահմանափակելու փոխարեն. դանդաղ շարժումներն անցնում են անփոփոխ։</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Սեղմում է ազդանշանը շեմից բարձր՝ պիկերը վերահսկողության տակ պահելով առանց կոշտ կտրման։</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Առանձնացնում է արագ մանրամասները և ընդգծում կտրուկ սկիզբները. անհարթություններն ու եզրաքարերը ցայտուն են դառնում՝ առանց մարումն ուժեղացնելու։</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Մեկ կոճակով հարթեցնող, որը հարմարվում է ազդանշանին. ուժեղ հարթեցում, երբ ազդանշանը հանգիստ է, նվազագույն ուշացում՝ արագ անցումների ժամանակ։</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Հեռացնում է 60 Hz ազդանշանի «աստիճանները»՝ յուրաքանչյուր կադրի ընթացքում սահուն անցում կատարելով, մեկ կադր ուշացման գնով։</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>360 Hz ազդանշանը տեղաշարժում է դեպի ապագա՝ ուշացումը փոխհատուցելու համար. հարմարվողական ֆիլտր, որը վարելու ընթացքում սովորում է յուրաքանչյուր մեքենա։</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>60 Hz ազդանշանը տեղաշարժում է դեպի ապագա՝ ուշացումը փոխհատուցելու համար. վարելու ընթացքում սովորում է ձեր ղեկավարումից և մեքենայի շարժումից։</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Հետևում է A մուտքի մանրամասներին՝ միաժամանակ ձգվելով դեպի B մուտքը. ձգումը թուլանում է յուրաքանչյուր պիկի ժամանակ, որպեսզի կտրուկ անցումներն անցնեն։</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Վթար հայտնաբերելիս ուժը կտրուկ նվազեցնում է, ապա սահուն վերականգնում։</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Նվազեցնում է ուժը եզրաքարերին ուժեղ հարվածների ժամանակ, ապա սահուն վերականգնում։</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է թերպտույտի (understeer) էֆեկտով, որպեսզի զգաք, թե ինչպես են առջևի անվադողերը կորցնում կառչումը։</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է գերպտույտի (oversteer) էֆեկտով, որպեսզի զգաք, թե ինչպես է մեքենայի հետևը սահում։</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է «մարմնով զգալու» էֆեկտով՝ շասսիի բեռնվածության զգացողությունը։</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Թրթռացնում է ղեկը, երբ առջևի անվադողերը սկսում են սահել։</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Թրթռացնում է ղեկը, երբ հետևի անվադողերը սկսում են սահել։</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Թրթռացնում է ղեկը շասսիի շարժման հետ. քաշի տեղափոխություն, որը կարող եք զգալ։</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Իմպուլսներով թրթռացնում է ղեկը, երբ շարժիչը հասնում է փոխանցումը փոխելու պտույտներին։</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Կարճ թրթռոց յուրաքանչյուր փոխանցման փոփոխության ժամանակ։</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Իմպուլսներով թրթռացնում է ղեկը, քանի դեռ արգելակների ABS-ն ակտիվ է։</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Դղրդյուն, որը հետևում է շարժիչի պտույտներին՝ V8-ի հնչողությամբ. լուռ է, երբ շարժիչն անջատված է։</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Ազդանշանը մասշտաբավորում է մեքենայի արագությամբ. ուժերը սահուն միացրեք կամ անջատեք՝ մեքենայի արագանալուն զուգընթաց։</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Դղրդյուն, որն արագանում է մեքենայի հետ՝ ինչպես ճանապարհի ծածկույթի հյուսվածք. լուռ է կանգնած ժամանակ։</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Դղրդյուն, որն առաջանում է, երբ մեքենայի առջևը կամ հետևը սահում է. կառավարվում է թերպտույտի և գերպտույտի էֆեկտներով։</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Շեմից ցածր ավելացնում է փոքրիկ փոփոխական դիզերինգ՝ ղեկի մեխանիզմը «կենդանի» պահելու և թույլ մանրամասները բացահայտելու համար։</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Հղումներ</value>
   </data>
@@ -1932,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>Մեգա նվիրատուներ</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Ցուցադրել ամրացված կարգավորումները</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B փոխարկիչ</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Օգտագործել B մուտքը</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Փոխարկիչի դիրքից կախված անփոփոխ փոխանցում է կամ A մուտքը, կամ B մուտքը — փոխարկեք՝ երկու ազդանշանային ուղիներն անմիջապես համեմատելու համար:</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Թարմացնել կարգավորումները ամենուր, որտեղ ընտրված է այս գրաֆիկը</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Logitech ղեկի նախաստեղծում...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech պտույտների լույսեր</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Վառել պտույտների լույսերը ղեկի վրա</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Թարթել լույսերը փոխանցման կետն անցնելուց հետո</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB գրաֆի կարգավորումներ</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Խորհուրդ է տրվում վարորդների մեծ մասին — ամբողջական 360 Hz FFB ազդանշան՝ կանխատեսմամբ, ուշացումը նվազեցնելու համար։ Կարգավորեք ուժեղացումը՝ ճանապարհի և անվադողերի մանրամասները մեծացնելու կամ նվազեցնելու համար։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Սիմուլյատորի ցածր հաճախականության էֆեկտների ձայնը՝ վերածված ղեկի ուժի։ Որպեսզի սա աշխատի, iRacing-ում պետք է միացնեք բաս-շեյքերի LFE-ն և օգտագործեք VB-CABLE։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Շփման նման ուժ, որը կանխում է ղեկի տատանումները, երբ շարժվում եք շատ դանդաղ կամ կանգնած եք։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Զսպանակի ուժ, որը ղեկը հետ է քաշում դեպի կենտրոն. գործում է միայն այն դեպքում, երբ մեքենան դանդաղ է շարժվում կամ կանգնած է։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Կարգավորեք այս արժեքը՝ ճանապարհի և անվադողերի մանրամասները մեծացնելու կամ նվազեցնելու համար։ 1.00x ուժեղացումը պահպանում է iRacing-ի բնօրինակ զգացողությունը։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Վթար հայտնաբերելիս կտրուկ նվազեցնում է ուժը, ապա սահուն վերականգնում այն — որպեսզի ուժեղ հարվածը ղեկը ձեր ձեռքերից չխլի։ Ուժի նվազեցումը սահմանում է, թե ուժի որքան մասն է հանվում։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է թերղեկավարման էֆեկտով, որպեսզի զգաք առջևի անվադողերի կցման կորուստը։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է գերղեկավարման էֆեկտով, որպեսզի զգաք մեքենայի հետնամասի սահքը։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է «seat-of-pants» էֆեկտով՝ շասսիի բեռնվածության զգացողությամբ։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Շեմից ցածր ավելացնում է չնչին փոփոխական դիթեր՝ ղեկի մեխանիզմը կենդանի պահելու և թույլ մանրամասները բացահայտելու համար. օգտակար է, եթե ունեք ցածր հզորության ղեկ, օրինակ՝ Logitech G29։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Փափուկ սահմանափակիչը թույլ է տալիս FFB ազդանշանին պահպանել որոշ մանրամասներ՝ կտրվելիս հարթվելու փոխարեն։</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>Սիմուլյատորի ցածր հաճախականության էֆեկտների ձայնը՝ վերածված ղեկի ուժի։ Որպեսզի սա աշխատի, iRacing-ում պետք է միացնեք բաս-շեյքերի LFE-ն և օգտագործեք VB-CABLE։</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>Շփման նման ուժ, որը կանխում է ղեկի տատանումները, երբ շարժվում եք շատ դանդաղ կամ կանգնած եք։</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>Զսպանակի ուժ, որը ղեկը հետ է քաշում դեպի կենտրոն. գործում է միայն այն դեպքում, երբ մեքենան դանդաղ է շարժվում կամ կանգնած է։</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Վթար հայտնաբերելիս կտրուկ նվազեցնում է ուժը, ապա սահուն վերականգնում այն — որպեսզի ուժեղ հարվածը ղեկը ձեր ձեռքերից չխլի։ Ուժի նվազեցումը սահմանում է, թե ուժի որքան մասն է հանվում։</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է թերղեկավարման էֆեկտով, որպեսզի զգաք առջևի անվադողերի կցման կորուստը։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է գերղեկավարման էֆեկտով, որպեսզի զգաք մեքենայի հետնամասի սահքը։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է «seat-of-pants» էֆեկտով՝ շասսիի բեռնվածության զգացողությամբ։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Շեմից ցածր ավելացնում է չնչին փոփոխական դիթեր՝ ղեկի մեխանիզմը կենդանի պահելու և թույլ մանրամասները բացահայտելու համար. օգտակար է, եթե ունեք ցածր հզորության ղեկ, օրինակ՝ Logitech G29։</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>Փափուկ սահմանափակիչը թույլ է տալիս FFB ազդանշանին պահպանել որոշ մանրամասներ՝ կտրվելիս հարթվելու փոխարեն։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>Սիմուլյատորի ցածր հաճախականության էֆեկտների ձայնը՝ վերածված ղեկի ուժի։ Որպեսզի սա աշխատի, iRacing-ում պետք է միացնեք բաս-շեյքերի LFE-ն և օգտագործեք VB-CABLE։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>Շփման նման ուժ, որը կանխում է ղեկի տատանումները, երբ շարժվում եք շատ դանդաղ կամ կանգնած եք։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>Զսպանակի ուժ, որը ղեկը հետ է քաշում դեպի կենտրոն. գործում է միայն այն դեպքում, երբ մեքենան դանդաղ է շարժվում կամ կանգնած է։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Վթար հայտնաբերելիս կտրուկ նվազեցնում է ուժը, ապա սահուն վերականգնում այն — որպեսզի ուժեղ հարվածը ղեկը ձեր ձեռքերից չխլի։ Ուժի նվազեցումը սահմանում է, թե ուժի որքան մասն է հանվում։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է թերղեկավարման էֆեկտով, որպեսզի զգաք առջևի անվադողերի կցման կորուստը։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է գերղեկավարման էֆեկտով, որպեսզի զգաք մեքենայի հետնամասի սահքը։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է «seat-of-pants» էֆեկտով՝ շասսիի բեռնվածության զգացողությամբ։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Շեմից ցածր ավելացնում է չնչին փոփոխական դիթեր՝ ղեկի մեխանիզմը կենդանի պահելու և թույլ մանրամասները բացահայտելու համար. օգտակար է, եթե ունեք ցածր հզորության ղեկ, օրինակ՝ Logitech G29։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>Փափուկ սահմանափակիչը թույլ է տալիս FFB ազդանշանին պահպանել որոշ մանրամասներ՝ կտրվելիս հարթվելու փոխարեն։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Սիմուլյատորի ցածր հաճախականության էֆեկտների ձայնը՝ վերածված ղեկի ուժի։ Որպեսզի սա աշխատի, iRacing-ում պետք է միացնեք բաս-շեյքերի LFE-ն և օգտագործեք VB-CABLE։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Շփման նման ուժ, որը կանխում է ղեկի տատանումները, երբ շարժվում եք շատ դանդաղ կամ կանգնած եք։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Զսպանակի ուժ, որը ղեկը հետ է քաշում դեպի կենտրոն. գործում է միայն այն դեպքում, երբ մեքենան դանդաղ է շարժվում կամ կանգնած է։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Վթար հայտնաբերելիս կտրուկ նվազեցնում է ուժը, ապա սահուն վերականգնում այն — որպեսզի ուժեղ հարվածը ղեկը ձեր ձեռքերից չխլի։ Ուժի նվազեցումը սահմանում է, թե ուժի որքան մասն է հանվում։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է թերղեկավարման էֆեկտով, որպեսզի զգաք առջևի անվադողերի կցման կորուստը։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է գերղեկավարման էֆեկտով, որպեսզի զգաք մեքենայի հետնամասի սահքը։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է «seat-of-pants» էֆեկտով՝ շասսիի բեռնվածության զգացողությամբ։ Ուղղությունը որոշում է՝ էֆեկտը թեթևացնում է ղեկը, թե ավելացնում կողային հրում։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Շեմից ցածր ավելացնում է չնչին փոփոխական դիթեր՝ ղեկի մեխանիզմը կենդանի պահելու և թույլ մանրամասները բացահայտելու համար. օգտակար է, եթե ունեք ցածր հզորության ղեկ, օրինակ՝ Logitech G29։</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Փափուկ սահմանափակիչը թույլ է տալիս FFB ազդանշանին պահպանել որոշ մանրամասներ՝ կտրվելիս հարթվելու փոխարեն։</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>Այն վարորդների համար, ովքեր ցանկանում են մեղմել ամենաուժեղ ուժերը․ ամբողջ 360 Hz FFB ազդանշանն անցնում է փոփոխման արագության սեղմիչի միջով, որը զսպում է, թե որքան արագ կարող է փոխվել ուժը, ապա՝ սեղմիչի միջով, որը սեղմում է ընդհանուր ուժը։</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Զսպում է, թե որքան արագ կարող է փոխվել ուժը․ արագ գագաթները մեղմվում են, իսկ դանդաղ փոփոխվող ուժերն անցնում են անփոփոխ։</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Սեղմում է ընդհանուր ուժը․ շեմից բարձր ուժերը սեղմվում են, որպեսզի ամենաուժեղ պահերը չգերիշխեն ղեկի վրա։</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Հիբրիդային կարգավորման գործիքակազմ․ հիմքում ընկած է հարթ 60 Hz FFB ազդանշանը, որին խառնվում է 360 Hz մանրամասնությունը, ապա հաջորդում են սեղմումը, փոփոխման արագության սեղմումը, տրանզիենտների ուժեղարարը և հարմարվողական հարթեցումը։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Խառնում է հարթ 60 Hz ազդանշանը (հիմքը) 360 Hz մանրամասնության հետ։ Երբ ուժը փոխում է ուղղությունը, խառնուրդը բացվում է, և տրանզիենտները հստակ դուրս են գալիս։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Սեղմում է ընդհանուր ուժը․ շեմից բարձր ուժերը սեղմվում են, որպեսզի ամենաուժեղ պահերը չգերիշխեն ղեկի վրա։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Զսպում է, թե որքան արագ կարող է փոխվել ուժը։ Գագաթային ռեժիմում այն գագաթից հետո աստիճանաբար իջեցնում է ուժը՝ բարձրացման արագությունը սահմանափակելու փոխարեն։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Սրում է ուժի կտրուկ փոփոխությունները․ սա մանրամասնության ճյուղի ոչ գծային ուժեղարարն է։ 1.00x ուժեղացումը պահպանում է տրանզիենտների սկզբնական ուժգնությունը։</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Հարթեցնում է ազդանշանը միայն այն ժամանակ, երբ այն հանգիստ է․ արագ տրանզիենտները շարունակում են անցնել։ Ավելի ուժեղ հարթեցման համար մեծացրեք քանակը։</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Այն վարորդների համար, ովքեր նախընտրում են դասական 60 Hz FFB ազդանշանը՝ ուշացումը նվազեցնելու համար կանխատեսմամբ։</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Ցածր ուշացումով 360 Hz մանրամասների ուժեղարար և սահմանափակիչ</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Ցածր ուշացումով 60 Hz մանրամասների ուժեղարար և սահմանափակիչ</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz փոփոխման արագություն և ընդհանուր սեղմում</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Հիբրիդային կարգավորման գործիքակազմ</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Կարգաբերման պրոֆիլներ</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Սեղմեք՝ ձեր կարգաբերման պրոֆիլները կառավարելու համար</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Ըստ եղանակի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Ըստ մեքենայի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Ըստ մեքենայի + տրասսայի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Ըստ մեքենայի + տրասսայի + կազմաձևման</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} փոփոխված</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} կարգավորում</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Ակտիվ</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Այս պրոֆիլը</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Լռելյայն պրոֆիլ</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Այս պրոֆիլը փոփոխություններ չունի։</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Վերադարձնել լռելյայն արժեքին</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Սիմուլյատորը գործարկված չէ — կարգավորումների փոփոխությունները պահվում են լռելյայն պրոֆիլում։</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Պատճենել…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Դարձնել լռելյայն</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Մաքրել</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Ո՞ր պրոֆիլում պատճենել կարգավորումները։</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Սա կջնջի պրոֆիլի փոփոխությունները — դրա բոլոր կարգավորումները կվերադառնան լռելյայն պրոֆիլի արժեքներին։</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Սա այս պրոֆիլի բոլոր փոփոխված կարգավորումները կպատճենի լռելյայն պրոֆիլում՝ դարձնելով այն նոր հիմք։</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Սա կհեռացնի {0} հնացած մոդուլի արժեք, կվերականգնի {1} գրաֆիկի ընտրություն և կջնջի {2} չօգտագործվող պրոֆիլ։ Շարունակե՞լ։</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Մաքրելու ոչինչ չկա։</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(գրաֆիկ չկա)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Գործարանային լռելյայն</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Ըստ մեքենայի + եղանակի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Ըստ մեքենայի + տրասսայի + եղանակի</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Ըստ մեքենայի + տրասսայի + կազմաձևման + եղանակի</value>
   </data>
 </root>

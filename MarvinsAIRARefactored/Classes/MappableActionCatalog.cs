@@ -89,8 +89,138 @@ public static class MappableActionCatalog
 		return _defaultStepSizes.TryGetValue( propertyBaseName, out stepSize );
 	}
 
-	// Validate that the catalog covers every ButtonMappings-typed property on Settings exactly once.
-	// App calls this at startup and logs the result so a future mapping cannot be silently dropped
+	// Wheel-effect knobs whose UI moved into the modular FFB graph (milestone 4). Their +/- input-mapping
+	// properties are kept dormant on Settings (still serialized) for one release, but are no longer in the
+	// catalog, so Validate() excludes them from the coverage check (they will be removed together later).
+	private static readonly HashSet<string> RetiredKnobBaseNames = BuildRetiredKnobBaseNames();
+
+	private static HashSet<string> BuildRetiredKnobBaseNames()
+	{
+		var set = new HashSet<string>( StringComparer.Ordinal )
+		{
+			"RacingWheelPredictionBlend", "RacingWheelDetailBoost", "RacingWheelDetailBoostBias",
+			"RacingWheelDeltaLimit", "RacingWheelDeltaLimiterBias",
+			"RacingWheelSlewCompressionThreshold", "RacingWheelSlewCompressionRate",
+			"RacingWheelTotalCompressionThreshold", "RacingWheelTotalCompressionRate",
+			"RacingWheelMulti360HzDetail", "RacingWheelMultiTorqueCompression", "RacingWheelMultiSlewRateReduction",
+			"RacingWheelMultiDetailGain", "RacingWheelMultiOutputSmoothing",
+			"RacingWheelOutputMinimum", "RacingWheelOutputMaximum", "RacingWheelOutputCurve",
+			"RacingWheelLFEStrength",
+			"RacingWheelCrashProtectionLongitudalGForce", "RacingWheelCrashProtectionLateralGForce",
+			"RacingWheelCrashProtectionDuration", "RacingWheelCrashProtectionForceReduction",
+			"RacingWheelCurbProtectionShockVelocity", "RacingWheelCurbProtectionDuration", "RacingWheelCurbProtectionForceReduction",
+			"RacingWheelParkedStrength", "RacingWheelParkedFriction",
+			"RacingWheelSoftLockStrength", "RacingWheelFriction", "RacingWheelWheelCenteringStrength",
+			"RacingWheelShiftRPMVibrateStrength", "RacingWheelGearChangeVibrateStrength", "RacingWheelABSVibrateStrength"
+		};
+
+		foreach ( var effect in new[] { "Understeer", "Oversteer", "SeatOfPants" } )
+		{
+			set.Add( $"SteeringEffects{effect}WheelVibrationStrength" );
+			set.Add( $"SteeringEffects{effect}WheelVibrationMinimumFrequency" );
+			set.Add( $"SteeringEffects{effect}WheelVibrationMaximumFrequency" );
+			set.Add( $"SteeringEffects{effect}WheelVibrationCurve" );
+			set.Add( $"SteeringEffects{effect}WheelConstantForceStrength" );
+			set.Add( $"SteeringEffects{effect}WheelConstantForceCurve" );
+		}
+
+		return set;
+	}
+
+	// The retired knobs above plus the retired NON-knob settings: the legacy fixed-function algorithm selection and
+	// its soft limiter / multi source switches, the two wheel centering switches, and the steering effects wheel
+	// vibration pattern / constant force direction selectors. All of them moved into the modular FFB graph - no page
+	// control binds any of them any more (they survive only for migration and the legacy telemetry export), so the
+	// tuning profile manager hides them. Kept as its own set so the button mapping coverage check below keeps
+	// reporting exactly what it reported before.
+	private static readonly HashSet<string> RetiredSettingBaseNames = BuildRetiredSettingBaseNames();
+
+	private static HashSet<string> BuildRetiredSettingBaseNames()
+	{
+		var set = new HashSet<string>( RetiredKnobBaseNames, StringComparer.Ordinal )
+		{
+			"RacingWheelAlgorithm", "RacingWheelAutoMargin", "RacingWheelEnableSoftLimiter",
+			"RacingWheelMultiEnableSlewPeakMode", "RacingWheelMultiFFBSourceSelection",
+			"RacingWheelCenterWheelWhileRacing", "RacingWheelCenterWheelWhileParked"
+		};
+
+		foreach ( var effect in new[] { "Understeer", "Oversteer", "SeatOfPants" } )
+		{
+			set.Add( $"SteeringEffects{effect}WheelVibrationPattern" );
+			set.Add( $"SteeringEffects{effect}WheelConstantForceDirection" );
+		}
+
+		return set;
+	}
+
+	// True when propBase names a setting that has no UI left anywhere (see above).
+	public static bool IsRetiredSetting( string propertyBaseName )
+	{
+		return RetiredSettingBaseNames.Contains( propertyBaseName );
+	}
+
+	// propBase -> the action that drives the same control. The catalog is the only place that already carries a
+	// localized category / section / label for a settings property, and the mapping property names it is keyed by
+	// differ from the property base name only by the +/- suffix pair (or by no suffix at all, for a trigger).
+	private static readonly Dictionary<string, MappableAction> _actionsByBaseName = BuildActionsByBaseName();
+
+	private static Dictionary<string, MappableAction> BuildActionsByBaseName()
+	{
+		var actionsByBaseName = new Dictionary<string, MappableAction>( StringComparer.Ordinal );
+
+		foreach ( var action in Actions )
+		{
+			foreach ( var suffix in new[] { "PlusButtonMappings", "MinusButtonMappings", "ButtonMappings" } )
+			{
+				if ( action.SettingsPropertyName.EndsWith( suffix, StringComparison.Ordinal ) )
+				{
+					actionsByBaseName.TryAdd( action.SettingsPropertyName[ ..^suffix.Length ], action );
+
+					break;
+				}
+			}
+		}
+
+		return actionsByBaseName;
+	}
+
+	// The localization keys describing propBase (a settings property base name like "RacingWheelStrength"), taken
+	// from the mappable action of the same control. False when the catalog does not cover that setting.
+	public static bool TryGetLabels( string propertyBaseName, out string categoryKey, out string groupLabelKey, out string labelKey, out int index )
+	{
+		if ( _actionsByBaseName.TryGetValue( propertyBaseName, out var action ) )
+		{
+			categoryKey = action.CategoryKey;
+			groupLabelKey = action.GroupLabelKey;
+			labelKey = action.LabelKey;
+			index = action.Index;
+
+			return true;
+		}
+
+		categoryKey = string.Empty;
+		groupLabelKey = string.Empty;
+		labelKey = string.Empty;
+		index = 0;
+
+		return false;
+	}
+
+	private static bool IsRetiredMapping( string propertyName )
+	{
+		foreach ( var suffix in new[] { "PlusButtonMappings", "MinusButtonMappings" } )
+		{
+			if ( propertyName.EndsWith( suffix, StringComparison.Ordinal ) && RetiredKnobBaseNames.Contains( propertyName[ ..^suffix.Length ] ) )
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	// Validate that the catalog covers every (non-retired) ButtonMappings-typed property on Settings exactly
+	// once. App calls this at startup and logs the result so a future mapping cannot be silently dropped
 	// from input handling.
 	public static (List<string> missing, List<string> duplicated) Validate()
 	{
@@ -98,6 +228,7 @@ public static class MappableActionCatalog
 			.GetProperties( BindingFlags.Public | BindingFlags.Instance )
 			.Where( p => p.PropertyType == typeof( ButtonMappings ) )
 			.Select( p => p.Name )
+			.Where( name => !IsRetiredMapping( name ) )
 			.ToHashSet();
 
 		var seen = new HashSet<string>();
@@ -354,7 +485,7 @@ public static class MappableActionCatalog
 
 			if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 			{
-				var autoTorqueString = $"{app.RacingWheel.GetCurrentAutoTorque():F1} {Loc[ "TorqueUnits" ]}";
+				var autoTorqueString = $"{app.RacingWheel.GetCurrentAutoTorque():F1}{Loc[ "TorqueUnits" ]}";
 
 				RacingWheel.SendChatMessage( "OverallStrength", "Set", autoTorqueString );
 			}
@@ -374,7 +505,7 @@ public static class MappableActionCatalog
 
 		Trigger( list, "RacingWheelStartRecordingMappings", "RacingWheel", "Preview", "Record", app =>
 		{
-			app.RecordingManager.StartRecording();
+			app.RecordingManager.ToggleRecording();
 		} );
 
 		// ----- Racing wheel - knobs -----
@@ -382,50 +513,11 @@ public static class MappableActionCatalog
 		RwKnob( list, "OverallStrength", "Strength", "RacingWheelStrength", 0.01f );
 		RwKnob( list, "OverallStrength", "MaxForce", "RacingWheelMaxForce", 1f );
 		RwKnob( list, "OverallStrength", "AutoTarget", "RacingWheelAutoTarget", 0.5f );
-		RwKnob( list, "Algorithm", "PredictionBlend", "RacingWheelPredictionBlend", 0.05f );
-		RwKnob( list, "Algorithm", "DetailBoost", "RacingWheelDetailBoost", 0.1f );
-		RwKnob( list, "Algorithm", "DetailBoostBias", "RacingWheelDetailBoostBias", 0.01f );
-		RwKnob( list, "Algorithm", "DeltaLimit", "RacingWheelDeltaLimit", 10f );
-		RwKnob( list, "Algorithm", "DeltaLimiterBias", "RacingWheelDeltaLimiterBias", 0.01f );
-		RwKnob( list, "Algorithm", "SlewCompressionThreshold", "RacingWheelSlewCompressionThreshold", 1f );
-		RwKnob( list, "Algorithm", "SlewCompressionRate", "RacingWheelSlewCompressionRate", 0.01f );
-		RwKnob( list, "Algorithm", "TotalCompressionThreshold", "RacingWheelTotalCompressionThreshold", 0.01f );
-		RwKnob( list, "Algorithm", "TotalCompressionRate", "RacingWheelTotalCompressionRate", 0.01f );
-		RwKnob( list, "Algorithm", "Multi360HzDetail", "RacingWheelMulti360HzDetail", 0.01f );
-		RwKnob( list, "Algorithm", "TorqueCompression", "RacingWheelMultiTorqueCompression", 0.01f );
-		RwKnob( list, "Algorithm", "SlewRateReduction", "RacingWheelMultiSlewRateReduction", 0.01f );
-		RwKnob( list, "Algorithm", "DetailGain", "RacingWheelMultiDetailGain", 0.01f );
-		RwKnob( list, "Algorithm", "OutputSmoothing", "RacingWheelMultiOutputSmoothing", 0.01f );
-		RwKnob( list, "Output", "Minimum", "RacingWheelOutputMinimum", 0.01f );
-		RwKnob( list, "Output", "Maximum", "RacingWheelOutputMaximum", 0.01f );
-		RwKnob( list, "Output", "Curve", "RacingWheelOutputCurve", 0.01f );
-		RwKnob( list, "WheelLFE", "Strength", "RacingWheelLFEStrength", 0.01f );
-		RwKnob( list, "CrashProtection", "LongitudalGForce", "RacingWheelCrashProtectionLongitudalGForce", 0.5f );
-		RwKnob( list, "CrashProtection", "LateralGForce", "RacingWheelCrashProtectionLateralGForce", 0.5f );
-		RwKnob( list, "CrashProtection", "Duration", "RacingWheelCrashProtectionDuration", 0.5f );
-		RwKnob( list, "CrashProtection", "ForceReduction", "RacingWheelCrashProtectionForceReduction", 0.05f );
-		RwKnob( list, "CurbProtection", "ShockVelocity", "RacingWheelCurbProtectionShockVelocity", 0.1f );
-		RwKnob( list, "CurbProtection", "Duration", "RacingWheelCurbProtectionDuration", 0.1f );
-		RwKnob( list, "CurbProtection", "ForceReduction", "RacingWheelCurbProtectionForceReduction", 0.05f );
-		RwKnob( list, "ParkedEffects", "ForceFeedbackStrength", "RacingWheelParkedStrength", 0.05f );
-		RwKnob( list, "ParkedEffects", "ParkedFriction", "RacingWheelParkedFriction", 0.05f );
-		RwKnob( list, "OtherFeatures", "SoftLockStrength", "RacingWheelSoftLockStrength", 0.05f );
-		RwKnob( list, "OtherFeatures", "RacingFriction", "RacingWheelFriction", 0.05f );
-		RwKnob( list, "OtherFeatures", "WheelCenteringStrength", "RacingWheelWheelCenteringStrength", 0.05f );
-		RwKnob( list, "Effects", "ShiftRPMVibrateStrength", "RacingWheelShiftRPMVibrateStrength", 0.05f );
-		RwKnob( list, "Effects", "GearChangeVibrateStrength", "RacingWheelGearChangeVibrateStrength", 0.05f );
-		RwKnob( list, "Effects", "ABSVibrateStrength", "RacingWheelABSVibrateStrength", 0.05f );
 
 		// ----- Steering effects - understeer -----
 
 		SeKnob( list, "Understeer", "MinimumThreshold", "SteeringEffectsUndersteerMinimumThreshold", 0.01f );
 		SeKnob( list, "Understeer", "MaximumThreshold", "SteeringEffectsUndersteerMaximumThreshold", 0.01f );
-		SeKnob( list, "UndersteerWheelVibrationEffect", "Strength", "SteeringEffectsUndersteerWheelVibrationStrength", 0.01f );
-		SeKnob( list, "UndersteerWheelVibrationEffect", "MinimumFrequency", "SteeringEffectsUndersteerWheelVibrationMinimumFrequency", 1f );
-		SeKnob( list, "UndersteerWheelVibrationEffect", "MaximumFrequency", "SteeringEffectsUndersteerWheelVibrationMaximumFrequency", 1f );
-		SeKnob( list, "UndersteerWheelVibrationEffect", "Curve", "SteeringEffectsUndersteerWheelVibrationCurve", 0.05f );
-		SeKnob( list, "UndersteerWheelConstantForceEffect", "Strength", "SteeringEffectsUndersteerWheelConstantForceStrength", 0.01f );
-		SeKnob( list, "UndersteerWheelConstantForceEffect", "Curve", "SteeringEffectsUndersteerWheelConstantForceCurve", 0.05f );
 		SeKnob( list, "UndersteerPedalVibrationEffect", "MinimumFrequency", "SteeringEffectsUndersteerPedalVibrationMinimumFrequency", 0.05f );
 		SeKnob( list, "UndersteerPedalVibrationEffect", "MaximumFrequency", "SteeringEffectsUndersteerPedalVibrationMaximumFrequency", 0.05f );
 		SeKnob( list, "UndersteerPedalVibrationEffect", "Curve", "SteeringEffectsUndersteerPedalVibrationCurve", 0.05f );
@@ -434,12 +526,6 @@ public static class MappableActionCatalog
 
 		SeKnob( list, "Oversteer", "MinimumThreshold", "SteeringEffectsOversteerMinimumThreshold", 0.01f );
 		SeKnob( list, "Oversteer", "MaximumThreshold", "SteeringEffectsOversteerMaximumThreshold", 0.01f );
-		SeKnob( list, "OversteerWheelVibrationEffect", "Strength", "SteeringEffectsOversteerWheelVibrationStrength", 0.01f );
-		SeKnob( list, "OversteerWheelVibrationEffect", "MinimumFrequency", "SteeringEffectsOversteerWheelVibrationMinimumFrequency", 1f );
-		SeKnob( list, "OversteerWheelVibrationEffect", "MaximumFrequency", "SteeringEffectsOversteerWheelVibrationMaximumFrequency", 1f );
-		SeKnob( list, "OversteerWheelVibrationEffect", "Curve", "SteeringEffectsOversteerWheelVibrationCurve", 0.05f );
-		SeKnob( list, "OversteerWheelConstantForceEffect", "Strength", "SteeringEffectsOversteerWheelConstantForceStrength", 0.01f );
-		SeKnob( list, "OversteerWheelConstantForceEffect", "Curve", "SteeringEffectsOversteerWheelConstantForceCurve", 0.05f );
 		SeKnob( list, "OversteerPedalVibrationEffect", "MinimumFrequency", "SteeringEffectsOversteerPedalVibrationMinimumFrequency", 0.05f );
 		SeKnob( list, "OversteerPedalVibrationEffect", "MaximumFrequency", "SteeringEffectsOversteerPedalVibrationMaximumFrequency", 0.05f );
 		SeKnob( list, "OversteerPedalVibrationEffect", "Curve", "SteeringEffectsOversteerPedalVibrationCurve", 0.05f );
@@ -448,12 +534,6 @@ public static class MappableActionCatalog
 
 		SeKnob( list, "SeatOfPants", "MinimumThreshold", "SteeringEffectsSeatOfPantsMinimumThreshold", 0.5f );
 		SeKnob( list, "SeatOfPants", "MaximumThreshold", "SteeringEffectsSeatOfPantsMaximumThreshold", 0.5f );
-		SeKnob( list, "SeatOfPantsWheelVibrationEffect", "Strength", "SteeringEffectsSeatOfPantsWheelVibrationStrength", 0.01f );
-		SeKnob( list, "SeatOfPantsWheelVibrationEffect", "MinimumFrequency", "SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequency", 1f );
-		SeKnob( list, "SeatOfPantsWheelVibrationEffect", "MaximumFrequency", "SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequency", 1f );
-		SeKnob( list, "SeatOfPantsWheelVibrationEffect", "Curve", "SteeringEffectsSeatOfPantsWheelVibrationCurve", 0.05f );
-		SeKnob( list, "SeatOfPantsWheelConstantForceEffect", "Strength", "SteeringEffectsSeatOfPantsWheelConstantForceStrength", 0.01f );
-		SeKnob( list, "SeatOfPantsWheelConstantForceEffect", "Curve", "SteeringEffectsSeatOfPantsWheelConstantForceCurve", 0.05f );
 		SeKnob( list, "SeatOfPantsPedalVibrationEffect", "MinimumFrequency", "SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequency", 0.05f );
 		SeKnob( list, "SeatOfPantsPedalVibrationEffect", "MaximumFrequency", "SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequency", 0.05f );
 		SeKnob( list, "SeatOfPantsPedalVibrationEffect", "Curve", "SteeringEffectsSeatOfPantsPedalVibrationCurve", 0.05f );
@@ -481,7 +561,7 @@ public static class MappableActionCatalog
 		PlainKnob( list, "Pedals", "Brake", "Strength", "PedalsBrakeStrength2", 0.05f, index: 2 );
 		Trigger( list, "PedalsBrakeTest2ButtonMappings", "Pedals", "Brake", "Test", app => app.Pedals.StartTest( 1, 1 ), index: 2 );
 		PlainKnob( list, "Pedals", "Brake", "Strength", "PedalsBrakeStrength3", 0.05f, index: 3 );
-		Trigger( list, "PedalsBrakeTest3ButtonMappings", "Pedals", "Brake", "Test", app => app.Pedals.StartTest( 2, 1 ), index: 3 );
+		Trigger( list, "PedalsBrakeTest3ButtonMappings", "Pedals", "Brake", "Test", app => app.Pedals.StartTest( 1, 2 ), index: 3 );
 
 		PlainKnob( list, "Pedals", "Throttle", "Strength", "PedalsThrottleStrength1", 0.05f, index: 1 );
 		Trigger( list, "PedalsThrottleTest1ButtonMappings", "Pedals", "Throttle", "Test", app => app.Pedals.StartTest( 2, 0 ), index: 1 );
@@ -541,6 +621,10 @@ public static class MappableActionCatalog
 		PlainKnob( list, "Sounds", "BrakeThrottleWarning", "FrequencyRatio", "SoundsBrakeThrottleWarningFrequencyRatio", 0.01f );
 		PlainKnob( list, "Sounds", "FfbClipping", "Volume", "SoundsFfbClippingVolume", 0.01f );
 		PlainKnob( list, "Sounds", "FfbClipping", "FrequencyRatio", "SoundsFfbClippingFrequencyRatio", 0.01f );
+		PlainKnob( list, "Sounds", "RecordingStarted", "Volume", "SoundsRecordingStartedVolume", 0.01f );
+		PlainKnob( list, "Sounds", "RecordingStarted", "FrequencyRatio", "SoundsRecordingStartedFrequencyRatio", 0.01f );
+		PlainKnob( list, "Sounds", "RecordingStopped", "Volume", "SoundsRecordingStoppedVolume", 0.01f );
+		PlainKnob( list, "Sounds", "RecordingStopped", "FrequencyRatio", "SoundsRecordingStoppedFrequencyRatio", 0.01f );
 
 		// ----- AdminBoxx -----
 

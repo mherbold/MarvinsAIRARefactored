@@ -178,6 +178,7 @@ Category is the URL segment: `https://mairapp.com/home/documentation/<category>/
 | overlays | 860 | advanced |
 | trading-paints | 176 | advanced |
 | app-settings | 182 | advanced |
+| tuning-profiles | 1124 | advanced |
 | controller-profiles | 1034 | advanced |
 | simulator | 180 | advanced |
 | game-bridge | 1094 | advanced |

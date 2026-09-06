@@ -298,7 +298,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>カーブ保護</value>
+    <value>縁石保護</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>ショック速度</value>
@@ -353,9 +353,6 @@
   </data>
   <data name="None" xml:space="preserve">
     <value>なし</value>
-  </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>ホイールベースごと</value>
   </data>
   <data name="PerCar" xml:space="preserve">
     <value>車ごと</value>
@@ -587,9 +584,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[録音が見つかりません]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>シンプルモードを有効にする</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>感度</value>
   </data>
@@ -633,13 +627,13 @@
     <value>クラッシュ保護が作動しました！</value>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>カーブ保護が作動しました！</value>
+    <value>縁石保護が作動しました！</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
     <value>プライベートメッセージ</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>カーブ保護メッセージを有効にする</value>
+    <value>縁石保護メッセージを有効にする</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
     <value>クラッシュ保護メッセージを有効にする</value>
@@ -1494,9 +1488,6 @@
   <data name="LoopEnd" xml:space="preserve">
     <value>ループ終了</value>
   </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
-  </data>
   <data name="Commentary" xml:space="preserve">
     <value>実況</value>
   </data>
@@ -1645,7 +1636,7 @@
     <value>シミュレーターを初期化中...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>ダイレクト入力を初期化中...</value>
+    <value>DirectInputを初期化中...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Stream Deckを初期化中...</value>
@@ -1674,8 +1665,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>LFEを初期化中...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>マルチメディアタイマーを初期化中...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>再生タイマーを初期化中...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>録画マネージャーを初期化中...</value>
@@ -1718,52 +1709,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>対 P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>コントローラープロファイル</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>プロファイル名を変更</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>コントローラープロファイル名を変更</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>実行中のプロセス</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>名前またはパスで絞り込み...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>実行中のアプリを検索しています...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>ウィンドウの表示</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>ウィンドウの表示 / 非表示</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>ステップサイズ</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>更新チェック間隔</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> 時間</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing 終了時にペイントを削除</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>一定間隔で更新を確認</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>練習</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>予選</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>レース</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>ステータス</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>待機</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>アクティブ</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>抑制</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>古いインストーラーを削除</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>その他</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>ドキュメントフォルダーを開く</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1810,7 +1823,8 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>（未割り当て）</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>車種ごとのオーバーレイの位置とスケールを有効にする</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>この車のキャリブレーションファイルはまだ利用できません。</value>
@@ -1829,56 +1843,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz ソース</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz ソース</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE ソース</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>出力</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>ローパスフィルター</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>ハイパスフィルター</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>ゲイン</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>加算</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>ブレンド</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>スルーリミッター</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>スルーコンプレッサー</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>コンプレッサー</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>トランジェントエンハンサー</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>アダプティブスムーザー</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>アダプティブブレンド</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>カーブ</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>ソフトリミッター</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>クラッシュ保護</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>縁石保護</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>駐車中強度</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>ソフトロックソース</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>フリクションソース</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>ホイールセンタリングソース</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>アンダーステアフォース</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>オーバーステアフォース</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>シートオブパンツフォース</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>アンダーステア振動</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>オーバーステア振動</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>シートオブパンツ振動</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>シフト RPM 振動</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>ギアチェンジ振動</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS 振動</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>速度ゲイン</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>ロードテクスチャ</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>スリップテクスチャ</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>トルクディザ</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>スロープ</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>カットオフ</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>ゲイン</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>ミックス</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>リミット</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>スレッショルド</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>ニー</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>レシオ</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>ピークモード</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>量</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>ピークカットオフ</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>前後 G</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>横 G</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>レーシング中</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>駐車中</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>パターン</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>最低速度</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>最高速度</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>最低速度時ゲイン</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>最高速度時ゲイン</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>1 ポール</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>2 ポール</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>モジュールを追加</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>録音を選択</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>現在のグラフを複製</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB グラフ</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>グラフ名</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>新しいグラフ</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>空のグラフから開始</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>減算</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>ホイール速度ソース</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>ソース</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>汎用DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>ミキサー</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>エフェクト</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>その他のエフェクト</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>グラフをエクスポート</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>グラフをインポート</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA グラフファイル</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>インポートしたグラフ</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>このグラフをエクスポートできませんでした。</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>このグラフファイルをインポートできませんでした。</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>このファイルは MAIRA グラフファイルではありません。</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>このファイルには振動エフェクトのグラフが含まれています。代わりに振動エフェクトからインポートしてください。</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>このファイルには FFB グラフが含まれています。代わりに FFB グラフからインポートしてください。</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>このグラフファイルは新しいバージョンの MAIRA で作成されました。MAIRA を更新してからもう一度お試しください。</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>記録を開始しました</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>記録を停止しました</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>トラック位置</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz トルク</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz トルク</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>ステアリング角度</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>ステアリング速度</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>ホイール位置</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>ホイール速度</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>ギア</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>縦方向Gフォース</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>スキッド/スリップ</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>組み込み</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>グラフ設定のインポート</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>グラフ「{0}」はすでに存在します。このファイルの設定をどうしますか？</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>{0} の設定を更新</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>ベースライン（デフォルト）設定を更新</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>{0} とベースラインの設定を更新</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>新しいコピーとしてインポート</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz 補間器</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>予測 (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>先読み時間</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>ブレンド</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>補正リミット</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>固着領域</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>このエフェクトはステアリングエフェクトページで無効になっています</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>パルス持続時間</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>固着領域</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>エンジン回転数振動</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>レッドライン回転数での周波数</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>粗さ</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>アンダーステアとオーバーステアはステアリングエフェクトページで無効になっています</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>このグラフの説明を追加</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>この設定をこのグラフの主要コントロールの一つとしてピン留めする</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>ノードグラフを表示</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>予測 (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>ゲームブリッジ</value>
   </data>
@@ -1921,6 +2257,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>ステアリング スイープ</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>説明を編集</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing ネイティブの 60 Hz フォースフィードバック信号。シミュレーターが送信するそのままの信号です。</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing の高レートフォースフィードバック信号。60 Hz フレームごとに 6 サンプルで、最も細かいディテールを含みます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト(LFE)オーディオをホイールの力に変換したものです。加算モジュールでミックスして使います。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>ホイールを回す速さに逆らう力です。ミックスするとダンピングとして働きます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>本物のドライフリクション。手を離した位置でホイールが保持され、静止領域を超えると一定の滑り抵抗がかかります。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>車のステアリングロックを超えてホイールを回すと、物理的なエンドストップのように強く押し返します。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>ホイールをセンターへ引き戻すスプリング力です。停車時のみ効かせるには速度ゲインモジュールを通してください。</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>チェーンの終端。信号をホイール出力へ変換し、オプションでレスポンスカーブとソフトリミッターを適用できます。</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>信号のゆっくりした成分を残し、カットオフより速い成分を滑らかに取り除きます。</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>信号のゆっくりした成分を取り除き、カットオフより上の速いディテールだけを残します。</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>信号を固定の倍率でスケールします。負のゲインにすると信号が反転します。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>2 つの信号を加算します。</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>入力 A から入力 B を減算します。たとえば信号のローパスコピーを引くと、ディテールだけが残ります。</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>2 つの信号をクロスフェードします。0% で入力 A のみ、100% で入力 B のみになります。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>信号の変化速度に上限をかけます。上限以下はそのまま通り、それより速い動きは減速されます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>速い信号変化をハードリミットせずに圧縮します。ゆっくりした動きはそのまま通ります。</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>しきい値を超えた信号を圧縮し、ハードクリップさせずにピークを抑えます。</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>速いディテールを抽出してアタックを強調します。減衰部分をブーストせずに、バンプや縁石の感触が際立ちます。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>信号に適応するワンノブのスムーザー。静かなときは強くスムージングし、速いトランジェントでは遅延を最小限にします。</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>各フレームにわたって滑らかにランプさせ、60 Hz 信号の階段状のステップを除去します。代わりに 1 フレーム分の遅延が生じます。</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>360 Hz 信号を未来へシフトして遅延を打ち消します。走行しながら車ごとに学習する適応フィルターです。</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>60 Hz 信号を未来へシフトして遅延を打ち消します。走行中のステアリング操作と車の動きから学習します。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>入力 A のディテールを追いながら入力 B へ引き寄せられます。ピークごとに引き寄せが緩むので、トランジェントはそのまま通ります。</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>クラッシュを検出すると力を大きくフェードダウンし、その後滑らかに戻します。</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>縁石に強く乗ったときに力を弱め、その後滑らかに戻します。</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>アンダーステアエフェクトで駆動されるステアリング力。フロントタイヤのグリップが失われていくのを感じ取れます。</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>オーバーステアエフェクトで駆動されるステアリング力。リアが流れ出すのを感じ取れます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>シートオブパンツ(体感)エフェクトで駆動されるステアリング力。シャシーに荷重がかかっていく感覚です。</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>フロントタイヤが滑り始めるとホイールを振動させます。</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>リアタイヤが滑り始めるとホイールを振動させます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>シャシーの動きに合わせてホイールを振動させます。荷重移動を手で感じられます。</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>エンジン回転数がシフトポイントに達すると、ホイールをパルス状に振動させます。</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>ギアチェンジのたびに短い振動を発生させます。</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>ブレーキの ABS が作動している間、ホイールをパルスさせます。</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>エンジン回転数に追従するランブル。V8 らしいサウンドで、エンジン停止中は無音です。</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>車速に応じて信号をスケールします。速度の上昇に合わせて力をフェードイン/フェードアウトできます。</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>車速とともに速くなるランブルで、路面のテクスチャーのような感触です。停車中は無音です。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>車の前後どちらかが滑っているときに現れるランブル。アンダーステアとオーバーステアのエフェクトで駆動されます。</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>しきい値以下で微小な交互ディザーを加え、ホイール機構を動かし続けてかすかなディテールを感じ取れるようにします。</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>リンク</value>
   </data>
@@ -1935,5 +2391,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>メガ寄付者</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>ピン留めした設定を表示</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B切り替え</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>入力Bを使用</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>スイッチの状態に応じて入力Aまたは入力Bをそのまま通します — 切り替えるだけで2つの信号経路を即座に比較できます。</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>このグラフが選択されているすべての場所で設定を更新</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Logitechホイールを初期化中...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitech RPMライト</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>ホイールのRPMライトを点灯する</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>シフトポイントを超えたらライトを点滅させる</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB グラフ設定</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>ほとんどのドライバーにおすすめです。遅延を抑える予測処理を備えた、フル 360 Hz の FFB 信号です。ゲインを調整すると、路面やタイヤのディテールを増減できます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト音をステアリングの力に変換します。動作させるには、iRacing でベースシェイカーの LFE を有効にし、VB-CABLE を使用する必要があります。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>非常にゆっくり走行しているときや停車中に、ステアリングが振動するのを抑えるフリクションのような力です。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>ステアリングを中央へ引き戻すスプリング力です。車がゆっくり走っているときや停車中にのみ効きます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>この値を調整して、路面やタイヤのディテールを増減します。ゲイン 1.00x では iRacing 本来のフィーリングが保たれます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>クラッシュを検知すると力を大きく下げ、その後なめらかに戻します。大きな衝撃でステアリングが手から弾き飛ばされるのを防ぎます。力の低減量で、どれだけ力を取り除くかを設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>アンダーステアエフェクトによって生成されるステアリングの力で、フロントタイヤがグリップを失う感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>オーバーステアエフェクトによって生成されるステアリングの力で、リアが流れ出す感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>シート・オブ・パンツエフェクト（シャシーに荷重がかかる感触）によって生成されるステアリングの力です。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>しきい値を下回る範囲でごく小さな交互のディザーを加え、ステアリングの機構を動かし続けて微細なディテールを引き出します。Logitech G29 のような低出力のホイールで効果的です。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>ソフトリミッターにより、FFB 信号はクリップしたときに頭打ちになるのではなく、ディテールをある程度残せます。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト音をステアリングの力に変換します。動作させるには、iRacing でベースシェイカーの LFE を有効にし、VB-CABLE を使用する必要があります。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>非常にゆっくり走行しているときや停車中に、ステアリングが振動するのを抑えるフリクションのような力です。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>ステアリングを中央へ引き戻すスプリング力です。車がゆっくり走っているときや停車中にのみ効きます。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>クラッシュを検知すると力を大きく下げ、その後なめらかに戻します。大きな衝撃でステアリングが手から弾き飛ばされるのを防ぎます。力の低減量で、どれだけ力を取り除くかを設定します。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>アンダーステアエフェクトによって生成されるステアリングの力で、フロントタイヤがグリップを失う感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>オーバーステアエフェクトによって生成されるステアリングの力で、リアが流れ出す感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>シート・オブ・パンツエフェクト（シャシーに荷重がかかる感触）によって生成されるステアリングの力です。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>しきい値を下回る範囲でごく小さな交互のディザーを加え、ステアリングの機構を動かし続けて微細なディテールを引き出します。Logitech G29 のような低出力のホイールで効果的です。</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>ソフトリミッターにより、FFB 信号はクリップしたときに頭打ちになるのではなく、ディテールをある程度残せます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト音をステアリングの力に変換します。動作させるには、iRacing でベースシェイカーの LFE を有効にし、VB-CABLE を使用する必要があります。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>非常にゆっくり走行しているときや停車中に、ステアリングが振動するのを抑えるフリクションのような力です。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>ステアリングを中央へ引き戻すスプリング力です。車がゆっくり走っているときや停車中にのみ効きます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>クラッシュを検知すると力を大きく下げ、その後なめらかに戻します。大きな衝撃でステアリングが手から弾き飛ばされるのを防ぎます。力の低減量で、どれだけ力を取り除くかを設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>アンダーステアエフェクトによって生成されるステアリングの力で、フロントタイヤがグリップを失う感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>オーバーステアエフェクトによって生成されるステアリングの力で、リアが流れ出す感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>シート・オブ・パンツエフェクト（シャシーに荷重がかかる感触）によって生成されるステアリングの力です。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>しきい値を下回る範囲でごく小さな交互のディザーを加え、ステアリングの機構を動かし続けて微細なディテールを引き出します。Logitech G29 のような低出力のホイールで効果的です。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>ソフトリミッターにより、FFB 信号はクリップしたときに頭打ちになるのではなく、ディテールをある程度残せます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト音をステアリングの力に変換します。動作させるには、iRacing でベースシェイカーの LFE を有効にし、VB-CABLE を使用する必要があります。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>非常にゆっくり走行しているときや停車中に、ステアリングが振動するのを抑えるフリクションのような力です。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>ステアリングを中央へ引き戻すスプリング力です。車がゆっくり走っているときや停車中にのみ効きます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>クラッシュを検知すると力を大きく下げ、その後なめらかに戻します。大きな衝撃でステアリングが手から弾き飛ばされるのを防ぎます。力の低減量で、どれだけ力を取り除くかを設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>アンダーステアエフェクトによって生成されるステアリングの力で、フロントタイヤがグリップを失う感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>オーバーステアエフェクトによって生成されるステアリングの力で、リアが流れ出す感触を伝えます。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>シート・オブ・パンツエフェクト（シャシーに荷重がかかる感触）によって生成されるステアリングの力です。方向で、ステアリングを軽くするか、横方向の押し込みを加えるかを選びます。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>しきい値を下回る範囲でごく小さな交互のディザーを加え、ステアリングの機構を動かし続けて微細なディテールを引き出します。Logitech G29 のような低出力のホイールで効果的です。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>ソフトリミッターにより、FFB 信号はクリップしたときに頭打ちになるのではなく、ディテールをある程度残せます。</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>最も強いフォースを和らげたいドライバー向け。360 Hz のFFB信号をそのまま、フォースの変化速度を抑えるスルーコンプレッサーと、フォース全体を抑えるコンプレッサーに通します。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>フォースの変化速度を抑えます。急激なピークは和らげられ、ゆるやかなフォースはそのまま通過します。</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>フォース全体を抑えます。スレッショルドを超えたフォースが圧縮され、最も強い瞬間でもステアリングを押し負かすことがなくなります。</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>ハイブリッド調整ツールキット。滑らかな 60 Hz のFFB信号を土台とし、そこに 360 Hz のディテールをブレンドしたうえで、コンプレッサー、スルーコンプレッサー、トランジェントエンハンサー、アダプティブスムーザーを順に通します。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>滑らかな 60 Hz 信号（土台）に 360 Hz のディテールをブレンドします。フォースの向きが変わるとブレンドが開き、トランジェントがしっかり前に出ます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>フォース全体を抑えます。スレッショルドを超えたフォースが圧縮され、最も強い瞬間でもステアリングを押し負かすことがなくなります。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>フォースの変化速度を抑えます。ピークモードでは立ち上がりの速さを制限するのではなく、ピークの後にフォースを緩やかに戻します。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>急なフォース変化を際立たせます。ディテール系統の非線形ブースターです。ゲインが 1.00x のときはトランジェントの強さが元のまま保たれます。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>信号が穏やかなときだけスムージングします。速いトランジェントはそのまま通過します。スムージングを強めたい場合は量を上げてください。</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>従来どおりの 60 Hz のFFB信号を好むドライバー向け。予測によりレイテンシーを低減します。</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>低遅延 360 Hz ディテールブースター・リミッター</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>低遅延 60 Hz ディテールブースター・リミッター</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz スルーレートと総圧縮</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>ハイブリッドマルチ調整ツールキット</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>チューニングプロファイル</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>クリックしてチューニングプロファイルを管理</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>天候ごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>車ごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>車 + コースごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>車 + コース + 設定ごと</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} 件変更</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} 件の設定</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>このプロファイル</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>既定のプロファイル</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>このプロファイルに変更はありません。</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>既定に戻す</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>シミュレーターが起動していません — 設定の変更は既定のプロファイルに保存されます。</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>コピー先…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>既定にする</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>クリーンアップ</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>どのプロファイルに設定をコピーしますか？</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>プロファイルの変更が削除され、すべての設定が既定のプロファイルの値に戻ります。</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>このプロファイルで変更されたすべての設定が既定のプロファイルにコピーされ、新しい基準になります。</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>古いモジュール値 {0} 件を削除し、グラフ選択 {1} 件を修復し、未使用のプロファイル {2} 件を削除します。続行しますか？</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>クリーンアップするものはありません。</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>（グラフなし）</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>工場出荷時の既定値</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>車 + 天候ごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>車 + コース + 天候ごと</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>車 + コース + 設定 + 天候ごと</value>
   </data>
 </root>

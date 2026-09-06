@@ -137,7 +137,7 @@ public class CloudService
 				{
 					app.Logger.WriteLine( "[CloudService] Newer version is available" );
 
-					var localFilePath = Path.Combine( App.DocumentsFolder, $"MarvinsAIRARefactored-Setup-{getCurrentVersionResponse.currentVersion}.exe" );
+					var localFilePath = Path.Combine( App.DocumentsFolder, $"MAIRA-Setup-{getCurrentVersionResponse.currentVersion}.exe" );
 
 					var updateDownloaded = File.Exists( localFilePath );
 
@@ -266,7 +266,9 @@ public class CloudService
 
 		try
 		{
-			var oldInstallerFileList = Directory.GetFiles( App.DocumentsFolder, "MarvinsAIRARefactored-Setup-*.exe" )
+			// the "MarvinsAIRARefactored-Setup-" pattern covers installers downloaded before the naming change
+			var oldInstallerFileList = Directory.GetFiles( App.DocumentsFolder, "MAIRA-Setup-*.exe" )
+				.Concat( Directory.GetFiles( App.DocumentsFolder, "MarvinsAIRARefactored-Setup-*.exe" ) )
 				.Select( filePath => new FileInfo( filePath ) )
 				.OrderByDescending( fileInfo => fileInfo.LastWriteTimeUtc )
 				.Skip( 3 )

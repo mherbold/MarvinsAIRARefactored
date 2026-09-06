@@ -11,29 +11,36 @@ public class LFE
 	public const string DisabledDeviceName = "";
 
 	private const int _bytesPerSample = 2;
-	private const int _500HzTo8KhzScale = 16;
+	private const int _samplesPerBatch = 16;
 	private const int _batchCount = 10;
 
 	private const int _captureBufferFrequency = 8000;
 	private const int _captureBufferNumSamples = _captureBufferFrequency;
 	private const int _captureBufferSizeInBytes = _captureBufferNumSamples * _bytesPerSample;
 
-	private const int _frameSizeInSamples = _500HzTo8KhzScale * _batchCount;
+	private const int _frameSizeInSamples = _samplesPerBatch * _batchCount;
 	private const int _frameSizeInBytes = _frameSizeInSamples * _bytesPerSample;
+
+	private const float _batchDurationMS = 1000f * _samplesPerBatch / _captureBufferFrequency;
+	private const float _maxMagnitudeCursorMS = ( _batchCount - 1 ) * _batchDurationMS;
 
 	public string? NextCaptureDeviceName { private get; set; } = null;
 
-	public float CurrentMagnitude
+	/// <summary>
+	/// Returns the magnitude at the current time cursor, then advances the cursor by the given delta. The capture
+	/// worker refills the ping-pong batches (one batch = 2 ms of audio) and resets the cursor on each swap, so the
+	/// caller just reads at its own tick rate; the cursor clamps to the last batch if capture frames stall.
+	/// </summary>
+	[MethodImpl( MethodImplOptions.AggressiveInlining )]
+	public float GetNextMagnitude( float deltaMilliseconds )
 	{
-		[MethodImpl( MethodImplOptions.AggressiveInlining )]
-		get
-		{
-			var magnitude = _magnitude[ _pingPongIndex, _batchIndex ];
+		var batchIndex = Math.Min( (int) ( _magnitudeCursorMS / _batchDurationMS ), _batchCount - 1 );
 
-			_batchIndex = Math.Min( _batchIndex + 1, _batchCount - 1 );
+		var magnitude = _magnitude[ _pingPongIndex, batchIndex ];
 
-			return magnitude;
-		}
+		_magnitudeCursorMS = MathF.Min( _magnitudeCursorMS + deltaMilliseconds, _maxMagnitudeCursorMS );
+
+		return magnitude;
 	}
 
 	public List<string> CaptureDeviceNames { get; private set; } = [];
@@ -50,10 +57,11 @@ public class LFE
 
 	private int _lfeBusy = 0;
 	private int _pingPongIndex = 0;
-	private int _batchIndex = 0;
+	private float _magnitudeCursorMS = 0f;
 	private int _lastProcessedWritePosSamples = -1;
 
 	private readonly byte[] _scratchRead = new byte[ _frameSizeInBytes ];
+	private readonly float[] _floatSamples = new float[ _frameSizeInSamples ];
 	private readonly float[,] _magnitude = new float[ 2, _batchCount ];
 
 	private string? _configuredCaptureDeviceName = null;
@@ -246,7 +254,7 @@ public class LFE
 				_captureSound = sound;
 				_captureDriverId = driverId;
 
-				_batchIndex = 0;
+				_magnitudeCursorMS = 0f;
 				_pingPongIndex = 0;
 				_lastProcessedWritePosSamples = -1;
 
@@ -365,8 +373,6 @@ public class LFE
 
 					// convert from PCM16 to float32 [-1,1]
 
-					var floatSamples = new float[ _frameSizeInSamples ];
-
 					for ( var i = 0; i < _frameSizeInSamples; i++ )
 					{
 						var b0 = _scratchRead[ 2 * i + 0 ];
@@ -374,7 +380,7 @@ public class LFE
 
 						var s = (short) ( b0 | ( b1 << 8 ) );
 
-						floatSamples[ i ] = s / 32768f;
+						_floatSamples[ i ] = s / 32768f;
 					}
 
 					var pingPongIndex = ( _pingPongIndex + 1 ) & 1;
@@ -384,17 +390,17 @@ public class LFE
 					{
 						var amplitudeSum = 0f;
 
-						for ( var sampleIndex = 0; sampleIndex < _500HzTo8KhzScale; sampleIndex++ )
+						for ( var sampleIndex = 0; sampleIndex < _samplesPerBatch; sampleIndex++ )
 						{
-							amplitudeSum += floatSamples[ sampleOffset ];
+							amplitudeSum += _floatSamples[ sampleOffset ];
 
 							sampleOffset++;
 						}
 
-						_magnitude[ pingPongIndex, batchIndex ] = amplitudeSum / _500HzTo8KhzScale;
+						_magnitude[ pingPongIndex, batchIndex ] = amplitudeSum / _samplesPerBatch;
 					}
 
-					_batchIndex = 0;
+					_magnitudeCursorMS = 0f;
 					_pingPongIndex = pingPongIndex;
 				}
 

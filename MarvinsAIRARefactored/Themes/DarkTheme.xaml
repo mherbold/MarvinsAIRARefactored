@@ -51,6 +51,14 @@
     <Color x:Key="Color.Accent.BlueDark">#426da8</Color>
     <SolidColorBrush x:Key="Brush.Accent.BlueDark" Color="{StaticResource Color.Accent.BlueDark}" />
 
+    <!-- Green accent dark (FFB graph source nodes) - same tone family as the blue dark accent -->
+    <Color x:Key="Color.Accent.GreenDark">#42a86d</Color>
+    <SolidColorBrush x:Key="Brush.Accent.GreenDark" Color="{StaticResource Color.Accent.GreenDark}" />
+
+    <!-- Purple accent dark (FFB graph output node) - same tone family as the blue dark accent -->
+    <Color x:Key="Color.Accent.PurpleDark">#8142a8</Color>
+    <SolidColorBrush x:Key="Brush.Accent.PurpleDark" Color="{StaticResource Color.Accent.PurpleDark}" />
+
     <!-- Border - normal / idle -->
     <Color x:Key="Color.Border.Normal">#666666</Color>
     <SolidColorBrush x:Key="Brush.Border.Normal" Color="{StaticResource Color.Border.Normal}" />
@@ -74,6 +82,18 @@
     <!-- List item hover background -->
     <Color x:Key="Color.ListItem.Hover">#1affffff</Color>
     <SolidColorBrush x:Key="Brush.ListItem.Hover" Color="{StaticResource Color.ListItem.Hover}" />
+
+    <!-- Selected list row: a deep saturated blue that keeps light text readable on it (the light blue accent did
+         not). The row's own text sets its color explicitly, so the three text colors below are what a selected row
+         switches its text to - primary, muted / badge, and accent badge. -->
+    <Color x:Key="Color.ListItem.Selected">#2a5fa8</Color>
+    <SolidColorBrush x:Key="Brush.ListItem.Selected" Color="{StaticResource Color.ListItem.Selected}" />
+    <Color x:Key="Color.ListItem.Selected.Text">#ffffff</Color>
+    <SolidColorBrush x:Key="Brush.ListItem.Selected.Text" Color="{StaticResource Color.ListItem.Selected.Text}" />
+    <Color x:Key="Color.ListItem.Selected.Muted">#c4d8f0</Color>
+    <SolidColorBrush x:Key="Brush.ListItem.Selected.Muted" Color="{StaticResource Color.ListItem.Selected.Muted}" />
+    <Color x:Key="Color.ListItem.Selected.Accent">#ffa075</Color>
+    <SolidColorBrush x:Key="Brush.ListItem.Selected.Accent" Color="{StaticResource Color.ListItem.Selected.Accent}" />
 
     <!-- MairaListButton background / hover -->
     <Color x:Key="Color.ListButton.Background">#333333</Color>
@@ -131,6 +151,14 @@
     <SolidColorBrush x:Key="Brush.SteeringEffects.Oversteer" Color="{StaticResource Color.SteeringEffects.Oversteer}" />
     <Color x:Key="Color.SteeringEffects.SeatOfPants">#6affee</Color>
     <SolidColorBrush x:Key="Brush.SteeringEffects.SeatOfPants" Color="{StaticResource Color.SteeringEffects.SeatOfPants}" />
+
+    <!-- Scope icon (the small round car / track / configuration / weather badges beside a tuning profile row): a
+         disc that reads as metadata rather than content, so it sits just off the page background and carries a glyph
+         dimmer than primary text but still well clear of the disc under it -->
+    <Color x:Key="Color.ScopeIcon.Background">#4f4f4f</Color>
+    <SolidColorBrush x:Key="Brush.ScopeIcon.Background" Color="{StaticResource Color.ScopeIcon.Background}" />
+    <Color x:Key="Color.ScopeIcon.Glyph">#c4c4c4</Color>
+    <SolidColorBrush x:Key="Brush.ScopeIcon.Glyph" Color="{StaticResource Color.ScopeIcon.Glyph}" />
 
     <!-- Original logos with white text for dark theme -->
     <BitmapImage x:Key="Image.SimagicLogo" UriSource="/MarvinsAIRARefactored;component/Artwork/Misc/simagic-logo.png" />

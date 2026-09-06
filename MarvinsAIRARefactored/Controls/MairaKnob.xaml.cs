@@ -49,6 +49,11 @@ public partial class MairaKnob : UserControl
 
 		_curveGridLinesPen = new Pen( _curveGridLinesBrush, 1.5 );
 
+		// shared across every knob's drawing — must stay frozen so WPF never tracks inheritance contexts on them
+		_curveBackgroundBrush.Freeze();
+		_curveGridLinesBrush.Freeze();
+		_curveGridLinesPen.Freeze();
+
 		foreach ( var instance in _instances )
 		{
 			instance.Key.UpdateKnobVisual();
@@ -62,10 +67,14 @@ public partial class MairaKnob : UserControl
 	private bool _isResetting;
 	private bool _isEditingValue;
 	private bool _isEditingPercent;
+	private bool _isEditingScaled;
 	private float _valueBeforeEdit;
 
 	static MairaKnob()
 	{
+		_curveBackgroundBrush.Freeze();
+		_curveGridLinesBrush.Freeze();
+		_curveGridLinesPen.Freeze();
 		_curveForegroundBrush.Freeze();
 		_curveForegroundPen.Freeze();
 	}
@@ -232,6 +241,24 @@ public partial class MairaKnob : UserControl
 	// The increment applied per +/- button press (mouse click or mapped input). For knobs wired to a
 	// MappableActionCatalog action this is only a fallback - the universal Settings.KnobStepSizes value
 	// is used instead (see EffectiveClickStepSize), so it matters only for knobs with no mapped action.
+	// Value range metadata (the knob does NOT clamp with these — the bound view-model does). Used only to infer
+	// percent-vs-absolute editing when the display carries no number (e.g. a localized "OFF"). NaN when unbound.
+	public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register( nameof( Minimum ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( float.NaN ) );
+
+	public float Minimum
+	{
+		get => (float) GetValue( MinimumProperty );
+		set => SetValue( MinimumProperty, value );
+	}
+
+	public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register( nameof( Maximum ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( float.NaN ) );
+
+	public float Maximum
+	{
+		get => (float) GetValue( MaximumProperty );
+		set => SetValue( MaximumProperty, value );
+	}
+
 	public static readonly DependencyProperty ClickStepSizeProperty = DependencyProperty.Register( nameof( ClickStepSize ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( 0.01f ) );
 
 	public float ClickStepSize
@@ -248,6 +275,18 @@ public partial class MairaKnob : UserControl
 	{
 		get => (float) GetValue( DragStepSizeProperty );
 		set => SetValue( DragStepSizeProperty, value );
+	}
+
+	// Displayed-units per stored-unit for knobs whose direct-edit unit differs from what they store (e.g. the
+	// prediction horizons store frames / 360 Hz sub-ticks but the value shows milliseconds). NaN (the default)
+	// keeps editing in the stored unit; when set, BeginValueEdit shows the number from the display string and
+	// CommitValueEdit converts the typed value back (÷ scale) and snaps it to ClickStepSize.
+	public static readonly DependencyProperty EditUnitScaleProperty = DependencyProperty.Register( nameof( EditUnitScale ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( float.NaN ) );
+
+	public float EditUnitScale
+	{
+		get => (float) GetValue( EditUnitScaleProperty );
+		set => SetValue( EditUnitScaleProperty, value );
 	}
 
 	public static readonly DependencyProperty ValueChangedCallbackProperty = DependencyProperty.Register( nameof( ValueChangedCallback ), typeof( Action<float> ), typeof( MairaKnob ) );
@@ -459,6 +498,10 @@ public partial class MairaKnob : UserControl
 
 			renderTargetBitmap.Render( dv );
 
+			// freeze so the Image never registers itself as the bitmap's inheritance context —
+			// unfrozen sources crash with ArgumentException in Freezable.RemoveContextInformation on theme swaps
+			renderTargetBitmap.Freeze();
+
 			Curve_Image.Source = renderTargetBitmap;
 			Curve_Grid.Visibility = Visibility.Visible;
 		}
@@ -510,12 +553,26 @@ public partial class MairaKnob : UserControl
 		}
 
 		_isEditingValue = true;
-		_isEditingPercent = IsPercentValueString();
+		_isEditingScaled = !float.IsNaN( EditUnitScale ) && ( EditUnitScale > 0f );
+		_isEditingPercent = !_isEditingScaled && IsPercentValueString();
 		_valueBeforeEdit = Value;
 
-		var editValue = _isEditingPercent ? ( Value * 100f ) : Value;
+		string editText;
 
-		Value_TextBox.Text = editValue.ToString( "0.###", CultureInfo.CurrentCulture );
+		if ( _isEditingScaled )
+		{
+			// edit in the DISPLAYED unit (e.g. ms): show exactly the number the user is looking at (the first
+			// number in the display string), so clicking "33.3 ms" opens "33.3" — never the raw stored frame count
+			editText = FirstDisplayNumber();
+		}
+		else
+		{
+			var editValue = _isEditingPercent ? ( Value * 100f ) : Value;
+
+			editText = editValue.ToString( "0.###", CultureInfo.CurrentCulture );
+		}
+
+		Value_TextBox.Text = editText;
 
 		Value_TextBlock.Visibility = Visibility.Collapsed;
 		Value_TextBox.Visibility = Visibility.Visible;
@@ -533,7 +590,21 @@ public partial class MairaKnob : UserControl
 			return false;
 		}
 
-		return ( ValueString ?? string.Empty ).TrimEnd().EndsWith( percentSuffix, StringComparison.CurrentCulture );
+		var valueString = ValueString ?? string.Empty;
+
+		// the edit round-trips the FIRST number in the display, so percent mode is decided by what follows that
+		// first number — not by the end of the string, which composite displays like "50% (13.4 Hz)" would fail
+		var match = Regex.Match( valueString, @"[-+]?\d+(?:[.,]\d+)?" );
+
+		if ( match.Success )
+		{
+			return valueString[ ( match.Index + match.Length ).. ].StartsWith( percentSuffix, StringComparison.CurrentCulture );
+		}
+
+		// no number at all — a localized text display like "OFF"; fall back to the knob range (fraction-based
+		// percent knobs live inside -1..1, every absolute-unit knob has a wider range). NaN (range not bound,
+		// the legacy settings knobs) compares false, keeping their previous not-percent behavior for "OFF".
+		return ( Maximum <= 1f ) && ( Minimum >= -1f );
 	}
 
 	private void Value_TextBox_KeyDown( object sender, KeyEventArgs e )
@@ -582,6 +653,16 @@ public partial class MairaKnob : UserControl
 			{
 				newValue /= 100f;
 			}
+			else if ( _isEditingScaled )
+			{
+				// convert the typed display unit (e.g. ms) back to the stored unit, then snap to a whole step so
+				// the horizon lands on an exact frame / sub-tick (this also cleans up any fractional drag value)
+				newValue /= EditUnitScale;
+
+				var step = ( ClickStepSize > 0f ) ? ClickStepSize : 1f;
+
+				newValue = MathF.Round( newValue / step ) * step;
+			}
 
 			Value = newValue;
 
@@ -611,11 +692,22 @@ public partial class MairaKnob : UserControl
 	{
 		_isEditingValue = false;
 		_isEditingPercent = false;
+		_isEditingScaled = false;
 
 		Value_TextBox.Visibility = Visibility.Collapsed;
 		Value_TextBlock.Visibility = Visibility.Visible;
 
 		Keyboard.ClearFocus();
+	}
+
+	// The first number in the current display string (e.g. "33.3" from "33.3 ms"), or "0" when the display carries no
+	// number (a localized text value like "OFF"). Used by scaled editing so the edit box opens on exactly what
+	// the user sees.
+	private string FirstDisplayNumber()
+	{
+		var match = Regex.Match( ValueString ?? string.Empty, @"[-+]?\d+(?:[.,]\d+)?" );
+
+		return match.Success ? match.Value : "0";
 	}
 
 	private static bool TryParseFirstFloat( string text, out float value )

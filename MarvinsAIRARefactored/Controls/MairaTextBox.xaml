@@ -81,9 +81,6 @@
 
         <TextBox x:Name="TextBox"
                  Grid.Row="1"
-                 Height="34"
-                 VerticalContentAlignment="Center"
-                 VerticalAlignment="Bottom"
                  FontSize="{Binding FontSize, ElementName=Root}"
                  Foreground="{DynamicResource Brush.Accent}"
                  Background="Transparent"
@@ -94,10 +91,18 @@
                  Text="{Binding Value, ElementName=Root, FallbackValue='Some example text for the text box user control', UpdateSourceTrigger=PropertyChanged}"
                  classes:TextBoxBehaviors.IsNumericOnly="{Binding IsNumericOnly, ElementName=Root}">
 
+            <!-- Height/alignment live in the style (not local attributes) so the IsMultiLine trigger can
+                 override them — a local value would always win over a trigger setter -->
             <TextBox.Style>
                 <Style TargetType="TextBox">
                     <Setter Property="Visibility"
                             Value="Visible" />
+                    <Setter Property="Height"
+                            Value="34" />
+                    <Setter Property="VerticalContentAlignment"
+                            Value="Center" />
+                    <Setter Property="VerticalAlignment"
+                            Value="Bottom" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsPassword, ElementName=Root}"
                                      Value="True">
@@ -109,6 +114,24 @@
                             <Setter Property="FlowDirection"
                                     Value="LeftToRight" />
                         </DataTrigger>
+                        <!-- multi-line mode: a tall wrapping editor where Enter inserts a newline -->
+                        <DataTrigger Binding="{Binding IsMultiLine, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="Height"
+                                    Value="{Binding MultiLineHeight, ElementName=Root}" />
+                            <Setter Property="AcceptsReturn"
+                                    Value="True" />
+                            <Setter Property="TextWrapping"
+                                    Value="Wrap" />
+                            <Setter Property="VerticalScrollBarVisibility"
+                                    Value="Auto" />
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Top" />
+                            <Setter Property="VerticalAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="Padding"
+                                    Value="2,4" />
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBox.Style>
@@ -118,9 +141,7 @@
         <!-- Placeholder overlay — visible only when Value is empty and Placeholder is set -->
         <TextBlock x:Name="PlaceholderTextBlock"
                    Grid.Row="1"
-                   Height="34"
                    Padding="2,0,0,0"
-                   VerticalAlignment="Bottom"
                    IsHitTestVisible="False"
                    Text="{Binding Placeholder, ElementName=Root}"
                    FontSize="{Binding FontSize, ElementName=Root}"
@@ -130,7 +151,16 @@
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Setter Property="Visibility" Value="Collapsed" />
+                    <Setter Property="Height" Value="34" />
+                    <Setter Property="VerticalAlignment" Value="Bottom" />
                     <Style.Triggers>
+                        <!-- multi-line mode: the placeholder sits at the top like the first line of text would -->
+                        <DataTrigger Binding="{Binding IsMultiLine, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="Height" Value="Auto" />
+                            <Setter Property="VerticalAlignment" Value="Top" />
+                            <Setter Property="Margin" Value="0,4,0,0" />
+                        </DataTrigger>
                         <!-- Show when Value is empty, not a password box, and not focused -->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>

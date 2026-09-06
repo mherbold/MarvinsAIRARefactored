@@ -48,7 +48,6 @@ public class ContextSwitches : INotifyPropertyChanged
 
 	public ContextSwitches()
 	{
-		PerWheelbase = false;
 		PerCar = false;
 		PerTrack = false;
 		PerTrackConfiguration = false;
@@ -57,9 +56,8 @@ public class ContextSwitches : INotifyPropertyChanged
 		_initializing = false;
 	}
 
-	public ContextSwitches( bool perWheelbase, bool perCar, bool perTrack, bool perTrackConfiguration, bool perWetDry )
+	public ContextSwitches( bool perCar, bool perTrack, bool perTrackConfiguration, bool perWetDry )
 	{
-		PerWheelbase = perWheelbase;
 		PerCar = perCar;
 		PerTrack = perTrack;
 		PerTrackConfiguration = perTrackConfiguration;
@@ -68,23 +66,33 @@ public class ContextSwitches : INotifyPropertyChanged
 		_initializing = false;
 	}
 
-	#region Per wheelbase
+	#region Hierarchy
 
-	private bool _perWheelbase;
-
-	public bool PerWheelbase
+	// The context dimensions form a hierarchy: a per track scope only means something inside a per car scope, and a
+	// per track configuration scope only means something inside a per track scope (per wet/dry is independent of all
+	// of them). Turns any orphaned child dimension off and returns true when something had to be turned off. This is
+	// deliberately NOT enforced inside the property setters - deserialization has to be able to load an illegal
+	// combination so the load-time migration can spot it, fix it, and re-serialize the settings file.
+	public bool Normalize()
 	{
-		get => _perWheelbase;
+		var changed = false;
 
-		set
+		if ( !PerCar && ( PerTrack || PerTrackConfiguration ) )
 		{
-			if ( value != _perWheelbase )
-			{
-				_perWheelbase = value;
+			PerTrack = false;
+			PerTrackConfiguration = false;
 
-				OnPropertyChanged();
-			}
+			changed = true;
 		}
+
+		if ( !PerTrack && PerTrackConfiguration )
+		{
+			PerTrackConfiguration = false;
+
+			changed = true;
+		}
+
+		return changed;
 	}
 
 	#endregion

@@ -1,4 +1,5 @@
 ﻿
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 using SharpDX.DirectInput;
@@ -16,6 +17,7 @@ public class DirectInput
 		public required string _productName;
 
 		public ObjectProperties? _xAxisProperties = null;
+
 		public JoystickState _joystickState = new();
 		public JoystickUpdate[]? _joystickUpdates = null;
 		public bool[] _povButtons = new bool[ PovVirtualButtonCount ];
@@ -35,8 +37,10 @@ public class DirectInput
 	public string ForceFeedbackErrorMessage { get; private set; } = string.Empty;
 	public bool ForceFeedbackInitialized { get => _forceFeedbackInitialized; }
 	public Joystick? ForceFeedbackJoystick { get; private set; } = null;
+
+	// physical steering axis of the FFB wheel, normalized to -1..+1 — the game bridges use this to reconstruct
+	// the real wheel angle when a game clamps its reported steering value at full lock
 	public float ForceFeedbackWheelPosition { get; private set; } = 0f;
-	public float ForceFeedbackWheelVelocity { get; private set; } = 0f;
 
 	public event Action<string, Guid, int, bool>? OnInput = null;
 
@@ -51,10 +55,24 @@ public class DirectInput
 
 	private readonly Dictionary<Guid, JoystickInfo> _joystickInfoDictionary = [];
 
+	// Product GUID per device instance, kept so callers can recover the USB vendor and product ids of a
+	// selected device (see TryGetUsbIds). Separate from _joystickInfoDictionary because it is also wanted
+	// for the force feedback device before any joystick has been polled.
+	private readonly Dictionary<Guid, Guid> _productGuidDictionary = [];
+
 	private bool _forceFeedbackInitialized = false;
 	private Guid _forceFeedbackDeviceInstanceGuid = Guid.Empty;
 	private EffectParameters? _forceFeedbackEffectParameters = null;
 	private Effect? _forceFeedbackEffect = null;
+
+	// last magnitude actually written to the device (int.MinValue = force the next write through) plus a
+	// periodic-refresh clock — see UpdateForceFeedbackEffect
+	private int _lastForceFeedbackMagnitude = int.MinValue;
+	private long _lastForceFeedbackWriteTimestamp = 0;
+
+	// unchanged magnitudes are still rewritten this often as insurance against wheelbase drivers with
+	// inactivity watchdogs (the started infinite-duration effect holds by spec, but 4 writes/second is free)
+	private static readonly long _forceFeedbackRefreshTimestampTicks = Stopwatch.Frequency / 4;
 
 	private bool _joystickInfoListNeedsToBeUpdated = false;
 
@@ -114,6 +132,8 @@ public class DirectInput
 		try
 		{
 			app.Logger.WriteLine( "[DirectInput] Creating the force feedback joystick" );
+
+			_lastForceFeedbackMagnitude = int.MinValue;
 
 			_forceFeedbackDeviceInstanceGuid = deviceGuid;
 
@@ -194,9 +214,10 @@ public class DirectInput
 			_forceFeedbackInitialized = false;
 
 			ForceFeedbackWheelPosition = 0f;
-			ForceFeedbackWheelVelocity = 0f;
 
 			_forceFeedbackEffectParameters = null;
+
+			_lastForceFeedbackMagnitude = int.MinValue;
 
 			if ( _forceFeedbackEffect != null )
 			{
@@ -236,7 +257,7 @@ public class DirectInput
 		}
 	}
 
-	public void PollDevices( float deltaSeconds )
+	public void PollDevices()
 	{
 		if ( Interlocked.Exchange( ref _pollMutex, 1 ) != 0 )
 		{
@@ -247,7 +268,7 @@ public class DirectInput
 
 		// track the wheel position on the SELECTED steering device from settings, not on the initialized
 		// force feedback device - force feedback is only initialized once a simulator connects (RacingWheel
-		// runs on the multimedia timer, which is suspended until then), but the wheel position is needed
+		// runs on the playout timer, which is suspended until then), but the wheel position is needed
 		// earlier than that (the game bridge's vJoy steering passthrough runs while the game is still in
 		// its menus, before any telemetry flows)
 		var steeringDeviceInstanceGuid = ( _forceFeedbackDeviceInstanceGuid != Guid.Empty ) ? _forceFeedbackDeviceInstanceGuid : DataContext.DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid;
@@ -295,10 +316,7 @@ public class DirectInput
 					{
 						if ( joystickInfo._xAxisProperties != null )
 						{
-							var lastForceFeedbackWheelPosition = ForceFeedbackWheelPosition;
-
 							ForceFeedbackWheelPosition = (float) 2f * ( joystickInfo._joystickState.X - joystickInfo._xAxisProperties.Range.Minimum ) / ( joystickInfo._xAxisProperties.Range.Maximum - joystickInfo._xAxisProperties.Range.Minimum ) - 1f;
-							ForceFeedbackWheelVelocity = ( ForceFeedbackWheelPosition - lastForceFeedbackWheelPosition ) / deltaSeconds;
 						}
 					}
 				}
@@ -485,12 +503,75 @@ public class DirectInput
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public void UpdateForceFeedbackEffect( float magnitude )
 	{
-		if ( _forceFeedbackEffectParameters != null )
-		{
-			( (ConstantForce) _forceFeedbackEffectParameters.Parameters ).Magnitude = (int) Math.Clamp( magnitude * DI_FFNOMINALMAX, -DI_FFNOMINALMAX, DI_FFNOMINALMAX );
+		// local snapshots — ShutdownForceFeedback (app exit, suspend, device switch) nulls these fields from
+		// another thread, so the null check below must test the same references we then dereference; testing
+		// the fields directly is a race the 360 Hz playout thread eventually loses
+		var forceFeedbackEffectParameters = _forceFeedbackEffectParameters;
+		var forceFeedbackEffect = _forceFeedbackEffect;
 
-			_forceFeedbackEffect?.SetParameters( _forceFeedbackEffectParameters, EffectParameterFlags.TypeSpecificParameters );
+		if ( forceFeedbackEffectParameters != null )
+		{
+			var clampedMagnitude = (int) Math.Clamp( magnitude * DI_FFNOMINALMAX, -DI_FFNOMINALMAX, DI_FFNOMINALMAX );
+
+			// skip the native SetParameters marshal when the quantized magnitude hasn't changed — the started
+			// infinite-duration constant force keeps applying; a periodic refresh still goes through (see fields)
+
+			var timestamp = Stopwatch.GetTimestamp();
+
+			if ( ( clampedMagnitude == _lastForceFeedbackMagnitude ) && ( ( timestamp - _lastForceFeedbackWriteTimestamp ) < _forceFeedbackRefreshTimestampTicks ) )
+			{
+				return;
+			}
+
+			( (ConstantForce) forceFeedbackEffectParameters.Parameters ).Magnitude = clampedMagnitude;
+
+			try
+			{
+				forceFeedbackEffect?.SetParameters( forceFeedbackEffectParameters, EffectParameterFlags.TypeSpecificParameters );
+			}
+			catch ( Exception )
+			{
+				// a concurrent shutdown can stop/dispose the effect between the snapshot and this call — the
+				// device is going away, so a failed final write is harmless
+				return;
+			}
+
+			_lastForceFeedbackMagnitude = clampedMagnitude;
+			_lastForceFeedbackWriteTimestamp = timestamp;
 		}
+	}
+
+	// True once EnumerateDevices has seen this device instance. Lets a caller tell "the device list has not
+	// been built yet" apart from "it has, and this is not a device I care about", so it knows whether a
+	// failed TryGetUsbIds is worth retrying.
+	public bool IsDeviceEnumerated( Guid deviceInstanceGuid ) => _productGuidDictionary.ContainsKey( deviceInstanceGuid );
+
+	// DirectInput packs a HID device's USB vendor and product ids into the product GUID: the first DWORD
+	// is the two ids, and the trailing bytes spell "PIDVID". Devices that are not HID (and so carry no
+	// ids) use a different GUID shape, hence the signature check before trusting the numbers.
+	public bool TryGetUsbIds( Guid deviceInstanceGuid, out ushort vendorId, out ushort productId )
+	{
+		vendorId = 0;
+		productId = 0;
+
+		if ( !_productGuidDictionary.TryGetValue( deviceInstanceGuid, out var productGuid ) )
+		{
+			return false;
+		}
+
+		var productGuidBytes = productGuid.ToByteArray();
+
+		ReadOnlySpan<byte> hidSignature = [ (byte) 'P', (byte) 'I', (byte) 'D', (byte) 'V', (byte) 'I', (byte) 'D' ];
+
+		if ( !productGuidBytes.AsSpan( 10, 6 ).SequenceEqual( hidSignature ) )
+		{
+			return false;
+		}
+
+		vendorId = (ushort) ( productGuidBytes[ 0 ] | ( productGuidBytes[ 1 ] << 8 ) );
+		productId = (ushort) ( productGuidBytes[ 2 ] | ( productGuidBytes[ 3 ] << 8 ) );
+
+		return true;
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
@@ -527,6 +608,7 @@ public class DirectInput
 		}
 
 		_joystickInfoDictionary.Clear();
+		_productGuidDictionary.Clear();
 		ForceFeedbackDeviceList.Clear();
 
 		var deviceInstanceList = _directInput.GetDevices( DeviceClass.All, DeviceEnumerationFlags.AttachedOnly );
@@ -544,6 +626,8 @@ public class DirectInput
 				app.Logger.WriteLine( $"[DirectInput] Force feedback driver GUID: {deviceInstance.ForceFeedbackDriverGuid}" );
 
 				var description = $"{deviceInstance.ProductName} [{deviceInstance.InstanceGuid}]";
+
+				_productGuidDictionary[ deviceInstance.InstanceGuid ] = deviceInstance.ProductGuid;
 
 				if ( deviceInstance.ForceFeedbackDriverGuid != Guid.Empty )
 				{

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -25,6 +26,29 @@ public static class Serializer
 
 	public static void Save( string filePath, object data )
 	{
+		SaveBytes( filePath, SaveToBytes( data ) );
+	}
+
+	/// <summary>Serializes to the exact bytes <see cref="Save"/> would write - UTF-8 with no byte order mark,
+	/// which is what a plain <c>StreamWriter</c> produces. Lets a caller build the file content while holding a
+	/// lock (see SettingsFile.Tick) and do the disk write afterwards, outside it.</summary>
+	public static byte[] SaveToBytes( object data )
+	{
+		var xmlSerializer = new XmlSerializer( data.GetType() );
+
+		using var memoryStream = new MemoryStream();
+
+		using ( var streamWriter = new StreamWriter( memoryStream, new UTF8Encoding( encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true ) ) )
+		{
+			xmlSerializer.Serialize( streamWriter, data );
+		}
+
+		return memoryStream.ToArray();
+	}
+
+	/// <summary>Writes bytes produced by <see cref="SaveToBytes"/> to disk, creating the directory if needed.</summary>
+	public static void SaveBytes( string filePath, byte[] bytes )
+	{
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( $"[Serializer] Save >>> ({filePath})" );
@@ -36,13 +60,7 @@ public static class Serializer
 			Directory.CreateDirectory( directoryName );
 		}
 
-		var xmlSerializer = new XmlSerializer( data.GetType() );
-
-		using var streamWriter = new StreamWriter( filePath );
-
-		xmlSerializer.Serialize( streamWriter, data );
-
-		streamWriter.Close();
+		File.WriteAllBytes( filePath, bytes );
 
 		app.Logger.WriteLine( $"[Serializer] <<< Save" );
 	}
@@ -63,6 +81,22 @@ public static class Serializer
 		}
 
 		app.Logger.WriteLine( $"[Serializer] <<< Load" );
+
+		return instance;
+	}
+
+	/// <summary>Same tolerant overlay load as the file-path overload, reading from an already-open stream
+	/// (used for graph files embedded in the assembly — see FFBBuiltInGraphs).</summary>
+	public static T Load<T>( Stream stream ) where T : notnull, new()
+	{
+		var instance = new T();
+
+		var doc = XDocument.Load( stream, LoadOptions.PreserveWhitespace | LoadOptions.SetLineInfo );
+
+		if ( doc.Root is not null )
+		{
+			ApplyOverlay( doc.Root, instance, parentPath: typeof( T ).Name );
+		}
 
 		return instance;
 	}
@@ -160,25 +194,23 @@ public static class Serializer
 
 			var entryPath = $"{parentPath}[{KeyToString( keyObj )}]";
 
-			var valueObj = dict.Contains( keyObj! ) ? dict[ keyObj! ] : CreateDefault( valueType );
-
-			if ( valueObj is null ) continue;
-
 			if ( IsSimple( valueType ) )
 			{
+				// Simple value types are parsed straight from the payload - never pre-create an instance.
+				// Activator.CreateInstance( typeof( string ) ) throws ("Uninitialized Strings cannot be
+				// created"), so a string-valued dictionary would otherwise fail the entire settings load.
+				// If a value can't be parsed we skip the entry (tolerant load) rather than adding garbage.
 				if ( TryParseSimple( valuePayload, valueType, out var parsedVal ) )
 				{
-					valueObj = parsedVal;
+					dict[ keyObj! ] = parsedVal!;
 				}
-				else
-				{
-					valueObj = GetDefaultValue( entryPath );
-				}
-
-				dict[ keyObj! ] = valueObj!;
 			}
 			else
 			{
+				var valueObj = dict.Contains( keyObj! ) ? dict[ keyObj! ] : CreateDefault( valueType );
+
+				if ( valueObj is null ) continue;
+
 				ApplyOverlay( valuePayload, valueObj, entryPath );
 
 				dict[ keyObj! ] = valueObj;

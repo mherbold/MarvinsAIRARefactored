@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Niciunul</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Per ampatament</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Per mașină</value>
   </data>
@@ -584,9 +581,6 @@
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Nu s-au găsit înregistrări]</value>
-  </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Activare mod simplu</value>
   </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensibilitate</value>
@@ -1345,10 +1339,10 @@
     <value>Selectează volanul tău cu forță de reacție din lista de mai jos.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Nu îți vezi volanul? Asigură-te că este pornit și conectat și lista se va actualiza automat.</value>
+    <value>Nu îți vezi volanul? Asigură-te că este pornit și conectat și lista se va actualiza automat.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Utilizatori Fanatec: volanele Fanatec apar de obicei ca două dispozitive separate în listă. Dacă cel selectat nu funcționează, încearcă celălalt!</value>
+    <value>Utilizatori Fanatec: volanele Fanatec apar de obicei ca două dispozitive separate în listă. Dacă cel selectat nu funcționează, încearcă celălalt!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Forța maximă a volanului</value>
@@ -1357,10 +1351,10 @@
     <value>Introdu forța maximă pe care baza ta o poate produce, în Newton-metri (Nm). MAIRA folosește această valoare pentru a scala corect toată ieșirea de forță de reacție pentru hardware-ul tău.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Am făcut cea mai bună estimare bazată pe volanul selectat, dar ești liber să o ajustezi dacă este necesar.</value>
+    <value>Am făcut cea mai bună estimare bazată pe volanul selectat, dar ești liber să o ajustezi dacă este necesar.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Important: dacă ai limitat deja cuplul maxim al volanului în software-ul producătorului (ex.: Fanatec Wheel Control Panel, Moza Pit House etc.), introdu acea valoare redusă aici în loc de maximul fizic al hardware-ului. MAIRA trebuie să știe ce va livra efectiv volanul tău, nu de ce este capabil teoretic.</value>
+    <value>Important: dacă ai limitat deja cuplul maxim al volanului în software-ul producătorului (ex.: Fanatec Wheel Control Panel, Moza Pit House etc.), introdu acea valoare redusă aici în loc de maximul fizic al hardware-ului. MAIRA trebuie să știe ce va livra efectiv volanul tău, nu de ce este capabil teoretic.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Controale forță</value>
@@ -1372,7 +1366,7 @@
     <value>Fă clic pe butoanele - și + de mai jos pentru a atribui intrări fiecăruia. Acest pas este opțional; poți să-l sari și să configurezi atribuirile mai târziu din pagina Volan.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Odată ce o intrare este atribuită, marginea butonului va deveni portocalie ca confirmare.</value>
+    <value>Odată ce o intrare este atribuită, marginea butonului va deveni portocalie ca confirmare.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Forță</value>
@@ -1399,7 +1393,7 @@
     <value>Mai întâi, ajustează marja țintă automată după preferință, apoi atribuie butoanele Setare și Ștergere.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Ținta automată stabilește unde în gama de forță a volanului ar trebui să cadă vârful măsurat. Scade ținta pentru a păstra mai multă marjă deasupra vârfului; crește-o pentru a utiliza mai mult din gama volanului.</value>
+    <value>Ținta automată stabilește unde în gama de forță a volanului ar trebui să cadă vârful măsurat. Scade ținta pentru a păstra mai multă marjă deasupra vârfului; crește-o pentru a utiliza mai mult din gama volanului.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritm</value>
@@ -1490,9 +1484,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Sfârșit buclă</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Comentariu</value>
@@ -1642,7 +1633,7 @@
     <value>Inițializare simulator...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inițializare intrare directă...</value>
+    <value>Inițializare DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inițializare Stream Deck...</value>
@@ -1671,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Inițializare LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Inițializare timer multimedia...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Inițializare timer de redare...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Inițializare manager înregistrare...</value>
@@ -1715,52 +1706,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Profiluri controler</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Redenumește profilul</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Redenumește profilul controllerului</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Procese în execuție</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtrează după nume sau cale...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Se caută aplicațiile în execuție...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Vizibilitatea ferestrei</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Afișați / ascundeți fereastra</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Dimensiunea pasului</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Interval de verificare a actualizărilor</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Șterge vopselele la închiderea iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Verifică actualizări la interval</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Antrenament</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Calificări</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Cursă</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Stare</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inactiv</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Activ</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Suprimat</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Șterge programele de instalare vechi</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Diverse</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Deschide folderul documente</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1807,7 +1820,8 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(neasociat)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activează poziția și scalarea suprapunerii pentru fiecare mașină</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Fișierul de calibrare nu este încă disponibil pentru această mașină.</value>
@@ -1826,56 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>Sursă 60 Hz</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>Sursă 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>Sursă LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Ieșire</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Filtru trece-jos</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Filtru trece-sus</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Amplificare</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Sumă</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Amestecare</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Limitator de variație</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Compresor de variație</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Compresor</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Accentuator de tranzienți</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Netezire adaptivă</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Amestecare adaptivă</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Curbă</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Limitator moale</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Protecție la coliziune</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Protecție la borduri</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Putere parcat</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Sursă blocare moale</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Sursă fricțiune</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Sursă centrare volan</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Forță subviraj</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Forță supraviraj</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Forță seat-of-pants</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Vibrație subviraj</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Vibrație supraviraj</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibrație seat-of-pants</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Vibrație turație de schimbare</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Vibrație schimbare viteză</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>Vibrație ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Amplificare după viteză</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Textură drum</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Textură alunecare</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Dither cuplu</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Pantă</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Tăiere</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Amplificare</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Mix</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Limită</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Prag</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Cot</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Raport</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Mod vârf</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Cantitate</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Tăiere la vârf</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Forță G longitudinală</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Forță G laterală</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>În cursă</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Parcat</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Viteză minimă</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Viteză maximă</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Amplificare la viteză minimă</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Amplificare la viteză maximă</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Un pol</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Doi poli</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Adaugă modul</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Alege înregistrarea</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Clonează graficul curent</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>Grafic FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Nume grafic</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Grafic nou</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Începe cu un grafic gol</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Diferență</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Sursă viteză volan</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Surse</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP generic</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mixere</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Efecte</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Alte efecte</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Exportă graficul</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importă graficul</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>Fișiere grafic MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Grafic importat</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Acest grafic nu a putut fi exportat.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Acest fișier grafic nu a putut fi importat.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Acest fișier nu este un fișier grafic MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Acest fișier conține un grafic cu efecte de vibrație — importă-l în secțiunea de efecte de vibrație.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Acest fișier conține un grafic FFB — importă-l în graficul FFB.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Acest fișier grafic a fost creat de o versiune mai nouă de MAIRA. Actualizează MAIRA și încearcă din nou.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Înregistrare pornită</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Înregistrare oprită</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Timp</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Poziție pe circuit</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>Cuplu 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>Cuplu 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Unghi de direcție</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Viteză de direcție</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Poziția volanului</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Viteza volanului</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Treaptă de viteză</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Forță G longitudinală</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Derapaj/alunecare</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Încorporate</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Personalizate</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importă setările graficului</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Ai deja graficul „{0}”. Ce dorești să faci cu setările din acest fișier?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Actualizează setările {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Actualizează setările de bază (implicite)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Actualizează setările {0} și cele de bază</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importă ca o copie nouă</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>Interpolator 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Predicție (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Orizont</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Amestec</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Limită de corecție</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Zonă de aderență</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Acest efect este dezactivat pe pagina Efecte volan</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Durata impulsului</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Zonă de aderență</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Vibrație a turației motorului</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Frecvența la turația maximă</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Rugozitate</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>Subvirarea și supravirarea sunt dezactivate pe pagina Efecte volan</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Adaugă o descriere pentru acest graf</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Fixează această setare ca unul dintre controalele principale ale acestui graf</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Afișează graful de noduri</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>Predicție (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>Punte de jocuri</value>
   </data>
@@ -1918,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Balansarea volanului</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Editează descrierea</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Semnalul force feedback nativ de 60 Hz din iRacing, exact așa cum îl trimite simulatorul.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Semnalul force feedback de înaltă frecvență din iRacing — șase eșantioane pe cadru de 60 Hz, cu cele mai multe detalii.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Sunetul de efecte de joasă frecvență (LFE) al simulatorului, transformat în forță pe volan. Amestecă-l cu un modul de adunare.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>O forță care se opune vitezei cu care este rotit volanul — amestec-o pentru amortizare.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Frecare uscată reală: volanul rămâne unde îl lași, cu o rezistență constantă la alunecare dincolo de zona de aderență.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Opune rezistență puternică atunci când volanul este rotit dincolo de unghiul maxim de bracaj al mașinii — ca un opritor fizic.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>O forță de arc care trage volanul înapoi spre centru. Trece-o printr-un modul de amplificare în funcție de viteză ca să acționeze doar cu mașina oprită.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Capătul lanțului — convertește semnalul în ieșire către volan, cu o curbă de răspuns opțională și un limitator soft.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Păstrează partea lentă a semnalului și netezește tot ce este mai rapid decât frecvența de tăiere.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Elimină partea lentă a semnalului și păstrează doar detaliile rapide de peste frecvența de tăiere.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Scalează semnalul cu un multiplicator fix — folosește o amplificare negativă pentru a-l inversa.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Adună două semnale.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Scade intrarea B din intrarea A — de exemplu, scăzând o copie trecută prin filtru trece-jos rămân doar detaliile.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Trece treptat între două semnale — 0% este doar intrarea A, 100% este doar intrarea B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Limitează cât de repede se poate schimba semnalul — tot ce e sub limită trece neatins, mișcările mai rapide sunt încetinite.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Comprimă schimbările rapide ale semnalului în loc să le limiteze dur — mișcările lente trec neatinse.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Comprimă semnalul peste un prag, ținând vârfurile sub control fără tăiere dură.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Extrage detaliile rapide și accentuează atacurile — denivelările și bordurile ies în evidență fără a amplifica stingerea.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Netezire dintr-un singur buton, care se adaptează la semnal — netezire puternică în liniște, întârziere minimă la tranzienții rapizi.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Elimină treptele dintr-un semnal de 60 Hz printr-o tranziție lină pe fiecare cadru, cu prețul unui cadru de latență.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Deplasează un semnal de 360 Hz în viitor pentru a compensa latența — un filtru adaptiv care învață fiecare mașină pe măsură ce conduci.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Deplasează semnalul de 60 Hz în viitor pentru a compensa latența — învață din felul în care virezi și din mișcarea mașinii pe măsură ce conduci.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Urmărește detaliile intrării A în timp ce este tras spre intrarea B — tragerea slăbește la fiecare vârf, astfel încât tranzienții trec nealterați.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Reduce puternic forța când este detectat un accident, apoi o readuce lin.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Reduce forța la loviturile dure de bordură, apoi o readuce lin.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>O forță pe volan condusă de efectul de subvirare, ca să simți cum pneurile din față pierd aderența.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>O forță pe volan condusă de efectul de supravirare, ca să simți cum spatele mașinii scapă.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>O forță pe volan condusă de efectul de simț din scaun — senzația șasiului care se încarcă.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Vibrează volanul când pneurile din față încep să alunece.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Vibrează volanul când pneurile din spate încep să alunece.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibrează volanul odată cu mișcarea șasiului — transfer de masă pe care îl simți.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Bâzâie volanul în impulsuri când motorul atinge punctul de schimbare a treptei.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>O scurtă rafală de vibrații la fiecare schimbare de treaptă.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulsează volanul cât timp ABS-ul frânelor este activ.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Un huruit care urmărește turația motorului, cu sonoritate de V8 — tăcut cât timp motorul este oprit.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Scalează semnalul cu viteza mașinii — atenuează sau amplifică treptat forțele pe măsură ce mașina prinde viteză.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Un huruit care se accelerează odată cu mașina, ca textura asfaltului — tăcut când mașina stă pe loc.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Un huruit care apare ori de câte ori alunecă una dintre punțile mașinii — condus de efectele de subvirare și supravirare.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Adaugă un dither fin alternant sub un prag, ca să mențină mecanismul volanului activ și să scoată la iveală detaliile fine.</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Linkuri</value>
   </data>
@@ -1932,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>Mega donatori</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Afișează setările fixate</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Comutator A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Folosește intrarea B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Lasă să treacă nemodificată fie intrarea A, fie intrarea B, în funcție de poziția comutatorului — comută pentru a compara instantaneu două trasee de semnal.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Actualizează setările peste tot unde este selectat acest grafic</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Inițializare volan Logitech...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Lumini de turație Logitech</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Aprinde luminile de turație de pe volan</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Clipirea luminilor după punctul de schimbare a treptei</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>Setări grafic FFB</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Recomandat pentru majoritatea piloților - semnalul FFB complet la 360 Hz, cu predicție pentru reducerea latenței. Reglați câștigul pentru a mări sau a micșora detaliile pistei și ale anvelopelor.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Sunetul efectelor de joasă frecvență din simulator, transformat în forță la volan. Pentru ca acest lucru să funcționeze, trebuie să activați bass shaker LFE în iRacing și să folosiți VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>O forță asemănătoare frecării, care împiedică volanul să oscileze atunci când vă deplasați foarte încet sau sunteți oprit.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>O forță de arc care trage volanul înapoi spre centru, activă doar când mașina se deplasează încet sau este oprită.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Reglați această valoare pentru a mări sau a micșora detaliile pistei și ale anvelopelor. Un câștig de 1,00x păstrează senzația originală din iRacing.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Reduce puternic forța atunci când este detectat un accident, apoi o readuce lin - astfel, un impact puternic nu vă poate smulge volanul din mâini. Reducerea forței stabilește cât din forță este eliminat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>O forță la volan generată de efectul de subvirare, ca să simțiți cum anvelopele din față pierd aderența. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>O forță la volan generată de efectul de supravirare, ca să simțiți cum spatele mașinii pleacă în derapaj. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>O forță la volan generată de efectul seat-of-pants - senzația de încărcare a șasiului. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Adaugă un dither alternant foarte mic sub un prag, pentru a menține mecanismul volanului activ și a scoate la iveală detaliile slabe - util dacă aveți un volan de putere mică, precum Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Limitatorul soft permite semnalului FFB să păstreze o parte din detalii, în loc să se aplatizeze atunci când este tăiat.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>Sunetul efectelor de joasă frecvență din simulator, transformat în forță la volan. Pentru ca acest lucru să funcționeze, trebuie să activați bass shaker LFE în iRacing și să folosiți VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>O forță asemănătoare frecării, care împiedică volanul să oscileze atunci când vă deplasați foarte încet sau sunteți oprit.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>O forță de arc care trage volanul înapoi spre centru, activă doar când mașina se deplasează încet sau este oprită.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Reduce puternic forța atunci când este detectat un accident, apoi o readuce lin - astfel, un impact puternic nu vă poate smulge volanul din mâini. Reducerea forței stabilește cât din forță este eliminat.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>O forță la volan generată de efectul de subvirare, ca să simțiți cum anvelopele din față pierd aderența. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>O forță la volan generată de efectul de supravirare, ca să simțiți cum spatele mașinii pleacă în derapaj. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>O forță la volan generată de efectul seat-of-pants - senzația de încărcare a șasiului. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Adaugă un dither alternant foarte mic sub un prag, pentru a menține mecanismul volanului activ și a scoate la iveală detaliile slabe - util dacă aveți un volan de putere mică, precum Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>Limitatorul soft permite semnalului FFB să păstreze o parte din detalii, în loc să se aplatizeze atunci când este tăiat.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>Sunetul efectelor de joasă frecvență din simulator, transformat în forță la volan. Pentru ca acest lucru să funcționeze, trebuie să activați bass shaker LFE în iRacing și să folosiți VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>O forță asemănătoare frecării, care împiedică volanul să oscileze atunci când vă deplasați foarte încet sau sunteți oprit.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>O forță de arc care trage volanul înapoi spre centru, activă doar când mașina se deplasează încet sau este oprită.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Reduce puternic forța atunci când este detectat un accident, apoi o readuce lin - astfel, un impact puternic nu vă poate smulge volanul din mâini. Reducerea forței stabilește cât din forță este eliminat.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>O forță la volan generată de efectul de subvirare, ca să simțiți cum anvelopele din față pierd aderența. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>O forță la volan generată de efectul de supravirare, ca să simțiți cum spatele mașinii pleacă în derapaj. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>O forță la volan generată de efectul seat-of-pants - senzația de încărcare a șasiului. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Adaugă un dither alternant foarte mic sub un prag, pentru a menține mecanismul volanului activ și a scoate la iveală detaliile slabe - util dacă aveți un volan de putere mică, precum Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>Limitatorul soft permite semnalului FFB să păstreze o parte din detalii, în loc să se aplatizeze atunci când este tăiat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Sunetul efectelor de joasă frecvență din simulator, transformat în forță la volan. Pentru ca acest lucru să funcționeze, trebuie să activați bass shaker LFE în iRacing și să folosiți VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>O forță asemănătoare frecării, care împiedică volanul să oscileze atunci când vă deplasați foarte încet sau sunteți oprit.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>O forță de arc care trage volanul înapoi spre centru, activă doar când mașina se deplasează încet sau este oprită.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Reduce puternic forța atunci când este detectat un accident, apoi o readuce lin - astfel, un impact puternic nu vă poate smulge volanul din mâini. Reducerea forței stabilește cât din forță este eliminat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>O forță la volan generată de efectul de subvirare, ca să simțiți cum anvelopele din față pierd aderența. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>O forță la volan generată de efectul de supravirare, ca să simțiți cum spatele mașinii pleacă în derapaj. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>O forță la volan generată de efectul seat-of-pants - senzația de încărcare a șasiului. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Adaugă un dither alternant foarte mic sub un prag, pentru a menține mecanismul volanului activ și a scoate la iveală detaliile slabe - util dacă aveți un volan de putere mică, precum Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Limitatorul soft permite semnalului FFB să păstreze o parte din detalii, în loc să se aplatizeze atunci când este tăiat.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>Pentru piloții care doresc atenuarea celor mai puternice forțe - semnalul FFB complet la 360 Hz trecut printr-un compresor de variație, care comprimă cât de repede se poate schimba forța, și printr-un compresor, care comprimă forța totală.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Comprimă cât de repede se poate schimba forța - vârfurile rapide sunt atenuate, în timp ce forțele mai lente trec neatinse.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Comprimă forța totală - forțele peste prag sunt comprimate, astfel încât momentele cele mai puternice să nu copleșească volanul.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Trusa de reglaje hibridă - semnalul FFB neted la 60 Hz drept ancoră, cu detaliile de 360 Hz amestecate în el, urmate de compresie, compresie de variație, un accentuator de tranzienți și o netezire adaptivă.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Amestecă semnalul neted la 60 Hz (ancora) cu detaliile de 360 Hz. Când forța își schimbă direcția, amestecul se deschide, astfel încât tranzienții să răzbată.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Comprimă forța totală - forțele peste prag sunt comprimate, astfel încât momentele cele mai puternice să nu copleșească volanul.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Comprimă cât de repede se poate schimba forța. În modul vârf, readuce forța ușor în jos după un vârf, în loc să limiteze cât de repede crește.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Accentuează schimbările bruște de forță - amplificatorul neliniar al ramurii de detaliu. Un câștig de 1,00x păstrează intensitatea originală a tranzienților.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Netezește semnalul doar cât timp acesta este calm - tranzienții rapizi trec în continuare. Măriți cantitatea pentru o netezire mai puternică.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Pentru piloții care preferă semnalul FFB clasic la 60 Hz - cu predicție pentru reducerea latenței.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Amplificator detalii și limitator 360 Hz (latență redusă)</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Amplificator detalii și limitator 60 Hz (latență redusă)</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>Compresie slew și totală la 360 Hz</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Trusă hibridă de reglaje multiple</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Profiluri de reglare</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Faceți clic pentru a vă gestiona profilurile de reglare</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Per vreme</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Per mașină</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Per mașină + circuit</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Per mașină + circuit + configurație</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} modificate</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} setări</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Activ</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Acest profil</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Profil implicit</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Acest profil nu are modificări.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Revenire la valoarea implicită</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Simulatorul nu rulează — modificările setărilor sunt salvate în profilul implicit.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Copiere în…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Setează ca implicit</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Curățare</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>În ce profil copiați setările?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Aceasta șterge modificările profilului — fiecare setare revine la valoarea profilului implicit.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Aceasta copiază fiecare setare modificată din acest profil în profilul implicit, făcându-l noua referință.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Aceasta va elimina {0} valori de modul învechite, va repara {1} selecții de grafic și va șterge {2} profiluri nefolosite. Continuați?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Nimic de curățat.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(fără grafic)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Valoare din fabrică</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Per mașină + vreme</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Per mașină + circuit + vreme</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Per mașină + circuit + configurație + vreme</value>
   </data>
 </root>

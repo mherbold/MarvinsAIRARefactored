@@ -354,9 +354,6 @@
   <data name="None" xml:space="preserve">
     <value>Ei mitään</value>
   </data>
-  <data name="PerWheelbase" xml:space="preserve">
-    <value>Akselivälin mukaan</value>
-  </data>
   <data name="PerCar" xml:space="preserve">
     <value>Auton mukaan</value>
   </data>
@@ -584,9 +581,6 @@
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Ei tallennuksia löydetty]</value>
-  </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Ota yksinkertainen tila käyttöön</value>
   </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Herkkyys</value>
@@ -1345,10 +1339,10 @@
     <value>Valitse voimapalauttesi ratti alla olevasta luettelosta.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Eikö rattisi näy? Varmista, että se on päällä ja kytketty, jolloin luettelo päivittyy automaattisesti.</value>
+    <value>Eikö rattisi näy? Varmista, että se on päällä ja kytketty, jolloin luettelo päivittyy automaattisesti.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec-käyttäjät: Fanatec-ratit näkyvät yleensä kahtena erillisenä laitteena luettelossa. Jos valitsemasi ei toimi, kokeile valita toinen!</value>
+    <value>Fanatec-käyttäjät: Fanatec-ratit näkyvät yleensä kahtena erillisenä laitteena luettelossa. Jos valitsemasi ei toimi, kokeile valita toinen!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Ratin maksimaalinen voima</value>
@@ -1357,10 +1351,10 @@
     <value>Syötä rattipohjan tuottama maksimaalinen voima newtonmetreissä (Nm). MAIRA käyttää tätä arvoa skaleeratakseen kaiken voimapalautteen laitteellesi.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Olemme arvannut parhaalla arvauksella valitun rattisi perusteella – mutta säädä vapaasti tarvittaessa.</value>
+    <value>Olemme arvannut parhaalla arvauksella valitun rattisi perusteella – mutta säädä vapaasti tarvittaessa.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Tärkeää: Jos olet jo rajoittanut ratin maksimaalisen vääntömomentin rattitoimittajan ohjelmistossa (esim. Fanatec Wheel Control Panel, Moza Pit House), syötä tähän alennettu arvo laitteiston fyysisen maksimin sijaan. MAIRA tarvitsee tietää, mitä rattisi todella toimittaa, ei mitä se teoriassa kykenee.</value>
+    <value>Tärkeää: Jos olet jo rajoittanut ratin maksimaalisen vääntömomentin rattitoimittajan ohjelmistossa (esim. Fanatec Wheel Control Panel, Moza Pit House), syötä tähän alennettu arvo laitteiston fyysisen maksimin sijaan. MAIRA tarvitsee tietää, mitä rattisi todella toimittaa, ei mitä se teoriassa kykenee.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Voimakkuussäätimet</value>
@@ -1372,7 +1366,7 @@
     <value>Napsauta alla olevia - ja + painikkeita määrittääksesi syötteet kummallekin. Tämä vaihe on valinnainen – voit ohittaa sen ja asettaa sidokset myöhemmin Racing Wheel -sivulta.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Kun syöte on kartoitettu, painikkeen reunus muuttuu oranssiksi vahvistukseksi.</value>
+    <value>Kun syöte on kartoitettu, painikkeen reunus muuttuu oranssiksi vahvistukseksi.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Voimakkuus</value>
@@ -1399,7 +1393,7 @@
     <value>Säädä ensin Auto Target -tila maun mukaan ja kartoita sitten Aseta- ja Tyhjennä-painikkeet.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Auto Target asettaa, mihin kohtaan ratin voimakäyrässä mitatun huipun tulisi osua. Laske tavoitetta säilyttääksesi enemmän tilaa huipun yläpuolella; nosta sitä käyttääksesi enemmän ratin aluetta.</value>
+    <value>Auto Target asettaa, mihin kohtaan ratin voimakäyrässä mitatun huipun tulisi osua. Laske tavoitetta säilyttääksesi enemmän tilaa huipun yläpuolella; nosta sitä käyttääksesi enemmän ratin aluetta.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritmi</value>
@@ -1490,9 +1484,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Silmukan loppu</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Selostus</value>
@@ -1642,7 +1633,7 @@
     <value>Alustetaan simulaattori...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Alustetaan suora tulo...</value>
+    <value>Alustetaan DirectInputia...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Alustetaan Stream Deck...</value>
@@ -1671,8 +1662,8 @@
   <data name="InitializingLFE" xml:space="preserve">
     <value>Alustetaan LFE...</value>
   </data>
-  <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Alustetaan multimedia-ajastin...</value>
+  <data name="InitializingPlayoutTimer" xml:space="preserve">
+    <value>Alustetaan toistoajastin...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
     <value>Alustetaan tallennuksenhallinta...</value>
@@ -1715,52 +1706,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Ohjainprofiilit</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Nimeä profiili uudelleen</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Nimeä ohjainprofiili uudelleen</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Käynnissä olevat prosessit</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Suodata nimen tai polun mukaan...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Etsitään käynnissä olevia sovelluksia...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Ikkunan näkyvyys</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Näytä / piilota ikkuna</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Askelkoko</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Päivitysten tarkistusväli</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Poista maalaukset, kun iRacing suljetaan</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Tarkista päivitykset välein</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Harjoitus</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Aika-ajo</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Kilpailu</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Tila</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Joutilas</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Aktiivinen</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Estetty</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Poista vanhat asennusohjelmat</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Sekalaiset</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Avaa dokumenttikansio</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1807,7 +1820,8 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(ei määritetty)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Ota käyttöön autokohtainen peitteen sijainti ja skaalaus</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Kalibrointitiedostoa ei ole vielä saatavilla tälle autolle.</value>
@@ -1826,56 +1840,378 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz -lähde</value>
+  </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz -lähde</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE-lähde</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Ulostulo</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Alipäästösuodatin</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Ylipäästösuodatin</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Vahvistus</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Summaus</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Sekoitus</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Muutosnopeuden rajoitin</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Muutosnopeuden kompressori</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Kompressori</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Transienttikorostin</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Adaptiivinen tasoitin</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Adaptiivinen sekoitus</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Käyrä</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Pehmeä rajoitin</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Törmäyssuoja</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Reunakivisuoja</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Pysäköitynä-voimakkuus</value>
+  </data>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Pehmeän lukon lähde</value>
+  </data>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Kitka-lähde</value>
+  </data>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Ratin keskityksen lähde</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Aliohjausvoima</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Yliohjausvoima</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Istuintuntemusvoima</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Aliohjausvärähtely</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Yliohjausvärähtely</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Istuintuntemusvärähtely</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Vaihto-RPM-värähtely</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Vaihteenvaihtovärähtely</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS-värähtely</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Nopeusvahvistus</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Tietekstuuri</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Luistotekstuuri</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Vääntömomentin dither</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Jyrkkyys</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Rajataajuus</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Vahvistus</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Sekoitussuhde</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Raja</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Kynnys</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Taitepiste</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Suhde</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Huipputila</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Määrä</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Huippujen rajataajuus</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Pitkittäinen G-voima</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Sivuttainen G-voima</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Kilpailun aikana</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Pysäköitynä</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Kuvio</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Minimivauhti</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Maksimivauhti</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Vahvistus minimivauhdissa</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Vahvistus maksimivauhdissa</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Yksinapainen</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Kaksinapainen</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Lisää moduuli</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Valitse tallennus</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Kloonaa nykyinen kaavio</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB-kaavio</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Kaavion nimi</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Uusi kaavio</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Aloita tyhjä kaavio</value>
+  </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Vähennys</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Rattinopeus-lähde</value>
+  </data>
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Lähteet</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Yleinen DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mikserit</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Tehosteet</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Muut tehosteet</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Vie graafi</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Tuo graafi</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA-graafitiedostot</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Tuotu graafi</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Tätä graafia ei voitu viedä.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Tätä graafitiedostoa ei voitu tuoda.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Tämä tiedosto ei ole MAIRA-graafitiedosto.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Tämä tiedosto sisältää tärinäefektigraafin – tuo se sen sijaan tärinäefektien alta.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Tämä tiedosto sisältää FFB-graafin – tuo se sen sijaan FFB-graafin alta.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Tämä graafitiedosto on luotu uudemmalla MAIRA-versiolla. Päivitä MAIRA ja yritä uudelleen.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Tallennus aloitettu</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Tallennus pysäytetty</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Aika</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Sijainti radalla</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz -vääntömomentti</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz -vääntömomentti</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Ohjauskulma</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Ohjausnopeus</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Ratin asento</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Ratin nopeus</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Vaihde</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Pituussuuntainen G-voima</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Luisto/liuku</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Sisäänrakennettu</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Mukautettu</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Tuo graafin asetukset</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Sinulla on jo graafi ”{0}”. Mitä haluat tehdä tämän tiedoston asetuksille?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Päivitä {0}-asetukset</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Päivitä perusasetukset (oletus)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Päivitä {0}-asetukset ja perusasetukset</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Tuo uutena kopiona</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz -interpolaattori</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Ennuste (360 Hz)</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horisontti</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Sekoitus</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Korjausraja</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Tartunta-alue</value>
+  </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Tämä tehoste on poistettu käytöstä Ohjaustehosteet-sivulla</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Pulssin kesto</value>
+  </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Tartunta-alue</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Moottorin kierroslukutärinä</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Taajuus maksimikierroksilla</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Karkeus</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>Aliohjautuvuus ja yliohjautuvuus on poistettu käytöstä Ohjaustehosteet-sivulla</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Lisää kuvaus tälle graafille</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Kiinnitä tämä asetus yhdeksi tämän graafin pääsäätimistä</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Näytä solmugraafi</value>
+  </data>
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>Ennuste (60 Hz)</value>
+  </data>
   <data name="GameBridge" xml:space="preserve">
     <value>Pelisilta</value>
   </data>
@@ -1918,6 +2254,126 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ratti edestakaisin</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Muokkaa kuvausta</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacingin alkuperäinen 60 Hz:n voimapalautesignaali täsmälleen sellaisena kuin simulaattori sen lähettää.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacingin nopea voimapalautesignaali — kuusi näytettä jokaista 60 Hz:n ruutua kohden, eniten yksityiskohtia.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Simulaattorin matalataajuinen tehosteääni (LFE) muunnettuna ratin voimaksi. Sekoita mukaan summausmoduulilla.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Voima, joka vastustaa ratin kääntönopeutta — sekoita mukaan vaimennusta varten.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Aitoa kuivakitkaa: ratti pysyy siinä, mihin sen jätät, ja tarttumisalueen ulkopuolella liukukitka on vakio.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Työntää voimakkaasti vastaan, kun ratti käännetään auton ohjauksen ääriasennon ohi, kuin fyysinen päätyvaste.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Jousivoima, joka vetää ratin takaisin keskelle. Ohjaa se nopeusvahvistusmoduulin läpi, jotta se vaikuttaa vain auton seistessä.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Ketjun pää — muuntaa signaalin ratin ulostuloksi, valinnaisella vastekäyrällä ja pehmeällä rajoittimella.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Säilyttää signaalin hitaan rungon ja silottaa pois kaiken rajataajuutta nopeamman.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Poistaa signaalin hitaan rungon ja säilyttää vain rajataajuuden yläpuoliset nopeat yksityiskohdat.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Kertoo signaalin kiinteällä kertoimella — käytä negatiivista vahvistusta signaalin kääntämiseen.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Laskee kaksi signaalia yhteen.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Vähentää tulon B tulosta A — esimerkiksi signaalin alipäästökopion vähentäminen jättää jäljelle pelkät yksityiskohdat.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Ristihäivyttää kahden signaalin välillä — 0% on pelkkää tuloa A, 100% pelkkää tuloa B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Rajoittaa, kuinka nopeasti signaali voi muuttua — rajan alle jäävä kulkee koskemattomana läpi, nopeampi liike hidastetaan.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Puristaa nopeita signaalimuutoksia sen sijaan, että katkaisisi ne jyrkästi — hidas liike kulkee koskemattomana läpi.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Puristaa signaalia kynnyksen yläpuolella ja pitää huiput kurissa ilman jyrkkää leikkautumista.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Poimii nopeat yksityiskohdat ja korostaa iskujen alkuja — töyssyt ja reunakivet erottuvat ilman, että jälkisointi voimistuu.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Yhden säätimen silotin, joka mukautuu signaaliin — voimakas silotus rauhallisissa kohdissa, hyvin pieni viive nopeissa transienteissa.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Poistaa 60 Hz:n signaalin porrastuksen liu'uttamalla arvoa tasaisesti jokaisen ruudun yli, yhden ruudun lisäviiveen hinnalla.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Siirtää 360 Hz:n signaalia tulevaisuuteen viiveen kumoamiseksi — adaptiivinen suodatin, joka oppii jokaisen auton ajaessasi.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Siirtää 60 Hz:n signaalia tulevaisuuteen viiveen kumoamiseksi — oppii ohjausliikkeistäsi ja auton liikkeistä ajaessasi.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Seuraa tulon A yksityiskohtia samalla, kun sitä vedetään kohti tuloa B — veto hellittää jokaisessa huipussa, joten transientit pääsevät läpi.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Pudottaa voiman hyvin alas, kun kolari havaitaan, ja palauttaa sen sitten pehmeästi.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Vähentää voimaa kovissa reunakivi-iskuissa ja palauttaa sen sitten pehmeästi.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Aliohjautuvuustehosteen ohjaama ohjausvoima, jotta tunnet eturenkaiden pidon katoamisen.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Yliohjautuvuustehosteen ohjaama ohjausvoima, jotta tunnet auton perän lähtevän.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Istuintuntumatehosteen ohjaama ohjausvoima — tuntuma korin kuormittumisesta.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Värisyttää rattia, kun eturenkaat alkavat liukua.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Värisyttää rattia, kun takarenkaat alkavat liukua.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Värisyttää rattia korin liikkeiden tahdissa — painonsiirtoa, jonka voi tuntea.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Sykäyttää rattia pulsseina, kun moottori saavuttaa vaihtokierrokset.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Lyhyt värinäpurske jokaisen vaihteenvaihdon yhteydessä.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulssittaa rattia, kun jarrujen ABS on aktiivinen.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Jyrinä, joka seuraa moottorin kierroslukua, V8:n äänensävyllä — hiljaa, kun moottori on sammuksissa.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Skaalaa signaalia auton nopeuden mukaan — häivytä voimia sisään tai ulos vauhdin kasvaessa.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Jyrinä, joka kiihtyy auton mukana, kuin tienpinnan tekstuuri — hiljaa auton seistessä.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Jyrinä, joka ilmestyy aina, kun auton jompikumpi pää liukuu — ali- ja yliohjautuvuustehosteiden ohjaamana.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Lisää kynnyksen alapuolelle pikkuriikkisen vuorottelevan ditherin, joka pitää ratin mekanismin hereillä ja tuo esiin heikot yksityiskohdat.</value>
+  </data>
   <data name="Links" xml:space="preserve">
     <value>Linkit</value>
   </data>
@@ -1932,5 +2388,272 @@
   </data>
   <data name="MegaDonors" xml:space="preserve">
     <value>Megalahjoittajat</value>
+  </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Näytä kiinnitetyt asetukset</value>
+  </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B-kytkin</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Käytä tuloa B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Päästää joko tulon A tai tulon B läpi muuttumattomana kytkimen asennon mukaan — vaihda vertaillaksesi kahta signaalireittiä välittömästi.</value>
+  </data>
+  <data name="ImportGraphUpdateEverywhere" xml:space="preserve">
+    <value>Päivitä asetukset kaikkialla, missä tämä graafi on valittuna</value>
+  </data>
+  <data name="InitializingLogitechWheel" xml:space="preserve">
+    <value>Alustetaan Logitech-ratti...</value>
+  </data>
+  <data name="RevLights" xml:space="preserve">
+    <value>Logitechin kierrosvalot</value>
+  </data>
+  <data name="RevLightsEnabled" xml:space="preserve">
+    <value>Sytytä ratin kierrosvalot</value>
+  </data>
+  <data name="RevLightsFlashAtShiftPoint" xml:space="preserve">
+    <value>Vilkuta valoja vaihtopisteen jälkeen</value>
+  </data>
+  <data name="FFBGraphSettings" xml:space="preserve">
+    <value>FFB-kaavion asetukset</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Suositellaan useimmille kuljettajille – täysi 360 Hz FFB-signaali ennakoinnilla, joka vähentää viivettä. Säädä vahvistusta, jos haluat lisätä tai vähentää radan ja renkaiden yksityiskohtia.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Simulaattorin matalataajuusefektien ääni muunnettuna ratin voimaksi. Tämä vaatii, että otat bass shakerin LFE käyttöön iRacingissa ja käytät VB-CABLE-ajuria.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Kitkan kaltainen voima, joka estää rattia värähtelemästä, kun ajat hyvin hitaasti tai olet pysähtyneenä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Jousivoima, joka vetää rattia takaisin kohti keskiasentoa; vaikuttaa vain silloin, kun auto liikkuu hitaasti tai on pysähtyneenä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Säädä tätä arvoa, jos haluat lisätä tai vähentää radan ja renkaiden yksityiskohtia. Vahvistus 1,00x säilyttää iRacingin alkuperäisen tuntuman.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Vaimentaa voiman lähes olemattomiin, kun kolari havaitaan, ja palauttaa sen sitten pehmeästi – näin kova isku ei voi riistää rattia käsistäsi. Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Aliohjautuvuusefektin ohjaama ohjausvoima, jonka ansiosta tunnet eturenkaiden pidon pettävän. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Yliohjautuvuusefektin ohjaama ohjausvoima, jonka ansiosta tunnet auton perän lähtevän ulos. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Perstuntuma-efektin ohjaama ohjausvoima – tuntuma siitä, miten korin kuormitus kasvaa. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Lisää kynnysarvon alapuolella pienen vuorottelevan värinän, joka pitää ratin mekanismin elävänä ja tuo esiin hienovaraiset yksityiskohdat – hyödyllinen, jos sinulla on heikkotehoinen ratti, kuten Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Pehmeä rajoitin antaa FFB-signaalin säilyttää yksityiskohtia sen sijaan, että se litistyisi leikkautuessaan.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceLFE" xml:space="preserve">
+    <value>Simulaattorin matalataajuusefektien ääni muunnettuna ratin voimaksi. Tämä vaatii, että otat bass shakerin LFE käyttöön iRacingissa ja käytät VB-CABLE-ajuria.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelVelocity" xml:space="preserve">
+    <value>Kitkan kaltainen voima, joka estää rattia värähtelemästä, kun ajat hyvin hitaasti tai olet pysähtyneenä.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionSourceWheelCentering" xml:space="preserve">
+    <value>Jousivoima, joka vetää rattia takaisin kohti keskiasentoa; vaikuttaa vain silloin, kun auto liikkuu hitaasti tai on pysähtyneenä.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Vaimentaa voiman lähes olemattomiin, kun kolari havaitaan, ja palauttaa sen sitten pehmeästi – näin kova isku ei voi riistää rattia käsistäsi. Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Aliohjautuvuusefektin ohjaama ohjausvoima, jonka ansiosta tunnet eturenkaiden pidon pettävän. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Yliohjautuvuusefektin ohjaama ohjausvoima, jonka ansiosta tunnet auton perän lähtevän ulos. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Perstuntuma-efektin ohjaama ohjausvoima – tuntuma siitä, miten korin kuormitus kasvaa. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressionee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Lisää kynnysarvon alapuolella pienen vuorottelevan värinän, joka pitää ratin mekanismin elävänä ja tuo esiin hienovaraiset yksityiskohdat – hyödyllinen, jos sinulla on heikkotehoinen ratti, kuten Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescription360HzslewtotalcompressionOutput" xml:space="preserve">
+    <value>Pehmeä rajoitin antaa FFB-signaalin säilyttää yksityiskohtia sen sijaan, että se litistyisi leikkautuessaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceLFE" xml:space="preserve">
+    <value>Simulaattorin matalataajuusefektien ääni muunnettuna ratin voimaksi. Tämä vaatii, että otat bass shakerin LFE käyttöön iRacingissa ja käytät VB-CABLE-ajuria.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelVelocity" xml:space="preserve">
+    <value>Kitkan kaltainen voima, joka estää rattia värähtelemästä, kun ajat hyvin hitaasti tai olet pysähtyneenä.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitSourceWheelCentering" xml:space="preserve">
+    <value>Jousivoima, joka vetää rattia takaisin kohti keskiasentoa; vaikuttaa vain silloin, kun auto liikkuu hitaasti tai on pysähtyneenä.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Vaimentaa voiman lähes olemattomiin, kun kolari havaitaan, ja palauttaa sen sitten pehmeästi – näin kova isku ei voi riistää rattia käsistäsi. Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Aliohjautuvuusefektin ohjaama ohjausvoima, jonka ansiosta tunnet eturenkaiden pidon pettävän. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Yliohjautuvuusefektin ohjaama ohjausvoima, jonka ansiosta tunnet auton perän lähtevän ulos. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Perstuntuma-efektin ohjaama ohjausvoima – tuntuma siitä, miten korin kuormitus kasvaa. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Lisää kynnysarvon alapuolella pienen vuorottelevan värinän, joka pitää ratin mekanismin elävänä ja tuo esiin hienovaraiset yksityiskohdat – hyödyllinen, jos sinulla on heikkotehoinen ratti, kuten Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitOutput" xml:space="preserve">
+    <value>Pehmeä rajoitin antaa FFB-signaalin säilyttää yksityiskohtia sen sijaan, että se litistyisi leikkautuessaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceLFE" xml:space="preserve">
+    <value>Simulaattorin matalataajuusefektien ääni muunnettuna ratin voimaksi. Tämä vaatii, että otat bass shakerin LFE käyttöön iRacingissa ja käytät VB-CABLE-ajuria.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelVelocity" xml:space="preserve">
+    <value>Kitkan kaltainen voima, joka estää rattia värähtelemästä, kun ajat hyvin hitaasti tai olet pysähtyneenä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
+    <value>Jousivoima, joka vetää rattia takaisin kohti keskiasentoa; vaikuttaa vain silloin, kun auto liikkuu hitaasti tai on pysähtyneenä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
+    <value>Vaimentaa voiman lähes olemattomiin, kun kolari havaitaan, ja palauttaa sen sitten pehmeästi – näin kova isku ei voi riistää rattia käsistäsi. Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
+    <value>Aliohjautuvuusefektin ohjaama ohjausvoima, jonka ansiosta tunnet eturenkaiden pidon pettävän. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
+    <value>Yliohjautuvuusefektin ohjaama ohjausvoima, jonka ansiosta tunnet auton perän lähtevän ulos. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
+    <value>Perstuntuma-efektin ohjaama ohjausvoima – tuntuma siitä, miten korin kuormitus kasvaa. Suunta määrittää, keventääkö efekti rattia vai lisääkö se sivuttaista työntöä.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
+    <value>Lisää kynnysarvon alapuolella pienen vuorottelevan värinän, joka pitää ratin mekanismin elävänä ja tuo esiin hienovaraiset yksityiskohdat – hyödyllinen, jos sinulla on heikkotehoinen ratti, kuten Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
+    <value>Pehmeä rajoitin antaa FFB-signaalin säilyttää yksityiskohtia sen sijaan, että se litistyisi leikkautuessaan.</value>
+  </data>
+  <data name="FFBGraphDescription360Hzslewtotalcompression" xml:space="preserve">
+    <value>Kuljettajille, jotka haluavat pehmentää voimakkaimpia voimia – koko 360 Hz FFB-signaali kulkee muutosnopeuden kompressorin läpi, joka puristaa sitä, kuinka nopeasti voima voi muuttua, ja kompressorin läpi, joka puristaa kokonaisvoimaa.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompressiond00f183344284b61801c73606153083d" xml:space="preserve">
+    <value>Puristaa sitä, kuinka nopeasti voima voi muuttua – nopeat piikit pehmenevät, kun taas hitaammat voimat kulkevat koskemattomina läpi.</value>
+  </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression421a9013bedb45e99a5f2a6b2b4d4473" xml:space="preserve">
+    <value>Puristaa kokonaisvoimaa – kynnyksen ylittävät voimat puristuvat, jotta voimakkaimmat hetket eivät jyrää rattia.</value>
+  </data>
+  <data name="FFBGraphDescriptionHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Hybridiviritystyökalupakki – pohjana pehmeä 60 Hz FFB-signaali, johon on sekoitettu 360 Hz yksityiskohdat, ja perässä kompressointi, muutosnopeuden kompressointi, transienttikorostin ja adaptiivinen tasoitin.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9cbed8c83eda474a8eb534bede4918ab" xml:space="preserve">
+    <value>Sekoittaa pehmeän 60 Hz signaalin (pohjan) ja 360 Hz yksityiskohdat. Kun voima vaihtaa suuntaa, sekoitus avautuu, jotta transientit pääsevät voimalla läpi.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitbb4cfd3fed99474588a1d111f16e3825" xml:space="preserve">
+    <value>Puristaa kokonaisvoimaa – kynnyksen ylittävät voimat puristuvat, jotta voimakkaimmat hetket eivät jyrää rattia.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9d630781f8a5476387773479f1a7b349" xml:space="preserve">
+    <value>Puristaa sitä, kuinka nopeasti voima voi muuttua. Huipputilassa se laskee voiman pehmeästi alas piikin jälkeen sen sijaan, että rajoittaisi nousunopeutta.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit9fb23c799f0d44068e37490bf54e444b" xml:space="preserve">
+    <value>Terävöittää äkilliset voimanmuutokset – yksityiskohtahaaran epälineaarinen korostin. Vahvistus 1,00x säilyttää transienttien alkuperäisen voimakkuuden.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkit5f306ac2fc5c49b592ec18a2e1334b29" xml:space="preserve">
+    <value>Silottaa signaalia vain silloin, kun se on rauhallinen – nopeat transientit pääsevät edelleen läpi. Lisää määrää, jos haluat enemmän silotusta.</value>
+  </data>
+  <data name="FFBGraphDescriptionLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Kuljettajille, jotka pitävät perinteisestä 60 Hz FFB-signaalista – ennakoinnilla, joka vähentää viivettä.</value>
+  </data>
+  <data name="FFBGraphNameLowlatency360Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Matalan viiveen 360 Hz yksityiskohtakorostin ja rajoitin</value>
+  </data>
+  <data name="FFBGraphNameLowlatency60Hzdetailboosterlimiter" xml:space="preserve">
+    <value>Matalan viiveen 60 Hz yksityiskohtakorostin ja rajoitin</value>
+  </data>
+  <data name="FFBGraphName360Hzslewtotalcompression" xml:space="preserve">
+    <value>360 Hz muutosnopeus ja kokonaiskompressio</value>
+  </data>
+  <data name="FFBGraphNameHybridmultiadjustmenttoolkit" xml:space="preserve">
+    <value>Hybridiviritystyökalupakki</value>
+  </data>
+  <data name="TuningProfiles" xml:space="preserve">
+    <value>Viritysprofiilit</value>
+  </data>
+  <data name="TuningProfilesStatusBarTooltip" xml:space="preserve">
+    <value>Napsauta hallitaksesi viritysprofiilejasi</value>
+  </data>
+  <data name="TuningProfilesGroupPerWeather" xml:space="preserve">
+    <value>Sään mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCar" xml:space="preserve">
+    <value>Auton mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrack" xml:space="preserve">
+    <value>Auton + radan mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfiguration" xml:space="preserve">
+    <value>Auton + radan + kokoonpanon mukaan</value>
+  </data>
+  <data name="TuningProfilesChangedCount" xml:space="preserve">
+    <value>{0} muutettu</value>
+  </data>
+  <data name="TuningProfilesSettingCount" xml:space="preserve">
+    <value>{0} asetusta</value>
+  </data>
+  <data name="TuningProfilesLive" xml:space="preserve">
+    <value>Aktiivinen</value>
+  </data>
+  <data name="TuningProfilesValueColumn" xml:space="preserve">
+    <value>Tämä profiili</value>
+  </data>
+  <data name="TuningProfilesDefaultColumn" xml:space="preserve">
+    <value>Oletusprofiili</value>
+  </data>
+  <data name="TuningProfilesNoChanges" xml:space="preserve">
+    <value>Tässä profiilissa ei ole muutoksia.</value>
+  </data>
+  <data name="TuningProfilesRevert" xml:space="preserve">
+    <value>Palauta oletukseen</value>
+  </data>
+  <data name="TuningProfilesDisconnectedHint" xml:space="preserve">
+    <value>Simulaattori ei ole käynnissä — asetusten muutokset tallennetaan oletusprofiiliin.</value>
+  </data>
+  <data name="TuningProfilesCopyTo" xml:space="preserve">
+    <value>Kopioi kohteeseen…</value>
+  </data>
+  <data name="TuningProfilesPromote" xml:space="preserve">
+    <value>Aseta oletukseksi</value>
+  </data>
+  <data name="TuningProfilesCleanUp" xml:space="preserve">
+    <value>Siivoa</value>
+  </data>
+  <data name="TuningProfilesCopyTarget" xml:space="preserve">
+    <value>Mihin profiiliin asetukset kopioidaan?</value>
+  </data>
+  <data name="TuningProfilesDeleteConfirmation" xml:space="preserve">
+    <value>Tämä poistaa profiilin muutokset — jokainen asetus palautuu oletusprofiilin arvoon.</value>
+  </data>
+  <data name="TuningProfilesPromoteConfirmation" xml:space="preserve">
+    <value>Tämä kopioi jokaisen tämän profiilin muutetun asetuksen oletusprofiiliin, josta tulee uusi perustaso.</value>
+  </data>
+  <data name="TuningProfilesCleanUpConfirmation" xml:space="preserve">
+    <value>Tämä poistaa {0} vanhentunutta moduuliarvoa, korjaa {1} graafivalintaa ja poistaa {2} käyttämätöntä profiilia. Jatketaanko?</value>
+  </data>
+  <data name="TuningProfilesNothingToCleanUp" xml:space="preserve">
+    <value>Ei mitään siivottavaa.</value>
+  </data>
+  <data name="TuningProfilesNoGraph" xml:space="preserve">
+    <value>(ei graafia)</value>
+  </data>
+  <data name="TuningProfilesFactoryColumn" xml:space="preserve">
+    <value>Tehdasoletus</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarWeather" xml:space="preserve">
+    <value>Auton + sään mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackWeather" xml:space="preserve">
+    <value>Auton + radan + sään mukaan</value>
+  </data>
+  <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
+    <value>Auton + radan + kokoonpanon + sään mukaan</value>
   </data>
 </root>

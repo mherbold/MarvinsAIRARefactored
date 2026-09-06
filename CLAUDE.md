@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**MarvinsAIRA Refactored** (v2.0) is a Windows desktop application written in **C# 13 / .NET 9** using **WPF** (Windows Presentation Foundation). It is a sim-racing companion tool for **iRacing** that provides advanced force-feedback processing, steering effects, pedal haptics, hardware integrations, and various overlays. A **game bridge** feeds telemetry from other simulators (Le Mans Ultimate, rFactor 2, the Assetto Corsa family, RaceRoom) into the same iRacing-native pipeline.
+**MAIRA** (v2.1, "Marvin's Awesome iRacing App" — the repo keeps its historical `MarvinsAIRARefactored` name) is a Windows desktop application written in **C# 13 / .NET 9** using **WPF** (Windows Presentation Foundation). It is a sim-racing companion tool for **iRacing** that provides advanced force-feedback processing, steering effects, pedal haptics, hardware integrations, and various overlays. A **game bridge** feeds telemetry from other simulators (Le Mans Ultimate, rFactor 2, the Assetto Corsa family, RaceRoom) into the same iRacing-native pipeline.
 
 The project has a second build target called **AdminBoxx**, controlled via the `ADMINBOXX` preprocessor constant. When `ADMINBOXX` is defined, many features are disabled and the app runs as a simpler hardware-controller utility.
 
@@ -80,7 +80,7 @@ $sln = "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAI
 A clean build exits with code 0. The post-build `xcopy` steps use the `/D` flag and will report "0 File(s) copied" when the destination is already up to date — this is normal, not an error.
 
 ### Post-Build Events
-The post-build step copies several asset folders (sounds, recordings, calibration files, STT files, SBT files) to the user's `My Documents\MarvinsAIRA Refactored\` folder using `xcopy`.
+The post-build step copies several asset folders (sounds, recordings, calibration files, STT files, SBT files) to the user's `My Documents\MAIRA\` folder using `xcopy`.
 
 ---
 
@@ -120,9 +120,19 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
 > All application source files (Components, DataContext, Windows, Pages, etc.) live under
 > `[repo root]/MarvinsAIRARefactored/` — **not** directly under `[repo root]/`.
 
+### Other solution projects
+- **`MarvinsAIRARefactored.Win32/`** — Win32 interop helper library.
+- **`MarvinsAIRARefactored.PredictionLab/`** — offline test bench for the Prediction FFB module. Replays a MAIRA 360 Hz recording through candidate prediction algorithms and scores the achieved waveform shift / error / noise amplification (its header comment documents the metrics and findings, including the dead ends). Score any new prediction idea here before touching the app module, and keep its `ShippedPredictionModule` port in sync with `FFB/Modules/DspModules.cs`. Plain console app (no COM references), so `dotnet run -c Release` works from its folder.
+
 ---
 
 ## Architecture & Key Patterns
+
+### Steering / FFB sign conventions (get these right!)
+- **iRacing steering telemetry is counterclockwise-positive:** `SteeringWheelAngle` (and `SteeringWheelVelocity`) are **positive when the wheel is turned LEFT**, negative when turned right. The derived `FFBTickContext.WheelPosition` / `WheelVelocity` (angle/velocity normalized to the car's half-lock) inherit this same convention.
+- **FFB graph output torque is also counterclockwise-positive:** a positive module output pushes the wheel LEFT.
+- **Consequence:** any resisting/restoring force built from these values (friction, damping, centering, soft lock) must **negate** the telemetry-derived term — e.g. the wheel-centering source returns `-position`, and the friction/velocity sources return `-velocity`. Getting this wrong flips a stable centering spring into a runaway force toward the locks (this bug actually shipped once).
+- **The old DirectInput axis convention was the opposite** (positive = turned right), so any formula ported from pre-graph fixed-function code that used `DirectInput.ForceFeedbackWheelPosition/Velocity` needs its sign flipped when fed the sim-telemetry-derived values.
 
 ### Global Singleton (`App`)
 `App` (in `App.xaml.cs`) is the central singleton accessed via `App.Instance!`. It owns and initializes every component. All components call `App.Instance!` to access sibling services. This is the primary way components communicate.
@@ -149,9 +159,9 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 | Game bridge | `GameBridge.cs` (adapters for other sims live in `GameBridges/` — LMU, rFactor 2, AC / ACC / AC EVO / AC Rally, RaceRoom) |
 | Audio | `AudioManager.cs`, `Sounds.cs`, `LFE.cs` |
 | Speech / commentary | `SpeechToText.cs`, `TextToSpeech.cs`, `Commentary.cs`, `ChatQueue.cs` |
-| Hardware integrations | `TyphoonWind.cs`, `AdminBoxx.cs`, `StreamDeck.cs`, `VirtualJoystick.cs`, `HidHotPlugMonitor.cs` |
+| Hardware integrations | `TyphoonWind.cs`, `AdminBoxx.cs`, `StreamDeck.cs`, `VirtualJoystick.cs`, `HidHotPlugMonitor.cs`, `LogitechWheel.cs` |
 | Cloud / external | `CloudService.cs`, `TradingPaints.cs` |
-| App / utility | `AppManager.cs`, `Logger.cs`, `Debug.cs`, `Graph.cs`, `RecordingManager.cs`, `TimingMarkers.cs`, `SettingsFile.cs`, `MultimediaTimer.cs`, `TopLevelWindow.cs` |
+| App / utility | `AppManager.cs`, `Logger.cs`, `Debug.cs`, `Graph.cs`, `RecordingManager.cs`, `TimingMarkers.cs`, `SettingsFile.cs`, `PlayoutTimer.cs`, `TopLevelWindow.cs` |
 
 ### `DataContext/` — settings, binding, localization
 | File | Purpose |
@@ -193,7 +203,7 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 `MairaButton`, `MairaComboBox`, `MairaTextBox`, `MairaSwitch`, `MairaMappableSwitch`, `MairaKnob`, `MairaDualSlider`, `MairaTriangleBalance`, `MairaProgressBar`, `MairaExpander`, `MairaGroupBox`, `MairaTabItem`, `MairaStatusBar`, `MairaButtonMapping`, `MairaMappableButton`, `MairaAppMenuButton`, `MairaAppMenuPopup`.
 
 ### `Classes/` — helpers & data types
-Math/signal: `MathZ.cs`, `RlsWheelVelocityPredictor.cs`. Audio: `CachedSound.cs`, `CachedSoundPlayer.cs`. Recording: `Recording.cs`, `RecordingData.cs`. Serialization: `Serializer.cs`, `SerializableDictionary.cs`. Commentary/voice: `CommentaryTemplates.cs`, `UserCommentaryPhrases.cs`, `VoiceSlotSettings.cs`, `ElevenLabs.cs`, `ElevenLabsKeyStore.cs`. Graph: `GraphBase.cs`. Input/mapping: `ButtonMappings.cs`, `MappableActionCatalog.cs`, `ControllerProfile.cs`. Windows/overlays: `WindowScaler.cs`, `OverlayWindowMover.cs`, `OverlayWindowScaler.cs`. App manager: `AppManagerEntry.cs`, `AppManagerStartEntryViewModel.cs`. Hardware/util: `UsbSerialPortHelper.cs`, `CpuAffinityHelper.cs`, `HelpService.cs`, `TextBoxBehaviors.cs`, `TradingPaintsXML.cs`, `Color.cs`, `Misc.cs`.
+Math/signal: `MathZ.cs`, `RlsWheelVelocityPredictor.cs`. Audio: `CachedSound.cs`, `CachedSoundPlayer.cs`. Recording: `Recording.cs`, `RecordingData.cs`. Serialization: `Serializer.cs`, `SerializableDictionary.cs`. Commentary/voice: `CommentaryTemplates.cs`, `UserCommentaryPhrases.cs`, `VoiceSlotSettings.cs`, `ElevenLabs.cs`, `ElevenLabsKeyStore.cs`. Graph: `GraphBase.cs`. Input/mapping: `ButtonMappings.cs`, `MappableActionCatalog.cs`, `ControllerProfile.cs`. Windows/overlays: `WindowScaler.cs`, `OverlayWindowMover.cs`, `OverlayWindowScaler.cs`. App manager: `AppManagerEntry.cs`, `AppManagerStartEntryViewModel.cs`. Logitech wheel (rev lights / TrueForce): `HidDeviceHelper.cs`, `LogitechRevLightChannel.cs`, `LogitechTrueforceChannel.cs`, `LogitechTrueforceInitData.cs`. Hardware/util: `UsbSerialPortHelper.cs`, `CpuAffinityHelper.cs`, `HelpService.cs`, `TextBoxBehaviors.cs`, `TradingPaintsXML.cs`, `Color.cs`, `Misc.cs`.
 
 ### `Themes/`
 `DarkTheme.xaml`, `LightTheme.xaml`, `Generic.xaml`, plus per-control theme resources.

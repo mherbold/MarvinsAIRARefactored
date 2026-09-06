@@ -84,7 +84,7 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/tuning-profiles/" data-type="page">Tuning Profiles</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

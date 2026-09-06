@@ -7,12 +7,269 @@
              xmlns:local="clr-namespace:MarvinsAIRARefactored.Controls"
              xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
              xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+             xmlns:ffb="clr-namespace:MarvinsAIRARefactored.FFB"
+             xmlns:converters="clr-namespace:MarvinsAIRARefactored.Converters"
              mc:Ignorable="d"
              d:DesignWidth="800">
 
     <UserControl.DataContext>
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+
+        <converters:BooleanToVisibilityCollapsedConverter x:Key="BoolToVisibility" />
+        <converters:FractionToStarGridLengthConverter x:Key="FractionToStarWidth" />
+        <converters:InverseScaleThicknessConverter x:Key="HairlineThickness" />
+
+        <!-- Module-setting templates for the FFB graph editor cards. DataContext = FFBModuleSettingViewModel.
+             Each control carries a tiny pin switch at its top-right (custom graphs only — built-ins ship a
+             curated pinned set): pinning surfaces the setting in the quick-controls row above the editor. -->
+
+        <!-- the pin affordance: a pin icon sitting inline right after the setting's label — gray when
+             unpinned, MAIRA orange when pinned -->
+        <Style x:Key="FFBGraphPinToggleStyle"
+               TargetType="controls:MairaPinToggle">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="6,0,0,0" />
+            <Setter Property="IconSize"
+                    Value="20" />
+            <Setter Property="ToolTip"
+                    Value="{Binding Localization[PinSetting], Source={x:Static datacontext:DataContext.Instance}}" />
+            <!-- visibility lives in the style (not a local attribute) so the trigger below can override it -->
+            <Setter Property="Visibility"
+                    Value="{Binding ShowPinSwitch, Converter={StaticResource BoolToVisibility}}" />
+            <Style.Triggers>
+                <!-- never show the pin toggle inside the quick-controls row itself — a basic user could
+                     accidentally un-pin a control there and have no idea how to get it back (pinning is
+                     managed from the module settings column only) -->
+                <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                             Value="QuickControls">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- each setting template renders the label itself (with the pin toggle inline right after it) and
+             blanks the control's internal label — the controls collapse their own label row when it is
+             empty, so the visual stays the same apart from the pin's placement -->
+        <DataTemplate x:Key="FFBGraphKnobTemplate">
+            <StackPanel Margin="20,0,20,20">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Label}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               TextTrimming="CharacterEllipsis" />
+                    <controls:MairaPinToggle Style="{StaticResource FFBGraphPinToggleStyle}"
+                                             IsOn="{Binding IsPinned, Mode=TwoWay}" />
+                </StackPanel>
+                <controls:MairaKnob Label=""
+                                    Value="{Binding Value, Mode=TwoWay}"
+                                    ValueString="{Binding ValueString}"
+                                    Minimum="{Binding Minimum}"
+                                    Maximum="{Binding Maximum}"
+                                    ClickStepSize="{Binding ClickStepSize}"
+                                    DragStepSize="{Binding DragStepSize}"
+                                    EditUnitScale="{Binding EditUnitScale}"
+                                    DefaultValue="{Binding DefaultValue}"
+                                    ShowCurve="{Binding ShowCurve}"
+                                    PlusButtonMappings="{Binding PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding MinusButtonMappings}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <!-- module switches are input-mappable like the knobs: right-click the checkbox to map a button that
+             flips it (stored per "{ModuleId}/{SettingKey}/Toggle" — see App.RebuildButtonMappingIndex) -->
+        <DataTemplate x:Key="FFBGraphSwitchTemplate">
+            <StackPanel Margin="20,0,20,20">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,5">
+                    <TextBlock Text="{Binding Label}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               TextTrimming="CharacterEllipsis" />
+                    <controls:MairaPinToggle Style="{StaticResource FFBGraphPinToggleStyle}"
+                                             IsOn="{Binding IsPinned, Mode=TwoWay}" />
+                </StackPanel>
+                <controls:MairaMappableSwitch IsOn="{Binding IsOn, Mode=TwoWay}"
+                                              ButtonMappings="{Binding ToggleButtonMappings}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FFBGraphChoiceTemplate">
+            <StackPanel Margin="20,0,20,20">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Label}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               TextTrimming="CharacterEllipsis" />
+                    <controls:MairaPinToggle Style="{StaticResource FFBGraphPinToggleStyle}"
+                                             IsOn="{Binding IsPinned, Mode=TwoWay}" />
+                </StackPanel>
+                <controls:MairaComboBox Label=""
+                                        ItemsSource="{Binding ChoiceOptions}"
+                                        SelectedValue="{Binding ChoiceIndex, Mode=TwoWay}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FFBGraphSpacerTemplate">
+            <Border />
+        </DataTemplate>
+
+        <!-- a pinned module Enabled toggle in the quick controls — the switch is the same Enabled state (and
+             the same input mapping) as the module card's header switch (DataContext = FFBPinnedEnabledViewModel) -->
+        <DataTemplate x:Key="FFBGraphEnabledTemplate">
+            <Grid Margin="20,0,20,20">
+                <controls:MairaMappableSwitch Label="{Binding Label}"
+                                              LabelPosition="Top"
+                                              IsOn="{Binding Module.Enabled, Mode=TwoWay}"
+                                              ButtonMappings="{Binding Module.EnabledToggleButtonMappings}" />
+            </Grid>
+        </DataTemplate>
+
+        <ffb:FFBSettingTemplateSelector x:Key="FFBGraphSettingTemplateSelector"
+                                        KnobTemplate="{StaticResource FFBGraphKnobTemplate}"
+                                        SwitchTemplate="{StaticResource FFBGraphSwitchTemplate}"
+                                        ChoiceTemplate="{StaticResource FFBGraphChoiceTemplate}"
+                                        SpacerTemplate="{StaticResource FFBGraphSpacerTemplate}"
+                                        EnabledTemplate="{StaticResource FFBGraphEnabledTemplate}" />
+
+        <!-- Module card. DataContext = FFBModuleViewModel. Lives in the settings column beside the node
+             graph, so the settings stack vertically (bound to Settings, not SettingsPresentation — the
+             row-break spacers only matter for the old multi-column grid). -->
+
+        <DataTemplate x:Key="FFBGraphModuleCardTemplate">
+
+            <StackPanel Margin="0,10">
+
+                <Grid Margin="20,0,20,10">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- the notice gets its own row so its appearance never moves the switch/name/test row -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- input-mappable like the module setting switches: right-click to map a button that flips
+                         the whole effect on/off (stored under the reserved "Enabled" key) -->
+                    <controls:MairaMappableSwitch Grid.Row="0"
+                                                  Grid.Column="0"
+                                                  IsOn="{Binding Enabled, Mode=TwoWay}"
+                                                  ButtonMappings="{Binding EnabledToggleButtonMappings}"
+                                                  VerticalAlignment="Center"
+                                                  Visibility="{Binding CanToggleEnabled, Converter={StaticResource BoolToVisibility}}" />
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding DisplayName}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               FontSize="30" />
+
+                    <!-- shown while this module's effect is switched off on the steering effects page (the
+                         module is inert until it is re-enabled there) — below the name, since the narrow
+                         settings column has no room beside it -->
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="3"
+                               Text="{Binding SteeringEffectDisabledNotice}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               FontSize="16"
+                               Foreground="{DynamicResource Brush.Accent}"
+                               TextWrapping="Wrap"
+                               Visibility="{Binding SteeringEffectDisabled, Converter={StaticResource BoolToVisibility}}" />
+
+                    <!-- session-only test toggle (event-driven effects and vibration generators) — normal when
+                         off, MAIRA orange icon when testing (same convention as the snap-to-grid button).
+                         Generator tests shake the physical wheel, so they gray out while off track (the wheel's
+                         FFB fades out there). Removing a module happens via the minus button on the node
+                         graph's corner toolbar. -->
+                    <controls:MairaButton Grid.Column="3"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                          IsSmall="True"
+                                          HighlightIcon="{Binding IsTestActive}"
+                                          Disabled="{Binding TestDisabled}"
+                                          Tag="{Binding}"
+                                          Margin="10,0,0,0"
+                                          HorizontalAlignment="Right"
+                                          Click="TestModule_MairaButton_Click"
+                                          Visibility="{Binding CanTest, Converter={StaticResource BoolToVisibility}}" />
+
+                    <!-- the Enabled toggle's pin, right after the node name (custom graphs only) — pinning
+                         surfaces the whole effect's on/off in the quick controls; the pin style's
+                         ShowPinSwitch binding resolves against the module VM here -->
+                    <controls:MairaPinToggle Grid.Row="0"
+                                             Grid.Column="2"
+                                             Style="{StaticResource FFBGraphPinToggleStyle}"
+                                             IsOn="{Binding IsEnabledPinned, Mode=TwoWay}" />
+
+                </Grid>
+
+                <ItemsControl ItemsSource="{Binding Settings}"
+                              ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}" />
+
+                <!-- Node description — the localized built-in default, or the user's override on a custom
+                     graph. The pencil (custom graphs only) opens the description editor window; the same
+                     text is the node's hover tooltip on the graph canvas. -->
+                <Grid Margin="20,0,20,10">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding NodeDescription}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource Brush.Foreground.Muted}" />
+
+                    <controls:MairaButton Grid.Column="1"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          VerticalAlignment="Top"
+                                          Tag="{Binding}"
+                                          Click="EditNodeDescription_MairaButton_Click"
+                                          Visibility="{Binding CanEditNodeDescription, Converter={StaticResource BoolToVisibility}}" />
+
+                </Grid>
+
+                <!-- Reorders this node's pinned group among the quick controls in the FFB graph settings
+                     section (custom graphs with this node pinned only — the buttons at the ends gray out
+                     instead of hiding so the pair doesn't shift while clicking). -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="20,0,20,10"
+                            Visibility="{Binding ShowPinnedGroupReorder, Converter={StaticResource BoolToVisibility}}">
+
+                    <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/shift-up.png"
+                                          IsSmall="True"
+                                          Disabled="{Binding PinnedGroupMoveUpDisabled}"
+                                          Tag="{Binding}"
+                                          Click="MovePinnedGroupUp_MairaButton_Click" />
+
+                    <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/shift-down.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Disabled="{Binding PinnedGroupMoveDownDisabled}"
+                                          Tag="{Binding}"
+                                          Click="MovePinnedGroupDown_MairaButton_Click" />
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </DataTemplate>
+
+    </UserControl.Resources>
 
     <StackPanel>
 
@@ -234,428 +491,799 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[Algorithm]}"
-                                HelpTopic="advanced/racing-wheel/#algorithm">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[FFBGraph]}"
+                                HelpTopic="advanced/racing-wheel/#ffb-graph">
 
             <StackPanel>
 
-                <Grid>
+                <!-- Graph selection + management -->
+                <Grid Margin="0,0,0,20">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaComboBox x:Name="Graph_MairaComboBox"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[Graph]}"
+                                            ContextSwitches="{Binding Settings.RacingWheelSelectedFFBGraphNameContextSwitches}"
+                                            SelectionChanged="Graph_MairaComboBox_SelectionChanged" />
+
+                    <controls:MairaButton Grid.Column="1"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="NewGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          x:Name="RenameGraph_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="RenameGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="3"
+                                          x:Name="DeleteGraph_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="DeleteGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="4"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/export.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="ExportGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="5"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/import.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="ImportGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="6"
+                                          x:Name="ResetGraph_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="ResetGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                </Grid>
+
+                <!-- Graph description — read-only wrapped text for every graph (custom and built-in render
+                     identically). Custom graphs are edited via the pencil button, which opens the multi-line
+                     description editor window; built-ins render localized text with no pencil. The row hides
+                     entirely when a built-in has no description; a custom graph with no description shows the
+                     muted placeholder so the pencil has an anchor. -->
+                <Grid Margin="0,0,0,20">
+
+                    <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding RacingWheelGraphViewModel.IsFFBGraphBuiltIn}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding RacingWheelGraphViewModel.GraphDescription}"
+                                                   Value="" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding RacingWheelGraphViewModel.GraphDescription}"
+                               FontSize="20"
+                               TextWrapping="Wrap">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock"
+                                   BasedOn="{StaticResource MairaTextBlockStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RacingWheelGraphViewModel.GraphDescription}"
+                                                 Value="">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding Localization[GraphDescriptionPlaceholder]}"
+                               FontSize="20"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource Brush.Foreground.Muted}">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock"
+                                   BasedOn="{StaticResource MairaTextBlockStyle}">
+                                <Setter Property="Visibility"
+                                        Value="Collapsed" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding RacingWheelGraphViewModel.IsFFBGraphCustom}"
+                                                       Value="True" />
+                                            <Condition Binding="{Binding RacingWheelGraphViewModel.GraphDescription}"
+                                                       Value="" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <controls:MairaButton Grid.Column="1"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          VerticalAlignment="Top"
+                                          Click="EditGraphDescription_MairaButton_Click"
+                                          Visibility="{Binding RacingWheelGraphViewModel.IsFFBGraphCustom, Converter={StaticResource BoolToVisibility}}" />
+
+                </Grid>
+
+                <!-- The editor block is a 2x2 grid sharing one frame: the node graph on the left with the
+                     selected module's settings column beside it, and the preview graph below the node graph
+                     with the track map panel below the settings. The column split is a settings-driven star
+                     ratio (dragged via the grab handle on the vertical seam) so it survives window resizes.
+                     The boxes touch on square-cornered seams (each box to the right/below drops the border
+                     its neighbor already draws) so the whole block reads as one view. -->
+                <Grid x:Name="GraphEditorBlock_Grid">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{Binding Settings.RacingWheelFFBGraphEditorSplit, Converter={StaticResource FractionToStarWidth}}" />
+                        <ColumnDefinition Width="{Binding Settings.RacingWheelFFBGraphEditorSplit, Converter={StaticResource FractionToStarWidth}, ConverterParameter=Complement}" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="20" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition x:Name="AlgorithmThirdRowSpacer_RowDefinition"
-                                       Height="20" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <!-- Algorithm / Soft Clipping -->
+                    <!-- Node graph (its corner tools include the add-module button, which pops the module picker).
+                         The whole top row (node graph + module settings column) hides behind the show-node-graph
+                         switch above — the preview row below always shows. -->
+                    <controls:MairaFFBGraphEditor Grid.Row="0"
+                                             Grid.Column="0"
+                                             Visibility="{Binding Settings.RacingWheelShowNodeGraph, Converter={StaticResource BoolToVisibility}}" />
 
-                    <controls:MairaComboBox x:Name="Algorithm_MairaComboBox"
-                                            Grid.Column="0"
-                                            Grid.Row="0"
-                                            Label="{Binding Localization[Algorithm]}"
-                                            SelectedValue="{Binding Settings.RacingWheelAlgorithm, Mode=TwoWay}"
-                                            ContextSwitches="{Binding Settings.RacingWheelAlgorithmContextSwitches}" />
+                    <!-- Selected module settings: the controls for whichever node is selected on the graph,
+                         stacked vertically. No left border — the node graph's right border is the divider. The
+                         scroll viewer's height tracks the same setting as the node graph's viewport (both boxes
+                         then add the same 2px top border), so dragging the seam handle resizes the two together
+                         — binding to the graph's ActualHeight instead would deadlock the row against shrinking.
+                         The scrollbar appears when the controls don't all fit. -->
+                    <Border Grid.Row="0"
+                            Grid.Column="1"
+                            BorderThickness="0,2,2,0"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            CornerRadius="0,5,0,0"
+                            Visibility="{Binding Settings.RacingWheelShowNodeGraph, Converter={StaticResource BoolToVisibility}}">
 
-                    <controls:MairaSwitch Grid.Column="0"
-                                          Grid.Row="2"
-                                          Label="{Binding Localization[SoftClipping]}"
-                                          IsOn="{Binding Settings.RacingWheelEnableSoftLimiter, Mode=TwoWay}"
-                                          ContextSwitches="{Binding Settings.RacingWheelEnableSoftLimiterContextSwitches}" />
+                        <ScrollViewer Height="{Binding Settings.RacingWheelFFBGraphEditorHeight}"
+                                      VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      PreviewMouseWheel="ModuleSettings_ScrollViewer_PreviewMouseWheel">
 
-                    <!-- Prediction -->
+                            <ContentControl Content="{Binding RacingWheelGraphViewModel.SelectedModule}"
+                                            ContentTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
 
-                    <controls:MairaComboBox x:Name="PredictionMode_MairaComboBox"
-                                            Grid.Column="2"
-                                            Grid.Row="4"
-                                            Label="{Binding Localization[PredictionMode]}"
-                                            SelectedValue="{Binding Settings.RacingWheelPredictionMode, Mode=TwoWay}"
-                                            ContextSwitches="{Binding Settings.RacingWheelPredictionModeContextSwitches}"
-                                            d:Visibility="Collapsed" />
+                        </ScrollViewer>
 
-                    <controls:MairaKnob x:Name="PredictionBlend_MairaKnob"
-                                        Grid.Column="4"
-                                        Grid.Row="4"
-                                        Label="{Binding Localization[PredictionBlend]}"
-                                        Value="{Binding Settings.RacingWheelPredictionBlend, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelPredictionBlendString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.000174"
-                                        ContextSwitches="{Binding Settings.RacingWheelPredictionBlendContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelPredictionBlendPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelPredictionBlendMinusButtonMappings}"
-                                        DefaultValue="0.35"
-                                        d:Visibility="Collapsed" />
+                    </Border>
 
-                    <!-- Detail Booster -->
+                    <!-- Preview: the selected module's signals replayed over the loaded recording (red = input A,
+                         green = input B, blue = output; for the Output module red/green are the two sources) —
+                         the data currently visible in the viewport is highlighted in orange on the track map.
+                         The record + choose-recording buttons float over the row's top-right corner. Its top
+                         border is the divider against the node graph; corners: only the lower LEFT is rounded —
+                         the track map panel owns the lower right. -->
+                    <Border Grid.Row="1"
+                            Grid.Column="0"
+                            BorderThickness="2"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            Padding="0,0,0,6">
 
-                    <controls:MairaKnob x:Name="DetailBoost_MairaKnob"
-                                        Grid.Column="2"
-                                        Grid.Row="0"
-                                        Label="{Binding Localization[DetailBoost]}"
-                                        Value="{Binding Settings.RacingWheelDetailBoost, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelDetailBoostString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.00173"
-                                        ContextSwitches="{Binding Settings.RacingWheelDetailBoostContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostMinusButtonMappings}"
-                                        DefaultValue="0.5"
-                                        d:Visibility="Collapsed" />
+                        <!-- with the node graph row hidden this row is the top of the block, so its outer top
+                             corner rounds too (the style owns CornerRadius — a local value would override it) -->
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius"
+                                        Value="5,0,0,5" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Settings.RacingWheelShowNodeGraph}"
+                                                 Value="True">
+                                        <Setter Property="CornerRadius"
+                                                Value="0,0,0,5" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
 
-                    <controls:MairaKnob x:Name="DetailBoostBias_MairaKnob"
-                                        Grid.Column="4"
-                                        Grid.Row="0"
-                                        Label="{Binding Localization[DetailBoostBias]}"
-                                        Value="{Binding Settings.RacingWheelDetailBoostBias, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelDetailBoostBiasString}"
-                                        ClickStepSize="0.05"
-                                        DragStepSize="0.000165"
-                                        ContextSwitches="{Binding Settings.RacingWheelDetailBoostBiasContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostBiasPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostBiasMinusButtonMappings}"
-                                        DefaultValue="0.1"
-                                        d:Visibility="Collapsed" />
+                        <ScrollViewer x:Name="Preview_ScrollViewer"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Disabled"
+                                      MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                                      PreviewMouseWheel="Preview_ScrollViewer_PreviewMouseWheel"
+                                      ScrollChanged="Preview_ScrollViewer_ScrollChanged"
+                                      Loaded="Preview_ScrollViewer_Loaded">
 
-                    <!-- Delta Limiter -->
+                            <Image x:Name="AlgorithmPreview_Image"
+                                   Height="301"
+                                   Width="3840"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   MouseEnter="AlgorithmPreview_Image_MouseEnter"
+                                   MouseLeave="AlgorithmPreview_Image_MouseLeave"
+                                   MouseMove="AlgorithmPreview_Image_MouseMove"
+                                   MouseLeftButtonDown="AlgorithmPreview_Image_MouseLeftButtonDown"
+                                   MouseLeftButtonUp="AlgorithmPreview_Image_MouseLeftButtonUp"
+                                   LostMouseCapture="AlgorithmPreview_Image_LostMouseCapture" />
 
-                    <controls:MairaKnob x:Name="DeltaLimit_MairaKnob"
-                                        Grid.Column="2"
-                                        Grid.Row="0"
-                                        Label="{Binding Localization[DeltaLimit]}"
-                                        Value="{Binding Settings.RacingWheelDeltaLimit, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelDeltaLimitString}"
-                                        ClickStepSize="10"
-                                        DragStepSize="0.521"
-                                        ContextSwitches="{Binding Settings.RacingWheelDeltaLimitContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelDeltaLimitPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelDeltaLimitMinusButtonMappings}"
-                                        DefaultValue="500"
-                                        d:Visibility="Collapsed" />
+                        </ScrollViewer>
 
-                    <controls:MairaKnob x:Name="DeltaLimiterBias_MairaKnob"
-                                        Grid.Column="4"
-                                        Grid.Row="0"
-                                        Label="{Binding Localization[DeltaLimiterBias]}"
-                                        Value="{Binding Settings.RacingWheelDeltaLimiterBias, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelDeltaLimiterBiasString}"
-                                        ClickStepSize="0.05"
-                                        DragStepSize="0.000165"
-                                        ContextSwitches="{Binding Settings.RacingWheelDeltaLimiterBiasContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelDeltaLimiterBiasPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelDeltaLimiterBiasMinusButtonMappings}"
-                                        DefaultValue="0.2"
-                                        d:Visibility="Collapsed" />
+                    </Border>
 
-                    <!-- Slew and Total Compression -->
+                    <!-- track map panel: the whole recorded segment is fitted into the panel's actual rectangle
+                         (uniform scale, centered, margin all around — refit in code whenever the panel resizes).
+                         Shares the block's frame — no left border (the preview's right border is the vertical
+                         divider) and its top border is the divider against the settings column above; square
+                         corners except the lower right. The border stretches to the preview's full height
+                         (scrollbar + padding included) so the bottom edges line up. -->
+                    <Border Grid.Row="1"
+                            Grid.Column="1"
+                            x:Name="TrackMap_Border"
+                            BorderThickness="0,2,2,2"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}">
 
-                    <controls:MairaKnob x:Name="SlewCompressionThreshold_MairaKnob"
-                                        Grid.Column="2"
-                                        Grid.Row="0"
-                                        Label="{Binding Localization[SlewCompressionThreshold]}"
-                                        Value="{Binding Settings.RacingWheelSlewCompressionThreshold, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelSlewCompressionThresholdString}"
-                                        ClickStepSize="1"
-                                        DragStepSize="0.0608"
-                                        ContextSwitches="{Binding Settings.RacingWheelSlewCompressionThresholdContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelSlewCompressionThresholdPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelSlewCompressionThresholdMinusButtonMappings}"
-                                        DefaultValue="2"
-                                        d:Visibility="Collapsed" />
+                        <!-- outer top-right corner rounds when the node graph row above is hidden -->
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius"
+                                        Value="0,5,5,0" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Settings.RacingWheelShowNodeGraph}"
+                                                 Value="True">
+                                        <Setter Property="CornerRadius"
+                                                Value="0,0,5,0" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
 
-                    <controls:MairaKnob x:Name="SlewCompressionRate_MairaKnob"
-                                        Grid.Column="4"
-                                        Grid.Row="0"
-                                        Label="{Binding Localization[SlewCompressionRate]}"
-                                        Value="{Binding Settings.RacingWheelSlewCompressionRate, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelSlewCompressionRateString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.000174"
-                                        ContextSwitches="{Binding Settings.RacingWheelSlewCompressionRateContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelSlewCompressionRatePlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelSlewCompressionRateMinusButtonMappings}"
-                                        DefaultValue="0.65"
-                                        d:Visibility="Collapsed" />
+                        <!-- everything sits on a Canvas so the Path's element origin stays pinned to the
+                             panel's top-left corner: a Grid would size/align the Path from its geometry
+                             bounds, shifting the rendered line around as recordings change. The canvas fills
+                             the panel; SizeChanged refits the track to the new rectangle. -->
+                        <Canvas x:Name="TrackMap_Canvas"
+                                ClipToBounds="True"
+                                SizeChanged="TrackMap_Canvas_SizeChanged">
 
-                    <controls:MairaKnob x:Name="TotalCompressionThreshold_MairaKnob"
-                                        Grid.Column="2"
-                                        Grid.Row="2"
-                                        Label="{Binding Localization[TotalCompressionThreshold]}"
-                                        Value="{Binding Settings.RacingWheelTotalCompressionThreshold, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelTotalCompressionThresholdString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.000174"
-                                        ContextSwitches="{Binding Settings.RacingWheelTotalCompressionThresholdContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelTotalCompressionThresholdPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelTotalCompressionThresholdMinusButtonMappings}"
-                                        DefaultValue="0.65"
-                                        d:Visibility="Collapsed" />
+                            <!-- whole recorded segment, fitted to the panel, north up -->
+                            <Path x:Name="TrackMap_Path"
+                                  Stroke="{DynamicResource Brush.Foreground.Muted}"
+                                  StrokeThickness="3"
+                                  Opacity="0.8"
+                                  StrokeLineJoin="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round" />
 
-                    <controls:MairaKnob x:Name="TotalCompressionRate_MairaKnob"
-                                        Grid.Column="4"
-                                        Grid.Row="2"
-                                        Label="{Binding Localization[TotalCompressionRate]}"
-                                        Value="{Binding Settings.RacingWheelTotalCompressionRate, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelTotalCompressionRateString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.000174"
-                                        ContextSwitches="{Binding Settings.RacingWheelTotalCompressionRateContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelTotalCompressionRatePlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelTotalCompressionRateMinusButtonMappings}"
-                                        DefaultValue="0.75"
-                                        d:Visibility="Collapsed" />
-                    
-                    <!-- Multi -->
+                            <!-- the slice of the recording currently visible in the preview viewport -->
+                            <Path x:Name="TrackMapSegment_Path"
+                                  Stroke="{DynamicResource Brush.Accent}"
+                                  StrokeThickness="4"
+                                  StrokeLineJoin="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round" />
 
-                    <controls:MairaKnob x:Name="Multi360HzDetail_MairaKnob"
-                                        Grid.Column="2"
-                                        Grid.Row="0"
-                                        Label="{Binding Localization[Multi360HzDetail]}"
-                                        Value="{Binding Settings.RacingWheelMulti360HzDetail, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelMulti360HzDetailString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.000521"
-                                        ContextSwitches="{Binding Settings.RacingWheelMulti360HzDetailContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelMulti360HzDetailPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelMulti360HzDetailMinusButtonMappings}"
-                                        DefaultValue="1" />
-                    
-                    <controls:MairaKnob x:Name="MultiTorqueCompression_MairaKnob"
-                                        Grid.Column="4"
-                                        Grid.Row="0"
-                                        Label="{Binding Localization[TorqueCompression]}"
-                                        Value="{Binding Settings.RacingWheelMultiTorqueCompression, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelMultiTorqueCompressionString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.000174"
-                                        ContextSwitches="{Binding Settings.RacingWheelMultiTorqueCompressionContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelMultiTorqueCompressionPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelMultiTorqueCompressionMinusButtonMappings}"
-                                        DefaultValue="0" />
+                            <!-- recording start (green) / end (red) markers — positioned in code -->
+                            <Ellipse x:Name="TrackMapStart_Ellipse"
+                                     Width="10"
+                                     Height="10"
+                                     Fill="#FF30C030" />
 
-                    <controls:MairaSwitch x:Name="MultiEnableSlewPeakMode_MairaSwitch"
-                                          Grid.Column="2"
-                                          Grid.Row="2"
-                                          Label="{Binding Localization[SlewPeakMode]}"
-                                          IsOn="{Binding Settings.RacingWheelMultiEnableSlewPeakMode, Mode=TwoWay}"
-                                          ContextSwitches="{Binding Settings.RacingWheelMultiEnableSlewPeakModeContextSwitches}" />
+                            <Ellipse x:Name="TrackMapEnd_Ellipse"
+                                     Width="10"
+                                     Height="10"
+                                     Fill="#FFE03030" />
 
-                    <controls:MairaKnob x:Name="MultiSlewRateReduction_MairaKnob"
-                                        Grid.Column="4"
-                                        Grid.Row="2"
-                                        Label="{Binding Localization[SlewRateReduction]}"
-                                        Value="{Binding Settings.RacingWheelMultiSlewRateReduction, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelMultiSlewRateReductionString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.000174"
-                                        ContextSwitches="{Binding Settings.RacingWheelMultiSlewRateReductionContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelMultiSlewRateReductionPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelMultiSlewRateReductionMinusButtonMappings}"
-                                        DefaultValue="-1" />
+                        </Canvas>
 
-                    <controls:MairaComboBox x:Name="MultiFFBSource_MairaComboBox"
-                                            Grid.Column="0"
-                                            Grid.Row="4"
-                                            Label="{Binding Localization[FFBSource]}"
-                                            SelectedValue="{Binding Settings.RacingWheelMultiFFBSourceSelection, Mode=TwoWay}"
-                                            ContextSwitches="{Binding Settings.RacingWheelMultiFFBSourceSelectionContextSwitches}" />
+                    </Border>
 
-                    <controls:MairaKnob x:Name="MultiDetailGain_MairaKnob"
-                                        Grid.Column="2"
-                                        Grid.Row="4"
-                                        Label="{Binding Localization[DetailGain]}"
-                                        Value="{Binding Settings.RacingWheelMultiDetailGain, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelMultiDetailGainString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.000694"
-                                        ContextSwitches="{Binding Settings.RacingWheelMultiDetailGainContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelMultiDetailGainPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelMultiDetailGainMinusButtonMappings}"
-                                        DefaultValue="0" />
+                    <!-- grab handle for resizing the node graph: a grip pill centered on the seam between the node
+                         graph above and this preview row (the negative margin makes it straddle the divider line).
+                         Dragging changes only the node graph's height — the preview never resizes — and the height
+                         persists in settings. -->
+                    <Thumb x:Name="GraphEditorHeight_Thumb"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Width="56"
+                           Height="14"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"
+                           Margin="0,-6,0,0"
+                           Panel.ZIndex="2"
+                           Cursor="SizeNS"
+                           Visibility="{Binding Settings.RacingWheelShowNodeGraph, Converter={StaticResource BoolToVisibility}}"
+                           DragDelta="GraphEditorHeight_Thumb_DragDelta"
+                           DragCompleted="GraphEditorHeight_Thumb_DragCompleted">
 
-                    <controls:MairaKnob x:Name="MultiOutputSmoothing_MairaKnob"
-                                        Grid.Column="4"
-                                        Grid.Row="4"
-                                        Label="{Binding Localization[OutputSmoothing]}"
-                                        Value="{Binding Settings.RacingWheelMultiOutputSmoothing, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelMultiOutputSmoothingString}"
-                                        ClickStepSize="0.01"
-                                        DragStepSize="0.000174"
-                                        ContextSwitches="{Binding Settings.RacingWheelMultiOutputSmoothingContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelMultiOutputSmoothingPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelMultiOutputSmoothingMinusButtonMappings}"
-                                        DefaultValue="-1" />
+                        <Thumb.Template>
+                            <ControlTemplate TargetType="Thumb">
+
+                                <Border x:Name="Handle_Border"
+                                        Background="{DynamicResource Brush.Background.Default}"
+                                        BorderBrush="{DynamicResource Brush.Border.Normal}"
+                                        BorderThickness="2"
+                                        CornerRadius="7">
+
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+
+                                        <Ellipse Width="3"
+                                                 Height="3"
+                                                 Fill="{DynamicResource Brush.Foreground.Muted}" />
+
+                                        <Ellipse Width="3"
+                                                 Height="3"
+                                                 Fill="{DynamicResource Brush.Foreground.Muted}"
+                                                 Margin="5,0,0,0" />
+
+                                        <Ellipse Width="3"
+                                                 Height="3"
+                                                 Fill="{DynamicResource Brush.Foreground.Muted}"
+                                                 Margin="5,0,0,0" />
+
+                                    </StackPanel>
+
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Border.Active}" />
+                                    </Trigger>
+                                    <Trigger Property="IsDragging" Value="True">
+                                        <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+
+                            </ControlTemplate>
+                        </Thumb.Template>
+
+                    </Thumb>
+
+                    <!-- grab handle for resizing the columns: the vertical twin of the pill above, sitting on the
+                         seam between the node graph / preview column and the settings / track map column, centered
+                         on the top row (mirroring how the height pill centers on the first column). Dragging moves
+                         the split fraction, which persists in settings. -->
+                    <Thumb x:Name="GraphEditorSplit_Thumb"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           Width="14"
+                           Height="56"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="-6,0,0,0"
+                           Panel.ZIndex="2"
+                           Cursor="SizeWE"
+                           Visibility="{Binding Settings.RacingWheelShowNodeGraph, Converter={StaticResource BoolToVisibility}}"
+                           DragDelta="GraphEditorSplit_Thumb_DragDelta"
+                           DragCompleted="GraphEditorSplit_Thumb_DragCompleted">
+
+                        <Thumb.Template>
+                            <ControlTemplate TargetType="Thumb">
+
+                                <Border x:Name="Handle_Border"
+                                        Background="{DynamicResource Brush.Background.Default}"
+                                        BorderBrush="{DynamicResource Brush.Border.Normal}"
+                                        BorderThickness="2"
+                                        CornerRadius="7">
+
+                                    <StackPanel Orientation="Vertical"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+
+                                        <Ellipse Width="3"
+                                                 Height="3"
+                                                 Fill="{DynamicResource Brush.Foreground.Muted}" />
+
+                                        <Ellipse Width="3"
+                                                 Height="3"
+                                                 Fill="{DynamicResource Brush.Foreground.Muted}"
+                                                 Margin="0,5,0,0" />
+
+                                        <Ellipse Width="3"
+                                                 Height="3"
+                                                 Fill="{DynamicResource Brush.Foreground.Muted}"
+                                                 Margin="0,5,0,0" />
+
+                                    </StackPanel>
+
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Border.Active}" />
+                                    </Trigger>
+                                    <Trigger Property="IsDragging" Value="True">
+                                        <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+
+                            </ControlTemplate>
+                        </Thumb.Template>
+
+                    </Thumb>
+
+                    <Border Grid.Row="1"
+                            Grid.Column="0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="0,8,8,0"
+                            Panel.ZIndex="1"
+                            Background="{DynamicResource Brush.Background.Default}"
+                            CornerRadius="20"
+                            Padding="6">
+
+                        <!-- the rounded plate above is opaque (page background color) so the buttons stay
+                             readable over the preview traces underneath -->
+                        <StackPanel Orientation="Horizontal">
+
+                            <controls:MairaButton x:Name="ChooseRecording_MairaButton"
+                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
+                                                  IsSmall="True"
+                                                  Click="ChooseRecording_MairaButton_Click" />
+
+                            <controls:MairaMappableButton x:Name="Record_MairaMappableButton"
+                                                          ButtonMappings="{Binding Settings.RacingWheelStartRecordingMappings}"
+                                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-white.png"
+                                                          BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-orange.png"
+                                                          Click="StartRecording_MairaMappableButton_Click"
+                                                          IsSmall="True"
+                                                          Margin="8,0,0,0" />
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <!-- show/hide toggle for the node graph row (advanced users flip it on for full control of
+                         the graph; basic users leave it off and drive the pinned quick controls in the FFB graph
+                         settings section below). Floats over the block's top-left corner on an opaque rounded
+                         plate — the twin of the record-buttons plate on the preview row's top-right — row-spanned
+                         with top alignment so it stays in that corner whether the node graph row is visible or
+                         collapsed. Global setting. -->
+                    <Border Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Margin="8,8,0,0"
+                            Panel.ZIndex="1"
+                            Background="{DynamicResource Brush.Background.Default}"
+                            CornerRadius="20"
+                            Padding="12,6">
+
+                        <controls:MairaSwitch Margin="0"
+                                              IsOn="{Binding Settings.RacingWheelShowNodeGraph, Mode=TwoWay}"
+                                              Label="{Binding Localization[ShowNodeGraph]}" />
+
+                    </Border>
+
+                    <Popup x:Name="PreviewZoom_Popup"
+                           Placement="Relative"
+                           PlacementTarget="{Binding ElementName=AlgorithmPreview_Image}"
+                           AllowsTransparency="True"
+                           PopupAnimation="Fade"
+                           StaysOpen="True">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <Border Width="256"
+                                    Height="256"
+                                    CornerRadius="16"
+                                    Background="{DynamicResource Brush.Background.Popup}"
+                                    BorderBrush="#FFF"
+                                    BorderThickness="1"
+                                    SnapsToDevicePixels="True"
+                                    ClipToBounds="True">
+
+                                <Border CornerRadius="16"
+                                        RenderOptions.BitmapScalingMode="NearestNeighbor">
+
+                                    <Border.Background>
+
+                                        <ImageBrush x:Name="PreviewZoom_Brush"
+                                                    ImageSource="{Binding ElementName=AlgorithmPreview_Image, Path=Source}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0,1,1"
+                                                    Stretch="Fill" />
+
+                                    </Border.Background>
+
+                                </Border>
+
+                            </Border>
+
+                            <!-- the recorded telemetry at the sample under the cursor (one preview pixel = one
+                                 recorded sample); left column = FFB signal + wheel, right column = car + track -->
+                            <Border x:Name="PreviewData_Border"
+                                    Height="256"
+                                    Margin="8,0,0,0"
+                                    CornerRadius="16"
+                                    Background="{DynamicResource Brush.Background.Popup}"
+                                    BorderBrush="#FFF"
+                                    BorderThickness="1"
+                                    SnapsToDevicePixels="True"
+                                    Padding="16,8">
+
+                                <Grid VerticalAlignment="Center">
+
+                                    <Grid.Resources>
+                                        <Style x:Key="PreviewDataLabelStyle" TargetType="TextBlock" BasedOn="{StaticResource MairaTextBlockStyle}">
+                                            <Setter Property="FontSize" Value="14" />
+                                            <Setter Property="Margin" Value="0,1,10,1" />
+                                            <Setter Property="Foreground" Value="{DynamicResource Brush.Foreground.Muted}" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                        <Style x:Key="PreviewDataValueStyle" TargetType="TextBlock" BasedOn="{StaticResource MairaTextBlockStyle}">
+                                            <Setter Property="FontSize" Value="14" />
+                                            <Setter Property="Margin" Value="0,1,0,1" />
+                                            <Setter Property="MinWidth" Value="70" />
+                                            <Setter Property="TextAlignment" Value="Right" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="28" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Time]}" />
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataTime_TextBlock" />
+                                    <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[TrackPosition]}" />
+                                    <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataTrackPosition_TextBlock" />
+
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Torque60Hz]}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataTorque60Hz_TextBlock" />
+                                    <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Speed]}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSpeed_TextBlock" />
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Torque360Hz]}" />
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataTorque360Hz_TextBlock" />
+                                    <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[RPM]}" />
+                                    <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataRPM_TextBlock" />
+
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[LFE]}" />
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataLFE_TextBlock" />
+                                    <TextBlock Grid.Row="3" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Gear]}" />
+                                    <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataGear_TextBlock" />
+
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[SteeringAngle]}" />
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSteeringAngle_TextBlock" />
+                                    <TextBlock Grid.Row="4" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[ABS]}" />
+                                    <TextBlock Grid.Row="4" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataABS_TextBlock" />
+
+                                    <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[SteeringVelocity]}" />
+                                    <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSteeringVelocity_TextBlock" />
+                                    <TextBlock Grid.Row="5" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[LateralGForce]}" />
+                                    <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataLateralGForce_TextBlock" />
+
+                                    <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[WheelPosition]}" />
+                                    <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataWheelPosition_TextBlock" />
+                                    <TextBlock Grid.Row="6" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[LongitudinalGForce]}" />
+                                    <TextBlock Grid.Row="6" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataLongitudinalGForce_TextBlock" />
+
+                                    <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[WheelVelocity]}" />
+                                    <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataWheelVelocity_TextBlock" />
+                                    <TextBlock Grid.Row="7" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[ShockVelocity]}" />
+                                    <TextBlock Grid.Row="7" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataShockVelocity_TextBlock" />
+
+                                    <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Understeer]}" />
+                                    <TextBlock Grid.Row="8" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataUndersteer_TextBlock" />
+                                    <TextBlock Grid.Row="8" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Oversteer]}" />
+                                    <TextBlock Grid.Row="8" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataOversteer_TextBlock" />
+
+                                    <TextBlock Grid.Row="9" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[SeatOfPants]}" />
+                                    <TextBlock Grid.Row="9" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSeatOfPants_TextBlock" />
+                                    <TextBlock Grid.Row="9" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[SkidSlip]}" />
+                                    <TextBlock Grid.Row="9" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSkidSlip_TextBlock" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+
+                    </Popup>
+
                 </Grid>
 
             </StackPanel>
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[Output]}"
-                                HelpTopic="advanced/racing-wheel/#output"
-                                Tag="Complex">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[FFBGraphSettings]}"
+                                HelpTopic="advanced/racing-wheel/#ffb-graph">
 
-            <Grid>
+            <StackPanel>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                <!-- Pinned quick controls, grouped by node: one group per module that has pinned settings
+                     (the pin switches on the module settings cards). Each group shows the node's name and
+                     description once, then that node's pinned settings three across — so pinning several
+                     settings of the same node doesn't repeat the description beside every control. Same
+                     setting VM instances as the settings column, so both stay in sync. -->
+                <!-- Shows/hides the pinned quick controls below. Global setting. -->
+                <controls:MairaSwitch Margin="0,0,0,20"
+                                      IsOn="{Binding Settings.RacingWheelShowPinnedSettings, Mode=TwoWay}"
+                                      Label="{Binding Localization[ShowPinnedSettings]}" />
 
-                <controls:MairaKnob Grid.Column="0"
-                                    Label="{Binding Localization[Minimum]}"
-                                    Value="{Binding Settings.RacingWheelOutputMinimum, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelOutputMinimumString}"
-                                    ClickStepSize="0.001"
-                                    DragStepSize="0.0000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelOutputMinimumContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelOutputMinimumPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelOutputMinimumMinusButtonMappings}"
-                                    DefaultValue="0" />
+                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.PinnedGroups}">
 
-                <controls:MairaKnob Grid.Column="2"
-                                    Label="{Binding Localization[Maximum]}"
-                                    Value="{Binding Settings.RacingWheelOutputMaximum, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelOutputMaximumString}"
-                                    ClickStepSize="0.01"
-                                    DragStepSize="0.000139"
-                                    ContextSwitches="{Binding Settings.RacingWheelOutputMaximumContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelOutputMaximumPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelOutputMaximumMinusButtonMappings}"
-                                    DefaultValue="1" />
+                    <!-- shown only while the show-pinned-settings switch above is on AND the graph actually
+                         has pinned settings -->
+                    <ItemsControl.Style>
+                        <Style TargetType="ItemsControl">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Settings.RacingWheelShowPinnedSettings}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding RacingWheelGraphViewModel.HasPinnedSettings}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ItemsControl.Style>
 
-                <controls:MairaKnob Grid.Column="4"
-                                    Label="{Binding Localization[Curve]}"
-                                    Value="{Binding Settings.RacingWheelOutputCurve, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelOutputCurveString}"
-                                    ClickStepSize="0.01"
-                                    DragStepSize="0.000347"
-                                    ContextSwitches="{Binding Settings.RacingWheelOutputCurveContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelOutputCurvePlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelOutputCurveMinusButtonMappings}"
-                                    ShowCurve="True"
-                                    DefaultValue="0" />
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- no extra bottom margin — the setting templates already carry a 20px one -->
+                            <StackPanel>
 
-            </Grid>
+                                <!-- node name with a rule stretching to the page's right edge — same idea as the
+                                     group-box header line, but dotted and fainter so it reads as a sub-heading -->
+                                <Grid>
 
-        </controls:MairaGroupBox>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[Preview]}"
-                                HelpTopic="advanced/racing-wheel/#preview"
-                                Tag="Complex">
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding Module.DisplayName}"
+                                               Style="{StaticResource MairaTextBlockStyle}"
+                                               TextTrimming="CharacterEllipsis" />
 
-            <Grid>
+                                    <!-- the hairline's logical thickness is 1/AppUIScale so it always rasterizes as exactly one
+                                         device pixel — a fixed 1px line scaled below 100% becomes a sub-pixel band that can vanish
+                                         at some scroll offsets; aliased edges keep that single pixel row crisp (a stroked Rectangle
+                                         would draw its top AND bottom edges as two overlapping dash rows — a Line draws one) -->
+                                    <Line Grid.Column="1"
+                                          X2="1"
+                                          Stretch="Fill"
+                                          VerticalAlignment="Bottom"
+                                          Margin="10,0,0,5"
+                                          Stroke="{DynamicResource Brush.Foreground.Muted}"
+                                          StrokeThickness="{Binding Settings.AppUIScale, Source={x:Static datacontext:DataContext.Instance}, Converter={StaticResource HairlineThickness}}"
+                                          StrokeDashArray="3 3"
+                                          Opacity="0.4"
+                                          RenderOptions.EdgeMode="Aliased" />
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                                </Grid>
 
-                <Border Grid.Row="0"
-                        BorderThickness="2"
-                        BorderBrush="{DynamicResource Brush.Border.Normal}"
-                        Background="{DynamicResource Brush.Background.Popup}"
-                        CornerRadius="5"
-                        Padding="0,0,0,6">
+                                <TextBlock Text="{Binding Module.NodeDescription}"
+                                           FontSize="16"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,10">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock"
+                                               BasedOn="{StaticResource MairaTextBlockStyle}">
+                                            <Setter Property="Foreground"
+                                                    Value="{DynamicResource Brush.Foreground.Muted}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Module.NodeDescription}"
+                                                             Value="">
+                                                    <Setter Property="Visibility"
+                                                            Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
 
-                    <ScrollViewer x:Name="Preview_ScrollViewer"
-                                  HorizontalScrollBarVisibility="Auto"
-                                  VerticalScrollBarVisibility="Disabled"
-                                  MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
-                                  PreviewMouseWheel="Preview_ScrollViewer_PreviewMouseWheel"
-                                  Loaded="Preview_ScrollViewer_Loaded">
+                                <!-- same warning the settings card shows while this module's effect is switched
+                                     off on the steering effects page — the pinned controls (especially a pinned
+                                     Enabled toggle) are inert until it is re-enabled there -->
+                                <TextBlock Text="{Binding Module.SteeringEffectDisabledNotice}"
+                                           Style="{StaticResource MairaTextBlockStyle}"
+                                           FontSize="16"
+                                           Foreground="{DynamicResource Brush.Accent}"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,10"
+                                           Visibility="{Binding Module.SteeringEffectDisabled, Converter={StaticResource BoolToVisibility}}" />
 
-                        <Image x:Name="AlgorithmPreview_Image"
-                               Height="301"
-                               Width="3840"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                               MouseEnter="AlgorithmPreview_Image_MouseEnter"
-                               MouseLeave="AlgorithmPreview_Image_MouseLeave"
-                               MouseMove="AlgorithmPreview_Image_MouseMove" />
+                                <!-- Tag marks this as the quick-controls host: the pin-switch style collapses
+                                     the tiny pin switches under it, so controls here can't be accidentally
+                                     un-pinned (the style looks for the NEAREST ancestor ItemsControl, which
+                                     is this one, not the outer groups list). -->
+                                <!-- the setting templates carry a 20px inset on both sides (wanted inside the
+                                     bordered settings column) — the negative margin cancels it at the outer
+                                     edges here, so the quick controls line up flush with the rest of the page
+                                     while the 40px gutters between columns remain -->
+                                <ItemsControl ItemsSource="{Binding Settings}"
+                                              Tag="QuickControls"
+                                              Margin="-20,0,-20,0"
+                                              ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <UniformGrid Columns="3" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
 
-                    </ScrollViewer>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
 
-                </Border>
+                </ItemsControl>
 
-                <Popup x:Name="PreviewZoom_Popup"
-                       Grid.Row="0"
-                       Placement="Relative"
-                       PlacementTarget="{Binding ElementName=AlgorithmPreview_Image}"
-                       AllowsTransparency="True"
-                       PopupAnimation="Fade"
-                       StaysOpen="True">
-
-                    <Border Width="256"
-                            Height="256"
-                            CornerRadius="16"
-                            Background="{DynamicResource Brush.Background.Popup}"
-                            BorderBrush="#FFF"
-                            BorderThickness="1"
-                            SnapsToDevicePixels="True"
-                            ClipToBounds="True">
-
-                        <Border CornerRadius="16"
-                                RenderOptions.BitmapScalingMode="NearestNeighbor">
-
-                            <Border.Background>
-
-                                <ImageBrush x:Name="PreviewZoom_Brush"
-                                            ImageSource="{Binding ElementName=AlgorithmPreview_Image, Path=Source}"
-                                            ViewboxUnits="RelativeToBoundingBox"
-                                            Viewbox="0,0,1,1"
-                                            Stretch="Fill" />
-
-                            </Border.Background>
-
-                        </Border>
-
-                    </Border>
-
-                </Popup>
-
-                <Grid Grid.Row="2">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <controls:MairaComboBox x:Name="PreviewRecordings_MairaComboBox"
-                                            Grid.Column="0"
-                                            SelectedValue="{Binding Settings.RacingWheelSelectedRecording, Mode=TwoWay}" />
-
-                    <controls:MairaMappableButton x:Name="Record_MairaMappableButton"
-                                                  Grid.Column="2"
-                                                  ButtonMappings="{Binding Settings.RacingWheelStartRecordingMappings}"
-                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-white.png"
-                                                  BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-orange.png"
-                                                  Click="StartRecording_MairaMappableButton_Click"
-                                                  IsSmall="True" />
-
-                </Grid>
-
-            </Grid>
+            </StackPanel>
 
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[WheelLFE]}"
-                                HelpTopic="advanced/racing-wheel/#wheel-lfe"
-                                Tag="Complex">
+                                HelpTopic="advanced/racing-wheel/#wheel-lfe">
 
             <Grid>
 
@@ -669,283 +1297,48 @@
 
                 <controls:MairaComboBox x:Name="LFERecordingDevice_MairaComboBox"
                                         Grid.Column="0"
-                                        Grid.ColumnSpan="3"
+                                        Grid.ColumnSpan="5"
                                         Label="{Binding Localization[LFERecordingDevice]}"
                                         SelectedValue="{Binding Settings.RacingWheelLFERecordingDeviceName, Mode=TwoWay}" />
 
-                <controls:MairaKnob Grid.Column="4"
-                                    Label="{Binding Localization[Strength]}"
-                                    Value="{Binding Settings.RacingWheelLFEStrength, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelLFEStrengthString}"
-                                    ClickStepSize="0.01"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelLFEStrengthContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelLFEStrengthPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelLFEStrengthMinusButtonMappings}"
-                                    DefaultValue="0.05" />
-
             </Grid>
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[CrashProtection]}"
-                                HelpTopic="advanced/racing-wheel/#crash-protection"
-                                Tag="Complex">
+        <!-- No HelpTopic on purpose: the help icon hides itself when the topic is blank, so this section
+             does not create an obligation to write a docs page for it. -->
+        <controls:MairaGroupBox x:Name="RevLights_MairaGroupBox"
+                                Label="{Binding Localization.Upper[RevLights]}"
+                                Visibility="Collapsed"
+                                d:Visibility="Visible">
 
             <Grid>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                <StackPanel>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="RevLightsWheelName_TextBlock"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="{DynamicResource Brush.Foreground.Muted}"
+                               Margin="0,0,0,20"
+                               TextWrapping="Wrap"
+                               d:Text="Logitech G PRO Racing Wheel (Xbox)" />
 
-                <controls:MairaKnob Grid.Row="0"
-                                    Grid.Column="0"
-                                    Label="{Binding Localization[LongitudalGForce]}"
-                                    Value="{Binding Settings.RacingWheelCrashProtectionLongitudalGForce, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelCrashProtectionLongitudalGForceString}"
-                                    ClickStepSize="0.5"
-                                    DragStepSize="0.00312"
-                                    ContextSwitches="{Binding Settings.RacingWheelCrashProtectionLongitudalGForceContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionLongitudalGForcePlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionLongitudalGForceMinusButtonMappings}"
-                                    DefaultValue="8" />
-                <controls:MairaKnob Grid.Row="0"
-                                    Grid.Column="2"
-                                    Label="{Binding Localization[Duration]}"
-                                    Value="{Binding Settings.RacingWheelCrashProtectionDuration, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelCrashProtectionDurationString}"
-                                    ClickStepSize="0.5"
-                                    DragStepSize="0.00174"
-                                    ContextSwitches="{Binding Settings.RacingWheelCrashProtectionDurationContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationMinusButtonMappings}"
-                                    DefaultValue="1" />
-                <controls:MairaKnob Grid.Row="0"
-                                    Grid.Column="4"
-                                    Label="{Binding Localization[ForceReduction]}"
-                                    Value="{Binding Settings.RacingWheelCrashProtectionForceReduction, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelCrashProtectionForceReductionString}"
-                                    ClickStepSize="0.01"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelCrashProtectionForceReductionContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionMinusButtonMappings}"
-                                    DefaultValue="0.95" />
-                <controls:MairaKnob Grid.Row="2"
-                                    Grid.Column="0"
-                                    Label="{Binding Localization[LateralGForce]}"
-                                    Value="{Binding Settings.RacingWheelCrashProtectionLateralGForce, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelCrashProtectionLateralGForceString}"
-                                    ClickStepSize="0.5"
-                                    DragStepSize="0.00312"
-                                    ContextSwitches="{Binding Settings.RacingWheelCrashProtectionLateralGForceContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionLateralGForcePlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionLateralGForceMinusButtonMappings}"
-                                    DefaultValue="6" />
-            </Grid>
+                    <controls:MairaSwitch Margin="0"
+                                          IsOn="{Binding Settings.RacingWheelRevLightsEnabled, Mode=TwoWay}"
+                                          Label="{Binding Localization[RevLightsEnabled]}" />
 
-        </controls:MairaGroupBox>
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          IsOn="{Binding Settings.RacingWheelRevLightsFlashAtShiftPoint, Mode=TwoWay}"
+                                          Label="{Binding Localization[RevLightsFlashAtShiftPoint]}" />
 
-        <controls:MairaGroupBox x:Name="CurbProtection_MairaGroupBox"
-                                Label="{Binding Localization.Upper[CurbProtection]}"
-                                HelpTopic="advanced/racing-wheel/#curb-protection"
-                                Tag="Complex">
-
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <controls:MairaKnob Grid.Column="0"
-                                    Label="{Binding Localization[ShockVelocity]}"
-                                    Value="{Binding Settings.RacingWheelCurbProtectionShockVelocity, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelCurbProtectionShockVelocityString}"
-                                    ClickStepSize="0.01"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelCurbProtectionShockVelocityContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionShockVelocityPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionShockVelocityMinusButtonMappings}"
-                                    DefaultValue="0.5" />
-                <controls:MairaKnob Grid.Column="2"
-                                    Label="{Binding Localization[Duration]}"
-                                    Value="{Binding Settings.RacingWheelCurbProtectionDuration, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelCurbProtectionDurationString}"
-                                    ClickStepSize="0.1"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelCurbProtectionDurationContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionDurationPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionDurationMinusButtonMappings}"
-                                    DefaultValue="0.1" />
-                <controls:MairaKnob Grid.Column="4"
-                                    Label="{Binding Localization[ForceReduction]}"
-                                    Value="{Binding Settings.RacingWheelCurbProtectionForceReduction, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelCurbProtectionForceReductionString}"
-                                    ClickStepSize="0.01"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelCurbProtectionForceReductionContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionForceReductionPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionForceReductionMinusButtonMappings}"
-                                    DefaultValue="0.75" />
-
-            </Grid>
-
-        </controls:MairaGroupBox>
-
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[ParkedEffects]}"
-                                HelpTopic="advanced/racing-wheel/#parked-effects"
-                                Tag="Complex">
-
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <controls:MairaKnob Grid.Column="0"
-                                    Label="{Binding Localization[ForceFeedbackStrength]}"
-                                    Value="{Binding Settings.RacingWheelParkedStrength, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelParkedStrengthString}"
-                                    ClickStepSize="0.05"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelParkedStrengthContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelParkedStrengthPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelParkedStrengthMinusButtonMappings}"
-                                    DefaultValue="0.1" />
-                <controls:MairaKnob Grid.Column="2"
-                                    Label="{Binding Localization[ParkedFriction]}"
-                                    Value="{Binding Settings.RacingWheelParkedFriction, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelParkedFrictionString}"
-                                    ClickStepSize="0.05"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelParkedFrictionContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelParkedFrictionPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelParkedFrictionMinusButtonMappings}"
-                                    DefaultValue="0" />
-
-            </Grid>
-
-        </controls:MairaGroupBox>
-
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[OtherFeatures]}"
-                                HelpTopic="advanced/racing-wheel/#other-features"
-                                Tag="Complex">
-
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <controls:MairaKnob Grid.Column="0"
-                                    Label="{Binding Localization[SoftLockStrength]}"
-                                    Value="{Binding Settings.RacingWheelSoftLockStrength, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelSoftLockStrengthString}"
-                                    ClickStepSize="0.05"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelSoftLockStrengthContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthMinusButtonMappings}"
-                                    DefaultValue="0.25" />
-                <controls:MairaKnob Grid.Column="2"
-                                    Label="{Binding Localization[RacingFriction]}"
-                                    Value="{Binding Settings.RacingWheelFriction, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelFrictionString}"
-                                    ClickStepSize="0.05"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelFrictionContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelFrictionPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelFrictionMinusButtonMappings}"
-                                    DefaultValue="0" />
-                <controls:MairaKnob Grid.Column="4"
-                                    Label="{Binding Localization[WheelCenteringStrength]}"
-                                    Value="{Binding Settings.RacingWheelWheelCenteringStrength, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelWheelCenteringStrengthString}"
-                                    ClickStepSize="0.05"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelWheelCenteringStrengthContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelWheelCenteringStrengthPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelWheelCenteringStrengthMinusButtonMappings}"
-                                    DefaultValue="0.75" />
-
-            </Grid>
-
-        </controls:MairaGroupBox>
-
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[Effects]}"
-                                HelpTopic="advanced/racing-wheel/#effects"
-                                Tag="Complex">
-
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <controls:MairaKnob Grid.Column="0"
-                                    Label="{Binding Localization[ShiftRPMVibrateStrength]}"
-                                    Value="{Binding Settings.RacingWheelShiftRPMVibrateStrength, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelShiftRPMVibrateStrengthString}"
-                                    ClickStepSize="0.05"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelShiftRPMVibrateStrengthContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelShiftRPMVibrateStrengthPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelShiftRPMVibrateStrengthMinusButtonMappings}"
-                                    DefaultValue="0.0" />
-                <controls:MairaKnob Grid.Column="2"
-                                    Label="{Binding Localization[GearChangeVibrateStrength]}"
-                                    Value="{Binding Settings.RacingWheelGearChangeVibrateStrength, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelGearChangeVibrateStrengthString}"
-                                    ClickStepSize="0.05"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelGearChangeVibrateStrengthContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelGearChangeVibrateStrengthPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelGearChangeVibrateStrengthMinusButtonMappings}"
-                                    DefaultValue="0.0" />
-                <controls:MairaKnob Grid.Column="4"
-                                    Label="{Binding Localization[ABSVibrateStrength]}"
-                                    Value="{Binding Settings.RacingWheelABSVibrateStrength, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelABSVibrateStrengthString}"
-                                    ClickStepSize="0.05"
-                                    DragStepSize="0.000174"
-                                    ContextSwitches="{Binding Settings.RacingWheelABSVibrateStrengthContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelABSVibrateStrengthPlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelABSVibrateStrengthMinusButtonMappings}"
-                                    DefaultValue="0.0" />
+                </StackPanel>
 
             </Grid>
 
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[PrivateMessages]}"
-                                HelpTopic="advanced/racing-wheel/#private-messages"
-                                Tag="Complex">
+                                HelpTopic="advanced/racing-wheel/#private-messages">
 
             <Grid>
 
@@ -981,36 +1374,17 @@
                 <StackPanel>
 
                     <controls:MairaSwitch Margin="0,10,0,0"
-                                          IsOn="{Binding Settings.RacingWheelCenterWheelWhileRacing, Mode=TwoWay}"
-                                          Label="{Binding Localization[CenterWheelWhileRacing]}"
-                                          ContextSwitches="{Binding Settings.RacingWheelCenterWheelWhileRacingContextSwitches}"
-                                          Tag="Complex" />
-
-                    <controls:MairaSwitch Margin="0,10,0,0"
-                                          IsOn="{Binding Settings.RacingWheelCenterWheelWhileParked, Mode=TwoWay}"
-                                          Label="{Binding Localization[CenterWheelWhileParked]}"
-                                          ContextSwitches="{Binding Settings.RacingWheelCenterWheelWhileParkedContextSwitches}"
-                                          Tag="Complex" />
-
-                    <controls:MairaSwitch Margin="0,10,0,0"
                                           IsOn="{Binding Settings.RacingWheelFadeEnabled, Mode=TwoWay}"
                                           Label="{Binding Localization[FadeForceFeedback]}"
-                                          ContextSwitches="{Binding Settings.RacingWheelFadeEnabledContextSwitches}"
-                                          Tag="Complex" />
+                                          ContextSwitches="{Binding Settings.RacingWheelFadeEnabledContextSwitches}" />
 
                     <controls:MairaSwitch Margin="0,10,0,0"
                                           IsOn="{Binding Settings.RacingWheelAllowSuperStrength, Mode=TwoWay}"
-                                          Label="{Binding Localization[AllowSuperStrength]}"
-                                          Tag="Complex" />
+                                          Label="{Binding Localization[AllowSuperStrength]}" />
 
                     <controls:MairaSwitch Margin="0,10,0,0"
                                           IsOn="{Binding Settings.RacingWheelAlwaysEnableFFB, Mode=TwoWay}"
-                                          Label="{Binding Localization[AlwaysEnableFFB]}"
-                                          Tag="Complex" />
-
-                    <controls:MairaSwitch Margin="0,10,0,0"
-                                          IsOn="{Binding Settings.RacingWheelSimpleModeEnabled, Mode=TwoWay}"
-                                          Label="{Binding Localization[SimpleMode]}" />
+                                          Label="{Binding Localization[AlwaysEnableFFB]}" />
 
                 </StackPanel>
 

@@ -34,9 +34,12 @@ every localization edit.
 - **Lookup convention:** UI code reads strings via `Localization["Key"]`
   (`DataContext/Localization.cs`). At runtime the chosen language's table is
   consulted first; missing/empty keys fall back to the base `Resources.resx`,
-  and a totally unknown key renders as `!Key!`. The getter **`.Trim()`s** the
-  value, so leading/trailing whitespace in a value is harmless at runtime but
-  should still not be introduced. There is **no separate C# string table** — the
+  and a totally unknown key renders as `!Key!`. The getter does **NOT** trim —
+  whitespace in a value is significant. The unit-suffix keys (`TorqueUnits`,
+  `HertzUnits`, and the other `*Units` keys) deliberately carry ONE leading space
+  (" Nm", " Hz") so code can append them directly to a number; preserve that
+  space in every language, and never introduce stray leading/trailing whitespace
+  anywhere else. There is **no separate C# string table** — the
   base strings live only in `Resources.resx`.
 - **Element shape** (real localized strings, 2-space indent, `xml:space="preserve"`):
   ```xml

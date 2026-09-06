@@ -82,6 +82,30 @@
                                     Value="False" />
                         </DataTrigger>
 
+                        <!-- Items whose Key starts with underscore are non-selectable category headers (e.g.
+                             the grouped add-module list) - accent-colored, bold, with breathing room above.
+                             The underscore key never matches a real selection, so an empty SelectedValue
+                             leaves the combo blank instead of displaying the first header. The template is
+                             replaced (like the separator rows below) because the default ComboBoxItem
+                             template grays out disabled items, which would override the accent color. -->
+                        <DataTrigger Binding="{Binding Key, Converter={StaticResource StartsWithUnderscoreConverter}}"
+                                     Value="True">
+                            <Setter Property="IsEnabled"
+                                    Value="False" />
+                            <Setter Property="Focusable"
+                                    Value="False" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ComboBoxItem">
+                                        <TextBlock Text="{Binding Value}"
+                                                   Foreground="{DynamicResource Brush.Accent}"
+                                                   FontWeight="Bold"
+                                                   Margin="20,10,20,5" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
                         <!-- Disable items where the Value starts with underscore (dummy separators) -->
                         <DataTrigger Binding="{Binding Value, Converter={StaticResource StartsWithUnderscoreConverter}}"
                                      Value="True">
