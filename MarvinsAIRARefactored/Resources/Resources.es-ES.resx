@@ -1396,7 +1396,7 @@
     <value>El objetivo automático define dónde debe caer el pico dentro del rango de fuerza. Menor = más margen; mayor = mayor uso del rango.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritmo</value>
+    <value>Estilo de FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>¿Cómo quieres que se sienta el force feedback? Mueve el control deslizante para indicar tu preferencia a MAIRA.</value>

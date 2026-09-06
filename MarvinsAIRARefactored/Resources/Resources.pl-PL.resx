@@ -1396,7 +1396,7 @@
     <value>Cel automatyczny określa, gdzie w zakresie siły ma wypaść szczytowa wartość. Niżej = więcej marginesu; wyżej = więcej wykorzystania zakresu.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algorytm</value>
+    <value>Styl FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Jak ma się czuć force feedback? Przesuń suwak, aby poinformować MAIRA o swoich preferencjach.</value>

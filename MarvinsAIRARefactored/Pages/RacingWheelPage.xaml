@@ -699,7 +699,7 @@
                     </Border>
 
                     <!-- Preview: the selected module's signals replayed over the loaded recording (red = input A,
-                         green = input B, blue = output; for the Output module red/green are the two sources) —
+                         green = input B, white line = output; for the Output module red is the raw 360 Hz source) —
                          the data currently visible in the viewport is highlighted in orange on the track map.
                          The record + choose-recording buttons float over the row's top-right corner. Its top
                          border is the divider against the node graph; corners: only the lower LEFT is rounded —

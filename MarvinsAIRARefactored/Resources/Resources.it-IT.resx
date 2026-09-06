@@ -1396,7 +1396,7 @@
     <value>Il target automatico imposta dove nella gamma di forza del volante deve posizionarsi il picco misurato. Abbassa il target per mantenere più margine sopra il picco; alzalo per usare di più la gamma del volante.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritmo</value>
+    <value>Stile FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Come ti piace sentire il force feedback? Sposta il cursore qui sotto per comunicare la tua preferenza a MAIRA e configurerà l'algoritmo, il dettaglio e le impostazioni di smorzamento di conseguenza.</value>

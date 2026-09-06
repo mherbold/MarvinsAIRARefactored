@@ -1396,7 +1396,7 @@
     <value>La cible automatique définit l'endroit où le pic mesuré doit se situer dans la plage de force de votre volant. Diminuez la cible pour conserver plus de marge au-dessus du pic ; augmentez-la pour utiliser davantage de la plage du volant.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algorithme</value>
+    <value>Style de FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Comment aimez-vous ressentir votre retour de force ? Déplacez le curseur ci-dessous pour indiquer vos préférences à MAIRA et il configurera l'algorithme, le détail et les paramètres de lissage en conséquence.</value>

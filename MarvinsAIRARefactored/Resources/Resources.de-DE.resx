@@ -1399,7 +1399,7 @@ Hier ist der Link zum Spenden:</value>
     <value>Auto-Ziel legt fest, wo im Kraftbereich der Spitzenwert landen soll. Niedriger = mehr Spielraum; höher = mehr Bereichsnutzung.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algorithmus</value>
+    <value>FFB-Stil</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Wie soll sich das Kraftfeedback anfühlen? Bewege den Schieberegler, um MAIRA deine Präferenz mitzuteilen.</value>

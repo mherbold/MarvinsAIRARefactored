@@ -1456,7 +1456,7 @@
     <value>Automaatne siht määrab, kuhu su rooli jõuvahemikus mõõdetud tipp peaks langema. Langeta sihti, et hoida tipu kohal rohkem varu; tõsta seda, et kasutada rohkem rooli ulatust.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritm</value>
+    <value>FFB stiil</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Kuidas sulle meeldib, et su jõutagasiside tunduks? Liiguta all olevat liugurit, et öelda MAIRAle oma eelistus, ja ta seadistab algoritmi, detaili ja pehmenduse sätted vastavalt.</value>

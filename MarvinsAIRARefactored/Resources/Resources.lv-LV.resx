@@ -1456,7 +1456,7 @@
     <value>Automātiskais mērķis nosaka, kurā vietā tavas stūres spēka diapazonā jānokļūst izmērītajam maksimumam. Pazemini mērķi, lai virs maksimuma saglabātu vairāk rezerves; paaugstini to, lai izmantotu vairāk no stūres diapazona.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritms</value>
+    <value>FFB stils</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Kā tev patīk, lai jūtas tava spēka atgriezeniskā saite? Pārvieto slīdni zemāk, lai pateiktu MAIRA savu vēlmi, un tā konfigurēs algoritma, detaļu un izlīdzināšanas iestatījumus tā, lai tie atbilstu.</value>

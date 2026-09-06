@@ -1396,7 +1396,7 @@
     <value>Automatisk mål bestemmer hvor i kraftområdet toppen skal lande. Lavere = mer margin; høyere = mer områdeutnyttelse.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritme</value>
+    <value>FFB-stil</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Hvordan vil du at force feedback skal føles? Flytt glidebryteren for å fortelle MAIRA om dine preferanser.</value>

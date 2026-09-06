@@ -1396,7 +1396,7 @@
     <value>Otomatik hedef, ölçülen tepe değerinin direksiyonun kuvvet aralığında nereye düşmesi gerektiğini belirler. Tepe değerinin üzerinde daha fazla marj bırakmak için hedefi düşürün; direksiyonun daha fazla aralığını kullanmak için artırın.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritma</value>
+    <value>FFB stili</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Kuvvet geri bildirimini nasıl hissetmek istersiniz? Tercihlerinizi MAIRA'ya iletmek için aşağıdaki kaydırıcıyı hareket ettirin; algoritma, ayrıntı ve yumuşatma ayarlarını buna göre yapılandırır.</value>

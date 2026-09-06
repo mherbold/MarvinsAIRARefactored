@@ -1396,7 +1396,7 @@
     <value>Automatický cíl nastavuje, kde v rozsahu síly volantu má spadnout naměřený vrchol. Snižte cíl, aby byl nad vrcholem větší okraj; zvyšte ho pro větší využití rozsahu volantu.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritmus</value>
+    <value>Styl FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Jak rád cítíš silovou zpětnou vazbu? Posuň posuvník níže, abys sdělil svoji preferenci MAIRA, a ta nakonfiguruje algoritmus, detail a nastavení vyhlazování.</value>

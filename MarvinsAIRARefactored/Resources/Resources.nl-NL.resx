@@ -1396,7 +1396,7 @@
     <value>Het automatische doel bepaalt waar in het krachtveld van je stuur de gemeten piek moet vallen. Verlaag het doel voor meer marge boven de piek; verhoog het om meer van het stuurbereik te benutten.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritme</value>
+    <value>FFB-stijl</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Hoe wil je je force feedback voelen? Verschuif de schuifregelaar hieronder om je voorkeur aan MAIRA door te geven, waarna het algoritme, het detailniveau en de verzachtingsinstellingen worden geconfigureerd.</value>

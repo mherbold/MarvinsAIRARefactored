@@ -1396,7 +1396,7 @@
     <value>Mae'r targed awtomatig yn gosod lle yn ystod grym y llyw y dylai'r brig mesuredig ddisgyn. Gostwngwch y targed i gadw mwy o ymyl uwchben y brig; codwch ef i ddefnyddio mwy o ystod y llyw.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>Arddull FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Sut hoffech chi deimlo'r adborth grym? Symudwch y llithrydd isod i ddweud wrth MAIRA eich dewisiadau a bydd yn ffurfweddu'r algorithm, manylder a gosodiadau llyfnhau yn unol â hynny.</value>

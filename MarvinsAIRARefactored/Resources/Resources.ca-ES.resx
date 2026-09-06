@@ -1396,7 +1396,7 @@
     <value>L'objectiu automàtic estableix on dins de la gamma de força del volant ha de caure el pic mesurat. Baixa l'objectiu per mantenir més marge per sobre del pic; puja'l per utilitzar més de la gamma del volant.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algorisme</value>
+    <value>Estil de FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Com t'agrada sentir el force feedback? Mou el control lliscant de sota per comunicar les teves preferències a MAIRA i configurarà l'algorisme, el detall i la configuració de suavitzat en conseqüència.</value>

@@ -1396,7 +1396,7 @@
     <value>เป้าหมายอัตโนมัติกำหนดว่าจุดสูงสุดควรอยู่ที่ตำแหน่งใดในช่วงแรง ต่ำกว่า = ระยะห่างมากขึ้น สูงกว่า = ใช้ช่วงมากขึ้น</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>อัลกอริทึม</value>
+    <value>สไตล์ FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>ต้องการให้ force feedback รู้สึกอย่างไร? เลื่อนแถบเลื่อนเพื่อบอก MAIRA ถึงความต้องการของคุณ</value>

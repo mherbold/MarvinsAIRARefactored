@@ -1396,7 +1396,7 @@
     <value>Авто-цель задаёт, в какой части диапазона силы должен оказаться пиковый показатель. Ниже = больше запаса; выше = больше использования диапазона.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Алгоритм</value>
+    <value>Стиль FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Каким должен быть силовой отклик? Переместите ползунок, чтобы сообщить MAIRA о ваших предпочтениях.</value>

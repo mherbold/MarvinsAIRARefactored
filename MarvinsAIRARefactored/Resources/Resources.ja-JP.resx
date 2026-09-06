@@ -1399,7 +1399,7 @@
     <value>自動ターゲットは計測ピーク値がホイールのフォース範囲のどこに収まるかを設定します。ターゲットを下げるとピークより上のヘッドルームが増え、上げるとホイールの範囲をより多く使用します。</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>アルゴリズム</value>
+    <value>FFBスタイル</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>フォースフィードバックの感触はいかがですか？下のスライダーを動かして好みを教えてください。MAIRAがアルゴリズム、ディテール、スムージングの設定を自動で合わせます。</value>

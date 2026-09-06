@@ -1396,7 +1396,7 @@
     <value>自动目标设置测量峰值在方向盘力范围中的位置。降低目标可在峰值上方保留更多余量；提高目标可使用更多方向盘范围。</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>算法</value>
+    <value>FFB 风格</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>你希望力反馈有怎样的感觉？移动下面的滑块告诉 MAIRA 你的偏好，它将配置算法、细节和平滑设置以匹配。</value>

@@ -1396,7 +1396,7 @@
     <value>Det automatiske mål indstiller, hvor i ratets kraftrækkevidde det målte toppunkt skal falde. Sænk målet for at beholde mere margin over toppunktet; hæv det for at bruge mere af ratets rækkevidde.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritme</value>
+    <value>FFB-stil</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Hvordan kan du lide at mærke force feedback? Flyt skyderen nedenfor for at fortælle MAIRA dine præferencer, og den konfigurerer algoritmen, detaljerne og udglatningsindstillingerne derefter.</value>

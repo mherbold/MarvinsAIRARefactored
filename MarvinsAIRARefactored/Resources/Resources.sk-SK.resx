@@ -1456,7 +1456,7 @@
     <value>Automatický cieľ určuje, kam v silovom rozsahu vášho volantu má dopadnúť nameraná špička. Znížte cieľ, aby ste nad špičkou ponechali viac rezervy; zvýšte ho, aby ste využili viac rozsahu volantu.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritmus</value>
+    <value>Štýl FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Ako máte radi pocit zo silovej spätnej väzby? Posunutím posuvníka nižšie oznámte MAIRA svoju preferenciu a ona nakonfiguruje nastavenia algoritmu, detailov a vyhladzovania tak, aby zodpovedali.</value>

@@ -1396,7 +1396,7 @@
     <value>Auto Target ställer in var i rattens krafträckvidd det uppmätta toppen ska landa. Sänk målet för att behålla mer utrymme ovanför toppen; höj det för att använda mer av rattens räckvidd.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritm</value>
+    <value>FFB-stil</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Hur vill du att kraftåterkopplingen ska kännas? Flytta reglaget nedan för att berätta för MAIRA om dina preferenser, och den konfigurerar algoritm-, detalj- och utjämningsinställningarna för att matcha.</value>

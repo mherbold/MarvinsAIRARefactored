@@ -538,7 +538,7 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdMinusButtonMappings}"
-                                            DefaultValue="3"
+                                            DefaultValue="10"
                                             Tag="SeatOfPants" />
 
                         <controls:MairaComboBox x:Name="SeatOfPantsAlgorithm_MairaComboBox"

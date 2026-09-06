@@ -1396,7 +1396,7 @@
     <value>El objetivo automático establece en qué parte del rango de fuerza de tu volante debe ubicarse el pico medido. Baja el objetivo para mantener más margen sobre el pico; auméntalo para usar más del rango del volante.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritmo</value>
+    <value>Estilo de FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>¿Cómo te gusta sentir tu retroalimentación de fuerza? Mueve el control deslizante para indicarle tu preferencia a MAIRA y configurará el algoritmo, el detalle y los ajustes de suavizado.</value>

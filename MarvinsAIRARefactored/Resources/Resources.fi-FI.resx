@@ -1396,7 +1396,7 @@
     <value>Auto Target asettaa, mihin kohtaan ratin voimakäyrässä mitatun huipun tulisi osua. Laske tavoitetta säilyttääksesi enemmän tilaa huipun yläpuolella; nosta sitä käyttääksesi enemmän ratin aluetta.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritmi</value>
+    <value>FFB-tyyli</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Miltä haluat voimapalautteen tuntua? Siirrä alla olevaa liukusäädintä kertoaksesi MAIRA:lle mieltymyksistäsi, ja se konfiguroi algoritmi-, yksityiskohdat- ja tasoitusasetukset vastaavaksi.</value>

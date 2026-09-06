@@ -1396,7 +1396,7 @@
     <value>Авто-ціль визначає, де в діапазоні сили повинен бути пік. Нижче = більший запас; вище = більше використання діапазону.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Алгоритм</value>
+    <value>Стиль FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Яким має бути силовий зворотний зв'язок? Перемістіть повзунок, щоб повідомити MAIRA про свої уподобання.</value>

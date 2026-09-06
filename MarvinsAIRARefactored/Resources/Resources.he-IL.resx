@@ -1396,7 +1396,7 @@
     <value>יעד אוטומטי קובע היכן בטווח הכוח יינחת השיא. נמוך יותר = מרווח רב יותר; גבוה יותר = שימוש גדול יותר בטווח.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>אלגוריתם</value>
+    <value>סגנון FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>כיצד תרצה שה-force feedback ירגיש? הזז את המחוון כדי לספר ל-MAIRA על ההעדפה שלך.</value>

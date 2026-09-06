@@ -1396,7 +1396,7 @@
     <value>Az automatikus cél meghatározza, hogy az erőtartomány melyik részére essen a mért csúcs. Alacsonyabb = több margó; magasabb = nagyobb tartományhasználat.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritmus</value>
+    <value>FFB-stílus</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Hogyan szeretnéd érezni a force feedbacket? Mozgasd a csúszkát, hogy megmondd a MAIRA-nak a preferenciádat.</value>

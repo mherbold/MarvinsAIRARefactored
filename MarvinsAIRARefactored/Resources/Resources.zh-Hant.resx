@@ -1456,7 +1456,7 @@
     <value>自動目標設定測得的峰值應落在方向盤力道範圍中的位置。降低目標可在峰值之上保留更多餘裕；提高目標則可運用更多方向盤範圍。</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>演算法</value>
+    <value>FFB 風格</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>您喜歡力回饋給您什麼樣的感受？移動下方的滑桿告訴 MAIRA 您的偏好，它便會配置演算法、細節與平滑化設定來符合。</value>

@@ -1459,7 +1459,7 @@
     <value>Auto Target sets where in your wheel's force range the measured peak should land. Lower the target to keep more headroom above the peak; raise it to use more of the wheel's range.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algorithm</value>
+    <value>FFB style</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>How do you like your force feedback to feel? Move the slider below to tell MAIRA your preference and it will adjust the detail gain of the built-in FFB graph to match.</value>

@@ -1396,7 +1396,7 @@
     <value>La cible automatique définit où dans la plage de force le pic mesuré doit se situer. Plus bas = plus de marge ; plus haut = plus d'utilisation de la plage.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algorithme</value>
+    <value>Style de FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Comment souhaitez-vous ressentir le retour de force ? Déplacez le curseur pour indiquer votre préférence à MAIRA.</value>

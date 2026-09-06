@@ -1084,9 +1084,9 @@ public class RacingWheel
 			// and generators that depend on telemetry (LFE, wheel velocity, steering effects, RPM, ...) work in the
 			// preview, and the crash/curb protection pulses are re-derived from the recorded raw telemetry against
 			// the protection modules' CURRENT thresholds. The traces tap the module selected in the node editor —
-			// red = its input A, green = its input B (dual-input modules only), blue = its output. For the Output
-			// module (the default selection) red/green show the two sources and blue shows the final normalized
-			// output, like the old whole-graph preview.
+			// red fill = its input A, green fill = its input B (dual-input modules only), white line = its output.
+			// For the Output module (the default selection) red shows the raw 360 Hz source and the white line
+			// shows the final normalized output (main bus + vibration bus), like the old whole-graph preview.
 
 			// the preview can't be drawn until its scroll viewer has a viewport (the page hasn't been laid out yet);
 			// leave the request pending — the viewer's first ScrollChanged reports the viewport and the render

@@ -1396,7 +1396,7 @@
     <value>Ținta automată stabilește unde în gama de forță a volanului ar trebui să cadă vârful măsurat. Scade ținta pentru a păstra mai multă marjă deasupra vârfului; crește-o pentru a utiliza mai mult din gama volanului.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritm</value>
+    <value>Stil FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Cum îți place să simți forța de reacție? Mută cursorul de mai jos pentru a-i spune lui MAIRA preferințele tale și va configura algoritmul, detaliul și setările de netezire în consecință.</value>

@@ -1396,7 +1396,7 @@
     <value>O alvo automático define onde o pico medido deve ficar na faixa de força do volante. Diminua o alvo para manter mais margem acima do pico; aumente-o para usar mais da faixa do volante.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>Algoritmo</value>
+    <value>Estilo de FFB</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>Como você gosta de sentir o feedback de força? Mova o controle deslizante abaixo para indicar sua preferência ao MAIRA e ele configurará o algoritmo, o detalhe e as configurações de suavização para corresponder.</value>

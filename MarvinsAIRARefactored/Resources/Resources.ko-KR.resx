@@ -1456,7 +1456,7 @@
     <value>자동 타겟은 측정된 최대값이 휠 포스 범위의 어디에 위치해야 하는지를 설정합니다. 타겟을 낮추면 최대값 위로 더 많은 헤드룸을 유지하고, 높이면 휠 범위를 더 많이 사용합니다.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
-    <value>알고리즘</value>
+    <value>FFB 스타일</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
     <value>포스 피드백이 어떻게 느껴지길 원하시나요? 아래 슬라이더를 움직여 MAIRA에 선호도를 알려주면, 그에 맞게 알고리즘, 디테일, 스무딩 설정을 구성합니다.</value>
