@@ -1,5 +1,9 @@
 <!-- wp:paragraph -->
-<p>This page lets you save and switch between named sets of button and input mappings, called controller profiles. Whenever you map a physical button, knob, hat, or key to an action anywhere in MAIRA, that mapping is stored in the profile that is currently selected here. Create a separate profile for each of your wheels, button boxes, or controllers, then switch between them in one click when you swap hardware.</p>
+<p>This page lets you save and switch between named sets of button and input mappings, called controller profiles. Whenever you map a physical button, knob, hat, or key to one of MAIRA's actions, that mapping is stored in the profile that is currently selected here. Create a separate profile for each of your wheels, button boxes, or controllers, then switch between them in one click when you swap hardware.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>There is one exception. The knobs, switches and on/off toggles belonging to modules inside an FFB graph can be mapped too, but those mappings live with the graph settings rather than in a controller profile — they are the same on every profile, and they do not appear in the list further down this page. Map them by right-clicking the control itself on the <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/" data-type="page" data-id="152">Racing Wheel</a> page.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

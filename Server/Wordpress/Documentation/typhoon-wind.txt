@@ -55,7 +55,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Forces a minimum wind level even at very low speeds (useful if your fans stall at low PWM).  Also great for those hot summer days when you want to have the fan constantly blowing even while car you car is parked.</p>
+<p>Forces a minimum wind level even at very low speeds (useful if your fans stall at low PWM).  Also great for those hot summer days when you want to have the fan constantly blowing even while your car is parked on track.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->

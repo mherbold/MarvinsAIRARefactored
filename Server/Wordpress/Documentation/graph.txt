@@ -3,7 +3,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The graph is meant for “at-a-glance” monitoring while you drive and tune.</p>
+<p>The graph is meant for “at-a-glance” monitoring while you drive and tune. It only draws while this page is open — switch to any other page and MAIRA stops spending time on it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is a live view of what is happening right now. If you want to stop and study a stretch of force feedback in detail — scrub through it, zoom in, compare it against the track — record it and use the preview graph on the <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/" data-type="page" data-id="164">Racing Wheel</a> page instead.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns -->
@@ -53,7 +57,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Each toggle enables a “layer” in the graph. If a toggle is off, that layer isn’t drawn.</p>
+<p>Each toggle enables a “layer” in the graph. If a toggle is off, that layer isn’t drawn. Layers are drawn on top of each other, so turning on only the one or two you care about is usually easier to read than turning on all eight.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -61,7 +65,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Shows the 360 Hz steering torque iRacing is providing (the “input” MAIRA receives).</p>
+<p>Shows the 360 Hz steering torque iRacing is providing (the “input” the FFB graph receives), drawn in red. This is the raw signal before any of your FFB graph modules touch it.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -69,7 +73,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Shows the final force value MAIRA is sending to your wheel after processing (algorithms + effects + fades).</p>
+<p>Shows the final force value MAIRA is sending to your wheel after the FFB graph has run — every module in the graph, plus the fades MAIRA applies when it starts, stops, or hands control back. Drawn in cyan.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Comparing this against Input torque is the quickest way to see what your graph is actually doing to the signal.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -77,7 +85,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Shows the 60 Hz steering torque iRacing is providing.</p>
+<p>Shows the 60 Hz steering torque iRacing is providing, drawn in red. This is one value per telemetry frame, held for the whole frame, so it looks like a staircase next to the 360 Hz trace.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -85,7 +93,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Shows the current low-frequency-effect magnitude MAIRA is producing.</p>
+<p>Shows the current low-frequency-effect magnitude MAIRA is producing, drawn in blue.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -97,7 +105,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Shows the current clutch haptics waveform MAIRA is generating (a live sine-based signal).</p>
+<p>Shows the current clutch haptics waveform MAIRA is generating (a live sine-based signal), drawn in blue.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -105,7 +113,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Same concept as clutch, but for the brake haptics waveform.</p>
+<p>Same concept as clutch, but for the brake haptics waveform, drawn in red.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -113,7 +121,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Same concept as clutch/brake, but for the throttle haptics waveform.</p>
+<p>Same concept as clutch/brake, but for the throttle haptics waveform, drawn in green.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -121,7 +129,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Shows timing jitter in the playout timer loop (how stable MAIRA’s 360 Hz timing is).</p>
+<p>Shows timing jitter in the playout timer loop — how stable MAIRA’s 360 Hz timing is — drawn in green. Each tick is plotted as how far it landed from the ideal 2.78 ms period, so a flat line on the center is perfect timing and the full height of the graph is one whole period late or early.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A little fuzz here is normal. Large, repeated spikes mean something on your PC is starving the timer thread, which is worth chasing down because it shows up in the wheel as roughness.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -142,34 +154,50 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
+<li>The top and bottom edges of the graph are full scale. For the torque traces that is your <strong>Max force</strong> setting on the Racing wheel page — a trace touching the edge is a force as large as your wheel is set to produce.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Horizontal grid lines mark every 25% of full scale, with the two halfway lines picked out in a lighter color so you have something to judge against.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li>The intensity of the line increases with magnitude.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Gutter indicators (top/bottom bars)</p>
+<p class="setting">Background flashes</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The graph has top and bottom “gutters” used as status indicators:</p>
+<p>Instead of drawing anything extra on the waveform, the graph tints its own background while something notable is happening. The tint is painted column by column as the graph scrolls, so you get a colored band that lines up with exactly when the event happened:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>If Output torque is clipping, the top or bottom gutter turns solid red.</li>
+<li><strong>Red</strong> — output torque is clipping. The graph asked for more force than your wheel is set to deliver, so the peaks are being flattened. This is the one to care about: it means detail is being thrown away.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>If Curb protection is active, the gutters show yellow checkers.</li>
+<li><strong>Orange</strong> — crash protection is active.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>If Crash protection is active, the gutters show orange checkers.</li>
+<li><strong>Yellow</strong> — curb protection is active.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>This makes it easy to spot clipping/protection events without staring at the waveform.</p>
+<p>Only one color shows at a time. Clipping wins over crash protection, which wins over curb protection.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Crash protection and curb protection are FFB graph modules on the <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/" data-type="page" data-id="164">Racing Wheel</a> page — if your graph does not include those modules, you will never see their colors here.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This makes it easy to spot clipping and protection events without staring at the waveform.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->

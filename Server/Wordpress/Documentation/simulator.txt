@@ -3,6 +3,14 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
+<p>It works the same way while a <a href="https://mairapp.com/home/documentation/advanced/game-bridge/" data-type="page" data-id="1094">Game Bridge</a> is active. A bridge builds an iRacing-shaped data feed out of the other game's telemetry, and this page shows you that feed — which makes it the best place to check what a bridge is actually handing MAIRA, and where it is coming up empty.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Nothing is shown at all unless MAIRA is connected — to iRacing, or to a bridged game.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
 <p>The page is split into three tabs:</p>
 <!-- /wp:paragraph -->
 
@@ -95,7 +103,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>TickRate: how often iRacing is publishing telemetry frames (always 60 Hz).</p>
+<p>TickRate: how often the simulator is publishing telemetry frames (60 Hz). MAIRA's own force feedback runs at 360 Hz on top of this — six force feedback samples per telemetry frame.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -180,7 +188,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Index: for array variables (only shown when the variable has multiple values)</li>
+<li>Index: for array variables (only shown when the variable has multiple values). Variables whose name ends in _ST are the 360 Hz ones — six samples per telemetry frame, indexed 0 to 5. SteeringWheelTorque_ST is the signal MAIRA's force feedback is built on.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

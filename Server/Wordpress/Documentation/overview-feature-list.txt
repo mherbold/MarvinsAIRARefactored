@@ -8,7 +8,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Ability to configure settings per-car and per-track</li>
+<li>Most settings can be saved per car, per track, per track configuration, and per wet/dry condition — MAIRA works out which values apply and loads them for you as you get in the car</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -38,7 +38,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>360 Hz force feedback for all wheelbases</li>
+<li>360 Hz force feedback for all wheelbases — iRacing's own native rate, on a high-resolution timer</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -46,35 +46,63 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Adjust the main weight separately from the high frequency details</li>
+<li>The FFB graph — everything MAIRA does to the force feedback signal is built out of modules wired together in a graph, so you can see the whole signal path and change any part of it</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Multiple FFB algorithms to choose from</li>
+<li>Four built-in graphs to start from, plus as many of your own as you like — copy one, edit it in the node editor, and export or import graphs to share them</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Prediction removes up to 2 frames of latency (1/30s)</li>
+<li>You never have to open the node editor: each graph brings its most useful controls out into a quick-controls section, and you choose which ones those are by pinning them</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Wheel LFE</li>
+<li>Strengths are in Nm at the wheel rather than percentages, so a number means the same thing on any wheelbase</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Crash and curb protection</li>
+<li>Modules for every part of the signal chain -<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Sources: 60 Hz and 360 Hz steering torque, wheel LFE, wheel velocity, friction, soft lock, and wheel centering</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Reduce forces and auto-center wheel when parked or not on track</li>
+<li>Signal processing: gain, low pass and high pass filters, compressor, slew limiter, slew compressor, transient enhancer, adaptive smoother, interpolator, and prediction</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Soft clipping</li>
+<li>Mixers: add, subtract, blend, adaptive blend, and A/B switch</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Vibrate on gear change and ABS activation</li>
+<li>Effects: crash protection, curb protection, speed gain, torque dither, and the understeer / oversteer / seat-of-pants wheel forces</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Vibrations: ABS, gear change, shift RPM, engine RPM, road texture, slip texture, and understeer / oversteer / seat-of-pants</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Output: curve shaping and a soft limiter, so the approach to full force is squeezed instead of clipped</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Prediction removes telemetry latency, adjustable in milliseconds</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Any module's knobs, switches and on/off toggle can be mapped to a button, so you can adjust or disable a single effect from the cockpit</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Record up to five minutes of a drive at the full 360 Hz, then replay it through the graph in the preview and tune your force feedback with the sim closed — with a track map, a hover data card, and zoom and scroll over the trace</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Coming from an older version? Your algorithm choice becomes the matching built-in graph and your tuned values are carried across for you</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -96,7 +124,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Wheel vibration, constant force, and pedal vibration effects</li>
+<li>Pedal vibration effects, plus wheel vibration and wheel force effects as FFB graph modules</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -239,6 +267,10 @@
 
 <!-- wp:list-item -->
 <li>FFB clipping warning</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Recording started and recording stopped</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></li>
 <!-- /wp:list-item --></ul>
@@ -403,6 +435,14 @@
 
 <!-- wp:list-item -->
 <li>Reads each game's shared memory directly - only rFactor 2 needs a (free, community) plugin</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Telemetry is sampled on MAIRA's own 360 Hz clock and fed through the same FFB graph iRacing uses, so every module works the same way in any supported game</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Connects and disconnects on its own as the game starts and stops</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

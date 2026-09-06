@@ -1,5 +1,9 @@
 <!-- wp:group {"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"className":"section"} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>This is where MAIRA's force feedback is built and tuned. The top of the page sets up your wheelbase and how hard it gets driven. The middle is the <strong>FFB graph</strong> — the chain of modules every force passes through on its way from the simulator to your wheel — together with a preview that replays a recorded lap through it. The bottom holds the odds and ends.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="device">Device</p>
 <!-- /wp:paragraph -->
 
@@ -8,7 +12,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Pick which DirectInput force-feedback wheel MAIRA should control. If you don’t see your wheel here, your wheel might not be turned on, or it may not be a DirectInput FFB device (or the driver isn’t exposing it correctly).</p>
+<p>Pick which DirectInput force-feedback wheel MAIRA should control. If you don't see your wheel here, your wheel might not be turned on, or it may not be a DirectInput FFB device (or the driver isn't exposing it correctly).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When force feedback cannot run, the reason is spelled out in orange underneath this dropdown — the simulator is not running, the sim is not in full mode, iRacing's own force feedback is on, a steering effects calibration is in progress, and so on.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -25,11 +33,11 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><mark style="background-color: rgba(0, 0, 0, 0);" class="has-inline-color"><mark style="color: rgb(255, 0, 0); background-color: rgba(0, 0, 0, 0);" class="has-inline-color">Red</mark></mark> = Emergency shut-off is active</li>
+<li><mark style="background-color: rgba(0, 0, 0, 0);" class="has-inline-color"><mark style="color: rgb(255, 0, 0); background-color: rgba(0, 0, 0, 0);" class="has-inline-color">Red</mark></mark> (blinking) = Force feedback has been switched off here</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-accent-3-color">Cyan </mark>= Waiting for the iRacing simulator telemetry data stream</li>
+<li><mark style="background-color:rgba(0, 0, 0, 0);color:#3399ff" class="has-inline-color">Blue</mark> = Waiting for the simulator telemetry data stream</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -58,7 +66,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Forces MAIRA to reinitialize the wheel device. Useful if the wheel “goes dead” or feels desynced.</p>
+<p>Forces MAIRA to reinitialize the wheel device. Useful if the wheel "goes dead" or feels desynced.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -74,15 +82,19 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Your wheel’s physical maximum torque (Nm).</p>
+<p>Your wheel's physical maximum torque (Nm).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><strong>Set this to your wheel’s rated peak torque</strong> (example: 10 Nm, 15 Nm, 25 Nm, etc). MAIRA uses this to keep units consistent and to compute other values correctly.</p>
+<p><strong>Set this to your wheel's rated peak torque</strong> (example: 10 Nm, 15 Nm, 25 Nm, etc). MAIRA uses this to keep units consistent and to compute other values correctly — every force strength in the FFB graph is expressed in Nm at the wheel, and this is the number that anchors them.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Here is a handy table of <a href="https://mairapp.com/wheel-force-settings/" data-type="page" data-id="451">Wheel Force Settings</a>.</p>
+<p>Here is a handy table of <a href="https://mairapp.com/home/documentation/other-stuff/wheel-force-settings/" data-type="page" data-id="451">Wheel Force Settings</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 5.0 Nm</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -90,11 +102,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Overall strength multiplier (0–100% normally).</p>
+<p>Overall strength multiplier (0-100% normally).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This is the “how strong should it feel” knob. This remaps the iRacing car steering wheel torque into a smaller value that will fit on your wheelbase without clipping.</p>
+<p>This is the "how strong should it feel" knob. This remaps the iRacing car steering wheel torque into a smaller value that will fit on your wheelbase without clipping.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -110,7 +122,11 @@
 <!-- /wp:table -->
 
 <!-- wp:paragraph -->
-<p>If you enable <strong>Allow Super Strength</strong>, this can go up to 200% (see <strong>SWITCHES</strong>).</p>
+<p>If you enable <strong>Allow up to 200% strength</strong>, this can go up to 200% (see <strong>SWITCHES</strong>).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10%</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -118,7 +134,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This is the “target peak torque” MAIRA uses internally for normalization. It’s tightly linked to the two settings above.</p>
+<p>This is the "target peak torque" MAIRA uses internally for normalization. It's tightly linked to the two settings above.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -151,12 +167,16 @@
 <figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td>NASCAR Cup Series (Next Gen)</td><td>~28-35 Nm</td></tr><tr><td>IndyCar (IR-18)</td><td>~30-60 Nm</td></tr><tr><td>Mazda MX-5 Cup</td><td>~18-22 Nm</td></tr><tr><td>Supercars (V8)</td><td>~22-28 Nm</td></tr><tr><td>GT3 (Ferrari, Porsche, BMW, etc.)</td><td>~8-14 Nm</td></tr><tr><td>GT4</td><td>~12-18 Nm</td></tr><tr><td>GTP / LMDh</td><td>~10-16 Nm</td></tr><tr><td>Formula 3</td><td>~14-20 Nm</td></tr><tr><td>Formula Vee</td><td>~16-22 Nm</td></tr><tr><td>Street Stock</td><td>~18-25 Nm</td></tr></tbody></table></figure>
 <!-- /wp:table -->
 
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 50.0 Nm</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="auto-strength-feature">Auto-Strength Feature</p>
+<p class="section" id="auto-strength-feature">Auto-strength feature</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The auto-strength feature allows you to calibrate the strength of the force feedback to the car/track you are driving, in an automatic way. This is how you would use this feature -</p>
+<p>The bottom row of the overall strength section calibrates the strength of the force feedback to the car and track you are driving, in an automatic way. This is how you would use this feature -</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"ordered":true} -->
@@ -209,6 +229,10 @@
 <p>Setting this closer to your Wheel force uses more of your wheelbase for the main cornering weight, which leaves less headroom for spikes (so they may clip). Auto target cannot be set higher than your Wheel force.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10.0 Nm</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Set</p>
 <!-- /wp:paragraph -->
@@ -222,7 +246,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Clears the measured max force value, so MAIRA can “re-learn” from fresh driving.</p>
+<p>Clears the measured peak torque, so MAIRA can "re-learn" from fresh driving.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -230,7 +254,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This shows the strongest raw torque MAIRA has observed, based on live steering torque from iRacing, while on-track.</p>
+<p>The live steering torque coming from the simulator right now, in Nm. This is the raw car force before anything in the FFB graph touches it.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -238,73 +262,191 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The measured max force, that will be applied to the Max force setting if you hit the <strong>Set</strong> button.</p>
+<p>The measured max force, that will be applied to the Max force setting if you hit the <strong>Set</strong> button. It is the peak torque MAIRA has seen while you were on a racing surface, scaled so that peak would land exactly on your <strong>Auto target</strong>.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="algorithm">Algorithm</p>
+<p class="section" id="ffb-graph">FFB graph</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This section controls <em>how MAIRA processes iRacing’s steering torque signal</em> before sending it to your wheel.</p>
+<p>The FFB graph is how MAIRA turns the simulator's steering torque into what your wheel actually does. It is a chain of small <strong>modules</strong>: a source module reads the car's steering torque, a run of processing modules shape it, effects and extra forces are mixed in, and an output module at the end converts the result into wheel output. Separately, vibration modules sit off to one side and add their buzz on top. The whole chain runs at 360 Hz, the rate iRacing itself produces force feedback at.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><strong>Note:</strong> The controls below the <strong>Algorithm</strong> selector are algorithm-specific. Only the ones that apply to the algorithm you have selected are shown — the rest are hidden. For example, the Delta limit / Delta limiter bias knobs appear for the Delta limiter algorithms, the Slew / total compression knobs appear for Slew and total compression, and the Multi controls (FFB type + presets, 360 Hz detail, Torque compression, Peak aware slew reduction, Slew rate reduction, Detail gain, Output smoothing) appear for the Multi adjustment toolkit. So you will not see every setting listed here at the same time.</p>
+<p>This replaces the fixed algorithms of MAIRA 2.0. Soft lock, wheel centering, friction, crash and curb protection, the steering-effect forces and vibrations, and the ABS / gear change / shift RPM vibrations are all modules in the graph now, rather than separate sections of this page. Their strengths are set in <strong>Nm at the wheel</strong> instead of percentages, so they mean the same thing whatever your wheel force is.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You do not have to build anything. MAIRA ships four ready-made graphs, and most drivers pick one and only ever touch the handful of controls in the <strong>FFB graph settings</strong> section below.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Algorithm</p>
+<p class="setting">Graph</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Available algorithms:</p>
+<p>Picks the graph that drives your wheel. The list is split into <strong>Built-in</strong> — the graphs that ship with MAIRA — and <strong>Custom</strong> — the ones you have made or imported.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Which graph is selected is saved per context, and by default that context is <strong>per car</strong>. The same scope also covers every module value inside the graph, so the same graph can be tuned differently for each car you drive. Right-click the <strong>Graph</strong> label to change the scope — see <a href="https://mairapp.com/home/documentation/advanced/tuning-profiles/" data-type="page">Tuning Profiles</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Low latency 360 Hz detail booster &amp; limiter</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="built-in-graphs">The built-in graphs</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Four graphs ship with MAIRA. They all carry the same set of extras — LFE, soft lock, friction, wheel centering, crash and curb protection, the steering effect forces, torque dither and the whole family of vibrations — and differ only in how they treat the main force signal.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Native 60Hz</strong>: Uses iRacing’s 60 Hz torque signal (simplest).</li>
+<li><strong>Low latency 360 Hz detail booster &amp; limiter</strong> — Recommended for most drivers: the full 360 Hz FFB signal with prediction to reduce latency. Adjust the gain to increase or decrease the road and tire detail.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Native 360Hz</strong>: Uses iRacing’s higher-rate steering torque samples (more detail).</li>
+<li><strong>Low latency 60 Hz detail booster &amp; limiter</strong> — For drivers who prefer the classic 60 Hz FFB signal, with prediction to reduce latency.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Detail booster</strong>: Boost details for more road feeling</li>
+<li><strong>360 Hz slew &amp; total compression</strong> — For drivers who want the strongest forces softened: the full 360 Hz FFB signal through a slew compressor that squeezes how fast the force can change, and a compressor that squeezes the total force.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Delta limiter</strong>: Cuts down on details for a smoother feeling</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>Detail booster (low latency)</strong>: Same as detail booster, but with lower latency</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>Delta limiter (low latency)</strong>: Same as delta limiter, but with lower latency</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>Slew and total compression</strong>: Reduces aggressive increases in torque (slew) and decreases large torque output (total)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>Multi adjustment toolkit</strong>: Selects FFB type, adjusts the amount of high frequency FFB (360 Hz detail - 360 Hz on 60 Hz FFB only), decreases large torque output (Torque compression), reduces aggressive increases in torque (Slew rate reduction), decreases or increases FFB dynamics (Detail gain +/- adjustment), and smooths FFB (Output smoothing)</li>
+<li><strong>Hybrid multi adjustment toolkit</strong> — The hybrid tuning toolkit: the smooth 60 Hz FFB signal as the anchor with the 360 Hz detail blended in, followed by compression, slew compression, a transient enhancer, and an adaptive smoother.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: Detail booster (low latency)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Soft clipping</p>
+<!-- wp:paragraph -->
+<p>Built-in graphs are <strong>structurally locked</strong>. You can change every knob, switch and dropdown in them, and those values are yours and are saved per context — but you cannot add or remove modules, re-wire them, rename them, or delete them. In exchange, they update themselves: when a new version of MAIRA ships an improved built-in graph, you get it on your next launch and your tuned values carry over.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Applies a soft limiter near the extremes so the signal eases into ±100% instead of “brick wall” clipping.</p>
+<p>To change the structure of a built-in graph, clone it into a custom graph with the <strong>+</strong> button. A custom graph is yours entirely — every module and wire can be edited — but it never receives updates.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="managing-graphs">Creating, sharing and resetting graphs</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The row of small buttons to the right of the graph selector manages your collection.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">New graph (+)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Asks for a name, then offers two ways to start: <strong>Clone current graph</strong> makes an editable copy of whatever is selected right now (this is how you take a built-in graph apart), and <strong>Start empty graph</strong> gives you a bare source and output to build from. The new graph is selected as soon as it is made.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Rename graph</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Renames a custom graph. Disabled while a built-in graph is selected. Renaming is safe: everything MAIRA has saved for the graph is keyed to the graph itself, not its name, so your tuning survives.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Delete graph (-)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Deletes a custom graph after asking you to confirm. Disabled while a built-in graph is selected.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Export graph</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Writes the selected graph out as a <code>.mairagraph</code> file — the structure, the descriptions, the node positions and the current values. This is the file you hand to somebody else.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Import graph</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Reads a <code>.mairagraph</code> file back in. If it is a graph you do not have yet, it is simply added to your custom graphs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If it is a graph you already have — someone sending you their tuning of a built-in graph, for instance — MAIRA asks what to do with the values in the file:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Update <em>&lt;car / track&gt;</em> settings</strong> — apply them to the context you are in right now, leaving everything else alone.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Update baseline (default) settings</strong> — apply them to the default tuning profile, so they become the starting point everywhere that has nothing of its own.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Update <em>&lt;car / track&gt;</em> and baseline settings</strong> — both of the above.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Update settings everywhere this graph is selected</strong> — apply them to every saved context that uses this graph.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Import as a new copy</strong> — leave your version untouched and add the file as a separate custom graph.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The two current-context choices only appear while the simulator is running with a car and track loaded. Without one there is no context to write to, and updating "the current car" would be the same as updating the baseline.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Reset graph</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Only shown while a built-in graph is selected. Puts that graph back to the values it shipped with, throwing away your changes to it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Description</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Underneath the selector is the graph's description — what it is for and how it is meant to be used. Built-in graphs come with theirs written and translated. On a custom graph the pencil button beside it opens an editor so you can write your own, which is worth doing if you plan to share it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="ffb-graph-settings">FFB graph settings (the quick controls)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This section is the everyday face of the FFB graph. Rather than showing you every knob in the graph, it shows only the <strong>pinned</strong> ones — the handful the graph's author thinks you will actually want to reach for — grouped by the module they belong to, three across, with the module's name and description above each group.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The built-in graphs ship with a curated set pinned: the one or two knobs that shape their character, the output soft limiter, then wheel centering, wheel velocity, LFE and soft lock, crash protection, the understeer / oversteer / seat-of-pants forces and vibrations, the ABS, gear change, shift RPM, engine RPM, road texture and slip texture vibrations, and torque dither. Every group leads with the module's on/off switch, so this section doubles as the master list of which effects you have running.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A control here is the very same control as in the node editor's settings column — change it in one place and the other follows.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Show pinned settings</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Hides or shows the quick controls. Turn it off if you work entirely in the node graph and want the page shorter.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -312,205 +454,35 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Prediction mode</p>
+<p class="setting">Pinning your own settings</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Predicts the next steering-torque sample to reduce latency and improve responsiveness.</p>
+<p>On a <strong>custom</strong> graph, a small pin icon sits next to every setting's name in the node editor's settings column, and next to the module's name for its on/off switch. Gray means unpinned, orange means pinned. Click it to add or remove that setting from the quick controls.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Disabled</strong></li>
-<!-- /wp:list-item -->
+<!-- wp:paragraph -->
+<p>The pins are deliberately not shown in the quick controls themselves, so a control cannot be accidentally unpinned from the one place where you would then have no way to get it back.</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:list-item -->
-<li><strong>Predict K1</strong> (predicts 1 frame ahead)</li>
-<!-- /wp:list-item -->
+<!-- wp:paragraph -->
+<p>To reorder the groups, select the module in the node editor and use the pair of up / down arrows at the bottom of its settings card — they move that module's whole pinned group up or down the list.</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:list-item -->
-<li><strong>Predict K2</strong> (predicts 2 frames ahead)</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Pinning is stored in the graph itself, so it travels with an export and a shared graph arrives with its author's choices already made.</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: Predict K1</p>
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="node-graph">The node graph</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Prediction blend</p>
+<p class="setting">Show node graph</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>How much predicted torque is blended in:</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>0% = no prediction effect</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>100% = full prediction</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 35%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Detail boost</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Boosts rapid torque changes to increase “texture” and small details.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 50%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Detail boost bias</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>How quickly the boosted signal is pulled back toward the base signal. Higher bias = less “ringing” / less exaggerated detail.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 10%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Delta limit</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Limits how fast torque is allowed to change per step. Helps reduce harsh spikes and oscillation, and makes the driving feel smoother.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 500 Nm/s</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Delta limiter bias</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Bias toward the raw signal. Higher bias = follows the raw torque more closely.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 20%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Slew threshold</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Threshold at which slew compression starts clamping fast torque changes. The value is shown in Nm/ms and scales with your Max force (displayed value = setting × Max force ÷ 1000).</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 2 (e.g. 0.06 Nm/ms at a 30 Nm Max force)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Slew compression rate</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>How strongly fast changes are compressed once above the threshold.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 65%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Total threshold</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Threshold where total compression starts acting on the overall signal.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 65% of Max force</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Total compression rate</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>How much the overall signal is compressed beyond the Total threshold.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 75%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">FFB type + presets</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>This dropdown is part of the <strong>Multi adjustment toolkit</strong> algorithm. It picks the underlying FFB source (and, for the presets, a matching bundle of Multi settings) that everything else in this section builds on. The choices are grouped:</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>FFB sources</strong> — <strong>Native 60 Hz</strong>, <strong>360 Hz on 60 Hz, 10% bias</strong>, <strong>360 Hz on 60 Hz, 10-30% bias</strong>, and <strong>Native 360 Hz</strong>. These select the base signal (native rate, or the hybrid 360-on-60 modes with a chosen detail bias).</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>(Default Values) …</strong> — picks that FFB source <em>and</em> resets the Multi controls to their default values for it.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>(Preset) …</strong> — named starting points such as <em>Core tire feedback, minimal / moderate surface detail</em>, <em>Moderately boost / reduce FFB dynamics</em>, and <em>Reduce Big Bumps</em>. Selecting a preset loads a ready-made combination of the settings below.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-<p>The (Default Values) and (Preset) entries are convenience actions — after you pick one, the dropdown snaps back to the matching FFB source and you can fine-tune the individual knobs from there.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">360 Hz detail</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Amount of high-frequency (360 Hz) detail layered onto the signal. This applies only to the “360 Hz on 60 Hz” hybrid FFB sources — it is forced to 0% for Native 60 Hz and to 100% for Native 360 Hz. (Multi adjustment toolkit only.)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 100%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Torque compression</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Compresses high-torque peaks to reduce clipping and keep more usable midrange. (Multi adjustment toolkit only.)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 0%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Peak aware slew reduction</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>When enabled, the Slew rate reduction stage becomes peak-aware, so it eases off around signal peaks instead of flattening them. (Multi adjustment toolkit only.)</p>
+<p>The switch in the top left corner of the editor block reveals the node graph and the module settings column beside it. Leave it off and you still get the preview graph and the track map, driven by the quick controls above; turn it on to see and change the signal chain itself.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -518,143 +490,1049 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Slew rate reduction</p>
+<p class="setting">Nodes and wires</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Reduces how quickly torque can drop (and in some cases rise), smoothing sharp transitions. (Multi adjustment toolkit only.)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 0%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Detail gain +/- adjustment</p>
+<p>Every module is a box. Its name is on top and a live summary of its settings ("1.50x", "one pole, 12.5 Hz") underneath, so you can read the state of a whole graph at a glance. Hovering a node shows its description.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Boosts (or, below 0%, reduces) deviations from the “steady” component of the signal to enhance road detail. (Multi adjustment toolkit only.)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 0%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Output smoothing</p>
+<p>The dots on a node's edges are its connectors: an output on the right, and one or two inputs on the left. A module with two inputs shows <strong>input A</strong> in the upper left and <strong>input B</strong> in the lower left. Drag from any connector dot to a compatible dot on another node to re-wire; a dashed line follows the mouse while you do. Vibration modules have no connectors at all — they do not sit in the chain, they feed the vibration bus directly.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Adds smoothing to the final output to reduce chatter / jitter. (Multi adjustment toolkit only.)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 0%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="output">Output</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>The output settings are recommended only for people with gear driven or belt driven wheels. Direct drive wheel users should leave all output settings OFF.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Minimum</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Forces a minimum output magnitude.<br>Useful if your wheel has a deadzone where small forces aren’t felt.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF (0%)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Maximum</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Hard cap on output magnitude (below 100%).<br>Useful if you want to keep the strongest hits under control without changing your overall scaling.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF (100%)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Curve</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Applies a response curve:</p>
+<p>The border colors tell you what kind of module you are looking at:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Positive values emphasize larger forces (more dramatic build-up)</li>
+<li><strong>Green</strong> — a source: something that reads the car or the wheel.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Negative values emphasize smaller forces (more “alive” near center)</li>
+<li><strong>Purple</strong> — the output module at the end of the chain.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Blue</strong> — a vibration module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Gray</strong> — an ordinary processing module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Orange</strong> — the node you have selected.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Highlighted</strong> — the node the preview is locked to.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF (Linear)</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="preview">Preview</p>
+<!-- wp:paragraph -->
+<p>A node that is switched off is dimmed, as is a steering effect module whose effect is turned off over on the <a href="https://mairapp.com/home/documentation/advanced/steering-effects/" data-type="page" data-id="166">Steering Effects</a> page — its settings card says so in orange as well, because the module can do nothing until that effect is enabled again.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting" id="live-preview-graph">Live Preview Graph</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Shows how the current Algorithm transforms input torque into output torque using a recorded sample set.</p>
+<p class="setting">Getting around</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>The <mark style="background-color:rgba(0, 0, 0, 0);color:#ff0000" class="has-inline-color">RED</mark> line is the 360 Hz input signal from iRacing.</li>
+<li><strong>Left-click a node</strong> to select it. The settings column beside the graph and the preview graph below both follow the selection.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>The <mark style="background-color:rgba(0, 0, 0, 0);color:#00ffff" class="has-inline-color">CYAN</mark> line is the output of the selected algorithm.</li>
+<li><strong>Right-click a node</strong> to lock the preview to it without moving the selection — so you can turn one module's knobs while watching what a different module downstream is doing. Left-clicking any node hands the preview back to the selection.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Drag a node</strong> to move it. Positions are saved with the graph.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Drag empty space</strong> to pan the view.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Ctrl + mouse wheel</strong> zooms. The wheel pushes the graph away from you, so wheel up zooms out and wheel down zooms in.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>Where the red and cyan lines overlap, the line becomes <strong>white</strong> in color.</p>
+<p>Two grab handles resize the editor. The small pill on the seam between the node graph and the preview drags the node graph taller or shorter; the pill on the vertical seam moves the split between the graph and the settings column. Both are remembered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting" id="recording-selector">Recording selector</p>
+<p class="setting">The canvas tools</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Choose which saved recording is used for preview.</p>
+<p>Four buttons sit in the top right corner of the node graph.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Add module (+)</strong> — opens a picker listing every module type, grouped into sources, generic DSP, mixers, effects and vibration effects. Click one and it is added straight away.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Remove module (-)</strong> — removes the selected module. Disabled when nothing is selected, and always disabled for the output module, which is fixed.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Snap to grid</strong> — toggles snapping. Turning it on pulls every node onto the grid at once, and faint dots appear behind the graph.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Auto layout</strong> — re-arranges the whole graph into tidy columns following the signal flow, and returns the view to the top left.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Add module and auto layout are disabled on a built-in graph, and so is removing anything — built-in graphs are structurally locked.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting" id="record-button">Record button</p>
+<p class="setting">Adding and removing modules</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Starts a new recording (only enabled while on-track). This gives you a sample set you can use to preview algorithm changes consistently.</p>
+<p>A new module is <em>spliced into</em> the wire coming out of the module you have selected: it takes the selected module as its input, and everything that used to read the selected module now reads the new one instead. In practice that means selecting the point in the chain you want to insert at and clicking add — you rarely have to re-wire anything by hand.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Tip: Hover the preview graph to get a zoomed view.</p>
+<p>Source modules are one per graph, so a source you already have is not offered again. Vibration modules are not wired at all; they are simply parked below the rest of the graph.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Tip: You can scroll the preview graph by holding the left mouse button down on it and dragging left or right (or by using the scroll bar underneath it).</p>
+<p>Removing a module splices it back out the same way: anything that was reading it falls back to whatever that module was reading, so the chain stays connected and the signal keeps flowing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">The module settings column</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>To the right of the node graph are the settings of whichever module is selected. At the top sits the module's on/off switch and its name; at the bottom, its description (with a pencil to rewrite it on a custom graph). Between them are the module's own controls.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Every module has an <strong>on/off switch</strong>. Switching a module off makes it inert without removing it from the graph: a module in the chain passes its input straight through, and a source or a vibration goes silent. It is the fastest way to hear what one module is contributing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Effect and vibration modules also carry a small <strong>test button</strong> beside their name. Pressing it forces that effect on so you can feel it (or watch it in the preview) without having to provoke it on track. It is a session-only toggle — it is never saved, and it clears itself when you switch graphs or restart. Vibration tests shake the physical wheel, so they gray out while you are off track, where the wheel's force feedback has faded out.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Module knobs, switches and dropdowns behave like the rest of MAIRA's controls: right-click a knob to map buttons that step it up and down, and right-click a switch to map a button that flips it. See <a href="https://mairapp.com/home/documentation/basic/common-controls/" data-type="page" data-id="508">Common Controls</a>. Module values do not carry their own context switches — they all follow the scope set on the <strong>Graph</strong> selector, which is per car by default.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="modules">The modules</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Everything below is one entry per module type, in the same order and the same groups as the add-module picker. Each entry lists the module's own settings with their range and the value a <em>newly added</em> module starts at. The built-in graphs ship with their own tuned values, so what you see in a built-in graph will often differ from the defaults listed here — that is normal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>On top of what is listed, every module also has the <strong>Enabled</strong> switch described above.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A note on units. The main chain carries force in <strong>Nm</strong> all the way to the output module, which is the only place it becomes wheel output. Anything measured in Nm — thresholds, limits, strengths — is therefore an honest torque figure you can reason about against your <strong>Max force</strong>. Effect and vibration strengths are Nm <em>at the wheel</em>, measured against your <strong>Wheel force</strong>, so they feel the same however you have scaled the car's force.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="modules-sources">Sources</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sources are where signal comes from. They have no inputs, and there can only be one of each in a graph. The two torque sources are the car's force feedback; the rest are extra forces you mix in with an add module.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">60 Hz source</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>iRacing's native 60 Hz force feedback signal, exactly as the simulator sends it. No settings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">360 Hz source</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>iRacing's high-rate force feedback signal — six samples per 60 Hz frame, with the most detail. No settings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">LFE source</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The simulator's low-frequency effects audio, turned into wheel force. Mix it in with an add module. You need to enable bass shaker LFE in iRacing and route it through VB-CABLE for this to do anything — see <strong>Wheel LFE</strong> below.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 35%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Soft lock source</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Pushes back hard when the wheel is turned past the car's steering lock, like a physical end stop.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 25%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wheel velocity source</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A force that opposes how fast the wheel is being turned — mix it in for damping. In the built-in graphs it is used to stop the wheel oscillating while you are crawling or parked.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 100%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Friction source</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>True dry friction: the wheel holds where you leave it, with constant sliding drag past the stick region. This is the same model wheel firmwares use for their own friction effect, so it feels like mechanical stiction rather than damping.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm, OFF at 0. The breakaway / sliding friction torque. Default: 1.0 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Stick region</strong> — 0.5° to 60.0° of wheel rotation. How far the wheel moves before it breaks away. Larger feels softer and springier, smaller feels crisper. Default: 25.0°</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>All four built-in graphs feed the friction source and the wheel velocity source into an A/B switch, so you can pick which of the two you want with one flip: input A is wheel velocity, input B is friction.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wheel centering source</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A spring force that pulls the wheel back toward center. Route it through a speed gain module to keep it parked-only — which is exactly what the built-in graphs do, and what replaced the old separate "center while racing" and "center while parked" switches.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 85%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="modules-dsp">Generic DSP</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The signal processing blocks. Each one takes a single input and hands on a single output.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Gain</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Scales the signal by a fixed multiplier — use a negative gain to invert it. In the flagship built-in graph this is the single knob that sets how much road and tire detail you feel.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Gain</strong> — -5.00x to 5.00x. Default: 1.25x</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Compressor</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Squeezes the signal above a threshold, keeping peaks under control without hard clipping. Force below the threshold passes through exactly as it was.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Threshold</strong> — 0.0 to 50.0 Nm. Where the squeeze starts. Default: 30.0 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Knee</strong> — 0.0 to 20.0 Nm. How wide the soft corner around the threshold is. Default: 5.0 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Ratio</strong> — 1.0:1 to 20.0:1. How hard it squeezes above the threshold; 1.0:1 does nothing. Default: 4.0:1</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">High-pass filter</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Removes the slow body of the signal and keeps only the fast detail above the cutoff. Pair it with a gain module to boost the detail you extracted.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Slope</strong> — One pole (gentler, least possible lag) or Two pole (steeper, cleaner separation). Default: Two pole</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Cutoff</strong> — 0.0 to 180.0 Hz, OFF at 0 (everything passes). 180 Hz is the highest frequency a 360 Hz signal can carry. Default: 8.0 Hz</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Low-pass filter</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Keeps the slow body of the signal and smooths away everything faster than the cutoff. With the same cutoff and slope, a low-pass and a high-pass split a signal into body and detail that add back up to the original.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Slope</strong> — One pole or Two pole. Default: Two pole</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Cutoff</strong> — 0.0 to 180.0 Hz. At 0 Hz the output is blocked entirely. Default: 8.0 Hz</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Slew compressor</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Squeezes fast signal changes instead of hard-limiting them — slow movement passes untouched. Where the compressor works on how <em>strong</em> the force is, this works on how <em>quickly</em> it changes, which is what takes the sting out of sharp hits.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Threshold</strong> — 0 to 1000 Nm/s. Rates of change below this pass through untouched. Default: 75 Nm/s</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Knee</strong> — 0 to 200 Nm/s. Width of the soft corner. Default: 30 Nm/s</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Ratio</strong> — 1.0:1 to 20.0:1. Default: 3.0:1</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Peak mode</strong> — instead of slowing the rise, it eases the force back down after a spike. Default: OFF</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Slew limiter</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Caps how fast the signal can change — anything under the limit passes untouched, faster movement is slowed down. A hard version of the slew compressor. Nothing is lost, only delayed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Limit</strong> — 1 to 1500 Nm/s. Default: 360 Nm/s</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Adaptive smoother</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>One-knob smoother that adapts to the signal — strong smoothing when quiet, minimal lag on fast transients. Use it to kill hash and jitter without the mush a plain low-pass would add.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Amount</strong> — 0% to 100%, OFF at 0%. The value shows the cutoff it works out to, for example <strong>50% (13.4 Hz)</strong>. Default: OFF</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Transient enhancer</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Extracts the fast detail and emphasizes attacks — bumps and curbs pop without boosting the decay. It outputs only the enhanced detail, so add it back onto the body of the signal with an add module.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Cutoff</strong> — 0.0 to 180.0 Hz. Where it splits detail from body. Default: 7.2 Hz</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Gain</strong> — 0.00x to 5.00x. How much the attacks are emphasized; 1.00x leaves them at their original strength. Default: 1.00x</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">60 Hz interpolator</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Removes the staircase steps from a 60 Hz signal by ramping smoothly across each frame, at the cost of one frame of latency. Put it on branches that carry 60 Hz values; on a real 360 Hz signal it would throw the detail away. No settings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">360 Hz prediction</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shifts a 360 Hz signal into the future to counteract latency — an adaptive filter that learns each car as you drive, from the torque history plus your steering and the car's motion. It takes a few seconds on track to settle, and then keeps tracking. Place it directly on the 360 Hz source and do any smoothing after it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Horizon</strong> — how far ahead it aims, shown in milliseconds, OFF at 0. It steps in 360 Hz samples of about 2.8 ms each, up to 12. Default: 6 samples (16.7 ms — one simulator frame)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Correction limit</strong> — 0.25 to 10.00 Nm. Caps how much force the prediction is allowed to add or remove. Raising it buys more shift on heavy cars but can overshoot on light ones. Default: 5.00 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Strength</strong> — 0% to 200%, OFF at 0%. Re-expands the prediction, which is naturally shy. 200% buys a little more shift at the cost of more high-frequency noise. Default: 150%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">60 Hz prediction</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The same idea for a graph built on the 60 Hz source: shifts the 60 Hz signal into the future to counteract latency, learning from your steering and the car's motion as you drive.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Horizon</strong> — whole 60 Hz frames, up to 4, shown in milliseconds (16.7, 33.3, 50.0 ...), OFF at 0. Default: 2 frames (33.3 ms)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Correction limit</strong> — 0.25 to 10.00 Nm. Default: 5.00 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Strength</strong> — 0% to 200%, OFF at 0%. Unlike the 360 Hz module, going above 100% here tends to make things worse. Default: 100%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="modules-mixers">Mixers</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The two-input modules. Each one takes an <strong>input A</strong> and an <strong>input B</strong> and combines them.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Add</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds two signals together. This is how the extra force sources — LFE, soft lock, friction, centering — get into the chain. No settings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Subtract</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Subtracts input B from input A — for example, subtracting a low-pass copy of a signal leaves just the detail. No settings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Blend</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Crossfades between two signals.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Mix</strong> — 0% to 100%. 0% is all input A, 100% is all input B. Default: 50%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">A/B switch</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Passes either input A or input B straight through, chosen by the switch — flip it to compare two signal paths instantly. Pin the switch, or map it to a button, and you can A/B two versions of your tuning without leaving the car.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Use input B</strong> — Default: OFF (input A)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Adaptive blend</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Follows the detail of input A while being pulled toward input B — the pull relaxes at each peak so transients ride through. This is the heart of the hybrid built-in graph: input A is the 360 Hz detail, input B is the smooth 60 Hz anchor.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Cutoff</strong> — 0.0 to 180.0 Hz. How strongly the anchor pulls normally. Default: 20.0 Hz</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Peak cutoff</strong> — 0.0 to 180.0 Hz. The relaxed pull used right after a peak. Default: 6.0 Hz</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Hold</strong> — 0 to 100 ms. How long it takes to ease back to the normal pull. Default: 28 ms</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="modules-effects">Effects</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Effects sit in the chain like a processing module, but what they do depends on what the car is doing. The three protection and speed modules carry a test button; the steering-effect forces follow their effect over on the <a href="https://mairapp.com/home/documentation/advanced/steering-effects/" data-type="page" data-id="166">Steering Effects</a> page and go inert if it is switched off there.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Speed gain</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Scales the signal with car speed — fade forces in or out as the car speeds up. This is what makes wheel centering and friction parked-only in the built-in graphs, and it is the replacement for the old parked effects settings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Minimum speed</strong> — 0 to 50 m/s. The bottom of the ramp. Default: 0 m/s</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Maximum speed</strong> — 0 to 100 m/s. The top of the ramp. Default: 30 m/s</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Gain at min speed</strong> — 0.00x to 2.00x. Default: 1.00x</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Gain at max speed</strong> — 0.00x to 2.00x. Default: 1.00x</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The test button pins the preview to the minimum speed end of the ramp, so you can inspect the parked behaviour whatever speed the recording was made at.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Torque dither</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds a tiny alternating dither below a threshold to keep the wheel mechanism live and reveal faint detail. Useful on a low powered or gear driven wheel such as a Logitech G29, where small forces otherwise disappear into the gearbox. This is the modern replacement for the old output minimum setting — rather than forcing weak signals up to a floor, it keeps the mechanism moving underneath it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.00 to 1.00 Nm, OFF at 0. Default: 0.10 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Threshold</strong> — 0% to 100%. Above this the signal passes through untouched. Default: 10%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Crash protection</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Fades the force way down when a crash is detected, then ramps back smoothly — so a big impact cannot yank the wheel out of your hands. It watches the car's G forces itself, so several crash protection modules in one graph can trigger on different thresholds independently.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Longitudinal G force</strong> — 2.0 to 20.0 g. Threshold for front / rear impacts. Default: 8.0 g</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Lateral G force</strong> — 2.0 to 20.0 g. Threshold for side impacts. Default: 8.0 g</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Duration</strong> — 0.00 to 10.00 sec, OFF at 0. How long the force stays reduced. It re-arms for as long as the impact continues, so a long shunt is held at full reduction. Default: 0.20 sec</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Force reduction</strong> — 0% to 100%, OFF at 0%. How much force is taken away. Default: 95%</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Recovery time</strong> — 0.00 to 5.00 sec, OFF at 0. How long it takes to ramp back to full afterwards; 0 snaps straight back. Default: 0.20 sec</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curb protection</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Reduces force during hard curb strikes, then ramps back smoothly. It watches the suspension's shock velocity itself, the same way crash protection watches G forces.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Shock velocity</strong> — 0.00 to 2.00 m/s. How violent a hit has to be to count. Default: 0.50 m/s</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Duration</strong> — 0.00 to 2.00 sec, OFF at 0. Default: 0.10 sec</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Force reduction</strong> — 0% to 100%, OFF at 0%. Default: 75%</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Recovery time</strong> — 0.00 to 2.00 sec, OFF at 0. Default: 0.10 sec</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Understeer force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A steering force driven by the understeer effect, so you can feel the front tires losing grip.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Direction</strong> — None, Decrease force (the wheel goes light as the front washes out) or Increase force (a push you have to hold against). Default: Decrease force</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm at the wheel, OFF at 0. Default: 1.0 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Curve</strong> — -100% to 100%, OFF at 0%. Bends the response: positive holds the effect back until the slide is well established, negative brings it on early. Default: OFF</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Oversteer force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A steering force driven by the oversteer effect, so you can feel the rear of the car stepping out. Same settings as understeer force.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Direction</strong> — Default: Increase force</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm, OFF at 0. Default: 1.0 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Curve</strong> — -100% to 100%, OFF at 0%. Default: OFF</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Seat-of-pants force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A steering force driven by the seat-of-pants effect — the feel of the chassis loading up.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Direction</strong> — Default: Increase force</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm, OFF at 0. Default: 1.0 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Curve</strong> — -100% to 100%, OFF at 0%. Default: OFF</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="modules-vibrations">Vibration effects</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Vibration modules are standalone nodes with no wires. They do not join the main chain; they add straight onto the wheel on top of everything else, which is why they are not affected by the output curve. Every one of them has a test button, which shakes the wheel for real and is therefore only available while you are on track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The first three follow the steering effects and share a common set of controls:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Pattern</strong> — None, Sine wave, Square wave, Triangle wave, Sawtooth wave (in) or Sawtooth wave (out). The shape of the buzz.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm at the wheel, OFF at 0.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Frequency</strong> — 1 to 100 Hz. How fast it buzzes.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Curve</strong> — -100% to 100%, OFF at 0%. Bends how the vibration builds as the effect grows.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Understeer vibration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Vibrates the wheel when the front tires start to slide.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Sawtooth wave (in), 1.0 Nm, 25 Hz, curve OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Oversteer vibration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Vibrates the wheel when the rear tires start to slide.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Square wave, 0.5 Nm, 20 Hz, curve OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Seat-of-pants vibration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Vibrates the wheel with the chassis motion — weight transfer you can feel.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Triangle wave, 0.7 Nm, 25 Hz, curve OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">ABS vibration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Pulses the wheel while the brakes' ABS is active.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm, OFF at 0. Default: 1.0 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Frequency</strong> — 5 to 120 Hz. Default: 50 Hz</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Pulse duration</strong> — 10 to 500 ms. How long each on / off pulse lasts. Default: 85 ms</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Gear change vibration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A short vibration burst on every gear change.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm, OFF at 0. Default: 0.5 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Frequency</strong> — 5 to 120 Hz. Default: 30 Hz</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Shift RPM vibration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Buzzes the wheel in pulses when the engine reaches the shift point, nudging you to upshift.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm, OFF at 0. Default: 0.5 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Frequency</strong> — 5 to 120 Hz. Default: 60 Hz</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Pulse duration</strong> — 10 to 500 ms. Default: 80 ms</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Engine RPM vibration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A rumble that tracks the engine speed, voiced like a V8 — silent while the engine is off. Rather than a pure tone, each cycle is treated as a firing event, with harmonics, a little randomness and a repeating unevenness that gives it the lope of a real engine.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm, OFF at 0. Default: 0.1 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Frequency at redline RPM</strong> — 10 to 120 Hz. The rumble ramps up to this at the car's redline, and keeps climbing if you over-rev. Default: 72 Hz</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Roughness</strong> — 0% to 100%, OFF at 0%. 0% is a plain sine, 100% is the full V8 voice. Default: 100%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Road texture</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A rumble that speeds up with the car, like road surface texture — silent when parked.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm, OFF at 0. Default: 0.1 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Frequency</strong> — 5 to 120 Hz. The rate reached at about 180 MPH. Default: 120 Hz</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Slip texture</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A rumble that appears whenever either end of the car is sliding, driven by the understeer and oversteer effects. It goes quiet if both of those effects are switched off on the steering effects page.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0.0 to 10.0 Nm, OFF at 0. Default: 0.5 Nm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Frequency</strong> — 5 to 120 Hz. Default: 80 Hz</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="modules-output">Output</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Output</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The end of the chain — converts the signal to wheel output, with an optional response curve and soft limiter. Every graph has exactly one, it is always there, and it cannot be removed. This is the point where Nm become what the wheel plays, using your <strong>Max force</strong>, so the two shapers here work on the final result rather than on some Nm figure part way down the chain.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Curve</strong> — -100% to 100%, OFF at 0%. Positive values emphasize larger forces (more dramatic build-up), negative values emphasize smaller forces (more "alive" near center). The knob draws the curve so you can see the shape. Default: OFF</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Soft limiter</strong> — eases the signal into full scale instead of letting it hit a brick wall, so it keeps some detail where it would otherwise flatten out. Default: ON</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Threshold</strong> — 0% to 100% of full scale. Below this, output passes through untouched. Default: 90%</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Knee</strong> — 0% to 100%. Width of the soft corner around the threshold. Default: 30%</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Ratio</strong> — 1.0:1 to 20.0:1. How hard the excess above the threshold is squeezed. Default: 6.0:1</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="preview">The preview graph</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Underneath the node graph is a preview of your graph running over a recorded lap. It is not a live meter — the live one lives on the <a href="https://mairapp.com/home/documentation/advanced/graph/" data-type="page" data-id="178">Graph</a> page. This one replays a recording through a second copy of your FFB graph, so you can stop, scrub, zoom in on one bump, turn a knob and watch what changes. Everything a module needs is replayed with it, so effects, protections and vibrations behave exactly as they did in the car.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">What the traces mean</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The preview follows whichever module you have selected in the node graph (or right-clicked to lock it to).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>The <strong>white line</strong> is that module's output.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The <mark style="background-color:rgba(0, 0, 0, 0);color:#ff0000" class="has-inline-color">red</mark> filled area is its input A.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The <mark style="background-color:rgba(0, 0, 0, 0);color:#00ff00" class="has-inline-color">green</mark> filled area is its input B, on modules that have two inputs.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>With the output module selected — which is where the preview sits when nothing else is chosen — the red area is the raw 360 Hz signal straight from the simulator and the white line is the final result your wheel plays, vibrations included. That is the comparison most people want: before and after, in one picture.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A source or a vibration module has no inputs, so only its own waveform is drawn.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The background flashes colour to mark events, exactly like the live graph does: <mark style="background-color:rgba(0, 0, 0, 0);color:#ffff00" class="has-inline-color">yellow</mark> while curb protection is cutting force, <mark style="background-color:rgba(0, 0, 0, 0);color:#ff8000" class="has-inline-color">orange</mark> while crash protection is, and <mark style="background-color:rgba(0, 0, 0, 0);color:#ff0000" class="has-inline-color">red</mark> where the output is clipping. The protection colours are re-derived from the recorded telemetry against your <em>current</em> module thresholds, so tightening a threshold changes where they appear.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Reading the recording</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Hover</strong> the graph to get a magnified square of the trace under the cursor, and beside it a card of the recorded telemetry at that exact sample — time and track position, the 60 Hz and 360 Hz torque, LFE, speed, RPM and gear, steering angle and velocity, wheel position and velocity, ABS, lateral and longitudinal G, shock velocity, and the understeer, oversteer, seat-of-pants and skid/slip values.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Drag left or right</strong> to scroll, or use the scroll bar underneath.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Ctrl + mouse wheel</strong> zooms horizontally, from every sample drawn down to one in twenty. Wheel up zooms out, wheel down zooms in, and the sample under the cursor stays put. Only the number of drawn points changes — the graph engine still runs every sample, so filters and predictions stay accurate at any zoom.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">The track map</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The panel to the right of the preview draws the piece of track the recording covers, fitted to the panel with north up. A green dot marks where the recording started and a red dot where it ended, and the stretch currently visible in the preview is highlighted in orange — so as you scroll along the trace you can see exactly which corner you are looking at.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Record</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The record button floats over the top right corner of the preview. Press it once to start recording and again to stop and save; it blinks while a recording is running. It only works while you are on track, and it can be mapped to a button on your wheel or button box so you can start one without leaving the car. MAIRA beeps when a recording starts and stops (both beeps can be turned off on the <a href="https://mairapp.com/home/documentation/advanced/sounds/" data-type="page" data-id="172">Sounds</a> page).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A recording also stops by itself when any of these happen:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>You come back around to where you started it — a complete lap.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>You leave the track.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Five minutes go by, which is as much as it can hold.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Whatever was captured up to that point is kept. Recordings are saved into <strong>Documents\MAIRA\Recordings</strong>, named after the game, car, track and length, and the new one is selected for the preview automatically. Everything is captured at the full 360 Hz, along with the telemetry the modules need to replay properly.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Recordings made by older versions of MAIRA do not carry all of that telemetry and are ignored — record a fresh lap.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Choose recording</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The button beside record opens the list of saved recordings. Click one and it loads straight away. If the list is empty it says so.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -662,7 +1540,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>You will need to download and install a utility called VB-CABLE for the Wheel LFE feature to work. More information on that can be found here - <a href="https://mairapp.com/home/documentation/other-stuff/vb-cable-setup/" data-type="page" data-id="282">VB-CABLE Setup</a></p>
+<p>Wheel LFE feeds the simulator's low-frequency effects audio into your wheel as force. You will need to download and install a utility called VB-CABLE for it to work, and to turn on bass shaker LFE inside iRacing. More information on that can be found here - <a href="https://mairapp.com/home/documentation/other-stuff/vb-cable-setup/" data-type="page" data-id="282">VB-CABLE Setup</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This section only picks the device to listen to. How much of it reaches the wheel is the <strong>Strength</strong> setting on the <strong>LFE source</strong> module in your FFB graph — it is one of the pinned quick controls in all four built-in graphs, so you will find it in the FFB graph settings section above.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -670,23 +1552,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Select which audio capture device MAIRA listens to for LFE magnitude.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Strength</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>How much LFE magnitude is added directly to wheel torque.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>This is intended for subtle texture or low-frequency effects, not for replacing normal steering torque.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 5%</p>
+<p>Select which audio capture device MAIRA listens to for LFE magnitude. Leave it on the disabled entry if you are not using this feature.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -694,11 +1560,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Logitech TrueForce wheels (G PRO Racing Wheel, RS50, G923) have a strip of RPM lights on the rim that normally only the game can light up. MAIRA drives these lights for you, using the simulator's own per-car shift light ranges, so the strip fills as the engine approaches the shift point. This section only appears when one of these wheels is selected as your steering device.</p>
+<p>Logitech TrueForce wheels (G PRO Racing Wheel, RS50, G923) have a strip of RPM lights on the rim that normally only the game can light up. MAIRA drives these lights for you, using the simulator's own per-car shift light ranges, so the strip fills as the engine approaches the shift point. This section only appears when one of these wheels is selected as your steering device, and it names the wheel it found.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>While the RPM lights are enabled, MAIRA sends its force feedback to the wheel through the TrueForce channel instead of DirectInput - this is required for the lights and force feedback to coexist, and the force itself is unchanged. The wheel is released whenever the simulator is not running, so other games can use TrueForce normally while MAIRA is open.</p>
+<p>While the RPM lights are enabled, MAIRA sends its force feedback to the wheel through the TrueForce channel instead of DirectInput - this is required for the lights and force feedback to coexist, and the force itself is unchanged. If that channel cannot be opened, force falls back to DirectInput and the lights stay off rather than cutting the force out. The wheel is released whenever the simulator is not running, so other games can use TrueForce normally while MAIRA is open. The PlayStation G923 is the exception: its lights do not compete with force feedback, so it keeps the normal DirectInput path.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -723,218 +1589,6 @@
 
 <!-- wp:paragraph {"className":"default"} -->
 <p class="default">Default: on</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="crash-protection">Crash protection</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Crash protection reduces wheel force temporarily when a crash-like event is detected.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Longitudinal G-Force</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Threshold for longitudinal G (braking / impacts) to trigger Crash protection.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 8.0g</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Lateral G-Force</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Threshold for lateral G (side impacts) to trigger Crash protection.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 6.0g</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Duration</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>How long Crash protection remains active (seconds), plus a short recovery ramp.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 1.0 sec</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Force reduction</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>How much force is reduced when Crash protection triggers.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 95%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="curb-protection">Curb protection</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Curb protection reduces algorithm aggressiveness temporarily when shock velocity spikes (curbs, bumps).</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Shock velocity</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Threshold for suspension shock velocity to trigger Curb protection.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 0.50 m/s</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Duration</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>How long protection stays active.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 0.10 sec</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Force reduction</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>How strongly the algorithm is “softened” while protection is active.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 75%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="parked-effects">Parked effects</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>These apply when moving very slowly (roughly 0–5 mph), to keep the wheel calmer / more manageable in pits and when stopped.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Force feedback strength</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Scales down overall forces as speed approaches zero.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 10%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Parked friction</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Adds velocity-based friction when parked (helps stop the wheel from feeling loose at a standstill).</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="other-features">Other features</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Soft lock strength</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Adds a soft force barrier near your steering angle limit to simulate a “bump stop”.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 25%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Racing friction</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Adds velocity-based friction while driving (reduced automatically as you approach parked speed).</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Wheel centering strength</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Adds a centering force toward wheel center (optionally enabled separately for racing vs parked; see <strong>SWITCHES</strong>).</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 75%</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="effects">Effects</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Shift RPM vibrate strength</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Adds a pulsed vibration once your engine RPM reaches the shift point, nudging you to upshift. It stays active until you shift up (and does nothing in top gear). Setting this to 0% turns the effect off.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Gear change vibrate strength</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Adds a short vibration pulse on gear shifts. Setting this to 0% turns the effect off.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">ABS vibrate strength</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Adds a vibration pattern while ABS is active. Setting this to 0% turns the effect off.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -974,7 +1628,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Sends a message when Crash protection triggers.</p>
+<p>Sends a message when a crash protection module in your graph triggers.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -986,7 +1640,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Sends a message when Curb protection triggers.</p>
+<p>Sends a message when a curb protection module in your graph triggers.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -998,35 +1652,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Center wheel while racing</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Enables MAIRA centering force while driving.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Center wheel while parked</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Enables MAIRA centering force while stopped / crawling.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: ON</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Fade force feedback when entering or exiting car</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Smooth fade-in/out of steering torque as iRacing transitions on/off track.</p>
+<p>Smooth fade-in/out of steering torque as the simulator transitions on/off track.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -1062,19 +1692,37 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Enable this only if you know what you’re doing (and ideally keep iRacing FFB off).</p>
+<p>Enable this only if you know what you're doing (and ideally keep iRacing FFB off).</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Enable simple mode</p>
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="upgrading-from-2-0">Upgrading from MAIRA 2.0</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Hides most sections on this page for a cleaner and simpler experience.</p>
+<p>If you are coming from 2.0, the first launch converts your force feedback settings for you. There is nothing to do by hand and nothing is lost.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Whichever <strong>algorithm</strong> you had chosen becomes the built-in graph that replaces it. The detail booster and delta limiter families (and Native 360 Hz) land on <strong>Low latency 360 Hz detail booster &amp; limiter</strong>, Native 60 Hz on <strong>Low latency 60 Hz detail booster &amp; limiter</strong>, Slew and total compression on <strong>360 Hz slew &amp; total compression</strong>, and the Multi adjustment toolkit on <strong>Hybrid multi adjustment toolkit</strong>. That happens for every car and track you had tuned, not just the one you were last in.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Your tuned <strong>values</strong> are translated into module values in those graphs. Algorithm knobs go into the matching graph's modules; the effects that were page settings in 2.0 — soft lock, wheel centering, crash and curb protection, the steering effect forces and vibrations, and the ABS, gear change and shift RPM vibrations — are written into all four built-in graphs, so switching graphs later keeps them.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Percentage strengths become <strong>Nm at the wheel</strong> using the wheel force of each tuning profile, and the compression thresholds become Nm and Nm/s using your max force.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>A setting you never touched in 2.0 is left alone, so it picks up the retuned 2.1 default rather than dragging an old value forward.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The conversion runs once, on the first launch that sees a 2.0 settings file. After that your graphs are yours, and nothing from 2.0 is written again.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:spacer -->

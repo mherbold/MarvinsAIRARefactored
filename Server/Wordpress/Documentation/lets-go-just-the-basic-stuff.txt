@@ -4,6 +4,52 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="the-wizard">The wizard</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The very first time you run MAIRA, Marvin the Wizard shows up and offers to walk you through the settings that matter most. Taking him up on it is the fastest way to get going — he covers everything in this quick start and a bit more. You can also send him away with <strong>Skip</strong> and do it all by hand, and you can call him back at any time with the <strong>Launch wizard</strong> button on the <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a> page.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Here is what he asks you, in order:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>App theme</strong> — dark or light. Flip the switch and the app changes while you watch.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Steering wheel</strong> — pick your force feedback wheel from the list. If it is not there, power it on and plug it in; the list refreshes on its own. Fanatec wheels usually show up as two devices — if the one you pick does not work, come back and try the other.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Maximum wheel force</strong> — how much torque your wheelbase can actually produce, in Nm. MAIRA guesses from the wheel you picked, so usually you can just check it. If you have turned your wheel's torque down in its own software (Fanatec Wheel Control Panel, Moza Pit House, and so on), enter that reduced number here, not the number on the box.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Strength controls</strong> — optionally map a button on your wheel or button box to each of the − and + buttons, so you can change the force feedback strength without leaving the car. A mapped button turns orange. You can skip this and do it later on the Racing Wheel page.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Auto-set max force</strong> — MAIRA measures the peak torque your car actually produces while you drive, and can set Max force from that measurement at the press of a button. Answer <strong>Yes</strong> to set it up, or <strong>No</strong> to move on.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Auto-set setup</strong> — if you said yes: set the Auto target (where in your wheel's force range you want the measured peak to land — lower leaves more headroom above it) and map the <strong>Set</strong> and <strong>Clear</strong> buttons. On a first run MAIRA starts Auto target at 10 Nm, or at your wheel force if that is lower.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>How you like your force feedback to feel</strong> — a single slider running from smooth to detailed, with a plain-language description of each of its seven positions. MAIRA selects the flagship built-in graph, <strong>Low latency 360 Hz detail booster &amp; limiter</strong>, and sets that graph's detail gain to match — a quarter of normal at the smooth end, normal in the middle, double at the detailed end. Nothing here is permanent — every part of it can be adjusted afterward on the Racing Wheel page.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>If you skipped the wizard, or you would rather set things up yourself, the rest of this page is the short version.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section">Racing wheel</p>
 <!-- /wp:paragraph -->
 
@@ -40,22 +86,16 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Algorithm</p>
+<p class="setting">Graph</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Select -</p>
+<p>Leave this on <strong>Low latency 360 Hz detail booster &amp; limiter</strong>. It is the graph MAIRA starts on, and it is the one to use unless you have a reason not to.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Detail booster (low latency)</strong>: if you want to boost details (feel more road)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>Delta limiter (low latency)</strong>: if you prefer a smoother driving experience.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>All the force feedback processing lives in graphs now, and each graph is built out of modules you can turn on, off, and tune. You do not have to go anywhere near the node editor to get a good result — the built-in graphs bring their most useful controls out for you, in the <strong>FFB graph settings</strong> section below the graph. The one to reach for first is <strong>Gain</strong>, under the <strong>Gain</strong> node: turn it up to feel more road and tire detail, turn it down for a calmer wheel.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section">Pedals</p>

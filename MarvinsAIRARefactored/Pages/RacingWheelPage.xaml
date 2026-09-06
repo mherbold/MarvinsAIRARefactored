@@ -1165,7 +1165,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[FFBGraphSettings]}"
-                                HelpTopic="advanced/racing-wheel/#ffb-graph">
+                                HelpTopic="advanced/racing-wheel/#ffb-graph-settings">
 
             <StackPanel>
 

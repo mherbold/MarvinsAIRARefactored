@@ -3,7 +3,15 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>MAIRA uses the ElevenLabs Speech-to-Text service for transcription. It listens to your selected recording input, sends short audio segments while radio traffic is active, and shows captions in the Captions overlay window.</p>
+<p>MAIRA uses the ElevenLabs Speech-to-Text service for transcription. It listens to your selected recording input, streams short audio segments to ElevenLabs while radio traffic is active, and shows captions in the Captions overlay window.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA reads from iRacing who is on the radio at that moment, so each caption is labelled with the speaker's car number and name — for example <strong>#24 Marvin Herbold</strong>. Text appears as ElevenLabs works it out and is replaced by the finished sentence when the transmission ends. The overlay hides itself again about ten seconds after the last caption.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Captions only run while you are connected to iRacing. Turning the switch on with the simulator closed simply arms the feature — MAIRA starts listening once the simulator connects, and stops again when it disconnects.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -34,6 +42,10 @@
 <p>When enabled, MAIRA starts audio capture, sends voice-chat audio to ElevenLabs for transcription, and updates the overlay with partial/final text as radio messages come in.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>You need an ElevenLabs API key entered below before this will do anything. If the key is missing, the overlay says so instead of showing captions.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"default"} -->
 <p class="default">Default: OFF</p>
 <!-- /wp:paragraph -->
@@ -50,8 +62,12 @@
 <p>If your captions are blank or unreliable, this is the first setting to check.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>If the device you picked is no longer plugged in, the list keeps your choice but shows it as <strong>Device missing</strong> so you can tell the difference between a bad setting and a missing device.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: [Default Recording device]</p>
+<p class="default">Default: [Default Windows sound device]</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -68,6 +84,14 @@
 
 <!-- wp:paragraph -->
 <p>Enter your ElevenLabs API key. MAIRA uses this key to send caption audio and check account usage.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The key is encrypted with your Windows account before it is written to disk, so it never sits in your settings file as plain text. Captions keep their own key, separate from the one the <a href="https://mairapp.com/home/documentation/advanced/commentary/" data-type="page" data-id="937">Commentary</a> page uses — you can use the same key in both, but you have to enter it in both places.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA re-checks the key whenever you change it and whenever you open this page, so the result below is always current.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -98,6 +122,10 @@
 
 <!-- wp:paragraph -->
 <p>Shows your current ElevenLabs subscription usage so you can keep an eye on limits.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>It fills in when the key verifies, and while captions are running it refreshes itself at most once a minute — and only if MAIRA actually sent something to transcribe since the last check.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

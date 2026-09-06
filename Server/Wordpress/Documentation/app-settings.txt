@@ -163,7 +163,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>When enabled, MAIRA also re-checks for a newer version at a regular interval while the app is running. The Update check interval below only runs when this is turned on.</p>
+<p>When enabled, MAIRA also re-checks for a newer version at a regular interval while the app is running. The Update check interval below only runs when this is turned on. The re-check never interrupts you: it is skipped while the simulator is running, while any app is full-screen, while the machine is locked, and during Windows quiet hours.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -175,7 +175,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>When enabled, MAIRA cleans up previously downloaded installer files so they don’t pile up in your Documents folder.</p>
+<p>When enabled, MAIRA cleans up previously downloaded installer files so they don’t pile up in your Documents folder. It keeps the three most recent and deletes the rest, right after a new one finishes downloading.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -239,7 +239,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Opens MAIRA’s Documents folder in Windows Explorer. This is where MAIRA stores its settings, logs, recordings, and other data files.</p>
+<p>Opens MAIRA’s Documents folder — <strong>Documents\MAIRA</strong> — in Windows Explorer. This is where MAIRA stores its settings, settings backups, logs, sounds, calibration files, recordings, and downloaded installers.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->

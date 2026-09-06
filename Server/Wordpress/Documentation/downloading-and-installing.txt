@@ -40,6 +40,10 @@
 <p>You can download the latest version by clicking on the first link at the top of the <a href="https://mairapp.com/" data-type="page" data-id="9">home page</a> of this website.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>The installer is named after the version it installs — <strong>MAIRA-Setup-2.1.4312.exe</strong>, for example. Versions have three parts: <strong>2.1</strong> plus a build stamp that goes up every time I build the app, so a higher number is always the newer build.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section">Installing</p>
 <!-- /wp:paragraph -->
@@ -61,7 +65,81 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>After you install my app, run it via either the desktop icon, or by finding it by pressing the Windows key and then typing “Marvin” in the search box.</p>
+<p>If SimHub is running, the installer closes it before it copies files (it has to, because it updates the MAIRA plugins inside SimHub’s own folder) and starts it again afterward.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>After you install my app, run it by pressing the Windows key and typing “MAIRA” in the search box. The installer also offers a desktop shortcut, also named <strong>MAIRA</strong> — that one is off by default, so tick it on the installer’s last page if you want it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA does not add itself to Windows startup. If you want it to launch when you sign in, turn on <strong>Start with Windows</strong> on the <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a> page and MAIRA puts a <strong>MAIRA</strong> shortcut in your Startup folder for you.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="what-gets-installed">What the Installer Puts Where</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The app itself goes into a <strong>Marvin's Awesome iRacing App</strong> folder. If you install it just for yourself (the default) that is under <strong>C:\Users\[your name]\AppData\Local\Programs</strong>; if you install it for all users it is under <strong>C:\Program Files</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Everything you can change or add to lives in a <strong>MAIRA</strong> folder inside your <strong>Documents</strong> folder, so an uninstall never takes your settings with it. The installer creates it and drops the default files into it:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Sounds</strong> — the wav files MAIRA plays, so you can replace them with your own</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Recordings</strong> — force feedback recordings</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Calibration</strong> — the per-car calibration files the steering effects use</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>TTS</strong> — the text-to-speech files used by commentary</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>SimHub</strong> and <strong>SBT</strong> — the SimHub plugins and bass shaker files</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>MAIRA adds a few more folders here as it runs — <strong>Logs</strong> for its log files, <strong>Backups</strong> for settings backups — and this is also where downloaded installers are kept.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If SimHub is installed, the three MAIRA plugin DLLs are copied straight into SimHub's own folder as well.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="documents-folder-rename">Upgrading from an Older Version</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This app used to be called “MarvinsAIRA Refactored”, and its documents folder was named to match. That name is retired, and everything now lives in <strong>Documents\MAIRA</strong> instead.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You do not have to do anything about it. Before it copies any files, the installer renames your old <strong>MarvinsAIRA Refactored</strong> folder to <strong>MAIRA</strong>, so your settings, recordings, calibration files and sounds carry straight over. If something has that folder open and the rename cannot happen, MAIRA finishes the job itself the next time it starts — moving everything across and keeping your copy of any file that exists in both places. It writes down what it did in the log file. The installer also clears out the old Start menu, desktop and startup shortcuts so you are not left with dead ones.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="updates">Updates</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA checks for a newer version when it starts, and again every so often while it is running. It never interrupts you mid-session — the periodic check is skipped while the simulator is running, while a game or presentation is full-screen, and during Windows quiet hours.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When there is a newer version, MAIRA shows you the change log and asks whether to download it. The installer is saved into your <strong>Documents\MAIRA</strong> folder, and MAIRA then offers to close itself and run it. MAIRA keeps the three most recent installers and deletes the older ones. All of this can be turned off or tuned on the <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a> page.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -69,11 +147,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>MAIRA keeps all of its data — settings, sounds, calibration files, recordings, and logs — in a <strong>MarvinsAIRA Refactored</strong> folder inside your <strong>Documents</strong> folder. The installer creates this folder and copies the default files into it, and the app reads and writes files there every time it runs.</p>
+<p>MAIRA keeps all of its data — settings, sounds, calibration files, recordings, and logs — in a <strong>MAIRA</strong> folder inside your <strong>Documents</strong> folder. The installer creates this folder and copies the default files into it, and the app reads and writes files there every time it runs.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Windows has an optional ransomware protection feature called <strong>controlled folder access</strong>. It is off by default, but if you have turned it on, Windows will block apps it does not recognize from writing to protected folders — and your Documents folder is protected by default. This can stop the installer from creating the <strong>MarvinsAIRA Refactored</strong> folder, and can also stop MAIRA itself from saving your settings and writing its log files. Windows usually only shows a small “Unauthorized changes blocked” notification when this happens, so it is easy to miss.</p>
+<p>Windows has an optional ransomware protection feature called <strong>controlled folder access</strong>. It is off by default, but if you have turned it on, Windows will block apps it does not recognize from writing to protected folders — and your Documents folder is protected by default. This can stop the installer from creating the <strong>MAIRA</strong> folder, and can also stop MAIRA itself from saving your settings and writing its log files. Windows usually only shows a small “Unauthorized changes blocked” notification when this happens, so it is easy to miss.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -94,7 +172,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Select <strong>MarvinsAIRARefactored.exe</strong>. If you installed the app just for yourself (the default), it is in <strong>C:\Users\[your name]\AppData\Local\Programs\Marvins Awesome iRacing App - Refactored</strong>. If you installed it for all users, it is in <strong>C:\Program Files\Marvins Awesome iRacing App - Refactored</strong>.</li>
+<li>Select <strong>MarvinsAIRARefactored.exe</strong>. If you installed the app just for yourself (the default), it is in <strong>C:\Users\[your name]\AppData\Local\Programs\Marvin's Awesome iRacing App</strong>. If you installed it for all users, it is in <strong>C:\Program Files\Marvin's Awesome iRacing App</strong>.</li>
 <!-- /wp:list-item --></ol>
 <!-- /wp:list -->
 

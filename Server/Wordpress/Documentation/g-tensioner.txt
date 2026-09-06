@@ -160,7 +160,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Learning only happens while you are cleanly driving on the track surface above about 20 mph (32 km/h) — it pauses when you are off track, in the pits, or while crash or curb protection is active. Sudden one-off spikes in the G forces are ignored as well, so a single bump, curb strike, or light contact cannot skew the tune. Learned peaks decay slowly over time so the tune keeps adapting as grip and conditions change. The learned values are not saved — Auto-Tune starts fresh from a light baseline each time you go on track and reconverges within a second or two. Its on/off state and the balance are still remembered per car through MAIRA's per-context system.</p>
+<p>Learning only happens while you are out in the car and moving faster than about 20 mph (32 km/h) — it pauses when you are not on track, when you slow below that speed, and while crash or curb protection is active. Sudden one-off spikes in the G forces are ignored as well, so a single bump, curb strike, or light contact cannot skew the tune. Learned peaks decay slowly over time so the tune keeps adapting as grip and conditions change. The learned values are not saved — Auto-Tune starts fresh from a light baseline each time you go on track and reconverges within a second or two. Its on/off state and the balance are still remembered per car through MAIRA's per-context system.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -472,6 +472,10 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
+<p>The Minimum threshold, Maximum threshold, and Algorithm below are the same three settings as the seat-of-pants ones on the Steering Effects page. Changing them here changes them there too, and the other way around. The Axis mode, Amplitude, and Curve belong to the G Tensioner alone.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
 <p>When Auto-Tune is enabled, the seat-of-pants strength is set automatically (scaled together with the sway balance) and the Amplitude and Curve controls below are disabled.</p>
 <!-- /wp:paragraph -->
 
@@ -549,6 +553,10 @@
 
 <!-- wp:paragraph -->
 <p>These effects add rapid belt oscillations in response to specific car events. Each effect has an independent enable switch, frequency, and amplitude, and each can be tested without going on track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Only one vibration effect runs at a time. ABS / wheel lock wins over Wheel slip, and Wheel slip wins over Rumble strip. The rumble strip effect is the only one that can run on a single shoulder, because it follows whichever side of the car is on the strip.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -676,7 +684,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Auto-Tune, the balance, and the surge, sway, heave, seat-of-pants, and vibration effect tuning controls all support MAIRA's per-context system, so they can be customized per car (and other context dimensions if configured).</p>
+<p>Auto-Tune, the balance, every surge, sway, and heave control, and the seat-of-pants axis mode, thresholds, algorithm, and curve all support MAIRA's per-context system, so they can be customized per car (and other context dimensions if configured).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The connection settings, the calibration settings, the seat-of-pants amplitude, and the vibration effect settings are global &mdash; they apply to every car.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

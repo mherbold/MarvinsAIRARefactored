@@ -61,6 +61,22 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="status-display">The Status Display</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In the top right corner of the MAIRA window, beside the page name, sits the status display. While the simulator is running it shows the car, the track, the track configuration, and whether the weather is <strong>Wet</strong> or <strong>Dry</strong> — in other words, exactly what MAIRA is tuning for at this moment. That matters, because it is the context your context-based settings are being saved into.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The display doubles as a button: click it to open the tuning profiles window, where you can see every profile MAIRA has saved and what each one changes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When the simulator is not running, the display reads <strong>The iRacing simulator is not running</strong> with a red border — a reminder that there is no car or track to key on, so anything you change right now is going into the default profile. It also borrows the display to tell you when it is busy in the background, such as while it is checking for or downloading an update.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="infinite-slider-control">Infinite Slider Control</p>
 <!-- /wp:paragraph -->
 
@@ -104,6 +120,14 @@
 <p>You can map inputs (buttons, knobs, hats, and keys) on your wheel, button box, Stream Deck, or keyboard to most button controls, including those on infinite sliders. To do so, you would right-click on the button, and this will open up a configuration window.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>Switches work the same way — right-click the switch itself (not its label, which is reserved for the context-based saving window) to map an input that flips it on and off. Anything that has an input mapped to it is drawn with an orange border, so you can see at a glance what is bound.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This works inside the FFB graph too. The knobs and switches on a graph module, and the module's own on/off switch, can all be mapped, so you can reach in and adjust or disable an individual effect from the wheel while you are driving.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:image {"id":530,"sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"},"width":"2px"}},"borderColor":"contrast"} -->
 <figure class="wp-block-image size-full has-custom-border"><img src="https://mairapp.com/wp-content/uploads/2026/02/image-1.png" alt="" class="has-border-color has-contrast-border-color wp-image-530" style="border-width:2px;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px"/></figure>
 <!-- /wp:image -->
@@ -122,6 +146,22 @@
 
 <!-- wp:paragraph -->
 <p>All of your button and input mappings are organized into named <strong>Controller Profiles</strong>, so you can keep more than one complete set of mappings and switch between them. The dedicated <a href="https://mairapp.com/home/documentation/advanced/controller-profiles/" data-type="page">Controller Profiles</a> page lets you create, rename, and delete profiles, and select which saved profile is active. This is handy when you use different wheels, button boxes, or Stream Deck layouts, or want separate mapping sets for different types of racing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="pinning">Pinning a Setting</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The FFB graph on the <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/" data-type="page" data-id="152">Racing Wheel</a> page can hold a lot of settings, and most of the time you only care about a handful of them. The small pin icon sitting just after a setting's name is how you choose which ones. Click it to pin that setting, and a copy of it also appears in the <strong>FFB graph settings</strong> section, grouped under the name of the node it came from — so the settings you actually reach for are together in one place, with the node editor left closed. Pinned is orange, unpinned is gray. A module's own on/off switch can be pinned the same way, so you can put a whole effect's on/off up there.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The arrow buttons at the bottom of a module's settings move that module's group of pinned settings up and down, so you can put the things you touch most at the top.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Pins only show up on your own graphs. The built-in graphs come with a set of pinned settings already chosen, and no pins to fiddle with. You will also notice the pins are missing from the pinned copies themselves — that is on purpose, so a setting cannot be un-pinned from the one place you would then have trouble finding it again. Pin and un-pin from the module's settings beside the node graph.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

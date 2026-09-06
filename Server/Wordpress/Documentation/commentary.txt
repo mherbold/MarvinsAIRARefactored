@@ -35,7 +35,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: English (US)</p>
+<p class="default">Default: English (United States)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -281,7 +281,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Test Voice</p>
+<p class="setting">Test</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -409,15 +409,15 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Car proximity reminder interval</p>
+<p class="setting">Reminder interval</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>How often (in seconds) the spotter will repeat a proximity call while a car remains alongside you. Setting this lower makes the spotter more insistent; higher makes it more relaxed.</p>
+<p>How often (in seconds) the spotter will repeat a proximity call while a car remains alongside you. Setting this lower makes the spotter more insistent; higher makes it more relaxed. The range is 1.0 to 20.0 sec.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 3.0 seconds</p>
+<p class="default">Default: 3.0 sec</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -433,7 +433,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Type here to filter the list of event groups below. Only the groups whose event key matches what you type remain shown, which makes it easy to jump to a specific call in a long list.</p>
+<p>Type here to filter the list of event groups below. A group stays shown when what you type appears in its event key or in any of its phrases, which makes it easy to jump to a specific call &mdash; or to a particular line of dialogue &mdash; in a long list.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -504,7 +504,7 @@
 
 <!-- wp:quote -->
 <blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p>Documents\MarvinsAIRA Refactored\TTS\Cache\</p>
+<p>Documents\MAIRA\TTS\Cache\</p>
 <!-- /wp:paragraph --></blockquote>
 <!-- /wp:quote -->
 

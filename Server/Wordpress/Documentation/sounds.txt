@@ -2,6 +2,14 @@
 <p>The Sounds page controls MAIRA’s sound effects system (short/looping WAV effects that MAIRA plays based on simulator state and MAIRA’s internal steering effects).</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>Every effect has a <strong>Test</strong> button on the right of its section. Press it to hear that sound at its current volume and pitch without having to reproduce the condition on track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Every effect also has the same two knobs. <strong>Volume</strong> is that effect's own level, on top of the master volume. <strong>Pitch</strong> shifts the sound up or down from how the WAV was recorded — it reads <strong>OFF</strong> when the sound plays at its natural pitch, and goes down to -75% or up to +100% from there. It is a quick way to make a shared sound file feel different for a different car, or simply to move an effect out of the way of the engine note.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section">Custom sound files</p>
 <!-- /wp:paragraph -->
@@ -12,7 +20,7 @@
 
 <!-- wp:quote -->
 <blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p>Documents\MarvinsAIRA Refactored\Sounds\Effects\&lt;sound key&gt;.wav</p>
+<p>Documents\MAIRA\Sounds\Effects\&lt;sound key&gt;.wav</p>
 <!-- /wp:paragraph --></blockquote>
 <!-- /wp:quote -->
 
@@ -22,7 +30,7 @@
 
 <!-- wp:quote -->
 <blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p>Documents\MarvinsAIRA Refactored\Sounds\Effects\&lt;sound key&gt;_custom.wav</p>
+<p>Documents\MAIRA\Sounds\Effects\&lt;sound key&gt;_custom.wav</p>
 <!-- /wp:paragraph --></blockquote>
 <!-- /wp:quote -->
 
@@ -69,6 +77,14 @@
 
 <!-- wp:list-item -->
 <li>ffb_clipping</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>recording_started</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>recording_stopped</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -117,7 +133,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: ON, 75% volume, 100% frequency ratio</p>
+<p class="default">Default: ON, 75% volume, Pitch OFF</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -125,7 +141,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Every effect below the Click effect is a looping effect. In addition to their Volume and frequency ratio (pitch) knobs, each looping effect exposes two extra knobs:</p>
+<p>Everything from ABS engaged down to FFB clipping is a looping effect. In addition to their Volume and Pitch knobs, each looping effect exposes two extra knobs:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -163,7 +179,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF, 75% volume, 100% frequency ratio, Fade OFF</p>
+<p class="default">Default: OFF, 75% volume, Pitch OFF, Fade OFF</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -175,7 +191,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF, 75% volume, 100% frequency ratio, 85% sensitivity, Fade ON</p>
+<p class="default">Default: OFF, 75% volume, Pitch OFF, 85% sensitivity, Fade ON</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -187,7 +203,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF, 75% volume, 100% frequency ratio, 85% sensitivity, Fade ON</p>
+<p class="default">Default: OFF, 75% volume, Pitch OFF, 85% sensitivity, Fade ON</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -199,7 +215,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF, 75% volume, 100% frequency ratio</p>
+<p class="default">Default: OFF, 75% volume, Pitch OFF</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -211,11 +227,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF, 75% volume, 100% frequency ratio</p>
+<p class="default">Default: OFF, 75% volume, Pitch OFF</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="seat-of-pants">Seat-of-Pants</p>
+<p class="section" id="seat-of-pants">Seat-of-pants</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -223,7 +239,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF, 75% volume, 100% frequency ratio</p>
+<p class="default">Default: OFF, 75% volume, Pitch OFF</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -235,7 +251,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF, 75% volume, 100% frequency ratio</p>
+<p class="default">Default: OFF, 75% volume, Pitch OFF</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -243,11 +259,43 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Plays a looping sound whenever your racing wheel force feedback is clipping. It is a handy audible cue that your overall force is set too high and detail is being lost at the top of the signal.</p>
+<p>Plays a looping sound whenever your racing wheel force feedback is clipping — that is, whenever the force MAIRA wants to send has hit the ceiling set by your Max force. It is a handy audible cue that detail is being lost at the top of the signal, and it is the same condition the <a href="https://mairapp.com/home/documentation/advanced/graph/" data-type="page" data-id="178">Graph</a> page flashes red for.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF, 75% volume, 100% frequency ratio</p>
+<p class="default">Default: OFF, 75% volume, Pitch OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="recording-started">Recording started</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A short beep that plays the moment an FFB recording starts, so you know the recorder caught your button press without having to look away from the road.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is a one-shot sound, not a loop, so it has no loop start or loop end knobs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON, 75% volume, Pitch OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="recording-stopped">Recording stopped</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The matching beep for when a recording ends — whether you stopped it yourself, the five minute buffer filled up, or MAIRA stopped it for you because you completed a lap or left the track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Give this one a different pitch from the started beep and you can tell the two apart with your eyes on the corner ahead.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON, 75% volume, Pitch OFF</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->

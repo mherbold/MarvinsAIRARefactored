@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>If MAIRA crashes or behaves unexpectedly, the most helpful thing you can do is grab the log file. Every time it runs, MAIRA writes a new log file to <strong>Documents\MarvinsAIRA Refactored\Logs</strong>, named after the date and time it started (for example <strong>MAIRA - 2026-07-04 14-30-15.log</strong>). Grab the most recent one — it records what the app was doing leading up to a problem, so it is usually the fastest way to figure out what went wrong. MAIRA keeps the last 7 days of logs and removes older ones automatically.</p>
+<p>If MAIRA crashes or behaves unexpectedly, the most helpful thing you can do is grab the log file. Every time it runs, MAIRA writes a new log file to <strong>Documents\MAIRA\Logs</strong>, named after the date and time it started (for example <strong>MAIRA - 2026-07-04 14-30-15.log</strong>). Grab the most recent one — it records what the app was doing leading up to a problem, so it is usually the fastest way to figure out what went wrong. MAIRA keeps the last 7 days of logs and removes older ones automatically.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -64,7 +64,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>If you have turned on Windows’ <strong>controlled folder access</strong> feature (part of ransomware protection in Windows Security), Windows can block the installer from creating the <strong>Documents\MarvinsAIRA Refactored</strong> folder, and block MAIRA from saving your settings and writing its log files. If MAIRA seems to forget your settings between runs, if there are no log files, or if the <strong>MarvinsAIRA Refactored</strong> folder never shows up in your Documents folder, this is the most likely cause. See the <a href="https://mairapp.com/home/documentation/basic/downloading-and-installing/#controlled-folder-access" data-type="page" data-id="148">Downloading and Installing</a> page for how to let MAIRA through.</p>
+<p>If you have turned on Windows’ <strong>controlled folder access</strong> feature (part of ransomware protection in Windows Security), Windows can block the installer from creating the <strong>Documents\MAIRA</strong> folder, and block MAIRA from saving your settings and writing its log files. If MAIRA seems to forget your settings between runs, if there are no log files, or if the <strong>MAIRA</strong> folder never shows up in your Documents folder, this is the most likely cause. See the <a href="https://mairapp.com/home/documentation/basic/downloading-and-installing/#controlled-folder-access" data-type="page" data-id="148">Downloading and Installing</a> page for how to let MAIRA through.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:spacer -->

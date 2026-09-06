@@ -8,11 +8,15 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>MAIRA can run up to 3 “effect slots” per pedal. For each pedal, MAIRA checks slot 1 → slot 2 → slot 3 and plays the first effect that is currently active (first-match wins).</p>
+<p>MAIRA can run up to 3 “effect slots” per pedal. For each pedal, MAIRA checks slot 1 → slot 2 → slot 3 and plays the first effect that is currently active (first-match wins). Slot 1 is therefore your highest priority effect — put the one you least want to miss there.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
 <p>There are also global shaping controls (frequency/amplitude ranges + curves) that affect most effects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Almost everything on this page can be saved per car and per track. Right-click a setting's name to choose how it is saved — see <a href="https://mairapp.com/home/documentation/advanced/tuning-profiles/" data-type="page">Tuning Profiles</a>.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -36,11 +40,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="frequency">FREQUENCY</p>
+<p class="section" id="frequency">Global frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>These settings define the frequency “workspace” that effects operate inside.</p>
+<p>These settings define the frequency “workspace” that effects operate inside. Every effect's own frequency setting is a percentage across this range, so widening or narrowing it here rescales all of them at once.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -94,11 +98,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="amplitude">Amplitude</p>
+<p class="section" id="amplitude">Global amplitude</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Same idea as Frequency, but for output intensity.  This is the "global volume" of all effects.</p>
+<p>Same idea as Global frequency, but for output intensity.  This is the "global volume" of all effects.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -138,7 +142,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Choose from: None, Gear change, ABS engaged, RPM, Understeer effect, Oversteer effect, Seat of pants effect, Wheel lock, Wheel spin, Clutch slip, or Shift RPM.</p>
+<p>Choose from: None, Gear change, ABS engaged, RPM, Shift RPM, Understeer effect, Oversteer effect, Seat-of-pants effect, Wheel lock, Wheel spin, or Clutch slip.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>All three slots on a pedal share one set of context switches — the ones on the slot 1 row — so a pedal's whole three-slot layout is saved and recalled together. The same is true of the three Strength knobs.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -150,8 +158,34 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default for Throttle: Wheel spin / RPM / Oversteer effect</p>
+<p class="default">Default for Throttle: Wheel spin / Shift RPM / Oversteer effect</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Status</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A live readout for each slot, so you can see what your pedals are doing without having to feel for it:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Active</strong> — this is the effect currently vibrating the pedal.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Suppressed</strong> — this effect wants to play, but a higher slot on the same pedal got there first. Seeing this a lot is a sign you should reorder the slots.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Idle</strong> — the effect is set up but its condition is not happening right now.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Blank — the slot is set to None.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Strength</p>
@@ -170,7 +204,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Plays the effect on the selected slot on that pedal for approximately 3 seconds.</p>
+<p>Plays the effect on the selected slot on that pedal for approximately 3 seconds. While a test is running the other two slots on that pedal are held back, so you hear the one you asked for on its own.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each Test button can be mapped to a wheel or controller button, so you can trigger it without reaching for the mouse.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -186,7 +224,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 30% (15Hz)</p>
+<p class="default">Default: 30% (15 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -218,7 +256,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 70% (35Hz)</p>
+<p class="default">Default: 70% (35 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -250,7 +288,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 50% (25Hz)</p>
+<p class="default">Default: 50% (25 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -286,11 +324,15 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This is the percentage of the shift RPM to start vibrating at.  For example, if the shift RPM of the current car is 6000 RPM and you set this to 50%, then the pedal will start vibrating at 3000 RPM.  The default value of 100% means to vibrate only when the engine is at shift RPM.</p>
+<p>This is the percentage of the shift RPM to start vibrating at.  For example, if the shift RPM of the current car is 6000 RPM and you set this to 50%, then the pedal will start vibrating at 3000 RPM.  Setting it to 100% means to vibrate only when the engine is at shift RPM.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The vibration ramps up across that range: it starts at the global minimum frequency where it first kicks in and reaches the global maximum frequency at the shift point, following the global frequency curve.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 100%</p>
+<p class="default">Default: 25%</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -325,12 +367,16 @@
 <p>A shift-light-style effect that vibrates the pedal once you reach the shift point, cueing you to change up.  It plays when engine RPM is at or above the car's shift-light RPM and you are not already in top gear.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>Where the RPM effect builds gradually as you approach the shift point, this one is a plain on/off cue at the shift point itself. Pairing them in two slots on the same pedal — RPM in the lower-priority slot, Shift RPM above it — gives you a ramp that turns into an unmistakable signal.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 100%</p>
+<p class="default">Default: 100% (50 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -366,7 +412,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 20% (10Hz)</p>
+<p class="default">Default: 20% (10 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -406,7 +452,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 20% (10Hz)</p>
+<p class="default">Default: 100% (50 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -462,11 +508,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 100% (50Hz)</p>
+<p class="default">Default: 100% (50 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="understeer-oversteer-seat-of-pants">Understeer / Oversteer / Seat-of-Pants</p>
+<p class="section" id="understeer-oversteer-seat-of-pants">Understeer / Oversteer / Seat-of-pants</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -482,7 +528,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 10% (5Hz)</p>
+<p class="default">Default: 10% (5 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -494,7 +540,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 100% (50Hz)</p>
+<p class="default">Default: 100% (50 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->

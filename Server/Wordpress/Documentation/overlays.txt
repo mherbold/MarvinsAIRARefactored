@@ -156,7 +156,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Show overlay window title</p>
+<p class="setting">Show the overlay window title</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -197,12 +197,16 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>vs. P1</strong> &ndash; how far ahead or behind you are compared with the leader's best lap</li>
+<li><strong>vs. P1</strong> &ndash; how far ahead or behind you are compared with the leader of your own car class at the same point on the lap</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
 <p>A negative delta means you are faster; a positive delta means you are slower.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Both deltas are measured at MAIRA's timing markers, so they update as you pass each marker rather than continuously. The leader comparison uses the lap the leader is running right now, falling back to their last completed lap when they have not reached your point on the track yet.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -218,7 +222,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Show overlay window title</p>
+<p class="setting">Show the overlay window title</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -251,6 +255,10 @@
 <p>The skid/slip indicator is very similar to how this gauge works for aircraft. It stays centered until a calibration file is loaded for the current car (see the <a href="https://mairapp.com/home/documentation/advanced/steering-effects/" data-type="page" data-id="166">Steering Effects</a> page).</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>The seat-of-pants ball likewise stays centered unless the seat-of-pants steering effect is switched on, since it reads that effect's output.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Enabled</p>
 <!-- /wp:paragraph -->
@@ -264,7 +272,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Show overlay window title</p>
+<p class="setting">Show the overlay window title</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -296,7 +304,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Show overlay window title</p>
+<p class="setting">Show the overlay window title</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
