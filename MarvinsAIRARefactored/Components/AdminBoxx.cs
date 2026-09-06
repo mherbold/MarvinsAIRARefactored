@@ -164,11 +164,12 @@ public partial class AdminBoxx
 	private int _sequenceBlinkY = 0;
 	private string? _sequenceSoundToPlay = null;
 	private string? _sequenceDriverNumberToSay = null;
-	private int _sequenceDriverNumberToSayIndex = 0;
-	private int _sequenceDriverNumberState = 0;
 
-	private readonly ConcurrentQueue<string> _numberSoundConcurrentQueue = new();
-	private string? _numberSoundPlaying = null;
+	// All spoken audio (numpad digits, confirmation phrases, driver numbers) goes through this queue so each
+	// clip plays to completion before the next one starts, instead of cutting itself off or talking over the
+	// previous one. Tones stay outside the queue - they are timed with the LED blinks and must not be delayed.
+	private readonly ConcurrentQueue<string> _voiceSoundConcurrentQueue = new();
+	private string? _voiceSoundPlaying = null;
 
 	private int _cautionBlinkCounter = 60;
 
@@ -1139,7 +1140,7 @@ public partial class AdminBoxx
 				case 9: SetLEDToColor( 2, 3, Magenta, false ); break;
 			}
 
-			_numberSoundConcurrentQueue.Enqueue( $"{number}" );
+			_voiceSoundConcurrentQueue.Enqueue( $"{number}" );
 		}
 
 		app.Logger.WriteLine( $"[AdminBoxx] <<< DoNumber( {number} )" );
@@ -1766,8 +1767,6 @@ public partial class AdminBoxx
 		_sequenceSoundToPlay = key;
 
 		_sequenceDriverNumberToSay = driverNumberToSay;
-		_sequenceDriverNumberToSayIndex = 0;
-		_sequenceDriverNumberState = 0;
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< RunSequence" );
 	}
@@ -1815,17 +1814,17 @@ public partial class AdminBoxx
 
 	public void Tick( App app )
 	{
-		if ( ( _numberSoundPlaying == null ) || !app.AudioManager.IsPlaying( _numberSoundPlaying ) )
+		if ( ( _voiceSoundPlaying == null ) || !app.AudioManager.IsPlaying( _voiceSoundPlaying ) )
 		{
-			if ( _numberSoundConcurrentQueue.TryDequeue( out var numberSound ) )
+			if ( _voiceSoundConcurrentQueue.TryDequeue( out var voiceSound ) )
 			{
-				app.AudioManager.Play( numberSound, DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+				app.AudioManager.Play( voiceSound, DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
 
-				_numberSoundPlaying = numberSound;
+				_voiceSoundPlaying = voiceSound;
 			}
 			else
 			{
-				_numberSoundPlaying = null;
+				_voiceSoundPlaying = null;
 			}
 		}
 
@@ -2048,59 +2047,26 @@ public partial class AdminBoxx
 
 						break;
 
-					case 3: // say phrase
+					case 3: // queue the spoken phrase and the driver number
+
+						// The voice queue keeps these in order and plays them one at a time, so the sequence
+						// does not have to wait around for each clip to finish before moving on.
 
 						if ( _sequenceSoundToPlay != null )
 						{
-							app.AudioManager.Play( _sequenceSoundToPlay, DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+							_voiceSoundConcurrentQueue.Enqueue( _sequenceSoundToPlay );
+
+							_sequenceSoundToPlay = null;
 						}
-
-						_sequenceState++;
-						_sequenceCounter = 1;
-
-						break;
-
-					case 4: // wait for phrase to finish
-
-						if ( ( _sequenceSoundToPlay == null ) || !app.AudioManager.IsPlaying( _sequenceSoundToPlay ) )
-						{
-							_sequenceState++;
-						}
-
-						_sequenceCounter = 1;
-
-						break;
-
-					case 5: // say driver number
 
 						if ( _sequenceDriverNumberToSay != null )
 						{
-							var numberToSay = _sequenceDriverNumberToSay[ (int) _sequenceDriverNumberToSayIndex ];
-
-							if ( _sequenceDriverNumberState == 0 )
+							foreach ( var numberToSay in _sequenceDriverNumberToSay )
 							{
-								app.AudioManager.Play( $"{numberToSay}", DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
-
-								_sequenceDriverNumberState = 1;
-							}
-							else
-							{
-								if ( !app.AudioManager.IsPlaying( $"{numberToSay}" ) )
-								{
-									_sequenceDriverNumberToSayIndex++;
-
-									if ( _sequenceDriverNumberToSayIndex == _sequenceDriverNumberToSay.Length )
-									{
-										_sequenceDriverNumberToSay = null;
-									}
-									else
-									{
-										_sequenceDriverNumberState = 0;
-									}
-								}
+								_voiceSoundConcurrentQueue.Enqueue( $"{numberToSay}" );
 							}
 
-							_sequenceCounter = 1;
+							_sequenceDriverNumberToSay = null;
 						}
 
 						break;

@@ -119,6 +119,10 @@
 <p>These settings control AdminBoxx tones and spoken feedback.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>All spoken feedback — confirmation phrases, driver numbers, and the digits you type on the keypad — is queued and played one clip at a time, in the order it happened. Nothing is cut off or talked over, even when you press several buttons in quick succession. The short tones and beeps are not queued, because they are timed to flash along with the button LEDs.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Volume</p>
 <!-- /wp:paragraph -->
@@ -186,7 +190,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>Some actions require a car number. In those cases, AdminBoxx switches into a numpad entry mode. You enter the driver number on the illuminated keypad and then press Enter to send the command, or Escape to cancel it. Each digit you press is spoken back to you — the spoken digits are queued and played one after another, so nothing gets cut off when you type quickly.</p>
+<p>Some actions require a car number. In those cases, AdminBoxx switches into a numpad entry mode. You enter the driver number on the illuminated keypad and then press Enter to send the command, or Escape to cancel it. Each digit you press is spoken back to you as you type.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
