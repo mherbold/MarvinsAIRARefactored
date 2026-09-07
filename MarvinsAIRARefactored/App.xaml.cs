@@ -70,21 +70,26 @@ public partial class App : Application
 			}
 			else
 			{
-				// both folders exist (e.g. the installer's rename was blocked but it still deployed the default
-				// assets into the new folder) - move everything across, preferring the old folder's copy on a
-				// name collision (anything already in the new folder is normally a freshly installed default,
-				// while the old folder holds the user's data), then remove whatever empty old directories remain.
-				// That preference is wrong in one known case - a failed 2.0 -> 2.1 update that renamed the folder
-				// and rolled back leaves the user's data under the NEW name and a fresh-defaults folder under the
-				// old one - so every file the merge overwrites is first copied into a timestamped Pre-merge
-				// subfolder of Backups, where it can be recovered from by hand
+				// both folders exist - move everything across and remove whatever empty old directories remain.
+				// Which side wins a name collision depends on which folder is the user's real one:
+				//  * Normally the installer's rename was blocked but it still deployed the default assets into
+				//    the new folder, so the OLD folder holds the user's data and its copy wins.
+				//  * A failed 2.0 -> 2.1 update (the withdrawn 2.1.4483 installer renamed the folder, then rolled
+				//    back) leaves the user's data under the NEW name, and the old 2.0 app then recreates a
+				//    fresh-defaults folder under the old name - so the NEW folder's copy must win, or the merge
+				//    stomps every setting the user has with defaults.
+				// NTFS keeps a folder's creation time through a rename, so the old-named folder being the
+				// younger of the two is the signature of the second case. Either way the losing copy of every
+				// collision goes into a timestamped Pre-merge subfolder of Backups, so a wrong call is recoverable.
+				var legacyFolderIsFresh = Directory.GetCreationTimeUtc( legacyFolder ) > Directory.GetCreationTimeUtc( DocumentsFolder );
+
 				var nowDateTime = DateTime.Now;
 
 				var preMergeBackupFolder = Path.Combine( DocumentsFolder, "Backups", $"Pre-merge {nowDateTime:yyyy-MM-dd} {nowDateTime:HH-mm-ss}" );
 
-				MergeMoveDirectory( legacyFolder, DocumentsFolder, preMergeBackupFolder );
+				MergeMoveDirectory( legacyFolder, DocumentsFolder, preMergeBackupFolder, keepExistingTargetFiles: legacyFolderIsFresh );
 
-				_documentsFolderMigrationMessage = $"Merged the old documents folder '{legacyFolder}' into '{DocumentsFolder}'" + ( Directory.Exists( preMergeBackupFolder ) ? $" (overwritten files were backed up to '{preMergeBackupFolder}')" : string.Empty );
+				_documentsFolderMigrationMessage = $"Merged the old documents folder '{legacyFolder}' into '{DocumentsFolder}'" + ( legacyFolderIsFresh ? " (the old folder was created after the new one, so existing files in the new folder were kept)" : string.Empty ) + ( Directory.Exists( preMergeBackupFolder ) ? $" (the losing copy of each colliding file was backed up to '{preMergeBackupFolder}')" : string.Empty );
 			}
 		}
 		catch ( Exception exception )
@@ -96,11 +101,12 @@ public partial class App : Application
 
 #if !ADMINBOXX
 
-	// Moves every file under sourceFolder into targetFolder (recursively), overwriting on a name collision. A
-	// target file that is about to be overwritten is first copied into backupFolder under the same relative
-	// path (the backup folder is only created if something actually collides). A backup that fails leaves the
-	// source file in place rather than overwriting an un-backed-up target.
-	private static void MergeMoveDirectory( string sourceFolder, string targetFolder, string backupFolder )
+	// Moves every file under sourceFolder into targetFolder (recursively). On a name collision the losing copy
+	// is put into backupFolder under the same relative path (the backup folder is only created if something
+	// actually collides): normally the target file is copied there and then overwritten by the source file;
+	// with keepExistingTargetFiles the target file stays and the source file is moved there instead. A backup
+	// that fails leaves the source file in place rather than destroying an un-backed-up copy.
+	private static void MergeMoveDirectory( string sourceFolder, string targetFolder, string backupFolder, bool keepExistingTargetFiles )
 	{
 		Directory.CreateDirectory( targetFolder );
 
@@ -108,13 +114,24 @@ public partial class App : Application
 		{
 			try
 			{
-				var targetFilePath = Path.Combine( targetFolder, Path.GetFileName( sourceFilePath ) );
+				var fileName = Path.GetFileName( sourceFilePath );
+
+				var targetFilePath = Path.Combine( targetFolder, fileName );
 
 				if ( File.Exists( targetFilePath ) )
 				{
 					Directory.CreateDirectory( backupFolder );
 
-					File.Copy( targetFilePath, Path.Combine( backupFolder, Path.GetFileName( targetFilePath ) ), overwrite: true );
+					var backupFilePath = Path.Combine( backupFolder, fileName );
+
+					if ( keepExistingTargetFiles )
+					{
+						File.Move( sourceFilePath, backupFilePath, overwrite: true );
+
+						continue;
+					}
+
+					File.Copy( targetFilePath, backupFilePath, overwrite: true );
 				}
 
 				File.Move( sourceFilePath, targetFilePath, overwrite: true );
@@ -129,7 +146,7 @@ public partial class App : Application
 		{
 			var subFolderName = Path.GetFileName( sourceSubFolder );
 
-			MergeMoveDirectory( sourceSubFolder, Path.Combine( targetFolder, subFolderName ), Path.Combine( backupFolder, subFolderName ) );
+			MergeMoveDirectory( sourceSubFolder, Path.Combine( targetFolder, subFolderName ), Path.Combine( backupFolder, subFolderName ), keepExistingTargetFiles );
 		}
 
 		if ( Directory.GetFileSystemEntries( sourceFolder ).Length == 0 )
