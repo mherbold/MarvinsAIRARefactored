@@ -127,7 +127,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>You do not have to do anything about it. Before it copies any files, the installer renames your old <strong>MarvinsAIRA Refactored</strong> folder to <strong>MAIRA</strong>, so your settings, recordings, calibration files and sounds carry straight over. If something has that folder open and the rename cannot happen, MAIRA finishes the job itself the next time it starts — moving everything across and keeping your copy of any file that exists in both places. It writes down what it did in the log file. The installer also clears out the old Start menu, desktop and startup shortcuts so you are not left with dead ones.</p>
+<p>You do not have to do anything about it. Before it copies any files, the installer renames your old <strong>MarvinsAIRA Refactored</strong> folder to <strong>MAIRA</strong>, so your settings, recordings, calibration files and sounds carry straight over. If the installer is running from inside that folder (which is the case when you update from within the app), or something else has the folder open, it leaves the folder alone and MAIRA finishes the job itself the next time it starts — moving everything across and keeping your copy of any file that exists in both places. Any file it overwrites in the new folder is saved first into a <strong>Pre-merge</strong> subfolder of <strong>Documents\MAIRA\Backups</strong>, and it writes down what it did in the log file. The installer also clears out the old Start menu, desktop and startup shortcuts so you are not left with dead ones.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

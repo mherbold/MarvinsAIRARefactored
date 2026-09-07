@@ -45,8 +45,9 @@ public partial class App : Application
 
 	// The documents folder was renamed from "MarvinsAIRA Refactored" to "MAIRA" when the "Refactored" naming
 	// was retired. The installer normally renames the old folder before it copies any files, but handle it
-	// here too for the cases it can't cover (dev builds, or a rename the installer couldn't complete because
-	// something in the folder was locked). Runs before the logger exists, so the outcome is stashed in
+	// here too for the cases it can't cover: dev builds, a rename the installer couldn't complete because
+	// something in the folder was locked, and the in-app update path, where the installer deliberately skips
+	// the rename because it is running from inside the old folder. Runs before the logger exists, so the outcome is stashed in
 	// _documentsFolderMigrationMessage and logged once the logger is up. Never throws - a failed migration
 	// must not stop the app from starting.
 	private static void MigrateLegacyDocumentsFolder()
@@ -71,11 +72,19 @@ public partial class App : Application
 			{
 				// both folders exist (e.g. the installer's rename was blocked but it still deployed the default
 				// assets into the new folder) - move everything across, preferring the old folder's copy on a
-				// name collision (anything already in the new folder is a freshly installed default, while the
-				// old folder holds the user's data), then remove whatever empty old directories remain
-				MergeMoveDirectory( legacyFolder, DocumentsFolder );
+				// name collision (anything already in the new folder is normally a freshly installed default,
+				// while the old folder holds the user's data), then remove whatever empty old directories remain.
+				// That preference is wrong in one known case - a failed 2.0 -> 2.1 update that renamed the folder
+				// and rolled back leaves the user's data under the NEW name and a fresh-defaults folder under the
+				// old one - so every file the merge overwrites is first copied into a timestamped Pre-merge
+				// subfolder of Backups, where it can be recovered from by hand
+				var nowDateTime = DateTime.Now;
 
-				_documentsFolderMigrationMessage = $"Merged the old documents folder '{legacyFolder}' into '{DocumentsFolder}'";
+				var preMergeBackupFolder = Path.Combine( DocumentsFolder, "Backups", $"Pre-merge {nowDateTime:yyyy-MM-dd} {nowDateTime:HH-mm-ss}" );
+
+				MergeMoveDirectory( legacyFolder, DocumentsFolder, preMergeBackupFolder );
+
+				_documentsFolderMigrationMessage = $"Merged the old documents folder '{legacyFolder}' into '{DocumentsFolder}'" + ( Directory.Exists( preMergeBackupFolder ) ? $" (overwritten files were backed up to '{preMergeBackupFolder}')" : string.Empty );
 			}
 		}
 		catch ( Exception exception )
@@ -87,7 +96,11 @@ public partial class App : Application
 
 #if !ADMINBOXX
 
-	private static void MergeMoveDirectory( string sourceFolder, string targetFolder )
+	// Moves every file under sourceFolder into targetFolder (recursively), overwriting on a name collision. A
+	// target file that is about to be overwritten is first copied into backupFolder under the same relative
+	// path (the backup folder is only created if something actually collides). A backup that fails leaves the
+	// source file in place rather than overwriting an un-backed-up target.
+	private static void MergeMoveDirectory( string sourceFolder, string targetFolder, string backupFolder )
 	{
 		Directory.CreateDirectory( targetFolder );
 
@@ -95,7 +108,16 @@ public partial class App : Application
 		{
 			try
 			{
-				File.Move( sourceFilePath, Path.Combine( targetFolder, Path.GetFileName( sourceFilePath ) ), overwrite: true );
+				var targetFilePath = Path.Combine( targetFolder, Path.GetFileName( sourceFilePath ) );
+
+				if ( File.Exists( targetFilePath ) )
+				{
+					Directory.CreateDirectory( backupFolder );
+
+					File.Copy( targetFilePath, Path.Combine( backupFolder, Path.GetFileName( targetFilePath ) ), overwrite: true );
+				}
+
+				File.Move( sourceFilePath, targetFilePath, overwrite: true );
 			}
 			catch ( Exception )
 			{
@@ -105,7 +127,9 @@ public partial class App : Application
 
 		foreach ( var sourceSubFolder in Directory.GetDirectories( sourceFolder ) )
 		{
-			MergeMoveDirectory( sourceSubFolder, Path.Combine( targetFolder, Path.GetFileName( sourceSubFolder ) ) );
+			var subFolderName = Path.GetFileName( sourceSubFolder );
+
+			MergeMoveDirectory( sourceSubFolder, Path.Combine( targetFolder, subFolderName ), Path.Combine( backupFolder, subFolderName ) );
 		}
 
 		if ( Directory.GetFileSystemEntries( sourceFolder ).Length == 0 )

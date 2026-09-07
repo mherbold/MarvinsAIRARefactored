@@ -98,7 +98,7 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 Type: files; Name: "{userstartup}\MAIRA.lnk"
 ; leftovers from the retired "Refactored" naming - old startup / start menu / desktop shortcuts and the
 ; old-named SimHub plugin (both the copy inside the SimHub install and the staged copy in the documents
-; folder, which the PrepareToInstall migration may have just carried over into the MAIRA folder)
+; folder, which the ssInstall documents folder migration may have just carried over into the MAIRA folder)
 Type: files; Name: "{userstartup}\MarvinsAIRA Refactored.lnk"
 Type: files; Name: "{autoprograms}\MarvinsAIRA Refactored.lnk"
 Type: files; Name: "{autodesktop}\MarvinsAIRA Refactored.lnk"
@@ -253,27 +253,41 @@ end;
 // files are installed, so the [Dirs]/[Files] entries land in the migrated folder instead of creating a
 // fresh one beside it. If the rename fails (folder locked etc.) the app performs its own merge
 // migration on next startup, so this is best-effort.
+//
+// Two lessons from the 2.1.4483 release, where this ran from PrepareToInstall unconditionally:
+//  * The 2.0 app downloads the installer INTO the old documents folder and runs it from there. Renaming
+//    that folder pulled the installer's own payload out from under it, so every in-app update failed and
+//    rolled back - and the rollback does not undo the rename. Never rename the folder this setup is
+//    running from; the app's merge migration handles that case on its first start.
+//  * The rename must only happen once Setup is committed to installing (ssInstall - after the files-in-use
+//    and SimHub checks have passed). An abort after the rename leaves the OLD app running against a fresh,
+//    empty documents folder, which 2.0 cannot cope with (it crashes when there are no recordings).
 procedure MigrateLegacyDocumentsFolder;
 var
-  OldDir, NewDir: string;
+  OldDir, NewDir, SrcExe: string;
 begin
   OldDir := ExpandConstant('{userdocs}\MarvinsAIRA Refactored');
   NewDir := ExpandConstant('{userdocs}\MAIRA');
+  SrcExe := ExpandConstant('{srcexe}');
 
-  if DirExists(OldDir) and not DirExists(NewDir) then
+  if not DirExists(OldDir) or DirExists(NewDir) then
+    Exit;
+
+  if Pos(Uppercase(AddBackslash(OldDir)), Uppercase(SrcExe)) = 1 then
   begin
-    if RenameFile(OldDir, NewDir) then
-      Log('Migrated documents folder: ' + OldDir + ' -> ' + NewDir)
-    else
-      Log('Could not rename ' + OldDir + ' to ' + NewDir + '; the app will migrate it on next startup.');
+    Log('Setup is running from inside ' + OldDir + '; leaving the documents folder for the app to migrate on next startup.');
+    Exit;
   end;
+
+  if RenameFile(OldDir, NewDir) then
+    Log('Migrated documents folder: ' + OldDir + ' -> ' + NewDir)
+  else
+    Log('Could not rename ' + OldDir + ' to ' + NewDir + '; the app will migrate it on next startup.');
 end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
   Result := '';
-
-  MigrateLegacyDocumentsFolder;
 
   GSimHubWasRunning := DetectRunningSimHub(GRunningSimHubExe);
   if not GSimHubWasRunning then
@@ -293,6 +307,11 @@ end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
+  // ssInstall fires once every pre-install check has passed and file copying is about to begin - the
+  // earliest point where the documents folder rename cannot be stranded by an aborted setup
+  if CurStep = ssInstall then
+    MigrateLegacyDocumentsFolder;
+
   if CurStep = ssPostInstall then
     RestartSimHubIfItWasRunning;
 end;
