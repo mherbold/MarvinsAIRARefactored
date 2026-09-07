@@ -745,7 +745,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 85%</li>
+<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 50%</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

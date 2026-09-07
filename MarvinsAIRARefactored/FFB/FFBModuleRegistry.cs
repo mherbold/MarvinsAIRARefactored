@@ -207,7 +207,7 @@ public static class FFBModuleRegistry
 
 			Descriptor( SourceWheelCenteringType, 0, () => new SourceWheelCenteringModule(), isSource: true, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0.85f, 0.01f, F.WithOff( F.Percent() ) )
+				Knob( "Strength", 0f, 1f, 0.5f, 0.01f, F.WithOff( F.Percent() ) )
 			] ),
 
 			// ---- generic DSP (9) ----
