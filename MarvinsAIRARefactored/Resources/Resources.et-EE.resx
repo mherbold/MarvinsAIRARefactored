@@ -2432,7 +2432,7 @@
     <value>Vedrujõud, mis tõmbab rooli keskasendi poole; toimib ainult siis, kui auto liigub aeglaselt või seisab paigal.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
-    <value>Reguleeri seda väärtust, et suurendada või vähendada tee ja rehvide detailsust. Võimendus 1,00x säilitab iRacingu algse tunnetuse.</value>
+    <value>Reguleeri seda väärtust, et suurendada või vähendada tee ja rehvide detailsust. Võimendus 1,00x säilitab iRacingu algse tunnetuse. Alla 1,0 vastab see klassikalisele deltapiirajale ja üle 1,0 klassikalisele detailivõimendajale.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
     <value>Vaigistab jõu tugevalt, kui tuvastatakse kokkupõrge, ja taastab selle seejärel sujuvalt – nii ei saa tugev löök rooli sul käest rebida. Jõu vähendamine määrab, kui suur osa jõust eemaldatakse.</value>
@@ -2514,21 +2514,6 @@
   </data>
   <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
     <value>Vedrujõud, mis tõmbab rooli keskasendi poole; toimib ainult siis, kui auto liigub aeglaselt või seisab paigal.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
-    <value>Vaigistab jõu tugevalt, kui tuvastatakse kokkupõrge, ja taastab selle seejärel sujuvalt – nii ei saa tugev löök rooli sul käest rebida. Jõu vähendamine määrab, kui suur osa jõust eemaldatakse.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
-    <value>Alajuhitavuse efektist juhitud roolijõud, et tunneksid esirehvide haardumise kadu. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
-    <value>Ülejuhitavuse efektist juhitud roolijõud, et tunneksid auto taga otsa väljalibisemist. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
-    <value>Kereaistingu (seat of pants) efektist juhitud roolijõud – tunne, kuidas šassii koormus kasvab. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
-    <value>Lisab läve all pisikese vahelduva värina, et hoida rooli mehhanism elavana ja tuua esile nõrgad detailid – kasulik siis, kui sul on väikese võimsusega rool, näiteks Logitech G29.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
     <value>Pehme limiiter võimaldab FFB-signaalil säilitada osa detailidest, selle asemel et kärpimisel lamedaks muutuda.</value>
@@ -2655,5 +2640,89 @@
   </data>
   <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
     <value>Auto + raja + konfiguratsiooni + ilma järgi</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter762e4df57ae74f8dabc2bde5902edd3f" xml:space="preserve">
+    <value>Vaigistab jõu tugevalt, kui tuvastatakse kokkupõrge, ja taastab selle seejärel sujuvalt – nii ei saa tugev löök rooli sul käest rebida. Jõu vähendamine määrab, kui suur osa jõust eemaldatakse.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterd46e7b71dd0d48dbaf0e277c99b30ceb" xml:space="preserve">
+    <value>Alajuhitavuse efektist juhitud roolijõud, et tunneksid esirehvide haardumise kadu. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter3e0426971c1642b0857ff7e8ff99db2d" xml:space="preserve">
+    <value>Ülejuhitavuse efektist juhitud roolijõud, et tunneksid auto taga otsa väljalibisemist. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter71a336cec907435e8e92d225934b1bf9" xml:space="preserve">
+    <value>Kereaistingu (seat of pants) efektist juhitud roolijõud – tunne, kuidas šassii koormus kasvab. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter0436ded09e1f4f39b580abcf404733ba" xml:space="preserve">
+    <value>Lisab läve all pisikese vahelduva värina, et hoida rooli mehhanism elavana ja tuua esile nõrgad detailid – kasulik siis, kui sul on väikese võimsusega rool, näiteks Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceLFE" xml:space="preserve">
+    <value>Simulaatori madalsagedusefektide heli, mis muudetakse rooli jõuks. Selleks pead iRacingis lubama bass shakeri LFE ja kasutama VB-CABLE-it.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelVelocity" xml:space="preserve">
+    <value>Hõõrdumislaadne jõud, mis takistab rooli võnkumist siis, kui sõidad väga aeglaselt või seisad paigal.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
+    <value>Vedrujõud, mis tõmbab rooli keskasendi poole; toimib ainult siis, kui auto liigub aeglaselt või seisab paigal.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalb51a271eea83462bbd09cfbcb0ddd733" xml:space="preserve">
+    <value>Vaigistab jõu tugevalt, kui tuvastatakse kokkupõrge, ja taastab selle seejärel sujuvalt – nii ei saa tugev löök rooli sul käest rebida. Jõu vähendamine määrab, kui suur osa jõust eemaldatakse.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal7adef2fdd0944b80a323673f62bf2e99" xml:space="preserve">
+    <value>Alajuhitavuse efektist juhitud roolijõud, et tunneksid esirehvide haardumise kadu. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal5fe81dc68c694ca0b53fd4e7950bd752" xml:space="preserve">
+    <value>Ülejuhitavuse efektist juhitud roolijõud, et tunneksid auto taga otsa väljalibisemist. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignala883d2d69e624a3caca5943a80193cc1" xml:space="preserve">
+    <value>Kereaistingu (seat of pants) efektist juhitud roolijõud – tunne, kuidas šassii koormus kasvab. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalefdd4d6bc3464d21b3ceea67e1573e59" xml:space="preserve">
+    <value>Lisab läve all pisikese vahelduva värina, et hoida rooli mehhanism elavana ja tuua esile nõrgad detailid – kasulik siis, kui sul on väikese võimsusega rool, näiteks Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalOutput" xml:space="preserve">
+    <value>Pehme limiiter võimaldab FFB-signaalil säilitada osa detailidest, selle asemel et kärpimisel lamedaks muutuda.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceLFE" xml:space="preserve">
+    <value>Simulaatori madalsagedusefektide heli, mis muudetakse rooli jõuks. Selleks pead iRacingis lubama bass shakeri LFE ja kasutama VB-CABLE-it.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelVelocity" xml:space="preserve">
+    <value>Hõõrdumislaadne jõud, mis takistab rooli võnkumist siis, kui sõidad väga aeglaselt või seisad paigal.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
+    <value>Vedrujõud, mis tõmbab rooli keskasendi poole; toimib ainult siis, kui auto liigub aeglaselt või seisab paigal.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3282b0353e374a14acd2fb2f5a828a68" xml:space="preserve">
+    <value>Vaigistab jõu tugevalt, kui tuvastatakse kokkupõrge, ja taastab selle seejärel sujuvalt – nii ei saa tugev löök rooli sul käest rebida. Jõu vähendamine määrab, kui suur osa jõust eemaldatakse.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal85f8a719edb24c01a838cecae89daf22" xml:space="preserve">
+    <value>Alajuhitavuse efektist juhitud roolijõud, et tunneksid esirehvide haardumise kadu. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3d6a0db28ec241f686cb099e1449274e" xml:space="preserve">
+    <value>Ülejuhitavuse efektist juhitud roolijõud, et tunneksid auto taga otsa väljalibisemist. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalc6b2dc255b4441b5b6e28322f2317e1c" xml:space="preserve">
+    <value>Kereaistingu (seat of pants) efektist juhitud roolijõud – tunne, kuidas šassii koormus kasvab. Suund määrab, kas efekt muudab rooli kergemaks või lisab külgsuunalise tõuke.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal624f43d4b3484d33adae7364b6315ea4" xml:space="preserve">
+    <value>Lisab läve all pisikese vahelduva värina, et hoida rooli mehhanism elavana ja tuua esile nõrgad detailid – kasulik siis, kui sul on väikese võimsusega rool, näiteks Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalOutput" xml:space="preserve">
+    <value>Pehme limiiter võimaldab FFB-signaalil säilitada osa detailidest, selle asemel et kärpimisel lamedaks muutuda.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterb52e44239eae411f9df3579be148b758" xml:space="preserve">
+    <value>Reguleeri seda väärtust, et suurendada või vähendada tee ja rehvide detailsust. Võimendus 1,00x säilitab iRacingu algse tunnetuse. Alla 1,0 vastab see klassikalisele deltapiirajale ja üle 1,0 klassikalisele detailivõimendajale.</value>
+  </data>
+  <data name="FFBGraphNameRaw360Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Töötlemata 360 Hz jõutagasiside signaal</value>
+  </data>
+  <data name="FFBGraphDescriptionRaw360Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Sõitjatele, kes soovivad iRacingu jõutagasisidet puutumatuna – kogu 360 Hz FFB-signaal ilma ennustuse ja detailide reguleerimiseta.</value>
+  </data>
+  <data name="FFBGraphNameRaw60Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Töötlemata 60 Hz jõutagasiside signaal</value>
+  </data>
+  <data name="FFBGraphDescriptionRaw60Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Sõitjatele, kes soovivad iRacingu jõutagasisidet puutumatuna – klassikaline 60 Hz FFB-signaal ilma ennustuse ja detailide reguleerimiseta.</value>
   </data>
 </root>

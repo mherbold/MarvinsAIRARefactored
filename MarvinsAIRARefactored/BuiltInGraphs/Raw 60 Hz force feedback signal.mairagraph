@@ -3,38 +3,17 @@
   <FormatVersion>1</FormatVersion>
   <GraphType>FFB</GraphType>
   <Graph>
-    <GraphId>415930263cef4bf8955112282f81e451</GraphId>
-    <Name>Low latency 60 Hz detail booster &amp; limiter</Name>
-    <Description>For drivers who prefer the classic 60 Hz FFB signal - with prediction to reduce latency.</Description>
+    <GraphId>cd1733f3510e4550bd022942f5efa131</GraphId>
+    <Name>Raw 60 Hz force feedback signal</Name>
+    <Description>For drivers who want iRacing's force feedback untouched - the classic 60 Hz FFB signal with no prediction and no detail adjustment.</Description>
     <IsBuiltIn>true</IsBuiltIn>
     <Modules>
-      <FFBModuleData>
-        <ModuleId>Source360</ModuleId>
-        <ModuleType>Source360Hz</ModuleType>
-        <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <PinnedSettings />
-        <PinnedOrder>0</PinnedOrder>
-        <NodeX>32</NodeX>
-        <NodeY>128</NodeY>
-      </FFBModuleData>
       <FFBModuleData>
         <ModuleId>SourceLFE</ModuleId>
         <ModuleType>SourceLFE</ModuleType>
         <Description>The simulator's low-frequency effects audio, turned into wheel force.  You need to enable bass shaker LFE in iRacing and use VB-CABLE for this to work.</Description>
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -58,7 +37,7 @@
         <ModuleType>SourceSoftLock</ModuleType>
         <Description />
         <InputAModuleId>SourceLFE</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -81,8 +60,8 @@
         <ModuleId>SourceWheelVelocity</ModuleId>
         <ModuleType>SourceWheelVelocity</ModuleType>
         <Description>A friction-like force that stops the wheel from oscillating while you are moving very slowly or parked.</Description>
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -113,8 +92,8 @@
         <ModuleId>SourceFriction</ModuleId>
         <ModuleType>SourceFriction</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -134,8 +113,8 @@
         <ModuleId>SourceWheelCentering</ModuleId>
         <ModuleType>SourceWheelCentering</ModuleType>
         <Description>A spring force that pulls the wheel back toward center, effective only when the car is moving slowly or parked.</Description>
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -166,76 +145,16 @@
         <ModuleId>Source60</ModuleId>
         <ModuleType>Source60Hz</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues />
         <PinnedSettings />
         <PinnedOrder>0</PinnedOrder>
-        <NodeX>32</NodeX>
-        <NodeY>32</NodeY>
+        <NodeX>704</NodeX>
+        <NodeY>80</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>e121d0dd0aa5423986a53704b29baa2e</ModuleId>
-        <ModuleType>HighPassFilter</ModuleType>
-        <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Cutoff</string>
-            </key>
-            <value>
-              <float>6</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Slope</string>
-            </key>
-            <value>
-              <float>0</float>
-            </value>
-          </item>
-        </SettingValues>
-        <PinnedSettings />
-        <PinnedOrder>0</PinnedOrder>
-        <NodeX>256</NodeX>
-        <NodeY>128</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>b52e44239eae411f9df3579be148b758</ModuleId>
-        <ModuleType>Gain</ModuleType>
-        <Description>Adjust this value to increase or decrease the road and tire detail.  A gain of 1.00x keeps the original iRacing feeling.  Below 1.0 is equivalent to the classic delta limiter, and above 1.0 is equivalent to the classic detail booster.</Description>
-        <InputAModuleId>e121d0dd0aa5423986a53704b29baa2e</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Gain</string>
-            </key>
-            <value>
-              <float>0.75</float>
-            </value>
-          </item>
-        </SettingValues>
-        <PinnedSettings>
-          <string>Gain</string>
-        </PinnedSettings>
-        <PinnedOrder>0</PinnedOrder>
-        <NodeX>480</NodeX>
-        <NodeY>128</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>55fcd2826830446fac835a8988b2c114</ModuleId>
+        <ModuleId>38a4494b195a4fbe80b44306e8fc3239</ModuleId>
         <ModuleType>ABSwitch</ModuleType>
         <Description />
         <InputAModuleId>SourceWheelVelocity</InputAModuleId>
@@ -256,11 +175,11 @@
         <NodeY>272</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>d345308b45f64649926f0fb19ca7569d</ModuleId>
+        <ModuleId>45eab48e40db4575b21fbddb88237a51</ModuleId>
         <ModuleType>Add</ModuleType>
         <Description />
         <InputAModuleId>SourceWheelCentering</InputAModuleId>
-        <InputBModuleId>55fcd2826830446fac835a8988b2c114</InputBModuleId>
+        <InputBModuleId>38a4494b195a4fbe80b44306e8fc3239</InputBModuleId>
         <SettingValues />
         <PinnedSettings />
         <PinnedOrder>0</PinnedOrder>
@@ -268,11 +187,11 @@
         <NodeY>224</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>7537eea8f20c420a8a5d6a0e0f055f1b</ModuleId>
+        <ModuleId>b97d1d15739b414caaab0502bdbfbfa5</ModuleId>
         <ModuleType>Interpolator</ModuleType>
         <Description />
-        <InputAModuleId>d345308b45f64649926f0fb19ca7569d</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>45eab48e40db4575b21fbddb88237a51</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues />
         <PinnedSettings />
         <PinnedOrder>0</PinnedOrder>
@@ -280,11 +199,11 @@
         <NodeY>224</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>f71df51817ce48089f00d030eba270c1</ModuleId>
+        <ModuleId>6dbde5926d764f78aa135829afebdf78</ModuleId>
         <ModuleType>SpeedGain</ModuleType>
         <Description />
-        <InputAModuleId>7537eea8f20c420a8a5d6a0e0f055f1b</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>b97d1d15739b414caaab0502bdbfbfa5</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -317,106 +236,11 @@
         <NodeY>224</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>d4601fc8ae3f4c6ba9d5f45020dfd26b</ModuleId>
+        <ModuleId>85ea18431f8243edbd67ff64c17cd7d5</ModuleId>
         <ModuleType>CurbProtection</ModuleType>
-        <Description />
-        <InputAModuleId>b52e44239eae411f9df3579be148b758</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>ForceReduction</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>ShockVelocity</string>
-            </key>
-            <value>
-              <float>0.4</float>
-            </value>
-          </item>
-        </SettingValues>
-        <PinnedSettings />
-        <PinnedOrder>0</PinnedOrder>
-        <NodeX>704</NodeX>
-        <NodeY>128</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>a81bcea7164f41bc8e35612b42f23472</ModuleId>
-        <ModuleType>Prediction60Hz</ModuleType>
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <PinnedSettings />
-        <PinnedOrder>0</PinnedOrder>
-        <NodeX>256</NodeX>
-        <NodeY>32</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>459e51cc5fba4eb1afff1896884a8236</ModuleId>
-        <ModuleType>LowPassFilter</ModuleType>
-        <Description />
-        <InputAModuleId>a81bcea7164f41bc8e35612b42f23472</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Cutoff</string>
-            </key>
-            <value>
-              <float>6</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Slope</string>
-            </key>
-            <value>
-              <float>0</float>
-            </value>
-          </item>
-        </SettingValues>
-        <PinnedSettings />
-        <PinnedOrder>0</PinnedOrder>
-        <NodeX>480</NodeX>
-        <NodeY>32</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>ad70dd15e8ab448db7831faacfa3c4cc</ModuleId>
-        <ModuleType>CurbProtection</ModuleType>
-        <Description />
-        <InputAModuleId>459e51cc5fba4eb1afff1896884a8236</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -445,36 +269,15 @@
         </SettingValues>
         <PinnedSettings />
         <PinnedOrder>0</PinnedOrder>
-        <NodeX>704</NodeX>
-        <NodeY>32</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>83f22790afbc4e149b878583154f7994</ModuleId>
-        <ModuleType>Add</ModuleType>
-        <Description />
-        <InputAModuleId>ad70dd15e8ab448db7831faacfa3c4cc</InputAModuleId>
-        <InputBModuleId>d4601fc8ae3f4c6ba9d5f45020dfd26b</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <PinnedSettings />
-        <PinnedOrder>0</PinnedOrder>
         <NodeX>928</NodeX>
         <NodeY>80</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>762e4df57ae74f8dabc2bde5902edd3f</ModuleId>
+        <ModuleId>3282b0353e374a14acd2fb2f5a828a68</ModuleId>
         <ModuleType>CrashProtection</ModuleType>
         <Description>Fades the force way down when a crash is detected, then ramps back smoothly - so a big impact cannot yank the wheel out of your hands.  Force reduction sets how much of the force is removed.</Description>
-        <InputAModuleId>83f22790afbc4e149b878583154f7994</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>85ea18431f8243edbd67ff64c17cd7d5</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -494,11 +297,11 @@
         <NodeY>80</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>d46e7b71dd0d48dbaf0e277c99b30ceb</ModuleId>
+        <ModuleId>85f8a719edb24c01a838cecae89daf22</ModuleId>
         <ModuleType>UndersteerForce</ModuleType>
         <Description>A steering force driven by the understeer effect, so you can feel the front tires losing grip.  Direction chooses whether the effect lightens the wheel or adds a sideways push.</Description>
-        <InputAModuleId>762e4df57ae74f8dabc2bde5902edd3f</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>3282b0353e374a14acd2fb2f5a828a68</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -527,11 +330,11 @@
         <NodeY>80</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>3e0426971c1642b0857ff7e8ff99db2d</ModuleId>
+        <ModuleId>3d6a0db28ec241f686cb099e1449274e</ModuleId>
         <ModuleType>OversteerForce</ModuleType>
         <Description>A steering force driven by the oversteer effect, so you can feel the rear of the car stepping out.  Direction chooses whether the effect lightens the wheel or adds a sideways push.</Description>
-        <InputAModuleId>d46e7b71dd0d48dbaf0e277c99b30ceb</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>85f8a719edb24c01a838cecae89daf22</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -560,11 +363,11 @@
         <NodeY>80</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>71a336cec907435e8e92d225934b1bf9</ModuleId>
+        <ModuleId>c6b2dc255b4441b5b6e28322f2317e1c</ModuleId>
         <ModuleType>SeatOfPantsForce</ModuleType>
         <Description>A steering force driven by the seat-of-pants effect - the feel of the chassis loading up.  Direction chooses whether the effect lightens the wheel or adds a sideways push.</Description>
-        <InputAModuleId>3e0426971c1642b0857ff7e8ff99db2d</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>3d6a0db28ec241f686cb099e1449274e</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -593,11 +396,11 @@
         <NodeY>80</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>f480e951d55f45469c2998cde23376f4</ModuleId>
+        <ModuleId>288a3516db824b75b4742d6729550620</ModuleId>
         <ModuleType>SpeedGain</ModuleType>
         <Description />
-        <InputAModuleId>71a336cec907435e8e92d225934b1bf9</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>c6b2dc255b4441b5b6e28322f2317e1c</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -622,11 +425,11 @@
         <NodeY>80</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>1d57db0a00fd48e78b4d5c4e9550fd2f</ModuleId>
+        <ModuleId>80208b00fc4a4239b46a8a201833cc7b</ModuleId>
         <ModuleType>Add</ModuleType>
         <Description />
-        <InputAModuleId>f480e951d55f45469c2998cde23376f4</InputAModuleId>
-        <InputBModuleId>f71df51817ce48089f00d030eba270c1</InputBModuleId>
+        <InputAModuleId>288a3516db824b75b4742d6729550620</InputAModuleId>
+        <InputBModuleId>6dbde5926d764f78aa135829afebdf78</InputBModuleId>
         <SettingValues />
         <PinnedSettings />
         <PinnedOrder>0</PinnedOrder>
@@ -634,11 +437,11 @@
         <NodeY>144</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>0436ded09e1f4f39b580abcf404733ba</ModuleId>
+        <ModuleId>624f43d4b3484d33adae7364b6315ea4</ModuleId>
         <ModuleType>TorqueDither</ModuleType>
         <Description>Adds a tiny alternating dither below a threshold to keep the wheel mechanism live and reveal faint detail - useful if you have a low power wheel such as the Logitech G29.</Description>
-        <InputAModuleId>1d57db0a00fd48e78b4d5c4e9550fd2f</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>80208b00fc4a4239b46a8a201833cc7b</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -659,10 +462,10 @@
         <NodeY>144</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>02cb5e0b031045b0959ef2605fac4ff1</ModuleId>
+        <ModuleId>0abbb9a29ddc4641bc3cf387274ffbdd</ModuleId>
         <ModuleType>Add</ModuleType>
         <Description />
-        <InputAModuleId>0436ded09e1f4f39b580abcf404733ba</InputAModuleId>
+        <InputAModuleId>624f43d4b3484d33adae7364b6315ea4</InputAModuleId>
         <InputBModuleId>SourceLFE</InputBModuleId>
         <SettingValues />
         <PinnedSettings />
@@ -671,10 +474,10 @@
         <NodeY>192</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>05efda495b94477584657e6f6bb4995d</ModuleId>
+        <ModuleId>3b0023ac70ab4d9680fec0c7b07ba251</ModuleId>
         <ModuleType>Add</ModuleType>
         <Description />
-        <InputAModuleId>02cb5e0b031045b0959ef2605fac4ff1</InputAModuleId>
+        <InputAModuleId>0abbb9a29ddc4641bc3cf387274ffbdd</InputAModuleId>
         <InputBModuleId>SourceSoftLock</InputBModuleId>
         <SettingValues />
         <PinnedSettings />
@@ -683,11 +486,11 @@
         <NodeY>240</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>f28f2429ced443cfb86742b31de7d5bf</ModuleId>
+        <ModuleId>0c16dd977bc64b87b11c47dba5093062</ModuleId>
         <ModuleType>UndersteerVibration</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -708,11 +511,11 @@
         <NodeY>224</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>db7b7bcde4124385a504a8fae700f3dd</ModuleId>
+        <ModuleId>bb4adb4869704585a88904a34e95531f</ModuleId>
         <ModuleType>OversteerVibration</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -733,11 +536,11 @@
         <NodeY>224</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>152e7da11e4a4b02b1342202f990e4f5</ModuleId>
+        <ModuleId>3e9a1eb053064473b9236c57e334bc2c</ModuleId>
         <ModuleType>SeatOfPantsVibration</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -758,11 +561,11 @@
         <NodeY>224</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>30194773c1c740218d41c64f7419986b</ModuleId>
+        <ModuleId>216d413e685c40adb7705ce0ba4ecb7f</ModuleId>
         <ModuleType>ABSVibration</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -791,11 +594,11 @@
         <NodeY>320</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>1f16c030cce0432fb4c9157a31e195d9</ModuleId>
+        <ModuleId>47c2ee76daab464abf8ad7e6d4c755df</ModuleId>
         <ModuleType>GearChangeVibration</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -816,11 +619,11 @@
         <NodeY>320</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>a8a7d7d3c6274604bb5f43d3b21fc246</ModuleId>
+        <ModuleId>c22554bef7464cd78e3b8450e8c51fbc</ModuleId>
         <ModuleType>ShiftRPMVibration</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -841,11 +644,11 @@
         <NodeY>320</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>51d04facadc141fabbd24d0044533660</ModuleId>
+        <ModuleId>28878aa173664e19b88095c999bccdba</ModuleId>
         <ModuleType>EngineRPMVibration</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -866,11 +669,11 @@
         <NodeY>416</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>4eb922f80db8487a8a1786933aca4644</ModuleId>
+        <ModuleId>bfc088269b8949bfa3c1fe6226683022</ModuleId>
         <ModuleType>RoadTexture</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -891,11 +694,11 @@
         <NodeY>416</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>e2c867b2182446d38d630e6eb79eee16</ModuleId>
+        <ModuleId>151da16389724a4386afe221bae63651</ModuleId>
         <ModuleType>SlipTexture</ModuleType>
         <Description />
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -919,8 +722,8 @@
         <ModuleId>Output</ModuleId>
         <ModuleType>Output</ModuleType>
         <Description>The soft limiter allows the FFB signal to keep some detail instead of flattening out when it is clipped.</Description>
-        <InputAModuleId>05efda495b94477584657e6f6bb4995d</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>3b0023ac70ab4d9680fec0c7b07ba251</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
             <key>

@@ -2432,7 +2432,7 @@
     <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
-    <value>이 값을 조정해 노면과 타이어 디테일을 늘리거나 줄입니다. 게인이 1.00x이면 iRacing 본래의 느낌이 유지됩니다.</value>
+    <value>이 값을 조정해 노면과 타이어 디테일을 늘리거나 줄입니다. 게인이 1.00x이면 iRacing 본래의 느낌이 유지됩니다. 1.0보다 낮으면 기존 델타 리미터와 같고, 1.0보다 높으면 기존 디테일 부스터와 같습니다.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
     <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
@@ -2514,21 +2514,6 @@
   </data>
   <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
     <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
-    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
-    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
-    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
-    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
-    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
     <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
@@ -2655,5 +2640,89 @@
   </data>
   <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
     <value>차량 + 트랙 + 구성 + 날씨별</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter762e4df57ae74f8dabc2bde5902edd3f" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterd46e7b71dd0d48dbaf0e277c99b30ceb" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter3e0426971c1642b0857ff7e8ff99db2d" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter71a336cec907435e8e92d225934b1bf9" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter0436ded09e1f4f39b580abcf404733ba" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalb51a271eea83462bbd09cfbcb0ddd733" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal7adef2fdd0944b80a323673f62bf2e99" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal5fe81dc68c694ca0b53fd4e7950bd752" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignala883d2d69e624a3caca5943a80193cc1" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalefdd4d6bc3464d21b3ceea67e1573e59" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과 사운드를 휠 포스로 변환합니다. 작동하려면 iRacing에서 베이스 셰이커 LFE를 활성화하고 VB-CABLE을 사용해야 합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelVelocity" xml:space="preserve">
+    <value>아주 천천히 달리거나 정차해 있을 때 휠이 떨리는 것을 막아 주는 마찰과 같은 힘입니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘으로, 차가 느리게 움직이거나 정차해 있을 때만 작동합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3282b0353e374a14acd2fb2f5a828a68" xml:space="preserve">
+    <value>충돌이 감지되면 포스를 크게 낮춘 뒤 부드럽게 되돌립니다. 큰 충격이 휠을 손에서 빼앗아 가지 않도록 해 줍니다. 포스 감소량으로 힘을 얼마나 줄일지 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal85f8a719edb24c01a838cecae89daf22" xml:space="preserve">
+    <value>언더스티어 효과로 만들어지는 조향력으로, 앞 타이어가 그립을 잃는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3d6a0db28ec241f686cb099e1449274e" xml:space="preserve">
+    <value>오버스티어 효과로 만들어지는 조향력으로, 차 뒤쪽이 흘러나가는 느낌을 전달합니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalc6b2dc255b4441b5b6e28322f2317e1c" xml:space="preserve">
+    <value>시트 오브 팬츠 효과, 즉 섀시에 하중이 실리는 느낌으로 만들어지는 조향력입니다. 방향에서 효과가 휠을 가볍게 할지, 옆으로 미는 힘을 더할지 선택합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal624f43d4b3484d33adae7364b6315ea4" xml:space="preserve">
+    <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalOutput" xml:space="preserve">
+    <value>소프트 리미터는 FFB 신호가 클리핑될 때 평평하게 뭉개지지 않고 디테일을 어느 정도 유지하도록 해 줍니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterb52e44239eae411f9df3579be148b758" xml:space="preserve">
+    <value>이 값을 조정해 노면과 타이어 디테일을 늘리거나 줄입니다. 게인이 1.00x이면 iRacing 본래의 느낌이 유지됩니다. 1.0보다 낮으면 기존 델타 리미터와 같고, 1.0보다 높으면 기존 디테일 부스터와 같습니다.</value>
+  </data>
+  <data name="FFBGraphNameRaw360Hzforcefeedbacksignal" xml:space="preserve">
+    <value>원본 360 Hz 포스 피드백 신호</value>
+  </data>
+  <data name="FFBGraphDescriptionRaw360Hzforcefeedbacksignal" xml:space="preserve">
+    <value>iRacing의 포스 피드백을 손대지 않고 그대로 쓰고 싶은 드라이버를 위한 그래프입니다. 예측도 디테일 조정도 없는 완전한 360 Hz FFB 신호입니다.</value>
+  </data>
+  <data name="FFBGraphNameRaw60Hzforcefeedbacksignal" xml:space="preserve">
+    <value>원본 60 Hz 포스 피드백 신호</value>
+  </data>
+  <data name="FFBGraphDescriptionRaw60Hzforcefeedbacksignal" xml:space="preserve">
+    <value>iRacing의 포스 피드백을 손대지 않고 그대로 쓰고 싶은 드라이버를 위한 그래프입니다. 예측도 디테일 조정도 없는 기존의 60 Hz FFB 신호입니다.</value>
   </data>
 </root>

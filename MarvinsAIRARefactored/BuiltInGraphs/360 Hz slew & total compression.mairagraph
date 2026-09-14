@@ -97,7 +97,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.1</float>
+              <float>0.05</float>
             </value>
           </item>
         </SettingValues>
@@ -143,6 +143,14 @@
             </key>
             <value>
               <float>1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Strength</string>
+            </key>
+            <value>
+              <float>0.05</float>
             </value>
           </item>
         </SettingValues>
@@ -671,7 +679,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
           <item>
@@ -704,7 +712,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>
@@ -729,7 +737,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>
@@ -754,7 +762,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>
@@ -779,7 +787,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>
@@ -804,7 +812,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>

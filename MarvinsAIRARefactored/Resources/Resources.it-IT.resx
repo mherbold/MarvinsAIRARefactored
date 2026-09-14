@@ -2432,7 +2432,7 @@
     <value>Una forza elastica che riporta il volante verso il centro, efficace solo quando l'auto va piano o è ferma.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
-    <value>Regola questo valore per aumentare o diminuire il dettaglio di asfalto e gomme. Un guadagno di 1.00x mantiene la sensazione originale di iRacing.</value>
+    <value>Regola questo valore per aumentare o diminuire il dettaglio di asfalto e gomme. Un guadagno di 1.00x mantiene la sensazione originale di iRacing. Sotto 1.0 equivale al classico limitatore delta, sopra 1.0 equivale al classico incrementatore di dettagli.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
     <value>Abbassa drasticamente la forza quando viene rilevato un incidente, poi la riporta su in modo graduale: così un impatto forte non può strapparti il volante dalle mani. La riduzione della forza stabilisce quanta forza viene tolta.</value>
@@ -2514,21 +2514,6 @@
   </data>
   <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
     <value>Una forza elastica che riporta il volante verso il centro, efficace solo quando l'auto va piano o è ferma.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
-    <value>Abbassa drasticamente la forza quando viene rilevato un incidente, poi la riporta su in modo graduale: così un impatto forte non può strapparti il volante dalle mani. La riduzione della forza stabilisce quanta forza viene tolta.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
-    <value>Una forza sullo sterzo generata dall'effetto sottosterzo, così puoi sentire le gomme anteriori che perdono aderenza. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
-    <value>Una forza sullo sterzo generata dall'effetto sovrasterzo, così puoi sentire il posteriore dell'auto che scappa. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
-    <value>Una forza sullo sterzo generata dall'effetto seat-of-pants, cioè la sensazione del telaio che si carica. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
-    <value>Aggiunge un minuscolo dither alternato al di sotto di una soglia per tenere vivo il meccanismo del volante e far emergere i dettagli più deboli: utile se hai un volante di bassa potenza come il Logitech G29.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
     <value>Il limitatore morbido permette al segnale FFB di conservare un po' di dettaglio invece di appiattirsi quando viene clippato.</value>
@@ -2655,5 +2640,89 @@
   </data>
   <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
     <value>Per auto + pista + configurazione + meteo</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter762e4df57ae74f8dabc2bde5902edd3f" xml:space="preserve">
+    <value>Abbassa drasticamente la forza quando viene rilevato un incidente, poi la riporta su in modo graduale: così un impatto forte non può strapparti il volante dalle mani. La riduzione della forza stabilisce quanta forza viene tolta.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterd46e7b71dd0d48dbaf0e277c99b30ceb" xml:space="preserve">
+    <value>Una forza sullo sterzo generata dall'effetto sottosterzo, così puoi sentire le gomme anteriori che perdono aderenza. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter3e0426971c1642b0857ff7e8ff99db2d" xml:space="preserve">
+    <value>Una forza sullo sterzo generata dall'effetto sovrasterzo, così puoi sentire il posteriore dell'auto che scappa. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter71a336cec907435e8e92d225934b1bf9" xml:space="preserve">
+    <value>Una forza sullo sterzo generata dall'effetto seat-of-pants, cioè la sensazione del telaio che si carica. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter0436ded09e1f4f39b580abcf404733ba" xml:space="preserve">
+    <value>Aggiunge un minuscolo dither alternato al di sotto di una soglia per tenere vivo il meccanismo del volante e far emergere i dettagli più deboli: utile se hai un volante di bassa potenza come il Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceLFE" xml:space="preserve">
+    <value>L'audio degli effetti a bassa frequenza del simulatore, convertito in forza sul volante. Per farlo funzionare devi abilitare l'LFE per il bass shaker in iRacing e usare VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelVelocity" xml:space="preserve">
+    <value>Una forza simile all'attrito che impedisce al volante di oscillare quando procedi molto lentamente o sei fermo.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
+    <value>Una forza elastica che riporta il volante verso il centro, efficace solo quando l'auto va piano o è ferma.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalb51a271eea83462bbd09cfbcb0ddd733" xml:space="preserve">
+    <value>Abbassa drasticamente la forza quando viene rilevato un incidente, poi la riporta su in modo graduale: così un impatto forte non può strapparti il volante dalle mani. La riduzione della forza stabilisce quanta forza viene tolta.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal7adef2fdd0944b80a323673f62bf2e99" xml:space="preserve">
+    <value>Una forza sullo sterzo generata dall'effetto sottosterzo, così puoi sentire le gomme anteriori che perdono aderenza. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal5fe81dc68c694ca0b53fd4e7950bd752" xml:space="preserve">
+    <value>Una forza sullo sterzo generata dall'effetto sovrasterzo, così puoi sentire il posteriore dell'auto che scappa. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignala883d2d69e624a3caca5943a80193cc1" xml:space="preserve">
+    <value>Una forza sullo sterzo generata dall'effetto seat-of-pants, cioè la sensazione del telaio che si carica. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalefdd4d6bc3464d21b3ceea67e1573e59" xml:space="preserve">
+    <value>Aggiunge un minuscolo dither alternato al di sotto di una soglia per tenere vivo il meccanismo del volante e far emergere i dettagli più deboli: utile se hai un volante di bassa potenza come il Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalOutput" xml:space="preserve">
+    <value>Il limitatore morbido permette al segnale FFB di conservare un po' di dettaglio invece di appiattirsi quando viene clippato.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceLFE" xml:space="preserve">
+    <value>L'audio degli effetti a bassa frequenza del simulatore, convertito in forza sul volante. Per farlo funzionare devi abilitare l'LFE per il bass shaker in iRacing e usare VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelVelocity" xml:space="preserve">
+    <value>Una forza simile all'attrito che impedisce al volante di oscillare quando procedi molto lentamente o sei fermo.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
+    <value>Una forza elastica che riporta il volante verso il centro, efficace solo quando l'auto va piano o è ferma.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3282b0353e374a14acd2fb2f5a828a68" xml:space="preserve">
+    <value>Abbassa drasticamente la forza quando viene rilevato un incidente, poi la riporta su in modo graduale: così un impatto forte non può strapparti il volante dalle mani. La riduzione della forza stabilisce quanta forza viene tolta.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal85f8a719edb24c01a838cecae89daf22" xml:space="preserve">
+    <value>Una forza sullo sterzo generata dall'effetto sottosterzo, così puoi sentire le gomme anteriori che perdono aderenza. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3d6a0db28ec241f686cb099e1449274e" xml:space="preserve">
+    <value>Una forza sullo sterzo generata dall'effetto sovrasterzo, così puoi sentire il posteriore dell'auto che scappa. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalc6b2dc255b4441b5b6e28322f2317e1c" xml:space="preserve">
+    <value>Una forza sullo sterzo generata dall'effetto seat-of-pants, cioè la sensazione del telaio che si carica. La direzione stabilisce se l'effetto alleggerisce il volante o aggiunge una spinta laterale.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal624f43d4b3484d33adae7364b6315ea4" xml:space="preserve">
+    <value>Aggiunge un minuscolo dither alternato al di sotto di una soglia per tenere vivo il meccanismo del volante e far emergere i dettagli più deboli: utile se hai un volante di bassa potenza come il Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalOutput" xml:space="preserve">
+    <value>Il limitatore morbido permette al segnale FFB di conservare un po' di dettaglio invece di appiattirsi quando viene clippato.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterb52e44239eae411f9df3579be148b758" xml:space="preserve">
+    <value>Regola questo valore per aumentare o diminuire il dettaglio di asfalto e gomme. Un guadagno di 1.00x mantiene la sensazione originale di iRacing. Sotto 1.0 equivale al classico limitatore delta, sopra 1.0 equivale al classico incrementatore di dettagli.</value>
+  </data>
+  <data name="FFBGraphNameRaw360Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Segnale di force feedback grezzo a 360 Hz</value>
+  </data>
+  <data name="FFBGraphDescriptionRaw360Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Per i piloti che vogliono il force feedback di iRacing intatto: il segnale FFB completo a 360 Hz, senza predizione e senza regolazione del dettaglio.</value>
+  </data>
+  <data name="FFBGraphNameRaw60Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Segnale di force feedback grezzo a 60 Hz</value>
+  </data>
+  <data name="FFBGraphDescriptionRaw60Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Per i piloti che vogliono il force feedback di iRacing intatto: il classico segnale FFB a 60 Hz, senza predizione e senza regolazione del dettaglio.</value>
   </data>
 </root>

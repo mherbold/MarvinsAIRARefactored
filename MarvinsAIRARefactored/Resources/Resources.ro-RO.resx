@@ -2432,7 +2432,7 @@
     <value>O forță de arc care trage volanul înapoi spre centru, activă doar când mașina se deplasează încet sau este oprită.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
-    <value>Reglați această valoare pentru a mări sau a micșora detaliile pistei și ale anvelopelor. Un câștig de 1,00x păstrează senzația originală din iRacing.</value>
+    <value>Reglați această valoare pentru a mări sau a micșora detaliile pistei și ale anvelopelor. Un câștig de 1,00x păstrează senzația originală din iRacing. Sub 1,0 echivalează cu clasicul limitator delta, iar peste 1,0 cu clasicul amplificator de detalii.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
     <value>Reduce puternic forța atunci când este detectat un accident, apoi o readuce lin - astfel, un impact puternic nu vă poate smulge volanul din mâini. Reducerea forței stabilește cât din forță este eliminat.</value>
@@ -2514,21 +2514,6 @@
   </data>
   <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterSourceWheelCentering" xml:space="preserve">
     <value>O forță de arc care trage volanul înapoi spre centru, activă doar când mașina se deplasează încet sau este oprită.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter1fc4f2bc20c84f239be3a015ee55b173" xml:space="preserve">
-    <value>Reduce puternic forța atunci când este detectat un accident, apoi o readuce lin - astfel, un impact puternic nu vă poate smulge volanul din mâini. Reducerea forței stabilește cât din forță este eliminat.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter15476ecb0dfd4330bb0b5d6245d27f6f" xml:space="preserve">
-    <value>O forță la volan generată de efectul de subvirare, ca să simțiți cum anvelopele din față pierd aderența. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter65ef4106f24749809fea554c8902be62" xml:space="preserve">
-    <value>O forță la volan generată de efectul de supravirare, ca să simțiți cum spatele mașinii pleacă în derapaj. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitered0a626c337a492ca09e573518f59df1" xml:space="preserve">
-    <value>O forță la volan generată de efectul seat-of-pants - senzația de încărcare a șasiului. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0b4a7594bea4485b735df17c3bb80cf" xml:space="preserve">
-    <value>Adaugă un dither alternant foarte mic sub un prag, pentru a menține mecanismul volanului activ și a scoate la iveală detaliile slabe - util dacă aveți un volan de putere mică, precum Logitech G29.</value>
   </data>
   <data name="FFBNodeDescriptionLowlatency60HzdetailboosterlimiterOutput" xml:space="preserve">
     <value>Limitatorul soft permite semnalului FFB să păstreze o parte din detalii, în loc să se aplatizeze atunci când este tăiat.</value>
@@ -2655,5 +2640,89 @@
   </data>
   <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
     <value>Per mașină + circuit + configurație + vreme</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter762e4df57ae74f8dabc2bde5902edd3f" xml:space="preserve">
+    <value>Reduce puternic forța atunci când este detectat un accident, apoi o readuce lin - astfel, un impact puternic nu vă poate smulge volanul din mâini. Reducerea forței stabilește cât din forță este eliminat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterd46e7b71dd0d48dbaf0e277c99b30ceb" xml:space="preserve">
+    <value>O forță la volan generată de efectul de subvirare, ca să simțiți cum anvelopele din față pierd aderența. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter3e0426971c1642b0857ff7e8ff99db2d" xml:space="preserve">
+    <value>O forță la volan generată de efectul de supravirare, ca să simțiți cum spatele mașinii pleacă în derapaj. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter71a336cec907435e8e92d225934b1bf9" xml:space="preserve">
+    <value>O forță la volan generată de efectul seat-of-pants - senzația de încărcare a șasiului. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter0436ded09e1f4f39b580abcf404733ba" xml:space="preserve">
+    <value>Adaugă un dither alternant foarte mic sub un prag, pentru a menține mecanismul volanului activ și a scoate la iveală detaliile slabe - util dacă aveți un volan de putere mică, precum Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceLFE" xml:space="preserve">
+    <value>Sunetul efectelor de joasă frecvență din simulator, transformat în forță la volan. Pentru ca acest lucru să funcționeze, trebuie să activați bass shaker LFE în iRacing și să folosiți VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelVelocity" xml:space="preserve">
+    <value>O forță asemănătoare frecării, care împiedică volanul să oscileze atunci când vă deplasați foarte încet sau sunteți oprit.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
+    <value>O forță de arc care trage volanul înapoi spre centru, activă doar când mașina se deplasează încet sau este oprită.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalb51a271eea83462bbd09cfbcb0ddd733" xml:space="preserve">
+    <value>Reduce puternic forța atunci când este detectat un accident, apoi o readuce lin - astfel, un impact puternic nu vă poate smulge volanul din mâini. Reducerea forței stabilește cât din forță este eliminat.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal7adef2fdd0944b80a323673f62bf2e99" xml:space="preserve">
+    <value>O forță la volan generată de efectul de subvirare, ca să simțiți cum anvelopele din față pierd aderența. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal5fe81dc68c694ca0b53fd4e7950bd752" xml:space="preserve">
+    <value>O forță la volan generată de efectul de supravirare, ca să simțiți cum spatele mașinii pleacă în derapaj. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignala883d2d69e624a3caca5943a80193cc1" xml:space="preserve">
+    <value>O forță la volan generată de efectul seat-of-pants - senzația de încărcare a șasiului. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalefdd4d6bc3464d21b3ceea67e1573e59" xml:space="preserve">
+    <value>Adaugă un dither alternant foarte mic sub un prag, pentru a menține mecanismul volanului activ și a scoate la iveală detaliile slabe - util dacă aveți un volan de putere mică, precum Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalOutput" xml:space="preserve">
+    <value>Limitatorul soft permite semnalului FFB să păstreze o parte din detalii, în loc să se aplatizeze atunci când este tăiat.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceLFE" xml:space="preserve">
+    <value>Sunetul efectelor de joasă frecvență din simulator, transformat în forță la volan. Pentru ca acest lucru să funcționeze, trebuie să activați bass shaker LFE în iRacing și să folosiți VB-CABLE.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelVelocity" xml:space="preserve">
+    <value>O forță asemănătoare frecării, care împiedică volanul să oscileze atunci când vă deplasați foarte încet sau sunteți oprit.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
+    <value>O forță de arc care trage volanul înapoi spre centru, activă doar când mașina se deplasează încet sau este oprită.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3282b0353e374a14acd2fb2f5a828a68" xml:space="preserve">
+    <value>Reduce puternic forța atunci când este detectat un accident, apoi o readuce lin - astfel, un impact puternic nu vă poate smulge volanul din mâini. Reducerea forței stabilește cât din forță este eliminat.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal85f8a719edb24c01a838cecae89daf22" xml:space="preserve">
+    <value>O forță la volan generată de efectul de subvirare, ca să simțiți cum anvelopele din față pierd aderența. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3d6a0db28ec241f686cb099e1449274e" xml:space="preserve">
+    <value>O forță la volan generată de efectul de supravirare, ca să simțiți cum spatele mașinii pleacă în derapaj. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalc6b2dc255b4441b5b6e28322f2317e1c" xml:space="preserve">
+    <value>O forță la volan generată de efectul seat-of-pants - senzația de încărcare a șasiului. Direcția alege dacă efectul ușurează volanul sau adaugă o împingere laterală.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal624f43d4b3484d33adae7364b6315ea4" xml:space="preserve">
+    <value>Adaugă un dither alternant foarte mic sub un prag, pentru a menține mecanismul volanului activ și a scoate la iveală detaliile slabe - util dacă aveți un volan de putere mică, precum Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalOutput" xml:space="preserve">
+    <value>Limitatorul soft permite semnalului FFB să păstreze o parte din detalii, în loc să se aplatizeze atunci când este tăiat.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterb52e44239eae411f9df3579be148b758" xml:space="preserve">
+    <value>Reglați această valoare pentru a mări sau a micșora detaliile pistei și ale anvelopelor. Un câștig de 1,00x păstrează senzația originală din iRacing. Sub 1,0 echivalează cu clasicul limitator delta, iar peste 1,0 cu clasicul amplificator de detalii.</value>
+  </data>
+  <data name="FFBGraphNameRaw360Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Semnal FFB brut la 360 Hz</value>
+  </data>
+  <data name="FFBGraphDescriptionRaw360Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Pentru piloții care doresc force feedback-ul din iRacing neatins - semnalul FFB complet la 360 Hz, fără predicție și fără ajustarea detaliilor.</value>
+  </data>
+  <data name="FFBGraphNameRaw60Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Semnal FFB brut la 60 Hz</value>
+  </data>
+  <data name="FFBGraphDescriptionRaw60Hzforcefeedbacksignal" xml:space="preserve">
+    <value>Pentru piloții care doresc force feedback-ul din iRacing neatins - semnalul FFB clasic la 60 Hz, fără predicție și fără ajustarea detaliilor.</value>
   </data>
 </root>

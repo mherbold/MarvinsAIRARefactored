@@ -97,7 +97,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.1</float>
+              <float>0.05</float>
             </value>
           </item>
         </SettingValues>
@@ -143,6 +143,14 @@
             </key>
             <value>
               <float>1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Strength</string>
+            </key>
+            <value>
+              <float>0.05</float>
             </value>
           </item>
         </SettingValues>
@@ -268,7 +276,7 @@
       <FFBModuleData>
         <ModuleId>7e0e94b3d49c465fadbd23b541afdb2c</ModuleId>
         <ModuleType>Gain</ModuleType>
-        <Description>Adjust this value to increase or decrease the road and tire detail.  A gain of 1.00x keeps the original iRacing feeling.</Description>
+        <Description>Adjust this value to increase or decrease the road and tire detail.  A gain of 1.00x keeps the original iRacing feeling.  Below 1.0 is equivalent to the classic delta limiter, and above 1.0 is equivalent to the classic detail booster.</Description>
         <InputAModuleId>1874ec138d1242048f41350cad06f741</InputAModuleId>
         <InputBModuleId>6cfea491b7e64362911ddeae10a560af</InputBModuleId>
         <SettingValues>
@@ -773,7 +781,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
           <item>
@@ -806,7 +814,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>
@@ -831,7 +839,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>
@@ -856,7 +864,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>
@@ -881,7 +889,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>
@@ -906,7 +914,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
         </SettingValues>

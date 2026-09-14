@@ -278,7 +278,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>You do not have to build anything. MAIRA ships four ready-made graphs, and most drivers pick one and only ever touch the handful of controls in the <strong>FFB graph settings</strong> section below.</p>
+<p>You do not have to build anything. MAIRA ships six ready-made graphs, and most drivers pick one and only ever touch the handful of controls in the <strong>FFB graph settings</strong> section below.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -302,16 +302,16 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Four graphs ship with MAIRA. They all carry the same set of extras — LFE, soft lock, friction, wheel centering, crash and curb protection, the steering effect forces, torque dither and the whole family of vibrations — and differ only in how they treat the main force signal.</p>
+<p>Six graphs ship with MAIRA. They all carry the same set of extras — LFE, soft lock, friction, wheel centering, crash and curb protection, the steering effect forces, torque dither and the whole family of vibrations — and differ only in how they treat the main force signal.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Low latency 360 Hz detail booster &amp; limiter</strong> — Recommended for most drivers: the full 360 Hz FFB signal with prediction to reduce latency. Adjust the gain to increase or decrease the road and tire detail.</li>
+<li><strong>Low latency 360 Hz detail booster &amp; limiter</strong> — Recommended for most drivers: the full 360 Hz FFB signal with prediction to reduce latency. Adjust the gain to increase or decrease the road and tire detail — a gain of 1.00x keeps the original iRacing feeling, below 1.0 is equivalent to the classic delta limiter, and above 1.0 is equivalent to the classic detail booster.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Low latency 60 Hz detail booster &amp; limiter</strong> — For drivers who prefer the classic 60 Hz FFB signal, with prediction to reduce latency.</li>
+<li><strong>Low latency 60 Hz detail booster &amp; limiter</strong> — For drivers who prefer the classic 60 Hz FFB signal, with prediction to reduce latency. The same gain control as the 360 Hz graph adjusts the road and tire detail.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -320,6 +320,14 @@
 
 <!-- wp:list-item -->
 <li><strong>Hybrid multi adjustment toolkit</strong> — The hybrid tuning toolkit: the smooth 60 Hz FFB signal as the anchor with the 360 Hz detail blended in, followed by compression, slew compression, a transient enhancer, and an adaptive smoother.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Raw 360 Hz force feedback signal</strong> — For drivers who want iRacing's force feedback untouched: the full 360 Hz FFB signal with no prediction and no detail adjustment. Only the shared extras (protection, effects and vibrations) sit between the signal and your wheel.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Raw 60 Hz force feedback signal</strong> — For drivers who want iRacing's force feedback untouched: the classic 60 Hz FFB signal with no prediction and no detail adjustment, smoothly interpolated up to the 360 Hz output rate.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -709,7 +717,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 100%</li>
+<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 100% (the built-in graphs ship it at 5%)</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -732,7 +740,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>All four built-in graphs feed the friction source and the wheel velocity source into an A/B switch, so you can pick which of the two you want with one flip: input A is wheel velocity, input B is friction.</p>
+<p>All the built-in graphs feed the friction source and the wheel velocity source into an A/B switch, so you can pick which of the two you want with one flip: input A is wheel velocity, input B is friction.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -745,7 +753,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 50%</li>
+<li><strong>Strength</strong> — 0% to 100%, OFF at 0%. Default: 50% (the built-in graphs ship it at 5%)</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -1544,7 +1552,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This section only picks the device to listen to. How much of it reaches the wheel is the <strong>Strength</strong> setting on the <strong>LFE source</strong> module in your FFB graph — it is one of the pinned quick controls in all four built-in graphs, so you will find it in the FFB graph settings section above.</p>
+<p>This section only picks the device to listen to. How much of it reaches the wheel is the <strong>Strength</strong> setting on the <strong>LFE source</strong> module in your FFB graph — it is one of the pinned quick controls in all the built-in graphs, so you will find it in the FFB graph settings section above.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -1709,7 +1717,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Your tuned <strong>values</strong> are translated into module values in those graphs. Algorithm knobs go into the matching graph's modules; the effects that were page settings in 2.0 — soft lock, wheel centering, crash and curb protection, the steering effect forces and vibrations, and the ABS, gear change and shift RPM vibrations — are written into all four built-in graphs, so switching graphs later keeps them.</li>
+<li>Your tuned <strong>values</strong> are translated into module values in those graphs. Algorithm knobs go into the matching graph's modules; the effects that were page settings in 2.0 — soft lock, wheel centering, crash and curb protection, the steering effect forces and vibrations, and the ABS, gear change and shift RPM vibrations — are written into the four built-in graphs named above, so switching between those graphs later keeps them.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

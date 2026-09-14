@@ -57,6 +57,8 @@ itself ever carries a wrong id, restore from this table):
 | Low latency 60 Hz detail booster & limiter | `415930263cef4bf8955112282f81e451` |
 | 360 Hz slew & total compression | `4707d38812774e2b9144f1c081759e57` |
 | Hybrid multi adjustment toolkit | `0c3fd50625f342c393fe013eb43fa355` |
+| Raw 360 Hz force feedback signal | `5c7b3e694e314540a4bff9cb83bf3b40` |
+| Raw 60 Hz force feedback signal | `cd1733f3510e4550bd022942f5efa131` |
 
 ## Step 2 — Sync descriptions into the localization tables
 
