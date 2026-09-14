@@ -2641,21 +2641,6 @@
   <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
     <value>для машины + трека + конфигурации + погоды</value>
   </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter762e4df57ae74f8dabc2bde5902edd3f" xml:space="preserve">
-    <value>Сильно приглушает усилие при обнаружении аварии, а затем плавно возвращает его — чтобы сильный удар не вырвал руль у вас из рук. Снижение усилия задаёт, какая часть усилия убирается.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterd46e7b71dd0d48dbaf0e277c99b30ceb" xml:space="preserve">
-    <value>Усилие на руле от эффекта недостаточной поворачиваемости — вы чувствуете, как передние шины теряют сцепление. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter3e0426971c1642b0857ff7e8ff99db2d" xml:space="preserve">
-    <value>Усилие на руле от эффекта избыточной поворачиваемости — вы чувствуете, как заднюю ось машины срывает в занос. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter71a336cec907435e8e92d225934b1bf9" xml:space="preserve">
-    <value>Усилие на руле от эффекта seat-of-pants — ощущения загрузки шасси. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter0436ded09e1f4f39b580abcf404733ba" xml:space="preserve">
-    <value>Добавляет ниже порога едва заметный знакопеременный дизеринг, чтобы механизм руля оставался живым и проявлялись слабые детали — полезно для маломощных рулей, таких как Logitech G29.</value>
-  </data>
   <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceLFE" xml:space="preserve">
     <value>Низкочастотные звуковые эффекты симулятора, преобразованные в усилие на руле. Чтобы это работало, включите bass shaker LFE в iRacing и используйте VB-CABLE.</value>
   </data>
@@ -2664,21 +2649,6 @@
   </data>
   <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
     <value>Сила пружины, возвращающая руль к центру; действует только когда машина едет медленно или стоит на месте.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalb51a271eea83462bbd09cfbcb0ddd733" xml:space="preserve">
-    <value>Сильно приглушает усилие при обнаружении аварии, а затем плавно возвращает его — чтобы сильный удар не вырвал руль у вас из рук. Снижение усилия задаёт, какая часть усилия убирается.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal7adef2fdd0944b80a323673f62bf2e99" xml:space="preserve">
-    <value>Усилие на руле от эффекта недостаточной поворачиваемости — вы чувствуете, как передние шины теряют сцепление. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal5fe81dc68c694ca0b53fd4e7950bd752" xml:space="preserve">
-    <value>Усилие на руле от эффекта избыточной поворачиваемости — вы чувствуете, как заднюю ось машины срывает в занос. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignala883d2d69e624a3caca5943a80193cc1" xml:space="preserve">
-    <value>Усилие на руле от эффекта seat-of-pants — ощущения загрузки шасси. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalefdd4d6bc3464d21b3ceea67e1573e59" xml:space="preserve">
-    <value>Добавляет ниже порога едва заметный знакопеременный дизеринг, чтобы механизм руля оставался живым и проявлялись слабые детали — полезно для маломощных рулей, таких как Logitech G29.</value>
   </data>
   <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalOutput" xml:space="preserve">
     <value>Мягкий ограничитель позволяет сигналу FFB сохранять часть деталей, а не срезаться в плоскую линию при клиппинге.</value>
@@ -2692,26 +2662,8 @@
   <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
     <value>Сила пружины, возвращающая руль к центру; действует только когда машина едет медленно или стоит на месте.</value>
   </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3282b0353e374a14acd2fb2f5a828a68" xml:space="preserve">
-    <value>Сильно приглушает усилие при обнаружении аварии, а затем плавно возвращает его — чтобы сильный удар не вырвал руль у вас из рук. Снижение усилия задаёт, какая часть усилия убирается.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal85f8a719edb24c01a838cecae89daf22" xml:space="preserve">
-    <value>Усилие на руле от эффекта недостаточной поворачиваемости — вы чувствуете, как передние шины теряют сцепление. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3d6a0db28ec241f686cb099e1449274e" xml:space="preserve">
-    <value>Усилие на руле от эффекта избыточной поворачиваемости — вы чувствуете, как заднюю ось машины срывает в занос. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalc6b2dc255b4441b5b6e28322f2317e1c" xml:space="preserve">
-    <value>Усилие на руле от эффекта seat-of-pants — ощущения загрузки шасси. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal624f43d4b3484d33adae7364b6315ea4" xml:space="preserve">
-    <value>Добавляет ниже порога едва заметный знакопеременный дизеринг, чтобы механизм руля оставался живым и проявлялись слабые детали — полезно для маломощных рулей, таких как Logitech G29.</value>
-  </data>
   <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalOutput" xml:space="preserve">
     <value>Мягкий ограничитель позволяет сигналу FFB сохранять часть деталей, а не срезаться в плоскую линию при клиппинге.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterb52e44239eae411f9df3579be148b758" xml:space="preserve">
-    <value>Регулируйте это значение, чтобы увеличить или уменьшить детализацию трассы и шин. Усиление 1,00x сохраняет исходные ощущения iRacing. Ниже 1,0 это равносильно классическому ограничителю дельты (delta limiter), а выше 1,0 — классическому усилению деталей (detail booster).</value>
   </data>
   <data name="FFBGraphNameRaw360Hzforcefeedbacksignal" xml:space="preserve">
     <value>Необработанный сигнал FFB 360 Hz</value>
@@ -2724,5 +2676,53 @@
   </data>
   <data name="FFBGraphDescriptionRaw60Hzforcefeedbacksignal" xml:space="preserve">
     <value>Для пилотов, которым нужна обратная связь iRacing в неизменном виде — классический сигнал FFB 60 Hz, без предсказания и без регулировки детализации.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Регулируйте это значение, чтобы увеличить или уменьшить детализацию трассы и шин. Усиление 1,00x сохраняет исходные ощущения iRacing. Ниже 1,0 это равносильно классическому ограничителю дельты (delta limiter), а выше 1,0 — классическому усилению деталей (detail booster).</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Сильно приглушает усилие при обнаружении аварии, а затем плавно возвращает его — чтобы сильный удар не вырвал руль у вас из рук. Снижение усилия задаёт, какая часть усилия убирается.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Усилие на руле от эффекта недостаточной поворачиваемости — вы чувствуете, как передние шины теряют сцепление. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Усилие на руле от эффекта избыточной поворачиваемости — вы чувствуете, как заднюю ось машины срывает в занос. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Усилие на руле от эффекта seat-of-pants — ощущения загрузки шасси. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Добавляет ниже порога едва заметный знакопеременный дизеринг, чтобы механизм руля оставался живым и проявлялись слабые детали — полезно для маломощных рулей, таких как Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Сильно приглушает усилие при обнаружении аварии, а затем плавно возвращает его — чтобы сильный удар не вырвал руль у вас из рук. Снижение усилия задаёт, какая часть усилия убирается.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Усилие на руле от эффекта недостаточной поворачиваемости — вы чувствуете, как передние шины теряют сцепление. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Усилие на руле от эффекта избыточной поворачиваемости — вы чувствуете, как заднюю ось машины срывает в занос. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Усилие на руле от эффекта seat-of-pants — ощущения загрузки шасси. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Добавляет ниже порога едва заметный знакопеременный дизеринг, чтобы механизм руля оставался живым и проявлялись слабые детали — полезно для маломощных рулей, таких как Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Сильно приглушает усилие при обнаружении аварии, а затем плавно возвращает его — чтобы сильный удар не вырвал руль у вас из рук. Снижение усилия задаёт, какая часть усилия убирается.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Усилие на руле от эффекта недостаточной поворачиваемости — вы чувствуете, как передние шины теряют сцепление. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Усилие на руле от эффекта избыточной поворачиваемости — вы чувствуете, как заднюю ось машины срывает в занос. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Усилие на руле от эффекта seat-of-pants — ощущения загрузки шасси. Направление определяет, облегчает ли эффект руль или добавляет боковой толчок.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Добавляет ниже порога едва заметный знакопеременный дизеринг, чтобы механизм руля оставался живым и проявлялись слабые детали — полезно для маломощных рулей, таких как Logitech G29.</value>
   </data>
 </root>

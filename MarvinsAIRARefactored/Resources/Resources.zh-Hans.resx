@@ -2641,21 +2641,6 @@
   <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
     <value>每台车 + 赛道 + 配置 + 天气</value>
   </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter762e4df57ae74f8dabc2bde5902edd3f" xml:space="preserve">
-    <value>检测到碰撞时大幅衰减力度，随后平滑恢复——这样剧烈撞击就不会把方向盘从你手中甩脱。力度衰减用于设置削减多少力。</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterd46e7b71dd0d48dbaf0e277c99b30ceb" xml:space="preserve">
-    <value>由转向不足效果驱动的方向盘力，让你感受到前轮正在失去抓地力。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter3e0426971c1642b0857ff7e8ff99db2d" xml:space="preserve">
-    <value>由转向过度效果驱动的方向盘力，让你感受到车尾正在滑出。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter71a336cec907435e8e92d225934b1bf9" xml:space="preserve">
-    <value>由体感效果驱动的方向盘力——车身载荷变化的感觉。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter0436ded09e1f4f39b580abcf404733ba" xml:space="preserve">
-    <value>在低于阈值时叠加极其微小的交替抖动，使方向盘机构保持活跃并呈现细微的细节——如果你使用 Logitech G29 这类低功率方向盘会很有用。</value>
-  </data>
   <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceLFE" xml:space="preserve">
     <value>将模拟器的低频效果音频转换为方向盘力。需要在 iRacing 中启用 bass shaker LFE 并使用 VB-CABLE 才能生效。</value>
   </data>
@@ -2664,21 +2649,6 @@
   </data>
   <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
     <value>一种将方向盘拉回中心的弹簧力，仅在车辆缓慢行驶或停车时生效。</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalb51a271eea83462bbd09cfbcb0ddd733" xml:space="preserve">
-    <value>检测到碰撞时大幅衰减力度，随后平滑恢复——这样剧烈撞击就不会把方向盘从你手中甩脱。力度衰减用于设置削减多少力。</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal7adef2fdd0944b80a323673f62bf2e99" xml:space="preserve">
-    <value>由转向不足效果驱动的方向盘力，让你感受到前轮正在失去抓地力。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal5fe81dc68c694ca0b53fd4e7950bd752" xml:space="preserve">
-    <value>由转向过度效果驱动的方向盘力，让你感受到车尾正在滑出。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignala883d2d69e624a3caca5943a80193cc1" xml:space="preserve">
-    <value>由体感效果驱动的方向盘力——车身载荷变化的感觉。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalefdd4d6bc3464d21b3ceea67e1573e59" xml:space="preserve">
-    <value>在低于阈值时叠加极其微小的交替抖动，使方向盘机构保持活跃并呈现细微的细节——如果你使用 Logitech G29 这类低功率方向盘会很有用。</value>
   </data>
   <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalOutput" xml:space="preserve">
     <value>软限幅器让 FFB 信号在被削顶时仍能保留部分细节，而不会变得平直。</value>
@@ -2692,26 +2662,8 @@
   <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
     <value>一种将方向盘拉回中心的弹簧力，仅在车辆缓慢行驶或停车时生效。</value>
   </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3282b0353e374a14acd2fb2f5a828a68" xml:space="preserve">
-    <value>检测到碰撞时大幅衰减力度，随后平滑恢复——这样剧烈撞击就不会把方向盘从你手中甩脱。力度衰减用于设置削减多少力。</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal85f8a719edb24c01a838cecae89daf22" xml:space="preserve">
-    <value>由转向不足效果驱动的方向盘力，让你感受到前轮正在失去抓地力。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3d6a0db28ec241f686cb099e1449274e" xml:space="preserve">
-    <value>由转向过度效果驱动的方向盘力，让你感受到车尾正在滑出。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalc6b2dc255b4441b5b6e28322f2317e1c" xml:space="preserve">
-    <value>由体感效果驱动的方向盘力——车身载荷变化的感觉。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal624f43d4b3484d33adae7364b6315ea4" xml:space="preserve">
-    <value>在低于阈值时叠加极其微小的交替抖动，使方向盘机构保持活跃并呈现细微的细节——如果你使用 Logitech G29 这类低功率方向盘会很有用。</value>
-  </data>
   <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalOutput" xml:space="preserve">
     <value>软限幅器让 FFB 信号在被削顶时仍能保留部分细节，而不会变得平直。</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterb52e44239eae411f9df3579be148b758" xml:space="preserve">
-    <value>调节该值可增强或减弱路面与轮胎的细节。增益为 1.00x 时保持 iRacing 的原始手感。低于 1.0 相当于经典的变量限制器，高于 1.0 相当于经典的细节增强器。</value>
   </data>
   <data name="FFBGraphNameRaw360Hzforcefeedbacksignal" xml:space="preserve">
     <value>原始 360 Hz 力回馈信号</value>
@@ -2724,5 +2676,53 @@
   </data>
   <data name="FFBGraphDescriptionRaw60Hzforcefeedbacksignal" xml:space="preserve">
     <value>适合希望完全保留 iRacing 力回馈的车手——经典的 60 Hz FFB 信号，不做预测，也不调整细节。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>调节该值可增强或减弱路面与轮胎的细节。增益为 1.00x 时保持 iRacing 的原始手感。低于 1.0 相当于经典的变量限制器，高于 1.0 相当于经典的细节增强器。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>检测到碰撞时大幅衰减力度，随后平滑恢复——这样剧烈撞击就不会把方向盘从你手中甩脱。力度衰减用于设置削减多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>由转向不足效果驱动的方向盘力，让你感受到前轮正在失去抓地力。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>由转向过度效果驱动的方向盘力，让你感受到车尾正在滑出。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>由体感效果驱动的方向盘力——车身载荷变化的感觉。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>在低于阈值时叠加极其微小的交替抖动，使方向盘机构保持活跃并呈现细微的细节——如果你使用 Logitech G29 这类低功率方向盘会很有用。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>检测到碰撞时大幅衰减力度，随后平滑恢复——这样剧烈撞击就不会把方向盘从你手中甩脱。力度衰减用于设置削减多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>由转向不足效果驱动的方向盘力，让你感受到前轮正在失去抓地力。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>由转向过度效果驱动的方向盘力，让你感受到车尾正在滑出。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>由体感效果驱动的方向盘力——车身载荷变化的感觉。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>在低于阈值时叠加极其微小的交替抖动，使方向盘机构保持活跃并呈现细微的细节——如果你使用 Logitech G29 这类低功率方向盘会很有用。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>检测到碰撞时大幅衰减力度，随后平滑恢复——这样剧烈撞击就不会把方向盘从你手中甩脱。力度衰减用于设置削减多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>由转向不足效果驱动的方向盘力，让你感受到前轮正在失去抓地力。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>由转向过度效果驱动的方向盘力，让你感受到车尾正在滑出。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>由体感效果驱动的方向盘力——车身载荷变化的感觉。方向决定该效果是让方向盘变轻，还是施加一个横向推力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>在低于阈值时叠加极其微小的交替抖动，使方向盘机构保持活跃并呈现细微的细节——如果你使用 Logitech G29 这类低功率方向盘会很有用。</value>
   </data>
 </root>

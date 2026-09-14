@@ -2644,21 +2644,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="TuningProfilesGroupPerCarTrackConfigurationWeather" xml:space="preserve">
     <value>Pro Fahrzeug + Strecke + Konfiguration + Wetter</value>
   </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter762e4df57ae74f8dabc2bde5902edd3f" xml:space="preserve">
-    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterd46e7b71dd0d48dbaf0e277c99b30ceb" xml:space="preserve">
-    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter3e0426971c1642b0857ff7e8ff99db2d" xml:space="preserve">
-    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter71a336cec907435e8e92d225934b1bf9" xml:space="preserve">
-    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter0436ded09e1f4f39b580abcf404733ba" xml:space="preserve">
-    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
-  </data>
   <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceLFE" xml:space="preserve">
     <value>Das Tieftoneffekt-Audio (LFE) des Simulators, umgesetzt in Kraft am Lenkrad. Damit das funktioniert, musst du in iRacing das Bass-Shaker-LFE aktivieren und VB-CABLE verwenden.</value>
   </data>
@@ -2667,21 +2652,6 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
     <value>Eine Federkraft, die das Lenkrad zurück zur Mitte zieht; sie wirkt nur, wenn das Auto langsam fährt oder steht.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalb51a271eea83462bbd09cfbcb0ddd733" xml:space="preserve">
-    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal7adef2fdd0944b80a323673f62bf2e99" xml:space="preserve">
-    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal5fe81dc68c694ca0b53fd4e7950bd752" xml:space="preserve">
-    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignala883d2d69e624a3caca5943a80193cc1" xml:space="preserve">
-    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalefdd4d6bc3464d21b3ceea67e1573e59" xml:space="preserve">
-    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
   </data>
   <data name="FFBNodeDescriptionRaw360HzforcefeedbacksignalOutput" xml:space="preserve">
     <value>Der weiche Limiter lässt dem FFB-Signal noch etwas Detail, statt es beim Clipping flach abzuschneiden.</value>
@@ -2695,26 +2665,8 @@ Hier ist der Link zum Spenden:</value>
   <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalSourceWheelCentering" xml:space="preserve">
     <value>Eine Federkraft, die das Lenkrad zurück zur Mitte zieht; sie wirkt nur, wenn das Auto langsam fährt oder steht.</value>
   </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3282b0353e374a14acd2fb2f5a828a68" xml:space="preserve">
-    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal85f8a719edb24c01a838cecae89daf22" xml:space="preserve">
-    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal3d6a0db28ec241f686cb099e1449274e" xml:space="preserve">
-    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalc6b2dc255b4441b5b6e28322f2317e1c" xml:space="preserve">
-    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
-  </data>
-  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal624f43d4b3484d33adae7364b6315ea4" xml:space="preserve">
-    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
-  </data>
   <data name="FFBNodeDescriptionRaw60HzforcefeedbacksignalOutput" xml:space="preserve">
     <value>Der weiche Limiter lässt dem FFB-Signal noch etwas Detail, statt es beim Clipping flach abzuschneiden.</value>
-  </data>
-  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterb52e44239eae411f9df3579be148b758" xml:space="preserve">
-    <value>Passe diesen Wert an, um die Fahrbahn- und Reifendetails zu erhöhen oder abzuschwächen. Eine Verstärkung von 1,00x behält das originale iRacing-Gefühl bei. Unter 1,0 entspricht dies dem klassischen Delta Begrenzer, über 1,0 der klassischen Detailverstärkung.</value>
   </data>
   <data name="FFBGraphNameRaw360Hzforcefeedbacksignal" xml:space="preserve">
     <value>Rohes 360 Hz Force-Feedback-Signal</value>
@@ -2727,5 +2679,53 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="FFBGraphDescriptionRaw60Hzforcefeedbacksignal" xml:space="preserve">
     <value>Für Fahrer, die das Force Feedback von iRacing unverändert wollen – das klassische 60 Hz FFB-Signal ohne Vorhersage und ohne Detailanpassung.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter7e0e94b3d49c465fadbd23b541afdb2c" xml:space="preserve">
+    <value>Passe diesen Wert an, um die Fahrbahn- und Reifendetails zu erhöhen oder abzuschwächen. Eine Verstärkung von 1,00x behält das originale iRacing-Gefühl bei. Unter 1,0 entspricht dies dem klassischen Delta Begrenzer, über 1,0 der klassischen Detailverstärkung.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiterf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiteree29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal888aa7429fe149b49eb00631b2fd0d92" xml:space="preserve">
+    <value>Blendet die Kraft bei einem erkannten Unfall stark herunter und fährt sie danach sanft wieder hoch — so kann dir ein harter Einschlag das Lenkrad nicht aus den Händen reißen. Die Kraftreduzierung legt fest, wie viel der Kraft entfernt wird.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal8d949ca409c14ffa8fa6774bdb78fc75" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird, damit du spürst, wie die Vorderreifen den Grip verlieren. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalf0e72a205c434930865f36f1067c5c5b" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird, damit du spürst, wie das Heck des Autos ausbricht. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal480a0e1bb36440a3a4fb28f82e67ef77" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Popo-Meter-Effekt gesteuert wird — dem Gefühl, wie sich das Chassis auflädt. Die Richtung bestimmt, ob der Effekt das Lenkrad leichter macht oder einen seitlichen Druck hinzufügt.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
+    <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
   </data>
 </root>
