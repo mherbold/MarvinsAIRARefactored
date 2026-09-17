@@ -1840,6 +1840,9 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
+  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz -lähde</value>
   </data>
