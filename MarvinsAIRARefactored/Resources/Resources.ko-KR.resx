@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>임계값 아래에서 아주 작은 교번 디더를 더해 휠 메커니즘을 계속 살아 있게 하고 미세한 디테일을 드러냅니다. Logitech G29처럼 출력이 낮은 휠에서 유용합니다.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>FFB 클리핑 메시지 활성화</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB 클리핑이 감지되었습니다!</value>
+  </data>
 </root>

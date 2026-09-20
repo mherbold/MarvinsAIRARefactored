@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>एक थ्रेशोल्ड से नीचे बहुत हल्का बदलता हुआ डिदर जोड़ता है ताकि व्हील का मैकेनिज़्म सक्रिय रहे और महीन डिटेल सामने आए — यह तब उपयोगी है जब आपके पास Logitech G29 जैसा कम पावर वाला व्हील हो।</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>FFB क्लिपिंग संदेश सक्षम करें</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB क्लिपिंग का पता चला!</value>
+  </data>
 </root>

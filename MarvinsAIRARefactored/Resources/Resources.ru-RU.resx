@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Добавляет ниже порога едва заметный знакопеременный дизеринг, чтобы механизм руля оставался живым и проявлялись слабые детали — полезно для маломощных рулей, таких как Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Включить сообщения о клиппинге FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Обнаружен клиппинг FFB!</value>
+  </data>
 </root>

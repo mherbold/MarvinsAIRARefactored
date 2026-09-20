@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Додає крихітне знакозмінне тремтіння (dither) нижче порогу, щоб механіка керма залишалася живою та проявлялися ледь помітні деталі — корисно, якщо у вас кермо малої потужності, наприклад Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Увімкнути повідомлення про кліпінг FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Виявлено кліпінг FFB!</value>
+  </data>
 </root>

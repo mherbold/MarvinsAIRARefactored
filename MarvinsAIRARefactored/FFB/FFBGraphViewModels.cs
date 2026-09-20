@@ -6,6 +6,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
+using MarvinsAIRARefactored.Components;
+
 namespace MarvinsAIRARefactored.FFB;
 
 // View-models backing the RacingWheelPage FFB graph editor. The editor binds to
@@ -1751,7 +1753,8 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	/// <summary>Nudges a module knob setting by its click step in the given direction (+1/-1) — the fire body
 	/// for mapped module-knob inputs (see App.RebuildButtonMappingIndex). No-op when the module isn't part of
 	/// the currently selected graphs: module ids are graph-local, so a mapping only drives the graph its module
-	/// lives in.</summary>
+	/// lives in. Confirms the new value with a "(MAIRA) {module} {setting} = {value}" private message when the
+	/// racing wheel's input mapped setting update messages are enabled, like the page-level knob mappings.</summary>
 	public void AdjustModuleKnob( string moduleId, string settingKey, float direction )
 	{
 		foreach ( var moduleViewModel in Modules )
@@ -1767,6 +1770,8 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 				{
 					settingViewModel.Value += direction * settingViewModel.ClickStepSize;
 
+					SendModuleSettingUpdateMessage( moduleViewModel, settingViewModel.Label, settingViewModel.ValueString );
+
 					return;
 				}
 			}
@@ -1777,9 +1782,12 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 	/// <summary>Flips a module switch setting — the fire body for mapped module-switch inputs (see
 	/// App.RebuildButtonMappingIndex). The reserved "Enabled" key flips the module's Enabled toggle. No-op when
-	/// the module isn't part of the currently selected graphs, same as <see cref="AdjustModuleKnob"/>.</summary>
+	/// the module isn't part of the currently selected graphs, same as <see cref="AdjustModuleKnob"/>. Confirms
+	/// the new state with a "(MAIRA) {module} {setting} = ON/OFF" private message the same way.</summary>
 	public void ToggleModuleSwitch( string moduleId, string settingKey )
 	{
+		var localization = DataContext.DataContext.Instance.Localization;
+
 		foreach ( var moduleViewModel in Modules )
 		{
 			if ( moduleViewModel.ModuleId != moduleId )
@@ -1792,6 +1800,8 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 				if ( moduleViewModel.CanToggleEnabled )
 				{
 					moduleViewModel.Enabled = !moduleViewModel.Enabled;
+
+					SendModuleSettingUpdateMessage( moduleViewModel, FFBDisplayNames.Localize( "Enabled", "Enabled" ), moduleViewModel.Enabled ? localization[ "ON" ] : localization[ "OFF" ] );
 				}
 
 				return;
@@ -1803,11 +1813,25 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 				{
 					settingViewModel.IsOn = !settingViewModel.IsOn;
 
+					SendModuleSettingUpdateMessage( moduleViewModel, settingViewModel.Label, settingViewModel.IsOn ? localization[ "ON" ] : localization[ "OFF" ] );
+
 					return;
 				}
 			}
 
 			return;
+		}
+	}
+
+	/// <summary>The input-mapped setting update confirmation for a module setting, gated by the racing wheel's
+	/// "enable input mapped setting update messages" switch (the FFB graph lives on the racing wheel page). The
+	/// label is the module's display name (which carries the "(2)" style suffix when a graph holds several of the
+	/// same module) followed by the setting's label, both already localized.</summary>
+	private static void SendModuleSettingUpdateMessage( FFBModuleViewModel moduleViewModel, string settingLabel, string value )
+	{
+		if ( DataContext.DataContext.Instance.Settings.RacingWheelInputMappedSettingUpdateEnabled )
+		{
+			RacingWheel.SendChatMessageWithLabel( $"{moduleViewModel.DisplayName} {settingLabel}", value );
 		}
 	}
 

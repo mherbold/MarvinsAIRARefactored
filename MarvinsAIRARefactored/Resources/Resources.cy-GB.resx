@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Yn ychwanegu dither bychan bob yn ail o dan drothwy er mwyn cadw mecanwaith yr olwyn yn fyw a datgelu manylion gwan — defnyddiol os oes gennych olwyn pŵer isel fel y Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Galluogi negeseuon clipio FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Canfuwyd clipio FFB!</value>
+  </data>
 </root>

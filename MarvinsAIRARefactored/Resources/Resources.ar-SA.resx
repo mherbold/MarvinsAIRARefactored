@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>يضيف اهتزازاً متناوباً دقيقاً جداً تحت عتبة معينة لإبقاء آلية المقود نشطة وإظهار التفاصيل الخفيفة — مفيد إذا كان لديك مقود منخفض القدرة مثل Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>تفعيل رسائل قص FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>تم اكتشاف قص FFB!</value>
+  </data>
 </root>

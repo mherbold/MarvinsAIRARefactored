@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Lisää kynnysarvon alapuolella pienen vuorottelevan värinän, joka pitää ratin mekanismin elävänä ja tuo esiin hienovaraiset yksityiskohdat – hyödyllinen, jos sinulla on heikkotehoinen ratti, kuten Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Ota FFB-leikkausviestit käyttöön</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB-leikkaus havaittu!</value>
+  </data>
 </root>

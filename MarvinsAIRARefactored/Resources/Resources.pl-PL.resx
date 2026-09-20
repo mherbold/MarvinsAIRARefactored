@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Dodaje poniżej progu bardzo delikatny, naprzemienny dither, który utrzymuje mechanizm kierownicy w ruchu i wydobywa subtelne detale - przydatne przy kierownicach o małej mocy, takich jak Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Włącz komunikaty o przycinaniu FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Wykryto przycinanie FFB!</value>
+  </data>
 </root>

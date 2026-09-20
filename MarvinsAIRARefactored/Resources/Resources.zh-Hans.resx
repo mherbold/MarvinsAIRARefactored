@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>在低于阈值时叠加极其微小的交替抖动，使方向盘机构保持活跃并呈现细微的细节——如果你使用 Logitech G29 这类低功率方向盘会很有用。</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>启用 FFB 削波提示信息</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>检测到 FFB 削波!</value>
+  </data>
 </root>

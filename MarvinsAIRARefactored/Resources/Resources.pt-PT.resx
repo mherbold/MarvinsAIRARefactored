@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Adiciona um ligeiro dither alternado abaixo de um limiar para manter o mecanismo do volante ativo e revelar detalhes ténues - útil se tiver um volante de baixa potência, como o Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Ativar mensagens de corte de FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Corte de FFB detetado!</value>
+  </data>
 </root>

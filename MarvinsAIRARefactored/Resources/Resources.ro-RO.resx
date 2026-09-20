@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Adaugă un dither alternant foarte mic sub un prag, pentru a menține mecanismul volanului activ și a scoate la iveală detaliile slabe - util dacă aveți un volan de putere mică, precum Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Activare mesaje tăiere FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Tăiere FFB detectată!</value>
+  </data>
 </root>

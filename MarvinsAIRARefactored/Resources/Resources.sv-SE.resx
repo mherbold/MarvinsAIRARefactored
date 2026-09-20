@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Lägger till en pytteliten växlande dither under ett tröskelvärde för att hålla rattens mekanik levande och få fram svaga detaljer – användbart om du har en svag ratt, till exempel Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Aktivera FFB-klippningsmeddelanden</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB-klippning upptäckt!</value>
+  </data>
 </root>

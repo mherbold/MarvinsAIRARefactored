@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>מוסיף רעידה מתחלפת זעירה מתחת לסף מסוים, כדי לשמור על מנגנון ההגה ער ולחשוף פרטים עדינים – שימושי אם יש לך הגה חלש כמו Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>הפעל הודעות חיתוך FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>זוהה חיתוך FFB!</value>
+  </data>
 </root>

@@ -2728,4 +2728,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>しきい値を下回る範囲でごく小さな交互のディザーを加え、ステアリングの機構を動かし続けて微細なディテールを引き出します。Logitech G29 のような低出力のホイールで効果的です。</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>FFBクリッピングメッセージを有効にする</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFBクリッピングを検出しました！</value>
+  </data>
 </root>

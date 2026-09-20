@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Zem noteikta sliekšņa pievieno nelielu mainīgu ditera signālu, lai stūres mehānisms paliktu dzīvs un atklātos tikko jaušamas detaļas — noderīgi, ja tev ir mazjaudas stūre, piemēram, Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Iespējot FFB nogriešanas ziņojumus</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Konstatēta FFB nogriešana!</value>
+  </data>
 </root>

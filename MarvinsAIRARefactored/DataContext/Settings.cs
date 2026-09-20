@@ -5022,6 +5022,27 @@ public partial class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Racing wheel - Clipping messages enabled
+
+	private bool _racingWheelClippingMessagesEnabled = false;
+
+	public bool RacingWheelClippingMessagesEnabled
+	{
+		get => _racingWheelClippingMessagesEnabled;
+
+		set
+		{
+			if ( value != _racingWheelClippingMessagesEnabled )
+			{
+				_racingWheelClippingMessagesEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Racing wheel - Center wheel while racing
 
 	private bool _racingWheelCenterWheelWhileRacing = false;

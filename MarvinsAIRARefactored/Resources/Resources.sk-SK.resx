@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Pod nastaveným prahom pridáva drobné striedavé chvenie (dither), ktoré udržiava mechaniku volantu v pohybe a odhalí jemné detaily – hodí sa, ak máte slabý volant, napríklad Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Povoliť správy o orezávaní FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Zistené orezávanie FFB!</value>
+  </data>
 </root>

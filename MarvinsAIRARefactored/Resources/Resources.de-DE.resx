@@ -2728,4 +2728,10 @@ Hier ist der Link zum Spenden:</value>
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Fügt unterhalb einer Schwelle ein winziges wechselndes Dither hinzu, um die Lenkradmechanik in Bewegung zu halten und feine Details sichtbar zu machen — nützlich bei einem leistungsschwachen Lenkrad wie dem Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Aktiviere FFB-Clipping Nachrichten</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB-Clipping erkannt!</value>
+  </data>
 </root>

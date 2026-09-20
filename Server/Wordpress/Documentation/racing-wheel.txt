@@ -1624,7 +1624,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>When enabled, MAIRA can send confirmation messages when certain settings are changed via button mappings.</p>
+<p>When enabled, MAIRA sends a confirmation message whenever a setting is changed via a button mapping - the overall strength knobs and device buttons on this page, and any FFB graph node knob or switch you have mapped (the message names the node and the setting, for example "Crash protection Duration = 0.20 s").</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -1649,6 +1649,18 @@
 
 <!-- wp:paragraph -->
 <p>Sends a message when a curb protection module in your graph triggers.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enable FFB clipping messages</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sends a message when the force feedback output starts clipping (the wheel is being asked for more than 100% of its max force). The message is sent when clipping begins and only repeats once the output has stopped clipping, at most once per second, so a rough lap will not flood your chat.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->

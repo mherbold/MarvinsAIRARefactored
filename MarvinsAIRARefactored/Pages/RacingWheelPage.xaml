@@ -1376,6 +1376,10 @@
                                           IsOn="{Binding Settings.RacingWheelCurbProtectionMessagesEnabled, Mode=TwoWay}"
                                           Label="{Binding Localization[CurbProtectionMessagesEnabled]}" />
 
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          IsOn="{Binding Settings.RacingWheelClippingMessagesEnabled, Mode=TwoWay}"
+                                          Label="{Binding Localization[ClippingMessagesEnabled]}" />
+
                 </StackPanel>
 
             </Grid>

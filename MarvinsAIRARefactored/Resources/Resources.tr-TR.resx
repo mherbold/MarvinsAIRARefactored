@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Belirli bir eşiğin altında çok küçük, sürekli yön değiştiren bir titreşim (dither) ekleyerek direksiyon mekanizmasını canlı tutar ve silik detayları ortaya çıkarır – Logitech G29 gibi düşük güçlü bir direksiyonunuz varsa faydalıdır.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>FFB kesmesi mesajlarını etkinleştir</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB kesmesi algılandı!</value>
+  </data>
 </root>

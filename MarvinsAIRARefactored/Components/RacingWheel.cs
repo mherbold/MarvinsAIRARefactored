@@ -129,6 +129,13 @@ public class RacingWheel
 	private bool _lastCrashProtectionActive = false;
 	private bool _lastCurbProtectionActive = false;
 
+	// FFB clipping chat message throttle — sent on the rising edge of clipping only (the output has to come back
+	// out of clipping before another can send), and never more often than once per ClippingMessageMinimumIntervalSeconds
+	private const double ClippingMessageMinimumIntervalSeconds = 1.0;
+
+	private bool _wasClipping = false;
+	private long _lastClippingMessageTimestamp = 0;
+
 	// 60 Hz → 360 Hz handoff. ProcessTelemetryFrame (telemetry thread) runs the FFB graph over the six 360 Hz
 	// samples into the _burst* arrays, then publishes them to the _staged* arrays under the _stagedSeq seqlock
 	// (odd = writing, even = published). UpdatePlayout (playout timer thread) copies a published block into
@@ -331,17 +338,27 @@ public class RacingWheel
 
 	public static void SendChatMessage( string? groupKey, string labelKey, string? value = null )
 	{
-		var app = App.Instance!;
-
 		var localization = DataContext.DataContext.Instance.Localization;
+
+		var label = ( groupKey == null ) ? localization[ labelKey ] : $"{localization[ groupKey ]} {localization[ labelKey ]}";
+
+		SendChatMessageWithLabel( label, value );
+	}
+
+	/// <summary>
+	/// Queues a "(MAIRA) {label} = {value}" private message to the player, with the label already localized —
+	/// the FFB graph module knob/switch mappings build their label from the module's display name and the
+	/// setting's label (both dynamic), so they can't go through the localization-key overload above.
+	/// </summary>
+	public static void SendChatMessageWithLabel( string label, string? value = null )
+	{
+		var app = App.Instance!;
 
 		if ( DataContext.DataContext.Instance.Settings.RacingWheelSendChatMessages && ( app.Simulator.UserName != string.Empty ) )
 		{
 			var playerName = app.Simulator.UserName;
 
 			playerName = playerName.Replace( " ", "." );
-
-			var label = ( groupKey == null ) ? localization[ labelKey ] : $"{localization[ groupKey ]} {localization[ labelKey ]}";
 
 			app.ChatQueue.SendMessage( $"/{playerName} (MAIRA) {label}", value );
 		}
@@ -589,6 +606,8 @@ public class RacingWheel
 				}
 
 				SpeakMairaAnnouncement( "MairaCurbProtectionActive" );
+
+				app.Logger.WriteLine( "[RacingWheel] Curb protection activated" );
 			}
 
 			_lastCurbProtectionActive = engine.CurbProtectionActive;
@@ -626,17 +645,41 @@ public class RacingWheel
 				clearColor = 0xFF40260C;
 			}
 
+			var isClipping = false;
+
 			for ( var i = 0; i < Simulator.SamplesPerFrame360Hz; i++ )
 			{
 				if ( MathF.Abs( _burstOutputTorque[ i ] ) >= 0.99f )
 				{
-					clearColor = 0xFF600000;
+					isClipping = true;
 
 					break;
 				}
 			}
 
+			if ( isClipping )
+			{
+				clearColor = 0xFF600000;
+			}
+
 			app.Graph.SetClearColor( clearColor );
+
+			// FFB clipping chat message — only when clipping has just started (a continuous clip sends once), and at
+			// most once a second so a bumpy lap can't flood the chat
+
+			if ( isClipping && !_wasClipping && settings.RacingWheelClippingMessagesEnabled )
+			{
+				var timestamp = Stopwatch.GetTimestamp();
+
+				if ( Stopwatch.GetElapsedTime( _lastClippingMessageTimestamp, timestamp ).TotalSeconds >= ClippingMessageMinimumIntervalSeconds )
+				{
+					SendChatMessage( null, "FFBClippingDetected" );
+
+					_lastClippingMessageTimestamp = timestamp;
+				}
+			}
+
+			_wasClipping = isClipping;
 		}
 		catch ( Exception exception )
 		{

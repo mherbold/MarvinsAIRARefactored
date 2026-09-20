@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Lisab läve all pisikese vahelduva värina, et hoida rooli mehhanism elavana ja tuua esile nõrgad detailid – kasulik siis, kui sul on väikese võimsusega rool, näiteks Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Luba FFB kärpimise sõnumid</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB kärpimine tuvastatud!</value>
+  </data>
 </root>

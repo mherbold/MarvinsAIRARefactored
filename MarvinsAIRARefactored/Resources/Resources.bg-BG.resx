@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Добавя съвсем малък редуващ се дитер под даден праг, за да поддържа механиката на волана жива и да разкрие едва доловимите детайли — полезно, ако имате волан с ниска мощност като Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Активиране на съобщения за отрязване на FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Открито е отрязване на FFB!</value>
+  </data>
 </root>

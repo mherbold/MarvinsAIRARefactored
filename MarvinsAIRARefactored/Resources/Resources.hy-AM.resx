@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Շեմից ցածր ավելացնում է չնչին փոփոխական դիթեր՝ ղեկի մեխանիզմը կենդանի պահելու և թույլ մանրամասները բացահայտելու համար. օգտակար է, եթե ունեք ցածր հզորության ղեկ, օրինակ՝ Logitech G29։</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Միացնել FFB կտրման հաղորդագրությունները</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Հայտնաբերվել է FFB կտրում!</value>
+  </data>
 </root>

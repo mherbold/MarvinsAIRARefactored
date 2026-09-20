@@ -2723,4 +2723,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Adds a tiny alternating dither below a threshold to keep the wheel mechanism live and reveal faint detail - useful if you have a low power wheel such as the Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Enable FFB clipping messages</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB clipping detected!</value>
+  </data>
 </root>

@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Egy küszöbérték alatt apró, váltakozó ditherjelet ad hozzá, hogy a kormánymechanika mozgásban maradjon, és a halvány részletek is előjöjjenek – hasznos, ha kis teljesítményű kormányod van, például egy Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>FFB vágás üzenetek engedélyezése</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB vágás észlelve!</value>
+  </data>
 </root>

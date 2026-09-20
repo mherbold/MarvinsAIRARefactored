@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>เพิ่มการสั่นสลับเล็กน้อยเมื่อสัญญาณต่ำกว่าเกณฑ์ที่กำหนด เพื่อให้กลไกของพวงมาลัยยังคงตอบสนองและเผยรายละเอียดเบา ๆ ออกมา – มีประโยชน์หากคุณใช้พวงมาลัยกำลังต่ำ เช่น Logitech G29</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>เปิดใช้งานข้อความการคลิปปิ้ง FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>ตรวจพบการคลิปปิ้ง FFB!</value>
+  </data>
 </root>

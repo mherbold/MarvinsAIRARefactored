@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Ajoute un léger frémissement alterné sous un seuil pour garder le mécanisme du volant vivant et faire ressortir les détails les plus faibles – utile si vous avez un volant peu puissant comme le Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Activer les messages d'écrêtage FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>Écrêtage FFB détecté!</value>
+  </data>
 </root>

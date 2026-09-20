@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>在低於閾值時疊加極微小的交替抖動，使方向盤機構保持活躍並呈現細微的細節——如果你使用 Logitech G29 這類低功率方向盤會很有用。</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>啟用力回饋限幅訊息</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>偵測到力回饋限幅！</value>
+  </data>
 </root>

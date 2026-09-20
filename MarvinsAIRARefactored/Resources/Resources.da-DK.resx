@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Tilføjer en ganske lille vekslende dither under en tærskel for at holde ratmekanikken levende og fremhæve de svage detaljer — nyttigt, hvis du har et rat med lav kraft som Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Aktiver FFB klipnings beskeder</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>FFB klipning registreret!</value>
+  </data>
 </root>

@@ -2725,4 +2725,10 @@
   <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignalee29622f72ae432eacb087d3e50e1c80" xml:space="preserve">
     <value>Agrega una vibración alterna muy pequeña por debajo de un umbral para mantener vivo el mecanismo del volante y revelar detalles muy sutiles: útil si tienes un volante de poca potencia como el Logitech G29.</value>
   </data>
+  <data name="ClippingMessagesEnabled" xml:space="preserve">
+    <value>Activar mensajes de recorte de FFB</value>
+  </data>
+  <data name="FFBClippingDetected" xml:space="preserve">
+    <value>¡Se detectó recorte de FFB!</value>
+  </data>
 </root>
