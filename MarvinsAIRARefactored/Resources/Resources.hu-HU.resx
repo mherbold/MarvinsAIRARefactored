@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFB vágás észlelve!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Akadálymentesség</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Akadálymentesség inicializálása...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Kormányzási kimenet</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Kormányzás újraleképezése</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Erővisszacsatolás</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Képezd le újra a kormányzást, hogy korlátozott karmozgással is könnyebb legyen vezetni - például kormányozz teljes kitérésig a kormány kis elfordításával, mindkét oldalra eltérő tartománnyal és érzettel. A MAIRA kiolvassa a bázisodat, és a kormányzást a vJoy virtuális joystickra küldi, a szimulátor pedig a vJoy tengelyét használja kormánybemenetként.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Rendeld a szimulátor kormányzását a vJoy X tengelyéhez a bázisod helyett, és kapcsold ki a szimulátor saját erővisszacsatolását - a bázisodat a MAIRA vezérli. Ez a kapcsoló közös a Játékhíd oldallal.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Bázis forgatási tartománya</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Állítsd ezt a bázisod saját szoftverében beállított forgatási tartományra (például 900° vagy 1080°). A MAIRA ezzel számítja át a kormány helyzetét fokokra.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Kalibrálási mód</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Kapcsold be, amikor a szimulátor kalibrálja a kormányzást, és a kormány tekerése helyett használd a lenti gombokat - a kormányod nem kerül továbbításra, így a szimulátor csak a vJoy tengelyének mozgását látja. Az iRacing kalibrálásakor használd a bal és jobb gombot a teljes kitéréshez, a közép gombot a középhez, és a 90° bal gombot, amikor azt kérik, hogy fordítsd el a kormányt 90 fokkal. Ha végeztél, kapcsold ki a kalibrálási módot.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Ha ez ki van kapcsolva, a kormányod változatlanul kerül továbbításra a szimulátornak. Ha be van kapcsolva, a kormány lenti bal vagy jobb tartományig való elfordítása teljes kitérésig kormányozza az autót, az adott oldal görbéje szerint.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Középeltolás</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Középső holttér</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Remegéssimítás</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Bal tartomány</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Bal görbe</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Jobb tartomány</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Jobb görbe</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Érzékenység nagy sebességnél</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Teljes hatás sebessége</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>A kormányzás az autó gyorsulásával fokozatosan kevésbé érzékeny lesz, egészen a nagy sebességű érzékenységig a teljes hatás sebességénél.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Ezek csak akkor érvényesek, ha a kormányzás újraleképezése be van kapcsolva. Állítsd be az erővisszacsatolás erejét külön a bal és jobb kanyarokra, és a középre húzó segítséggel adj hozzá egy rugót, amely visszahúzza a kormányt középre.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Erő balra</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Erő jobbra</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Középre húzó segítség</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Kormány bal</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Kormány jobb</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Teljes kitérés balra</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Teljes kitérés jobbra</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° balra</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° jobbra</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% balra</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% jobbra</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Kormány: {0}  ➤  Kormányzás: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>A kormányzás újraleképezéséhez kapcsold be a kormányzás küldését a vJoy eszközre.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>A kalibrálási mód be van kapcsolva - a kormányod nem kerül továbbításra.</value>
+  </data>
 </root>

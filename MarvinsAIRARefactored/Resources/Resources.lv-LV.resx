@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>Konstatēta FFB nogriešana!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Pieejamība</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Notiek pieejamības inicializēšana...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Stūrēšanas izvade</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Stūrēšanas pārkartēšana</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Spēka atgriezeniskā saite</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Pārkartē savu stūrēšanu, lai braukšana būtu vieglāka ar ierobežotu roku kustīgumu - piemēram, pagriez līdz pilnam stūres izsitienam ar nelielu stūres pagriezienu, ar atšķirīgu diapazonu un sajūtu katrai pusei. MAIRA nolasa tavu stūres bāzi un sūta stūrēšanu uz vJoy virtuālo kursorsviru, un simulators izmanto vJoy asi kā stūrēšanas ievadi.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Piesaisti simulatora stūrēšanu vJoy X asij, nevis savai stūres bāzei, un izslēdz simulatora paša spēka atgriezenisko saiti - MAIRA vada tavu stūres bāzi. Šis slēdzis ir kopīgs ar spēļu tilta lapu.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Stūres bāzes rotācijas diapazons</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Iestati šeit rotācijas diapazonu, kas konfigurēts tavas stūres bāzes programmatūrā (piemēram, 900° vai 1080°). MAIRA to izmanto, lai stūres pozīciju pārvērstu grādos.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Kalibrācijas režīms</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Ieslēdz šo, kad simulators kalibrē tavu stūrēšanu, un stūres griešanas vietā izmanto zemāk esošās pogas - tava stūre netiek nodota, tāpēc simulators redz kustamies tikai vJoy asi. iRacing kalibrācijā izmanto pogas pa kreisi un pa labi pilnam izsitienam, centra pogu centram un pogu 90° pa kreisi, kad tiek lūgts pagriezt stūri par 90 grādiem. Izslēdz kalibrācijas režīmu, kad esi pabeidzis.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Kad šis ir izslēgts, tava stūre tiek nodota simulatoram nemainīta. Kad tas ir ieslēgts, stūres pagriešana līdz zemāk iestatītajam kreisajam vai labajam diapazonam pagriež auto līdz pilnam izsitienam, sekojot attiecīgās puses līknei.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Centra nobīde</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Centra mirušā zona</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Trīces izlīdzināšana</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Kreisais diapazons</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Kreisā līkne</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Labais diapazons</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Labā līkne</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Jutība lielā ātrumā</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Pilnas iedarbības ātrums</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Auto ātrumam pieaugot, stūrēšana pakāpeniski kļūst mazāk jutīga, līdz jutībai lielā ātrumā pie pilnas iedarbības ātruma.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Tie darbojas tikai tad, kad stūrēšanas pārkartēšana ir ieslēgta. Iestati spēka atgriezeniskās saites stiprumu atsevišķi pagriezieniem pa kreisi un pa labi, un izmanto centrēšanas palīdzību, lai pievienotu atsperi, kas velk stūri atpakaļ uz centru.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Stiprums pa kreisi</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Stiprums pa labi</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Centrēšanas palīdzība</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Stūre pa kreisi</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Stūre pa labi</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Pilns izsitiens pa kreisi</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Pilns izsitiens pa labi</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° pa kreisi</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° pa labi</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% pa kreisi</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% pa labi</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Stūre: {0}  ➤  Stūrēšana: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Ieslēdz stūrēšanas sūtīšanu uz vJoy ierīci, lai izmantotu stūrēšanas pārkartēšanu.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Kalibrācijas režīms ir ieslēgts - tava stūre netiek nodota.</value>
+  </data>
 </root>

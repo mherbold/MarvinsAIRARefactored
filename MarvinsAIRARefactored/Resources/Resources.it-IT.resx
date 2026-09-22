@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>Clipping FFB rilevato!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Accessibilità</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Inizializzazione dell'accessibilità...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Uscita dello sterzo</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Rimappatura dello sterzo</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Force feedback</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Rimappa lo sterzo per rendere più facile la guida con movimenti del braccio limitati - ad esempio, sterza fino a fine corsa con una piccola rotazione del volante, con un'escursione e una sensazione diverse per ciascun lato. MAIRA legge la tua base e invia lo sterzo al joystick virtuale vJoy, e il simulatore usa l'asse di vJoy come ingresso dello sterzo.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Assegna lo sterzo del simulatore all'asse X di vJoy invece che alla tua base, e disattiva il force feedback del simulatore - è MAIRA a pilotare la tua base. Questo interruttore è condiviso con la pagina Ponte di gioco.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Angolo di rotazione della base</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Imposta qui l'angolo di rotazione configurato nel software della tua base (ad esempio 900° o 1080°). MAIRA lo usa per convertire la posizione del volante in gradi.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Modalità calibrazione</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Attivalo quando il simulatore calibra lo sterzo e usa i pulsanti qui sotto invece di girare il volante - il tuo volante non viene trasmesso, quindi il simulatore vede muoversi solo l'asse di vJoy. Nella calibrazione di iRacing, usa i pulsanti sinistra e destra per il fine corsa, il pulsante centro per il centro e il pulsante 90° a sinistra quando ti viene chiesto di girare il volante di 90 gradi. Disattiva la modalità calibrazione quando hai finito.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Quando è disattivato, il tuo volante viene trasmesso al simulatore senza modifiche. Quando è attivo, girando il volante fino all'escursione sinistra o destra indicata qui sotto l'auto sterza fino a fine corsa, seguendo la curva di quel lato.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Offset del centro</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Zona morta centrale</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Filtro del tremore</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Escursione sinistra</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Curva sinistra</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Escursione destra</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Curva destra</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Sensibilità ad alta velocità</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Velocità di effetto pieno</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Lo sterzo diventa gradualmente meno sensibile man mano che l'auto accelera, fino alla sensibilità ad alta velocità raggiunta alla velocità di effetto pieno.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Queste impostazioni si applicano solo quando la rimappatura dello sterzo è attiva. Imposta la forza del force feedback separatamente per le svolte a sinistra e a destra, e usa l'aiuto alla centratura per aggiungere una molla che riporta il volante al centro.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Forza a sinistra</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Forza a destra</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Aiuto alla centratura</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Volante a sinistra</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Volante a destra</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Fine corsa sinistro</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Fine corsa destro</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° a sinistra</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° a destra</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% a sinistra</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% a destra</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Volante: {0}  ➤  Sterzo: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Attiva l'invio dello sterzo al dispositivo vJoy per usare la rimappatura dello sterzo.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>La modalità calibrazione è attiva - il tuo volante non viene trasmesso.</value>
+  </data>
 </root>

@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>Zistené orezávanie FFB!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Prístupnosť</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Inicializácia prístupnosti...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Výstup riadenia</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Premapovanie riadenia</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Force feedback</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Premapujte si riadenie, aby sa vám jazdilo ľahšie s obmedzeným pohybom rúk - napríklad zatočte až na doraz len malým pootočením volantu, s iným rozsahom a pocitom pre každú stranu. MAIRA číta vašu základňu a posiela riadenie do virtuálneho joysticku vJoy a simulátor používa os vJoy ako vstup riadenia.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Priraďte riadenie v simulátore k osi X zariadenia vJoy namiesto vašej základne a vypnite vlastný force feedback simulátora - vašu základňu ovláda MAIRA. Tento prepínač je zdieľaný so stránkou Herný most.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Rozsah otáčania základne</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Nastavte sem rozsah otáčania nakonfigurovaný v softvéri vašej základne (napríklad 900° alebo 1080°). MAIRA ho používa na prevod polohy volantu na stupne.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Režim kalibrácie</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Zapnite to, keď simulátor kalibruje riadenie, a namiesto otáčania volantom použite tlačidlá nižšie - váš volant sa neodovzdáva, takže simulátor vidí pohyb len osi vJoy. Pri kalibrácii v iRacingu použite tlačidlá vľavo a vpravo pre plný doraz, tlačidlo na stred pre stred a tlačidlo 90° vľavo, keď budete vyzvaní otočiť volantom o 90 stupňov. Keď skončíte, režim kalibrácie vypnite.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Keď je toto vypnuté, váš volant sa odovzdáva do simulátora bez zmeny. Keď je zapnuté, otočenie volantu až po ľavý alebo pravý rozsah nastavený nižšie zatočí autom až na doraz podľa krivky danej strany.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Posun stredu</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Mŕtva zóna stredu</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Vyhladenie trasu</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Ľavý rozsah</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Ľavá krivka</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Pravý rozsah</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Pravá krivka</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Citlivosť pri vysokej rýchlosti</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Rýchlosť plného účinku</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Riadenie sa s rastúcou rýchlosťou auta postupne stáva menej citlivým, až na citlivosť pri vysokej rýchlosti pri rýchlosti plného účinku.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Tieto nastavenia platia len pri zapnutom premapovaní riadenia. Nastavte silu force feedbacku zvlášť pre zatáčanie doľava a doprava a pomocou pomoci so stredením pridajte pružinu, ktorá ťahá volant späť do stredu.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Sila vľavo</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Sila vpravo</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Pomoc so stredením</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Volant vľavo</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Volant vpravo</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Plný doraz vľavo</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Plný doraz vpravo</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° vľavo</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° vpravo</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0} % vľavo</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0} % vpravo</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Volant: {0}  ➤  Riadenie: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Na použitie premapovania riadenia zapnite odosielanie riadenia do zariadenia vJoy.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Režim kalibrácie je zapnutý - váš volant sa neodovzdáva.</value>
+  </data>
 </root>

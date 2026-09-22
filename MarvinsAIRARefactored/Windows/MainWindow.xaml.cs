@@ -41,6 +41,7 @@ public partial class MainWindow : Window
 		SpeechToText,
 		Commentary,
 		TradingPaints,
+		Accessibility,
 		Graph,
 		Simulator,
 		GameBridge,
@@ -65,6 +66,7 @@ public partial class MainWindow : Window
 	public static readonly SpeechToTextPage _speechToTextPage = new();
 	public static readonly CommentaryPage _commentary = new();
 	public static readonly TradingPaintsPage _tradingPaintsPage = new();
+	public static readonly AccessibilityPage _accessibilityPage = new();
 	public static readonly GraphPage _graphPage = new();
 	public static readonly SimulatorPage _simulatorPage = new();
 	public static readonly GameBridgePage _gameBridgePage = new();
@@ -210,6 +212,8 @@ public partial class MainWindow : Window
 			_appSettingsPage.UpdateDefaultPageOptions();
 
 			_gameBridgePage.Update();
+
+			_accessibilityPage.Update();
 
 #endif
 

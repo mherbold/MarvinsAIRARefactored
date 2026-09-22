@@ -82,6 +82,7 @@ changed (pure refactor, build tweak, server PHP, etc.), skip to Step 2.
 | SoundsPage / Sounds, AudioManager, LFE | `sounds.txt` (LFE routing also → `vb-cable-setup.txt`) |
 | OverlaysPage / Windows overlays | `overlays.txt` |
 | TradingPaintsPage / TradingPaints | `trading-paints.txt` |
+| AccessibilityPage / Accessibility, VirtualJoystick | `accessibility.txt` (the vJoy passthrough is shared → also `game-bridge.txt`) |
 | AppSettingsPage / Settings, CloudService | `app-settings.txt` |
 | AppManagerPage / AppManager | `app-manager.txt` |
 | ControllerProfilesPage / ControllerProfile, ButtonMappings | `controller-profiles.txt` |
@@ -177,6 +178,7 @@ Category is the URL segment: `https://mairapp.com/home/documentation/<category>/
 | sounds | 172 | advanced |
 | overlays | 860 | advanced |
 | trading-paints | 176 | advanced |
+| accessibility | 1156 | advanced |
 | app-settings | 182 | advanced |
 | tuning-profiles | 1124 | advanced |
 | controller-profiles | 1034 | advanced |

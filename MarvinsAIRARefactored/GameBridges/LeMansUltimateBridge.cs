@@ -517,7 +517,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		// can never see the wheel go past the stop - iRacing reports the PHYSICAL wheel angle instead, which
 		// we reconstruct here from the DirectInput axis, calibrated against the game's angle while the
 		// steering is inside its linear (unclamped) region
-		var physicalPosition = App.Instance!.DirectInput.ForceFeedbackWheelPosition;
+		var physicalPosition = App.Instance!.Accessibility.GameSteeringPosition;
 
 		if ( ( Math.Abs( gameSteering ) < 0.95 ) && ( Math.Abs( physicalPosition ) > 0.10 ) )
 		{

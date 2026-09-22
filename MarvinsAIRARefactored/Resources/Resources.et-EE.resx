@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFB kärpimine tuvastatud!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Ligipääsetavus</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Ligipääsetavuse lähtestamine...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Roolimise väljund</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Roolimise ümbermääramine</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Jõutagasiside</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Määra oma roolimine ümber, et sõitmine oleks piiratud käeliigutustega lihtsam - näiteks keera täispöördesse vaid väikese roolipöördega, kummalegi poolele eri ulatuse ja tundlikkusega. MAIRA loeb sinu rooli baasi ja saadab roolimise virtuaalsele vJoy juhtkangile ning simulaator kasutab vJoy telge roolisisendina.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Seo simulaatori roolimine vJoy X-teljega oma rooli baasi asemel ja lülita simulaatori enda jõutagasiside välja - MAIRA juhib sinu rooli baasi. See lüliti on jagatud mängusilla lehega.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Rooli baasi pöördeulatus</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Määra siia pöördeulatus, mis on seadistatud sinu rooli baasi enda tarkvaras (näiteks 900° või 1080°). MAIRA kasutab seda rooli asendi teisendamiseks kraadideks.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Kalibreerimisrežiim</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Lülita see sisse, kui simulaator kalibreerib sinu roolimist, ja kasuta rooli keeramise asemel allolevaid nuppe - sinu rooli ei edastata, nii et simulaator näeb ainult vJoy telje liikumist. iRacingu kalibreerimisel kasuta täispöörde jaoks vasakut ja paremat nuppu, keskpunkti jaoks keskmist nuppu ning nuppu 90° vasakule, kui palutakse rooli 90 kraadi keerata. Lülita kalibreerimisrežiim välja, kui oled valmis.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Kui see on väljas, edastatakse sinu rool simulaatorile muutmata kujul. Kui see on sees, keerab rooli pööramine allpool määratud vasaku või parema ulatuseni auto täispöördesse, järgides selle poole kõverat.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Keskpunkti nihe</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Keskmine surnud tsoon</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Värina silumine</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Vasak ulatus</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Vasak kõver</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Parem ulatus</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Parem kõver</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Tundlikkus suurel kiirusel</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Täismõju kiirus</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Roolimine muutub auto kiiruse kasvades järk-järgult vähem tundlikuks, kuni suurel kiirusel tundlikkuseni täismõju kiirusel.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Need kehtivad ainult siis, kui roolimise ümbermääramine on sees. Määra jõutagasiside tugevus eraldi vasak- ja parempööretele ning kasuta tsentreerimisabi, et lisada vedru, mis tõmbab rooli tagasi keskele.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Tugevus vasakule</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Tugevus paremale</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Tsentreerimisabi</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Rool vasakule</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Rool paremale</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Täispööre vasakule</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Täispööre paremale</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° vasakule</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° paremale</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% vasakule</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% paremale</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Rool: {0}  ➤  Roolimine: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Roolimise ümbermääramise kasutamiseks lülita sisse roolimise saatmine vJoy seadmesse.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Kalibreerimisrežiim on sees - sinu rooli ei edastata.</value>
+  </data>
 </root>

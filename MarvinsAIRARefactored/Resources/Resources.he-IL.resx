@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>זוהה חיתוך FFB!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>נגישות</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>מאתחל את הנגישות...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>פלט היגוי</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>מיפוי מחדש של ההיגוי</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>משוב כוח</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>מפה מחדש את ההיגוי כדי להקל על הנהיגה עם תנועת ידיים מוגבלת - לדוגמה, היגוי עד הסוף בסיבוב קטן בלבד של ההגה, עם טווח ותחושה שונים לכל צד. MAIRA קורא את בסיס ההגה שלך ושולח את ההיגוי לג'ויסטיק הווירטואלי vJoy, והסימולטור משתמש בציר של vJoy כקלט ההיגוי.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>שייך את ההיגוי של הסימולטור לציר X של vJoy במקום לבסיס ההגה שלך, וכבה את משוב הכוח של הסימולטור עצמו - MAIRA מפעיל את בסיס ההגה שלך. מתג זה משותף עם עמוד גשר משחקים.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>טווח סיבוב בסיס ההגה</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>הגדר כאן את טווח הסיבוב שמוגדר בתוכנה של בסיס ההגה שלך (לדוגמה 900° או 1080°). MAIRA משתמש בו כדי להמיר את מיקום ההגה למעלות.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>מצב כיול</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>הפעל זאת כשהסימולטור מכייל את ההיגוי, והשתמש בכפתורים למטה במקום לסובב את ההגה - ההגה שלך לא מועבר, כך שהסימולטור רואה רק את ציר ה-vJoy זז. בכיול של iRacing, השתמש בכפתורי שמאלה וימינה להיגוי עד הסוף, בכפתור המרכז למרכז, ובכפתור 90° שמאלה כשמתבקשים לסובב את ההגה ב-90 מעלות. כבה את מצב הכיול כשתסיים.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>כשזה כבוי, ההגה שלך מועבר לסימולטור ללא שינוי. כשזה פועל, סיבוב ההגה עד הטווח השמאלי או הימני שלמטה מסובב את המכונית עד הסוף, לפי העקומה של אותו צד.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>היסט מרכז</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>אזור מת במרכז</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>החלקת רעד</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>טווח שמאלי</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>עקומה שמאלית</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>טווח ימני</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>עקומה ימנית</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>רגישות במהירות גבוהה</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>מהירות אפקט מלא</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>ההיגוי נעשה בהדרגה פחות רגיש ככל שהמכונית מאיצה, עד לרגישות במהירות גבוהה במהירות האפקט המלא.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>הגדרות אלה חלות רק כשהמיפוי מחדש של ההיגוי פועל. הגדר את עוצמת משוב הכוח בנפרד לפניות שמאלה וימינה, והשתמש בעזרת מירכוז כדי להוסיף קפיץ שמושך את ההגה חזרה למרכז.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>עוצמה שמאלה</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>עוצמה ימינה</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>עזרת מירכוז</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>הגה שמאלה</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>הגה ימינה</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>סוף שמאלה</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>סוף ימינה</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° שמאלה</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° ימינה</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% שמאלה</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% ימינה</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>הגה: {0}  ➤  היגוי: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>הפעל שליחת היגוי להתקן vJoy כדי להשתמש במיפוי מחדש של ההיגוי.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>מצב כיול פועל - ההגה שלך לא מועבר.</value>
+  </data>
 </root>

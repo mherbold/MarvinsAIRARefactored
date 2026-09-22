@@ -76,6 +76,14 @@ public class DirectInput
 
 	private bool _joystickInfoListNeedsToBeUpdated = false;
 
+	// the steering device's joystick info, resolved on each poll - the accessibility passthrough samples this one
+	// device from the 360 Hz playout thread (TrySampleSteeringWheelPosition), so its Poll/GetCurrentState calls
+	// are serialized against PollDevices by locking the JoystickInfo itself, and the sample goes into a private
+	// state object so the shared _joystickState (read by IsButtonDown) is never written from two threads
+	private volatile JoystickInfo? _steeringJoystickInfo = null;
+
+	private JoystickState _steeringSampleJoystickState = new();
+
 	private readonly bool[] _streamDeckButtons = new bool[ 128 ];
 
 	private int _pollMutex = 0;
@@ -277,8 +285,12 @@ public class DirectInput
 		{
 			_joystickInfoListNeedsToBeUpdated = false;
 
+			_steeringJoystickInfo = null;
+
 			EnumerateDevices();
 		}
+
+		JoystickInfo? steeringJoystickInfo = null;
 
 		if ( _keyboard != null )
 		{
@@ -307,16 +319,21 @@ public class DirectInput
 			{
 				if ( !joystickInfo._isDefunct )
 				{
-					joystickInfo._joystick.Poll();
-					joystickInfo._joystick.GetCurrentState( ref joystickInfo._joystickState );
+					lock ( joystickInfo )
+					{
+						joystickInfo._joystick.Poll();
+						joystickInfo._joystick.GetCurrentState( ref joystickInfo._joystickState );
 
-					joystickInfo._joystickUpdates = joystickInfo._joystick.GetBufferedData();
+						joystickInfo._joystickUpdates = joystickInfo._joystick.GetBufferedData();
+					}
 
 					if ( joystickInfo._instanceGuid == steeringDeviceInstanceGuid )
 					{
 						if ( joystickInfo._xAxisProperties != null )
 						{
-							ForceFeedbackWheelPosition = (float) 2f * ( joystickInfo._joystickState.X - joystickInfo._xAxisProperties.Range.Minimum ) / ( joystickInfo._xAxisProperties.Range.Maximum - joystickInfo._xAxisProperties.Range.Minimum ) - 1f;
+							ForceFeedbackWheelPosition = NormalizeXAxis( joystickInfo, joystickInfo._joystickState.X );
+
+							steeringJoystickInfo = joystickInfo;
 						}
 					}
 				}
@@ -327,6 +344,8 @@ public class DirectInput
 				joystickInfo._joystickUpdates = null;
 			}
 		}
+
+		_steeringJoystickInfo = steeringJoystickInfo;
 
 		if ( _keyboardUpdates != null )
 		{
@@ -359,6 +378,51 @@ public class DirectInput
 		}
 
 		_pollMutex = 0;
+	}
+
+	[MethodImpl( MethodImplOptions.AggressiveInlining )]
+	private static float NormalizeXAxis( JoystickInfo joystickInfo, int xAxisValue )
+	{
+		var xAxisRange = joystickInfo._xAxisProperties!.Range;
+
+		return (float) 2f * ( xAxisValue - xAxisRange.Minimum ) / ( xAxisRange.Maximum - xAxisRange.Minimum ) - 1f;
+	}
+
+	/// <summary>
+	/// Reads the steering device's X axis right now (normalized -1..+1, left = -1, the same scale as
+	/// ForceFeedbackWheelPosition) - called from the 360 Hz playout thread by the accessibility passthrough so
+	/// the steering reaches vJoy without waiting for the ~60 Hz device poll. Returns false until PollDevices has
+	/// resolved the steering device (or while the device list is being rebuilt).
+	/// </summary>
+	public bool TrySampleSteeringWheelPosition( out float position )
+	{
+		position = 0f;
+
+		var joystickInfo = _steeringJoystickInfo;
+
+		if ( ( joystickInfo == null ) || joystickInfo._isDefunct || ( joystickInfo._xAxisProperties == null ) )
+		{
+			return false;
+		}
+
+		try
+		{
+			lock ( joystickInfo )
+			{
+				joystickInfo._joystick.Poll();
+				joystickInfo._joystick.GetCurrentState( ref _steeringSampleJoystickState );
+
+				position = NormalizeXAxis( joystickInfo, _steeringSampleJoystickState.X );
+			}
+
+			return true;
+		}
+		catch ( Exception )
+		{
+			// the device is going away (unplugged, or unacquired by a device list rebuild) - PollDevices marks it
+			// defunct on its next pass, and the caller falls back to the last polled position until then
+			return false;
+		}
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]

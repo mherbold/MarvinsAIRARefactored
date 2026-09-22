@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>Открито е отрязване на FFB!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Достъпност</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Инициализиране на достъпността...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Изход на волана</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Пренасочване на волана</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Обратна връзка със сила</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Пренасочете волана, за да улесните шофирането при ограничено движение на ръцете - например завивайте до упор само с малко завъртане на волана, с различен обхват и усещане за всяка страна. MAIRA чете вашата основа и изпраща волана към виртуалния джойстик vJoy, а симулаторът използва оста на vJoy като вход за волана.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Свържете волана на симулатора с оста X на vJoy вместо с вашата основа и изключете собствената обратна връзка със сила на симулатора - MAIRA управлява вашата основа. Този превключвател е общ със страницата Мост към игри.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Обхват на въртене на основата</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Задайте тук обхвата на въртене, конфигуриран в собствения софтуер на вашата основа (например 900° или 1080°). MAIRA го използва, за да преобразува позицията на волана в градуси.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Режим на калибриране</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Включете това, когато симулаторът калибрира волана, и използвайте бутоните по-долу вместо да въртите волана - вашият волан не се предава, така че симулаторът вижда да се движи само оста на vJoy. При калибрирането в iRacing използвайте бутоните наляво и надясно за пълен упор, бутона за центъра за центъра и бутона 90° наляво, когато бъдете помолени да завъртите волана на 90 градуса. Изключете режима на калибриране, когато приключите.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Когато това е изключено, воланът ви се предава на симулатора непроменен. Когато е включено, завъртането на волана до левия или десния обхват по-долу завива колата до упор, следвайки кривата на съответната страна.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Отместване на центъра</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Мъртва зона в центъра</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Изглаждане на тремор</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Ляв обхват</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Лява крива</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Десен обхват</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Дясна крива</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Чувствителност при висока скорост</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Скорост на пълен ефект</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Воланът постепенно става по-малко чувствителен с увеличаване на скоростта на колата, до чувствителността при висока скорост при скоростта на пълен ефект.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Тези настройки важат само докато пренасочването на волана е включено. Задайте силата на обратната връзка отделно за завои наляво и надясно и използвайте помощта за центриране, за да добавите пружина, която връща волана в центъра.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Сила наляво</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Сила надясно</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Помощ за центриране</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Волан наляво</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Волан надясно</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Пълен упор наляво</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Пълен упор надясно</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° наляво</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° надясно</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% наляво</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% надясно</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Волан: {0}  ➤  Завиване: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Включете изпращането на волана към vJoy устройството, за да използвате пренасочването на волана.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Режимът на калибриране е включен - вашият волан не се предава.</value>
+  </data>
 </root>

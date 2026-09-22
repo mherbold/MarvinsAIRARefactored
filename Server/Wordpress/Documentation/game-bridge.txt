@@ -86,6 +86,10 @@
 <p>Passes your wheelbase's steering axis through to the vJoy virtual joystick. This requires the vJoy driver to be installed - if vJoy is not available, a warning appears next to this switch (install the vJoy driver and restart MAIRA).</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>This is the same switch as on the <a href="https://mairapp.com/home/documentation/advanced/accessibility/" data-type="page" data-id="1156">Accessibility</a> page, so the accessibility steering remap also works in the game bridge games.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"default"} -->
 <p class="default">Default: OFF</p>
 <!-- /wp:paragraph -->
@@ -107,7 +111,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The steering wheel position buttons hold the vJoy axis at a fixed position (full left, 90° left, center, 90° right, or full right). The steering wheel sweep button rocks the axis from side to side, one full left-right-left cycle every two seconds - some games (Assetto Corsa included) ignore controller input while their window is in the background, so start the sweep, click over to the game, and bind the steering there while the axis is still moving. The sweep button blinks while the sweep is running; press it again, or press any of the position buttons, to stop it.</p>
+<p>The steering wheel position buttons hold the vJoy axis at a fixed position (full left, 90° left, center, 90° right, or full right) - the 90° positions use the wheelbase rotation range set on the Accessibility page. The steering test is the same as the Accessibility page's calibration mode. The steering wheel sweep button rocks the axis from side to side, one full left-right-left cycle every two seconds - some games (Assetto Corsa included) ignore controller input while their window is in the background, so start the sweep, click over to the game, and bind the steering there while the axis is still moving. The sweep button blinks while the sweep is running; press it again, or press any of the position buttons, to stop it.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

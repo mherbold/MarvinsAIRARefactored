@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>تم اكتشاف قص FFB!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>إمكانية الوصول</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>جارٍ تهيئة إمكانية الوصول...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>مخرج التوجيه</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>إعادة تعيين التوجيه</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>ردود فعل القوة</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>أعد تعيين التوجيه لتسهيل القيادة مع محدودية حركة الذراع - على سبيل المثال، وجّه حتى أقصى الدوران بلفة صغيرة فقط من عجلة القيادة، مع نطاق وإحساس مختلفين لكل جانب. يقرأ MAIRA قاعدة عجلتك ويرسل التوجيه إلى عصا التحكم الافتراضية vJoy، ويستخدم المحاكي محور vJoy كمدخل للتوجيه.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>اربط توجيه المحاكي بالمحور X في vJoy بدلًا من قاعدة عجلتك، وأوقف ردود فعل القوة الخاصة بالمحاكي - فـ MAIRA هو من يشغّل قاعدة عجلتك. هذا المفتاح مشترك مع صفحة جسر الألعاب.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>نطاق دوران قاعدة العجلة</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>اضبط هذا على نطاق الدوران المُعَدّ في برنامج قاعدة عجلتك (مثل 900° أو 1080°). يستخدمه MAIRA لتحويل موضع العجلة إلى درجات.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>وضع المعايرة</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>فعّل هذا عندما يعاير المحاكي التوجيه، واستخدم الأزرار أدناه بدلًا من تدوير عجلتك - لا يتم تمرير عجلتك، لذا لا يرى المحاكي سوى حركة محور vJoy. في معايرة iRacing، استخدم زري اليسار واليمين لأقصى الدوران، وزر المنتصف للمنتصف، وزر 90° لليسار عندما يُطلب منك تدوير العجلة 90 درجة. أوقف وضع المعايرة عند الانتهاء.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>عند إيقاف هذا، تُمرَّر عجلتك إلى المحاكي دون تغيير. وعند تشغيله، يؤدي تدوير عجلتك حتى النطاق الأيسر أو الأيمن أدناه إلى توجيه السيارة حتى أقصى الدوران، باتباع منحنى ذلك الجانب.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>إزاحة المنتصف</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>المنطقة الميتة في المنتصف</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>تنعيم الارتعاش</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>النطاق الأيسر</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>المنحنى الأيسر</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>النطاق الأيمن</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>المنحنى الأيمن</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>الحساسية عند السرعة العالية</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>سرعة التأثير الكامل</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>يصبح التوجيه أقل حساسية تدريجيًا كلما زادت سرعة السيارة، حتى يصل إلى الحساسية عند السرعة العالية عند سرعة التأثير الكامل.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>لا تنطبق هذه الإعدادات إلا عندما تكون إعادة تعيين التوجيه مفعّلة. اضبط قوة ردود فعل القوة بشكل منفصل للانعطاف يسارًا ويمينًا، واستخدم مساعدة التوسيط لإضافة نابض يسحب العجلة إلى المنتصف.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>قوة الانعطاف يسارًا</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>قوة الانعطاف يمينًا</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>مساعدة التوسيط</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>العجلة لليسار</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>العجلة لليمين</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>أقصى اليسار</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>أقصى اليمين</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° لليسار</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° لليمين</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% لليسار</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% لليمين</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>العجلة: {0}  ➤  التوجيه: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>فعّل إرسال التوجيه إلى جهاز vJoy لاستخدام إعادة تعيين التوجيه.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>وضع المعايرة مفعّل - لا يتم تمرير عجلتك.</value>
+  </data>
 </root>

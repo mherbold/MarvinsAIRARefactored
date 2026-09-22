@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFB 클리핑이 감지되었습니다!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>접근성</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>접근성 초기화 중...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>스티어링 출력</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>스티어링 리매핑</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>포스 피드백</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>팔의 움직임이 제한되어도 운전하기 쉽도록 스티어링을 리매핑합니다. 예를 들어 휠을 조금만 돌려도 풀 락까지 조향되게 하고, 좌우 각각 다른 범위와 느낌을 설정할 수 있습니다. MAIRA가 휠베이스를 읽어 스티어링을 vJoy 가상 조이스틱으로 보내고, 시뮬레이터는 vJoy 축을 스티어링 입력으로 사용합니다.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>시뮬레이터의 스티어링을 휠베이스 대신 vJoy X축에 할당하고, 시뮬레이터 자체의 포스 피드백을 끄세요. 휠베이스는 MAIRA가 구동합니다. 이 스위치는 게임 브리지 페이지와 공유됩니다.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>휠베이스 회전 범위</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>휠베이스 전용 소프트웨어에 설정된 회전 범위(예: 900° 또는 1080°)로 설정하세요. MAIRA는 이 값으로 휠 위치를 각도로 변환합니다.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>보정 모드</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>시뮬레이터가 스티어링을 보정할 때 이 옵션을 켜고, 휠을 돌리는 대신 아래 버튼을 사용하세요. 휠 입력은 전달되지 않으므로 시뮬레이터에는 vJoy 축의 움직임만 보입니다. iRacing 보정에서는 풀 락에 왼쪽과 오른쪽 버튼, 중앙에 중앙 버튼, 휠을 90도 돌리라는 요청이 나오면 90° 왼쪽 버튼을 사용하세요. 끝나면 보정 모드를 끄세요.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>이 옵션이 꺼져 있으면 휠 입력이 변경 없이 시뮬레이터로 전달됩니다. 켜져 있으면 휠을 아래에서 설정한 왼쪽 또는 오른쪽 범위까지 돌렸을 때 해당 방향의 커브에 따라 차량이 풀 락까지 조향됩니다.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>중앙 오프셋</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>중앙 데드 존</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>떨림 보정</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>왼쪽 범위</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>왼쪽 커브</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>오른쪽 범위</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>오른쪽 커브</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>고속 감도</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>최대 효과 속도</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>차량 속도가 올라갈수록 스티어링이 점차 둔해져, 최대 효과 속도에서 고속 감도에 도달합니다.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>이 설정은 스티어링 리매핑이 켜져 있을 때만 적용됩니다. 좌회전과 우회전의 포스 피드백 강도를 각각 설정하고, 센터링 보조로 휠을 중앙으로 되돌리는 스프링을 추가할 수 있습니다.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>좌회전 강도</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>우회전 강도</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>센터링 보조</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>휠 왼쪽</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>휠 오른쪽</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>왼쪽 풀 락</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>오른쪽 풀 락</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>왼쪽 {0}°</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>오른쪽 {0}°</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>왼쪽 {0}%</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>오른쪽 {0}%</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>휠: {0}  ➤  스티어링: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>스티어링 리매핑을 사용하려면 vJoy 장치로 스티어링 전송을 켜세요.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>보정 모드가 켜져 있습니다. 휠 입력이 전달되지 않습니다.</value>
+  </data>
 </root>

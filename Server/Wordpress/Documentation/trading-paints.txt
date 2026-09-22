@@ -154,6 +154,6 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/accessibility/" data-type="page" data-id="1156">Accessibility</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>ตรวจพบการคลิปปิ้ง FFB!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>การช่วยการเข้าถึง</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>กำลังเริ่มต้นการช่วยการเข้าถึง...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>เอาต์พุตพวงมาลัย</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>การแมปพวงมาลัยใหม่</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>ฟอร์ซฟีดแบ็ก</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>แมปพวงมาลัยใหม่เพื่อให้ขับได้ง่ายขึ้นเมื่อเคลื่อนไหวแขนได้จำกัด - เช่น เลี้ยวจนสุดล็อกได้ด้วยการหมุนพวงมาลัยเพียงเล็กน้อย โดยกำหนดช่วงและความรู้สึกแยกกันในแต่ละด้าน MAIRA อ่านค่าจากฐานพวงมาลัยของคุณแล้วส่งการบังคับเลี้ยวไปยังจอยสติกเสมือน vJoy และซิมจะใช้แกน vJoy เป็นอินพุตพวงมาลัย</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>ผูกพวงมาลัยของซิมกับแกน X ของ vJoy แทนฐานพวงมาลัยของคุณ และปิดฟอร์ซฟีดแบ็กของซิมเอง - MAIRA จะขับฐานพวงมาลัยของคุณ สวิตช์นี้ใช้ร่วมกับหน้าบริดจ์เกม</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>ช่วงการหมุนของฐานพวงมาลัย</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>ตั้งค่านี้ให้ตรงกับช่วงการหมุนที่กำหนดไว้ในซอฟต์แวร์ของฐานพวงมาลัยของคุณ (เช่น 900° หรือ 1080°) MAIRA ใช้ค่านี้แปลงตำแหน่งพวงมาลัยเป็นองศา</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>โหมดสอบเทียบ</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>เปิดตัวเลือกนี้เมื่อซิมกำลังสอบเทียบพวงมาลัย และใช้ปุ่มด้านล่างแทนการหมุนพวงมาลัย - พวงมาลัยของคุณจะไม่ถูกส่งผ่าน ซิมจึงเห็นเฉพาะแกน vJoy ที่เคลื่อนที่ ในการสอบเทียบของ iRacing ให้ใช้ปุ่มซ้ายและขวาสำหรับสุดล็อก ปุ่มกลางสำหรับตำแหน่งกลาง และปุ่ม 90° ซ้ายเมื่อระบบขอให้หมุนพวงมาลัย 90 องศา ปิดโหมดสอบเทียบเมื่อเสร็จแล้ว</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>เมื่อปิดตัวเลือกนี้ พวงมาลัยของคุณจะถูกส่งไปยังซิมโดยไม่เปลี่ยนแปลง เมื่อเปิด การหมุนพวงมาลัยไปถึงช่วงซ้ายหรือขวาด้านล่างจะทำให้รถเลี้ยวจนสุดล็อก ตามเส้นโค้งของด้านนั้น</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>ออฟเซ็ตกึ่งกลาง</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>โซนตายตรงกลาง</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>ลดอาการมือสั่น</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>ช่วงซ้าย</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>เส้นโค้งซ้าย</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>ช่วงขวา</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>เส้นโค้งขวา</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>ความไวที่ความเร็วสูง</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>ความเร็วที่มีผลเต็มที่</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>พวงมาลัยจะค่อยๆ ไวน้อยลงเมื่อรถเร็วขึ้น จนถึงความไวที่ความเร็วสูงเมื่อถึงความเร็วที่มีผลเต็มที่</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>การตั้งค่าเหล่านี้มีผลเฉพาะเมื่อเปิดการแมปพวงมาลัยใหม่ ตั้งค่าความแรงของฟอร์ซฟีดแบ็กแยกกันสำหรับการเลี้ยวซ้ายและขวา และใช้ตัวช่วยคืนศูนย์เพื่อเพิ่มสปริงที่ดึงพวงมาลัยกลับสู่ตำแหน่งกลาง</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>ความแรงเลี้ยวซ้าย</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>ความแรงเลี้ยวขวา</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>ตัวช่วยคืนศูนย์</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>พวงมาลัยซ้าย</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>พวงมาลัยขวา</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>สุดล็อกซ้าย</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>สุดล็อกขวา</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° ซ้าย</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° ขวา</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% ซ้าย</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% ขวา</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>พวงมาลัย: {0}  ➤  การเลี้ยว: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>เปิดการส่งพวงมาลัยไปยังอุปกรณ์ vJoy เพื่อใช้การแมปพวงมาลัยใหม่</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>โหมดสอบเทียบเปิดอยู่ - พวงมาลัยของคุณไม่ถูกส่งผ่าน</value>
+  </data>
 </root>

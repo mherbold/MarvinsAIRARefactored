@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>Обнаружен клиппинг FFB!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Доступность</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Инициализация доступности...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Вывод руля</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Переназначение руля</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Отдача руля</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Переназначьте руль, чтобы облегчить вождение при ограниченной подвижности рук - например, поворачивайте колёса до упора лишь небольшим поворотом руля, с разным диапазоном и ощущением для каждой стороны. MAIRA считывает вашу базу и передаёт руль на виртуальный джойстик vJoy, а симулятор использует ось vJoy как ввод руля.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Назначьте руль в симуляторе на ось X vJoy вместо вашей базы и отключите собственную отдачу руля симулятора - вашей базой управляет MAIRA. Этот переключатель общий со страницей «Игровой мост».</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Угол поворота базы</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Укажите угол поворота, настроенный в собственном ПО вашей базы (например, 900° или 1080°). MAIRA использует его, чтобы пересчитывать положение руля в градусы.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Режим калибровки</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Включите это, когда симулятор калибрует руль, и используйте кнопки ниже вместо поворота руля - ваш руль не передаётся, поэтому симулятор видит движение только оси vJoy. При калибровке в iRacing используйте кнопки «влево» и «вправо» для упора, кнопку «по центру» для центра и кнопку «на 90° влево», когда попросят повернуть руль на 90 градусов. Когда закончите, выключите режим калибровки.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Когда это выключено, ваш руль передаётся в симулятор без изменений. Когда включено, поворот руля до заданного ниже левого или правого диапазона поворачивает колёса до упора по кривой этой стороны.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Смещение центра</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Мёртвая зона центра</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Сглаживание тремора</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Диапазон влево</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Кривая влево</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Диапазон вправо</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Кривая вправо</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Чувствительность на скорости</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Скорость полного эффекта</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>С ростом скорости автомобиля руль постепенно становится менее чувствительным, вплоть до чувствительности на скорости при достижении скорости полного эффекта.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Эти настройки действуют только при включённом переназначении руля. Задайте силу отдачи отдельно для поворотов влево и вправо и используйте помощь центровки, чтобы добавить пружину, возвращающую руль в центр.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Сила влево</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Сила вправо</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Помощь центровки</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Руль влево</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Руль вправо</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Упор влево</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Упор вправо</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° влево</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° вправо</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% влево</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% вправо</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Руль: {0}  ➤  Поворот: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Включите передачу руля на устройство vJoy, чтобы использовать переназначение руля.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Режим калибровки включён - ваш руль не передаётся.</value>
+  </data>
 </root>

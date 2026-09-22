@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFB-leikkaus havaittu!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Saavutettavuus</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Alustetaan saavutettavuutta...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Ohjauksen ulostulo</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Ohjauksen uudelleenmääritys</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Voimapalaute</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Määritä ohjauksesi uudelleen, jotta ajaminen olisi helpompaa rajoitetulla käsien liikkuvuudella - esimerkiksi käännä täyteen ohjauslukkoon vain pienellä ratin käännöllä, eri alueella ja tuntumalla kummallekin puolelle. MAIRA lukee rattipohjaasi ja lähettää ohjauksen virtuaaliselle vJoy-ohjaimelle, ja simulaattori käyttää vJoyn akselia ohjaussyötteenään.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Sido simulaattorin ohjaus vJoyn X-akseliin rattipohjasi sijaan ja poista simulaattorin oma voimapalaute käytöstä - MAIRA ohjaa rattipohjaasi. Tämä kytkin on yhteinen Pelisilta-sivun kanssa.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Rattipohjan kääntöalue</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Aseta tähän rattipohjasi omassa ohjelmistossa määritetty kääntöalue (esimerkiksi 900° tai 1080°). MAIRA käyttää sitä ratin asennon muuntamiseen asteiksi.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Kalibrointitila</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Ota tämä käyttöön, kun simulaattori kalibroi ohjaustasi, ja käytä alla olevia painikkeita ratin kääntämisen sijaan - rattiasi ei välitetä, joten simulaattori näkee vain vJoyn akselin liikkuvan. Käytä iRacingin kalibroinnissa vasen- ja oikea-painikkeita täyteen ohjauslukkoon, keskipainiketta keskikohtaan ja 90° vasemmalle -painiketta, kun sinua pyydetään kääntämään rattia 90 astetta. Poista kalibrointitila käytöstä, kun olet valmis.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Kun tämä on pois päältä, rattisi välitetään simulaattorille muuttamattomana. Kun se on päällä, ratin kääntäminen alla asetettuun vasempaan tai oikeaan alueeseen kääntää auton täyteen ohjauslukkoon kyseisen puolen käyrän mukaisesti.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Keskikohdan siirto</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Keskikohdan kuollut alue</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Vapinan tasoitus</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Vasen alue</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Vasen käyrä</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Oikea alue</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Oikea käyrä</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Herkkyys suurella nopeudella</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Täyden vaikutuksen nopeus</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Ohjaus muuttuu vähitellen vähemmän herkäksi auton nopeuden kasvaessa, aina suuren nopeuden herkkyyteen asti täyden vaikutuksen nopeudella.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Nämä ovat voimassa vain, kun ohjauksen uudelleenmääritys on päällä. Aseta voimapalautteen voimakkuus erikseen vasemmalle ja oikealle käännöille, ja käytä keskitysapua lisätäksesi jousen, joka vetää rattia takaisin keskelle.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Voimakkuus vasemmalle</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Voimakkuus oikealle</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Keskitysapu</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Ratti vasemmalle</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Ratti oikealle</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Täysi lukko vasemmalle</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Täysi lukko oikealle</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° vasemmalle</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° oikealle</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0} % vasemmalle</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0} % oikealle</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Ratti: {0}  ➤  Ohjaus: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Ota käyttöön ohjauksen lähetys vJoy-laitteelle, jotta voit käyttää ohjauksen uudelleenmääritystä.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Kalibrointitila on päällä - rattiasi ei välitetä.</value>
+  </data>
 </root>

@@ -196,6 +196,7 @@ public partial class App : Application
 	public TradingPaints TradingPaints { get; private set; } = null!;
 	public AppManager AppManager { get; private set; } = null!;
 	public GameBridge GameBridge { get; private set; } = null!;
+	public Components.Accessibility Accessibility { get; private set; } = null!;
 
 	public GripOMeterWindow? GripOMeterWindow { get; set; }
 	public GapMonitorWindow? GapMonitorWindow { get; set; }
@@ -271,6 +272,7 @@ public partial class App : Application
 		TradingPaints = new();
 		AppManager = new();
 		GameBridge = new();
+		Accessibility = new();
 
 		_timer.Elapsed += OnTimer;
 	}
@@ -488,6 +490,7 @@ public partial class App : Application
 				RunStartupStep( "InitializingLogitechWheel", LogitechWheel.Initialize );
 				RunStartupStep( "InitializingTradingPaints", TradingPaints.Initialize );
 				RunStartupStep( "InitializingGameBridge", GameBridge.Initialize );
+				RunStartupStep( "InitializingAccessibility", Accessibility.Initialize );
 				RunStartupStep( "InitializingSettingsFile", SettingsFile.Initialize );
 
 #else
@@ -746,6 +749,7 @@ public partial class App : Application
 		TradingPaints.Shutdown();
 		AppManager.Shutdown();
 		GameBridge.Shutdown();
+		Accessibility.Shutdown();
 
 #endif
 
@@ -961,6 +965,7 @@ public partial class App : Application
 						app.Graph.Tick( app );
 						app.SteeringEffects.Tick( app );
 						app.GameBridge.Tick( app );
+						app.Accessibility.Tick( app );
 						app.VirtualJoystick.Tick( app );
 						app.TimingMarkers.Tick( app );
 						app.Telemetry.Tick( app );

@@ -276,6 +276,9 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.TradingPaints:
 					return "advanced/trading-paints/";
 
+				case AppPage.Accessibility:
+					return "advanced/accessibility/";
+
 				case AppPage.Graph:
 					return "advanced/graph/";
 
@@ -439,6 +442,7 @@ namespace MarvinsAIRARefactored.Controls
 			Add( AppMenuItemsColumn1, AppPage.Sounds, _soundsPage );
 			Add( AppMenuItemsColumn1, AppPage.Overlays, _overlaysPage );
 			Add( AppMenuItemsColumn1, AppPage.TradingPaints, _tradingPaintsPage );
+			Add( AppMenuItemsColumn1, AppPage.Accessibility, _accessibilityPage );
 
 #endif
 
@@ -573,6 +577,10 @@ namespace MarvinsAIRARefactored.Controls
 						menuItem.DisplayName = localization[ "TradingPaints" ];
 						break;
 
+					case AppPage.Accessibility:
+						menuItem.DisplayName = localization[ "Accessibility" ];
+						break;
+
 					case AppPage.Graph:
 						menuItem.DisplayName = localization[ "Graph" ];
 						break;
@@ -685,6 +693,10 @@ namespace MarvinsAIRARefactored.Controls
 
 				case AppPage.TradingPaints:
 					SelectedAppPageText = localization.Upper[ "TradingPaints" ];
+					break;
+
+				case AppPage.Accessibility:
+					SelectedAppPageText = localization.Upper[ "Accessibility" ];
 					break;
 
 				case AppPage.Graph:

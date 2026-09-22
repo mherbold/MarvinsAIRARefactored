@@ -37,65 +37,45 @@ public partial class GameBridgePage : UserControl
 	}
 
 	// the steering test buttons drive the vJoy axis directly (the wheelbase passthrough is suspended while
-	// the test toggle is on), so the user can move ONLY the vJoy axis while binding steering in the game -
-	// the same 540-degree scale as the steering effects calibration robot is used for the 90 degree buttons
-
-	private void SetTestSteering( float steering )
-	{
-		var app = App.Instance!;
-
-		// a static position button always cancels a running sweep
-		app.GameBridge.SteeringSweepActive = false;
-
-		app.VirtualJoystick.Steering = steering;
-
-		UpdateSweepButton( app );
-	}
+	// the test toggle is on), so the user can move ONLY the vJoy axis while binding steering in the game - this
+	// is the same calibration mode as on the accessibility page (the passthrough is shared), and the 90 degree
+	// buttons use the wheelbase rotation range set there
 
 	private void SteeringWheelLeft_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		SetTestSteering( -1f );
+		App.Instance!.Accessibility.SetCalibrationSteering( -1f );
 	}
 
 	private void SteeringWheel90Left_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		SetTestSteering( -( 90f / 540f ) );
+		App.Instance!.Accessibility.SetCalibrationSteering( Components.Accessibility.GetAxisPositionForAngle( 90f ) );
 	}
 
 	private void SteeringWheelCenter_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		SetTestSteering( 0f );
+		App.Instance!.Accessibility.SetCalibrationSteering( 0f );
 	}
 
 	private void SteeringWheel90Right_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		SetTestSteering( 90f / 540f );
+		App.Instance!.Accessibility.SetCalibrationSteering( Components.Accessibility.GetAxisPositionForAngle( -90f ) );
 	}
 
 	private void SteeringWheelRight_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		SetTestSteering( 1f );
+		App.Instance!.Accessibility.SetCalibrationSteering( 1f );
 	}
 
 	private void SteeringWheelSweep_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		var app = App.Instance!;
-
-		app.GameBridge.SteeringSweepActive = !app.GameBridge.SteeringSweepActive;
-
-		if ( !app.GameBridge.SteeringSweepActive )
-		{
-			app.VirtualJoystick.Steering = 0f;
-		}
-
-		UpdateSweepButton( app );
+		App.Instance!.Accessibility.ToggleSteeringSweep();
 	}
 
 	// the sweep button blinks (white/orange) while the sweep is running - also refreshed at 1 Hz from
 	// GameBridge.Tick, which catches the sweep being cancelled by the toggles rather than by a click
 	public void UpdateSweepButton( App app )
 	{
-		SteeringWheelSweep_MairaButton.Blink = app.GameBridge.SteeringSweepActive;
+		SteeringWheelSweep_MairaButton.Blink = app.Accessibility.SteeringSweepActive;
 	}
 
 	// warns the user (in MAIRA orange) when the steering passthrough is switched on but the vJoy driver is

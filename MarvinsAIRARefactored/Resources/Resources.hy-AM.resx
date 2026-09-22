@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>Հայտնաբերվել է FFB կտրում!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Մատչելիություն</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Մատչելիության նախապատրաստում...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Ղեկի ելք</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Ղեկի վերանշանակում</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Ուժային հետադարձ կապ</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Վերանշանակեք ղեկը, որպեսզի վարելը հեշտանա ձեռքերի սահմանափակ շարժունակության դեպքում - օրինակ՝ թեքեք մինչև վերջնակետը ղեկի միայն փոքր պտույտով, յուրաքանչյուր կողմի համար տարբեր տիրույթով և զգացողությամբ։ MAIRA-ն կարդում է ձեր ղեկի բազան և ղեկն ուղարկում vJoy վիրտուալ ջոյսթիքին, իսկ սիմուլյատորն օգտագործում է vJoy-ի առանցքը որպես ղեկի մուտք։</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Կապեք սիմուլյատորի ղեկը vJoy-ի X առանցքին՝ ձեր ղեկի բազայի փոխարեն, և անջատեք սիմուլյատորի սեփական ուժային հետադարձ կապը - ձեր ղեկի բազան կառավարում է MAIRA-ն։ Այս անջատիչը ընդհանուր է Խաղերի կամուրջ էջի հետ։</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Ղեկի բազայի պտտման տիրույթ</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Սահմանեք այստեղ ձեր ղեկի բազայի սեփական ծրագրում կարգավորված պտտման տիրույթը (օրինակ՝ 900° կամ 1080°)։ MAIRA-ն այն օգտագործում է ղեկի դիրքը աստիճանների փոխարկելու համար։</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Կալիբրացիայի ռեժիմ</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Միացրեք սա, երբ սիմուլյատորը կալիբրացնում է ձեր ղեկը, և ղեկը պտտելու փոխարեն օգտագործեք ներքևի կոճակները - ձեր ղեկը չի փոխանցվում, ուստի սիմուլյատորը տեսնում է միայն vJoy-ի առանցքի շարժումը։ iRacing-ի կալիբրացիայում օգտագործեք ձախ և աջ կոճակները լրիվ թեքման համար, կենտրոնի կոճակը՝ կենտրոնի համար, և 90° ձախ կոճակը, երբ խնդրվի ղեկը պտտել 90 աստիճանով։ Ավարտելուց հետո անջատեք կալիբրացիայի ռեժիմը։</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Երբ սա անջատված է, ձեր ղեկը փոխանցվում է սիմուլյատորին անփոփոխ։ Երբ միացված է, ղեկը մինչև ներքևում նշված ձախ կամ աջ տիրույթը պտտելը մեքենան թեքում է մինչև վերջնակետ՝ հետևելով այդ կողմի կորին։</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Կենտրոնի շեղում</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Կենտրոնի մեռած գոտի</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Դողի հարթեցում</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Ձախ տիրույթ</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Ձախ կոր</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Աջ տիրույթ</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Աջ կոր</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Զգայունություն բարձր արագությամբ</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Լրիվ էֆեկտի արագություն</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Մեքենայի արագացմանը զուգընթաց ղեկն աստիճանաբար դառնում է ավելի քիչ զգայուն՝ մինչև բարձր արագության զգայունությունը լրիվ էֆեկտի արագության դեպքում։</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Սրանք գործում են միայն այն ժամանակ, երբ ղեկի վերանշանակումը միացված է։ Սահմանեք ուժային հետադարձ կապի ուժը առանձին ձախ և աջ շրջադարձերի համար, և օգտագործեք կենտրոնացման օգնությունը՝ զսպանակ ավելացնելու համար, որը ղեկը հետ է քաշում կենտրոն։</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Ուժ ձախ</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Ուժ աջ</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Կենտրոնացման օգնություն</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Ղեկ՝ ձախ</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Ղեկ՝ աջ</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Լրիվ ձախ</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Լրիվ աջ</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° ձախ</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° աջ</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% ձախ</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% աջ</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Ղեկ՝ {0}  ➤  Թեքում՝ {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Միացրեք ղեկի ուղարկումը vJoy սարքին՝ ղեկի վերանշանակումն օգտագործելու համար։</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Կալիբրացիայի ռեժիմը միացված է - ձեր ղեկը չի փոխանցվում։</value>
+  </data>
 </root>

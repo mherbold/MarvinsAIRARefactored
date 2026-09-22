@@ -667,7 +667,7 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 		// the game clamps its steering value at full lock, so a soft lock spring driven by the game's angle can
 		// never see the wheel go past the stop - iRacing reports the PHYSICAL wheel angle instead, which we
 		// reconstruct from the DirectInput axis, calibrated against the game's angle in the linear region
-		var physicalPosition = App.Instance!.DirectInput.ForceFeedbackWheelPosition;
+		var physicalPosition = App.Instance!.Accessibility.GameSteeringPosition;
 
 		if ( ( Math.Abs( gameSteering ) < 0.95 ) && ( Math.Abs( physicalPosition ) > 0.10 ) )
 		{

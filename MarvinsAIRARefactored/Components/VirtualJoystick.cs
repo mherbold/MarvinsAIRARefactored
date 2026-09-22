@@ -34,10 +34,23 @@ public class VirtualJoystick
 
 	private int _consecutiveUpdateFailures = 0;
 
+	// the accessibility steering passthrough writes the X axis straight to the device from the 360 Hz playout
+	// thread (UpdateSteeringImmediately) while Tick pushes the whole state from the UI thread - this lock keeps
+	// the two (and initialize / shutdown) from ever talking to the driver at the same time
+	private readonly Lock _deviceLock = new();
+
 	public bool Initialized { get => _initialized; }
 	public bool Faulted { get => _faulted; }
 
 	public void Initialize()
+	{
+		lock ( _deviceLock )
+		{
+			InitializeDevice();
+		}
+	}
+
+	private void InitializeDevice()
 	{
 		var app = App.Instance!;
 
@@ -128,17 +141,49 @@ public class VirtualJoystick
 
 		app.Logger.WriteLine( $"[VirtualJoystick] Shutdown >>>" );
 
-		if ( _initialized )
+		lock ( _deviceLock )
 		{
-			_vJoy.RelinquishVJD( JoystickId );
+			if ( _initialized )
+			{
+				_vJoy.RelinquishVJD( JoystickId );
 
-			_initialized = false;
+				_initialized = false;
+			}
 		}
 
 		app.Logger.WriteLine( $"[VirtualJoystick] <<< Shutdown" );
 	}
 
+	/// <summary>
+	/// Sets the steering and writes just the X axis to the device right away, instead of waiting for the next
+	/// ~60 Hz Tick - used by the accessibility passthrough from the 360 Hz playout thread. Tick keeps pushing
+	/// the same (latest) Steering value along with the rest of the state.
+	/// </summary>
+	public void UpdateSteeringImmediately( float steering )
+	{
+		lock ( _deviceLock )
+		{
+			Steering = steering;
+
+			if ( _initialized )
+			{
+				var axisX = (int) MathF.Round( MathZ.Lerp( _minimumX, _maximumX, steering * 0.5f + 0.5f ) );
+
+				// a failure here is left for Tick to report and recover (it re-acquires on a failed update)
+				_vJoy.SetAxis( axisX, JoystickId, HID_USAGES.HID_USAGE_X );
+			}
+		}
+	}
+
 	public void Tick( App app )
+	{
+		lock ( _deviceLock )
+		{
+			UpdateDevice( app );
+		}
+	}
+
+	private void UpdateDevice( App app )
 	{
 		if ( _initialized )
 		{

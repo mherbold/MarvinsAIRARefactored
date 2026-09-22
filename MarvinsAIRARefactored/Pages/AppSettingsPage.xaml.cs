@@ -120,6 +120,7 @@ public partial class AppSettingsPage : UserControl
 			{ MainWindow.AppPage.Commentary, localization[ "Commentary" ] },
 			{ MainWindow.AppPage.SpeechToText, localization[ "SpeechToText" ] },
 			{ MainWindow.AppPage.TradingPaints, localization[ "TradingPaints" ] },
+			{ MainWindow.AppPage.Accessibility, localization[ "Accessibility" ] },
 			{ MainWindow.AppPage.AppManager, localization[ "AppManager" ] },
 			{ MainWindow.AppPage.Graph, localization[ "Graph" ] },
 			{ MainWindow.AppPage.Simulator, localization[ "Simulator" ] },

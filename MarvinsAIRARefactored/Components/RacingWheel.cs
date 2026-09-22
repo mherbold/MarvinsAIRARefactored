@@ -489,6 +489,11 @@ public class RacingWheel
 
 			var frameContext = new FrameContext( app, steeringWheelTorque60Hz, maxForce, _usingSteeringWheelTorqueData );
 
+			// the accessibility page's left / right FFB strength (1 unless the steering remap is active) - applied
+			// here rather than at playout so the clipping detection below sees the scaled torque
+
+			var accessibilityStrengthScale = app.Accessibility.GetForceFeedbackStrengthScale();
+
 #if DEBUG
 			var burstStartTimestamp = Stopwatch.GetTimestamp();
 #endif
@@ -558,7 +563,7 @@ public class RacingWheel
 					outputTorque += vibrationTorque;
 				}
 
-				_burstOutputTorque[ sampleIndex ] = outputTorque;
+				_burstOutputTorque[ sampleIndex ] = outputTorque * accessibilityStrengthScale;
 				_burstInputTorque[ sampleIndex ] = steeringWheelTorque360Hz / maxForce;
 				_burstLFEMagnitude[ sampleIndex ] = inputLFEMagnitude;
 
@@ -895,6 +900,11 @@ public class RacingWheel
 
 			var outputTorque = MathZ.InterpolateHermite( m0, m1, m2, m3, t );
 
+			// the accessibility page's centering help - a spring on the physical wheel, added here at the playout
+			// rate so it acts on the freshest wheel sample
+
+			outputTorque += app.Accessibility.GetCenteringHelpTorque( deltaMilliseconds );
+
 			// underrun tracking — count ticks where the playout clock ran meaningfully past the end of the frame
 
 			_underrunLogTimerMS = MathF.Max( 0f, _underrunLogTimerMS - deltaMilliseconds );
@@ -1023,9 +1033,24 @@ public class RacingWheel
 			// Velocity telemetry (proper radians / rad-per-second). This replaced our own DirectInput axis sampling;
 			// normalizing by the car's half-lock also makes these relative to the real steering lock rather than the
 			// wheel's fixed rotation range (halfLock is 0 off-car, so the values sit at 0 until in a session).
-			var halfLock = simulator.SteeringWheelAngleMax * 0.5f;
-			WheelPosition = ( halfLock > 0f ) ? simulator.SteeringWheelAngle / halfLock : 0f;
-			WheelVelocity = ( halfLock > 0f ) ? simulator.SteeringWheelVelocity / halfLock : 0f;
+			//
+			// While the accessibility steering remap is active the game's steering angle is the REMAPPED angle, not
+			// where the wheel physically is, so the physical wheel state is used instead: the angle and velocity of
+			// the real wheel (relative to the center offset) with the "max" angle set to the remapped physical range
+			// of the side the wheel is turned to - the soft lock then lands at the physical limits, and damping /
+			// friction / centering act on the real wheel motion. Steering effects keep the game's angle (car side).
+			var steeringWheelAngle = simulator.SteeringWheelAngle;
+			var steeringWheelAngleMax = simulator.SteeringWheelAngleMax;
+			var steeringWheelVelocity = simulator.SteeringWheelVelocity;
+
+			if ( app.Accessibility.RemapActive && ( steeringWheelAngleMax > 0f ) )
+			{
+				app.Accessibility.GetPhysicalSteeringState( out steeringWheelAngle, out steeringWheelAngleMax, out steeringWheelVelocity );
+			}
+
+			var halfLock = steeringWheelAngleMax * 0.5f;
+			WheelPosition = ( halfLock > 0f ) ? steeringWheelAngle / halfLock : 0f;
+			WheelVelocity = ( halfLock > 0f ) ? steeringWheelVelocity / halfLock : 0f;
 
 			// the per-effect enable switches on the steering effects page gate the corresponding FFB modules: a
 			// disabled effect feeds 0, so its force modules pass through and its vibration generators stay silent
@@ -1048,9 +1073,9 @@ public class RacingWheel
 			UsingTorqueData = usingTorqueData;
 			VelocityMS = simulator.Velocity;
 			VelocityY = simulator.VelocityY;
-			SteeringWheelAngle = simulator.SteeringWheelAngle;
-			SteeringWheelAngleMax = simulator.SteeringWheelAngleMax;
-			SteeringWheelVelocity = simulator.SteeringWheelVelocity;
+			SteeringWheelAngle = steeringWheelAngle;
+			SteeringWheelAngleMax = steeringWheelAngleMax;
+			SteeringWheelVelocity = steeringWheelVelocity;
 			PitchRate = simulator.PitchRate_ST[ Simulator.SamplesPerFrame360Hz - 1 ]; // the frame's newest sample
 
 			// raw protection telemetry for the crash/curb protection modules' self-triggering — zeroed while

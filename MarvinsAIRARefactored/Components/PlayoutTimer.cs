@@ -264,6 +264,15 @@ public class PlayoutTimer
 					{
 						playoutTimer._lastTotalMilliseconds = totalMilliseconds;
 
+#if !ADMINBOXX
+
+						// sample the real wheel and send it (remapped) to vJoy first, so the game bridge pump below
+						// sees the steering position the game is now being sent
+
+						app.Accessibility.UpdatePlayout();
+
+#endif
+
 						// pump the active game bridge (if any) right before the racing wheel update, so bridge
 						// sub-samples are taken on this precise kernel timer and the freshest torque reading
 						// is in place with near zero added latency

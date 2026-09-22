@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFB क्लिपिंग का पता चला!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>सुलभता</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>सुलभता प्रारंभ हो रही है...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>स्टीयरिंग आउटपुट</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>स्टीयरिंग रीमैप</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>फ़ोर्स फ़ीडबैक</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>सीमित बाँह की गति के साथ ड्राइविंग आसान बनाने के लिए अपनी स्टीयरिंग को रीमैप करें - उदाहरण के लिए, व्हील को बस थोड़ा घुमाकर पूरे लॉक तक स्टीयर करें, हर तरफ़ के लिए अलग रेंज और अनुभव के साथ। MAIRA आपकी व्हीलबेस को पढ़ता है और स्टीयरिंग को vJoy वर्चुअल जॉयस्टिक पर भेजता है, और सिम vJoy अक्ष को अपने स्टीयरिंग इनपुट के रूप में उपयोग करता है।</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>सिम की स्टीयरिंग को अपनी व्हीलबेस के बजाय vJoy के X अक्ष से बाइंड करें, और सिम का अपना फ़ोर्स फ़ीडबैक बंद करें - आपकी व्हीलबेस को MAIRA चलाता है। यह स्विच गेम ब्रिज पेज के साथ साझा है।</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>व्हीलबेस रोटेशन रेंज</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>इसे अपनी व्हीलबेस के अपने सॉफ़्टवेयर में कॉन्फ़िगर की गई रोटेशन रेंज पर सेट करें (उदाहरण के लिए 900° या 1080°)। MAIRA इसका उपयोग व्हील की स्थिति को डिग्री में बदलने के लिए करता है।</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>कैलिब्रेशन मोड</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>जब सिम आपकी स्टीयरिंग को कैलिब्रेट करे तो इसे चालू करें, और अपना व्हील घुमाने के बजाय नीचे दिए बटनों का उपयोग करें - आपका व्हील पास नहीं होता, इसलिए सिम को केवल vJoy अक्ष हिलता दिखता है। iRacing के कैलिब्रेशन में, पूरे लॉक के लिए बाएं और दाएं बटन, केंद्र के लिए केंद्र बटन, और जब व्हील को 90 डिग्री घुमाने को कहा जाए तो 90° बाएं बटन का उपयोग करें। काम पूरा होने पर कैलिब्रेशन मोड बंद करें।</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>जब यह बंद होता है, तो आपका व्हील बिना बदलाव के सिम को पास होता है। जब यह चालू होता है, तो अपने व्हील को नीचे दी गई बाईं या दाईं रेंज तक घुमाने पर कार उस तरफ़ के कर्व के अनुसार पूरे लॉक तक स्टीयर होती है।</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>केंद्र ऑफ़सेट</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>केंद्र डेड ज़ोन</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>कंपन स्मूदिंग</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>बाईं रेंज</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>बायां कर्व</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>दाईं रेंज</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>दायां कर्व</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>तेज़ गति संवेदनशीलता</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>पूर्ण प्रभाव गति</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>जैसे-जैसे कार की गति बढ़ती है, स्टीयरिंग धीरे-धीरे कम संवेदनशील होती जाती है, और पूर्ण प्रभाव गति पर तेज़ गति संवेदनशीलता तक पहुँच जाती है।</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>ये केवल तभी लागू होते हैं जब स्टीयरिंग रीमैप चालू हो। बाएं और दाएं मोड़ों के लिए फ़ोर्स फ़ीडबैक की स्ट्रेंथ अलग-अलग सेट करें, और व्हील को वापस केंद्र की ओर खींचने वाला स्प्रिंग जोड़ने के लिए सेंटरिंग सहायता का उपयोग करें।</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>बाएं मोड़ की स्ट्रेंथ</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>दाएं मोड़ की स्ट्रेंथ</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>सेंटरिंग सहायता</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>व्हील बाएं</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>व्हील दाएं</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>पूरा बायां लॉक</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>पूरा दायां लॉक</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° बाएं</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° दाएं</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% बाएं</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% दाएं</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>व्हील: {0}  ➤  स्टीयरिंग: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>स्टीयरिंग रीमैप का उपयोग करने के लिए स्टीयरिंग को vJoy डिवाइस पर भेजना चालू करें।</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>कैलिब्रेशन मोड चालू है - आपका व्हील पास नहीं हो रहा है।</value>
+  </data>
 </root>

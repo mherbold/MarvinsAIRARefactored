@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>Canfuwyd clipio FFB!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Hygyrchedd</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Wrthi'n cychwyn hygyrchedd...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Allbwn llywio</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Ailfapio llywio</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Adborth grym</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Ailfapiwch eich llywio i wneud gyrru'n haws gyda symudiad braich cyfyngedig - er enghraifft, llywiwch i'r clo llawn gyda dim ond tro bach o'r llyw, gydag ystod a theimlad gwahanol i bob ochr. Mae MAIRA yn darllen eich sylfaen olwyn ac yn anfon y llywio i ffon reoli rithwir vJoy, ac mae'r efelychydd yn defnyddio echel vJoy fel ei fewnbwn llywio.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Rhwymwch lywio'r efelychydd i echel X vJoy yn lle eich sylfaen olwyn, a diffoddwch adborth grym yr efelychydd ei hun - MAIRA sy'n gyrru eich sylfaen olwyn. Mae'r switsh hwn yn cael ei rannu â'r dudalen pont gemau.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Ystod cylchdroi'r sylfaen olwyn</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Gosodwch hwn i'r ystod cylchdroi sydd wedi'i ffurfweddu ym meddalwedd eich sylfaen olwyn ei hun (er enghraifft 900° neu 1080°). Mae MAIRA yn ei ddefnyddio i drosi safle'r llyw yn raddau.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Modd calibradu</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Trowch hwn ymlaen pan fydd yr efelychydd yn calibradu eich llywio, a defnyddiwch y botymau isod yn lle troi eich llyw - nid yw eich llyw yn cael ei basio drwodd, felly dim ond echel vJoy y mae'r efelychydd yn ei gweld yn symud. Yng nghalibradu iRacing, defnyddiwch y botymau chwith a de ar gyfer clo llawn, y botwm canol ar gyfer y canol, a'r botwm 90° chwith pan ofynnir i chi droi'r llyw 90 gradd. Diffoddwch y modd calibradu pan fyddwch wedi gorffen.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Pan fydd hwn i ffwrdd, mae eich llyw yn cael ei basio i'r efelychydd heb newid. Pan fydd ymlaen, mae troi eich llyw i'r ystod chwith neu dde isod yn llywio'r car i'r clo llawn, gan ddilyn cromlin yr ochr honno.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Gwrthbwyso'r canol</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Parth marw canol</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Llyfnhau cryndod</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Ystod chwith</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Cromlin chwith</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Ystod dde</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Cromlin dde</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Sensitifrwydd cyflymder uchel</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Cyflymder effaith lawn</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Mae'r llywio'n mynd yn raddol yn llai sensitif wrth i'r car gyflymu, i lawr i'r sensitifrwydd cyflymder uchel ar y cyflymder effaith lawn.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Dim ond tra bo'r ailfapio llywio ymlaen y mae'r rhain yn berthnasol. Gosodwch gryfder yr adborth grym ar wahân ar gyfer troadau i'r chwith ac i'r dde, a defnyddiwch help canoli i ychwanegu sbring sy'n tynnu'r llyw yn ôl i'r canol.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Cryfder troi i'r chwith</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Cryfder troi i'r dde</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Help canoli</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Llyw chwith</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Llyw de</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Clo llawn chwith</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Clo llawn de</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° chwith</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° de</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% chwith</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% de</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Llyw: {0}  ➤  Llywio: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Trowch anfon y llywio i'r ddyfais vJoy ymlaen i ddefnyddio'r ailfapio llywio.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Mae'r modd calibradu ymlaen - nid yw eich llyw yn cael ei basio drwodd.</value>
+  </data>
 </root>

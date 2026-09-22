@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFB kesmesi algılandı!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Erişilebilirlik</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Erişilebilirlik başlatılıyor...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Direksiyon çıkışı</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Direksiyon yeniden eşleme</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Force feedback</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Kısıtlı kol hareketiyle sürüşü kolaylaştırmak için direksiyonunuzu yeniden eşleyin - örneğin direksiyonu yalnızca biraz çevirerek tam kilide kadar dönün, her iki taraf için farklı aralık ve hisle. MAIRA wheelbase'inizi okur ve direksiyonu vJoy sanal joystick'ine gönderir; simülatör de direksiyon girişi olarak vJoy eksenini kullanır.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Simülatörün direksiyonunu wheelbase'iniz yerine vJoy X eksenine atayın ve simülatörün kendi force feedback'ini kapatın - wheelbase'inizi MAIRA sürer. Bu anahtar Oyun köprüsü sayfasıyla ortaktır.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Wheelbase dönüş aralığı</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Bunu wheelbase'inizin kendi yazılımında ayarlanan dönüş aralığına ayarlayın (örneğin 900° veya 1080°). MAIRA bunu direksiyon konumunu dereceye çevirmek için kullanır.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Kalibrasyon modu</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Simülatör direksiyonunuzu kalibre ederken bunu açın ve direksiyonu çevirmek yerine aşağıdaki düğmeleri kullanın - direksiyonunuz aktarılmaz, bu yüzden simülatör yalnızca vJoy ekseninin hareket ettiğini görür. iRacing kalibrasyonunda tam kilit için sol ve sağ düğmelerini, merkez için merkez düğmesini ve direksiyonu 90 derece çevirmeniz istendiğinde 90° sol düğmesini kullanın. İşiniz bitince kalibrasyon modunu kapatın.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Bu kapalıyken direksiyonunuz simülatöre değiştirilmeden aktarılır. Açıkken direksiyonu aşağıdaki sol veya sağ aralığa kadar çevirmek, o tarafın eğrisini izleyerek aracı tam kilide kadar döndürür.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Merkez kayması</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Merkez ölü bölgesi</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Titreme yumuşatma</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Sol aralık</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Sol eğri</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Sağ aralık</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Sağ eğri</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Yüksek hız hassasiyeti</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Tam etki hızı</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Araç hızlandıkça direksiyon kademeli olarak daha az hassas hale gelir ve tam etki hızında yüksek hız hassasiyetine iner.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Bunlar yalnızca direksiyon yeniden eşleme açıkken geçerlidir. Force feedback gücünü sola ve sağa dönüşler için ayrı ayrı ayarlayın ve direksiyonu merkeze geri çeken bir yay eklemek için merkezleme yardımını kullanın.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Sol dönüş gücü</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Sağ dönüş gücü</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Merkezleme yardımı</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Direksiyon sol</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Direksiyon sağ</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Tam sol kilit</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Tam sağ kilit</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° sol</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° sağ</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>%{0} sol</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>%{0} sağ</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Direksiyon: {0}  ➤  Dönüş: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Direksiyon yeniden eşlemeyi kullanmak için direksiyonu vJoy cihazına göndermeyi açın.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Kalibrasyon modu açık - direksiyonunuz aktarılmıyor.</value>
+  </data>
 </root>

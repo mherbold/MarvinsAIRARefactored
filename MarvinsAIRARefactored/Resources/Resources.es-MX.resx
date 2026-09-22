@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>¡Se detectó recorte de FFB!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Accesibilidad</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Inicializando la accesibilidad...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Salida de dirección</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Reasignación de la dirección</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Force feedback</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Reasigna tu dirección para facilitar el manejo con movilidad limitada en los brazos - por ejemplo, gira hasta el tope con solo un pequeño giro del volante, con un rango y una sensación distintos para cada lado. MAIRA lee tu base y envía la dirección al joystick virtual vJoy, y el simulador usa el eje de vJoy como entrada de dirección.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Asigna la dirección del simulador al eje X de vJoy en lugar de a tu base, y desactiva el force feedback propio del simulador - MAIRA controla tu base. Este interruptor se comparte con la página Puente de juegos.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Rango de rotación de la base</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Ajústalo al rango de rotación configurado en el software de tu base (por ejemplo 900° o 1080°). MAIRA lo usa para convertir la posición del volante en grados.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Modo de calibración</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Actívalo cuando el simulador calibre tu dirección y usa los botones de abajo en lugar de girar el volante - tu volante no se transmite, así que el simulador solo ve moverse el eje de vJoy. En la calibración de iRacing, usa los botones izquierda y derecha para el tope, el botón centro para el centro y el botón 90° izquierda cuando se te pida girar el volante 90 grados. Desactiva el modo de calibración cuando termines.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Cuando esto está desactivado, tu volante se transmite al simulador sin cambios. Cuando está activado, girar el volante hasta el rango izquierdo o derecho de abajo lleva el auto hasta el tope, siguiendo la curva de ese lado.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Desplazamiento del centro</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Zona muerta central</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Suavizado de temblores</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Rango izquierdo</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Curva izquierda</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Rango derecho</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Curva derecha</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Sensibilidad a alta velocidad</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Velocidad de efecto total</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>La dirección se vuelve gradualmente menos sensible a medida que el auto acelera, hasta la sensibilidad a alta velocidad al alcanzar la velocidad de efecto total.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Estos ajustes solo se aplican mientras la reasignación de la dirección está activada. Ajusta la intensidad del force feedback por separado para las vueltas a la izquierda y a la derecha, y usa la ayuda de centrado para agregar un resorte que regresa el volante al centro.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Intensidad izquierda</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Intensidad derecha</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Ayuda de centrado</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Volante izquierda</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Volante derecha</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Tope izquierdo</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Tope derecho</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° a la izquierda</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° a la derecha</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% a la izquierda</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% a la derecha</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Volante: {0}  ➤  Dirección: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Activa el envío de la dirección al dispositivo vJoy para usar la reasignación de la dirección.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>El modo de calibración está activado - tu volante no se transmite.</value>
+  </data>
 </root>

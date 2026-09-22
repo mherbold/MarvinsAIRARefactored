@@ -635,6 +635,30 @@ public static class MappableActionCatalog
 
 		Trigger( list, "TradingPaintsRedownloadButtonMappings", "TradingPaints", "Settings", "RedownloadPaintFiles", app => app.TradingPaints.Reset() );
 
+		// ----- Accessibility -----
+
+		PlainKnob( list, "Accessibility", "SteeringOutput", "WheelbaseRotationRange", "AccessibilityWheelbaseRange", 10f );
+
+		Trigger( list, "AccessibilityRemapEnabledButtonMappings", "Accessibility", "SteeringRemap", "Enabled", app =>
+		{
+			var settings = S;
+
+			settings.AccessibilityRemapEnabled = !settings.AccessibilityRemapEnabled;
+		} );
+
+		PlainKnob( list, "Accessibility", "SteeringRemap", "CenterOffset", "AccessibilityCenterOffset", 1f );
+		PlainKnob( list, "Accessibility", "SteeringRemap", "CenterDeadzone", "AccessibilityCenterDeadzone", 0.5f );
+		PlainKnob( list, "Accessibility", "SteeringRemap", "TremorSmoothing", "AccessibilityTremorSmoothing", 0.05f );
+		PlainKnob( list, "Accessibility", "SteeringRemap", "LeftRange", "AccessibilityLeftRange", 5f );
+		PlainKnob( list, "Accessibility", "SteeringRemap", "LeftCurve", "AccessibilityLeftCurve", 0.05f );
+		PlainKnob( list, "Accessibility", "SteeringRemap", "RightRange", "AccessibilityRightRange", 5f );
+		PlainKnob( list, "Accessibility", "SteeringRemap", "RightCurve", "AccessibilityRightCurve", 0.05f );
+		PlainKnob( list, "Accessibility", "SteeringRemap", "HighSpeedSensitivity", "AccessibilityHighSpeedSensitivity", 0.05f );
+		PlainKnob( list, "Accessibility", "SteeringRemap", "FullEffectSpeed", "AccessibilityFullEffectSpeed", 0.5f );
+		PlainKnob( list, "Accessibility", "ForceFeedback", "LeftTurnStrength", "AccessibilityLeftFFBStrength", 0.05f );
+		PlainKnob( list, "Accessibility", "ForceFeedback", "RightTurnStrength", "AccessibilityRightFFBStrength", 0.05f );
+		PlainKnob( list, "Accessibility", "ForceFeedback", "CenteringHelp", "AccessibilityCenteringHelp", 0.05f );
+
 		// ----- Commentary -----
 
 		Trigger( list, "CommentaryEnabledButtonMappings", "Commentary", "Master", "Enabled", app =>

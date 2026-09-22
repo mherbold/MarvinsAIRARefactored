@@ -2734,4 +2734,115 @@ Hier ist der Link zum Spenden:</value>
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFB-Clipping erkannt!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Barrierefreiheit</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Barrierefreiheit wird initialisiert...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Lenkungsausgabe</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Lenkungs-Neuzuordnung</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Force Feedback</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Ordne deine Lenkung neu zu, um das Fahren bei eingeschränkter Armbewegung zu erleichtern - zum Beispiel bis zum vollen Lenkanschlag mit nur einer kleinen Drehung des Lenkrads, mit einem eigenen Bereich und Gefühl für jede Seite. MAIRA liest deine Wheelbase aus und sendet die Lenkung an den virtuellen vJoy-Joystick, und die Simulation verwendet die vJoy-Achse als Lenkeingabe.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Weise die Lenkung der Simulation der X-Achse von vJoy statt deiner Wheelbase zu und schalte das eigene Force Feedback der Simulation aus - MAIRA steuert deine Wheelbase. Dieser Schalter wird mit der Seite Spielbrücke geteilt.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Rotationsbereich der Wheelbase</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Stelle hier den Rotationsbereich ein, der in der Software deiner Wheelbase konfiguriert ist (zum Beispiel 900° oder 1080°). MAIRA verwendet ihn, um die Lenkradposition in Grad umzurechnen.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Kalibrierungsmodus</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Schalte dies ein, wenn die Simulation deine Lenkung kalibriert, und verwende die Tasten unten, statt dein Lenkrad zu drehen - dein Lenkrad wird nicht durchgereicht, sodass die Simulation nur die Bewegung der vJoy-Achse sieht. Verwende bei der Kalibrierung in iRacing die Tasten „Lenkrad links“ und „Lenkrad rechts“ für den vollen Lenkanschlag, die Taste „Lenkrad mitte“ für die Mitte und die Taste „Lenkrad 90 Grad links“, wenn du aufgefordert wirst, das Lenkrad um 90° zu drehen. Schalte den Kalibrierungsmodus aus, wenn du fertig bist.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Wenn dies ausgeschaltet ist, wird dein Lenkrad unverändert an die Simulation durchgereicht. Wenn es eingeschaltet ist, lenkt das Drehen deines Lenkrads bis zum unten eingestellten linken oder rechten Bereich das Fahrzeug bis zum vollen Lenkanschlag, entsprechend der Kurve dieser Seite.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Mittenversatz</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Totzone Mitte</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Zitterglättung</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Bereich links</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Kurve links</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Bereich rechts</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Kurve rechts</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Empfindlichkeit bei hohem Tempo</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Tempo für volle Wirkung</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Die Lenkung wird mit steigender Geschwindigkeit allmählich weniger empfindlich, bis hin zur Empfindlichkeit bei hohem Tempo beim Tempo für volle Wirkung.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Diese Einstellungen gelten nur, während die Lenkungs-Neuzuordnung eingeschaltet ist. Stelle die Force-Feedback-Stärke für Links- und Rechtskurven getrennt ein und verwende die Zentrierhilfe, um eine Feder hinzuzufügen, die das Lenkrad zurück zur Mitte zieht.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Stärke links</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Stärke rechts</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Zentrierhilfe</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Lenkrad links</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Lenkrad rechts</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Voller Anschlag links</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Voller Anschlag rechts</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° links</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° rechts</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% links</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% rechts</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Lenkrad: {0}  ➤  Lenkung: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Schalte das Senden der Lenkung an das vJoy-Gerät ein, um die Lenkungs-Neuzuordnung zu verwenden.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Der Kalibrierungsmodus ist eingeschaltet - dein Lenkrad wird nicht durchgereicht.</value>
+  </data>
 </root>

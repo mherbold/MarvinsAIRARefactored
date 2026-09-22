@@ -1,0 +1,269 @@
+<!-- wp:paragraph -->
+<p>This page helps drivers with limited arm movement - for example drivers who steer with one arm - by remapping the steering. You can reach full steering lock with only a small turn of the wheel, use a different range and feel for left and right turns, move the center to where your arm naturally rests, smooth out a hand tremor, and make the steering calmer at speed. The force feedback follows your real wheel, so the wheel still stops at your chosen limits.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How it works: MAIRA reads the steering axis of your wheelbase and sends it to the free vJoy virtual joystick 360 times a second. iRacing (or a game bridge game) uses the vJoy X axis as its steering input instead of your wheelbase, so MAIRA can reshape the steering on the way through. MAIRA keeps driving your wheelbase's force feedback as usual.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Setting it up</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Install the vJoy driver, then restart MAIRA.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Set <strong>Wheelbase rotation range</strong> to the rotation range set in your wheelbase's own software.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Turn on <strong>Send steering to the vJoy device</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Turn on <strong>Calibration mode</strong>, then in iRacing bind the steering axis to the vJoy X axis and run the steering calibration using the calibration buttons (see <strong>Calibration</strong> below). Turn calibration mode off afterwards.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Keep iRacing's own force feedback turned off, as usual with MAIRA.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Turn on the <strong>Steering remap</strong> and tune it to suit you.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="steering-output">Steering output</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Send steering to the vJoy device</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Passes your wheelbase's steering axis through to the vJoy virtual joystick. The sim must be set to use the vJoy X axis as its steering input. This requires the vJoy driver to be installed - if vJoy is not available, a warning appears next to this switch (install the vJoy driver and restart MAIRA).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the same switch as on the Game Bridge page - turning it on or off on either page turns it on or off on both, and the steering remap also applies to the game bridge games.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wheelbase rotation range</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The rotation range your wheelbase is set to in its own software (for example 900° or 1080°). MAIRA uses it to turn the position of your wheel into degrees, and to place the 90° calibration buttons. If this does not match your wheelbase, every angle on this page will be off by the same ratio.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 900°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="calibration">Calibration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When a sim calibrates its steering, it watches for an axis that moves. If you turn your real wheel while the passthrough is running, both your wheelbase and the vJoy axis move, and the sim may pick the wrong one. Calibration mode avoids this: your wheel is not passed through, and the buttons move only the vJoy axis.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Calibration mode</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>While this is on, the buttons below control the vJoy steering axis and your wheelbase is not passed through. This is the same as the <strong>Steering test</strong> switch on the Game Bridge page. It is only available while <strong>Send steering to the vJoy device</strong> is on.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Calibrating in iRacing</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Turn on calibration mode.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Start the steering calibration in iRacing's controls settings. When it asks you to turn the wheel fully left and right, click the <strong>Steering wheel left</strong> and <strong>Steering wheel right</strong> buttons, then <strong>Steering wheel center</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>When iRacing asks you to turn the wheel 90 degrees to the left, click <strong>Steering wheel 90° left</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Finish the calibration, then turn calibration mode off.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The steering wheel sweep button rocks the vJoy axis from side to side, one full left-right-left cycle every two seconds. Some games ignore controller input while their window is in the background, so start the sweep, click over to the game, and bind the steering there while the axis is still moving. The sweep button blinks while the sweep is running; press it again, or press any of the position buttons, to stop it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="steering-remap">Steering remap</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enabled</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The master switch for the remap. When it is off, your wheel is passed through to the sim unchanged. When it is on, turning your wheel to the left or right range steers the car to its full steering lock, following that side's curve. This switch can be mapped to a button, so you can flip it without leaving the sim.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The graph shows the remap: your wheel angle runs across (turned left on the left side), and the car's steering runs up (full left lock at the bottom, full right lock at the top). The dashed vertical lines are your left and right ranges, and the dot shows where your wheel is right now, with a readout below the graph. While speed-sensitive steering is reducing the steering, a dashed curve shows the remap at the current speed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Center offset</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Moves "straight ahead" away from the wheel's true center - for example to where your arm naturally rests. The left and right ranges are measured from this new center.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Center deadzone</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A small zone around the center where moving the wheel does not steer the car, so small unintended movements keep the car straight.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Tremor smoothing</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Filters out small, shaky movements of the wheel (for example from a hand tremor). The smoothing is strongest while you hold the wheel still and backs off when you make a deliberate turn, so steering stays responsive. Higher values smooth more.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Left range / Right range</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How far you turn the wheel (from the center offset) to reach the car's full steering lock on each side. For example, a left range of 45° and a right range of 90° reach full left lock at 45° left and full right lock at 90° right. The car's full lock comes from the sim, so the same ranges work in every car.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 180°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Left curve / Right curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shapes the steering response on each side. Positive values make the steering gentler near the center and quicker toward the end of the range; negative values do the opposite. OFF is a straight line.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">High-speed sensitivity</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Speed-sensitive steering. The steering gets gradually less sensitive as the car speeds up, down to this value at the full-effect speed - for example, 60% means turning the wheel steers the car 40% less at speed. This keeps the car calm on straights while still allowing full lock in slow corners. 100% turns it off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Full-effect speed</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The speed at which the high-speed sensitivity is fully applied. Below it, the reduction fades in with speed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 200 KPH (124 MPH)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="force-feedback">Force feedback</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>While the steering remap is on, the sim's steering angle no longer matches your wheel, so MAIRA's force feedback uses your real wheel instead: the soft lock sits at the end of your left and right ranges, and damping and friction follow how your wheel actually moves. The settings below only apply while the steering remap is on.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Left turn strength / Right turn strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Scales the force feedback while the wheel is turned left or right, on top of the strength on the Racing Wheel page. For example, lower the strength on the side your arm finds harder to hold. The two blend smoothly across the center, so there is no bump as the wheel passes straight ahead.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Centering help</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds a spring that pulls the wheel back toward the center (your center offset), reaching full strength at the end of your range. This helps when you can't push and pull the wheel with two hands. It fades in over a second when you get into the car.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/trading-paints/" data-type="page" data-id="176">Trading Paints</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>Wykryto przycinanie FFB!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Dostępność</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Inicjalizacja dostępności...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Wyjście kierownicy</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Przemapowanie kierownicy</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Force feedback</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Przemapuj kierowanie, aby ułatwić jazdę przy ograniczonym ruchu ramion - na przykład skręcaj do pełnego wychylenia tylko niewielkim obrotem kierownicy, z innym zakresem i odczuciem dla każdej strony. MAIRA odczytuje twoją bazę i wysyła kierowanie do wirtualnego joysticka vJoy, a symulator używa osi vJoy jako wejścia kierownicy.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Przypisz kierowanie w symulatorze do osi X vJoy zamiast do swojej bazy i wyłącz własny force feedback symulatora - to MAIRA steruje twoją bazą. Ten przełącznik jest współdzielony ze stroną Most gier.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Zakres obrotu bazy</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Ustaw tu zakres obrotu skonfigurowany w oprogramowaniu twojej bazy (na przykład 900° lub 1080°). MAIRA używa go do przeliczania pozycji kierownicy na stopnie.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Tryb kalibracji</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Włącz to, gdy symulator kalibruje kierownicę, i używaj przycisków poniżej zamiast obracać kierownicą - twoja kierownica nie jest przekazywana, więc symulator widzi ruch tylko osi vJoy. W kalibracji iRacing używaj przycisków w lewo i w prawo do pełnego wychylenia, przycisku na środek do środka oraz przycisku 90° w lewo, gdy pojawi się prośba o obrócenie kierownicy o 90 stopni. Wyłącz tryb kalibracji, gdy skończysz.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Gdy to jest wyłączone, twoja kierownica jest przekazywana do symulatora bez zmian. Gdy jest włączone, obrót kierownicy do ustawionego poniżej zakresu lewego lub prawego skręca samochód do pełnego wychylenia, zgodnie z krzywą danej strony.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Przesunięcie środka</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Martwa strefa środka</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Wygładzanie drżenia</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Zakres lewy</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Krzywa lewa</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Zakres prawy</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Krzywa prawa</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Czułość przy dużej prędkości</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Prędkość pełnego efektu</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Kierowanie staje się stopniowo mniej czułe wraz ze wzrostem prędkości samochodu, aż do czułości przy dużej prędkości przy prędkości pełnego efektu.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Te ustawienia działają tylko wtedy, gdy przemapowanie kierownicy jest włączone. Ustaw siłę force feedbacku osobno dla skrętów w lewo i w prawo, a pomocy centrowania użyj, aby dodać sprężynę ciągnącą kierownicę z powrotem na środek.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Siła w lewo</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Siła w prawo</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Pomoc centrowania</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Kierownica w lewo</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Kierownica w prawo</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Pełne wychylenie w lewo</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Pełne wychylenie w prawo</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° w lewo</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° w prawo</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% w lewo</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% w prawo</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Kierownica: {0}  ➤  Skręt: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Włącz wysyłanie kierownicy do urządzenia vJoy, aby używać przemapowania kierownicy.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Tryb kalibracji jest włączony - twoja kierownica nie jest przekazywana.</value>
+  </data>
 </root>

@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>Tăiere FFB detectată!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Accesibilitate</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Se inițializează accesibilitatea...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Ieșire direcție</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Remapare direcție</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Force feedback</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Remapează direcția ca să conduci mai ușor cu mișcare limitată a brațelor - de exemplu, virează până la capăt cu doar o mică rotire a volanului, cu o plajă și o senzație diferite pentru fiecare parte. MAIRA citește baza ta și trimite direcția către joystickul virtual vJoy, iar simulatorul folosește axa vJoy ca intrare de direcție.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Asociază direcția simulatorului cu axa X vJoy în locul bazei tale și dezactivează force feedbackul propriu al simulatorului - MAIRA controlează baza ta. Acest comutator este comun cu pagina Punte de jocuri.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Plaja de rotație a bazei</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Setează aici plaja de rotație configurată în software-ul propriu al bazei tale (de exemplu 900° sau 1080°). MAIRA o folosește pentru a converti poziția volanului în grade.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Mod de calibrare</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Pornește asta când simulatorul calibrează direcția și folosește butoanele de mai jos în loc să rotești volanul - volanul tău nu este transmis, așa că simulatorul vede doar axa vJoy mișcându-se. În calibrarea iRacing, folosește butoanele stânga și dreapta pentru capăt de cursă, butonul centru pentru centru și butonul 90° stânga când ți se cere să rotești volanul cu 90 de grade. Oprește modul de calibrare când ai terminat.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Când aceasta este oprită, volanul tău este transmis simulatorului neschimbat. Când este pornită, rotirea volanului până la plaja stângă sau dreaptă de mai jos virează mașina până la capăt, urmând curba acelei părți.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Decalaj centru</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Zonă moartă centrală</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Netezire tremur</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Plajă stânga</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Curbă stânga</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Plajă dreapta</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Curbă dreapta</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Sensibilitate la viteză mare</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Viteză de efect maxim</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Direcția devine treptat mai puțin sensibilă pe măsură ce mașina accelerează, până la sensibilitatea la viteză mare atinsă la viteza de efect maxim.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Acestea se aplică doar cât timp remaparea direcției este pornită. Setează puterea force feedbackului separat pentru virajele la stânga și la dreapta și folosește ajutorul de centrare pentru a adăuga un arc care trage volanul înapoi la centru.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Putere stânga</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Putere dreapta</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Ajutor de centrare</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Volan stânga</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Volan dreapta</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Capăt stânga</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Capăt dreapta</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° stânga</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° dreapta</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% stânga</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% dreapta</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Volan: {0}  ➤  Direcție: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Pornește trimiterea direcției către dispozitivul vJoy pentru a folosi remaparea direcției.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Modul de calibrare este pornit - volanul tău nu este transmis.</value>
+  </data>
 </root>

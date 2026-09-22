@@ -2734,4 +2734,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFBクリッピングを検出しました！</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>アクセシビリティ</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>アクセシビリティを初期化しています...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>ステアリング出力</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>ステアリングのリマップ</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>フォースフィードバック</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>腕の動きが限られていても運転しやすくなるよう、ステアリングをリマップします。たとえば、ホイールを少し回すだけでフルロックまで切れるようにし、左右それぞれに異なる範囲と感触を設定できます。MAIRAはホイールベースを読み取ってステアリングをvJoy仮想ジョイスティックに送信し、シムはvJoyの軸をステアリング入力として使用します。</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>シムのステアリングをホイールベースではなくvJoyのX軸に割り当て、シム自身のフォースフィードバックをオフにしてください。ホイールベースはMAIRAが駆動します。このスイッチはゲームブリッジページと共有されています。</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>ホイールベースの回転範囲</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>ホイールベース専用ソフトウェアで設定している回転範囲(例: 900° や 1080°)に合わせてください。MAIRAはこれを使ってホイールの位置を角度に変換します。</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>キャリブレーションモード</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>シムがステアリングをキャリブレーションするときにオンにし、ホイールを回す代わりに下のボタンを使ってください。ホイールの入力は渡されないため、シムにはvJoyの軸の動きだけが見えます。iRacingのキャリブレーションでは、フルロックには左と右のボタン、センターにはセンターのボタン、ホイールを90度回すよう求められたら90° 左のボタンを使います。完了したらキャリブレーションモードをオフにしてください。</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>オフのときは、ホイールの入力がそのままシムに渡されます。オンのときは、ホイールを下で設定した左または右の範囲まで回すと、その側のカーブに従って車がフルロックまで切れます。</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>センターオフセット</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>センターのデッドゾーン</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>手ぶれ補正</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>左の範囲</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>左のカーブ</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>右の範囲</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>右のカーブ</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>高速時の感度</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>最大効果の速度</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>車の速度が上がるにつれてステアリングの感度が徐々に下がり、最大効果の速度で高速時の感度に達します。</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>これらはステアリングのリマップがオンのときにのみ適用されます。フォースフィードバックの強度を左旋回と右旋回で個別に設定し、センタリング補助でホイールをセンターに引き戻すスプリングを追加できます。</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>左旋回の強度</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>右旋回の強度</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>センタリング補助</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>ホイール 左</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>ホイール 右</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>左フルロック</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>右フルロック</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>左 {0}°</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>右 {0}°</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>左 {0}%</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>右 {0}%</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>ホイール: {0}  ➤  ステアリング: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>ステアリングのリマップを使うには、vJoyデバイスへのステアリング送信をオンにしてください。</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>キャリブレーションモードがオンです。ホイールの入力は渡されていません。</value>
+  </data>
 </root>

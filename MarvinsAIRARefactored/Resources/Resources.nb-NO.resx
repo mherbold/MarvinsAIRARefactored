@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFB-klipping oppdaget!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Tilgjengelighet</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Initialiserer tilgjengelighet...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Styringsutdata</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Omkobling av styring</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Force feedback</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Koble om styringen din for å gjøre kjøringen enklere med begrenset armbevegelse - styr for eksempel til fullt utslag med bare en liten vridning av rattet, med ulikt område og følelse for hver side. MAIRA leser wheelbasen din og sender styringen til den virtuelle vJoy-joysticken, og simulatoren bruker vJoy-aksen som styreinput.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Bind simulatorens styring til vJoy X-aksen i stedet for wheelbasen din, og slå av simulatorens egen force feedback - MAIRA driver wheelbasen din. Denne bryteren deles med siden Spillbro.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Rotasjonsområde for wheelbase</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Sett dette til rotasjonsområdet som er konfigurert i wheelbasens egen programvare (for eksempel 900° eller 1080°). MAIRA bruker det til å regne om rattposisjonen til grader.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Kalibreringsmodus</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Slå på dette når simulatoren kalibrerer styringen din, og bruk knappene nedenfor i stedet for å vri på rattet - rattet ditt sendes ikke videre, så simulatoren ser bare vJoy-aksen bevege seg. I iRacings kalibrering bruker du knappene venstre og høyre for fullt utslag, knappen senter for midten og knappen 90° venstre når du blir bedt om å vri rattet 90 grader. Slå av kalibreringsmodus når du er ferdig.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>Når dette er av, sendes rattet ditt uendret videre til simulatoren. Når det er på, styrer bilen til fullt utslag når du vrir rattet til venstre eller høyre område nedenfor, etter kurven for den siden.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Senterforskyvning</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Dødband i senter</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Skjelvingsutjevning</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Venstre område</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Venstre kurve</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Høyre område</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Høyre kurve</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>Følsomhet i høy fart</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Fart for full effekt</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Styringen blir gradvis mindre følsom etter hvert som bilen øker farten, ned til følsomheten i høy fart ved farten for full effekt.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>Disse gjelder bare mens omkobling av styring er på. Still force feedback-styrken separat for venstre- og høyresvinger, og bruk sentreringshjelp for å legge til en fjær som trekker rattet tilbake til midten.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Styrke venstre</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Styrke høyre</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Sentreringshjelp</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Ratt venstre</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Ratt høyre</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Fullt utslag venstre</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Fullt utslag høyre</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° venstre</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° høyre</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0} % venstre</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0} % høyre</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Ratt: {0}  ➤  Styring: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Slå på sending av styring til vJoy-enheten for å bruke omkobling av styring.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Kalibreringsmodus er på - rattet ditt sendes ikke videre.</value>
+  </data>
 </root>

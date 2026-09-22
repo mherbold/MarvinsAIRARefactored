@@ -252,7 +252,7 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/trading-paints/" data-type="page" data-id="176">Trading Paints</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/accessibility/" data-type="page" data-id="1156">Accessibility</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

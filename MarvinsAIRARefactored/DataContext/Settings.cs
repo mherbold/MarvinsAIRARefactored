@@ -1930,6 +1930,7 @@ public partial class Settings : INotifyPropertyChanged
 		var useMph = app.Simulator.DisplayUnits == 0;
 
 		TyphoonWindMinimumSpeedString = FormatTyphoonWindMinimumSpeedString();
+		AccessibilityFullEffectSpeedString = FormatAccessibilityFullEffectSpeedString();
 
 		TyphoonWindSpeed1String = useMph ? $"{_typhoonWindSpeed1 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed1 * MathZ.MPSToKPH:F0}";
 		TyphoonWindSpeed2String = useMph ? $"{_typhoonWindSpeed2 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed2 * MathZ.MPSToKPH:F0}";
@@ -16913,6 +16914,798 @@ public partial class Settings : INotifyPropertyChanged
 	public ButtonMappings TradingPaintsRedownloadButtonMappings { get; set; } = new();
 
 	#endregion
+
+	#region Accessibility - Wheelbase rotation range
+
+	private float _accessibilityWheelbaseRange = 900f;
+
+	public float AccessibilityWheelbaseRange
+	{
+		get => _accessibilityWheelbaseRange;
+
+		set
+		{
+			value = Math.Clamp( value, 180f, 2880f );
+
+			if ( value != _accessibilityWheelbaseRange )
+			{
+				_accessibilityWheelbaseRange = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityWheelbaseRangeString();
+		}
+	}
+
+	private string _accessibilityWheelbaseRangeString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityWheelbaseRangeString
+	{
+		get => _accessibilityWheelbaseRangeString;
+
+		set
+		{
+			if ( value != _accessibilityWheelbaseRangeString )
+			{
+				_accessibilityWheelbaseRangeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityWheelbaseRangeString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityWheelbaseRange;
+
+		return $"{resolvedValue:F0}{DataContext.Instance.Localization[ "Degrees" ]}";
+	}
+
+	private void UpdateAccessibilityWheelbaseRangeString()
+	{
+		AccessibilityWheelbaseRangeString = FormatAccessibilityWheelbaseRangeString();
+	}
+
+	public ButtonMappings AccessibilityWheelbaseRangePlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityWheelbaseRangeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Remap enabled
+
+	private bool _accessibilityRemapEnabled = false;
+
+	public bool AccessibilityRemapEnabled
+	{
+		get => _accessibilityRemapEnabled;
+
+		set
+		{
+			if ( value != _accessibilityRemapEnabled )
+			{
+				_accessibilityRemapEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings AccessibilityRemapEnabledButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Center offset
+
+	private float _accessibilityCenterOffset = 0f;
+
+	public float AccessibilityCenterOffset
+	{
+		get => _accessibilityCenterOffset;
+
+		set
+		{
+			value = Math.Clamp( value, -90f, 90f );
+
+			if ( value != _accessibilityCenterOffset )
+			{
+				_accessibilityCenterOffset = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityCenterOffsetString();
+		}
+	}
+
+	private string _accessibilityCenterOffsetString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityCenterOffsetString
+	{
+		get => _accessibilityCenterOffsetString;
+
+		set
+		{
+			if ( value != _accessibilityCenterOffsetString )
+			{
+				_accessibilityCenterOffsetString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityCenterOffsetString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityCenterOffset;
+
+		return FormatAccessibilitySignedAngle( resolvedValue );
+	}
+
+	private void UpdateAccessibilityCenterOffsetString()
+	{
+		AccessibilityCenterOffsetString = FormatAccessibilityCenterOffsetString();
+	}
+
+	public ButtonMappings AccessibilityCenterOffsetPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityCenterOffsetMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Center deadzone
+
+	private float _accessibilityCenterDeadzone = 0f;
+
+	public float AccessibilityCenterDeadzone
+	{
+		get => _accessibilityCenterDeadzone;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 20f );
+
+			if ( value != _accessibilityCenterDeadzone )
+			{
+				_accessibilityCenterDeadzone = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityCenterDeadzoneString();
+		}
+	}
+
+	private string _accessibilityCenterDeadzoneString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityCenterDeadzoneString
+	{
+		get => _accessibilityCenterDeadzoneString;
+
+		set
+		{
+			if ( value != _accessibilityCenterDeadzoneString )
+			{
+				_accessibilityCenterDeadzoneString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityCenterDeadzoneString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityCenterDeadzone;
+
+		return ( resolvedValue == 0f ) ? DataContext.Instance.Localization[ "OFF" ] : $"{resolvedValue:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+	}
+
+	private void UpdateAccessibilityCenterDeadzoneString()
+	{
+		AccessibilityCenterDeadzoneString = FormatAccessibilityCenterDeadzoneString();
+	}
+
+	public ButtonMappings AccessibilityCenterDeadzonePlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityCenterDeadzoneMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Tremor smoothing
+
+	private float _accessibilityTremorSmoothing = 0f;
+
+	public float AccessibilityTremorSmoothing
+	{
+		get => _accessibilityTremorSmoothing;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _accessibilityTremorSmoothing )
+			{
+				_accessibilityTremorSmoothing = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityTremorSmoothingString();
+		}
+	}
+
+	private string _accessibilityTremorSmoothingString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityTremorSmoothingString
+	{
+		get => _accessibilityTremorSmoothingString;
+
+		set
+		{
+			if ( value != _accessibilityTremorSmoothingString )
+			{
+				_accessibilityTremorSmoothingString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityTremorSmoothingString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityTremorSmoothing;
+
+		return ( resolvedValue == 0f ) ? DataContext.Instance.Localization[ "OFF" ] : $"{resolvedValue * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateAccessibilityTremorSmoothingString()
+	{
+		AccessibilityTremorSmoothingString = FormatAccessibilityTremorSmoothingString();
+	}
+
+	public ButtonMappings AccessibilityTremorSmoothingPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityTremorSmoothingMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Left range
+
+	private float _accessibilityLeftRange = 180f;
+
+	public float AccessibilityLeftRange
+	{
+		get => _accessibilityLeftRange;
+
+		set
+		{
+			value = Math.Clamp( value, 10f, 720f );
+
+			if ( value != _accessibilityLeftRange )
+			{
+				_accessibilityLeftRange = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityLeftRangeString();
+		}
+	}
+
+	private string _accessibilityLeftRangeString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityLeftRangeString
+	{
+		get => _accessibilityLeftRangeString;
+
+		set
+		{
+			if ( value != _accessibilityLeftRangeString )
+			{
+				_accessibilityLeftRangeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityLeftRangeString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityLeftRange;
+
+		return $"{resolvedValue:F0}{DataContext.Instance.Localization[ "Degrees" ]}";
+	}
+
+	private void UpdateAccessibilityLeftRangeString()
+	{
+		AccessibilityLeftRangeString = FormatAccessibilityLeftRangeString();
+	}
+
+	public ButtonMappings AccessibilityLeftRangePlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityLeftRangeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Left curve
+
+	private float _accessibilityLeftCurve = 0f;
+
+	public float AccessibilityLeftCurve
+	{
+		get => _accessibilityLeftCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _accessibilityLeftCurve )
+			{
+				_accessibilityLeftCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityLeftCurveString();
+		}
+	}
+
+	private string _accessibilityLeftCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityLeftCurveString
+	{
+		get => _accessibilityLeftCurveString;
+
+		set
+		{
+			if ( value != _accessibilityLeftCurveString )
+			{
+				_accessibilityLeftCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityLeftCurveString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityLeftCurve;
+
+		return ( resolvedValue == 0f ) ? DataContext.Instance.Localization[ "OFF" ] : $"{resolvedValue * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateAccessibilityLeftCurveString()
+	{
+		AccessibilityLeftCurveString = FormatAccessibilityLeftCurveString();
+	}
+
+	public ButtonMappings AccessibilityLeftCurvePlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityLeftCurveMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Right range
+
+	private float _accessibilityRightRange = 180f;
+
+	public float AccessibilityRightRange
+	{
+		get => _accessibilityRightRange;
+
+		set
+		{
+			value = Math.Clamp( value, 10f, 720f );
+
+			if ( value != _accessibilityRightRange )
+			{
+				_accessibilityRightRange = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityRightRangeString();
+		}
+	}
+
+	private string _accessibilityRightRangeString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityRightRangeString
+	{
+		get => _accessibilityRightRangeString;
+
+		set
+		{
+			if ( value != _accessibilityRightRangeString )
+			{
+				_accessibilityRightRangeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityRightRangeString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityRightRange;
+
+		return $"{resolvedValue:F0}{DataContext.Instance.Localization[ "Degrees" ]}";
+	}
+
+	private void UpdateAccessibilityRightRangeString()
+	{
+		AccessibilityRightRangeString = FormatAccessibilityRightRangeString();
+	}
+
+	public ButtonMappings AccessibilityRightRangePlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityRightRangeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Right curve
+
+	private float _accessibilityRightCurve = 0f;
+
+	public float AccessibilityRightCurve
+	{
+		get => _accessibilityRightCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _accessibilityRightCurve )
+			{
+				_accessibilityRightCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityRightCurveString();
+		}
+	}
+
+	private string _accessibilityRightCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityRightCurveString
+	{
+		get => _accessibilityRightCurveString;
+
+		set
+		{
+			if ( value != _accessibilityRightCurveString )
+			{
+				_accessibilityRightCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityRightCurveString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityRightCurve;
+
+		return ( resolvedValue == 0f ) ? DataContext.Instance.Localization[ "OFF" ] : $"{resolvedValue * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateAccessibilityRightCurveString()
+	{
+		AccessibilityRightCurveString = FormatAccessibilityRightCurveString();
+	}
+
+	public ButtonMappings AccessibilityRightCurvePlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityRightCurveMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - High-speed sensitivity
+
+	private float _accessibilityHighSpeedSensitivity = 1f;
+
+	public float AccessibilityHighSpeedSensitivity
+	{
+		get => _accessibilityHighSpeedSensitivity;
+
+		set
+		{
+			value = Math.Clamp( value, 0.1f, 1f );
+
+			if ( value != _accessibilityHighSpeedSensitivity )
+			{
+				_accessibilityHighSpeedSensitivity = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityHighSpeedSensitivityString();
+		}
+	}
+
+	private string _accessibilityHighSpeedSensitivityString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityHighSpeedSensitivityString
+	{
+		get => _accessibilityHighSpeedSensitivityString;
+
+		set
+		{
+			if ( value != _accessibilityHighSpeedSensitivityString )
+			{
+				_accessibilityHighSpeedSensitivityString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityHighSpeedSensitivityString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityHighSpeedSensitivity;
+
+		return $"{resolvedValue * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateAccessibilityHighSpeedSensitivityString()
+	{
+		AccessibilityHighSpeedSensitivityString = FormatAccessibilityHighSpeedSensitivityString();
+	}
+
+	public ButtonMappings AccessibilityHighSpeedSensitivityPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityHighSpeedSensitivityMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Full-effect speed
+
+	private float _accessibilityFullEffectSpeed = 200f * MathZ.KPHToMPS;
+
+	public float AccessibilityFullEffectSpeed
+	{
+		get => _accessibilityFullEffectSpeed;
+
+		set
+		{
+			value = Math.Clamp( value, 10f, 100f );
+
+			if ( value != _accessibilityFullEffectSpeed )
+			{
+				_accessibilityFullEffectSpeed = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityFullEffectSpeedString();
+		}
+	}
+
+	private string _accessibilityFullEffectSpeedString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityFullEffectSpeedString
+	{
+		get => _accessibilityFullEffectSpeedString;
+
+		set
+		{
+			if ( value != _accessibilityFullEffectSpeedString )
+			{
+				_accessibilityFullEffectSpeedString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityFullEffectSpeedString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityFullEffectSpeed;
+
+		return ( App.Instance!.Simulator.DisplayUnits == 0 ) ? $"{resolvedValue * MathZ.MPSToMPH:F0}{DataContext.Instance.Localization[ "MPHUnits" ]}" : $"{resolvedValue * MathZ.MPSToKPH:F0}{DataContext.Instance.Localization[ "KPHUnits" ]}";
+	}
+
+	private void UpdateAccessibilityFullEffectSpeedString()
+	{
+		AccessibilityFullEffectSpeedString = FormatAccessibilityFullEffectSpeedString();
+	}
+
+	public ButtonMappings AccessibilityFullEffectSpeedPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityFullEffectSpeedMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Left FFB strength
+
+	private float _accessibilityLeftFFBStrength = 1f;
+
+	public float AccessibilityLeftFFBStrength
+	{
+		get => _accessibilityLeftFFBStrength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 2f );
+
+			if ( value != _accessibilityLeftFFBStrength )
+			{
+				_accessibilityLeftFFBStrength = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityLeftFFBStrengthString();
+		}
+	}
+
+	private string _accessibilityLeftFFBStrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityLeftFFBStrengthString
+	{
+		get => _accessibilityLeftFFBStrengthString;
+
+		set
+		{
+			if ( value != _accessibilityLeftFFBStrengthString )
+			{
+				_accessibilityLeftFFBStrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityLeftFFBStrengthString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityLeftFFBStrength;
+
+		return $"{resolvedValue * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateAccessibilityLeftFFBStrengthString()
+	{
+		AccessibilityLeftFFBStrengthString = FormatAccessibilityLeftFFBStrengthString();
+	}
+
+	public ButtonMappings AccessibilityLeftFFBStrengthPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityLeftFFBStrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Right FFB strength
+
+	private float _accessibilityRightFFBStrength = 1f;
+
+	public float AccessibilityRightFFBStrength
+	{
+		get => _accessibilityRightFFBStrength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 2f );
+
+			if ( value != _accessibilityRightFFBStrength )
+			{
+				_accessibilityRightFFBStrength = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityRightFFBStrengthString();
+		}
+	}
+
+	private string _accessibilityRightFFBStrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityRightFFBStrengthString
+	{
+		get => _accessibilityRightFFBStrengthString;
+
+		set
+		{
+			if ( value != _accessibilityRightFFBStrengthString )
+			{
+				_accessibilityRightFFBStrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityRightFFBStrengthString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityRightFFBStrength;
+
+		return $"{resolvedValue * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateAccessibilityRightFFBStrengthString()
+	{
+		AccessibilityRightFFBStrengthString = FormatAccessibilityRightFFBStrengthString();
+	}
+
+	public ButtonMappings AccessibilityRightFFBStrengthPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityRightFFBStrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Accessibility - Centering help
+
+	private float _accessibilityCenteringHelp = 0f;
+
+	public float AccessibilityCenteringHelp
+	{
+		get => _accessibilityCenteringHelp;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _accessibilityCenteringHelp )
+			{
+				_accessibilityCenteringHelp = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAccessibilityCenteringHelpString();
+		}
+	}
+
+	private string _accessibilityCenteringHelpString = string.Empty;
+
+	[XmlIgnore]
+	public string AccessibilityCenteringHelpString
+	{
+		get => _accessibilityCenteringHelpString;
+
+		set
+		{
+			if ( value != _accessibilityCenteringHelpString )
+			{
+				_accessibilityCenteringHelpString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatAccessibilityCenteringHelpString( float? value = null )
+	{
+		var resolvedValue = value ?? _accessibilityCenteringHelp;
+
+		return ( resolvedValue == 0f ) ? DataContext.Instance.Localization[ "OFF" ] : $"{resolvedValue * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateAccessibilityCenteringHelpString()
+	{
+		AccessibilityCenteringHelpString = FormatAccessibilityCenteringHelpString();
+	}
+
+	public ButtonMappings AccessibilityCenteringHelpPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AccessibilityCenteringHelpMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	// the center offset reads as an angle to the left or right of the wheel's true center (left positive)
+	private static string FormatAccessibilitySignedAngle( float angleDegrees )
+	{
+		var localization = DataContext.Instance.Localization;
+
+		var roundedAngleDegrees = MathF.Round( angleDegrees );
+
+		if ( roundedAngleDegrees == 0f )
+		{
+			return $"0{localization[ "Degrees" ]}";
+		}
+
+		return string.Format( localization[ ( roundedAngleDegrees > 0f ) ? "AngleLeftFormat" : "AngleRightFormat" ], MathF.Abs( roundedAngleDegrees ) );
+	}
 
 	#region Graph - Statistics
 

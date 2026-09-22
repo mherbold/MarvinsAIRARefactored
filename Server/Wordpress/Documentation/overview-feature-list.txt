@@ -347,6 +347,32 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section">Accessibility</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Steering remap for drivers with limited arm movement, passed to iRacing (or a game bridge game) through the vJoy virtual joystick</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Separate left and right steering ranges and curves, a center offset and deadzone, tremor smoothing, and speed-sensitive steering</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Force feedback follows your real wheel - soft lock at your chosen limits, separate left and right strength, and optional centering help</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Calibrate the steering in the sim with on-screen buttons, without touching your wheel</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Live graph of the remap with the current wheel position</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section">Graph</p>
 <!-- /wp:paragraph -->
 

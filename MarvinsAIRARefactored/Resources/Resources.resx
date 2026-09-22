@@ -2729,4 +2729,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>FFB clipping detected!</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Accessibility</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>Initializing accessibility...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>Steering output</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>Steering remap</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>Force feedback</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>Remap your steering to make driving easier with limited arm movement - for example, steer to full lock with only a small turn of the wheel, with a different range and feel for each side. MAIRA reads your wheelbase and sends the steering to the vJoy virtual joystick, and the sim uses the vJoy axis as its steering input.</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>Bind the sim's steering to the vJoy X axis instead of your wheelbase, and turn off the sim's own force feedback - MAIRA drives your wheelbase. This switch is shared with the game bridge page.</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>Wheelbase rotation range</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>Set this to the rotation range configured in your wheelbase's own software (for example 900° or 1080°). MAIRA uses it to convert the wheel position into degrees.</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>Calibration mode</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>Turn this on when the sim calibrates your steering, and use the buttons below instead of turning your wheel - your wheel is not passed through, so the sim only sees the vJoy axis move. In iRacing's calibration, use the left and right buttons for full lock, the center button for center, and the 90° left button when asked to turn the wheel 90 degrees. Turn calibration mode off when you're done.</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>When this is off, your wheel is passed through to the sim unchanged. When it's on, turning your wheel to the left or right range below steers the car to full lock, following that side's curve.</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>Center offset</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>Center deadzone</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>Tremor smoothing</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>Left range</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>Left curve</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>Right range</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>Right curve</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>High-speed sensitivity</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>Full-effect speed</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>Steering gets gradually less sensitive as the car speeds up, down to the high-speed sensitivity at the full-effect speed.</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>These only apply while the steering remap is on. Set the force feedback strength separately for left and right turns, and use centering help to add a spring that pulls the wheel back to center.</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>Left turn strength</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>Right turn strength</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>Centering help</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>Wheel left</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>Wheel right</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>Full left lock</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>Full right lock</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>{0}° left</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>{0}° right</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>{0}% left</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>{0}% right</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>Wheel: {0}  ➤  Steering: {1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>Turn on sending steering to the vJoy device to use the steering remap.</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>Calibration mode is on - your wheel is not passed through.</value>
+  </data>
 </root>

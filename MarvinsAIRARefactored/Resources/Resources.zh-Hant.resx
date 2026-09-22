@@ -2731,4 +2731,115 @@
   <data name="FFBClippingDetected" xml:space="preserve">
     <value>偵測到力回饋限幅！</value>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>協助工具</value>
+  </data>
+  <data name="InitializingAccessibility" xml:space="preserve">
+    <value>正在初始化協助工具...</value>
+  </data>
+  <data name="SteeringOutput" xml:space="preserve">
+    <value>轉向輸出</value>
+  </data>
+  <data name="SteeringRemap" xml:space="preserve">
+    <value>轉向重新對應</value>
+  </data>
+  <data name="ForceFeedback" xml:space="preserve">
+    <value>力回饋</value>
+  </data>
+  <data name="AccessibilityDescription" xml:space="preserve">
+    <value>重新對應轉向，讓手臂活動受限時也能更輕鬆地駕駛 - 例如，只需稍微轉動方向盤即可打到底，而且左右兩側可設定不同的範圍與手感。MAIRA 讀取您的方向盤底座，並將轉向傳送到 vJoy 虛擬搖桿，模擬器則使用 vJoy 軸作為轉向輸入。</value>
+  </data>
+  <data name="AccessibilitySendSteeringDescription" xml:space="preserve">
+    <value>在模擬器中將轉向綁定到 vJoy 的 X 軸而非您的方向盤底座，並關閉模擬器本身的力回饋 - 由 MAIRA 驅動您的方向盤底座。此開關與遊戲橋接頁面共用。</value>
+  </data>
+  <data name="WheelbaseRotationRange" xml:space="preserve">
+    <value>底座旋轉範圍</value>
+  </data>
+  <data name="WheelbaseRotationRangeDescription" xml:space="preserve">
+    <value>將此項設為您在底座專屬軟體中設定的旋轉範圍（例如 900° 或 1080°）。MAIRA 會用它將方向盤位置換算成角度。</value>
+  </data>
+  <data name="CalibrationMode" xml:space="preserve">
+    <value>校準模式</value>
+  </data>
+  <data name="AccessibilityCalibrationDescription" xml:space="preserve">
+    <value>在模擬器校準轉向時開啟此項，並使用下方按鈕代替轉動方向盤 - 您的方向盤不會被傳遞，因此模擬器只會看到 vJoy 軸在移動。在 iRacing 的校準中，打到底時使用向左和向右按鈕，置中時使用置中按鈕，要求將方向盤轉動 90 度時使用向左 90° 按鈕。完成後請關閉校準模式。</value>
+  </data>
+  <data name="AccessibilityRemapDescription" xml:space="preserve">
+    <value>關閉時，您的方向盤會原樣傳遞給模擬器。開啟時，將方向盤轉到下方設定的左側或右側範圍，車輛就會依照該側的曲線打到底。</value>
+  </data>
+  <data name="CenterOffset" xml:space="preserve">
+    <value>中心偏移</value>
+  </data>
+  <data name="CenterDeadzone" xml:space="preserve">
+    <value>中心死區</value>
+  </data>
+  <data name="TremorSmoothing" xml:space="preserve">
+    <value>手抖平滑</value>
+  </data>
+  <data name="LeftRange" xml:space="preserve">
+    <value>左側範圍</value>
+  </data>
+  <data name="LeftCurve" xml:space="preserve">
+    <value>左側曲線</value>
+  </data>
+  <data name="RightRange" xml:space="preserve">
+    <value>右側範圍</value>
+  </data>
+  <data name="RightCurve" xml:space="preserve">
+    <value>右側曲線</value>
+  </data>
+  <data name="HighSpeedSensitivity" xml:space="preserve">
+    <value>高速靈敏度</value>
+  </data>
+  <data name="FullEffectSpeed" xml:space="preserve">
+    <value>完全生效車速</value>
+  </data>
+  <data name="SpeedSensitiveSteeringDescription" xml:space="preserve">
+    <value>隨著車速提高，轉向會逐漸變得不那麼靈敏，在達到完全生效車速時降至高速靈敏度。</value>
+  </data>
+  <data name="AccessibilityForceFeedbackDescription" xml:space="preserve">
+    <value>這些設定僅在轉向重新對應開啟時生效。分別設定左轉和右轉的力回饋強度，並使用回正輔助加入一個將方向盤拉回中心的彈簧。</value>
+  </data>
+  <data name="LeftTurnStrength" xml:space="preserve">
+    <value>左轉強度</value>
+  </data>
+  <data name="RightTurnStrength" xml:space="preserve">
+    <value>右轉強度</value>
+  </data>
+  <data name="CenteringHelp" xml:space="preserve">
+    <value>回正輔助</value>
+  </data>
+  <data name="WheelTurnedLeft" xml:space="preserve">
+    <value>方向盤向左</value>
+  </data>
+  <data name="WheelTurnedRight" xml:space="preserve">
+    <value>方向盤向右</value>
+  </data>
+  <data name="FullLeftLock" xml:space="preserve">
+    <value>向左打到底</value>
+  </data>
+  <data name="FullRightLock" xml:space="preserve">
+    <value>向右打到底</value>
+  </data>
+  <data name="AngleLeftFormat" xml:space="preserve">
+    <value>向左 {0}°</value>
+  </data>
+  <data name="AngleRightFormat" xml:space="preserve">
+    <value>向右 {0}°</value>
+  </data>
+  <data name="PercentLeftFormat" xml:space="preserve">
+    <value>向左 {0}%</value>
+  </data>
+  <data name="PercentRightFormat" xml:space="preserve">
+    <value>向右 {0}%</value>
+  </data>
+  <data name="AccessibilityLiveReadout" xml:space="preserve">
+    <value>方向盤：{0}  ➤  轉向：{1}</value>
+  </data>
+  <data name="AccessibilityPassthroughOff" xml:space="preserve">
+    <value>開啟將轉向傳送到 vJoy 裝置，即可使用轉向重新對應。</value>
+  </data>
+  <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
+    <value>校準模式已開啟 - 您的方向盤不會被傳遞。</value>
+  </data>
 </root>
