@@ -18043,6 +18043,27 @@ public partial class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Game bridge - Automobilista 2 enabled
+
+	private bool _gameBridgeAutomobilista2Enabled = false;
+
+	public bool GameBridgeAutomobilista2Enabled
+	{
+		get => _gameBridgeAutomobilista2Enabled;
+
+		set
+		{
+			if ( value != _gameBridgeAutomobilista2Enabled )
+			{
+				_gameBridgeAutomobilista2Enabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Game bridge - send steering to vJoy
 
 	private bool _gameBridgeSendSteeringToVJoy = false;

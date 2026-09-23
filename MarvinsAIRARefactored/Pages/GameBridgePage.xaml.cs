@@ -32,6 +32,7 @@ public partial class GameBridgePage : UserControl
 		UpdateAdapterRow( app.GameBridge.AssettoCorsaRally, AssettoCorsaRally_MairaSwitch, AssettoCorsaRallyStatus_TextBlock );
 		UpdateAdapterRow( app.GameBridge.RFactor2, RFactor2_MairaSwitch, RFactor2Status_TextBlock );
 		UpdateAdapterRow( app.GameBridge.RaceRoom, RaceRoom_MairaSwitch, RaceRoomStatus_TextBlock );
+		UpdateAdapterRow( app.GameBridge.Automobilista2, Automobilista2_MairaSwitch, Automobilista2Status_TextBlock );
 
 		UpdateVJoyStatus( app );
 	}

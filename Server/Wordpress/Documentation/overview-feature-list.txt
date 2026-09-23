@@ -456,7 +456,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Supports Le Mans Ultimate, Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, Assetto Corsa Rally, rFactor 2, and RaceRoom Racing Experience</li>
+<li>Supports Le Mans Ultimate, Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, Assetto Corsa Rally, rFactor 2, RaceRoom Racing Experience, and Automobilista 2 (effects only - AMS2 publishes no steering torque, so its own force feedback keeps the wheel)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
