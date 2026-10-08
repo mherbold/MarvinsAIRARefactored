@@ -33,6 +33,7 @@ public class Pedals
 	private const float DeltaSeconds = 1f / 20f;
 	private const float TestDuration = 3f;
 	private const int UpdateInterval = 3;
+	private const int ResendInterval = 20; // updates (~1 second at 20 Hz) - re-send an unchanged command so the pedals recover after a reset
 
 	public HPR.PedalsDevice PedalsDevice { get; private set; }
 
@@ -55,6 +56,13 @@ public class Pedals
 	private readonly float[] _frequency = new float[ 3 ];
 	private readonly float[] _amplitude = new float[ 3 ];
 	private readonly float[] _cycles = new float[ 3 ];
+
+	// last command sent to each pedal - used to skip sending identical commands (each one is a blocking HID feature report)
+	private readonly bool[] _lastSentValid = new bool[ 3 ];
+	private readonly HPR.State[] _lastSentState = new HPR.State[ 3 ];
+	private readonly float[] _lastSentFrequency = new float[ 3 ];
+	private readonly float[] _lastSentAmplitude = new float[ 3 ];
+	private readonly int[] _resendCounter = new int[ 3 ];
 
 	private readonly EffectStatus[,] _effectStatus = new EffectStatus[ 3, 3 ];
 
@@ -88,6 +96,8 @@ public class Pedals
 		app.Logger.WriteLine( "[Pedals] Refresh >>>" );
 
 		PedalsDevice = _hpr.Initialize( DataContext.DataContext.Instance.Settings.PedalsEnabled, msg => app.Logger.WriteLine( $"[Simagic] {msg}" ) );
+
+		Array.Clear( _lastSentValid );
 
 		app.Logger.WriteLine( $"[Pedals] Simagic HPR API reports: {PedalsDevice}" );
 
@@ -170,9 +180,9 @@ public class Pedals
 		{
 			if ( !app.Simulator.IsOnTrack || ( app.Simulator.SimMode != "full" ) )
 			{
-				_hpr.VibratePedal( HPR.Channel.Clutch, HPR.State.Off, 0, 0 );
-				_hpr.VibratePedal( HPR.Channel.Brake, HPR.State.Off, 0, 0 );
-				_hpr.VibratePedal( HPR.Channel.Throttle, HPR.State.Off, 0, 0 );
+				VibratePedal( HPR.Channel.Clutch, HPR.State.Off, 0f, 0f );
+				VibratePedal( HPR.Channel.Brake, HPR.State.Off, 0f, 0f );
+				VibratePedal( HPR.Channel.Throttle, HPR.State.Off, 0f, 0f );
 
 				for ( var pedalIndex = 0; pedalIndex < 3; pedalIndex++ )
 				{
@@ -263,14 +273,14 @@ public class Pedals
 
 			if ( activeEffectFound )
 			{
-				_hpr.VibratePedal( (HPR.Channel) pedalIndex, HPR.State.On, frequency, amplitude * 100f );
+				VibratePedal( (HPR.Channel) pedalIndex, HPR.State.On, frequency, amplitude * 100f );
 
 				_frequency[ pedalIndex ] = (int) ( Math.Clamp( frequency, 1f, 50f ) );
 				_amplitude[ pedalIndex ] = amplitude;
 			}
 			else
 			{
-				_hpr.VibratePedal( (HPR.Channel) pedalIndex, HPR.State.Off, 0f, 0f );
+				VibratePedal( (HPR.Channel) pedalIndex, HPR.State.Off, 0f, 0f );
 
 				app.Graph.UpdateLayer( Graph.LayerIndex.ClutchPedalHaptics + pedalIndex, 0f );
 
@@ -283,6 +293,27 @@ public class Pedals
 		// update test just started
 
 		_testJustStarted = false;
+	}
+
+	// sends a command to the pedal only when it differs from the last one sent (exact compare), or when the resend interval has elapsed
+	private void VibratePedal( HPR.Channel channel, HPR.State state, float frequency, float amplitude )
+	{
+		var pedalIndex = (int) channel;
+
+		_resendCounter[ pedalIndex ]--;
+
+		var commandChanged = !_lastSentValid[ pedalIndex ] || ( _lastSentState[ pedalIndex ] != state ) || ( _lastSentFrequency[ pedalIndex ] != frequency ) || ( _lastSentAmplitude[ pedalIndex ] != amplitude );
+
+		if ( commandChanged || ( _resendCounter[ pedalIndex ] <= 0 ) )
+		{
+			_hpr.VibratePedal( channel, state, frequency, amplitude );
+
+			_lastSentValid[ pedalIndex ] = true;
+			_lastSentState[ pedalIndex ] = state;
+			_lastSentFrequency[ pedalIndex ] = frequency;
+			_lastSentAmplitude[ pedalIndex ] = amplitude;
+			_resendCounter[ pedalIndex ] = ResendInterval;
+		}
 	}
 
 	private void SetPedalIdleStatus( int pedalIndex )
