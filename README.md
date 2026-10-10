@@ -13,7 +13,7 @@
 - **Pedal haptics** — Simagic HPR and other haptic pedal support driven by live telemetry (ABS, wheel lock, wheel spin, etc.).
 - **G Tensioner** — seat-belt tensioner support, including SimHub-style DIY belt tensioner hardware.
 - **Typhoon Wind** — wind simulator hardware control.
-- **Game bridge** — feeds telemetry from other simulators into MAIRA's iRacing-native pipeline, so force feedback and effects work outside of iRacing. Currently supports Le Mans Ultimate, rFactor 2, Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, Assetto Corsa Rally, and RaceRoom, with optional vJoy steering passthrough.
+- **Game bridge** — feeds telemetry from other simulators into MAIRA's iRacing-native pipeline, so force feedback and effects work outside of iRacing. Currently supports Le Mans Ultimate, rFactor 2, Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, Assetto Corsa Rally, RaceRoom, and Automobilista 2 (effects only - AMS2 exposes no steering torque, so its own force feedback stays in charge of the wheel), with optional vJoy steering passthrough.
 - **Audio** — sound effects and warnings, low-frequency effects (LFE), and per-device audio output management (FMOD).
 - **AI commentary & speech** — text-to-speech race commentary (including ElevenLabs voices), speech-to-text for in-sim chat, and a chat queue.
 - **Hardware integrations** — Elgato Stream Deck, vJoy virtual joystick, AdminBoxx controller, and HID hot-plug monitoring.

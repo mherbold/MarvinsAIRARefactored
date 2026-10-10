@@ -70,6 +70,14 @@
 <p>Enables the RaceRoom bridge. MAIRA reads the game's built-in shared memory directly. RaceRoom updates its data at a full 400 Hz - the highest rate of any bridged game. If MAIRA does not connect, make sure the shared memory option is enabled in RaceRoom's settings.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Automobilista 2</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables the Automobilista 2 bridge. MAIRA reads the game's built-in shared memory directly - AMS2 publishes the Project CARS 2 block natively, so you do not need a plugin. This bridge is <strong>effects only</strong>. AMS2 does not publish its steering torque anywhere, and it has no other way to hand its force feedback out, so the game keeps your wheelbase and MAIRA leaves the wheel alone - tune the feel of the wheel in the game's own force feedback settings, as you always have. Everything else still runs off the game's telemetry: pedal haptics, Typhoon Wind, the G Tensioner and the LFE. The wheel-side steering effects (understeer, oversteer, seat of pants) ride on MAIRA's torque stream, so those stay silent in AMS2.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="vjoy">vJoy</p>
 <!-- /wp:paragraph -->
@@ -123,7 +131,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Force feedback quality depends on the rate each game publishes its steering torque at: RaceRoom updates at 400 Hz, the Assetto Corsa family at about 330 Hz, Le Mans Ultimate at 100 Hz, and rFactor 2 at whatever rate its plugin runs at (iRacing's native signal is 360 Hz). MAIRA samples every bridged game at the full 360 Hz, on the same high-resolution timer it uses for iRacing, and feeds those samples into your FFB graph exactly as if they had come from iRacing — so every module you have set up keeps working, and lower rate games still feel smooth.</p>
+<p>Force feedback quality depends on the rate each game publishes its steering torque at: RaceRoom updates at 400 Hz, the Assetto Corsa family at about 330 Hz, Le Mans Ultimate at 100 Hz, and rFactor 2 at whatever rate its plugin runs at (iRacing's native signal is 360 Hz). Automobilista 2 is the exception - it publishes no steering torque at all, so its bridge drives the effects only and the game's own force feedback keeps the wheel. MAIRA samples every bridged game at the full 360 Hz, on the same high-resolution timer it uses for iRacing, and feeds those samples into your FFB graph exactly as if they had come from iRacing — so every module you have set up keeps working, and lower rate games still feel smooth.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
