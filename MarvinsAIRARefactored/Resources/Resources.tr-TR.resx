@@ -2851,4 +2851,64 @@
   <data name="EditNameTitle" xml:space="preserve">
     <value>Adı düzenle</value>
   </data>
+  <data name="FFBNodeNameAddLFE" xml:space="preserve">
+    <value>LFE ekle</value>
+  </data>
+  <data name="FFBNodeNameAddparkedforces" xml:space="preserve">
+    <value>Park kuvvetlerini ekle</value>
+  </data>
+  <data name="FFBNodeNameAddsoftlock" xml:space="preserve">
+    <value>Yumuşak kilit ekle</value>
+  </data>
+  <data name="FFBNodeNameBodycurbprotection" xml:space="preserve">
+    <value>Ana kuvvet kerb koruması</value>
+  </data>
+  <data name="FFBNodeNameBodyforce" xml:space="preserve">
+    <value>Ana kuvvet</value>
+  </data>
+  <data name="FFBNodeNameCombinebodyanddetail" xml:space="preserve">
+    <value>Ana kuvvet ve detayı birleştir</value>
+  </data>
+  <data name="FFBNodeNameDampingorfriction" xml:space="preserve">
+    <value>Sönümleme veya sürtünme</value>
+  </data>
+  <data name="FFBNodeNameDetailcurbprotection" xml:space="preserve">
+    <value>Detay kerb koruması</value>
+  </data>
+  <data name="FFBNodeNameDetailgain" xml:space="preserve">
+    <value>Detay kazancı</value>
+  </data>
+  <data name="FFBNodeNameDetailtransients" xml:space="preserve">
+    <value>Detay ani değişimleri</value>
+  </data>
+  <data name="FFBNodeNameFadeindrivingforce" xml:space="preserve">
+    <value>Sürüş kuvvetini kademeli artır</value>
+  </data>
+  <data name="FFBNodeNameFadeoutwhenmoving" xml:space="preserve">
+    <value>Hareket edince azalt</value>
+  </data>
+  <data name="FFBNodeNameHybrid60360Hzblend" xml:space="preserve">
+    <value>Hibrit 60/360 Hz karışımı</value>
+  </data>
+  <data name="FFBNodeNameMixparkedforces" xml:space="preserve">
+    <value>Park kuvvetlerini karıştır</value>
+  </data>
+  <data name="FFBNodeNameParkedcentering" xml:space="preserve">
+    <value>Park merkezlemesi</value>
+  </data>
+  <data name="FFBNodeNameParkeddamping" xml:space="preserve">
+    <value>Park sönümlemesi</value>
+  </data>
+  <data name="FFBNodeNameParkedfriction" xml:space="preserve">
+    <value>Park sürtünmesi</value>
+  </data>
+  <data name="FFBNodeNamePredictedbodyforce" xml:space="preserve">
+    <value>Tahmini ana kuvvet</value>
+  </data>
+  <data name="FFBNodeNameRoadandtiredetail" xml:space="preserve">
+    <value>Yol ve lastik detayı</value>
+  </data>
+  <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
+    <value>Park kuvvetlerini yumuşat</value>
+  </data>
 </root>

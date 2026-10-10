@@ -2851,4 +2851,64 @@
   <data name="EditNameTitle" xml:space="preserve">
     <value>עריכת שם</value>
   </data>
+  <data name="FFBNodeNameAddLFE" xml:space="preserve">
+    <value>הוסף LFE</value>
+  </data>
+  <data name="FFBNodeNameAddparkedforces" xml:space="preserve">
+    <value>הוסף כוחות בעמידה</value>
+  </data>
+  <data name="FFBNodeNameAddsoftlock" xml:space="preserve">
+    <value>הוסף נעילה רכה</value>
+  </data>
+  <data name="FFBNodeNameBodycurbprotection" xml:space="preserve">
+    <value>הגנת אבני שפה לכוח הבסיס</value>
+  </data>
+  <data name="FFBNodeNameBodyforce" xml:space="preserve">
+    <value>כוח בסיס</value>
+  </data>
+  <data name="FFBNodeNameCombinebodyanddetail" xml:space="preserve">
+    <value>שלב בסיס ופרטים</value>
+  </data>
+  <data name="FFBNodeNameDampingorfriction" xml:space="preserve">
+    <value>שיכוך או חיכוך</value>
+  </data>
+  <data name="FFBNodeNameDetailcurbprotection" xml:space="preserve">
+    <value>הגנת אבני שפה לפרטים</value>
+  </data>
+  <data name="FFBNodeNameDetailgain" xml:space="preserve">
+    <value>הגבר פרטים</value>
+  </data>
+  <data name="FFBNodeNameDetailtransients" xml:space="preserve">
+    <value>מעברים חדים בפרטים</value>
+  </data>
+  <data name="FFBNodeNameFadeindrivingforce" xml:space="preserve">
+    <value>הגברה הדרגתית של כוח הנהיגה</value>
+  </data>
+  <data name="FFBNodeNameFadeoutwhenmoving" xml:space="preserve">
+    <value>דעיכה בתנועה</value>
+  </data>
+  <data name="FFBNodeNameHybrid60360Hzblend" xml:space="preserve">
+    <value>מיזוג היברידי 60/360 Hz</value>
+  </data>
+  <data name="FFBNodeNameMixparkedforces" xml:space="preserve">
+    <value>ערבב כוחות בעמידה</value>
+  </data>
+  <data name="FFBNodeNameParkedcentering" xml:space="preserve">
+    <value>מרכוז בעמידה</value>
+  </data>
+  <data name="FFBNodeNameParkeddamping" xml:space="preserve">
+    <value>שיכוך בעמידה</value>
+  </data>
+  <data name="FFBNodeNameParkedfriction" xml:space="preserve">
+    <value>חיכוך בעמידה</value>
+  </data>
+  <data name="FFBNodeNamePredictedbodyforce" xml:space="preserve">
+    <value>כוח בסיס חזוי</value>
+  </data>
+  <data name="FFBNodeNameRoadandtiredetail" xml:space="preserve">
+    <value>פרטי כביש וצמיגים</value>
+  </data>
+  <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
+    <value>החלק כוחות בעמידה</value>
+  </data>
 </root>

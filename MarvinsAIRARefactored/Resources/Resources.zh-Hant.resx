@@ -2851,4 +2851,64 @@
   <data name="EditNameTitle" xml:space="preserve">
     <value>編輯名稱</value>
   </data>
+  <data name="FFBNodeNameAddLFE" xml:space="preserve">
+    <value>加入 LFE</value>
+  </data>
+  <data name="FFBNodeNameAddparkedforces" xml:space="preserve">
+    <value>加入駐車力</value>
+  </data>
+  <data name="FFBNodeNameAddsoftlock" xml:space="preserve">
+    <value>加入軟鎖</value>
+  </data>
+  <data name="FFBNodeNameBodycurbprotection" xml:space="preserve">
+    <value>主體力路緣保護</value>
+  </data>
+  <data name="FFBNodeNameBodyforce" xml:space="preserve">
+    <value>主體力</value>
+  </data>
+  <data name="FFBNodeNameCombinebodyanddetail" xml:space="preserve">
+    <value>合併主體與細節</value>
+  </data>
+  <data name="FFBNodeNameDampingorfriction" xml:space="preserve">
+    <value>阻尼或摩擦力</value>
+  </data>
+  <data name="FFBNodeNameDetailcurbprotection" xml:space="preserve">
+    <value>細節路緣保護</value>
+  </data>
+  <data name="FFBNodeNameDetailgain" xml:space="preserve">
+    <value>細節增益</value>
+  </data>
+  <data name="FFBNodeNameDetailtransients" xml:space="preserve">
+    <value>細節瞬態</value>
+  </data>
+  <data name="FFBNodeNameFadeindrivingforce" xml:space="preserve">
+    <value>漸入駕駛力</value>
+  </data>
+  <data name="FFBNodeNameFadeoutwhenmoving" xml:space="preserve">
+    <value>移動時淡出</value>
+  </data>
+  <data name="FFBNodeNameHybrid60360Hzblend" xml:space="preserve">
+    <value>60/360 Hz 混合融合</value>
+  </data>
+  <data name="FFBNodeNameMixparkedforces" xml:space="preserve">
+    <value>混合駐車力</value>
+  </data>
+  <data name="FFBNodeNameParkedcentering" xml:space="preserve">
+    <value>駐車回正</value>
+  </data>
+  <data name="FFBNodeNameParkeddamping" xml:space="preserve">
+    <value>駐車阻尼</value>
+  </data>
+  <data name="FFBNodeNameParkedfriction" xml:space="preserve">
+    <value>駐車摩擦力</value>
+  </data>
+  <data name="FFBNodeNamePredictedbodyforce" xml:space="preserve">
+    <value>預測主體力</value>
+  </data>
+  <data name="FFBNodeNameRoadandtiredetail" xml:space="preserve">
+    <value>路面與輪胎細節</value>
+  </data>
+  <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
+    <value>平滑駐車力</value>
+  </data>
 </root>

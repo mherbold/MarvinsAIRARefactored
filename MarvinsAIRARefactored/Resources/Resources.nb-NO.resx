@@ -2851,4 +2851,64 @@
   <data name="EditNameTitle" xml:space="preserve">
     <value>Rediger navn</value>
   </data>
+  <data name="FFBNodeNameAddLFE" xml:space="preserve">
+    <value>Legg til LFE</value>
+  </data>
+  <data name="FFBNodeNameAddparkedforces" xml:space="preserve">
+    <value>Legg til parkerte krefter</value>
+  </data>
+  <data name="FFBNodeNameAddsoftlock" xml:space="preserve">
+    <value>Legg til myk lås</value>
+  </data>
+  <data name="FFBNodeNameBodycurbprotection" xml:space="preserve">
+    <value>Kantstein-beskyttelse for grunnkraft</value>
+  </data>
+  <data name="FFBNodeNameBodyforce" xml:space="preserve">
+    <value>Grunnkraft</value>
+  </data>
+  <data name="FFBNodeNameCombinebodyanddetail" xml:space="preserve">
+    <value>Kombiner grunnkraft og detaljer</value>
+  </data>
+  <data name="FFBNodeNameDampingorfriction" xml:space="preserve">
+    <value>Demping eller friksjon</value>
+  </data>
+  <data name="FFBNodeNameDetailcurbprotection" xml:space="preserve">
+    <value>Kantstein-beskyttelse for detaljer</value>
+  </data>
+  <data name="FFBNodeNameDetailgain" xml:space="preserve">
+    <value>Detaljforsterkning</value>
+  </data>
+  <data name="FFBNodeNameDetailtransients" xml:space="preserve">
+    <value>Detaljtransienter</value>
+  </data>
+  <data name="FFBNodeNameFadeindrivingforce" xml:space="preserve">
+    <value>Ton inn kjørekraft</value>
+  </data>
+  <data name="FFBNodeNameFadeoutwhenmoving" xml:space="preserve">
+    <value>Ton ut i bevegelse</value>
+  </data>
+  <data name="FFBNodeNameHybrid60360Hzblend" xml:space="preserve">
+    <value>Hybrid 60/360 Hz-blanding</value>
+  </data>
+  <data name="FFBNodeNameMixparkedforces" xml:space="preserve">
+    <value>Bland parkerte krefter</value>
+  </data>
+  <data name="FFBNodeNameParkedcentering" xml:space="preserve">
+    <value>Parkert sentrering</value>
+  </data>
+  <data name="FFBNodeNameParkeddamping" xml:space="preserve">
+    <value>Parkert demping</value>
+  </data>
+  <data name="FFBNodeNameParkedfriction" xml:space="preserve">
+    <value>Parkert friksjon</value>
+  </data>
+  <data name="FFBNodeNamePredictedbodyforce" xml:space="preserve">
+    <value>Predikert grunnkraft</value>
+  </data>
+  <data name="FFBNodeNameRoadandtiredetail" xml:space="preserve">
+    <value>Vei- og dekkdetaljer</value>
+  </data>
+  <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
+    <value>Glatt ut parkerte krefter</value>
+  </data>
 </root>

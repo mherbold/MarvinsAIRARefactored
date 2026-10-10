@@ -2851,4 +2851,64 @@
   <data name="EditNameTitle" xml:space="preserve">
     <value>Редагувати назву</value>
   </data>
+  <data name="FFBNodeNameAddLFE" xml:space="preserve">
+    <value>Додати LFE</value>
+  </data>
+  <data name="FFBNodeNameAddparkedforces" xml:space="preserve">
+    <value>Додати сили на стоянці</value>
+  </data>
+  <data name="FFBNodeNameAddsoftlock" xml:space="preserve">
+    <value>Додати м'яке блокування</value>
+  </data>
+  <data name="FFBNodeNameBodycurbprotection" xml:space="preserve">
+    <value>Захист основи від бордюру</value>
+  </data>
+  <data name="FFBNodeNameBodyforce" xml:space="preserve">
+    <value>Основна сила</value>
+  </data>
+  <data name="FFBNodeNameCombinebodyanddetail" xml:space="preserve">
+    <value>Поєднати основу й деталі</value>
+  </data>
+  <data name="FFBNodeNameDampingorfriction" xml:space="preserve">
+    <value>Демпфування або тертя</value>
+  </data>
+  <data name="FFBNodeNameDetailcurbprotection" xml:space="preserve">
+    <value>Захист деталей від бордюру</value>
+  </data>
+  <data name="FFBNodeNameDetailgain" xml:space="preserve">
+    <value>Підсилення деталей</value>
+  </data>
+  <data name="FFBNodeNameDetailtransients" xml:space="preserve">
+    <value>Перехідні процеси деталей</value>
+  </data>
+  <data name="FFBNodeNameFadeindrivingforce" xml:space="preserve">
+    <value>Наростання сили руху</value>
+  </data>
+  <data name="FFBNodeNameFadeoutwhenmoving" xml:space="preserve">
+    <value>Згасання під час руху</value>
+  </data>
+  <data name="FFBNodeNameHybrid60360Hzblend" xml:space="preserve">
+    <value>Гібридне змішування 60/360 Hz</value>
+  </data>
+  <data name="FFBNodeNameMixparkedforces" xml:space="preserve">
+    <value>Змішати сили на стоянці</value>
+  </data>
+  <data name="FFBNodeNameParkedcentering" xml:space="preserve">
+    <value>Центрування на стоянці</value>
+  </data>
+  <data name="FFBNodeNameParkeddamping" xml:space="preserve">
+    <value>Демпфування на стоянці</value>
+  </data>
+  <data name="FFBNodeNameParkedfriction" xml:space="preserve">
+    <value>Тертя на стоянці</value>
+  </data>
+  <data name="FFBNodeNamePredictedbodyforce" xml:space="preserve">
+    <value>Прогнозована основна сила</value>
+  </data>
+  <data name="FFBNodeNameRoadandtiredetail" xml:space="preserve">
+    <value>Деталі дороги й шин</value>
+  </data>
+  <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
+    <value>Згладити сили на стоянці</value>
+  </data>
 </root>

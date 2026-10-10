@@ -305,6 +305,10 @@
 <p>Six graphs ship with MAIRA. They all carry the same set of extras — LFE, soft lock, friction, wheel centering, crash and curb protection, the steering effect forces, torque dither and the whole family of vibrations — and differ only in how they treat the main force signal.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>Nodes whose module type alone would not tell you what they are for carry a name that does. The forces that only work while you are parked or crawling are <strong>Parked damping</strong>, <strong>Parked centering</strong> and <strong>Parked friction</strong>, chosen between by <strong>Damping or friction</strong> and faded away by <strong>Fade out when moving</strong>, while <strong>Fade in driving force</strong> brings the main signal in as you pull away. The low latency graphs split the signal into a <strong>Predicted body force</strong> and the <strong>Road and tire detail</strong>, scaled by <strong>Detail gain</strong>, each with its own curb protection, before <strong>Combine body and detail</strong> puts them back together. The names are translated along with the rest of MAIRA.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
 <li><strong>Low latency 360 Hz detail booster &amp; limiter</strong> — Recommended for most drivers: the full 360 Hz FFB signal with prediction to reduce latency. Adjust the gain to increase or decrease the road and tire detail — a gain of 1.00x keeps the original iRacing feeling, below 1.0 is equivalent to the classic delta limiter, and above 1.0 is equivalent to the classic detail booster.</li>
@@ -332,7 +336,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>Built-in graphs are <strong>structurally locked</strong>. You can change every knob, switch and dropdown in them, and those values are yours and are saved per context — but you cannot add or remove modules, re-wire them, rename them, or delete them. In exchange, they update themselves: when a new version of MAIRA ships an improved built-in graph, you get it on your next launch and your tuned values carry over.</p>
+<p>Built-in graphs are <strong>structurally locked</strong>. You can change every knob, switch and dropdown in them, and those values are yours and are saved per context — but you cannot add or remove modules, re-wire them, rename the graph or its nodes, or delete the graph. In exchange, they update themselves: when a new version of MAIRA ships an improved built-in graph, you get it on your next launch and your tuned values carry over.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -632,7 +636,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Every node starts with an automatic <strong>name</strong> taken from its module type — "Gain", and "Gain (2)" for a second one. On a custom graph you can give a node a name of your own, such as "Road feel" or "Curb rumble", which makes a busy graph much easier to read. The name shows on the node in the graph, at the top of the settings column, in the quick controls (with the module type in gray after it), and in the chat messages a mapped button sends. Nodes that share a custom name get "(2)", "(3)" and so on added. To go back to the automatic name, clear the name or type the automatic name again. Names are saved in the graph, so they travel with it when you export and share it.</p>
+<p>Every node starts with an automatic <strong>name</strong> taken from its module type — "Gain", and "Gain (2)" for a second one. The built-in graphs come with descriptive names already on the nodes that need them (see <a href="#built-in-graphs">the built-in graphs</a>), and a clone of one keeps them. On a custom graph you can give a node a name of your own, such as "Road feel" or "Curb rumble", which makes a busy graph much easier to read. The name shows on the node in the graph, at the top of the settings column, in the quick controls (with the module type in gray after it), and in the chat messages a mapped button sends. Nodes that share a custom name get "(2)", "(3)" and so on added. To go back to the automatic name, clear the name or type the automatic name again. Names are saved in the graph, so they travel with it when you export and share it.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

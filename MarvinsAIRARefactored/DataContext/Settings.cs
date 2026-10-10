@@ -642,6 +642,19 @@ public partial class Settings : INotifyPropertyChanged
 			graph.GraphId = Guid.NewGuid().ToString( "N" );
 
 			RegenerateUserGraphModuleIds( graph );
+
+			// a built-in's node names render localized, but a custom graph shows its names verbatim - bake the names
+			// into the copy in the current language so the clone reads the same as the graph it came from
+			if ( current.IsBuiltIn )
+			{
+				foreach ( var module in graph.Modules )
+				{
+					if ( !string.IsNullOrWhiteSpace( module.Name ) )
+					{
+						module.Name = FFB.FFBGraphViewModel.CustomNodeName( module.Name, isBuiltIn: true );
+					}
+				}
+			}
 		}
 		else
 		{

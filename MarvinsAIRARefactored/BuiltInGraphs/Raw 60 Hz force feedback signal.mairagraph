@@ -11,6 +11,7 @@
       <FFBModuleData>
         <ModuleId>SourceLFE</ModuleId>
         <ModuleType>SourceLFE</ModuleType>
+        <Name />
         <Description>The simulator's low-frequency effects audio, turned into wheel force.  You need to enable bass shaker LFE in iRacing and use VB-CABLE for this to work.</Description>
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -35,6 +36,7 @@
       <FFBModuleData>
         <ModuleId>SourceSoftLock</ModuleId>
         <ModuleType>SourceSoftLock</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>SourceLFE</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -59,6 +61,7 @@
       <FFBModuleData>
         <ModuleId>SourceWheelVelocity</ModuleId>
         <ModuleType>SourceWheelVelocity</ModuleType>
+        <Name>Parked damping</Name>
         <Description>A friction-like force that stops the wheel from oscillating while you are moving very slowly or parked.</Description>
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -91,6 +94,7 @@
       <FFBModuleData>
         <ModuleId>SourceFriction</ModuleId>
         <ModuleType>SourceFriction</ModuleType>
+        <Name>Parked friction</Name>
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -112,6 +116,7 @@
       <FFBModuleData>
         <ModuleId>SourceWheelCentering</ModuleId>
         <ModuleType>SourceWheelCentering</ModuleType>
+        <Name>Parked centering</Name>
         <Description>A spring force that pulls the wheel back toward center, effective only when the car is moving slowly or parked.</Description>
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -144,6 +149,7 @@
       <FFBModuleData>
         <ModuleId>Source60</ModuleId>
         <ModuleType>Source60Hz</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -156,6 +162,7 @@
       <FFBModuleData>
         <ModuleId>d750489e157c482c8a9d41e6a8f06023</ModuleId>
         <ModuleType>ABSwitch</ModuleType>
+        <Name>Damping or friction</Name>
         <Description />
         <InputAModuleId>SourceWheelVelocity</InputAModuleId>
         <InputBModuleId>SourceFriction</InputBModuleId>
@@ -177,6 +184,7 @@
       <FFBModuleData>
         <ModuleId>d30afdca2c8d4ba68185b1a6630c67b8</ModuleId>
         <ModuleType>Add</ModuleType>
+        <Name>Mix parked forces</Name>
         <Description />
         <InputAModuleId>SourceWheelCentering</InputAModuleId>
         <InputBModuleId>d750489e157c482c8a9d41e6a8f06023</InputBModuleId>
@@ -189,6 +197,7 @@
       <FFBModuleData>
         <ModuleId>131c5011291348fb97dbcb3ef55be5cd</ModuleId>
         <ModuleType>Interpolator</ModuleType>
+        <Name>Smooth parked forces</Name>
         <Description />
         <InputAModuleId>d30afdca2c8d4ba68185b1a6630c67b8</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -201,6 +210,7 @@
       <FFBModuleData>
         <ModuleId>836a861ccb6e48aca0dec498d6129123</ModuleId>
         <ModuleType>SpeedGain</ModuleType>
+        <Name>Fade out when moving</Name>
         <Description />
         <InputAModuleId>131c5011291348fb97dbcb3ef55be5cd</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -238,6 +248,7 @@
       <FFBModuleData>
         <ModuleId>9fd8000b870c4baf9f8f0ad0ed0b3047</ModuleId>
         <ModuleType>CurbProtection</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -275,6 +286,7 @@
       <FFBModuleData>
         <ModuleId>888aa7429fe149b49eb00631b2fd0d92</ModuleId>
         <ModuleType>CrashProtection</ModuleType>
+        <Name />
         <Description>Fades the force way down when a crash is detected, then ramps back smoothly - so a big impact cannot yank the wheel out of your hands.  Force reduction sets how much of the force is removed.</Description>
         <InputAModuleId>9fd8000b870c4baf9f8f0ad0ed0b3047</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -299,6 +311,7 @@
       <FFBModuleData>
         <ModuleId>8d949ca409c14ffa8fa6774bdb78fc75</ModuleId>
         <ModuleType>UndersteerForce</ModuleType>
+        <Name />
         <Description>A steering force driven by the understeer effect, so you can feel the front tires losing grip.  Direction chooses whether the effect lightens the wheel or adds a sideways push.</Description>
         <InputAModuleId>888aa7429fe149b49eb00631b2fd0d92</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -332,6 +345,7 @@
       <FFBModuleData>
         <ModuleId>f0e72a205c434930865f36f1067c5c5b</ModuleId>
         <ModuleType>OversteerForce</ModuleType>
+        <Name />
         <Description>A steering force driven by the oversteer effect, so you can feel the rear of the car stepping out.  Direction chooses whether the effect lightens the wheel or adds a sideways push.</Description>
         <InputAModuleId>8d949ca409c14ffa8fa6774bdb78fc75</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -365,6 +379,7 @@
       <FFBModuleData>
         <ModuleId>480a0e1bb36440a3a4fb28f82e67ef77</ModuleId>
         <ModuleType>SeatOfPantsForce</ModuleType>
+        <Name />
         <Description>A steering force driven by the seat-of-pants effect - the feel of the chassis loading up.  Direction chooses whether the effect lightens the wheel or adds a sideways push.</Description>
         <InputAModuleId>f0e72a205c434930865f36f1067c5c5b</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -398,6 +413,7 @@
       <FFBModuleData>
         <ModuleId>a4b7e5fed0a84762bc57d89a3832bd81</ModuleId>
         <ModuleType>SpeedGain</ModuleType>
+        <Name>Fade in driving force</Name>
         <Description />
         <InputAModuleId>480a0e1bb36440a3a4fb28f82e67ef77</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -427,6 +443,7 @@
       <FFBModuleData>
         <ModuleId>0a6a2935b80b4d1d97e55734aeb8e74b</ModuleId>
         <ModuleType>Add</ModuleType>
+        <Name>Add parked forces</Name>
         <Description />
         <InputAModuleId>a4b7e5fed0a84762bc57d89a3832bd81</InputAModuleId>
         <InputBModuleId>836a861ccb6e48aca0dec498d6129123</InputBModuleId>
@@ -439,6 +456,7 @@
       <FFBModuleData>
         <ModuleId>ee29622f72ae432eacb087d3e50e1c80</ModuleId>
         <ModuleType>TorqueDither</ModuleType>
+        <Name />
         <Description>Adds a tiny alternating dither below a threshold to keep the wheel mechanism live and reveal faint detail - useful if you have a low power wheel such as the Logitech G29.</Description>
         <InputAModuleId>0a6a2935b80b4d1d97e55734aeb8e74b</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -464,6 +482,7 @@
       <FFBModuleData>
         <ModuleId>c963e961dd44424ba8495e5b5bf37c0b</ModuleId>
         <ModuleType>Add</ModuleType>
+        <Name>Add LFE</Name>
         <Description />
         <InputAModuleId>ee29622f72ae432eacb087d3e50e1c80</InputAModuleId>
         <InputBModuleId>SourceLFE</InputBModuleId>
@@ -476,6 +495,7 @@
       <FFBModuleData>
         <ModuleId>dd55e308f384480c9c795f478cf3eb7a</ModuleId>
         <ModuleType>Add</ModuleType>
+        <Name>Add soft lock</Name>
         <Description />
         <InputAModuleId>c963e961dd44424ba8495e5b5bf37c0b</InputAModuleId>
         <InputBModuleId>SourceSoftLock</InputBModuleId>
@@ -488,6 +508,7 @@
       <FFBModuleData>
         <ModuleId>4d3f7ed42c4040c684a83d48240a7d64</ModuleId>
         <ModuleType>UndersteerVibration</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -513,6 +534,7 @@
       <FFBModuleData>
         <ModuleId>b823697909ab413a80e0ce894d800bdf</ModuleId>
         <ModuleType>OversteerVibration</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -538,6 +560,7 @@
       <FFBModuleData>
         <ModuleId>3cc425dd43ee4edab95cc5905785115e</ModuleId>
         <ModuleType>SeatOfPantsVibration</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -563,6 +586,7 @@
       <FFBModuleData>
         <ModuleId>d0a7ee5ac9db487a9b862dce71b63ce5</ModuleId>
         <ModuleType>ABSVibration</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -596,6 +620,7 @@
       <FFBModuleData>
         <ModuleId>dcab4a42abed4f92896629675be85e32</ModuleId>
         <ModuleType>GearChangeVibration</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -621,6 +646,7 @@
       <FFBModuleData>
         <ModuleId>54bd4a70de804cff8a814ebdac03662c</ModuleId>
         <ModuleType>ShiftRPMVibration</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -646,6 +672,7 @@
       <FFBModuleData>
         <ModuleId>593476115d0b4ed598a30bcb6a74311d</ModuleId>
         <ModuleType>EngineRPMVibration</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -671,6 +698,7 @@
       <FFBModuleData>
         <ModuleId>6b618f31b76348c093d2f0860e6623b6</ModuleId>
         <ModuleType>RoadTexture</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -696,6 +724,7 @@
       <FFBModuleData>
         <ModuleId>2aebe29e647c44178eca975daa34c335</ModuleId>
         <ModuleType>SlipTexture</ModuleType>
+        <Name />
         <Description />
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -721,6 +750,7 @@
       <FFBModuleData>
         <ModuleId>Output</ModuleId>
         <ModuleType>Output</ModuleType>
+        <Name />
         <Description>The soft limiter allows the FFB signal to keep some detail instead of flattening out when it is clipped.</Description>
         <InputAModuleId>dd55e308f384480c9c795f478cf3eb7a</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>

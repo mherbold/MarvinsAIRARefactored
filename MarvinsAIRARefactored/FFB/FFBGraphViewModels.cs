@@ -607,7 +607,7 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 
 	/// <summary>The custom name as the user entered it (no duplicate suffix), or the automatic name when there is
 	/// none — what the name editor is seeded with.</summary>
-	public string EditableNodeName => HasCustomName ? _model.Name.Trim() : DisplayName;
+	public string EditableNodeName => HasCustomName ? FFBGraphViewModel.CustomNodeName( _model.Name, _owner.IsFFBGraphBuiltIn ) : DisplayName;
 
 	/// <summary>
 	/// The node's name — shown on the graph canvas, as the settings card's header, and in the FFB graph settings
@@ -615,6 +615,8 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	/// rides export/import, edited via the pencil button on the card, never pinnable). Clearing the override,
 	/// entering only whitespace, or entering the automatic name itself reverts to the automatic name — so the
 	/// name is never blank. Nodes sharing a custom name are disambiguated as "Road feel", "Road feel (2)", ...
+	/// Built-in graphs ship names for the nodes whose module type alone doesn't say what they do; those render
+	/// localized (see <see cref="FFBGraphViewModel.CustomNodeName"/>) and can't be edited.
 	/// The setter takes the raw name (no suffix).
 	/// </summary>
 	public string NodeName
@@ -626,7 +628,7 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 				return DisplayName;
 			}
 
-			var customName = _model.Name.Trim();
+			var customName = FFBGraphViewModel.CustomNodeName( _model.Name, _owner.IsFFBGraphBuiltIn );
 
 			return _customNameOccurrence > 1 ? $"{customName} ({_customNameOccurrence})" : customName;
 		}
@@ -1184,6 +1186,30 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	public static string NodeDescriptionLocalizationKey( string graphName, string moduleId )
 	{
 		return "FFBNodeDescription" + string.Concat( graphName.Where( char.IsLetterOrDigit ) ) + string.Concat( moduleId.Where( char.IsLetterOrDigit ) );
+	}
+
+	/// <summary>"Detail gain" -> "FFBNodeNameDetailgain" — the localization key for a BUILT-IN graph's node name.
+	/// Unlike the description keys it derives from the English name itself (alnum-only), so a name that several
+	/// built-in graphs share is translated once. Maintained by the update-builtin-graphs skill.</summary>
+	public static string NodeNameLocalizationKey( string nodeName )
+	{
+		return "FFBNodeName" + string.Concat( nodeName.Where( char.IsLetterOrDigit ) );
+	}
+
+	/// <summary>A node's stored custom name as shown to the user (trimmed, no duplicate suffix): built-in graphs
+	/// render it localized with the stored English text as the fallback, custom graphs show what the user typed.</summary>
+	public static string CustomNodeName( string storedName, bool isBuiltIn )
+	{
+		var name = storedName.Trim();
+
+		return isBuiltIn ? FFBDisplayNames.Localize( NodeNameLocalizationKey( name ), name ) : name;
+	}
+
+	/// <summary>A node's name straight from the graph model (no duplicate suffix) — its custom name when it has
+	/// one, else its module type's name. For views that work on the model rather than the view models.</summary>
+	public static string ModelNodeName( FFBGraph graph, FFBModuleData module )
+	{
+		return string.IsNullOrWhiteSpace( module.Name ) ? FFBDisplayNames.Module( module.ModuleType ) : CustomNodeName( module.Name, graph.IsBuiltIn );
 	}
 
 	/// <summary>The selected graph's name (empty when no graph is selected) — the module VMs use it to derive

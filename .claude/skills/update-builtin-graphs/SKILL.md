@@ -6,7 +6,7 @@ description: >-
   MarvinsAIRARefactored/BuiltInGraphs — it fixes each file's graph name and
   GraphId back to the shipped identity (the update workflow goes through a
   differently-named clone, which leaks the clone's name and a fresh id into the
-  file), syncs any changed graph descriptions and node descriptions into the
+  file), syncs any changed graph descriptions, node descriptions and node names into the
   localization tables with fresh translations for all languages, and refreshes
   the racing-wheel web documentation's built-in graphs coverage. Invoke on
   "update the built-in graphs", "fix the built-in graph names", "I saved new
@@ -35,6 +35,11 @@ it in one pass.
   last committed version of the file.
 - `<IsBuiltIn>` says `false` in clone exports (the loader forces `true` at
   runtime, but keep the file honest).
+- Cloning a built-in **bakes its node names in the current UI language** into
+  the clone (so a clone reads the same as its source). The maintainer must clone
+  with the app in **English**, or the shipped file gets translated `<Name>`
+  values — if a file's names don't match the English keys in `Resources.resx`,
+  stop and ask rather than shipping them.
 
 ## Step 1 — Fix the graph identities
 
@@ -82,16 +87,29 @@ the text stored in the graph file as the English fallback:
   `<Description>` element is **non-empty** get a key; empty ones fall back to
   the per-module-type `FFBModuleDescription<Type>` defaults, which are already
   translated and are NOT this skill's business.
+- Node (module) **name** → key `FFBNodeName<English name alnum-only>`
+  (e.g. `<Name>Detail gain</Name>` → `FFBNodeNameDetailgain`) — see
+  `FFBGraphViewModel.NodeNameLocalizationKey`. Unlike the description keys it
+  derives from the **English name text**, not the graph + module id, so a name
+  several graphs share (the parked-forces chain, "Combine body and detail", …)
+  has ONE key. Only modules whose `<Name>` is **non-empty** get a key; an empty
+  `<Name />` shows the automatic module-type name ("Gain", "Gain (2)"). Name a
+  node only when its module type alone doesn't say what it does (the generic
+  Add / Speed gain / A/B switch / filter / gain / duplicated curb protection
+  nodes) — effect, vibration, source and output nodes are already
+  self-describing. Changing a name's English text changes its key: add + translate
+  the new key, remove the old one if no graph uses that name any more.
 
 Procedure:
 
-1. Extract from every `.mairagraph`: the graph `<Description>` and each
-   module's non-empty `<Description>`, and derive each key (drop every
-   non-alphanumeric from the graph name; module ids are already alphanumeric).
+1. Extract from every `.mairagraph`: the graph `<Description>`, each
+   module's non-empty `<Description>`, and the distinct non-empty module
+   `<Name>` values, and derive each key (drop every non-alphanumeric from the
+   graph name / node name; module ids are already alphanumeric).
 2. Diff against the base `Resources.resx`: which keys are **new**, which have
    **changed** English text, which existing `FFBGraphDescription*` /
-   `FFBNodeDescription*` keys are now **orphaned** (description removed or
-   module deleted).
+   `FFBNodeDescription*` / `FFBNodeName*` keys are now **orphaned** (description
+   or name removed, or module deleted).
 3. Nothing new/changed/orphaned → skip to Step 3.
 4. For new/changed keys: write the English map to a scratchpad JSON
    (`builtingraphdesc.en.json`, keys → English text), then spawn translation
