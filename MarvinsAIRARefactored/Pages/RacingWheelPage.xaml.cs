@@ -1,4 +1,5 @@
 ﻿
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,9 +54,57 @@ public partial class RacingWheelPage : UserControl
 	private Point _previewDragStartPoint;
 	private double _previewDragStartOffset = 0.0;
 
+	private MarvinsAIRARefactored.DataContext.Settings? _subscribedSettings = null;
+
 	public RacingWheelPage()
 	{
 		InitializeComponent();
+
+		SubscribeToSettings();
+
+		// re-subscribe to the new Settings instance whenever it is replaced (e.g. after settings file load)
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.PropertyChanged += ( _, e ) =>
+		{
+			if ( e.PropertyName == nameof( MarvinsAIRARefactored.DataContext.DataContext.Settings ) )
+			{
+				SubscribeToSettings();
+			}
+		};
+	}
+
+	private void SubscribeToSettings()
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		if ( ReferenceEquals( _subscribedSettings, settings ) )
+		{
+			return;
+		}
+
+		if ( _subscribedSettings != null )
+		{
+			_subscribedSettings.PropertyChanged -= Settings_PropertyChanged;
+		}
+
+		settings.PropertyChanged += Settings_PropertyChanged;
+
+		_subscribedSettings = settings;
+	}
+
+	// The graph selector's SelectedValue is pushed imperatively (selecting a graph has to go through
+	// Settings.SelectFFBGraph, so it cannot be a plain two-way binding) — follow selection changes that do not come
+	// from the selector itself, most importantly a context switch (per-car / per-track graph selection), which
+	// changes RacingWheelSelectedFFBGraphName via the UpdateSettings read path, often on a simulator thread.
+	private void Settings_PropertyChanged( object? sender, PropertyChangedEventArgs e )
+	{
+		if ( e.PropertyName != nameof( MarvinsAIRARefactored.DataContext.Settings.RacingWheelSelectedFFBGraphName ) )
+		{
+			return;
+		}
+
+		// always deferred: the graph management handlers (rename, delete, import...) change the selection before
+		// they rebuild the selector's items, so syncing synchronously could select a name the items don't have yet
+		_ = Dispatcher.InvokeAsync( UpdateFFBGraphSelection );
 	}
 
 	#region User Control Events
@@ -709,6 +758,25 @@ public partial class RacingWheelPage : UserControl
 		_refreshingGraphSelector = true;
 
 		Graph_MairaComboBox.ItemsSource = BuildGraphSelectorItems( settings.RacingWheelFFBGraphs );
+
+		_refreshingGraphSelector = false;
+
+		UpdateFFBGraphSelection();
+
+		// Rebuild the module cards so their (localized) module names and setting labels refresh — this runs from
+		// MainWindow.RefreshWindow, which is the app's relocalization entry point, so the editor follows a
+		// runtime language switch.
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.RebuildFromCurrentSelection();
+	}
+
+	// Points the selector at the currently selected graph and refreshes the per-graph button states. Cheap and
+	// idempotent — it runs after every user selection as well as after context switches.
+	private void UpdateFFBGraphSelection()
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		_refreshingGraphSelector = true;
+
 		Graph_MairaComboBox.SelectedValue = settings.RacingWheelSelectedFFBGraphName;
 
 		var isBuiltIn = settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) && graph.IsBuiltIn;
@@ -719,11 +787,6 @@ public partial class RacingWheelPage : UserControl
 		ResetGraph_MairaButton.Visibility = isBuiltIn ? Visibility.Visible : Visibility.Collapsed;
 
 		_refreshingGraphSelector = false;
-
-		// Rebuild the module cards so their (localized) module names and setting labels refresh — this runs from
-		// MainWindow.RefreshWindow, which is the app's relocalization entry point, so the editor follows a
-		// runtime language switch.
-		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.RebuildFromCurrentSelection();
 	}
 
 	private void Graph_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
