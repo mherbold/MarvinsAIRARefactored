@@ -204,7 +204,7 @@
                                         <StackPanel VerticalAlignment="Center"
                                                     Margin="10,0">
 
-                                            <TextBlock Text="{Binding DisplayName}"
+                                            <TextBlock Text="{Binding NodeName}"
                                                        Style="{StaticResource MairaTextBlockStyle}"
                                                        FontSize="16"
                                                        TextTrimming="CharacterEllipsis"

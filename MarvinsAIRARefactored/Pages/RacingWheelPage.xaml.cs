@@ -1105,6 +1105,25 @@ public partial class RacingWheelPage : UserControl
 		}
 	}
 
+	private void EditNodeName_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) && moduleViewModel.CanEditNodeName )
+		{
+			var app = App.Instance!;
+
+			// the editor is seeded with the custom name without its "(2)" duplicate suffix (or the automatic name when
+			// the node has no override yet); clearing it — or leaving the automatic name as is — keeps the automatic name
+			var window = new EditNodeNameWindow( moduleViewModel.EditableNodeName ) { Owner = app.MainWindow };
+
+			window.ShowDialog();
+
+			if ( window.Confirmed )
+			{
+				moduleViewModel.NodeName = window.NodeName;
+			}
+		}
+	}
+
 	private void EditNodeDescription_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) && moduleViewModel.CanEditNodeDescription )

@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>Kalibreringstilstand er slået til - dit rat sendes ikke videre.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beskrivelse</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Rediger navn</value>
+  </data>
 </root>

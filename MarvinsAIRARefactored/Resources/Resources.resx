@@ -2840,4 +2840,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>Calibration mode is on - your wheel is not passed through.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Edit name</value>
+  </data>
 </root>

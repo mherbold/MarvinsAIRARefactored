@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>Kalibratiemodus staat aan - je stuur wordt niet doorgegeven.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschrijving</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Naam bewerken</value>
+  </data>
 </root>

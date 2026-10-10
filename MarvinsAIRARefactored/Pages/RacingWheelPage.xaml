@@ -142,6 +142,13 @@
 
             <StackPanel Margin="0,10">
 
+                <!-- the node's module type, always shown (even when it repeats the automatic name) so a
+                     custom-named node's type stays visible -->
+                <TextBlock Text="{Binding ModuleTypeName}"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Margin="20,0,20,0"
+                           Foreground="{DynamicResource Brush.Foreground.Muted}" />
+
                 <Grid Margin="20,0,20,10">
 
                     <Grid.ColumnDefinitions>
@@ -168,7 +175,7 @@
 
                     <TextBlock Grid.Row="0"
                                Grid.Column="1"
-                               Text="{Binding DisplayName}"
+                               Text="{Binding NodeName}"
                                Style="{StaticResource MairaTextBlockStyle}"
                                FontSize="30" />
 
@@ -214,33 +221,76 @@
                 <ItemsControl ItemsSource="{Binding Settings}"
                               ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}" />
 
+                <!-- Node name — the automatic name, or the user's override on a custom graph (never blank).
+                     The pencil (custom graphs only) opens the name editor window; not pinnable. -->
+                <StackPanel Margin="20,0,20,20">
+
+                    <TextBlock Text="{Binding Localization[Name], Source={x:Static datacontext:DataContext.Instance}}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               TextTrimming="CharacterEllipsis" />
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding NodeName}"
+                                   Style="{StaticResource MairaTextBlockStyle}"
+                                   FontSize="16"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource Brush.Foreground.Muted}" />
+
+                        <controls:MairaButton Grid.Column="1"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
+                                              IsSmall="True"
+                                              Margin="10,0,0,0"
+                                              VerticalAlignment="Top"
+                                              Tag="{Binding}"
+                                              Click="EditNodeName_MairaButton_Click"
+                                              Visibility="{Binding CanEditNodeName, Converter={StaticResource BoolToVisibility}}" />
+
+                    </Grid>
+
+                </StackPanel>
+
                 <!-- Node description — the localized built-in default, or the user's override on a custom
                      graph. The pencil (custom graphs only) opens the description editor window; the same
                      text is the node's hover tooltip on the graph canvas. -->
-                <Grid Margin="20,0,20,10">
+                <StackPanel Margin="20,0,20,10">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0"
-                               Text="{Binding NodeDescription}"
+                    <TextBlock Text="{Binding Localization[Description], Source={x:Static datacontext:DataContext.Instance}}"
                                Style="{StaticResource MairaTextBlockStyle}"
-                               FontSize="16"
-                               TextWrapping="Wrap"
-                               Foreground="{DynamicResource Brush.Foreground.Muted}" />
+                               TextTrimming="CharacterEllipsis" />
 
-                    <controls:MairaButton Grid.Column="1"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
-                                          IsSmall="True"
-                                          Margin="10,0,0,0"
-                                          VerticalAlignment="Top"
-                                          Tag="{Binding}"
-                                          Click="EditNodeDescription_MairaButton_Click"
-                                          Visibility="{Binding CanEditNodeDescription, Converter={StaticResource BoolToVisibility}}" />
+                    <Grid>
 
-                </Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding NodeDescription}"
+                                   Style="{StaticResource MairaTextBlockStyle}"
+                                   FontSize="16"
+                                   TextWrapping="Wrap"
+                                   Foreground="{DynamicResource Brush.Foreground.Muted}" />
+
+                        <controls:MairaButton Grid.Column="1"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
+                                              IsSmall="True"
+                                              Margin="10,0,0,0"
+                                              VerticalAlignment="Top"
+                                              Tag="{Binding}"
+                                              Click="EditNodeDescription_MairaButton_Click"
+                                              Visibility="{Binding CanEditNodeDescription, Converter={StaticResource BoolToVisibility}}" />
+
+                    </Grid>
+
+                </StackPanel>
 
                 <!-- Reorders this node's pinned group among the quick controls in the FFB graph settings
                      section (custom graphs with this node pinned only — the buttons at the ends gray out
@@ -1216,10 +1266,13 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
+                                    <!-- a custom-named node gets its module type appended in gray -->
                                     <TextBlock Grid.Column="0"
-                                               Text="{Binding Module.DisplayName}"
                                                Style="{StaticResource MairaTextBlockStyle}"
-                                               TextTrimming="CharacterEllipsis" />
+                                               TextTrimming="CharacterEllipsis">
+                                        <Run Text="{Binding Module.NodeName, Mode=OneWay}" /><Run Text="{Binding Module.ModuleTypeSuffix, Mode=OneWay}"
+                                                                                                  Foreground="{DynamicResource Brush.Foreground.Muted}" />
+                                    </TextBlock>
 
                                     <!-- the hairline's logical thickness is 1/AppUIScale so it always rasterizes as exactly one
                                          device pixel — a fixed 1px line scaled below 100% becomes a sub-pixel band that can vanish

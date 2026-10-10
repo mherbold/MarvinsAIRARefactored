@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>Le mode d'étalonnage est activé - votre volant n'est pas transmis.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Modifier le nom</value>
+  </data>
 </root>

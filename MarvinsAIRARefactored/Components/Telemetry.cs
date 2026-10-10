@@ -1,17 +1,27 @@
-﻿
+
+using System.Globalization;
 using System.IO.MemoryMappedFiles;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+
+using MarvinsAIRARefactored.FFB;
 
 namespace MarvinsAIRARefactored.Components;
 
 public class Telemetry
 {
-	private const int Version = 8;
+	private const int Version = 9;
 
 	private const string MemoryMappedFileName = "Local\\MAIRARefactoredTelemetry";
 	private const int MaxStringLengthInBytes = 256;
-	private const int MaxRacingWheelAlgorithmSettings = 7;
+	private const int MaxGraphParameters = 50;
+	private const int MaxGraphParameterStringLengthInBytes = 64;
+
+	private const int MemoryMappedFileRetryIntervalInMilliseconds = 5000;
+
+	private const string GraphParameterTrueValue = "true";
+	private const string GraphParameterFalseValue = "false";
 
 	[StructLayout( LayoutKind.Sequential, Pack = 4 )]
 	public unsafe struct DataBufferStruct
@@ -48,45 +58,18 @@ public class Telemetry
 		public float racingWheelStrength;
 		public float racingWheelMaxForce;
 
-		public int racingWheelAlgorithm;
-		public fixed byte racingWheelAlgorithmName[ MaxStringLengthInBytes ];
-
-		public bool racingWheelAlgorithmSoftLimiterIsEnabled;
-		public fixed byte racingWheelAlgorithmSoftLimiterName[ MaxStringLengthInBytes ];
-		public fixed byte racingWheelAlgorithmSoftLimiterValue[ MaxStringLengthInBytes ];
-
-		public fixed float racingWheelAlgorithmSettings[ MaxRacingWheelAlgorithmSettings ];
-		public fixed byte racingWheelAlgorithmSettingNames[ MaxRacingWheelAlgorithmSettings * MaxStringLengthInBytes ];
-		public fixed byte racingWheelAlgorithmSettingValues[ MaxRacingWheelAlgorithmSettings * MaxStringLengthInBytes ];
-
 		// steering effects settings telemetry
 
 		public fixed byte steeringEffectsCalibrationFileName[ MaxStringLengthInBytes ];
 
 		public float steeringEffectsUndersteerMinThreshold;
 		public float steeringEffectsUndersteerMaxThreshold;
-		public fixed byte steeringEffectsUndersteerVibrationPattern[ MaxStringLengthInBytes ];
-		public float steeringEffectsUndersteerVibrationStrength;
-		public float steeringEffectsUndersteerVibrationMinFrequency;
-		public float steeringEffectsUndersteerVibrationMaxFrequency;
-		public float steeringEffectsUndersteerVibrationCurve;
-		public fixed byte steeringEffectsUndersteerForceDirection[ MaxStringLengthInBytes ];
-		public float steeringEffectsUndersteerForceStrength;
-		public float steeringEffectsUndersteerForceCurve;
 		public float steeringEffectsUndersteerPedalVibrationMinFrequency;
 		public float steeringEffectsUndersteerPedalVibrationMaxFrequency;
 		public float steeringEffectsUndersteerPedalVibrationCurve;
 
 		public float steeringEffectsOversteerMinThreshold;
 		public float steeringEffectsOversteerMaxThreshold;
-		public fixed byte steeringEffectsOversteerVibrationPattern[ MaxStringLengthInBytes ];
-		public float steeringEffectsOversteerVibrationStrength;
-		public float steeringEffectsOversteerVibrationMinFrequency;
-		public float steeringEffectsOversteerVibrationMaxFrequency;
-		public float steeringEffectsOversteerVibrationCurve;
-		public fixed byte steeringEffectsOversteerForceDirection[ MaxStringLengthInBytes ];
-		public float steeringEffectsOversteerForceStrength;
-		public float steeringEffectsOversteerForceCurve;
 		public float steeringEffectsOversteerPedalVibrationMinFrequency;
 		public float steeringEffectsOversteerPedalVibrationMaxFrequency;
 		public float steeringEffectsOversteerPedalVibrationCurve;
@@ -94,14 +77,6 @@ public class Telemetry
 		public float steeringEffectsSeatOfPantsMinThreshold;
 		public float steeringEffectsSeatOfPantsMaxThreshold;
 		public fixed byte steeringEffectsSeatOfPantsAlgorithm[ MaxStringLengthInBytes ];
-		public fixed byte steeringEffectsSeatOfPantsVibrationPattern[ MaxStringLengthInBytes ];
-		public float steeringEffectsSeatOfPantsVibrationStrength;
-		public float steeringEffectsSeatOfPantsVibrationMinFrequency;
-		public float steeringEffectsSeatOfPantsVibrationMaxFrequency;
-		public float steeringEffectsSeatOfPantsVibrationCurve;
-		public fixed byte steeringEffectsSeatOfPantsForceDirection[ MaxStringLengthInBytes ];
-		public float steeringEffectsSeatOfPantsForceStrength;
-		public float steeringEffectsSeatOfPantsForceCurve;
 		public float steeringEffectsSeatOfPantsPedalVibrationMinFrequency;
 		public float steeringEffectsSeatOfPantsPedalVibrationMaxFrequency;
 		public float steeringEffectsSeatOfPantsPedalVibrationCurve;
@@ -111,87 +86,27 @@ public class Telemetry
 		public bool soundsWheelSpinIsPlaying;
 		public float soundsWheelSpinVolume;
 
+		// ffb graph settings telemetry (pinned settings of the active graph as a flat list, in the display order of
+		// the FFB graph settings section) - parameter i of every array below is at index i
+
+		public fixed byte graphName[ MaxStringLengthInBytes ];
+
+		public int graphParameterCount;
+
+		// the per-parameter strings are short (names and values), so they use a smaller slot than the other strings
+		// to keep the buffer small - longer text is cut at a character boundary (see WriteString)
+
+		public fixed byte graphParameterNodeNames[ MaxGraphParameters * MaxGraphParameterStringLengthInBytes ];
+		public fixed byte graphParameterNodeModuleTypes[ MaxGraphParameters * MaxGraphParameterStringLengthInBytes ];
+		public fixed byte graphParameterNames[ MaxGraphParameters * MaxGraphParameterStringLengthInBytes ];
+		public fixed byte graphParameterRawValues[ MaxGraphParameters * MaxGraphParameterStringLengthInBytes ];
+		public fixed byte graphParameterFormattedValues[ MaxGraphParameters * MaxGraphParameterStringLengthInBytes ];
+
 		// string setters
-
-		public void SetRacingWheelAlgorithmName( string? value )
-		{
-			fixed ( byte* bytePtr = racingWheelAlgorithmName )
-			{
-				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
-			}
-		}
-
-		public void SetRacingWheelAlgorithmSoftLimiterName( string? value )
-		{
-			fixed ( byte* bytePtr = racingWheelAlgorithmSoftLimiterName )
-			{
-				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
-			}
-		}
-
-		public void SetRacingWheelAlgorithmSoftLimiterValue( string? value )
-		{
-			fixed ( byte* bytePtr = racingWheelAlgorithmSoftLimiterValue )
-			{
-				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
-			}
-		}
-
-		public void SetRacingWheelAlgorithmSettingName( int index, string? value )
-		{
-			if ( index < 0 || index >= MaxRacingWheelAlgorithmSettings ) return;
-
-			fixed ( byte* bytePtr = racingWheelAlgorithmSettingNames )
-			{
-				WriteString( bytePtr, index, MaxStringLengthInBytes, value );
-			}
-		}
-
-		public void SetRacingWheelAlgorithmSettingValue( int index, string? value )
-		{
-			if ( index < 0 || index >= MaxRacingWheelAlgorithmSettings ) return;
-
-			fixed ( byte* bytePtr = racingWheelAlgorithmSettingValues )
-			{
-				WriteString( bytePtr, index, MaxStringLengthInBytes, value );
-			}
-		}
 
 		public void SetSteeringEffectsCalibrationFileName( string? value )
 		{
 			fixed ( byte* bytePtr = steeringEffectsCalibrationFileName )
-			{
-				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
-			}
-		}
-
-		public void SetSteeringEffectsUndersteerVibrationPattern( string? value )
-		{
-			fixed ( byte* bytePtr = steeringEffectsUndersteerVibrationPattern )
-			{
-				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
-			}
-		}
-
-		public void SetSteeringEffectsUndersteerForceDirection( string? value )
-		{
-			fixed ( byte* bytePtr = steeringEffectsUndersteerForceDirection )
-			{
-				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
-			}
-		}
-
-		public void SetSteeringEffectsOversteerVibrationPattern( string? value )
-		{
-			fixed ( byte* bytePtr = steeringEffectsOversteerVibrationPattern )
-			{
-				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
-			}
-		}
-
-		public void SetSteeringEffectsOversteerForceDirection( string? value )
-		{
-			fixed ( byte* bytePtr = steeringEffectsOversteerForceDirection )
 			{
 				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
 			}
@@ -205,19 +120,61 @@ public class Telemetry
 			}
 		}
 
-		public void SetSteeringEffectsSeatOfPantsVibrationPattern( string? value )
+		public void SetGraphName( string? value )
 		{
-			fixed ( byte* bytePtr = steeringEffectsSeatOfPantsVibrationPattern )
+			fixed ( byte* bytePtr = graphName )
 			{
 				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
 			}
 		}
 
-		public void SetSteeringEffectsSeatOfPantsForceDirection( string? value )
+		public void SetGraphParameterNodeName( int parameterIndex, string? value )
 		{
-			fixed ( byte* bytePtr = steeringEffectsSeatOfPantsForceDirection )
+			if ( parameterIndex < 0 || parameterIndex >= MaxGraphParameters ) return;
+
+			fixed ( byte* bytePtr = graphParameterNodeNames )
 			{
-				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
+				WriteString( bytePtr, parameterIndex, MaxGraphParameterStringLengthInBytes, value );
+			}
+		}
+
+		public void SetGraphParameterNodeModuleType( int parameterIndex, string? value )
+		{
+			if ( parameterIndex < 0 || parameterIndex >= MaxGraphParameters ) return;
+
+			fixed ( byte* bytePtr = graphParameterNodeModuleTypes )
+			{
+				WriteString( bytePtr, parameterIndex, MaxGraphParameterStringLengthInBytes, value );
+			}
+		}
+
+		public void SetGraphParameterName( int parameterIndex, string? value )
+		{
+			if ( parameterIndex < 0 || parameterIndex >= MaxGraphParameters ) return;
+
+			fixed ( byte* bytePtr = graphParameterNames )
+			{
+				WriteString( bytePtr, parameterIndex, MaxGraphParameterStringLengthInBytes, value );
+			}
+		}
+
+		public void SetGraphParameterRawValue( int parameterIndex, string? value )
+		{
+			if ( parameterIndex < 0 || parameterIndex >= MaxGraphParameters ) return;
+
+			fixed ( byte* bytePtr = graphParameterRawValues )
+			{
+				WriteString( bytePtr, parameterIndex, MaxGraphParameterStringLengthInBytes, value );
+			}
+		}
+
+		public void SetGraphParameterFormattedValue( int parameterIndex, string? value )
+		{
+			if ( parameterIndex < 0 || parameterIndex >= MaxGraphParameters ) return;
+
+			fixed ( byte* bytePtr = graphParameterFormattedValues )
+			{
+				WriteString( bytePtr, parameterIndex, MaxGraphParameterStringLengthInBytes, value );
 			}
 		}
 
@@ -236,6 +193,16 @@ public class Telemetry
 			var bytes = Encoding.UTF8.GetBytes( value );
 
 			var length = Math.Min( bytes.Length, capacity - 1 );
+
+			// when the text is cut, back off to the start of the cut character so a multi-byte UTF-8 sequence is never
+			// left half-written (continuation bytes are 10xxxxxx)
+			if ( length < bytes.Length )
+			{
+				while ( ( length > 0 ) && ( ( bytes[ length ] & 0xC0 ) == 0x80 ) )
+				{
+					length--;
+				}
+			}
 
 			Marshal.Copy( bytes, 0, (IntPtr) bytePtr + offset, length );
 
@@ -271,18 +238,59 @@ public class Telemetry
 	private MemoryMappedFile? _memoryMappedFile = null;
 	private MemoryMappedViewAccessor? _memoryMappedFileViewAccessor = null;
 
+	private long _nextMemoryMappedFileAttemptTickCount = 0;
+	private bool _memoryMappedFileTooSmallLogged = false;
+
 	public void Initialize()
 	{
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[Telemetry] Initialize >>>" );
 
-		var sizeOfTelemetryData = Marshal.SizeOf<DataStruct>();
-
-		_memoryMappedFile = MemoryMappedFile.CreateOrOpen( MemoryMappedFileName, sizeOfTelemetryData );
-		_memoryMappedFileViewAccessor = _memoryMappedFile.CreateViewAccessor();
+		TryOpenMemoryMappedFile( app );
 
 		app.Logger.WriteLine( "[Telemetry] <<< Initialize" );
+	}
+
+	private void TryOpenMemoryMappedFile( App app )
+	{
+		_nextMemoryMappedFileAttemptTickCount = Environment.TickCount64 + MemoryMappedFileRetryIntervalInMilliseconds;
+
+		// Unsafe.SizeOf (the managed layout) is what MemoryMappedViewAccessor.Write actually copies - Marshal.SizeOf
+		// can't size this struct (the marshaler rejects the nested large buffers) and would over-count bools as 4 bytes
+		var sizeOfTelemetryData = Unsafe.SizeOf<DataStruct>();
+
+		var memoryMappedFile = MemoryMappedFile.CreateOrOpen( MemoryMappedFileName, sizeOfTelemetryData );
+		var memoryMappedFileViewAccessor = memoryMappedFile.CreateViewAccessor();
+
+		// CreateOrOpen returns the EXISTING mapping when another process (e.g. SimHub) still holds one open from an
+		// older, smaller layout - it can't be resized, so writing our struct would run past its end. Let go of it and
+		// try again every few seconds (from Tick) - the SimHub plugin releases a mapping that is too small for it, so
+		// once nothing holds the old one open, the next attempt creates a fresh mapping of the right size.
+		if ( memoryMappedFileViewAccessor.Capacity < sizeOfTelemetryData )
+		{
+			if ( !_memoryMappedFileTooSmallLogged )
+			{
+				app.Logger.WriteLine( $"[Telemetry] Existing memory mapped file is too small ({memoryMappedFileViewAccessor.Capacity} < {sizeOfTelemetryData} bytes) - another process has an older layout open; retrying every {MemoryMappedFileRetryIntervalInMilliseconds / 1000} seconds" );
+
+				_memoryMappedFileTooSmallLogged = true;
+			}
+
+			memoryMappedFileViewAccessor.Dispose();
+			memoryMappedFile.Dispose();
+
+			return;
+		}
+
+		if ( _memoryMappedFileTooSmallLogged )
+		{
+			app.Logger.WriteLine( "[Telemetry] Memory mapped file opened after retrying" );
+
+			_memoryMappedFileTooSmallLogged = false;
+		}
+
+		_memoryMappedFile = memoryMappedFile;
+		_memoryMappedFileViewAccessor = memoryMappedFileViewAccessor;
 	}
 
 	public void Shutdown()
@@ -358,166 +366,18 @@ public class Telemetry
 			dataBuffer.racingWheelStrength = settings.RacingWheelStrength;
 			dataBuffer.racingWheelMaxForce = settings.RacingWheelMaxForce;
 
-			dataBuffer.racingWheelAlgorithm = (int) settings.RacingWheelAlgorithm;
-			dataBuffer.SetRacingWheelAlgorithmName( localization[ settings.RacingWheelAlgorithm.ToString() ] );
-
-			dataBuffer.racingWheelAlgorithmSoftLimiterIsEnabled = settings.RacingWheelEnableSoftLimiter;
-			dataBuffer.SetRacingWheelAlgorithmSoftLimiterName( localization[ "SoftClipping" ] );
-			dataBuffer.SetRacingWheelAlgorithmSoftLimiterValue( settings.RacingWheelEnableSoftLimiter ? localization[ "ON" ] : localization[ "OFF" ] );
-
-			unsafe
-			{
-				for ( var index = 0; index < MaxRacingWheelAlgorithmSettings; index++ )
-				{
-					dataBuffer.racingWheelAlgorithmSettings[ index ] = 0f;
-
-					dataBuffer.SetRacingWheelAlgorithmSettingName( index, null );
-					dataBuffer.SetRacingWheelAlgorithmSettingValue( index, null );
-				}
-
-				switch ( settings.RacingWheelAlgorithm )
-				{
-					case RacingWheel.Algorithm.DetailBooster:
-					case RacingWheel.Algorithm.DetailBoosterOn60Hz:
-
-						dataBuffer.racingWheelAlgorithmSettings[ 0 ] = settings.RacingWheelDetailBoost;
-						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = settings.RacingWheelDetailBoostBias;
-
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "DetailBoost" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "DetailBoostBias" ] );
-
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, settings.RacingWheelDetailBoostString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, settings.RacingWheelDetailBoostBiasString );
-
-						break;
-
-					case RacingWheel.Algorithm.DeltaLimiter:
-					case RacingWheel.Algorithm.DeltaLimiterOn60Hz:
-
-						dataBuffer.racingWheelAlgorithmSettings[ 0 ] = settings.RacingWheelDeltaLimit;
-						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = settings.RacingWheelDeltaLimiterBias;
-
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "DeltaLimit" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "DeltaLimiterBias" ] );
-
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, settings.RacingWheelDeltaLimitString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, settings.RacingWheelDeltaLimiterBiasString );
-
-						break;
-
-					case RacingWheel.Algorithm.SlewAndTotalCompression:
-
-						dataBuffer.racingWheelAlgorithmSettings[ 0 ] = settings.RacingWheelSlewCompressionThreshold;
-						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = settings.RacingWheelSlewCompressionRate;
-						dataBuffer.racingWheelAlgorithmSettings[ 2 ] = settings.RacingWheelTotalCompressionThreshold;
-						dataBuffer.racingWheelAlgorithmSettings[ 3 ] = settings.RacingWheelTotalCompressionRate;
-
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "SlewCompressionThreshold" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "SlewCompressionRate" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 2, localization[ "TotalCompressionThreshold" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, localization[ "TotalCompressionRate" ] );
-
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, settings.RacingWheelSlewCompressionThresholdString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, settings.RacingWheelSlewCompressionRateString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 2, settings.RacingWheelTotalCompressionThresholdString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 3, settings.RacingWheelTotalCompressionRateString );
-
-						break;
-
-					case RacingWheel.Algorithm.MultiAdjustmentToolkit:
-
-						switch ( settings.RacingWheelMultiFFBSourceSelection )
-						{
-							case RacingWheel.MultiFFBSourceOptions.Native60Hz:
-								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 0f;
-								break;
-
-							case RacingWheel.MultiFFBSourceOptions.HybridVariable30:
-								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 1f;
-								break;
-
-							case RacingWheel.MultiFFBSourceOptions.Hybrid10:
-								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 2f;
-								break;
-
-							case RacingWheel.MultiFFBSourceOptions.Native360Hz:
-								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 3f;
-								break;
-						}
-
-						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = settings.RacingWheelMulti360HzDetail;
-						dataBuffer.racingWheelAlgorithmSettings[ 2 ] = settings.RacingWheelMultiTorqueCompression;
-						dataBuffer.racingWheelAlgorithmSettings[ 3 ] = ( settings.RacingWheelMultiEnableSlewPeakMode ) ? 1f : 0f;
-						dataBuffer.racingWheelAlgorithmSettings[ 4 ] = settings.RacingWheelMultiSlewRateReduction;
-						dataBuffer.racingWheelAlgorithmSettings[ 5 ] = settings.RacingWheelMultiDetailGain;
-						dataBuffer.racingWheelAlgorithmSettings[ 6 ] = settings.RacingWheelMultiOutputSmoothing;
-
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "FFBSource" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "Multi360HzDetail" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 2, localization[ "TorqueCompression" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, localization[ "SlewPeakMode" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 4, localization[ "SlewRateReduction" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 5, localization[ "DetailGain" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 6, localization[ "OutputSmoothing" ] );
-
-						switch ( settings.RacingWheelMultiFFBSourceSelection )
-						{
-							case RacingWheel.MultiFFBSourceOptions.Native60Hz:
-								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "Native60Hz" ] );
-								break;
-
-							case RacingWheel.MultiFFBSourceOptions.HybridVariable30:
-								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "HybridVariable30" ] );
-								break;
-
-							case RacingWheel.MultiFFBSourceOptions.Hybrid10:
-								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "Hybrid10" ] );
-								break;
-
-							case RacingWheel.MultiFFBSourceOptions.Native360Hz:
-								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "Native360Hz" ] );
-								break;
-						}
-
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, settings.RacingWheelMulti360HzDetailString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 2, settings.RacingWheelMultiTorqueCompressionString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 3, settings.RacingWheelMultiEnableSlewPeakMode ? localization[ "ON" ] : localization[ "OFF" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 4, settings.RacingWheelMultiSlewRateReductionString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 5, settings.RacingWheelMultiDetailGainString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 6, settings.RacingWheelMultiOutputSmoothingString );
-
-						break;
-				}
-			}
-
 			// steering effects settings telemetry
 
 			dataBuffer.SetSteeringEffectsCalibrationFileName( app.SteeringEffects.CalibrationFileName );
 
 			dataBuffer.steeringEffectsUndersteerMinThreshold = settings.SteeringEffectsUndersteerMinimumThreshold;
 			dataBuffer.steeringEffectsUndersteerMaxThreshold = settings.SteeringEffectsUndersteerMaximumThreshold;
-			dataBuffer.SetSteeringEffectsUndersteerVibrationPattern( localization[ settings.SteeringEffectsUndersteerWheelVibrationPattern.ToString() ] );
-			dataBuffer.steeringEffectsUndersteerVibrationStrength = settings.SteeringEffectsUndersteerWheelVibrationStrength;
-			dataBuffer.steeringEffectsUndersteerVibrationMinFrequency = settings.SteeringEffectsUndersteerWheelVibrationMinimumFrequency;
-			dataBuffer.steeringEffectsUndersteerVibrationMaxFrequency = settings.SteeringEffectsUndersteerWheelVibrationMaximumFrequency;
-			dataBuffer.steeringEffectsUndersteerVibrationCurve = settings.SteeringEffectsUndersteerWheelVibrationCurve;
-			dataBuffer.SetSteeringEffectsUndersteerForceDirection( localization[ settings.SteeringEffectsUndersteerWheelConstantForceDirection.ToString() ] );
-			dataBuffer.steeringEffectsUndersteerForceStrength = settings.SteeringEffectsUndersteerWheelConstantForceStrength;
-			dataBuffer.steeringEffectsUndersteerForceCurve = settings.SteeringEffectsUndersteerWheelConstantForceCurve;
 			dataBuffer.steeringEffectsUndersteerPedalVibrationMinFrequency = settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequency;
 			dataBuffer.steeringEffectsUndersteerPedalVibrationMaxFrequency = settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequency;
 			dataBuffer.steeringEffectsUndersteerPedalVibrationCurve = settings.SteeringEffectsUndersteerPedalVibrationCurve;
 
 			dataBuffer.steeringEffectsOversteerMinThreshold = settings.SteeringEffectsOversteerMinimumThreshold;
 			dataBuffer.steeringEffectsOversteerMaxThreshold = settings.SteeringEffectsOversteerMaximumThreshold;
-			dataBuffer.SetSteeringEffectsOversteerVibrationPattern( localization[ settings.SteeringEffectsOversteerWheelVibrationPattern.ToString() ] );
-			dataBuffer.steeringEffectsOversteerVibrationStrength = settings.SteeringEffectsOversteerWheelVibrationStrength;
-			dataBuffer.steeringEffectsOversteerVibrationMinFrequency = settings.SteeringEffectsOversteerWheelVibrationMinimumFrequency;
-			dataBuffer.steeringEffectsOversteerVibrationMaxFrequency = settings.SteeringEffectsOversteerWheelVibrationMaximumFrequency;
-			dataBuffer.steeringEffectsOversteerVibrationCurve = settings.SteeringEffectsOversteerWheelVibrationCurve;
-			dataBuffer.SetSteeringEffectsOversteerForceDirection( localization[ settings.SteeringEffectsOversteerWheelConstantForceDirection.ToString() ] );
-			dataBuffer.steeringEffectsOversteerForceStrength = settings.SteeringEffectsOversteerWheelConstantForceStrength;
-			dataBuffer.steeringEffectsOversteerForceCurve = settings.SteeringEffectsOversteerWheelConstantForceCurve;
 			dataBuffer.steeringEffectsOversteerPedalVibrationMinFrequency = settings.SteeringEffectsOversteerPedalVibrationMinimumFrequency;
 			dataBuffer.steeringEffectsOversteerPedalVibrationMaxFrequency = settings.SteeringEffectsOversteerPedalVibrationMaximumFrequency;
 			dataBuffer.steeringEffectsOversteerPedalVibrationCurve = settings.SteeringEffectsOversteerPedalVibrationCurve;
@@ -540,17 +400,13 @@ public class Telemetry
 					break;
 			}
 
-			dataBuffer.SetSteeringEffectsSeatOfPantsVibrationPattern( localization[ settings.SteeringEffectsSeatOfPantsWheelVibrationPattern.ToString() ] );
-			dataBuffer.steeringEffectsSeatOfPantsVibrationStrength = settings.SteeringEffectsSeatOfPantsWheelVibrationStrength;
-			dataBuffer.steeringEffectsSeatOfPantsVibrationMinFrequency = settings.SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequency;
-			dataBuffer.steeringEffectsSeatOfPantsVibrationMaxFrequency = settings.SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequency;
-			dataBuffer.steeringEffectsSeatOfPantsVibrationCurve = settings.SteeringEffectsSeatOfPantsWheelVibrationCurve;
-			dataBuffer.SetSteeringEffectsSeatOfPantsForceDirection( localization[ settings.SteeringEffectsSeatOfPantsWheelConstantForceDirection.ToString() ] );
-			dataBuffer.steeringEffectsSeatOfPantsForceStrength = settings.SteeringEffectsSeatOfPantsWheelConstantForceStrength;
-			dataBuffer.steeringEffectsSeatOfPantsForceCurve = settings.SteeringEffectsSeatOfPantsWheelConstantForceCurve;
 			dataBuffer.steeringEffectsSeatOfPantsPedalVibrationMinFrequency = settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequency;
 			dataBuffer.steeringEffectsSeatOfPantsPedalVibrationMaxFrequency = settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequency;
 			dataBuffer.steeringEffectsSeatOfPantsPedalVibrationCurve = settings.SteeringEffectsSeatOfPantsPedalVibrationCurve;
+
+			// ffb graph settings telemetry
+
+			UpdateGraphParameterTelemetry( ref dataBuffer );
 		}
 
 		// let SimHub know this buffer is ready for reading
@@ -558,6 +414,105 @@ public class Telemetry
 		_data.version = Version;
 		_data.bufferIndex = _currentBufferIndex;
 
+		if ( ( _memoryMappedFileViewAccessor == null ) && ( Environment.TickCount64 >= _nextMemoryMappedFileAttemptTickCount ) )
+		{
+			TryOpenMemoryMappedFile( app );
+		}
+
 		_memoryMappedFileViewAccessor?.Write( 0, ref _data );
 	}
+
+	private static void UpdateGraphParameterTelemetry( ref DataBufferStruct dataBuffer )
+	{
+		var graphViewModel = DataContext.DataContext.Instance.RacingWheelGraphViewModel;
+
+		// the active graph's user-facing name (built-ins localized), as shown in the graph selector
+
+		dataBuffer.SetGraphName( FFBGraphViewModel.GraphDisplayName( graphViewModel.GraphName, graphViewModel.IsFFBGraphBuiltIn ) );
+
+		// blank every slot first so parameters that no longer exist (or were unpinned) don't linger
+
+		for ( var parameterIndex = 0; parameterIndex < MaxGraphParameters; parameterIndex++ )
+		{
+			dataBuffer.SetGraphParameterNodeName( parameterIndex, null );
+			dataBuffer.SetGraphParameterNodeModuleType( parameterIndex, null );
+			dataBuffer.SetGraphParameterName( parameterIndex, null );
+			dataBuffer.SetGraphParameterRawValue( parameterIndex, null );
+			dataBuffer.SetGraphParameterFormattedValue( parameterIndex, null );
+		}
+
+		// PinnedGroups is exactly what the FFB graph settings section shows (whether or not it is currently visible):
+		// only nodes with pins, in display order, each with its pinned entries in display order (a pinned Enabled
+		// toggle first) - flattened here into one list, stopping once MaxGraphParameters is reached. Nodes whose
+		// output doesn't reach the Output module are skipped, even when they have pinned settings.
+
+		var contributingModuleIds = graphViewModel.ModuleIdsContributingToOutput();
+
+		var parameterCount = 0;
+
+		foreach ( var pinnedGroup in graphViewModel.PinnedGroups )
+		{
+			if ( !contributingModuleIds.Contains( pinnedGroup.Module.ModuleId ) )
+			{
+				continue;
+			}
+
+			foreach ( var pinnedEntry in pinnedGroup.Settings )
+			{
+				if ( parameterCount >= MaxGraphParameters )
+				{
+					break;
+				}
+
+				var (parameterName, parameterRawValue, parameterFormattedValue) = DescribePinnedEntry( pinnedEntry );
+
+				dataBuffer.SetGraphParameterNodeName( parameterCount, pinnedGroup.Module.NodeName );
+				dataBuffer.SetGraphParameterNodeModuleType( parameterCount, pinnedGroup.Module.ModuleTypeName );
+				dataBuffer.SetGraphParameterName( parameterCount, parameterName );
+				dataBuffer.SetGraphParameterRawValue( parameterCount, parameterRawValue );
+				dataBuffer.SetGraphParameterFormattedValue( parameterCount, parameterFormattedValue );
+
+				parameterCount++;
+			}
+		}
+
+		dataBuffer.graphParameterCount = parameterCount;
+	}
+
+	private static (string Name, string RawValue, string FormattedValue) DescribePinnedEntry( object pinnedEntry )
+	{
+		switch ( pinnedEntry )
+		{
+			case FFBPinnedEnabledViewModel enabledEntry:
+
+				return (enabledEntry.Label, FormatBooleanValue( enabledEntry.Module.Enabled ), FormatBooleanText( enabledEntry.Module.Enabled ));
+
+			case FFBModuleSettingViewModel setting:
+
+				switch ( setting.SettingType )
+				{
+					case FFBSettingType.Switch:
+
+						return (setting.Label, FormatBooleanValue( setting.IsOn ), FormatBooleanText( setting.IsOn ));
+
+					case FFBSettingType.Choice:
+
+						var choiceText = setting.ChoiceOptions.FirstOrDefault( option => option.Key == setting.ChoiceIndex ).Value ?? setting.ValueString;
+
+						return (setting.Label, setting.ChoiceIndex.ToString( CultureInfo.InvariantCulture ), choiceText);
+
+					default:
+
+						return (setting.Label, setting.Value.ToString( CultureInfo.InvariantCulture ), setting.ValueString);
+				}
+
+			default:
+
+				return (string.Empty, string.Empty, string.Empty);
+		}
+	}
+
+	private static string FormatBooleanValue( bool value ) => value ? GraphParameterTrueValue : GraphParameterFalseValue;
+
+	private static string FormatBooleanText( bool value ) => value ? FFBDisplayNames.Localize( "ON", "ON" ) : FFBDisplayNames.Localize( "OFF", "OFF" );
 }

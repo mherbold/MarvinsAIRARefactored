@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>โหมดสอบเทียบเปิดอยู่ - พวงมาลัยของคุณไม่ถูกส่งผ่าน</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>ชื่อ</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>คำอธิบาย</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>แก้ไขชื่อ</value>
+  </data>
 </root>

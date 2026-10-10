@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>Modul de calibrare este pornit - volanul tău nu este transmis.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descriere</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Editează numele</value>
+  </data>
 </root>

@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>보정 모드가 켜져 있습니다. 휠 입력이 전달되지 않습니다.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>설명</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>이름 편집</value>
+  </data>
 </root>

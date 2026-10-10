@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>Kalibrācijas režīms ir ieslēgts - tava stūre netiek nodota.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nosaukums</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Apraksts</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Rediģēt nosaukumu</value>
+  </data>
 </root>

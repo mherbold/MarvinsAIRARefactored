@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>A kalibrálási mód be van kapcsolva - a kormányod nem kerül továbbításra.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Név</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Leírás</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Név szerkesztése</value>
+  </data>
 </root>

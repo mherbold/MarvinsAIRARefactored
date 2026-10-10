@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>Режим калібрування ввімкнено - ваше кермо не передається.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Назва</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Опис</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Редагувати назву</value>
+  </data>
 </root>

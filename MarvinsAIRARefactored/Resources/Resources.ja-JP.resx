@@ -2845,4 +2845,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>キャリブレーションモードがオンです。ホイールの入力は渡されていません。</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>名前を編集</value>
+  </data>
 </root>

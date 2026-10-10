@@ -204,7 +204,13 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 	/// slope switch rescaling the cutoff). Not raised by <see cref="Reload"/> — reloads restore stored state.</summary>
 	public event Action<float, float>? ValueCommitted;
 
-	private void OnPropertyChanged( [CallerMemberName] string? propertyName = null ) => PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+	private void OnPropertyChanged( [CallerMemberName] string? propertyName = null )
+	{
+		PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+
+		// value / value string / pin changes feed the SimHub pinned-settings telemetry
+		App.Instance?.Telemetry.UpdateSettings();
+	}
 
 	public FFBSettingType SettingType => _descriptor.Type;
 
@@ -431,7 +437,17 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
-	private void OnPropertyChanged( [CallerMemberName] string? propertyName = null ) => PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+	private void OnPropertyChanged( [CallerMemberName] string? propertyName = null )
+	{
+		PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+
+		// the node name and Enabled toggle feed the SimHub pinned-settings telemetry (filtered - this VM also
+		// raises frequent test / state notifications that don't)
+		if ( ( propertyName == nameof( Enabled ) ) || ( propertyName == nameof( NodeName ) ) )
+		{
+			App.Instance?.Telemetry.UpdateSettings();
+		}
+	}
 
 	public string ModuleId => _model.ModuleId;
 	public string ModuleType => _model.ModuleType;
@@ -559,9 +575,87 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 				_displayName = value;
 
 				OnPropertyChanged();
+				OnPropertyChanged( nameof( NodeName ) );
 			}
 		}
 	}
+
+	/// <summary>True when the user gave this node a name (all-whitespace counts as blank).</summary>
+	public bool HasCustomName => !string.IsNullOrWhiteSpace( _model.Name );
+
+	/// <summary>The module type's localized name ("Gain") — shown in gray at the top of the settings card, and
+	/// appended in gray to a custom-named node's name in the FFB graph settings section.</summary>
+	public string ModuleTypeName => FFBDisplayNames.Module( _model.ModuleType );
+
+	/// <summary>" (Gain)" for a custom-named node, empty otherwise — the gray suffix in the FFB graph settings section.</summary>
+	public string ModuleTypeSuffix => HasCustomName ? $" ({ModuleTypeName})" : string.Empty;
+
+	private int _customNameOccurrence = 1;
+
+	/// <summary>This node's 1-based position among the graph's nodes sharing its custom name — the second and later
+	/// get "(2)", "(3)", ... appended, like duplicate automatic names. Set by
+	/// <see cref="FFBGraphViewModel.RefreshCustomNameOccurrences"/>.</summary>
+	public void SetCustomNameOccurrence( int occurrence )
+	{
+		if ( occurrence != _customNameOccurrence )
+		{
+			_customNameOccurrence = occurrence;
+
+			OnPropertyChanged( nameof( NodeName ) );
+		}
+	}
+
+	/// <summary>The custom name as the user entered it (no duplicate suffix), or the automatic name when there is
+	/// none — what the name editor is seeded with.</summary>
+	public string EditableNodeName => HasCustomName ? _model.Name.Trim() : DisplayName;
+
+	/// <summary>
+	/// The node's name — shown on the graph canvas, as the settings card's header, and in the FFB graph settings
+	/// section. A node in a CUSTOM graph can override the automatic <see cref="DisplayName"/> (stored in the graph,
+	/// rides export/import, edited via the pencil button on the card, never pinnable). Clearing the override,
+	/// entering only whitespace, or entering the automatic name itself reverts to the automatic name — so the
+	/// name is never blank. Nodes sharing a custom name are disambiguated as "Road feel", "Road feel (2)", ...
+	/// The setter takes the raw name (no suffix).
+	/// </summary>
+	public string NodeName
+	{
+		get
+		{
+			if ( !HasCustomName )
+			{
+				return DisplayName;
+			}
+
+			var customName = _model.Name.Trim();
+
+			return _customNameOccurrence > 1 ? $"{customName} ({_customNameOccurrence})" : customName;
+		}
+
+		set
+		{
+			var normalizedName = string.IsNullOrWhiteSpace( value ) || ( value.Trim() == DisplayName ) ? string.Empty : value.Trim();
+
+			if ( _owner.IsFFBGraphBuiltIn || ( normalizedName == _model.Name ) )
+			{
+				return;
+			}
+
+			_model.Name = normalizedName;
+
+			App.Instance!.SettingsFile.QueueForSerialization = true;
+
+			// renumbers this node and any others sharing its old or new custom name
+			_owner.RefreshCustomNameOccurrences();
+
+			OnPropertyChanged();
+			OnPropertyChanged( nameof( HasCustomName ) );
+			OnPropertyChanged( nameof( EditableNodeName ) );
+			OnPropertyChanged( nameof( ModuleTypeSuffix ) );
+		}
+	}
+
+	/// <summary>Node names are editable on custom graphs only (same rule as node descriptions).</summary>
+	public bool CanEditNodeName => !_owner.IsFFBGraphBuiltIn;
 
 	/// <summary>One-line settings digest for the node's second line — every setting's display value in declaration
 	/// order, comma-separated ("1.50x" / "one pole, 12.5 Hz"). Knobs reuse the same formatted string the settings
@@ -963,6 +1057,9 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 		OnPropertyChanged( nameof( HasPinnedSettings ) );
 
+		// graph switch, pin toggle, or group reorder - refresh the SimHub pinned-settings telemetry
+		App.Instance?.Telemetry.UpdateSettings();
+
 		// the reorder buttons on every module card track this group list (visibility and up/down enablement)
 		foreach ( var module in Modules )
 		{
@@ -1092,6 +1189,10 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	/// <summary>The selected graph's name (empty when no graph is selected) — the module VMs use it to derive
 	/// their built-in node-description localization keys.</summary>
 	public string GraphName => _graph?.Name ?? string.Empty;
+
+	/// <summary>Ids of the selected graph's modules that actually contribute to the Output (see
+	/// <see cref="FFBGraphTopology.ContributingToOutput"/>); empty when no graph is selected.</summary>
+	public HashSet<string> ModuleIdsContributingToOutput() => ( _graph != null ) ? FFBGraphTopology.ContributingToOutput( _graph ) : [];
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -1316,6 +1417,8 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			Modules.Add( moduleViewModel );
 		}
 
+		RefreshCustomNameOccurrences();
+
 		// one display wire per visible input of each canvas node (generators have none)
 		foreach ( var moduleViewModel in Modules )
 		{
@@ -1367,6 +1470,32 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 		OnPropertyChanged( nameof( GraphDescription ) );
 		OnPropertyChanged( nameof( IsFFBGraphCustom ) );
+	}
+
+	/// <summary>Numbers nodes that share a custom name in module order — the first keeps the plain name, later
+	/// ones show "(2)", "(3)", ... (same scheme as duplicate automatic names, which are counted separately).
+	/// Runs on every rebuild and whenever a node's custom name is edited.</summary>
+	public void RefreshCustomNameOccurrences()
+	{
+		var customNameCounts = new Dictionary<string, int>( StringComparer.Ordinal );
+
+		foreach ( var moduleViewModel in Modules )
+		{
+			if ( !moduleViewModel.HasCustomName )
+			{
+				moduleViewModel.SetCustomNameOccurrence( 1 );
+
+				continue;
+			}
+
+			var customName = moduleViewModel.EditableNodeName;
+
+			var occurrence = customNameCounts.TryGetValue( customName, out var seen ) ? seen + 1 : 1;
+
+			customNameCounts[ customName ] = occurrence;
+
+			moduleViewModel.SetCustomNameOccurrence( occurrence );
+		}
 	}
 
 	// The steering effects page's per-effect enable switches gate the understeer/oversteer/seat-of-pants
@@ -1825,13 +1954,13 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 	/// <summary>The input-mapped setting update confirmation for a module setting, gated by the racing wheel's
 	/// "enable input mapped setting update messages" switch (the FFB graph lives on the racing wheel page). The
-	/// label is the module's display name (which carries the "(2)" style suffix when a graph holds several of the
-	/// same module) followed by the setting's label, both already localized.</summary>
+	/// label is the node's name (the user's custom name, else the automatic display name which carries the "(2)"
+	/// style suffix when a graph holds several of the same module) followed by the setting's label.</summary>
 	private static void SendModuleSettingUpdateMessage( FFBModuleViewModel moduleViewModel, string settingLabel, string value )
 	{
 		if ( DataContext.DataContext.Instance.Settings.RacingWheelInputMappedSettingUpdateEnabled )
 		{
-			RacingWheel.SendChatMessageWithLabel( $"{moduleViewModel.DisplayName} {settingLabel}", value );
+			RacingWheel.SendChatMessageWithLabel( $"{moduleViewModel.NodeName} {settingLabel}", value );
 		}
 	}
 

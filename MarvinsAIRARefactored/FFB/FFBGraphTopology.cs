@@ -56,6 +56,64 @@ public static class FFBGraphTopology
 	}
 
 	/// <summary>
+	/// The set of modules that actually contribute to the Output module: the Output module itself, every module
+	/// upstream of it (following only inputs each module's descriptor actually uses), and the vibration generators
+	/// (they have no output connector, but always feed the Output through the vibration bus). A module whose output
+	/// is left dangling — not on the chain that ends at the Output's input — is excluded.
+	/// </summary>
+	public static HashSet<string> ContributingToOutput( FFBGraph graph )
+	{
+		var contributing = new HashSet<string>( StringComparer.Ordinal );
+		var pendingModuleIds = new Stack<string>();
+
+		foreach ( var module in graph.Modules )
+		{
+			var descriptor = FFBModuleRegistry.TryGet( module.ModuleType );
+
+			if ( descriptor?.IsGenerator == true )
+			{
+				contributing.Add( module.ModuleId );
+			}
+			else if ( descriptor?.IsOutput == true )
+			{
+				pendingModuleIds.Push( module.ModuleId );
+			}
+		}
+
+		var moduleById = new Dictionary<string, FFBModuleData>( StringComparer.Ordinal );
+
+		foreach ( var module in graph.Modules )
+		{
+			moduleById[ module.ModuleId ] = module;
+		}
+
+		// walk upstream from the Output through the inputs each module uses
+		while ( pendingModuleIds.Count > 0 )
+		{
+			var moduleId = pendingModuleIds.Pop();
+
+			if ( !contributing.Add( moduleId ) || !moduleById.TryGetValue( moduleId, out var module ) )
+			{
+				continue;
+			}
+
+			var signalInputCount = FFBModuleRegistry.TryGet( module.ModuleType )?.SignalInputCount ?? 0;
+
+			if ( signalInputCount >= 1 )
+			{
+				pendingModuleIds.Push( module.InputAModuleId );
+			}
+
+			if ( signalInputCount >= 2 )
+			{
+				pendingModuleIds.Push( module.InputBModuleId );
+			}
+		}
+
+		return contributing;
+	}
+
+	/// <summary>
 	/// The module every dangling or invalid input reference falls back to: the 360 Hz source when present, then
 	/// the 60 Hz source, then any other source already on the graph — null only when the graph has no source at
 	/// all (see <see cref="EnsureFallbackSource"/>).

@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>校准模式已开启 - 你的方向盘不会被传递。</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>编辑名称</value>
+  </data>
 </root>

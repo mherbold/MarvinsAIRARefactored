@@ -2845,4 +2845,13 @@ Hier ist der Link zum Spenden:</value>
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>Der Kalibrierungsmodus ist eingeschaltet - dein Lenkrad wird nicht durchgereicht.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Name bearbeiten</value>
+  </data>
 </root>

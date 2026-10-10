@@ -865,7 +865,8 @@ public partial class Settings
 			var settingDescriptor = difference.SettingDescriptor!;
 
 			var graphLabel = FFBGraphViewModel.GraphDisplayName( graph.Name, graph.IsBuiltIn );
-			var moduleLabel = FFBDisplayNames.Module( module.ModuleType );
+			// the node's custom name when the user gave it one, else the module type's name
+			var moduleLabel = string.IsNullOrWhiteSpace( module.Name ) ? FFBDisplayNames.Module( module.ModuleType ) : module.Name.Trim();
 
 			var row = new TuningProfileFFBRow
 			{

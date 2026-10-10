@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>El modo de calibración está activado - tu volante no se transmite.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>Editar nombre</value>
+  </data>
 </root>

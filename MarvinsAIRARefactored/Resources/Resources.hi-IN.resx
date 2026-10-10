@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>कैलिब्रेशन मोड चालू है - आपका व्हील पास नहीं हो रहा है।</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>नाम</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>विवरण</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>नाम संपादित करें</value>
+  </data>
 </root>

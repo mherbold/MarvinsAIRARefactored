@@ -774,8 +774,10 @@ public partial class Settings : INotifyPropertyChanged
 			}
 		}
 
-		// The description and pinned quick controls are part of the author's intent for the graph, so an update
-		// adopts them too (pins are remapped onto the local nodes the same way the values were).
+		// The description, pinned quick controls, and node names and descriptions are part of the author's intent for
+		// the graph, so an update adopts them too (pins, names and descriptions are remapped onto the local nodes the
+		// same way the values were). Node names and descriptions are only adopted onto custom graphs - a built-in
+		// graph's node text is fixed (and its descriptions are localized from keys).
 		localGraph.Description = imported.Description;
 
 		foreach ( var importedModule in imported.Modules )
@@ -788,6 +790,12 @@ public partial class Settings : INotifyPropertyChanged
 				{
 					localModule.PinnedSettings.Clear();
 					localModule.PinnedSettings.AddRange( importedModule.PinnedSettings );
+
+					if ( !localGraph.IsBuiltIn )
+					{
+						localModule.Name = importedModule.Name;
+						localModule.Description = importedModule.Description;
+					}
 				}
 			}
 		}

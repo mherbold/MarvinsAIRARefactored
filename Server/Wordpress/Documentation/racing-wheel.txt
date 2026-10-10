@@ -417,6 +417,10 @@
 <p>The two current-context choices only appear while the simulator is running with a car and track loaded. Without one there is no context to write to, and updating "the current car" would be the same as updating the baseline.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>Whichever update you choose, your graph also takes the file's graph description and pinned quick controls. On a custom graph it takes the node names and node descriptions too.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Reset graph</p>
 <!-- /wp:paragraph -->
@@ -624,7 +628,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>To the right of the node graph are the settings of whichever module is selected. At the top sits the module's on/off switch and its name; at the bottom, its description (with a pencil to rewrite it on a custom graph). Between them are the module's own controls.</p>
+<p>To the right of the node graph are the settings of whichever module is selected. At the top sits the module type in gray, then the module's on/off switch and its name; at the bottom, its name and description (each with a pencil to change it on a custom graph). Between them are the module's own controls.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Every node starts with an automatic <strong>name</strong> taken from its module type — "Gain", and "Gain (2)" for a second one. On a custom graph you can give a node a name of your own, such as "Road feel" or "Curb rumble", which makes a busy graph much easier to read. The name shows on the node in the graph, at the top of the settings column, in the quick controls (with the module type in gray after it), and in the chat messages a mapped button sends. Nodes that share a custom name get "(2)", "(3)" and so on added. To go back to the automatic name, clear the name or type the automatic name again. Names are saved in the graph, so they travel with it when you export and share it.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

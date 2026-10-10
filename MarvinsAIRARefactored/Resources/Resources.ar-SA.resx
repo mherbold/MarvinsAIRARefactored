@@ -2842,4 +2842,13 @@
   <data name="AccessibilityCalibrationModeOn" xml:space="preserve">
     <value>وضع المعايرة مفعّل - لا يتم تمرير عجلتك.</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="EditNameTitle" xml:space="preserve">
+    <value>تحرير الاسم</value>
+  </data>
 </root>
