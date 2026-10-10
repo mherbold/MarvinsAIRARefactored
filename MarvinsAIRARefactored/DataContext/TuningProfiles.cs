@@ -437,6 +437,12 @@ public partial class Settings
 	// produces, which is why one physical bucket can legitimately be covered by several shapes at once.
 	private static bool ShapeCovers( TuningProfileShape shape, Context context )
 	{
+		// the game only ever qualifies a car / track name, so a shape owning none of those only covers iRacing keys
+		if ( ( shape.Dims == TuningProfileDims.None ) && !context.IsIRacing )
+		{
+			return false;
+		}
+
 		if ( ( shape.Dims < TuningProfileDims.Car ) && ( context.CarName != Context.DefaultContextName ) )
 		{
 			return false;
@@ -586,6 +592,24 @@ public partial class Settings
 						LabelWithWeather = DescribeContext( context, shape.ToSwitches() ),
 						IsLive = scope.LiveContexts[ shapeIndex ].CompareTo( context ) == 0
 					};
+
+					// another game's profile carries the game on its first named line, so it reads apart from the
+					// same-named iRacing car (the label above already has it, through DescribeContext)
+					if ( !context.IsIRacing )
+					{
+						if ( profile.CarLabel.Length > 0 )
+						{
+							profile.CarLabel = WithGameName( profile.CarLabel, context.GameName );
+						}
+						else if ( profile.TrackLabel.Length > 0 )
+						{
+							profile.TrackLabel = WithGameName( profile.TrackLabel, context.GameName );
+						}
+						else if ( profile.TrackConfigurationLabel.Length > 0 )
+						{
+							profile.TrackConfigurationLabel = WithGameName( profile.TrackConfigurationLabel, context.GameName );
+						}
+					}
 
 					profile.Rows = BuildTuningProfileRows( profile, scope );
 

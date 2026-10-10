@@ -194,7 +194,7 @@ public partial class GameBridge
 			{
 				adapter.Start();
 
-				app.Simulator.SetDataSource( adapter.DataSource );
+				app.Simulator.SetDataSource( adapter.DataSource, adapter.ContextGameName );
 
 				ActiveAdapter = adapter;
 
@@ -242,7 +242,7 @@ public partial class GameBridge
 		{
 			try
 			{
-				app.Simulator.SetDataSource( null );
+				app.Simulator.SetDataSource( null, DataContext.Context.IRacingGameName );
 
 				adapter.Stop();
 			}

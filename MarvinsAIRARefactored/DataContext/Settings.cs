@@ -105,6 +105,21 @@ public partial class Settings : INotifyPropertyChanged
 		{
 			if ( !ContextSettingsDictionary.TryGetValue( context, out var contextSettings ) )
 			{
+				// The first visit of another game's car / track inherits the same-named iRacing bucket when there is
+				// one: until the game dimension existed, every bridged game's tuning was stored under the iRacing key,
+				// so this is where a game bridge user's existing profile carries over (and a car both games share
+				// starts from the iRacing tuning, exactly like it did before). The iRacing bucket itself is left alone.
+				if ( !context.IsIRacing && ContextSettingsDictionary.TryGetValue( context.WithGameName( Context.IRacingGameName ), out var iRacingContextSettings ) )
+				{
+					contextSettings = iRacingContextSettings.Clone();
+
+					ContextSettingsDictionary.Add( context, contextSettings );
+
+					App.Instance?.Logger.WriteLine( $"[Settings] Context ({context.GameName}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName}) inherited the settings of the same-named iRacing context" );
+
+					return contextSettings;
+				}
+
 				contextSettings = new ContextSettings();
 
 				var contextSettingsProperties = typeof( ContextSettings ).GetProperties( BindingFlags.Public | BindingFlags.Instance );
@@ -399,11 +414,11 @@ public partial class Settings : INotifyPropertyChanged
 				return false;
 			}
 
-			var winners = new Dictionary<(string CarName, string TrackName, string TrackConfigurationName, string WetDryName), (int Rank, ContextSettings ContextSettings)>();
+			var winners = new Dictionary<(string GameName, string CarName, string TrackName, string TrackConfigurationName, string WetDryName), (int Rank, ContextSettings ContextSettings)>();
 
 			foreach ( var ( context, contextSettings ) in ContextSettingsDictionary )
 			{
-				var namesKey = ( context.CarName, context.TrackName, context.TrackConfigurationName, context.WetDryName );
+				var namesKey = ( context.GameName, context.CarName, context.TrackName, context.TrackConfigurationName, context.WetDryName );
 
 				var rank = ( context.WheelbaseGuid == RacingWheelSteeringDeviceGuid ) ? 0 : ( context.WheelbaseGuid == Guid.Empty ) ? 1 : 2;
 
@@ -421,6 +436,7 @@ public partial class Settings : INotifyPropertyChanged
 			{
 				ContextSettingsDictionary.Add( new Context
 				{
+					GameName = namesKey.GameName,
 					CarName = namesKey.CarName,
 					TrackName = namesKey.TrackName,
 					TrackConfigurationName = namesKey.TrackConfigurationName,
@@ -840,12 +856,37 @@ public partial class Settings : INotifyPropertyChanged
 			parts.Add( context.TrackConfigurationName );
 		}
 
+		// another game's names carry the game, so they read apart from the same-named iRacing car / track
+		if ( !context.IsIRacing && ( parts.Count > 0 ) )
+		{
+			parts[ 0 ] = WithGameName( parts[ 0 ], context.GameName );
+		}
+
 		if ( scope.PerWetDry )
 		{
 			parts.Add( context.WetDryName );
 		}
 
 		return ( parts.Count > 0 ) ? string.Join( " - ", parts ) : Context.DefaultContextName;
+	}
+
+	// "Ferrari 499P · Le Mans Ultimate" - a context name tagged with the (localized brand) name of the game it
+	// belongs to. iRacing names are never tagged; a game no bridge knows any more shows its raw context id.
+	private static string WithGameName( string contextName, string gameName )
+	{
+		var gameLabel = gameName;
+
+		foreach ( var adapter in App.Instance!.GameBridge.Adapters )
+		{
+			if ( adapter.ContextGameName == gameName )
+			{
+				gameLabel = DataContext.Instance.Localization[ adapter.LocalizationKey ];
+
+				break;
+			}
+		}
+
+		return $"{contextName} · {gameLabel}";
 	}
 
 	// Maps each imported module onto a module in the existing graph: exact module-id match first (built-in-derived
@@ -1845,7 +1886,7 @@ public partial class Settings : INotifyPropertyChanged
 					{
 						var valueType = settingsPropertyValue?.GetType().Name ?? "null";
 
-						app.SettingsFile.RecordChangedSetting( $"context:{binding.ContextSettingsProperty.Name}", $"[Settings] Updating context setting {binding.ContextSettingsProperty.Name} to ({valueType}) {settingsPropertyValue} from setting ({context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
+						app.SettingsFile.RecordChangedSetting( $"context:{binding.ContextSettingsProperty.Name}", $"[Settings] Updating context setting {binding.ContextSettingsProperty.Name} to ({valueType}) {settingsPropertyValue} from setting ({context.GameName}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
 
 						binding.ContextSettingsProperty.SetValue( contextSettings, settingsPropertyValue );
 					}
@@ -1881,7 +1922,7 @@ public partial class Settings : INotifyPropertyChanged
 					{
 						var valueType = contextSettingsPropertyValue?.GetType().Name ?? "null";
 
-						pendingSettingsWrites.Add( ( binding.SettingsProperty, contextSettingsPropertyValue, settingsPropertyValue, $"[Settings] Updating setting {binding.SettingsProperty.Name} to ({valueType}) {contextSettingsPropertyValue} from context setting ({context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" ) );
+						pendingSettingsWrites.Add( ( binding.SettingsProperty, contextSettingsPropertyValue, settingsPropertyValue, $"[Settings] Updating setting {binding.SettingsProperty.Name} to ({valueType}) {contextSettingsPropertyValue} from context setting ({context.GameName}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" ) );
 					}
 				}
 			}

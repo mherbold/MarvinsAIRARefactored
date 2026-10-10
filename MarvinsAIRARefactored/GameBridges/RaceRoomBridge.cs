@@ -22,6 +22,7 @@ public class RaceRoomBridge : GameBridgeAdapter
 {
 	public override string GameName => "RaceRoom Racing Experience";
 	public override string LocalizationKey => "RaceRoomRacingExperience";
+	public override string ContextGameName => "RaceRoomRacingExperience";
 	public override string[] ProcessNames => [ "RRRE64", "RRRE" ];
 	public override GameBridgeCapabilities Capabilities => GameBridgeCapabilities.SteeringWheelTorque360Hz | GameBridgeCapabilities.ShockVelocities;
 
