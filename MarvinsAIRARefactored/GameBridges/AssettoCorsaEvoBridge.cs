@@ -19,6 +19,7 @@ public class AssettoCorsaEvoBridge : AssettoCorsaBridge
 {
 	public override string GameName => "Assetto Corsa EVO";
 	public override string LocalizationKey => "AssettoCorsaEvo";
+	public override string ContextGameName => "AssettoCorsaEvo";
 	public override string[] ProcessNames => [ "AssettoCorsaEVO" ];
 
 	protected override int PhysicsBufferSize => AcEvoConstants.PhysicsMapSize;

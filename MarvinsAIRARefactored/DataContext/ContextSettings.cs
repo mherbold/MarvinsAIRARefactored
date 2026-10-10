@@ -230,4 +230,20 @@ public class ContextSettings
 	public float GTensionerSeatOfPantsCurve { get; set; } = 0.25f;
 
 	#endregion
+
+	// A deep copy - every property is a value, an enum, or an immutable string except the FFB module value overlay,
+	// which gets a dictionary of its own so the two buckets can diverge.
+	public ContextSettings Clone()
+	{
+		var clone = (ContextSettings) MemberwiseClone();
+
+		clone.RacingWheelFFBGraphModuleValues = [];
+
+		foreach ( var ( compositeKey, value ) in RacingWheelFFBGraphModuleValues )
+		{
+			clone.RacingWheelFFBGraphModuleValues.Add( compositeKey, value );
+		}
+
+		return clone;
+	}
 }

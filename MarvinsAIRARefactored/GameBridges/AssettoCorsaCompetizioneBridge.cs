@@ -12,5 +12,6 @@ public class AssettoCorsaCompetizioneBridge : AssettoCorsaBridge
 {
 	public override string GameName => "Assetto Corsa Competizione";
 	public override string LocalizationKey => "AssettoCorsaCompetizione";
+	public override string ContextGameName => "AssettoCorsaCompetizione";
 	public override string[] ProcessNames => [ "AC2-Win64-Shipping" ];
 }

@@ -217,6 +217,22 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="other-games">Profiles for other games</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When you drive another game through the <a href="https://mairapp.com/home/documentation/advanced/game-bridge/" data-type="page" data-id="1094">game bridge</a>, its cars and tracks get profiles of their own, kept apart from iRacing's — even when the names match. The Ferrari 499P in Le Mans Ultimate and the Ferrari 499P in iRacing are two separate profiles, and so are Spa in each game. In the profile list, a profile from another game shows the game beside its name, for example <strong>Ferrari 499P · Le Mans Ultimate</strong>. iRacing profiles show no game name.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Only the car, track and track configuration are split by game. The default profile, and profiles split by weather alone, are shared by every game.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The first time you drive a car (or car and track) in another game, its new profile starts as a copy of the iRacing profile with the same name, if there is one. Profiles made in other games before MAIRA kept the games apart were saved as iRacing profiles, so this is how they carry over. After that the two profiles are tuned independently. If the old copy is no longer useful in iRacing, you can delete it from this window.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="simulator-not-running">When the simulator is not running</p>
 <!-- /wp:paragraph -->
 

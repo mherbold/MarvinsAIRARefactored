@@ -166,7 +166,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Tuning profiles work exactly as they do with iRacing. A bridged game reports its own car and track names, so anything you have set to save per car or per track is tuned separately for each of them.</li>
+<li>Tuning profiles work exactly as they do with iRacing. A bridged game reports its own car and track names, so anything you have set to save per car or per track is tuned separately for each of them. Each game's profiles are also kept apart from iRacing's, so a car or track that exists in both — the Ferrari 499P in Le Mans Ultimate and in iRacing, say — gets a separate profile in each game. See <a href="https://mairapp.com/home/documentation/advanced/tuning-profiles/" data-type="page">Tuning Profiles</a>.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

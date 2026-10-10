@@ -18,6 +18,7 @@ public class AssettoCorsaRallyBridge : AssettoCorsaBridge
 {
 	public override string GameName => "Assetto Corsa Rally";
 	public override string LocalizationKey => "AssettoCorsaRally";
+	public override string ContextGameName => "AssettoCorsaRally";
 	public override string[] ProcessNames => [ "acr" ];
 
 	// consider the game live if the physics page advanced within the last half second of 60 Hz frame fills

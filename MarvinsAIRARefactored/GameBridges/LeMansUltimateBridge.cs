@@ -13,6 +13,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 {
 	public override string GameName => "Le Mans Ultimate";
 	public override string LocalizationKey => "LeMansUltimate";
+	public override string ContextGameName => "LeMansUltimate";
 	public override string[] ProcessNames => [ "Le Mans Ultimate" ];
 	public override GameBridgeCapabilities Capabilities => GameBridgeCapabilities.SteeringWheelTorque360Hz | GameBridgeCapabilities.ShockVelocities;
 

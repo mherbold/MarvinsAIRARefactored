@@ -47,6 +47,13 @@ public partial class Simulator
 	public float CarDistBehind { get; private set; } = 0f;
 	public string CarScreenName { get; private set; } = string.Empty;
 	public string CarSetupName { get; private set; } = string.Empty;
+
+	// The game the current data source belongs to, as the tuning profile contexts key it (iRacing, or the active game
+	// bridge's GameBridgeAdapter.ContextGameName). Recorded by SetDataSource while the SDK is stopped, so it can never
+	// disagree with the car / track names of the connection it belongs to - GameBridge.ActiveAdapter is cleared BEFORE
+	// the bridge's connection is torn down, so reading that instead would briefly pair a bridged car with iRacing.
+	public string ContextGameName { get; private set; } = DataContext.Context.IRacingGameName;
+
 	public float[] CFShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float Clutch { get; private set; } = 0f;
 	public float[] CRShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
@@ -317,7 +324,7 @@ public partial class Simulator
 		_irsdk.Start();
 	}
 
-	public void SetDataSource( IRacingSdkDataSource? dataSource )
+	public void SetDataSource( IRacingSdkDataSource? dataSource, string contextGameName )
 	{
 		var app = App.Instance!;
 
@@ -344,6 +351,8 @@ public partial class Simulator
 		}
 
 		_irsdk.SetDataSource( dataSource );
+
+		ContextGameName = contextGameName;
 
 		if ( wasStarted )
 		{
@@ -776,7 +785,8 @@ public partial class Simulator
 
 		// game bridges can switch the car or track without a disconnect (iRacing always tears the session
 		// down first, so there the first-session-info reload is enough) - a mid-connection change must
-		// reload the context settings and calibration too
+		// reload the context settings and calibration too. A change of GAME needs no check here: it always goes
+		// through SetDataSource, which disconnects, so it lands on the first-session-info reload instead
 		var contextChanged = !_waitingForFirstSessionInfo && ( ( CarScreenName != previousCarScreenName ) || ( TrackDisplayName != previousTrackDisplayName ) || ( TrackConfigName != previousTrackConfigName ) );
 
 		if ( _waitingForFirstSessionInfo || contextChanged )

@@ -9,6 +9,11 @@ public abstract class GameBridgeAdapter
 {
 	public abstract string GameName { get; }
 	public abstract string LocalizationKey { get; }
+
+	// The game dimension of the tuning profile contexts this bridge's cars and tracks land on (Context.GameName).
+	// Persisted in every user's settings file - never rename one, or every profile made in that game is orphaned.
+	public abstract string ContextGameName { get; }
+
 	public abstract string[] ProcessNames { get; }
 	public abstract GameBridgeCapabilities Capabilities { get; }
 
