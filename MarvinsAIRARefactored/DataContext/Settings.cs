@@ -30,6 +30,17 @@ public partial class Settings : INotifyPropertyChanged
 
 	private static bool SuppressUpdatingOfContextSettings => _startupContextSuppressionActive || _updateSettingsPassActiveOnThread;
 
+	// The context-scoped minimum / maximum pairs (understeer, oversteer and seat of pants thresholds, pedal frequency
+	// and amplitude, clutch slip start / end) keep minimum <= maximum by nudging their partner - but only for edits
+	// (knob drags, mapped buttons, deserialization). While an UpdateSettings read pass applies a context's values on
+	// this thread, each value must land verbatim: the pass sets the minimum before the maximum, so going from 0.05 /
+	// 0.10 to a profile's 0.14 / 0.45 used to nudge the live maximum to 0.14, skip the profile's 0.45 as "changed
+	// concurrently", and let the next write pass save 0.14 / 0.14 into the profile (the read pass now also
+	// re-baselines after each setter). It also matters when the two halves have different scopes - a per-car minimum
+	// must not drag the global maximum along every time that car loads. A bucket that genuinely holds minimum >
+	// maximum is loaded as-is (never rewritten during the load) and the consumers tolerate it.
+	private static bool KeepPairedSettingsOrdered => !_updateSettingsPassActiveOnThread;
+
 	/// <summary>Opens the startup suppression window - called by SettingsFile.Initialize before deserialization.</summary>
 	public static void BeginStartupContextSettingsSuppression() => _startupContextSuppressionActive = true;
 
@@ -1886,8 +1897,10 @@ public partial class Settings : INotifyPropertyChanged
 				}
 			}
 
-			foreach ( var ( settingsProperty, value, collectedLiveValue, logMessage ) in pendingSettingsWrites )
+			for ( var pendingIndex = 0; pendingIndex < pendingSettingsWrites.Count; pendingIndex++ )
 			{
+				var ( settingsProperty, value, collectedLiveValue, logMessage ) = pendingSettingsWrites[ pendingIndex ];
+
 				// another thread (the user turning a knob) may have changed this setting since we collected the
 				// buckets. That write already reached the bucket under the lock via its own UpdateSettings( true )
 				// pass, so it won the race - pushing our now-stale bucket read on top would silently revert it.
@@ -1901,6 +1914,22 @@ public partial class Settings : INotifyPropertyChanged
 				app.Logger.WriteLine( logMessage );
 
 				settingsProperty.SetValue( this, value );
+
+				// the setter we just ran can nudge settings still waiting in this list (lowering the wheel force
+				// re-clamps the auto target, for example). Those changes are this pass's own side effects, not a
+				// concurrent edit - re-baseline the remaining entries so the guard above doesn't mistake them for
+				// one and skip loading the bucket's value (which the next write pass would then save over it).
+				for ( var remainingIndex = pendingIndex + 1; remainingIndex < pendingSettingsWrites.Count; remainingIndex++ )
+				{
+					var remainingWrite = pendingSettingsWrites[ remainingIndex ];
+
+					var remainingLiveValue = remainingWrite.settingsProperty.GetValue( this );
+
+					if ( !Equals( remainingLiveValue, remainingWrite.collectedLiveValue ) )
+					{
+						pendingSettingsWrites[ remainingIndex ] = remainingWrite with { collectedLiveValue = remainingLiveValue };
+					}
+				}
 			}
 		}
 
@@ -5201,7 +5230,10 @@ public partial class Settings : INotifyPropertyChanged
 			{
 				_steeringEffectsUndersteerMinimumThreshold = value;
 
-				SteeringEffectsUndersteerMaximumThreshold = MathF.Max( SteeringEffectsUndersteerMaximumThreshold, _steeringEffectsUndersteerMinimumThreshold );
+				if ( KeepPairedSettingsOrdered )
+				{
+					SteeringEffectsUndersteerMaximumThreshold = MathF.Max( SteeringEffectsUndersteerMaximumThreshold, _steeringEffectsUndersteerMinimumThreshold );
+				}
 
 				OnPropertyChanged();
 
@@ -5262,7 +5294,10 @@ public partial class Settings : INotifyPropertyChanged
 			{
 				_steeringEffectsUndersteerMaximumThreshold = value;
 
-				SteeringEffectsUndersteerMinimumThreshold = MathF.Min( SteeringEffectsUndersteerMinimumThreshold, _steeringEffectsUndersteerMaximumThreshold );
+				if ( KeepPairedSettingsOrdered )
+				{
+					SteeringEffectsUndersteerMinimumThreshold = MathF.Min( SteeringEffectsUndersteerMinimumThreshold, _steeringEffectsUndersteerMaximumThreshold );
+				}
 
 				OnPropertyChanged();
 
@@ -5965,7 +6000,10 @@ public partial class Settings : INotifyPropertyChanged
 			{
 				_steeringEffectsOversteerMinimumThreshold = value;
 
-				SteeringEffectsOversteerMaximumThreshold = MathF.Max( SteeringEffectsOversteerMaximumThreshold, _steeringEffectsOversteerMinimumThreshold );
+				if ( KeepPairedSettingsOrdered )
+				{
+					SteeringEffectsOversteerMaximumThreshold = MathF.Max( SteeringEffectsOversteerMaximumThreshold, _steeringEffectsOversteerMinimumThreshold );
+				}
 
 				OnPropertyChanged();
 
@@ -6026,7 +6064,10 @@ public partial class Settings : INotifyPropertyChanged
 			{
 				_steeringEffectsOversteerMaximumThreshold = value;
 
-				SteeringEffectsOversteerMinimumThreshold = MathF.Min( SteeringEffectsOversteerMinimumThreshold, _steeringEffectsOversteerMaximumThreshold );
+				if ( KeepPairedSettingsOrdered )
+				{
+					SteeringEffectsOversteerMinimumThreshold = MathF.Min( SteeringEffectsOversteerMinimumThreshold, _steeringEffectsOversteerMaximumThreshold );
+				}
 
 				OnPropertyChanged();
 
@@ -6726,7 +6767,10 @@ public partial class Settings : INotifyPropertyChanged
 			{
 				_steeringEffectsSeatOfPantsMinimumThreshold = value;
 
-				SteeringEffectsSeatOfPantsMaximumThreshold = MathF.Max( SteeringEffectsSeatOfPantsMaximumThreshold, _steeringEffectsSeatOfPantsMinimumThreshold );
+				if ( KeepPairedSettingsOrdered )
+				{
+					SteeringEffectsSeatOfPantsMaximumThreshold = MathF.Max( SteeringEffectsSeatOfPantsMaximumThreshold, _steeringEffectsSeatOfPantsMinimumThreshold );
+				}
 
 				OnPropertyChanged();
 			}
@@ -6794,7 +6838,10 @@ public partial class Settings : INotifyPropertyChanged
 			{
 				_steeringEffectsSeatOfPantsMaximumThreshold = value;
 
-				SteeringEffectsSeatOfPantsMinimumThreshold = MathF.Min( SteeringEffectsSeatOfPantsMinimumThreshold, _steeringEffectsSeatOfPantsMaximumThreshold );
+				if ( KeepPairedSettingsOrdered )
+				{
+					SteeringEffectsSeatOfPantsMinimumThreshold = MathF.Min( SteeringEffectsSeatOfPantsMinimumThreshold, _steeringEffectsSeatOfPantsMaximumThreshold );
+				}
 
 				OnPropertyChanged();
 			}
@@ -7593,7 +7640,10 @@ public partial class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 
-				PedalsMaximumFrequency = MathF.Max( PedalsMaximumFrequency, _pedalsMinimumFrequency );
+				if ( KeepPairedSettingsOrdered )
+				{
+					PedalsMaximumFrequency = MathF.Max( PedalsMaximumFrequency, _pedalsMinimumFrequency );
+				}
 
 				UpdateRelatedPedalSettings();
 			}
@@ -7654,7 +7704,10 @@ public partial class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 
-				PedalsMinimumFrequency = MathF.Min( PedalsMinimumFrequency, _pedalsMaximumFrequency );
+				if ( KeepPairedSettingsOrdered )
+				{
+					PedalsMinimumFrequency = MathF.Min( PedalsMinimumFrequency, _pedalsMaximumFrequency );
+				}
 
 				UpdateRelatedPedalSettings();
 			}
@@ -7781,7 +7834,10 @@ public partial class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 
-				PedalsMaximumAmplitude = MathF.Max( PedalsMaximumAmplitude, _pedalsMinimumAmplitude );
+				if ( KeepPairedSettingsOrdered )
+				{
+					PedalsMaximumAmplitude = MathF.Max( PedalsMaximumAmplitude, _pedalsMinimumAmplitude );
+				}
 			}
 
 			UpdatePedalsMinimumAmplitudeString();
@@ -7840,7 +7896,10 @@ public partial class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 
-				PedalsMinimumAmplitude = MathF.Min( PedalsMinimumAmplitude, _pedalsMaximumAmplitude );
+				if ( KeepPairedSettingsOrdered )
+				{
+					PedalsMinimumAmplitude = MathF.Min( PedalsMinimumAmplitude, _pedalsMaximumAmplitude );
+				}
 			}
 
 			UpdatePedalsMaximumAmplitudeString();
@@ -9797,7 +9856,10 @@ public partial class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 
-				PedalsClutchSlipEnd = MathF.Max( PedalsClutchSlipEnd, _pedalsClutchSlipStart );
+				if ( KeepPairedSettingsOrdered )
+				{
+					PedalsClutchSlipEnd = MathF.Max( PedalsClutchSlipEnd, _pedalsClutchSlipStart );
+				}
 			}
 
 			UpdatePedalsClutchSlipStartString();
@@ -9856,7 +9918,10 @@ public partial class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 
-				PedalsClutchSlipStart = MathF.Min( PedalsClutchSlipStart, _pedalsClutchSlipEnd );
+				if ( KeepPairedSettingsOrdered )
+				{
+					PedalsClutchSlipStart = MathF.Min( PedalsClutchSlipStart, _pedalsClutchSlipEnd );
+				}
 			}
 
 			UpdatePedalsClutchSlipEndString();

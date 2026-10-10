@@ -257,6 +257,7 @@ public class SteeringEffects
 		var speedFade = MathZ.Smoothstep( 1f, 20f, speedInKPH );
 
 		// deviation < 0 = understeer
+		// (the threshold maximums are floored at their minimums - a tuning profile can legitimately load with minimum > maximum)
 
 		var understeerEffect = 0f;
 
@@ -264,7 +265,7 @@ public class SteeringEffects
 		{
 			if ( ( deviation < 0f ) && ( absDeviation >= settings.SteeringEffectsUndersteerMinimumThreshold ) )
 			{
-				understeerEffect = MathZ.InverseLerp( settings.SteeringEffectsUndersteerMinimumThreshold, settings.SteeringEffectsUndersteerMaximumThreshold, absDeviation );
+				understeerEffect = MathZ.InverseLerp( settings.SteeringEffectsUndersteerMinimumThreshold, MathF.Max( settings.SteeringEffectsUndersteerMinimumThreshold, settings.SteeringEffectsUndersteerMaximumThreshold ), absDeviation );
 			}
 		}
 
@@ -278,7 +279,7 @@ public class SteeringEffects
 		{
 			if ( ( deviation > 0f ) && ( absDeviation >= settings.SteeringEffectsOversteerMinimumThreshold ) )
 			{
-				oversteerEffect = MathZ.InverseLerp( settings.SteeringEffectsOversteerMinimumThreshold, settings.SteeringEffectsOversteerMaximumThreshold, absDeviation );
+				oversteerEffect = MathZ.InverseLerp( settings.SteeringEffectsOversteerMinimumThreshold, MathF.Max( settings.SteeringEffectsOversteerMinimumThreshold, settings.SteeringEffectsOversteerMaximumThreshold ), absDeviation );
 			}
 		}
 
@@ -340,7 +341,7 @@ public class SteeringEffects
 
 		if ( absSeatOfPantsEffect >= settings.SteeringEffectsSeatOfPantsMinimumThreshold )
 		{
-			seatOfPantsEffect = MathF.CopySign( MathZ.InverseLerp( settings.SteeringEffectsSeatOfPantsMinimumThreshold, settings.SteeringEffectsSeatOfPantsMaximumThreshold, absSeatOfPantsEffect ), seatOfPantsEffect );
+			seatOfPantsEffect = MathF.CopySign( MathZ.InverseLerp( settings.SteeringEffectsSeatOfPantsMinimumThreshold, MathF.Max( settings.SteeringEffectsSeatOfPantsMinimumThreshold, settings.SteeringEffectsSeatOfPantsMaximumThreshold ), absSeatOfPantsEffect ), seatOfPantsEffect );
 		}
 		else
 		{
