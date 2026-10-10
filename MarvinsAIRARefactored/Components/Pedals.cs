@@ -33,7 +33,7 @@ public class Pedals
 	private const float DeltaSeconds = 1f / 20f;
 	private const float TestDuration = 3f;
 	private const int UpdateInterval = 3;
-	private const int ResendInterval = 20; // updates (~1 second at 20 Hz) - re-send an unchanged command so the pedals recover after a reset
+	private const long ResendIntervalMilliseconds = 1000; // re-send an unchanged command at least this often - a dropped "off" command would otherwise leave a pedal vibrating, and the pedals recover after a reset
 
 	public HPR.PedalsDevice PedalsDevice { get; private set; }
 
@@ -62,7 +62,7 @@ public class Pedals
 	private readonly HPR.State[] _lastSentState = new HPR.State[ 3 ];
 	private readonly float[] _lastSentFrequency = new float[ 3 ];
 	private readonly float[] _lastSentAmplitude = new float[ 3 ];
-	private readonly int[] _resendCounter = new int[ 3 ];
+	private readonly long[] _lastSentTickCount = new long[ 3 ];
 
 	private readonly EffectStatus[,] _effectStatus = new EffectStatus[ 3, 3 ];
 
@@ -221,6 +221,14 @@ public class Pedals
 		{
 			if ( _testing && ( _testPedalIndex != pedalIndex ) )
 			{
+				// keep commanding the pedals that are not being tested, so each pedal still gets a command at least once per resend interval
+
+				VibratePedal( (HPR.Channel) pedalIndex, HPR.State.Off, 0f, 0f );
+
+				_frequency[ pedalIndex ] = 0f;
+				_amplitude[ pedalIndex ] = 0f;
+				_cycles[ pedalIndex ] = 0f;
+
 				SetPedalIdleStatus( pedalIndex );
 
 				continue;
@@ -296,15 +304,17 @@ public class Pedals
 	}
 
 	// sends a command to the pedal only when it differs from the last one sent (exact compare), or when the resend interval has elapsed
+	// (time based, so every pedal is re-commanded at least once per interval no matter how often Update runs)
 	private void VibratePedal( HPR.Channel channel, HPR.State state, float frequency, float amplitude )
 	{
 		var pedalIndex = (int) channel;
 
-		_resendCounter[ pedalIndex ]--;
+		var nowTickCount = Environment.TickCount64;
 
 		var commandChanged = !_lastSentValid[ pedalIndex ] || ( _lastSentState[ pedalIndex ] != state ) || ( _lastSentFrequency[ pedalIndex ] != frequency ) || ( _lastSentAmplitude[ pedalIndex ] != amplitude );
+		var resendDue = ( nowTickCount - _lastSentTickCount[ pedalIndex ] ) >= ResendIntervalMilliseconds;
 
-		if ( commandChanged || ( _resendCounter[ pedalIndex ] <= 0 ) )
+		if ( commandChanged || resendDue )
 		{
 			_hpr.VibratePedal( channel, state, frequency, amplitude );
 
@@ -312,7 +322,7 @@ public class Pedals
 			_lastSentState[ pedalIndex ] = state;
 			_lastSentFrequency[ pedalIndex ] = frequency;
 			_lastSentAmplitude[ pedalIndex ] = amplitude;
-			_resendCounter[ pedalIndex ] = ResendInterval;
+			_lastSentTickCount[ pedalIndex ] = nowTickCount;
 		}
 	}
 
