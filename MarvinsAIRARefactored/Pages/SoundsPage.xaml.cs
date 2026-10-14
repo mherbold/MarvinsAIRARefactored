@@ -101,6 +101,13 @@ public partial class SoundsPage : UserControl
 		app.Sounds.Test( Sounds.SoundEffectType.FfbClipping );
 	}
 
+	private void ShiftRPM_Test_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Sounds.Test( Sounds.SoundEffectType.ShiftRPM );
+	}
+
 	private void RecordingStarted_Test_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
