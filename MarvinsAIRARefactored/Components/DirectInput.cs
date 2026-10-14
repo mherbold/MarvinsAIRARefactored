@@ -74,6 +74,11 @@ public class DirectInput
 	// inactivity watchdogs (the started infinite-duration effect holds by spec, but 4 writes/second is free)
 	private static readonly long _forceFeedbackRefreshTimestampTicks = Stopwatch.Frequency / 4;
 
+	// another app opening the wheelbase (e.g. Assetto Corsa with wheel buttons bound) can knock our exclusive
+	// acquisition - failed writes trigger a re-acquire, at most this often
+	private static readonly long _forceFeedbackRecoveryTimestampTicks = Stopwatch.Frequency;
+	private long _lastForceFeedbackRecoveryTimestamp = 0;
+
 	private bool _joystickInfoListNeedsToBeUpdated = false;
 
 	// set when the hot-plug monitor saw the steering device itself arrive or leave - a replug keeps the same
@@ -597,15 +602,63 @@ public class DirectInput
 			{
 				forceFeedbackEffect?.SetParameters( forceFeedbackEffectParameters, EffectParameterFlags.TypeSpecificParameters );
 			}
-			catch ( Exception )
+			catch ( Exception exception )
 			{
-				// a concurrent shutdown can stop/dispose the effect between the snapshot and this call — the
-				// device is going away, so a failed final write is harmless
+				// either a concurrent shutdown stopped/disposed the effect between the snapshot and this call
+				// (harmless - the device is going away), or another app took the device from us - recover
+				if ( _forceFeedbackInitialized )
+				{
+					RecoverForceFeedback( forceFeedbackEffect, exception, timestamp );
+				}
+
 				return;
 			}
 
 			_lastForceFeedbackMagnitude = clampedMagnitude;
 			_lastForceFeedbackWriteTimestamp = timestamp;
+		}
+	}
+
+	private void RecoverForceFeedback( Effect? forceFeedbackEffect, Exception exception, long timestamp )
+	{
+		if ( ( timestamp - _lastForceFeedbackRecoveryTimestamp ) < _forceFeedbackRecoveryTimestampTicks )
+		{
+			return;
+		}
+
+		_lastForceFeedbackRecoveryTimestamp = timestamp;
+
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( $"[DirectInput] Force feedback write failed ({exception.Message.Trim()}) - re-acquiring the joystick" );
+
+		try
+		{
+			var forceFeedbackJoystick = ForceFeedbackJoystick;
+
+			// DirectInput still counts a joystick that lost exclusivity as acquired (DIERR_NOTEXCLUSIVEACQUIRED),
+			// so Acquire() alone is a no-op - release it first, then take it back exclusively
+			try
+			{
+				forceFeedbackJoystick?.Unacquire();
+			}
+			catch ( Exception )
+			{
+			}
+
+			forceFeedbackJoystick?.Acquire();
+
+			forceFeedbackEffect?.Download();
+			forceFeedbackEffect?.Start();
+
+			// force the next write through so the wheel gets the current magnitude straight away
+			_lastForceFeedbackMagnitude = int.MinValue;
+
+			app.Logger.WriteLine( "[DirectInput] Force feedback recovered" );
+		}
+		catch ( Exception recoveryException )
+		{
+			app.Logger.WriteLine( $"[DirectInput] Force feedback recovery failed ({recoveryException.Message.Trim()}) - will retry" );
 		}
 	}
 
