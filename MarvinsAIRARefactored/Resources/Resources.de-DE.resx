@@ -2914,4 +2914,7 @@ Hier ist der Link zum Spenden:</value>
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Kräfte im Stand glätten</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Untersteuer- und Übersteuereffekte sind für Spiele, die über die Spielbrücke verbunden sind, nicht verfügbar.</value>
+  </data>
 </root>

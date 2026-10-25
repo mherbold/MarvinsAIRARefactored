@@ -112,6 +112,10 @@
 <p>If this is off, none of the sound effects will play (even if individual effects are enabled).</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>MAIRA only holds your output device while it is actually playing something. When no sim is running and nothing has played for about 10 seconds, it lets go of the device so Windows can still go to sleep on its own, and it picks the device back up the instant the next sound plays (a click from a mapped button, a Test button, a voice line). The first sound after a quiet spell can start a fraction of a second late while the device reopens. While a sim is connected the device stays open, so alerts play without that delay.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Allow sounds during replays</p>
 <!-- /wp:paragraph -->

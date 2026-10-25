@@ -427,7 +427,16 @@ public partial class Simulator
 		// sim, the Windows audio engine stays in a heavy mode that starves iRacing's audio (its C/A meters peg).
 		app.AudioManager.ResetDeviceForSimulatorConnect();
 
-		app.RacingWheel.ResetForceFeedback = true;
+		// a game bridge reconnecting after a session load kept the wheel through the gap - re-initializing it
+		// would release it (and the game may grab it), so the racing wheel only resets if it is not already held
+		if ( app.GameBridge.IsBridgeActive )
+		{
+			app.RacingWheel.ResetForceFeedbackUnlessHeld = true;
+		}
+		else
+		{
+			app.RacingWheel.ResetForceFeedback = true;
+		}
 
 		app.AdminBoxx.SimulatorConnected();
 
@@ -606,7 +615,15 @@ public partial class Simulator
 
 #endif
 
-		app.PlayoutTimer.Suspend = true;
+		// an active game bridge is pumped from the playout timer worker, so suspending the timer here would stop
+		// the bridge from ever committing another frame and the connection could never come back (the sim just
+		// paused its output for a few seconds, e.g. while loading a session) - keep it running for the bridge.
+		// GameBridge.Deactivate clears ActiveAdapter before it tears the connection down, so switching back to
+		// iRacing still suspends here as before
+		if ( !app.GameBridge.IsBridgeActive )
+		{
+			app.PlayoutTimer.Suspend = true;
+		}
 
 		app.MainWindow.UpdateStatus();
 

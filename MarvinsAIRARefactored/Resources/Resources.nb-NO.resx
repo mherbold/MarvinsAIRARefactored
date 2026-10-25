@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Glatt ut parkerte krefter</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Understyrings- og overstyringseffektene er ikke tilgjengelige for spill som er koblet til via spillbroen.</value>
+  </data>
 </root>

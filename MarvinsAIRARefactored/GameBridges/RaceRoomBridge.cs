@@ -111,6 +111,9 @@ public class RaceRoomBridge : GameBridgeAdapter
 	private float _lastTorque = 0f;
 
 	private readonly Dictionary<int, int> _carIdxBySlotId = [];
+	private int _carIdxMapSessionType = int.MinValue;
+	private int _carIdxMapSessionIteration = int.MinValue;
+	private int _carIdxMapGeneration = 0;
 
 	private double _steeringScale = 0.0;
 	private int _steeringScaleSampleCount = 0;
@@ -194,6 +197,8 @@ public class RaceRoomBridge : GameBridgeAdapter
 		_lastTorque = 0f;
 
 		_carIdxBySlotId.Clear();
+		_carIdxMapSessionType = int.MinValue;
+		_carIdxMapSessionIteration = int.MinValue;
 
 		_steeringScale = 0.0;
 		_steeringScaleSampleCount = 0;
@@ -418,7 +423,58 @@ public class RaceRoomBridge : GameBridgeAdapter
 		for ( var i = 0; i < numCars; i++ )
 		{
 			_drivers[ i ] = ReadStruct<R3eDriverData>( _sharedBuffer, _driverDataArrayOffset + i * _driverDataSize );
+		}
 
+		UpdateCarIdxMap();
+
+		_hasDrivers = numCars > 0;
+	}
+
+	// assigns each slot id a stable car index - rebuilt whenever the session changes (practice -> qualifying ->
+	// race, or a new iteration of the same session type), and whenever the player is missing from it: the map
+	// stops growing at MaxNumCars, so on a busy server with cars coming and going the player's slot could
+	// otherwise never be registered, and PlayerCarIdx would fall back to car 0 (someone else's car, and the
+	// wrong tuning profile)
+	private void UpdateCarIdxMap()
+	{
+		var playerSlotId = _shared.vehicle_info.slot_id;
+
+		var rebuild = ( _shared.session_type != _carIdxMapSessionType ) || ( _shared.session_iteration != _carIdxMapSessionIteration );
+
+		if ( !rebuild )
+		{
+			for ( var i = 0; i < _drivers.Length; i++ )
+			{
+				var slotId = _drivers[ i ].driver_info.slot_id;
+
+				if ( !_carIdxBySlotId.ContainsKey( slotId ) && ( _carIdxBySlotId.Count < GameBridgeVarTable.MaxNumCars ) )
+				{
+					_carIdxBySlotId[ slotId ] = _carIdxBySlotId.Count;
+				}
+			}
+
+			rebuild = ( playerSlotId >= 0 ) && !_carIdxBySlotId.ContainsKey( playerSlotId );
+		}
+
+		if ( !rebuild )
+		{
+			return;
+		}
+
+		_carIdxBySlotId.Clear();
+
+		_carIdxMapSessionType = _shared.session_type;
+		_carIdxMapSessionIteration = _shared.session_iteration;
+		_carIdxMapGeneration++;
+
+		// the player goes in first, so it always gets a car index no matter how full the server is
+		if ( playerSlotId >= 0 )
+		{
+			_carIdxBySlotId[ playerSlotId ] = 0;
+		}
+
+		for ( var i = 0; i < _drivers.Length; i++ )
+		{
 			var slotId = _drivers[ i ].driver_info.slot_id;
 
 			if ( !_carIdxBySlotId.ContainsKey( slotId ) && ( _carIdxBySlotId.Count < GameBridgeVarTable.MaxNumCars ) )
@@ -427,7 +483,10 @@ public class RaceRoomBridge : GameBridgeAdapter
 			}
 		}
 
-		_hasDrivers = numCars > 0;
+		// publish the matching DriverInfo on the next frame instead of up to a second later
+		_lastSessionInfoUpdateTime = double.MinValue;
+
+		App.Instance!.Logger.WriteLine( $"[RaceRoomBridge] Car index map rebuilt - session type {_shared.session_type}, iteration {_shared.session_iteration}, {_carIdxBySlotId.Count} cars" );
 	}
 
 	// the structs are blittable (see R3eData.cs), so this is a straight allocation-free memory read - the old
@@ -941,7 +1000,7 @@ public class RaceRoomBridge : GameBridgeAdapter
 		var layoutName = ReadString( _shared.layout_name );
 		var playerCarName = GetPlayerCarName();
 
-		var signature = $"{trackName}|{layoutName}|{playerCarName}|{_shared.session_type}|{_carIdxBySlotId.Count}|{(int) _shared.max_engine_rps}";
+		var signature = $"{trackName}|{layoutName}|{playerCarName}|{_shared.session_type}|{_carIdxBySlotId.Count}|{_carIdxMapGeneration}|{(int) _shared.max_engine_rps}";
 
 		if ( signature == _lastSessionInfoSignature )
 		{

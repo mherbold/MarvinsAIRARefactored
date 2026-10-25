@@ -60,8 +60,25 @@ public class DirectInput
 	// for the force feedback device before any joystick has been polled.
 	private readonly Dictionary<Guid, Guid> _productGuidDictionary = [];
 
-	private bool _forceFeedbackInitialized = false;
+	// volatile - read by the effect-write failure check to tell a concurrent app-exit shutdown apart from a lost device
+	private volatile bool _forceFeedbackInitialized = false;
 	private Guid _forceFeedbackDeviceInstanceGuid = Guid.Empty;
+
+	// force feedback recovery - a failed initialization or a lost device (another app took or reset the wheel,
+	// driver reset, unplug) is retried by RacingWheel after ForceFeedbackRetryDelayMilliseconds, which backs off
+	// exponentially while the failures keep coming so a device that stays unavailable can't spin re-init attempts
+	private const float ForceFeedbackRetryBaseDelayMS = 1000f;
+	private const float ForceFeedbackRetryMaximumDelayMS = 15000f;
+
+	// a device that ran this long before being lost counts as healthy, so its loss starts the backoff over
+	private const double ForceFeedbackHealthyRunTimeMS = 10000.0;
+
+	public float ForceFeedbackRetryDelayMilliseconds { get; private set; } = ForceFeedbackRetryBaseDelayMS;
+
+	private int _forceFeedbackConsecutiveFailureCount = 0;
+	private long _forceFeedbackInitializedTimestamp = 0;
+	private bool _forceFeedbackRecoveryPending = false;
+	private bool _forceFeedbackLossReported = false;
 	private EffectParameters? _forceFeedbackEffectParameters = null;
 	private Effect? _forceFeedbackEffect = null;
 
@@ -197,6 +214,8 @@ public class DirectInput
 				}
 
 				_forceFeedbackInitialized = true;
+
+				success = true;
 			}
 		}
 		catch ( Exception exception )
@@ -205,9 +224,33 @@ public class DirectInput
 
 			app.Logger.WriteLine( $"[DirectInput] Exception caught: {ForceFeedbackErrorMessage}" );
 
-			app.RacingWheel.NextRacingWheelGuid = Guid.Empty;
+			// release whatever got created before the failure - a joystick left acquired here would hold the wheel
+			// exclusively with no effect on it, and would block our own retry
+			ReleaseForceFeedbackObjects();
 
 			_forceFeedbackDeviceInstanceGuid = Guid.Empty;
+
+			// keep the device selected and let RacingWheel retry after a backoff (it used to be blanked here, which
+			// left force feedback dead until the device selection changed or MAIRA was restarted)
+			_forceFeedbackConsecutiveFailureCount++;
+			_forceFeedbackRecoveryPending = true;
+
+			ForceFeedbackRetryDelayMilliseconds = GetForceFeedbackRetryDelayMS( _forceFeedbackConsecutiveFailureCount );
+
+			app.Logger.WriteLine( $"[DirectInput] Force feedback initialization failed ({_forceFeedbackConsecutiveFailureCount} in a row) - retrying in {ForceFeedbackRetryDelayMilliseconds / 1000f:F0} s" );
+		}
+
+		if ( success )
+		{
+			_forceFeedbackInitializedTimestamp = Stopwatch.GetTimestamp();
+			_forceFeedbackLossReported = false;
+
+			if ( _forceFeedbackRecoveryPending )
+			{
+				_forceFeedbackRecoveryPending = false;
+
+				app.Logger.WriteLine( "[DirectInput] Force feedback recovered - the device is initialized again" );
+			}
 		}
 
 		app.Logger.WriteLine( "[DirectInput] <<< InitializeForceFeedback" );
@@ -227,45 +270,82 @@ public class DirectInput
 
 			ForceFeedbackWheelPosition = 0f;
 
-			_forceFeedbackEffectParameters = null;
-
-			_lastForceFeedbackMagnitude = int.MinValue;
-
-			if ( _forceFeedbackEffect != null )
-			{
-				app.Logger.WriteLine( "[DirectInput] Stopping and diposing of the force feedback effect" );
-
-				try
-				{
-					_forceFeedbackEffect.Stop();
-				}
-				catch ( Exception )
-				{
-				}
-
-				_forceFeedbackEffect.Dispose();
-
-				_forceFeedbackEffect = null;
-			}
-
-			if ( ForceFeedbackJoystick != null )
-			{
-				app.Logger.WriteLine( "[DirectInput] Unacquiring and disposing of the force feedback joystick" );
-
-				try
-				{
-					ForceFeedbackJoystick.Unacquire();
-				}
-				catch ( Exception )
-				{
-				}
-
-				ForceFeedbackJoystick.Dispose();
-
-				ForceFeedbackJoystick = null;
-			}
+			ReleaseForceFeedbackObjects();
 
 			app.Logger.WriteLine( "[DirectInput] <<< ShutdownForceFeedback" );
+		}
+	}
+
+	/// <summary>
+	/// Clears the retry backoff so the next force feedback initialization attempt happens right away - called on an
+	/// explicit reset (the Reset button / mapped reset, or a simulator connecting).
+	/// </summary>
+	public void ResetForceFeedbackRetryBackoff()
+	{
+		_forceFeedbackConsecutiveFailureCount = 0;
+
+		ForceFeedbackRetryDelayMilliseconds = ForceFeedbackRetryBaseDelayMS;
+	}
+
+	private static float GetForceFeedbackRetryDelayMS( int consecutiveFailureCount )
+	{
+		var exponent = Math.Clamp( consecutiveFailureCount - 1, 0, 16 );
+
+		return MathF.Min( ForceFeedbackRetryBaseDelayMS * ( 1 << exponent ), ForceFeedbackRetryMaximumDelayMS );
+	}
+
+	private void ReleaseForceFeedbackObjects()
+	{
+		var app = App.Instance!;
+
+		_forceFeedbackEffectParameters = null;
+
+		_lastForceFeedbackMagnitude = int.MinValue;
+
+		if ( _forceFeedbackEffect != null )
+		{
+			app.Logger.WriteLine( "[DirectInput] Stopping and diposing of the force feedback effect" );
+
+			try
+			{
+				_forceFeedbackEffect.Stop();
+			}
+			catch ( Exception )
+			{
+			}
+
+			try
+			{
+				_forceFeedbackEffect.Dispose();
+			}
+			catch ( Exception )
+			{
+			}
+
+			_forceFeedbackEffect = null;
+		}
+
+		if ( ForceFeedbackJoystick != null )
+		{
+			app.Logger.WriteLine( "[DirectInput] Unacquiring and disposing of the force feedback joystick" );
+
+			try
+			{
+				ForceFeedbackJoystick.Unacquire();
+			}
+			catch ( Exception )
+			{
+			}
+
+			try
+			{
+				ForceFeedbackJoystick.Dispose();
+			}
+			catch ( Exception )
+			{
+			}
+
+			ForceFeedbackJoystick = null;
 		}
 	}
 
@@ -568,8 +648,14 @@ public class DirectInput
 		return false;
 	}
 
+	/// <summary>
+	/// Writes the constant force magnitude to the wheel. Returns false when the write failed because the device was
+	/// lost (another app took or reset it, a driver reset, an unplug) - the caller then shuts force feedback down and
+	/// re-initializes it after ForceFeedbackRetryDelayMilliseconds. Returns true otherwise, including when nothing
+	/// was written (no device, or an unchanged magnitude).
+	/// </summary>
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void UpdateForceFeedbackEffect( float magnitude )
+	public bool UpdateForceFeedbackEffect( float magnitude )
 	{
 		// local snapshots — ShutdownForceFeedback (app exit, suspend, device switch) nulls these fields from
 		// another thread, so the null check below must test the same references we then dereference; testing
@@ -588,7 +674,7 @@ public class DirectInput
 
 			if ( ( clampedMagnitude == _lastForceFeedbackMagnitude ) && ( ( timestamp - _lastForceFeedbackWriteTimestamp ) < _forceFeedbackRefreshTimestampTicks ) )
 			{
-				return;
+				return true;
 			}
 
 			( (ConstantForce) forceFeedbackEffectParameters.Parameters ).Magnitude = clampedMagnitude;
@@ -597,16 +683,71 @@ public class DirectInput
 			{
 				forceFeedbackEffect?.SetParameters( forceFeedbackEffectParameters, EffectParameterFlags.TypeSpecificParameters );
 			}
-			catch ( Exception )
+			catch ( Exception exception )
 			{
-				// a concurrent shutdown can stop/dispose the effect between the snapshot and this call — the
-				// device is going away, so a failed final write is harmless
-				return;
+				// a concurrent shutdown (app exit) can stop/dispose the effect between the snapshot and this call -
+				// the device is going away on purpose, so that failed final write is harmless
+				if ( !_forceFeedbackInitialized || !ReferenceEquals( forceFeedbackEffect, _forceFeedbackEffect ) )
+				{
+					return true;
+				}
+
+				// anything else means the effect is no longer reaching the wheel - swallowing it here left force
+				// feedback silently dead until a manual reset, so report it and let the caller re-initialize
+				ReportForceFeedbackLoss( exception );
+
+				return false;
 			}
 
 			_lastForceFeedbackMagnitude = clampedMagnitude;
 			_lastForceFeedbackWriteTimestamp = timestamp;
 		}
+
+		return true;
+	}
+
+	[MethodImpl( MethodImplOptions.NoInlining )]
+	private void ReportForceFeedbackLoss( Exception exception )
+	{
+		ForceFeedbackErrorMessage = exception.Message.Trim();
+
+		// log once per initialized device - the caller shuts force feedback down right away, so this is a guard
+		if ( _forceFeedbackLossReported )
+		{
+			return;
+		}
+
+		_forceFeedbackLossReported = true;
+
+		// a device that ran healthy for a while before being lost starts the backoff over; one that is lost again
+		// right after being re-initialized keeps backing off
+		if ( Stopwatch.GetElapsedTime( _forceFeedbackInitializedTimestamp ).TotalMilliseconds >= ForceFeedbackHealthyRunTimeMS )
+		{
+			_forceFeedbackConsecutiveFailureCount = 0;
+		}
+
+		_forceFeedbackConsecutiveFailureCount++;
+		_forceFeedbackRecoveryPending = true;
+
+		ForceFeedbackRetryDelayMilliseconds = GetForceFeedbackRetryDelayMS( _forceFeedbackConsecutiveFailureCount );
+
+		var resultCode = ( exception is SharpDX.SharpDXException sharpDXException ) ? sharpDXException.ResultCode : new SharpDX.Result( exception.HResult );
+
+		var reason = IsDeviceLossResult( resultCode ) ? "Force feedback device lost" : "Unexpected force feedback error";
+
+		App.Instance!.Logger.WriteLine( $"[DirectInput] {reason} while updating the effect (0x{resultCode.Code:X8}: {ForceFeedbackErrorMessage}) - re-initializing in {ForceFeedbackRetryDelayMilliseconds / 1000f:F0} s ({_forceFeedbackConsecutiveFailureCount} in a row)" );
+	}
+
+	// the HRESULTs DirectInput returns when another application took the device (exclusive acquire), the device or
+	// its driver was reset, or it was unplugged - the effect needs a fresh acquire and download to work again
+	private static bool IsDeviceLossResult( SharpDX.Result resultCode )
+	{
+		return ( resultCode == ResultCode.InputLost )
+			|| ( resultCode == ResultCode.NotAcquired )
+			|| ( resultCode == ResultCode.NotExclusiveAcquired )
+			|| ( resultCode == ResultCode.OtherApplicationHasPriority )
+			|| ( resultCode == ResultCode.NotDownloaded )
+			|| ( resultCode == ResultCode.Unplugged );
 	}
 
 	// True once EnumerateDevices has seen this device instance. Lets a caller tell "the device list has not

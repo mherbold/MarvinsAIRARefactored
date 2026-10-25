@@ -359,9 +359,18 @@ public class SteeringEffects
 
 		app.Logger.WriteLine( "[SteeringEffects] RunCalibration >>>" );
 
-		// start at the very beginning
+		// calibration runs are iRacing only (the page hides the run button for game bridge games too)
 
-		_calibrationPhase = CalibrationPhase.ResetCalibration;
+		if ( IsCalibrationUnavailableForGame( app ) )
+		{
+			app.Logger.WriteLine( $"[SteeringEffects] Calibration runs are not available for game bridge games ({app.Simulator.ContextGameName})" );
+		}
+		else
+		{
+			// start at the very beginning
+
+			_calibrationPhase = CalibrationPhase.ResetCalibration;
+		}
 
 		app.Logger.WriteLine( "[SteeringEffects] <<< RunCalibration" );
 	}
@@ -949,6 +958,17 @@ public class SteeringEffects
 
 		app.Logger.WriteLine( "[SteeringEffects] SaveCalibration >>>" );
 
+		// calibration files are iRacing only - never write a game bridge game's data into the calibration folder
+
+		if ( IsCalibrationUnavailableForGame( app ) )
+		{
+			app.Logger.WriteLine( $"[SteeringEffects] Not saving a calibration file for a game bridge game ({app.Simulator.ContextGameName})" );
+
+			app.Logger.WriteLine( "[SteeringEffects] <<< SaveCalibration" );
+
+			return;
+		}
+
 		// create directory if it does not exist
 
 		if ( !Directory.Exists( CalibrationDirectory ) )
@@ -984,6 +1004,16 @@ public class SteeringEffects
 		//
 
 		app.Logger.WriteLine( "[SteeringEffects] <<< SaveCalibration" );
+	}
+
+	// calibration files are iRacing only - there is no way to record them for other games, and a bridged car that
+	// shares an iRacing car's name (e.g. the Ferrari 499P) must never pick up iRacing's file, because its steering
+	// ratio and lock can differ. So while a game bridge game is the data source no file is loaded or saved and no
+	// calibration run can start, which leaves understeer / oversteer (and the skid/slip indicator) inactive.
+	// Simulator.ContextGameName is recorded together with the data source, so it always matches the connection.
+	private static bool IsCalibrationUnavailableForGame( App app )
+	{
+		return app.Simulator.ContextGameName != DataContext.Context.IRacingGameName;
 	}
 
 	public void ClearCalibration()
@@ -1030,17 +1060,25 @@ public class SteeringEffects
 			var calibrationFileIsMissing = false;
 			var calibrationDataSeemsGood = false;
 
+			var calibrationUnavailableForGame = IsCalibrationUnavailableForGame( app );
+
 			if ( app.Simulator.CarScreenName == string.Empty )
 			{
 				app.Logger.WriteLine( "[SteeringEffects] The simulator is not running or the car is not known yet" );
 			}
 			else
 			{
-				// automatically select the first calibration file found for the current car
+				// automatically select the first calibration file found for the current car - iRacing only (switching
+				// between iRacing and a game bridge always disconnects first, so the reload on the new connection's
+				// first session info re-evaluates this)
 
-				var filePath = Directory.Exists( CalibrationDirectory ) ? Directory.GetFiles( CalibrationDirectory, $"{app.Simulator.CarScreenName} - *.csv" ).Order().FirstOrDefault() : null;
+				var filePath = calibrationUnavailableForGame ? null : ( Directory.Exists( CalibrationDirectory ) ? Directory.GetFiles( CalibrationDirectory, $"{app.Simulator.CarScreenName} - *.csv" ).Order().FirstOrDefault() : null );
 
-				if ( filePath == null )
+				if ( calibrationUnavailableForGame )
+				{
+					app.Logger.WriteLine( $"[SteeringEffects] Calibration files are not used for game bridge games ({app.Simulator.ContextGameName})" );
+				}
+				else if ( filePath == null )
 				{
 					app.Logger.WriteLine( $"[SteeringEffects] No calibration file found for this car: {app.Simulator.CarScreenName}" );
 
@@ -1264,12 +1302,14 @@ public class SteeringEffects
 			app.Dispatcher.Invoke( () =>
 			{
 				MainWindow._steeringEffectsPage.CalibrationFileNotAvailable_Border.Visibility = calibrationFileIsMissing ? Visibility.Visible : Visibility.Hidden;
+				MainWindow._steeringEffectsPage.NotAvailableForGameBridge_Border.Visibility = ( calibrationUnavailableForGame && ( app.Simulator.CarScreenName != string.Empty ) ) ? Visibility.Visible : Visibility.Hidden;
 				MainWindow._steeringEffectsPage.InvalidConfigurationFile_Border.Visibility = ( ( CalibrationFileName == string.Empty ) || _calibrationIsValid ) ? Visibility.Hidden : Visibility.Visible;
 			} );
 
-			// show the warnings in the understeer and oversteer sections only when a car is active but we don't have a valid calibration
+			// show the warnings in the understeer and oversteer sections only when a car is active but we don't have a valid
+			// calibration - for a game bridge game they say the effects are not available there instead
 
-			MainWindow._steeringEffectsPage.UpdateCalibrationFileWarnings( ( app.Simulator.CarScreenName != string.Empty ) && !_calibrationIsValid );
+			MainWindow._steeringEffectsPage.UpdateCalibrationFileWarnings( ( app.Simulator.CarScreenName != string.Empty ) && !_calibrationIsValid, calibrationUnavailableForGame );
 		}
 
 		//
@@ -1308,7 +1348,10 @@ public class SteeringEffects
 					}
 				}
 
-				if ( app.Simulator.TrackDisplayName != "Centripetal Circuit" )
+				// the calibration robot needs iRacing's Centripetal Circuit - calibration runs are blocked for game
+				// bridge games (even if one of their tracks happened to share the name), so the run button stays hidden
+
+				if ( IsCalibrationUnavailableForGame( app ) || ( app.Simulator.TrackDisplayName != "Centripetal Circuit" ) )
 				{
 					// the game bridge's steering passthrough shares the vJoy device - if it is enabled, leave
 					// the device alone here or the two features would fight over acquire/release every tick

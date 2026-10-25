@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Llyfnhau grymoedd parcio</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Nid yw'r effeithiau tanllywio a gorllywio ar gael ar gyfer gemau sydd wedi'u cysylltu drwy'r bont gemau.</value>
+  </data>
 </root>

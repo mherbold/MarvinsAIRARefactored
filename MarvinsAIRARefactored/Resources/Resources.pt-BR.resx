@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Suavizar forças parado</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Os efeitos de subesterço e sobresterço não estão disponíveis para jogos conectados pela ponte de jogos.</value>
+  </data>
 </root>

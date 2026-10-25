@@ -301,13 +301,22 @@ public partial class AccessibilityPage : UserControl
 		var inputAngleDegrees = accessibility.LastInputAngleDegrees;
 		var lockFraction = Math.Clamp( accessibility.LastLockFraction, -1f, 1f );
 
-		var dotX = Math.Clamp( AngleToX( inputAngleDegrees ), PlotMarginX, Curve_Canvas.ActualWidth - PlotMarginX );
-		var dotY = LockFractionToY( lockFraction );
+		// the page can tick before the canvas has been laid out (zero width) - skip the dot until the plot exists
 
-		Canvas.SetLeft( Dot_Ellipse, dotX - Dot_Ellipse.Width / 2.0 );
-		Canvas.SetTop( Dot_Ellipse, dotY - Dot_Ellipse.Height / 2.0 );
+		if ( Curve_Canvas.ActualWidth > PlotMarginX * 4 )
+		{
+			var dotX = Math.Clamp( AngleToX( inputAngleDegrees ), PlotMarginX, Curve_Canvas.ActualWidth - PlotMarginX );
+			var dotY = LockFractionToY( lockFraction );
 
-		Dot_Ellipse.Visibility = Visibility.Visible;
+			Canvas.SetLeft( Dot_Ellipse, dotX - Dot_Ellipse.Width / 2.0 );
+			Canvas.SetTop( Dot_Ellipse, dotY - Dot_Ellipse.Height / 2.0 );
+
+			Dot_Ellipse.Visibility = Visibility.Visible;
+		}
+		else
+		{
+			Dot_Ellipse.Visibility = Visibility.Collapsed;
+		}
 
 		var wheelText = FormatSigned( inputAngleDegrees, $"0{localization[ "Degrees" ]}", "AngleLeftFormat", "AngleRightFormat" );
 		var steeringText = FormatSigned( lockFraction * 100f, $"0{localization[ "Percent" ]}", "PercentLeftFormat", "PercentRightFormat" );

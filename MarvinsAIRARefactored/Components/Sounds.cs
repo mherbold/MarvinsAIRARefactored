@@ -81,9 +81,7 @@ public class Sounds
 
 		var finalVolume = soundEffect.Volume * soundEffect.GetVolume() * settings.SoundsMasterVolume;
 
-		app.AudioManager.Play( soundEffect.SoundKey, finalVolume, soundEffect.GetFrequencyRatio(), soundEffect.LoopSound );
-
-		soundEffect.IsPlaying = true;
+		soundEffect.IsPlaying = app.AudioManager.Play( soundEffect.SoundKey, finalVolume, soundEffect.GetFrequencyRatio(), soundEffect.LoopSound );
 	}
 
 	public void Tick( App app )
@@ -239,9 +237,9 @@ public class Sounds
 				}
 				else
 				{
-					app.AudioManager.Play( soundEffect.SoundKey, finalVolume, soundEffect.GetFrequencyRatio(), soundEffect.LoopSound, soundEffect.GetLoopStartMs(), soundEffect.GetLoopEndMs() );
-
-					soundEffect.IsPlaying = true;
+					// Play reopens the output device if it was released while idle; if it still cannot start the
+					// sound, IsPlaying stays false so it is retried on a later tick instead of being lost
+					soundEffect.IsPlaying = app.AudioManager.Play( soundEffect.SoundKey, finalVolume, soundEffect.GetFrequencyRatio(), soundEffect.LoopSound, soundEffect.GetLoopStartMs(), soundEffect.GetLoopEndMs() );
 				}
 			}
 			else if ( soundEffect.IsPlaying )

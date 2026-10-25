@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Utjämna parkerade krafter</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Effekterna för understyrning och överstyrning är inte tillgängliga för spel som är anslutna via spelbryggan.</value>
+  </data>
 </root>

@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Հարթեցնել կայանած վիճակի ուժերը</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Անդերստիրի և օվերստիրի էֆեկտները հասանելի չեն խաղերի կամրջի միջոցով միացված խաղերի համար։</value>
+  </data>
 </root>

@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Vyhladit síly při stání</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Efekty nedotáčivosti a přetáčivosti nejsou dostupné pro hry připojené přes herní most.</value>
+  </data>
 </root>

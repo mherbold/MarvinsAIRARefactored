@@ -141,11 +141,11 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>Games keep their telemetry readable when you pause or step into a menu, they just stop updating it. MAIRA notices when the numbers stop advancing and fades the force feedback out rather than grinding the last torque value into your wheel. If a game goes further and rebuilds its shared memory outright — which usually happens when it loads a new session — MAIRA lets go of the old one and reattaches to the new one on its own, so you do not have to restart anything between sessions.</p>
+<p>Games keep their telemetry readable when you pause or step into a menu, they just stop updating it. MAIRA notices when the numbers stop advancing and fades the force feedback out rather than grinding the last torque value into your wheel. If a game goes further and rebuilds its shared memory outright — which usually happens when it loads a new session — MAIRA lets go of the old one and reattaches to the new one on its own, so you do not have to restart anything between sessions. While the game is loading, MAIRA keeps hold of your wheel at zero force, so no other program can take it over in the meantime.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>What a bridge provides is steering torque and suspension movement. Anything that needs data only iRacing publishes stays inactive while a bridge is running — Trading Paints, the incident count, the spotter's car left/right calls, tire rumble, pit commands, replay control, chat commands and camera control.</p>
+<p>What a bridge provides is steering torque and suspension movement. Anything that needs data only iRacing publishes stays inactive while a bridge is running — Trading Paints, the incident count, the spotter's car left/right calls, tire rumble, pit commands, replay control, chat commands and camera control. The understeer and oversteer <a href="https://mairapp.com/home/documentation/advanced/steering-effects/">steering effects</a> (and the Grip-O-Meter's skid/slip indicator) are off too, because they rely on calibration files that can only be made for iRacing cars — the seat-of-pants effect still works.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

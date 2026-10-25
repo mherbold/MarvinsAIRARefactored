@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Suavitza forces d'aparcat</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Els efectes de subviratge i sobreviratge no estan disponibles per als jocs connectats mitjançant el pont de jocs.</value>
+  </data>
 </root>

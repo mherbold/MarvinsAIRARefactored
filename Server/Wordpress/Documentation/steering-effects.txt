@@ -46,6 +46,10 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
+<p>Calibration files are for iRacing only. While you drive a game through the <a href="https://mairapp.com/home/documentation/advanced/game-bridge/">game bridge</a>, MAIRA never loads one - even when a car has the same name in both games, its steering ratio and lock can differ - so the understeer and oversteer effects (and the skid/slip indicator) stay off, and the calibration graph and the understeer and oversteer sections say so. The seat-of-pants effect does not use calibration files, so it keeps working in bridged games.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
 <p>If there is no calibration file for the current car, a "Calibration file is not yet available for this car." message is displayed at the top of the calibration graph. If a file is there but MAIRA cannot make sense of it - most often because it was written by an older version - you get "Configuration file is invalid!" instead.</p>
 <!-- /wp:paragraph -->
 

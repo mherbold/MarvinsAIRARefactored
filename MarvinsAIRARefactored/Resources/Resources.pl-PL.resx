@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Wygładź siły postojowe</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Efekty podsterowności i nadsterowności nie są dostępne w grach połączonych przez most gier.</value>
+  </data>
 </root>

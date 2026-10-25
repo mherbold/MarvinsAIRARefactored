@@ -167,6 +167,18 @@ public partial class GameBridge
 			{
 				Deactivate( app );
 			}
+			else
+			{
+				// safety net - the bridge is only pumped from the playout timer worker, so if anything suspended
+				// the timer while the bridge is active the bridge could never commit again and the simulator
+				// would never reconnect (a no-op while the timer is already running). Re-checked because a failing
+				// pump can deactivate the bridge from the worker thread at any moment, and that path must be left
+				// free to suspend the timer for iRacing
+				if ( !_transitioning && ( ActiveAdapter != null ) )
+				{
+					app.PlayoutTimer.Suspend = false;
+				}
+			}
 		}
 		else
 		{

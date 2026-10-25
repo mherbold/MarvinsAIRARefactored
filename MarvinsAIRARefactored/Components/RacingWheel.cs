@@ -70,6 +70,13 @@ public class RacingWheel
 	private const float UnsuspendTimeMS = 1000f;
 	private const float FadeInTimeMS = 2000f;
 	private const float FadeOutTimeMS = 750f;
+
+	// a game bridge's sim connection drops for a few seconds whenever the game loads a session - the device is
+	// kept through that gap and the playout ramps the force to zero instead of holding the last sample. The
+	// playout counts as starved once no telemetry frame has arrived for BridgeGapStarvedMS.
+	private const float BridgeGapStarvedMS = 100f;
+	private const float BridgeGapFadeOutTimeMS = 250f;
+	private const float BridgeGapFadeInTimeMS = 500f;
 	private const float TestSignalTimeMS = 2000f;
 
 	// was 0.01 at the old ~500 Hz tick rate — scaled ×(500/360) to keep the same peak-torque attack time at 360 Hz
@@ -86,9 +93,27 @@ public class RacingWheel
 	private bool _isSuspended = true;
 	private bool _usingSteeringWheelTorqueData = false;
 
-	public Guid? NextRacingWheelGuid { private get; set; } = null;
+	// the device to (re-)initialize next - set from outside on a device selection change or a device rescan, which
+	// also cuts any pending retry backoff short (both are good reasons to try right away)
+	private Guid? _nextRacingWheelGuid = null;
+
+	public Guid? NextRacingWheelGuid
+	{
+		set
+		{
+			_nextRacingWheelGuid = value;
+
+			_forceFeedbackRetryTimerMS = 0f;
+		}
+	}
+
+	// counts down the backoff before retrying a failed force feedback initialization or re-initializing a lost
+	// device (the delay comes from DirectInput.ForceFeedbackRetryDelayMilliseconds)
+	private float _forceFeedbackRetryTimerMS = 0f;
+
 	public bool SuspendForceFeedback { get; private set; } = true; // true if we want to suspend FFB (for various reasons)
 	public bool ResetForceFeedback { private get; set; } = false; // set to true manually (via reset button)
+	public bool ResetForceFeedbackUnlessHeld { private get; set; } = false; // a game bridge reconnecting - reset only if the device is not already held
 	public bool UseSteeringWheelTorqueData { private get; set; } = false; // false if simulator is disconnected or if driver is not on track
 	public bool PlayTestSignal { private get; set; } = false; // set to true manually (via test button)
 	public bool ClearPeakTorque { private get; set; } = false; // set to clear peak torque
@@ -121,6 +146,7 @@ public class RacingWheel
 
 	private float _unsuspendTimerMS = 0f;
 	private float _fadeTimerMS = 0f;
+	private float _bridgeGapGain = 1f;
 	private float _testSignalTimerMS = 0f;
 
 	private float _outputTorque = 0f;
@@ -747,23 +773,57 @@ public class RacingWheel
 				_racingWheelPage.UpdateSteeringDeviceSection();
 			}
 
+			// a game bridge has reconnected - if the device was kept through the gap there is nothing to reset
+			// (re-initializing would release the wheel and the game could grab it), otherwise reset as usual
+
+			if ( ResetForceFeedbackUnlessHeld )
+			{
+				ResetForceFeedbackUnlessHeld = false;
+
+				if ( _currentRacingWheelGuid == null )
+				{
+					ResetForceFeedback = true;
+				}
+				else
+				{
+					app.Logger.WriteLine( "[RacingWheel] Game bridge reconnected - keeping the force feedback device" );
+				}
+			}
+
+			// a game bridge is active but its sim connection is down (the game is loading a session) or the new
+			// connection has not delivered its session info yet - hold the device as it is (neither release nor
+			// acquire it) and play zero force until the bridge is back
+
+			var bridgeGapHold = app.GameBridge.IsBridgeActive && ( !app.Simulator.IsConnected || ( app.Simulator.SimMode != "full" ) );
+
 			// check if we want to reset the racing wheel device
 
 			if ( ResetForceFeedback )
 			{
 				ResetForceFeedback = false;
 
-				if ( NextRacingWheelGuid == null )
-				{
-					NextRacingWheelGuid = _currentRacingWheelGuid;
+				// an explicit reset (button, mapped input, simulator connecting) retries right away
+				app.DirectInput.ResetForceFeedbackRetryBackoff();
 
-					app.Logger.WriteLine( "[RacingWheel] Requesting reset of force feedback device" );
+				_forceFeedbackRetryTimerMS = 0f;
+
+				if ( _nextRacingWheelGuid == null )
+				{
+					// fall back to the selected device when nothing is current (nothing has initialized yet)
+					var racingWheelGuid = _currentRacingWheelGuid ?? settings.RacingWheelSteeringDeviceGuid;
+
+					if ( racingWheelGuid != Guid.Empty )
+					{
+						_nextRacingWheelGuid = racingWheelGuid;
+
+						app.Logger.WriteLine( "[RacingWheel] Requesting reset of force feedback device" );
+					}
 				}
 			}
 
 			// if power button is off, or suspend is requested, or unsuspend counter is still counting down, or if sim mode is not "full", then suspend the racing wheel force feedback
 
-			if ( !settings.RacingWheelEnableForceFeedback || _isSuspended || ( _unsuspendTimerMS > 0f ) || ( app.Simulator.SimMode != "full" ) )
+			if ( !settings.RacingWheelEnableForceFeedback || _isSuspended || ( _unsuspendTimerMS > 0f ) || ( ( app.Simulator.SimMode != "full" ) && !bridgeGapHold ) )
 			{
 				if ( _currentRacingWheelGuid != null )
 				{
@@ -773,7 +833,7 @@ public class RacingWheel
 
 					_racingWheelPage.UpdateSteeringDeviceSection();
 
-					NextRacingWheelGuid = _currentRacingWheelGuid;
+					_nextRacingWheelGuid = _currentRacingWheelGuid;
 
 					_currentRacingWheelGuid = null;
 				}
@@ -798,9 +858,9 @@ public class RacingWheel
 				return;
 			}
 
-			// if next racing wheel guid is set then re-initialize force feedback
+			// if next racing wheel guid is set then re-initialize force feedback (deferred through a bridge gap)
 
-			if ( NextRacingWheelGuid != null )
+			if ( ( _nextRacingWheelGuid != null ) && !bridgeGapHold )
 			{
 				if ( _currentRacingWheelGuid != null )
 				{
@@ -813,19 +873,39 @@ public class RacingWheel
 					_currentRacingWheelGuid = null;
 				}
 
-				if ( NextRacingWheelGuid != Guid.Empty )
+				if ( _nextRacingWheelGuid != Guid.Empty )
 				{
-					app.Logger.WriteLine( "[RacingWheel] Initializing racing wheel force feedback" );
+					if ( _forceFeedbackRetryTimerMS > 0f )
+					{
+						// waiting out the backoff after a failed initialization or a lost device
 
-					_currentRacingWheelGuid = NextRacingWheelGuid;
+						_forceFeedbackRetryTimerMS -= deltaMilliseconds;
+					}
+					else
+					{
+						app.Logger.WriteLine( "[RacingWheel] Initializing racing wheel force feedback" );
 
-					NextRacingWheelGuid = null;
+						var racingWheelGuid = (Guid) _nextRacingWheelGuid;
 
-					app.DirectInput.InitializeForceFeedback( (Guid) _currentRacingWheelGuid );
+						_currentRacingWheelGuid = racingWheelGuid;
 
-					_racingWheelPage.UpdateSteeringDeviceSection();
+						_nextRacingWheelGuid = null;
+
+						if ( !app.DirectInput.InitializeForceFeedback( racingWheelGuid ) )
+						{
+							// keep the device and try again after the backoff (DirectInput logged the failure and the
+							// delay) - unless a different device got selected while we were initializing
+
+							_currentRacingWheelGuid = null;
+
+							_nextRacingWheelGuid ??= racingWheelGuid;
+
+							_forceFeedbackRetryTimerMS = app.DirectInput.ForceFeedbackRetryDelayMilliseconds;
+						}
+
+						_racingWheelPage.UpdateSteeringDeviceSection();
+					}
 				}
-
 			}
 
 			// let the telemetry-thread producer run
@@ -909,6 +989,29 @@ public class RacingWheel
 
 			outputTorque += app.Accessibility.GetCenteringHelpTorque( deltaMilliseconds );
 
+			// game bridge gap - while the bridge's connection is down, or no frame has arrived for a while, the
+			// window above just holds its newest sample (which may be a soft lock or centering force), so ramp the
+			// force to zero and back in again once frames flow. Without a bridge the gain is always 1 (iRacing
+			// behaviour is unchanged)
+
+			if ( app.GameBridge.IsBridgeActive )
+			{
+				if ( bridgeGapHold || ( _playoutElapsedMilliseconds > BridgeGapStarvedMS ) )
+				{
+					_bridgeGapGain = MathF.Max( 0f, _bridgeGapGain - ( deltaMilliseconds / BridgeGapFadeOutTimeMS ) );
+				}
+				else
+				{
+					_bridgeGapGain = MathF.Min( 1f, _bridgeGapGain + ( deltaMilliseconds / BridgeGapFadeInTimeMS ) );
+				}
+
+				outputTorque *= _bridgeGapGain;
+			}
+			else
+			{
+				_bridgeGapGain = 1f;
+			}
+
 			// underrun tracking — count ticks where the playout clock ran meaningfully past the end of the frame
 
 			_underrunLogTimerMS = MathF.Max( 0f, _underrunLogTimerMS - deltaMilliseconds );
@@ -943,15 +1046,35 @@ public class RacingWheel
 			// The lights share an endpoint with the DirectInput force path and writing both makes the force
 			// cut out. While the Trueforce endpoint streams, the wheel takes its torque from there and
 			// ignores the shared endpoint, so the lights have nothing left to disturb.
+			bool forceFeedbackEffectWasWritten;
+
 			if ( app.LogitechWheel.TrueforceIsStreaming )
 			{
 				app.LogitechWheel.SetOutputTorque( outputTorque );
 
-				app.DirectInput.UpdateForceFeedbackEffect( 0f );
+				forceFeedbackEffectWasWritten = app.DirectInput.UpdateForceFeedbackEffect( 0f );
 			}
 			else
 			{
-				app.DirectInput.UpdateForceFeedbackEffect( outputTorque );
+				forceFeedbackEffectWasWritten = app.DirectInput.UpdateForceFeedbackEffect( outputTorque );
+			}
+
+			// the device was lost (another app took or reset the wheel, driver reset, unplug) - drop it and
+			// re-initialize it after the backoff (DirectInput logged the loss and the delay)
+
+			if ( !forceFeedbackEffectWasWritten && ( _currentRacingWheelGuid != null ) )
+			{
+				app.Logger.WriteLine( "[RacingWheel] Racing wheel force feedback device lost, scheduling re-initialization" );
+
+				app.DirectInput.ShutdownForceFeedback();
+
+				_nextRacingWheelGuid ??= _currentRacingWheelGuid;
+
+				_currentRacingWheelGuid = null;
+
+				_forceFeedbackRetryTimerMS = app.DirectInput.ForceFeedbackRetryDelayMilliseconds;
+
+				_racingWheelPage.UpdateSteeringDeviceSection();
 			}
 
 			// update graph (input traces show the staged raw samples nearest the current playout position, so the
@@ -1417,7 +1540,10 @@ public class RacingWheel
 
 			// suspend racing wheel force feedback if iracing ffb is enabled or we are calibrating
 
-			SuspendForceFeedback = !app.Simulator.IsConnected || ( app.Simulator.SteeringFFBEnabled && !settings.RacingWheelAlwaysEnableFFB ) || app.SteeringEffects.IsCalibrating;
+			// (a game bridge's sim disconnect does not suspend - the playout keeps the device and plays zero force
+			// through the gap, see bridgeGapHold in UpdatePlayout)
+
+			SuspendForceFeedback = ( !app.Simulator.IsConnected && !app.GameBridge.IsBridgeActive ) || ( app.Simulator.SteeringFFBEnabled && !settings.RacingWheelAlwaysEnableFFB ) || app.SteeringEffects.IsCalibrating;
 
 			/*
 			app.Debug.Label_1 = $"FadingIsActive: {FadingIsActive}";

@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>تنعيم قوى التوقف</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>تأثيرات نقص التوجيه وزيادة التوجيه غير متاحة للألعاب المتصلة عبر جسر الألعاب.</value>
+  </data>
 </root>

@@ -66,7 +66,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Forces MAIRA to reinitialize the wheel device. Useful if the wheel "goes dead" or feels desynced.</p>
+<p>Forces MAIRA to reinitialize the wheel device. Useful if the wheel "goes dead" or feels desynced. You should rarely need it: if MAIRA loses the wheel (for example because another program grabbed it) or can't open it, it notices on its own and keeps retrying in the background until force feedback is back.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

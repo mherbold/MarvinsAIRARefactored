@@ -73,6 +73,24 @@
 
                     </Border>
 
+                    <Border x:Name="NotAvailableForGameBridge_Border"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Padding="10,1"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            BorderThickness="2"
+                            CornerRadius="8"
+                            Margin="0,82,0,0"
+                            MaxWidth="1000"
+                            Visibility="Hidden">
+
+                        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Localization[SteeringEffectsNotAvailableForGameBridge]}" />
+
+                    </Border>
+
                     <Border x:Name="InvalidConfigurationFile_Border"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
@@ -193,6 +211,17 @@
                                    Grid.ColumnSpan="5"
                                    FontSize="20"
                                    Text="{Binding Localization[SteeringEffectsCalibrationFileNotAvailable]}"
+                                   Foreground="#ff5b2e"
+                                   Visibility="Collapsed"
+                                   Margin="0,0,0,20" />
+
+                        <TextBlock x:Name="Understeer_GameBridgeWarning"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="5"
+                                   FontSize="20"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Localization[SteeringEffectsNotAvailableForGameBridge]}"
                                    Foreground="#ff5b2e"
                                    Visibility="Collapsed"
                                    Margin="0,0,0,20" />
@@ -354,6 +383,17 @@
                                    Grid.ColumnSpan="5"
                                    FontSize="20"
                                    Text="{Binding Localization[SteeringEffectsCalibrationFileNotAvailable]}"
+                                   Foreground="#ff5b2e"
+                                   Visibility="Collapsed"
+                                   Margin="0,0,0,20" />
+
+                        <TextBlock x:Name="Oversteer_GameBridgeWarning"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="5"
+                                   FontSize="20"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Localization[SteeringEffectsNotAvailableForGameBridge]}"
                                    Foreground="#ff5b2e"
                                    Visibility="Collapsed"
                                    Margin="0,0,0,20" />

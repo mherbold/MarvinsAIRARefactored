@@ -117,6 +117,8 @@ public class RFactor2Bridge : GameBridgeAdapter
 	private readonly float[,] _shockSamples = new float[ 4, SamplesPerFrame ];
 
 	private readonly Dictionary<int, int> _carIdxByVehicleId = [];
+	private int _carIdxMapSession = int.MinValue;
+	private int _carIdxMapGeneration = 0;
 
 	private double _steeringScale = 0.0;
 	private int _steeringScaleSampleCount = 0;
@@ -206,6 +208,7 @@ public class RFactor2Bridge : GameBridgeAdapter
 		_fuelUsePerHour = 0f;
 
 		_carIdxByVehicleId.Clear();
+		_carIdxMapSession = int.MinValue;
 
 		_steeringScale = 0.0;
 		_steeringScaleSampleCount = 0;
@@ -362,11 +365,6 @@ public class RFactor2Bridge : GameBridgeAdapter
 		{
 			_scoringVehicles[ i ] = ReadStruct<rF2VehicleScoring>( _scoringBuffer, ScoringVehicleArrayOffset + i * ScoringVehicleSize );
 
-			if ( !_carIdxByVehicleId.ContainsKey( _scoringVehicles[ i ].mID ) && ( _carIdxByVehicleId.Count < GameBridgeVarTable.MaxNumCars ) )
-			{
-				_carIdxByVehicleId[ _scoringVehicles[ i ].mID ] = _carIdxByVehicleId.Count;
-			}
-
 			if ( _scoringVehicles[ i ].mIsPlayer != 0 )
 			{
 				_playerScoringIndex = i;
@@ -374,7 +372,60 @@ public class RFactor2Bridge : GameBridgeAdapter
 			}
 		}
 
+		UpdateCarIdxMap();
+
 		_hasScoring = _playerScoringIndex != -1;
+	}
+
+	// assigns each vehicle id a stable car index - rebuilt whenever the session changes (practice -> qualifying
+	// -> race), and whenever the player is missing from it: the map stops growing at MaxNumCars, so on a busy
+	// server with cars coming and going the player's id could otherwise never be registered, and PlayerCarIdx
+	// would fall back to car 0 (someone else's car, and the wrong tuning profile)
+	private void UpdateCarIdxMap()
+	{
+		var rebuild = ( _scoringInfo.mSession != _carIdxMapSession );
+
+		if ( !rebuild )
+		{
+			for ( var i = 0; i < _scoringVehicles.Length; i++ )
+			{
+				if ( !_carIdxByVehicleId.ContainsKey( _scoringVehicles[ i ].mID ) && ( _carIdxByVehicleId.Count < GameBridgeVarTable.MaxNumCars ) )
+				{
+					_carIdxByVehicleId[ _scoringVehicles[ i ].mID ] = _carIdxByVehicleId.Count;
+				}
+			}
+
+			rebuild = ( _playerScoringIndex != -1 ) && !_carIdxByVehicleId.ContainsKey( _playerVehicleId );
+		}
+
+		if ( !rebuild )
+		{
+			return;
+		}
+
+		_carIdxByVehicleId.Clear();
+
+		_carIdxMapSession = _scoringInfo.mSession;
+		_carIdxMapGeneration++;
+
+		// the player goes in first, so it always gets a car index no matter how full the server is
+		if ( _playerScoringIndex != -1 )
+		{
+			_carIdxByVehicleId[ _playerVehicleId ] = 0;
+		}
+
+		for ( var i = 0; i < _scoringVehicles.Length; i++ )
+		{
+			if ( !_carIdxByVehicleId.ContainsKey( _scoringVehicles[ i ].mID ) && ( _carIdxByVehicleId.Count < GameBridgeVarTable.MaxNumCars ) )
+			{
+				_carIdxByVehicleId[ _scoringVehicles[ i ].mID ] = _carIdxByVehicleId.Count;
+			}
+		}
+
+		// publish the matching DriverInfo on the next frame instead of up to a second later
+		_lastSessionInfoUpdateTime = double.MinValue;
+
+		App.Instance!.Logger.WriteLine( $"[RFactor2Bridge] Car index map rebuilt - session {_scoringInfo.mSession}, {_carIdxByVehicleId.Count} cars" );
 	}
 
 	// unlike LMU's native map there is no player-index byte, so the player's slot in the telemetry vehicle
@@ -992,7 +1043,7 @@ public class RFactor2Bridge : GameBridgeAdapter
 
 		var trackName = ReadString( _scoringInfo.mTrackName );
 
-		var signature = $"{trackName}|{_scoringInfo.mSession}|{_playerVehicleId}|{_carIdxByVehicleId.Count}|{(int) _playerTelemetry.mEngineMaxRPM}|{_playerVehicleModel}";
+		var signature = $"{trackName}|{_scoringInfo.mSession}|{_playerVehicleId}|{_carIdxByVehicleId.Count}|{_carIdxMapGeneration}|{(int) _playerTelemetry.mEngineMaxRPM}|{_playerVehicleModel}";
 
 		if ( signature == _lastSessionInfoSignature )
 		{

@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Leviga forze da fermi</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Gli effetti di sottosterzo e sovrasterzo non sono disponibili per i giochi collegati tramite il ponte di gioco.</value>
+  </data>
 </root>

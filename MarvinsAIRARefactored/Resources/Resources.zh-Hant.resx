@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>平滑駐車力</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>透過遊戲橋接連線的遊戲不支援轉向不足和轉向過度效果。</value>
+  </data>
 </root>

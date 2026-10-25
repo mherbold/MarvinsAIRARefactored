@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>Izlīdzināt stāvēšanas spēkus</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>Nepietiekamas un pārmērīgas stūrēšanas efekti nav pieejami spēlēm, kas savienotas, izmantojot spēļu tiltu.</value>
+  </data>
 </root>

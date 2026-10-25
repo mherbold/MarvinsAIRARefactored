@@ -136,14 +136,22 @@ public partial class SteeringEffectsPage : UserControl
 		app.Logger.WriteLine( "[SteeringEffectsPage] <<< UpdateSeatOfPantsAlgorithmOptions" );
 	}
 
-	public void UpdateCalibrationFileWarnings( bool showWarnings )
+	// gameBridge = a game bridge game is the data source, where calibration files are never used - the sections then
+	// say the effects are not available there instead of asking for a calibration file
+	public void UpdateCalibrationFileWarnings( bool showWarnings, bool gameBridge )
 	{
 		var app = App.Instance!;
 
 		app.Dispatcher.InvokeAsync( () =>
 		{
-			Understeer_CalibrationFileWarning.Visibility = showWarnings ? Visibility.Visible : Visibility.Collapsed;
-			Oversteer_CalibrationFileWarning.Visibility = showWarnings ? Visibility.Visible : Visibility.Collapsed;
+			var calibrationFileWarningVisibility = ( showWarnings && !gameBridge ) ? Visibility.Visible : Visibility.Collapsed;
+			var gameBridgeWarningVisibility = ( showWarnings && gameBridge ) ? Visibility.Visible : Visibility.Collapsed;
+
+			Understeer_CalibrationFileWarning.Visibility = calibrationFileWarningVisibility;
+			Oversteer_CalibrationFileWarning.Visibility = calibrationFileWarningVisibility;
+
+			Understeer_GameBridgeWarning.Visibility = gameBridgeWarningVisibility;
+			Oversteer_GameBridgeWarning.Visibility = gameBridgeWarningVisibility;
 		} );
 	}
 

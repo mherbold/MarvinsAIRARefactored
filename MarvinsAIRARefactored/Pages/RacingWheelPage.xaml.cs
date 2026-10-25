@@ -1256,7 +1256,10 @@ public partial class RacingWheelPage : UserControl
 			var disabled = !app.DirectInput.ForceFeedbackInitialized;
 
 			Test_MairaMappableButton.Disabled = disabled;
-			Reset_MairaMappableButton.Disabled = disabled;
+
+			// reset stays available after a failed initialization or a lost device - it retries right away
+			Reset_MairaMappableButton.Disabled = disabled && ( settings.RacingWheelSteeringDeviceGuid == Guid.Empty );
+
 			Set_MairaMappableButton.Disabled = disabled;
 			Clear_MairaMappableButton.Disabled = disabled;
 

@@ -2911,4 +2911,7 @@
   <data name="FFBNodeNameSmoothparkedforces" xml:space="preserve">
     <value>पार्क्ड फ़ोर्स स्मूद करें</value>
   </data>
+  <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
+    <value>गेम ब्रिज के माध्यम से जुड़े गेम के लिए अंडरस्टीयर और ओवरस्टीयर प्रभाव उपलब्ध नहीं हैं।</value>
+  </data>
 </root>

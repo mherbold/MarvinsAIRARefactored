@@ -48,6 +48,26 @@ public sealed class AudioManager : IDisposable
 	// guards ResetDeviceForSimulatorConnect against overlapping resets (0 = idle, 1 = running)
 	private int _simulatorConnectResetInProgress = 0;
 
+	// How long the output may sit silent before we release it. An open FMOD output keeps a WASAPI stream
+	// running, which Windows reports as an audio power request (powercfg /requests) and which stops the PC
+	// from going to sleep on its own. So while nothing is playing (and no simulator is connected) we close
+	// the device, and reopen it on demand the moment something wants to play (see EnsureDeviceOpenLocked).
+	private const int IdleReleaseDelayMilliseconds = 10000;
+
+	// After a failed open (e.g. the output device is unplugged), wait this long before trying again so a
+	// looping sound requested every tick does not retry the open every tick.
+	private const int OpenRetryDelayMilliseconds = 5000;
+
+	// Environment.TickCount64 of the last time a sound was started or was found playing. Guarded by _lock.
+	private long _lastAudioActivityTickCount = 0;
+
+	// Environment.TickCount64 before which an on-demand open is not allowed. Set after a failed open, and
+	// when the simulator connects while the device is closed (so we do not grab the shared endpoint while
+	// iRacing is initializing its audio). Guarded by _lock.
+	private long _nextOpenAllowedTickCount = 0;
+
+	private bool _disposed = false;
+
 	// Last device name passed to SetOutputDevice. ApplyOutputDeviceSetting prefers this over the global
 	// settings object because during settings file deserialization the SoundsOutputDevice setter fires on a
 	// new Settings instance before it is assigned to DataContext.Instance — reading the global there would
@@ -67,87 +87,49 @@ public sealed class AudioManager : IDisposable
 	{
 		using ( _lock.EnterScope() )
 		{
-			if ( _fmodSystem != null )
-			{
-				return; // Already open
-			}
-
-			var app = App.Instance!;
-
-			app.Logger.WriteLine( "[AudioManager] OpenDevice >>>" );
-
-			try
-			{
-				FMOD.Factory.System_Create( out var system );
-
-				_fmodSystem = system;
-
-				// Select driver before init so the chosen device is used from the start
-				ApplyOutputDeviceSetting( app );
-
-				var result = _fmodSystem.Value.init( 512, FMOD.INITFLAGS.NORMAL, IntPtr.Zero );
-
-				if ( result != FMOD.RESULT.OK )
-				{
-					throw new InvalidOperationException( $"FMOD init failed: {result}" );
-				}
-
-				// Populate the device list after FMOD is up
-				RefreshOutputDevices();
-
-				// Rebuild the live cache from the durable set of known sound paths. CloseDevice empties the live
-				// caches on every close, but _knownSoundPaths survives, so a device switch or the simulator-connect
-				// reset reloads every sound that was ever requested. LoadSoundFromPathLocked (not LoadSoundFromPath)
-				// is used because we already hold _lock here. A failed reload is logged and skipped so one bad file
-				// cannot abort the rest or tear down the freshly opened device.
-				foreach ( var fmodSound in _soundCache.Values )
-				{
-					fmodSound.Dispose();
-				}
-
-				_soundCache.Clear();
-				_channelCache.Clear();
-
-				foreach ( var path in _knownSoundPaths.ToArray() )
-				{
-					try
-					{
-						LoadSoundFromPathLocked( path );
-					}
-					catch ( Exception exception )
-					{
-						app.Logger.WriteLine( $"[AudioManager] Failed to reload sound '{path}': {exception.Message}" );
-					}
-				}
-
-				app.Logger.WriteLine( "[AudioManager] Audio device opened successfully" );
-			}
-			catch ( Exception exception )
-			{
-				_fmodSystem = null;
-
-				app.Logger.WriteLine( $"[AudioManager] Failed to open audio device: {exception.Message}" );
-			}
-
-			app.Logger.WriteLine( "[AudioManager] <<< OpenDevice" );
+			OpenDeviceLocked();
 		}
 	}
 
-	public void CloseDevice()
+	// The caller MUST already hold _lock.
+	private void OpenDeviceLocked()
 	{
-		using ( _lock.EnterScope() )
+		if ( _fmodSystem != null )
 		{
-			if ( _fmodSystem == null )
+			return; // Already open
+		}
+
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AudioManager] OpenDevice >>>" );
+
+		FMOD.System? createdSystem = null;
+
+		try
+		{
+			FMOD.Factory.System_Create( out var system );
+
+			createdSystem = system;
+			_fmodSystem = system;
+
+			// Select driver before init so the chosen device is used from the start
+			ApplyOutputDeviceSetting( app );
+
+			var result = _fmodSystem.Value.init( 512, FMOD.INITFLAGS.NORMAL, IntPtr.Zero );
+
+			if ( result != FMOD.RESULT.OK )
 			{
-				return; // Already closed
+				throw new InvalidOperationException( $"FMOD init failed: {result}" );
 			}
 
-			var app = App.Instance!;
+			// Populate the device list after FMOD is up
+			RefreshOutputDevices();
 
-			app.Logger.WriteLine( "[AudioManager] CloseDevice >>>" );
-
-			StopAll();
-
+			// Rebuild the live cache from the durable set of known sound paths. CloseDevice empties the live
+			// caches on every close, but _knownSoundPaths survives, so a device switch, the simulator-connect
+			// reset or an idle release reloads every sound that was ever requested. LoadSoundFromPathLocked (not
+			// LoadSoundFromPath) is used because we already hold _lock here. A failed reload is logged and skipped
+			// so one bad file cannot abort the rest or tear down the freshly opened device.
 			foreach ( var fmodSound in _soundCache.Values )
 			{
 				fmodSound.Dispose();
@@ -156,13 +138,104 @@ public sealed class AudioManager : IDisposable
 			_soundCache.Clear();
 			_channelCache.Clear();
 
-			_fmodSystem.Value.release();
+			foreach ( var path in _knownSoundPaths.ToArray() )
+			{
+				try
+				{
+					LoadSoundFromPathLocked( path );
+				}
+				catch ( Exception exception )
+				{
+					app.Logger.WriteLine( $"[AudioManager] Failed to reload sound '{path}': {exception.Message}" );
+				}
+			}
+
+			// a freshly opened device counts as activity, so the idle release does not close it straight away
+			_lastAudioActivityTickCount = Environment.TickCount64;
+
+			app.Logger.WriteLine( "[AudioManager] Audio device opened successfully" );
+		}
+		catch ( Exception exception )
+		{
+			// release the half-created system so repeated failed attempts do not leak FMOD instances
+			createdSystem?.release();
+
 			_fmodSystem = null;
 
-			app.Logger.WriteLine( "[AudioManager] Audio device closed" );
+			_nextOpenAllowedTickCount = Environment.TickCount64 + OpenRetryDelayMilliseconds;
 
-			app.Logger.WriteLine( "[AudioManager] <<< CloseDevice" );
+			app.Logger.WriteLine( $"[AudioManager] Failed to open audio device: {exception.Message}" );
 		}
+
+		app.Logger.WriteLine( "[AudioManager] <<< OpenDevice" );
+	}
+
+	public void CloseDevice()
+	{
+		using ( _lock.EnterScope() )
+		{
+			CloseDeviceLocked();
+		}
+	}
+
+	// The caller MUST already hold _lock.
+	private void CloseDeviceLocked()
+	{
+		if ( _fmodSystem == null )
+		{
+			return; // Already closed
+		}
+
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AudioManager] CloseDevice >>>" );
+
+		StopAll();
+
+		foreach ( var fmodSound in _soundCache.Values )
+		{
+			fmodSound.Dispose();
+		}
+
+		_soundCache.Clear();
+		_channelCache.Clear();
+
+		_fmodSystem.Value.release();
+		_fmodSystem = null;
+
+		app.Logger.WriteLine( "[AudioManager] Audio device closed" );
+
+		app.Logger.WriteLine( "[AudioManager] <<< CloseDevice" );
+	}
+
+	// Opens the output device on demand if it was released while idle. Returns true if the device is open.
+	// It does NOT reopen when the master switch is off (the user closed it on purpose), while the simulator-
+	// connect reset is holding the endpoint free, during the retry back-off after a failed open, or after
+	// Dispose. Opening takes a moment (FMOD init plus reloading the sound files), but it happens synchronously
+	// right before the sound is started, so the first sound is delayed slightly rather than lost. The caller
+	// MUST already hold _lock.
+	private bool EnsureDeviceOpenLocked()
+	{
+		if ( _fmodSystem != null )
+		{
+			return true;
+		}
+
+		if ( _disposed || !DataContext.DataContext.Instance.Settings.SoundsMasterEnabled )
+		{
+			return false;
+		}
+
+		if ( ( _simulatorConnectResetInProgress != 0 ) || ( Environment.TickCount64 < _nextOpenAllowedTickCount ) )
+		{
+			return false;
+		}
+
+		App.Instance!.Logger.WriteLine( "[AudioManager] Reopening the audio device on demand" );
+
+		OpenDeviceLocked();
+
+		return _fmodSystem != null;
 	}
 
 	// Called when the simulator connects. If we are holding the shared output device open, close it, wait,
@@ -176,7 +249,14 @@ public sealed class AudioManager : IDisposable
 
 		if ( _fmodSystem == null )
 		{
-			// device is not open (e.g. sounds are disabled) — nothing to reset
+			// device is not open (sounds are disabled, or it was released while idle) — nothing to reset, but
+			// hold off any on-demand reopen for the same delay so we do not grab the shared endpoint while
+			// iRacing is still initializing its audio
+			using ( _lock.EnterScope() )
+			{
+				_nextOpenAllowedTickCount = Math.Max( _nextOpenAllowedTickCount, Environment.TickCount64 + SimulatorConnectResetDelayMilliseconds );
+			}
+
 			return;
 		}
 
@@ -191,11 +271,11 @@ public sealed class AudioManager : IDisposable
 		{
 			try
 			{
-				// CloseDevice/OpenDevice acquire _lock and touch UI-bound state (RefreshOutputDevices does a
-				// synchronous Dispatcher.Invoke while the lock is held), so they must run on the UI thread as
-				// they always have. Doing them on a background thread deadlocks: this thread would hold _lock
-				// and block on the dispatcher while the UI thread blocks on _lock. Only the delay is off-thread,
-				// so the UI is not frozen during the 2 second wait.
+				// CloseDevice/OpenDevice run on the UI thread as they always have (RefreshOutputDevices used to
+				// do a synchronous Dispatcher.Invoke while holding _lock, which deadlocked off the UI thread; it
+				// now only posts to the dispatcher, but keeping this on the UI thread is the proven path). Only
+				// the delay is off-thread, so the UI is not frozen during the 2 second wait. While this reset is
+				// in progress EnsureDeviceOpenLocked refuses on-demand reopens, so the endpoint stays free.
 				app.Dispatcher.Invoke( () => CloseDevice() );
 
 				await Task.Delay( SimulatorConnectResetDelayMilliseconds );
@@ -254,12 +334,39 @@ public sealed class AudioManager : IDisposable
 
 	/// <summary>
 	/// Must be called once per timer tick so FMOD can process streaming, callbacks, etc.
+	/// Also releases the output device once it has been silent for <see cref="IdleReleaseDelayMilliseconds"/>.
 	/// </summary>
 	public void Update()
 	{
 		using ( _lock.EnterScope() )
 		{
-			if ( _fmodSystem.HasValue ) _fmodSystem.Value.update();
+			if ( _fmodSystem == null )
+			{
+				return;
+			}
+
+			_fmodSystem.Value.update();
+
+			var nowTickCount = Environment.TickCount64;
+
+			_fmodSystem.Value.getChannelsPlaying( out var channelsPlaying );
+
+			if ( channelsPlaying > 0 )
+			{
+				_lastAudioActivityTickCount = nowTickCount;
+
+				return;
+			}
+
+			// Only release while no simulator is connected. During a session the sim holds its own audio stream
+			// (so releasing ours would not let the PC sleep anyway), and keeping ours open avoids the small reopen
+			// delay on the first alert sound and repeated close/reopen churn on the endpoint iRacing is using.
+			if ( ( nowTickCount - _lastAudioActivityTickCount >= IdleReleaseDelayMilliseconds ) && ( _simulatorConnectResetInProgress == 0 ) && !App.Instance!.Simulator.IsConnected )
+			{
+				App.Instance!.Logger.WriteLine( "[AudioManager] Nothing has played for a while - releasing the audio device so Windows can sleep" );
+
+				CloseDeviceLocked();
+			}
 		}
 	}
 
@@ -285,25 +392,53 @@ public sealed class AudioManager : IDisposable
 	// Device enumeration helpers
 	// -------------------------------------------------------------------------
 
+	// Called from OpenDeviceLocked with _lock held. The driver names are read here, under the lock, and only
+	// the finished list is handed to the UI thread. Off the UI thread that hand-off is a non-blocking
+	// BeginInvoke: the device can now be reopened on demand from any thread that plays a sound, and a blocking
+	// Dispatcher.Invoke while holding _lock would deadlock against the UI thread waiting on _lock.
 	private void RefreshOutputDevices()
 	{
-		App.Instance!.Dispatcher.Invoke( () =>
+		if ( _fmodSystem == null )
 		{
-			OutputDevices.Clear();
+			return;
+		}
 
-			if ( _fmodSystem == null )
+		var deviceNames = new List<string>();
+
+		_fmodSystem.Value.getNumDrivers( out int count );
+
+		for ( int i = 0; i < count; i++ )
+		{
+			_fmodSystem.Value.getDriverInfo( i, out string name, 256, out _, out _, out _, out _ );
+			deviceNames.Add( name );
+		}
+
+		void ApplyDeviceNames()
+		{
+			// skip the update when nothing changed, so reopening after an idle release does not churn the list
+			if ( OutputDevices.SequenceEqual( deviceNames ) )
 			{
 				return;
 			}
 
-			_fmodSystem.Value.getNumDrivers( out int count );
+			OutputDevices.Clear();
 
-			for ( int i = 0; i < count; i++ )
+			foreach ( var deviceName in deviceNames )
 			{
-				_fmodSystem.Value.getDriverInfo( i, out string name, 256, out _, out _, out _, out _ );
-				OutputDevices.Add( name );
+				OutputDevices.Add( deviceName );
 			}
-		} );
+		}
+
+		var dispatcher = App.Instance!.Dispatcher;
+
+		if ( dispatcher.CheckAccess() )
+		{
+			ApplyDeviceNames();
+		}
+		else
+		{
+			dispatcher.BeginInvoke( ApplyDeviceNames );
+		}
 	}
 
 	/// <summary>
@@ -476,10 +611,12 @@ public sealed class AudioManager : IDisposable
 
 		using ( _lock.EnterScope() )
 		{
-			if ( _fmodSystem == null )
+			if ( !EnsureDeviceOpenLocked() )
 			{
 				return;
 			}
+
+			_lastAudioActivityTickCount = Environment.TickCount64;
 
 			var exinfo = new FMOD.CREATESOUNDEXINFO
 			{
@@ -487,7 +624,7 @@ public sealed class AudioManager : IDisposable
 				length = (uint) mp3Bytes.Length
 			};
 
-			var result = _fmodSystem.Value.createSound( mp3Bytes, FMOD.MODE.OPENMEMORY | FMOD.MODE.CREATESAMPLE, ref exinfo, out sound );
+			var result = _fmodSystem!.Value.createSound( mp3Bytes, FMOD.MODE.OPENMEMORY | FMOD.MODE.CREATESAMPLE, ref exinfo, out sound );
 
 			if ( result != FMOD.RESULT.OK )
 			{
@@ -531,17 +668,32 @@ public sealed class AudioManager : IDisposable
 		}
 	}
 
-	public void Play( string key, float volume, float frequencyRatio = 1f, bool loop = false, uint loopStartMs = 0, uint loopEndMs = 0 )
+	/// <summary>
+	/// Plays the sound <paramref name="key"/>, reopening the output device first if it was released while idle.
+	/// Returns false only if the output device is unavailable (so the caller can retry later). A sound that is
+	/// not loaded still returns true, as before, so a looping effect with a missing file does not retry and log
+	/// on every tick.
+	/// </summary>
+	public bool Play( string key, float volume, float frequencyRatio = 1f, bool loop = false, uint loopStartMs = 0, uint loopEndMs = 0 )
 	{
 		using ( _lock.EnterScope() )
 		{
+			if ( !EnsureDeviceOpenLocked() )
+			{
+				return false;
+			}
+
 			if ( !TryGetChannel( key, out var channel ) )
 			{
 				App.Instance!.Logger.WriteLine( $"[AudioManager] Trying to play sound '{key}' but it was not loaded" );
-				return;
+				return true;
 			}
 
+			_lastAudioActivityTickCount = Environment.TickCount64;
+
 			channel!.Play( volume, frequencyRatio, loop, loopStartMs, loopEndMs );
+
+			return true;
 		}
 	}
 
@@ -608,6 +760,11 @@ public sealed class AudioManager : IDisposable
 
 	public void Dispose()
 	{
+		using ( _lock.EnterScope() )
+		{
+			_disposed = true; // stop late Play calls from reopening the device during shutdown
+		}
+
 		_fileSystemWatcher?.Dispose();
 
 		CloseDevice();
