@@ -80,6 +80,10 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
+<li>shift_rpm</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li>recording_started</li>
 <!-- /wp:list-item -->
 
@@ -145,7 +149,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Everything from ABS engaged down to FFB clipping is a looping effect. In addition to their Volume and Pitch knobs, each looping effect exposes two extra knobs:</p>
+<p>Everything from ABS engaged down to Shift RPM is a looping effect. In addition to their Volume and Pitch knobs, each looping effect exposes two extra knobs:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -264,6 +268,18 @@
 
 <!-- wp:paragraph -->
 <p>Plays a looping sound whenever your racing wheel force feedback is clipping — that is, whenever the force MAIRA wants to send has hit the ceiling set by your Max force. It is a handy audible cue that detail is being lost at the top of the signal, and it is the same condition the <a href="https://mairapp.com/home/documentation/advanced/overlays/#graph" data-type="page" data-id="860">Graph</a> overlay flashes red for.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF, 75% volume, Pitch OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="shift-rpm">Shift RPM</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>An audible shift cue: a quick, repeating beep that plays while the engine is at or past the car's shift light RPM (the same point the Shift RPM pedal haptic effect uses) and stops as soon as you upshift. It stays silent in neutral, in reverse and in top gear. The default sound is roughly 85 ms of beep followed by 75 ms of silence, so setting Loop end to somewhere between about 90 and 160 ms makes it beep faster, and you can drop in your own shift_rpm.wav to use a different sound.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->

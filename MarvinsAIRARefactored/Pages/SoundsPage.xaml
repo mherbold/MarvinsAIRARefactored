@@ -780,6 +780,81 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[ShiftRPM]}"
+                                HelpTopic="advanced/sounds/#shift-rpm">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="64" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls:MairaSwitch Grid.Row="0" Grid.Column="0"
+                                      IsOn="{Binding Settings.SoundsShiftRPMEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[Enabled]}"
+                                      LabelPosition="Top" />
+
+                <controls:MairaKnob Grid.Row="0" Grid.Column="2"
+                                    Label="{Binding Localization[Volume]}"
+                                    Value="{Binding Settings.SoundsShiftRPMVolume, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsShiftRPMVolumeString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
+                                    PlusButtonMappings="{Binding Settings.SoundsShiftRPMVolumePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsShiftRPMVolumeMinusButtonMappings}"
+                                    DefaultValue="0.75" />
+
+                <controls:MairaKnob Grid.Row="2" Grid.Column="2"
+                                    Label="{Binding Localization[FrequencyRatio]}"
+                                    Value="{Binding Settings.SoundsShiftRPMFrequencyRatio, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsShiftRPMFrequencyRatioString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
+                                    PlusButtonMappings="{Binding Settings.SoundsShiftRPMFrequencyRatioPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsShiftRPMFrequencyRatioMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Row="0" Grid.Column="4"
+                                    Label="{Binding Localization[LoopStart]}"
+                                    Value="{Binding Settings.SoundsShiftRPMLoopStartMs, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsShiftRPMLoopStartMsString}"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
+                                    DefaultValue="0" />
+
+                <controls:MairaKnob Grid.Row="2" Grid.Column="4"
+                                    Label="{Binding Localization[LoopEnd]}"
+                                    Value="{Binding Settings.SoundsShiftRPMLoopEndMs, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsShiftRPMLoopEndMsString}"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
+                                    DefaultValue="0" />
+
+                <controls:MairaButton Grid.Row="0" Grid.Column="8" Grid.RowSpan="3"
+                                      VerticalAlignment="Center"
+                                      Label="{Binding Localization[Test]}"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                      Click="ShiftRPM_Test_MairaButton_Click"
+                                      IsSmall="True" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
         <controls:MairaGroupBox Label="{Binding Localization.Upper[RecordingStarted]}"
                                 HelpTopic="advanced/sounds/#recording-started">
 
