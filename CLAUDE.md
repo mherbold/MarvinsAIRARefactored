@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**MAIRA** (v2.1, "Marvin's Awesome iRacing App" — the repo keeps its historical `MarvinsAIRARefactored` name) is a Windows desktop application written in **C# 13 / .NET 9** using **WPF** (Windows Presentation Foundation). It is a sim-racing companion tool for **iRacing** that provides advanced force-feedback processing, steering effects, pedal haptics, hardware integrations, and various overlays. A **game bridge** feeds telemetry from other simulators (Le Mans Ultimate, rFactor 2, the Assetto Corsa family, RaceRoom) into the same iRacing-native pipeline.
+**MAIRA** (v2.1, "Marvin's Awesome iRacing App" — the repo keeps its historical `MarvinsAIRARefactored` name) is a Windows desktop application written in **C# 13 / .NET 9** using **WPF** (Windows Presentation Foundation). It is a sim-racing companion tool for **iRacing** that provides advanced force-feedback processing, steering effects, pedal haptics, hardware integrations, and various overlays. A **game bridge** feeds telemetry from other simulators (Le Mans Ultimate, rFactor 2, the Assetto Corsa family, RaceRoom, and Automobilista 2 - effects only, AMS2 has no torque channel) into the same iRacing-native pipeline.
 
 The project has a second build target called **AdminBoxx**, controlled via the `ADMINBOXX` preprocessor constant. When `ADMINBOXX` is defined, many features are disabled and the app runs as a simpler hardware-controller utility.
 
