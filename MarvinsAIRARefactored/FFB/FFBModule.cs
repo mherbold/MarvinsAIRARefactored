@@ -54,7 +54,7 @@ public abstract class FFBModule
 		{
 			var settingDescriptor = effectiveSettings[ i ];
 
-			_v[ i ] = model.SettingValues.TryGetValue( settingDescriptor.Key, out var value ) ? value : settingDescriptor.DefaultValue;
+			_v[ i ] = model.SettingValues.TryGetValue( settingDescriptor.Key, out var value ) ? value : settingDescriptor.EffectiveDefault;
 		}
 
 		Enabled = _v.Length > 0 && _v[ 0 ] != 0f;

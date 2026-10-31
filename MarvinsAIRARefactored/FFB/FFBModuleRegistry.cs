@@ -89,6 +89,20 @@ public static class FFBModuleRegistry
 
 	// ---- descriptor construction helpers ----------------------------------------------------------------
 
+	/// <summary>Make a physical-torque knob's range follow the live wheel force: the maximum is the wheel force and
+	/// the default <paramref name="defaultFraction"/> of it. The value itself stays in Nm (it does not rescale when
+	/// the wheel force changes; the editor pulls it down only if the new maximum drops below it).</summary>
+	private static FFBSettingDescriptor WheelForceRanged( FFBSettingDescriptor setting, float defaultFraction )
+	{
+		setting.MaxProvider = () => LiveWheelForce;
+		setting.DefaultProvider = () => LiveWheelForce * defaultFraction;
+
+		return setting;
+	}
+
+	// floored like FFBTickContext.WheelForce so a bad value can't collapse the range
+	private static float LiveWheelForce => MathF.Max( 0.1f, FFBFormatContext.WheelForce );
+
 	private static FFBSettingDescriptor Knob( string key, float min, float max, float defaultValue, float clickStepSize, Func<FFBFormatContext, string>? format = null, string? localizationKey = null, bool showCurve = false, bool breakRow = false, float editUnitScale = float.NaN )
 	{
 		return new FFBSettingDescriptor
@@ -211,22 +225,13 @@ public static class FFBModuleRegistry
 			// not one-per-graph, it sorts after whatever feeds input A, and it is a side chain (see IsSideChain)
 			Descriptor( SourceDynamicDampingType, 1, () => new SourceDynamicDampingModule(), isSideChain: true, category: FFBModuleCategory.Source, settings:
 			[
-				Knob( "Strength", 0f, 10f, 5f, 0.1f, F.WithOff( F.Number( 1, "TorqueUnits" ) ) ),
-				Knob( "Coefficient", 0f, 10f, 1f, 0.05f, F.WithOff( F.Number( 2, "TorqueUnits" ) ) ),
-				Knob( "AcceleratingWithTorque", 0f, 1f, 1f, 0.01f, F.WithOff( F.Percent() ), breakRow: true ),
-				Knob( "DeceleratingWithTorque", 0f, 1f, 0.6f, 0.01f, F.WithOff( F.Percent() ) ),
-				Knob( "AcceleratingAgainstTorque", 0f, 1f, 0.25f, 0.01f, F.WithOff( F.Percent() ) ),
-				Knob( "DeceleratingAgainstTorque", 0f, 1f, 0f, 0.01f, F.WithOff( F.Percent() ) ),
+				// stored as Nm per wheel revolution per second (1 = 100% = 1 Nm at 1 rev/s), shown as a percentage
+				Knob( "Coefficient", 0f, 5f, 1f, 0.05f, F.WithOff( F.Percent() ), localizationKey: "Strength" ),
+				Knob( "AccelerationThreshold", 0f, 10000f, 1000f, 50f, F.WithOff( F.Number( 0, "DegreesPerSecondSquaredUnits" ) ) ),
 
-				// TEMPORARY tuning knobs — become constants in SourceDynamicDampingModule once finalized
-				Knob( "VelocitySmoothing", 5f, 100f, 20f, 1f, F.Number( 0, "MillisecondsUnits" ), breakRow: true ),
-				Knob( "OutputSmoothing", 0f, 50f, 5f, 1f, F.WithOff( F.Number( 0, "MillisecondsUnits" ) ) ),
-				Knob( "TorqueSmoothing", 0f, 100f, 20f, 1f, F.WithOff( F.Number( 0, "MillisecondsUnits" ) ) ),
-				Knob( "TorqueBand", 0f, 5f, 0.5f, 0.05f, F.WithOff( F.Number( 2, "TorqueUnits" ) ) ),
-				Knob( "AccelerationSmoothing", 0f, 200f, 30f, 1f, F.WithOff( F.Number( 0, "MillisecondsUnits" ) ), breakRow: true ),
-				Knob( "AccelerationThreshold", 0f, 10000f, 1000f, 50f, F.WithOff( F.Number( 0 ) ) ),   // deg/s²
-				Knob( "Attack", 0f, 200f, 10f, 1f, F.WithOff( F.Number( 0, "MillisecondsUnits" ) ) ),
-				Knob( "Release", 0f, 1000f, 150f, 5f, F.WithOff( F.Number( 0, "MillisecondsUnits" ) ) )
+				// physical Nm at the wheel; the maximum is the live wheel force and the default half of it (the fixed
+				// 20 / 5 are only fallbacks). New key: an earlier build stored this as a fraction of the wheel force
+				WheelForceRanged( Knob( "MaxDampingTorqueNm", 0f, 20f, 5f, 0.1f, F.WithOff( F.Number( 1, "TorqueUnits" ) ), localizationKey: "FFBSettingMaxDampingTorque" ), defaultFraction: 0.5f )
 			] ),
 
 			Descriptor( SourceWheelCenteringType, 0, () => new SourceWheelCenteringModule(), isSource: true, settings:
