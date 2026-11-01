@@ -113,7 +113,7 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.ABSVibrationType ] = "Pulses the wheel while the brakes' ABS is active.",
 		[ FFBModuleRegistry.EngineRPMVibrationType ] = "A rumble that tracks the engine speed, voiced like a V8 — silent while the engine is off.",
 		[ FFBModuleRegistry.SpeedGainType ] = "Scales the signal with car speed — fade forces in or out as the car speeds up.",
-		[ FFBModuleRegistry.DynamicDampingType ] = "Adds damping that slows the wheel, strongest when the force is flinging it — calms snap-backs and bouncing.",
+		[ FFBModuleRegistry.DynamicDampingType ] = "Adds damping that slows the wheel when torque is flinging it — calms snap-backs and bouncing and can reduce oscillation.",
 		[ FFBModuleRegistry.RoadTextureType ] = "A rumble that speeds up with the car, like road surface texture — silent when parked.",
 		[ FFBModuleRegistry.SlipTextureType ] = "A rumble that appears whenever either end of the car is sliding, driven by the understeer and oversteer effects.",
 		[ FFBModuleRegistry.TorqueDitherType ] = "Adds a tiny alternating dither below a threshold to keep the wheel mechanism live and reveal faint detail."
