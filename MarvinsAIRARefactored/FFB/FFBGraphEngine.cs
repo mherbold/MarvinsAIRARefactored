@@ -251,10 +251,8 @@ public sealed class FFBGraphEngine
 			else
 			{
 				// disabled module passes input A through; a disabled inputless module (any source) has nothing
-				// to pass — it goes silent (its input indices only hold the fallback source, never a real wiring).
-				// A side-chain module goes silent too: its output is summed back onto input A downstream, so
-				// passing input A through would double the main signal
-				signals[ i ] = ( ( descriptors[ i ].SignalInputCount == 0 ) || descriptors[ i ].IsSideChain ) ? 0f : inputA;
+				// to pass — it goes silent (its input indices only hold the fallback source, never a real wiring)
+				signals[ i ] = descriptors[ i ].SignalInputCount == 0 ? 0f : inputA;
 			}
 		}
 

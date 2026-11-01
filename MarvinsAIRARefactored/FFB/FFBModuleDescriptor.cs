@@ -93,7 +93,6 @@ public sealed class FFBModuleDescriptor
 	public bool IsGenerator;                    // contributes to the normalized vibration bus, not the main chain
 	public bool IsSource;                       // fixed source module (emits a ctx torque sample)
 	public bool IsOutput;                       // fixed final module (normalizes + curve/limiter/clamp)
-	public bool IsSideChain;                    // reads input A only as a reference and emits its own signal (summed back in with an Add): never spliced into the selected wire, silent instead of pass-through when disabled
 	public bool CanTest;                        // event-driven effect: editor shows a session-only test toggle that forces the trigger active
 	public required FFBSettingDescriptor[] Settings;   // declared settings (WITHOUT the reserved Enabled)
 	public required Func<FFBModule> CreateRuntime;

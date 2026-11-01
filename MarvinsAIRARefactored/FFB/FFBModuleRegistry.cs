@@ -19,7 +19,6 @@ public static class FFBModuleRegistry
 	public const string SourceLFEType = "SourceLFE";
 	public const string SourceWheelVelocityType = "SourceWheelVelocity";
 	public const string SourceFrictionType = "SourceFriction";
-	public const string SourceDynamicDampingType = "SourceDynamicDamping";
 	public const string SourceSoftLockType = "SourceSoftLock";
 	public const string SourceWheelCenteringType = "SourceWheelCentering";
 	public const string OutputType = "Output";
@@ -56,6 +55,7 @@ public static class FFBModuleRegistry
 	public const string EngineRPMVibrationType = "EngineRPMVibration";
 
 	public const string SpeedGainType = "SpeedGain";
+	public const string DynamicDampingType = "DynamicDamping";
 	public const string RoadTextureType = "RoadTexture";
 	public const string SlipTextureType = "SlipTexture";
 	public const string TorqueDitherType = "TorqueDither";
@@ -154,7 +154,7 @@ public static class FFBModuleRegistry
 	}
 
 	private static FFBModuleDescriptor Descriptor( string typeKey, int signalInputCount, Func<FFBModule> createRuntime, FFBSettingDescriptor[] settings,
-		bool isGenerator = false, bool isSource = false, bool isOutput = false, bool isSideChain = false, bool canTest = false, string? inputA = null, string? inputB = null,
+		bool isGenerator = false, bool isSource = false, bool isOutput = false, bool canTest = false, string? inputA = null, string? inputB = null,
 		FFBModuleCategory category = FFBModuleCategory.GenericDSP )
 	{
 		// sources and the Output module derive their category from their family flags; the main-chain modules
@@ -184,7 +184,6 @@ public static class FFBModuleRegistry
 			IsGenerator = isGenerator,
 			IsSource = isSource,
 			IsOutput = isOutput,
-			IsSideChain = isSideChain,
 			CanTest = canTest,
 			Settings = settings,
 			CreateRuntime = createRuntime
@@ -195,7 +194,7 @@ public static class FFBModuleRegistry
 	{
 		return
 		[
-			// ---- sources (8) ----
+			// ---- sources (7) ----
 			Descriptor( Source60HzType, 0, () => new Source60HzModule(), isSource: true, settings: [] ),
 
 			Descriptor( Source360HzType, 0, () => new Source360HzModule(), isSource: true, settings: [] ),
@@ -219,19 +218,6 @@ public static class FFBModuleRegistry
 			[
 				Knob( "Strength", 0f, 10f, 1f, 0.1f, F.WithOff( F.Number( 1, "TorqueUnits" ) ) ),
 				Knob( "StickRegion", 0.5f, 60f, 25f, 0.5f, F.Number( 1, "Degrees" ) )
-			] ),
-
-			// listed with the sources (it emits its own signal), but structurally a 1-input main-chain module: it is
-			// not one-per-graph, it sorts after whatever feeds input A, and it is a side chain (see IsSideChain)
-			Descriptor( SourceDynamicDampingType, 1, () => new SourceDynamicDampingModule(), isSideChain: true, category: FFBModuleCategory.Source, settings:
-			[
-				// stored as Nm per wheel revolution per second (1 = 100% = 1 Nm at 1 rev/s), shown as a percentage
-				Knob( "Coefficient", 0f, 5f, 1f, 0.05f, F.WithOff( F.Percent() ), localizationKey: "Strength" ),
-				Knob( "AccelerationThreshold", 0f, 10000f, 1000f, 50f, F.WithOff( F.Number( 0, "DegreesPerSecondSquaredUnits" ) ) ),
-
-				// physical Nm at the wheel; the maximum is the live wheel force and the default half of it (the fixed
-				// 20 / 5 are only fallbacks). New key: an earlier build stored this as a fraction of the wheel force
-				WheelForceRanged( Knob( "MaxDampingTorqueNm", 0f, 20f, 5f, 0.1f, F.WithOff( F.Number( 1, "TorqueUnits" ) ), localizationKey: "FFBSettingMaxDampingTorque" ), defaultFraction: 0.5f )
 			] ),
 
 			Descriptor( SourceWheelCenteringType, 0, () => new SourceWheelCenteringModule(), isSource: true, settings:
@@ -326,13 +312,24 @@ public static class FFBModuleRegistry
 				Knob( "Hold", 0f, 100f, 28f, 1f, F.Number( 0, "MillisecondsUnits" ) )
 			] ),
 
-			// ---- effects (7) ----
+			// ---- effects (8) ----
 			Descriptor( SpeedGainType, 1, () => new SpeedGainModule(), category: FFBModuleCategory.Effect, canTest: true, settings:
 			[
 				Knob( "MinSpeed", 0f, 50f, 0f, 1f, F.Number( 0, "MPSUnits" ) ),
 				Knob( "MaxSpeed", 0f, 100f, 30f, 1f, F.Number( 0, "MPSUnits" ) ),
 				Knob( "GainAtMin", 0f, 2f, 1f, 0.05f, F.Multiplier( 2 ), breakRow: true ),
 				Knob( "GainAtMax", 0f, 2f, 1f, 0.05f, F.Multiplier( 2 ) )
+			] ),
+
+			Descriptor( DynamicDampingType, 1, () => new DynamicDampingModule(), category: FFBModuleCategory.Effect, settings:
+			[
+				// stored as Nm per wheel revolution per second (1 = 100% = 1 Nm at 1 rev/s), shown as a percentage
+				Knob( "Coefficient", 0f, 5f, 1f, 0.05f, F.WithOff( F.Percent() ), localizationKey: "Strength" ),
+				Knob( "AccelerationThreshold", 0f, 10000f, 1000f, 50f, F.WithOff( F.Number( 0, "DegreesPerSecondSquaredUnits" ) ) ),
+
+				// physical Nm at the wheel; the maximum is the live wheel force and the default half of it (the fixed
+				// 20 / 5 are only fallbacks)
+				WheelForceRanged( Knob( "MaxDampingTorqueNm", 0f, 20f, 5f, 0.1f, F.WithOff( F.Number( 1, "TorqueUnits" ) ), localizationKey: "FFBSettingMaxDampingTorque" ), defaultFraction: 0.5f )
 			] ),
 
 			Descriptor( TorqueDitherType, 1, () => new TorqueDitherModule(), category: FFBModuleCategory.Effect, settings:

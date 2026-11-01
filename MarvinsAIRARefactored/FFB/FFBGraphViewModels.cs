@@ -26,7 +26,6 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.Source360HzType ] = "360 Hz source",
 		[ FFBModuleRegistry.SourceLFEType ] = "LFE source",
 		[ FFBModuleRegistry.SourceWheelVelocityType ] = "Wheel velocity source",
-		[ FFBModuleRegistry.SourceDynamicDampingType ] = "Dynamic damping source",
 		[ FFBModuleRegistry.SourceSoftLockType ] = "Soft lock source",
 		[ FFBModuleRegistry.SourceWheelCenteringType ] = "Wheel centering source",
 		[ FFBModuleRegistry.OutputType ] = "Output",
@@ -57,6 +56,7 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.ABSVibrationType ] = "ABS vibration",
 		[ FFBModuleRegistry.EngineRPMVibrationType ] = "Engine RPM vibration",
 		[ FFBModuleRegistry.SpeedGainType ] = "Speed gain",
+		[ FFBModuleRegistry.DynamicDampingType ] = "Dynamic damping",
 		[ FFBModuleRegistry.RoadTextureType ] = "Road texture",
 		[ FFBModuleRegistry.SlipTextureType ] = "Slip texture",
 		[ FFBModuleRegistry.TorqueDitherType ] = "Torque dither"
@@ -81,7 +81,6 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.SourceLFEType ] = "The simulator's low-frequency effects audio, turned into wheel force. Mix it in with an add module.",
 		[ FFBModuleRegistry.SourceWheelVelocityType ] = "A force that opposes how fast the wheel is being turned — mix it in for damping.",
 		[ FFBModuleRegistry.SourceFrictionType ] = "True dry friction: the wheel holds where you leave it, with constant sliding drag past the stick region.",
-		[ FFBModuleRegistry.SourceDynamicDampingType ] = "Damping that slows the wheel, strongest when the force is flinging it — feed it the main signal and add its output back in.",
 		[ FFBModuleRegistry.SourceSoftLockType ] = "Pushes back hard when the wheel is turned past the car's steering lock, like a physical end stop.",
 		[ FFBModuleRegistry.SourceWheelCenteringType ] = "A spring force that pulls the wheel back toward center. Route it through a speed gain module to keep it parked-only.",
 		[ FFBModuleRegistry.OutputType ] = "The end of the chain — converts the signal to wheel output, with an optional response curve and soft limiter.",
@@ -114,6 +113,7 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.ABSVibrationType ] = "Pulses the wheel while the brakes' ABS is active.",
 		[ FFBModuleRegistry.EngineRPMVibrationType ] = "A rumble that tracks the engine speed, voiced like a V8 — silent while the engine is off.",
 		[ FFBModuleRegistry.SpeedGainType ] = "Scales the signal with car speed — fade forces in or out as the car speeds up.",
+		[ FFBModuleRegistry.DynamicDampingType ] = "Adds damping that slows the wheel, strongest when the force is flinging it — calms snap-backs and bouncing.",
 		[ FFBModuleRegistry.RoadTextureType ] = "A rumble that speeds up with the car, like road surface texture — silent when parked.",
 		[ FFBModuleRegistry.SlipTextureType ] = "A rumble that appears whenever either end of the car is sliding, driven by the understeer and oversteer effects.",
 		[ FFBModuleRegistry.TorqueDitherType ] = "Adds a tiny alternating dither below a threshold to keep the wheel mechanism live and reveal faint detail."
@@ -1772,11 +1772,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		// Only inputs the consumer's descriptor actually uses count: every 1-input module carries a dangling
 		// input B reference (set to the fallback source at add time), and matching those would pick a "neighbor"
 		// that is not visually connected at all
-		// a side-chain module only taps the selected module's output (its own output gets summed back in with an
-		// Add), so it hangs off the selection instead of being spliced into its wire
-		var splicesIntoSelection = wiredFromSelectedModule && ( descriptor.SignalInputCount >= 1 ) && !descriptor.IsSideChain;
-
-		var splicedAfterModule = splicesIntoSelection ? _graph.Modules.Find( existingModule => existingModule.ModuleId == inputSourceId ) : null;
+		var splicedAfterModule = ( wiredFromSelectedModule && ( descriptor.SignalInputCount >= 1 ) ) ? _graph.Modules.Find( existingModule => existingModule.ModuleId == inputSourceId ) : null;
 
 		var downstreamModule = ( splicedAfterModule != null ) ? _graph.Modules.Find( existingModule =>
 		{
@@ -1794,7 +1790,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		// the new module's output instead. Only applies when the new module actually took the selected module as
 		// its input A — a new source is not connected to the selection, so nothing gets rewired. The new module
 		// isn't in the list yet, so its own input A (the selected module) is untouched and no cycle can form.
-		if ( splicesIntoSelection )
+		if ( wiredFromSelectedModule && ( descriptor.SignalInputCount >= 1 ) )
 		{
 			foreach ( var existingModule in _graph.Modules )
 			{
