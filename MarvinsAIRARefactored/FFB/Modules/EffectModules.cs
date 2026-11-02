@@ -183,6 +183,9 @@ public sealed class UndersteerForceModule : FFBModule
 	private const int Strength = 2;
 	private const int Curve = 3;
 
+	// IncreaseForce's push direction ramps in over this much steering angle (~2°) so it can't chatter at center
+	private const float DirectionRampRadians = 0.035f;
+
 	private float _curvePower;
 
 	private EffectInterpolator _effectInterpolator;
@@ -209,7 +212,14 @@ public sealed class UndersteerForceModule : FFBModule
 					return MathZ.Lerp( inputA, 0f, MathZ.Saturate( constantForceTorque ) );
 
 				case RacingWheel.ConstantForceDirection.IncreaseForce:
-					return inputA + MathF.CopySign( constantForceTorque, ctx.VelocityY ) * ctx.MaxForce;
+				{
+					// push against the steering: the angle is counterclockwise-positive, so the resisting force takes
+					// the opposite sign. (This used to follow the sign of VelocityY, which points into the turn in slow
+					// corners where the rear tracks inside the front, so the push went light instead of heavy.)
+					var steeringDirection = Math.Clamp( ctx.SteeringWheelAngle / DirectionRampRadians, -1f, 1f );
+
+					return inputA - constantForceTorque * steeringDirection * ctx.MaxForce;
+				}
 			}
 		}
 
