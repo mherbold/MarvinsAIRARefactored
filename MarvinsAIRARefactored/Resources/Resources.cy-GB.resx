@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Nid yw'r effeithiau tanllywio a gorllywio ar gael ar gyfer gemau sydd wedi'u cysylltu drwy'r bont gemau.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Lleithio dynamig</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Yn ychwanegu lleithio sy'n arafu'r olwyn pan fo'r trorym yn ei hyrddio — yn tawelu adlamau sydyn a bownsio a gall leihau osgiliad.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Trothwy cyflymiad</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Trorym lleithio uchaf</value>
+  </data>
 </root>

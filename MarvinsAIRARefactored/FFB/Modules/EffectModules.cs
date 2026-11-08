@@ -353,22 +353,23 @@ public sealed class SpeedGainModule : FFBModule
 /// braking the wheel). The with/against split is blended across a small torque band and the
 /// accelerating/decelerating split across an acceleration threshold, so no situation change steps the output;
 /// the combined weight then follows an attack/release envelope.</para>
-/// <para>Coefficient (labeled Strength, shown as a percentage) is the damping torque in physical Nm at one wheel
-/// revolution per second — 100% = 1 Nm. MaxDampingTorque caps the damping torque in physical Nm; its knob range
-/// is 0..wheel force and its default half the wheel force (both live). The telemetry is ~2 frames stale, so very
-/// high coefficients can add energy above a few Hz instead of removing it — tune on a hands-off oscillation.</para>
+/// <para>Strength and MaxDampingTorque are both fractions of the wheel force, so the damping keeps the same
+/// proportion to the rest of the FFB on any wheelbase (and a shared graph feels the same on all of them).
+/// Strength is the damping torque at one wheel revolution per second — 100% = the full wheel force at 1 rev/s.
+/// MaxDampingTorque caps it — 50% = never more than half the wheel force. The telemetry is ~2 frames stale, so
+/// very high strengths can add energy above a few Hz instead of removing it — tune on a hands-off oscillation.</para>
 /// <para>The situation weights and the smoothing/envelope times are fixed tuning constants (see the "tuning
 /// constants" block at the top of the class) — edit them there.</para>
 /// </summary>
 public sealed class DynamicDampingModule : FFBModule
 {
-	private const int Coefficient = 1;             // Nm per rev/s (the "Strength" percentage: 1 = 100%)
+	private const int Strength = 1;                // fraction of the wheel force per rev/s (1 = 100%)
 	private const int AccelerationThreshold = 2;   // deg/s² — speeding up by this much counts as fully accelerating
-	private const int MaxDampingTorque = 3;        // physical Nm at the wheel
+	private const int MaxDampingTorque = 3;        // fraction of the wheel force (1 = 100%)
 
 	// ---- tuning constants ----------------------------------------------------------------------------------
 
-	// situation weights (0 = no damping, 1 = full Coefficient)
+	// situation weights (0 = no damping, 1 = full Strength)
 	private const float AcceleratingWithTorqueWeight = 1f;      // FFB flinging the wheel (snap-back, hands off)
 	private const float DeceleratingWithTorqueWeight = 0.6f;    // driver catching a wheel the FFB is driving
 	private const float AcceleratingAgainstTorqueWeight = 0f;   // driver turning against the aligning torque
@@ -481,14 +482,14 @@ public sealed class DynamicDampingModule : FFBModule
 
 		_weight += ( targetWeight - _weight ) * ( ( targetWeight > _weight ) ? AttackAlpha : ReleaseAlpha );
 
-		// Coefficient and the cap are both physical Nm (the cap never exceeds what the wheel can produce)
-		var maxDampingTorqueNm = MathF.Min( _v[ MaxDampingTorque ], ctx.WheelForce );
+		// strength and cap are both fractions of the wheel force (the knob range keeps the cap within 0..100%)
+		var maxDampingFraction = _v[ MaxDampingTorque ];
 
-		var dampingTorqueNm = Math.Clamp( _velocity / MathF.Tau * _v[ Coefficient ] * _weight, -maxDampingTorqueNm, maxDampingTorqueNm );
+		var dampingFraction = Math.Clamp( _velocity / MathF.Tau * _v[ Strength ] * _weight, -maxDampingFraction, maxDampingFraction );
 
-		// negated: damping must OPPOSE the counterclockwise-positive velocity. Physical Nm becomes a normalized
-		// fraction via WheelForce, then MaxForce lifts it into the Nm main chain (same as the friction source)
-		var targetDampingOutput = -dampingTorqueNm / ctx.WheelForce * ctx.MaxForce;
+		// negated: damping must OPPOSE the counterclockwise-positive velocity. MaxForce lifts the wheel force
+		// fraction into the Nm main chain (same as the friction source)
+		var targetDampingOutput = -dampingFraction * ctx.MaxForce;
 
 		_dampingOutput += ( targetDampingOutput - _dampingOutput ) * OutputAlpha;
 

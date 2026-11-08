@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>透過遊戲橋接連線的遊戲不支援轉向不足和轉向過度效果。</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>動態阻尼</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>當扭矩甩動方向盤時加入阻尼使其減速——平息猛烈回彈和彈跳，並可減少振盪。</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>加速度閾值</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>最大阻尼扭矩</value>
+  </data>
 </root>

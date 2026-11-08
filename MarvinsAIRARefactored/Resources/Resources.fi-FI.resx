@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Aliohjaus- ja yliohjausefektit eivät ole käytettävissä pelisillan kautta yhdistetyissä peleissä.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dynaaminen vaimennus</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Lisää vaimennusta, joka hidastaa rattia, kun vääntö heittää sitä — rauhoittaa takaiskuja ja pomppimista ja voi vähentää värähtelyä.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Kiihtyvyyskynnys</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Suurin vaimennusmomentti</value>
+  </data>
 </root>

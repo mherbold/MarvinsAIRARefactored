@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>गेम ब्रिज के माध्यम से जुड़े गेम के लिए अंडरस्टीयर और ओवरस्टीयर प्रभाव उपलब्ध नहीं हैं।</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>डायनैमिक डैम्पिंग</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>ऐसी डैम्पिंग जोड़ता है जो टॉर्क द्वारा व्हील को झटकने पर उसे धीमा करती है — अचानक वापसी के झटकों और उछाल को शांत करती है और दोलन कम कर सकती है।</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>त्वरण सीमा</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>अधिकतम डैम्पिंग टॉर्क</value>
+  </data>
 </root>

@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Effekterna för understyrning och överstyrning är inte tillgängliga för spel som är anslutna via spelbryggan.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dynamisk dämpning</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Lägger till dämpning som bromsar ratten när momentet kastar runt den — lugnar bakslag och studsar och kan minska svängningar.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Accelerationströskel</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Max dämpningsmoment</value>
+  </data>
 </root>

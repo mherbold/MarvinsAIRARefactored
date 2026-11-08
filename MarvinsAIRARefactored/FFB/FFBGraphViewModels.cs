@@ -187,7 +187,7 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 		_model = model;
 		_descriptor = descriptor;
 
-		_value = model.SettingValues.TryGetValue( descriptor.Key, out var stored ) ? stored : descriptor.EffectiveDefault;
+		_value = model.SettingValues.TryGetValue( descriptor.Key, out var stored ) ? stored : descriptor.DefaultValue;
 		_valueString = Format( _value );
 
 		if ( descriptor.Type == FFBSettingType.Choice && ( descriptor.ChoiceLocalizationKeys != null ) )
@@ -223,11 +223,11 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 	// FFBSetting{Key} (new, precise) -> {Key} (reuse an existing translated key like Strength/Curve/Duration) -> humanized.
 	public string Label => FFBDisplayNames.Localize( _descriptor.LocalizationKey, FFBDisplayNames.Localize( _descriptor.Key, FFBDisplayNames.Humanize( _descriptor.Key ) ) );
 	public float Minimum => _descriptor.Min;
-	public float Maximum => _descriptor.EffectiveMax;
+	public float Maximum => _descriptor.Max;
 	public float ClickStepSize => _descriptor.ClickStepSize;
-	public float DragStepSize => _descriptor.EffectiveDragStepSize;
+	public float DragStepSize => _descriptor.DragStepSize;
 	public float EditUnitScale => _descriptor.EditUnitScale;
-	public float? DefaultValue => _descriptor.EffectiveDefault;
+	public float? DefaultValue => _descriptor.DefaultValue;
 	public bool ShowCurve => _descriptor.ShowCurve;
 
 	public List<KeyValuePair<int, string>> ChoiceOptions { get; } = [];
@@ -354,40 +354,12 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 	}
 
 	/// <summary>Recompute the displayed value string in place (the value is unchanged). Used when a WheelForce/MaxForce change moved a scaled display.</summary>
-	public void RefreshValueString()
-	{
-		ValueString = Format( _value );
-
-		// a dynamic-range knob's maximum / default follow a live setting (e.g. the wheel force) — re-publish them
-		if ( _descriptor.HasDynamicRange )
-		{
-			OnPropertyChanged( nameof( Maximum ) );
-			OnPropertyChanged( nameof( DragStepSize ) );
-			OnPropertyChanged( nameof( DefaultValue ) );
-
-			if ( !_model.SettingValues.ContainsKey( _descriptor.Key ) )
-			{
-				// never set by the user: keep following the live default (pushed to the engines, not stored)
-				_value = _descriptor.EffectiveDefault;
-
-				App.Instance!.RacingWheel.SetEngineValue( _moduleId, _descriptor.Key, _value );
-
-				ValueString = Format( _value );
-
-				OnPropertyChanged( nameof( Value ) );
-			}
-			else if ( _value > Maximum )
-			{
-				// the maximum just dropped below the stored value — pull it down (like the auto target's re-clamp)
-				Value = Maximum;
-			}
-		}
-	}
+	public void RefreshValueString() => ValueString = Format( _value );
 
 	/// <summary>Refresh the displayed value string (e.g. after a per-context reload changed the model value).</summary>
 	public void Reload()
 	{
-		_value = _model.SettingValues.TryGetValue( _descriptor.Key, out var stored ) ? stored : _descriptor.EffectiveDefault;
+		_value = _model.SettingValues.TryGetValue( _descriptor.Key, out var stored ) ? stored : _descriptor.DefaultValue;
 
 		ValueString = Format( _value );
 

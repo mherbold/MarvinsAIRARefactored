@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Эффекты андерстира и оверстира недоступны для игр, подключённых через игровой мост.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Динамическое демпфирование</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Добавляет демпфирование, которое замедляет руль, когда крутящий момент его бросает, — гасит резкие возвраты и подпрыгивания и может уменьшить колебания.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Порог ускорения</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Макс. момент демпфирования</value>
+  </data>
 </root>

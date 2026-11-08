@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Los efectos de subviraje y sobreviraje no están disponibles para los juegos conectados mediante el puente de juegos.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Amortiguación dinámica</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Añade amortiguación que frena el volante cuando el par lo lanza — calma los retornos bruscos y los rebotes, y puede reducir la oscilación.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Umbral de aceleración</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Par de amortiguación máx.</value>
+  </data>
 </root>

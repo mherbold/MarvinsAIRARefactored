@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Els efectes de subviratge i sobreviratge no estan disponibles per als jocs connectats mitjançant el pont de jocs.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Amortiment dinàmic</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Afegeix amortiment que frena el volant quan el parell el llança — calma els retorns bruscos i els rebots i pot reduir l'oscil·lació.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Llindar d'acceleració</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Parell d'amortiment màx.</value>
+  </data>
 </root>

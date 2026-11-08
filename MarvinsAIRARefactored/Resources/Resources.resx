@@ -2913,9 +2913,18 @@
     <value>Understeer and oversteer effects are not available for games connected through the game bridge.</value>
   </data>
   <data name="DegreesPerSecondSquaredUnits" xml:space="preserve">
-    <value> deg/s²</value>
+    <value> °/s²</value>
   </data>
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max damping torque</value>
+  </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dynamic damping</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Adds damping that slows the wheel when torque is flinging it — calms snap-backs and bouncing and can reduce oscillation.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Acceleration threshold</value>
   </data>
 </root>

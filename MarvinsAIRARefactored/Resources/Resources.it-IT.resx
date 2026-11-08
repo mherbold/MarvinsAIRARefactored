@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Gli effetti di sottosterzo e sovrasterzo non sono disponibili per i giochi collegati tramite il ponte di gioco.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Smorzamento dinamico</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Aggiunge uno smorzamento che rallenta il volante quando la coppia lo scaglia — calma i ritorni bruschi e i rimbalzi e può ridurre le oscillazioni.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Soglia di accelerazione</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Coppia di smorzamento max</value>
+  </data>
 </root>

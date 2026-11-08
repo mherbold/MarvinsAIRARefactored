@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>אפקטי האנדרסטיר והאוברסטיר אינם זמינים למשחקים המחוברים דרך גשר המשחקים.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>ריסון דינמי</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>מוסיף ריסון שמאט את ההגה כשהמומנט מטלטל אותו — מרגיע חזרות חדות וקפיצות ויכול להפחית תנודות.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>סף תאוצה</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>מומנט ריסון מרבי</value>
+  </data>
 </root>

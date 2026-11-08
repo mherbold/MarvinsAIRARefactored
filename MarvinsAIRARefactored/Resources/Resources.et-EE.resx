@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Alajuhtivuse ja ülejuhtivuse efektid pole mängusilla kaudu ühendatud mängude puhul saadaval.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dünaamiline summutus</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Lisab summutust, mis aeglustab rooli, kui pöördemoment seda paiskab — rahustab tagasilööke ja põrkumist ning võib vähendada võnkumist.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Kiirenduse lävi</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Max summutusmoment</value>
+  </data>
 </root>

@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>تأثيرات نقص التوجيه وزيادة التوجيه غير متاحة للألعاب المتصلة عبر جسر الألعاب.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>تخميد ديناميكي</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>يضيف تخميدًا يُبطئ عجلة القيادة عندما يقذفها عزم الدوران — يهدّئ الارتدادات المفاجئة والارتجاج ويمكن أن يقلل التذبذب.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>عتبة التسارع</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>أقصى عزم تخميد</value>
+  </data>
 </root>

@@ -1086,6 +1086,32 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Dynamic damping</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds damping that slows the wheel when torque is flinging it — calms snap-backs and bouncing and can reduce oscillation. It works like a shock absorber that only turns on when it is needed: it is strongest when the force feedback is spinning the wheel up by itself (a snap-back, or the wheel wobbling after you let go), lighter while you are catching a wheel the force is driving, and stays out of the way while you are turning the wheel yourself. Drop it into the main chain; its output is the incoming signal with the damping added.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Strength</strong> — 0% to 100%, OFF at 0. How hard the damping pushes back, as a share of your wheel force when the wheel is turning one full revolution per second. Default: 10%</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Acceleration threshold</strong> — 0 to 10000 °/s², OFF at 0. How quickly the wheel has to be speeding up before it counts as being flung, which brings in the strongest damping. At OFF, any speeding up counts. Default: 1000 °/s²</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Max damping torque</strong> — 0% to 100% of your wheel force, OFF at 0. The most the damping can ever push back; the knob also shows what that works out to in Nm. Default: 50%</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Both strength and the cap are a share of your wheel force, so a graph feels the same on any wheelbase. The steering data from iRacing arrives a little late, so very high strengths can start adding a shake instead of removing one — tune it by letting go of the wheel in a corner and raising strength until the wobble settles, then stop.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Torque dither</p>
 <!-- /wp:paragraph -->
 

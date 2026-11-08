@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Ефектите за недозавиване и презавиване не са налични за игри, свързани чрез моста към игри.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Динамично демпфиране</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Добавя демпфиране, което забавя волана, когато въртящият момент го мята — успокоява резките връщания и подскачането и може да намали трептенето.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Праг на ускорение</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Макс. демпфиращ момент</value>
+  </data>
 </root>

@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Efekty nedotáčavosti a pretáčavosti nie sú dostupné pre hry pripojené cez herný most.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dynamické tlmenie</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Pridáva tlmenie, ktoré spomaľuje volant, keď ním krútiaci moment hádže — upokojuje prudké návraty a poskakovanie a môže obmedziť oscilácie.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Prah zrýchlenia</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Max. tlmiaci moment</value>
+  </data>
 </root>

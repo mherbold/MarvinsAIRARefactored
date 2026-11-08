@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Önden kayma ve arkadan kayma efektleri, oyun köprüsü üzerinden bağlanan oyunlarda kullanılamaz.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dinamik sönümleme</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Tork direksiyonu savurduğunda onu yavaşlatan sönümleme ekler — ani geri dönüşleri ve sekmeleri yatıştırır ve salınımı azaltabilir.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>İvme eşiği</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Maks. sönümleme torku</value>
+  </data>
 </root>

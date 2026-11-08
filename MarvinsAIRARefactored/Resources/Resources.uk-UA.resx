@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Ефекти недостатньої та надмірної поворотності недоступні для ігор, підключених через ігровий міст.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Динамічне демпфування</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Додає демпфування, яке сповільнює кермо, коли крутний момент його кидає, — гасить різкі повернення й підстрибування та може зменшити коливання.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Поріг прискорення</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Макс. момент демпфування</value>
+  </data>
 </root>

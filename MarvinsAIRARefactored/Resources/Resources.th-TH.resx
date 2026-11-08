@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>เอฟเฟกต์อันเดอร์สเตียร์และโอเวอร์สเตียร์ใช้ไม่ได้กับเกมที่เชื่อมต่อผ่านบริดจ์เกม</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>การหน่วงแบบไดนามิก</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>เพิ่มการหน่วงที่ชะลอพวงมาลัยเมื่อแรงบิดเหวี่ยงมัน — ช่วยระงับการดีดกลับและการเด้ง และช่วยลดการสั่นได้</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>เกณฑ์ความเร่ง</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>แรงบิดหน่วงสูงสุด</value>
+  </data>
 </root>

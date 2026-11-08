@@ -73,6 +73,11 @@ public static class FFBValueFormats
 	public static Func<FFBFormatContext, string> MaxForceScaled( float extraScale, int decimals, string unitKey )
 		=> ctx => Fixed( ctx.Value * FFBFormatContext.MaxForce * extraScale, decimals ) + FFBFormatContext.Localized( unitKey );
 
+	/// <summary>0..1 fraction of the live wheel force, shown as a percentage plus the torque it currently works out to:
+	/// 0.50 at a 20 Nm wheel force -> "50% (10.0 Nm)". Re-renders on a wheel force change (RefreshValueStrings).</summary>
+	public static Func<FFBFormatContext, string> WheelForcePercent( int decimals = 0, int torqueDecimals = 1 )
+		=> ctx => Fixed( ctx.Value * 100f, decimals ) + FFBFormatContext.Localized( "Percent" ) + " (" + Fixed( ctx.Value * FFBFormatContext.WheelForce, torqueDecimals ) + FFBFormatContext.Localized( "TorqueUnits" ) + ")";
+
 	/// <summary>Gain-style multiplier: "1.50x" — the x marks the value as a scale factor, not an absolute amount.</summary>
 	public static Func<FFBFormatContext, string> Multiplier( int decimals )
 		=> ctx => Fixed( ctx.Value, decimals ) + "x";

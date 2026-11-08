@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Understyrings- og overstyringseffekterne er ikke tilgængelige for spil, der er forbundet via spilbroen.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dynamisk dæmpning</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Tilføjer dæmpning, der bremser rattet, når momentet kaster det rundt — dæmper tilbageslag og hop og kan mindske svingninger.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Accelerationstærskel</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Maks. dæmpningsmoment</value>
+  </data>
 </root>

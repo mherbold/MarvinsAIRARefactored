@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Անդերստիրի և օվերստիրի էֆեկտները հասանելի չեն խաղերի կամրջի միջոցով միացված խաղերի համար։</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Դինամիկ մարում</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Ավելացնում է մարում, որը դանդաղեցնում է ղեկը, երբ պտտող մոմենտը նետում է այն — հանդարտեցնում է կտրուկ վերադարձները և ցատկոտումը և կարող է նվազեցնել տատանումները։</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Արագացման շեմ</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Մարման առավելագույն մոմենտ</value>
+  </data>
 </root>

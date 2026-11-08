@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Efectele de subviraj și supraviraj nu sunt disponibile pentru jocurile conectate prin puntea de jocuri.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Amortizare dinamică</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Adaugă amortizare care încetinește volanul când cuplul îl azvârle — calmează reculurile bruște și săriturile și poate reduce oscilațiile.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Prag de accelerație</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Cuplu max. de amortizare</value>
+  </data>
 </root>

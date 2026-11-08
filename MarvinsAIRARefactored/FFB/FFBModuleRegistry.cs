@@ -89,20 +89,6 @@ public static class FFBModuleRegistry
 
 	// ---- descriptor construction helpers ----------------------------------------------------------------
 
-	/// <summary>Make a physical-torque knob's range follow the live wheel force: the maximum is the wheel force and
-	/// the default <paramref name="defaultFraction"/> of it. The value itself stays in Nm (it does not rescale when
-	/// the wheel force changes; the editor pulls it down only if the new maximum drops below it).</summary>
-	private static FFBSettingDescriptor WheelForceRanged( FFBSettingDescriptor setting, float defaultFraction )
-	{
-		setting.MaxProvider = () => LiveWheelForce;
-		setting.DefaultProvider = () => LiveWheelForce * defaultFraction;
-
-		return setting;
-	}
-
-	// floored like FFBTickContext.WheelForce so a bad value can't collapse the range
-	private static float LiveWheelForce => MathF.Max( 0.1f, FFBFormatContext.WheelForce );
-
 	private static FFBSettingDescriptor Knob( string key, float min, float max, float defaultValue, float clickStepSize, Func<FFBFormatContext, string>? format = null, string? localizationKey = null, bool showCurve = false, bool breakRow = false, float editUnitScale = float.NaN )
 	{
 		return new FFBSettingDescriptor
@@ -323,13 +309,12 @@ public static class FFBModuleRegistry
 
 			Descriptor( DynamicDampingType, 1, () => new DynamicDampingModule(), category: FFBModuleCategory.Effect, settings:
 			[
-				// stored as Nm per wheel revolution per second (1 = 100% = 1 Nm at 1 rev/s), shown as a percentage
-				Knob( "Coefficient", 0f, 5f, 1f, 0.05f, F.WithOff( F.Percent() ), localizationKey: "Strength" ),
+				// fraction of the wheel force per wheel revolution per second (100% = the full wheel force at 1 rev/s)
+				Knob( "Strength", 0f, 1f, 0.1f, 0.01f, F.WithOff( F.Percent() ) ),
 				Knob( "AccelerationThreshold", 0f, 10000f, 1000f, 50f, F.WithOff( F.Number( 0, "DegreesPerSecondSquaredUnits" ) ) ),
 
-				// physical Nm at the wheel; the maximum is the live wheel force and the default half of it (the fixed
-				// 20 / 5 are only fallbacks)
-				WheelForceRanged( Knob( "MaxDampingTorqueNm", 0f, 20f, 5f, 0.1f, F.WithOff( F.Number( 1, "TorqueUnits" ) ), localizationKey: "FFBSettingMaxDampingTorque" ), defaultFraction: 0.5f )
+				// fraction of the wheel force, shown with the Nm it currently works out to
+				Knob( "MaxDampingTorque", 0f, 1f, 0.5f, 0.01f, F.WithOff( F.WheelForcePercent() ) )
 			] ),
 
 			Descriptor( TorqueDitherType, 1, () => new TorqueDitherModule(), category: FFBModuleCategory.Effect, settings:

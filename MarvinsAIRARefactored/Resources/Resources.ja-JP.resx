@@ -2917,4 +2917,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>ゲームブリッジ経由で接続されたゲームでは、アンダーステアとオーバーステアのエフェクトは使用できません。</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>ダイナミックダンピング</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>トルクがホイールを振り回すときにホイールを減速させるダンピングを加えます — 急な揺り戻しや跳ね返りを抑え、振動を減らすこともできます。</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>加速度しきい値</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>最大ダンピングトルク</value>
+  </data>
 </root>

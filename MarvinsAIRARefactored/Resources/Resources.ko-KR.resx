@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>게임 브리지로 연결된 게임에서는 언더스티어 및 오버스티어 효과를 사용할 수 없습니다.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>다이내믹 댐핑</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>토크가 휠을 휘두를 때 휠을 늦추는 댐핑을 추가합니다 — 급격한 되튐과 튕김을 진정시키고 진동을 줄일 수 있습니다.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>가속도 임계값</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>최대 댐핑 토크</value>
+  </data>
 </root>

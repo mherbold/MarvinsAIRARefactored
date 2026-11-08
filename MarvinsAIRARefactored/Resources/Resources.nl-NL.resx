@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Onderstuur- en overstuureffecten zijn niet beschikbaar voor games die via de gamebrug zijn verbonden.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dynamische demping</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Voegt demping toe die het stuur afremt wanneer het koppel het wegslingert — kalmeert terugslagen en stuiteren en kan oscillatie verminderen.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Versnellingsdrempel</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Max. dempingskoppel</value>
+  </data>
 </root>

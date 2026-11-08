@@ -2914,4 +2914,16 @@
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Nepietiekamas un pārmērīgas stūrēšanas efekti nav pieejami spēlēm, kas savienotas, izmantojot spēļu tiltu.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dinamiskā slāpēšana</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Pievieno slāpēšanu, kas palēnina stūri, kad griezes moments to sviež — nomierina atsitienus un atlēkšanu un var samazināt svārstības.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Paātrinājuma slieksnis</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Maks. slāpēšanas moments</value>
+  </data>
 </root>

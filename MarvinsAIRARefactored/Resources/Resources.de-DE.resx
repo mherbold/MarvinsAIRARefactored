@@ -2917,4 +2917,16 @@ Hier ist der Link zum Spenden:</value>
   <data name="SteeringEffectsNotAvailableForGameBridge" xml:space="preserve">
     <value>Untersteuer- und Übersteuereffekte sind für Spiele, die über die Spielbrücke verbunden sind, nicht verfügbar.</value>
   </data>
+  <data name="FFBModuleDynamicDamping" xml:space="preserve">
+    <value>Dynamische Dämpfung</value>
+  </data>
+  <data name="FFBModuleDescriptionDynamicDamping" xml:space="preserve">
+    <value>Fügt eine Dämpfung hinzu, die das Lenkrad bremst, wenn das Drehmoment es herumschleudert — beruhigt Rückschläge und Nachfedern und kann Schwingungen verringern.</value>
+  </data>
+  <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
+    <value>Beschleunigungsschwelle</value>
+  </data>
+  <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
+    <value>Max. Dämpfungsmoment</value>
+  </data>
 </root>
