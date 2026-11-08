@@ -55,6 +55,7 @@ public static class FFBModuleRegistry
 	public const string EngineRPMVibrationType = "EngineRPMVibration";
 
 	public const string SpeedGainType = "SpeedGain";
+	public const string DynamicDampingType = "DynamicDamping";
 	public const string RoadTextureType = "RoadTexture";
 	public const string SlipTextureType = "SlipTexture";
 	public const string TorqueDitherType = "TorqueDither";
@@ -87,6 +88,20 @@ public static class FFBModuleRegistry
 	public static IReadOnlyList<FFBModuleDescriptor> All => _orderedDescriptors;
 
 	// ---- descriptor construction helpers ----------------------------------------------------------------
+
+	/// <summary>Make a physical-torque knob's range follow the live wheel force: the maximum is the wheel force and
+	/// the default <paramref name="defaultFraction"/> of it. The value itself stays in Nm (it does not rescale when
+	/// the wheel force changes; the editor pulls it down only if the new maximum drops below it).</summary>
+	private static FFBSettingDescriptor WheelForceRanged( FFBSettingDescriptor setting, float defaultFraction )
+	{
+		setting.MaxProvider = () => LiveWheelForce;
+		setting.DefaultProvider = () => LiveWheelForce * defaultFraction;
+
+		return setting;
+	}
+
+	// floored like FFBTickContext.WheelForce so a bad value can't collapse the range
+	private static float LiveWheelForce => MathF.Max( 0.1f, FFBFormatContext.WheelForce );
 
 	private static FFBSettingDescriptor Knob( string key, float min, float max, float defaultValue, float clickStepSize, Func<FFBFormatContext, string>? format = null, string? localizationKey = null, bool showCurve = false, bool breakRow = false, float editUnitScale = float.NaN )
 	{
@@ -297,13 +312,24 @@ public static class FFBModuleRegistry
 				Knob( "Hold", 0f, 100f, 28f, 1f, F.Number( 0, "MillisecondsUnits" ) )
 			] ),
 
-			// ---- effects (7) ----
+			// ---- effects (8) ----
 			Descriptor( SpeedGainType, 1, () => new SpeedGainModule(), category: FFBModuleCategory.Effect, canTest: true, settings:
 			[
 				Knob( "MinSpeed", 0f, 50f, 0f, 1f, F.Number( 0, "MPSUnits" ) ),
 				Knob( "MaxSpeed", 0f, 100f, 30f, 1f, F.Number( 0, "MPSUnits" ) ),
 				Knob( "GainAtMin", 0f, 2f, 1f, 0.05f, F.Multiplier( 2 ), breakRow: true ),
 				Knob( "GainAtMax", 0f, 2f, 1f, 0.05f, F.Multiplier( 2 ) )
+			] ),
+
+			Descriptor( DynamicDampingType, 1, () => new DynamicDampingModule(), category: FFBModuleCategory.Effect, settings:
+			[
+				// stored as Nm per wheel revolution per second (1 = 100% = 1 Nm at 1 rev/s), shown as a percentage
+				Knob( "Coefficient", 0f, 5f, 1f, 0.05f, F.WithOff( F.Percent() ), localizationKey: "Strength" ),
+				Knob( "AccelerationThreshold", 0f, 10000f, 1000f, 50f, F.WithOff( F.Number( 0, "DegreesPerSecondSquaredUnits" ) ) ),
+
+				// physical Nm at the wheel; the maximum is the live wheel force and the default half of it (the fixed
+				// 20 / 5 are only fallbacks)
+				WheelForceRanged( Knob( "MaxDampingTorqueNm", 0f, 20f, 5f, 0.1f, F.WithOff( F.Number( 1, "TorqueUnits" ) ), localizationKey: "FFBSettingMaxDampingTorque" ), defaultFraction: 0.5f )
 			] ),
 
 			Descriptor( TorqueDitherType, 1, () => new TorqueDitherModule(), category: FFBModuleCategory.Effect, settings:

@@ -337,6 +337,166 @@ public sealed class SpeedGainModule : FFBModule
 }
 
 /// <summary>
+/// Dynamic damping: adds viscous damping (torque opposing wheel speed, proportional to it) to input A, with a
+/// strength that depends on what the wheel is doing. Input A is both the signal the damping is added to and the
+/// torque used to classify the situation; the output is the complete signal (input A + damping), so it drops
+/// straight into the main chain. Disabled or off track, input A passes through untouched.
+/// <para>Velocity comes from an anchor that chases the wheel angle (the friction source's stick point, but
+/// dragged exponentially instead of at a fixed distance): the anchor trails the wheel by an amount proportional
+/// to wheel speed, so the lag is a smoothed velocity without differentiating the 60 Hz angle. The anchor is
+/// stepped once per 60 Hz frame (the angle only changes per frame — stepping it at 360 Hz would ripple the
+/// velocity at 60 Hz), with a scale that makes the steady-state estimate exact.</para>
+/// <para>Four weights cover the four situations, by whether the torque pushes WITH the wheel's motion (the FFB
+/// is driving the wheel) or AGAINST it, and whether the wheel is speeding up or slowing down:
+/// accelerating with torque (snap-back / hands off — strongest), decelerating with torque (the driver catching
+/// it), accelerating against torque (the driver turning in), decelerating against torque (the FFB already
+/// braking the wheel). The with/against split is blended across a small torque band and the
+/// accelerating/decelerating split across an acceleration threshold, so no situation change steps the output;
+/// the combined weight then follows an attack/release envelope.</para>
+/// <para>Coefficient (labeled Strength, shown as a percentage) is the damping torque in physical Nm at one wheel
+/// revolution per second — 100% = 1 Nm. MaxDampingTorque caps the damping torque in physical Nm; its knob range
+/// is 0..wheel force and its default half the wheel force (both live). The telemetry is ~2 frames stale, so very
+/// high coefficients can add energy above a few Hz instead of removing it — tune on a hands-off oscillation.</para>
+/// <para>The situation weights and the smoothing/envelope times are fixed tuning constants (see the "tuning
+/// constants" block at the top of the class) — edit them there.</para>
+/// </summary>
+public sealed class DynamicDampingModule : FFBModule
+{
+	private const int Coefficient = 1;             // Nm per rev/s (the "Strength" percentage: 1 = 100%)
+	private const int AccelerationThreshold = 2;   // deg/s² — speeding up by this much counts as fully accelerating
+	private const int MaxDampingTorque = 3;        // physical Nm at the wheel
+
+	// ---- tuning constants ----------------------------------------------------------------------------------
+
+	// situation weights (0 = no damping, 1 = full Coefficient)
+	private const float AcceleratingWithTorqueWeight = 1f;      // FFB flinging the wheel (snap-back, hands off)
+	private const float DeceleratingWithTorqueWeight = 0.6f;    // driver catching a wheel the FFB is driving
+	private const float AcceleratingAgainstTorqueWeight = 0f;   // driver turning against the aligning torque
+	private const float DeceleratingAgainstTorqueWeight = 0f;   // FFB already braking the wheel
+
+	private const float VelocitySmoothingMilliseconds = 15f;       // anchor time constant (must be > 0)
+	private const float OutputSmoothingMilliseconds = 5f;          // smooths the 60 Hz steps out of the damping torque
+	private const float TorqueSmoothingMilliseconds = 20f;         // smoothing on input A before classification
+	private const float TorqueBandNm = 0.75f;                      // with/against blend half-width (iRacing Nm, input A units)
+	private const float AccelerationSmoothingMilliseconds = 30f;
+	private const float AttackMilliseconds = 10f;                  // weight rising
+	private const float ReleaseMilliseconds = 150f;                // weight falling
+
+	// --------------------------------------------------------------------------------------------------------
+
+	private const float TickSeconds = FFBTickContext.TickDeltaMilliseconds / 1000f;
+	private const float FrameSeconds = TickSeconds * FFBTickContext.SamplesPerFrame;
+
+	// derivations of the tuning constants: the anchor keeps AnchorRetain of its lag each frame, and the velocity
+	// scale turns the post-step lag back into exact wheel speed for a steady turn (lag = Δθ·r/(1−r), so
+	// velocity = lag·(1−r)/(r·dt))
+	private static readonly float AnchorRetain = MathF.Exp( -FrameSeconds / ( VelocitySmoothingMilliseconds / 1000f ) );
+	private static readonly float AnchorFollow = 1f - AnchorRetain;
+	private static readonly float VelocityScale = ( 1f - AnchorRetain ) / ( AnchorRetain * FrameSeconds );
+	private static readonly float AccelerationAlpha = OnePoleAlpha( AccelerationSmoothingMilliseconds, FrameSeconds );
+	private static readonly float TorqueAlpha = OnePoleAlpha( TorqueSmoothingMilliseconds, TickSeconds );
+	private static readonly float OutputAlpha = OnePoleAlpha( OutputSmoothingMilliseconds, TickSeconds );
+	private static readonly float AttackAlpha = OnePoleAlpha( AttackMilliseconds, TickSeconds );
+	private static readonly float ReleaseAlpha = OnePoleAlpha( ReleaseMilliseconds, TickSeconds );
+
+	// cached derivation of the knob values (see OnValuesChanged)
+	private float _accelerationThresholdRad = 0f;
+
+	private bool _stateValid = false;
+	private float _anchor = 0f;
+	private float _velocity = 0f;
+	private float _acceleration = 0f;
+	private float _torque = 0f;
+	private float _weight = 0f;
+	private float _dampingOutput = 0f;
+
+	public override void Reset()
+	{
+		_stateValid = false;
+	}
+
+	protected override void OnValuesChanged()
+	{
+		_accelerationThresholdRad = _v[ AccelerationThreshold ] * ( MathF.PI / 180f );
+	}
+
+	private static float OnePoleAlpha( float timeConstantMilliseconds, float stepSeconds )
+	{
+		return ( timeConstantMilliseconds <= 0f ) ? 1f : 1f - MathF.Exp( -stepSeconds / ( timeConstantMilliseconds / 1000f ) );
+	}
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		if ( !ctx.IsOnTrack )
+		{
+			_stateValid = false;
+
+			return inputA;
+		}
+
+		if ( !_stateValid )
+		{
+			_anchor = ctx.SteeringWheelAngle;
+			_velocity = 0f;
+			_acceleration = 0f;
+			_torque = inputA;
+			_weight = 0f;
+			_dampingOutput = 0f;
+			_stateValid = true;
+		}
+		else if ( ctx.SampleIndex == 0 )
+		{
+			// new telemetry frame: step the anchor toward the new angle, read the speed off its lag, and take the
+			// frame-to-frame change of that (already smoothed) speed as the acceleration
+			_anchor += ( ctx.SteeringWheelAngle - _anchor ) * AnchorFollow;
+
+			var previousVelocity = _velocity;
+
+			_velocity = ( ctx.SteeringWheelAngle - _anchor ) * VelocityScale;
+
+			var frameAcceleration = ( _velocity - previousVelocity ) / FrameSeconds;
+
+			_acceleration += ( frameAcceleration - _acceleration ) * AccelerationAlpha;
+		}
+
+		_torque += ( inputA - _torque ) * TorqueAlpha;
+
+		var velocitySign = MathF.Sign( _velocity );
+
+		// positive while the wheel is speeding up, negative while it is slowing down
+		var speedingUp = _acceleration * velocitySign;
+
+		var acceleratingFactor = ( _accelerationThresholdRad > 0f ) ? Math.Clamp( speedingUp / _accelerationThresholdRad, 0f, 1f ) : ( ( speedingUp > 0f ) ? 1f : 0f );
+
+		// positive while the torque pushes the wheel the way it is already moving (the FFB is driving the wheel);
+		// angle, velocity, and torque all share the counterclockwise-positive convention
+		var alignment = _torque * velocitySign;
+
+		var withTorqueFactor = ( TorqueBandNm > 0f ) ? Math.Clamp( 0.5f + alignment / ( 2f * TorqueBandNm ), 0f, 1f ) : ( ( alignment > 0f ) ? 1f : 0f );
+
+		var withTorqueWeight = MathZ.Lerp( DeceleratingWithTorqueWeight, AcceleratingWithTorqueWeight, acceleratingFactor );
+		var againstTorqueWeight = MathZ.Lerp( DeceleratingAgainstTorqueWeight, AcceleratingAgainstTorqueWeight, acceleratingFactor );
+
+		var targetWeight = MathZ.Lerp( againstTorqueWeight, withTorqueWeight, withTorqueFactor );
+
+		_weight += ( targetWeight - _weight ) * ( ( targetWeight > _weight ) ? AttackAlpha : ReleaseAlpha );
+
+		// Coefficient and the cap are both physical Nm (the cap never exceeds what the wheel can produce)
+		var maxDampingTorqueNm = MathF.Min( _v[ MaxDampingTorque ], ctx.WheelForce );
+
+		var dampingTorqueNm = Math.Clamp( _velocity / MathF.Tau * _v[ Coefficient ] * _weight, -maxDampingTorqueNm, maxDampingTorqueNm );
+
+		// negated: damping must OPPOSE the counterclockwise-positive velocity. Physical Nm becomes a normalized
+		// fraction via WheelForce, then MaxForce lifts it into the Nm main chain (same as the friction source)
+		var targetDampingOutput = -dampingTorqueNm / ctx.WheelForce * ctx.MaxForce;
+
+		_dampingOutput += ( targetDampingOutput - _dampingOutput ) * OutputAlpha;
+
+		return inputA + _dampingOutput;
+	}
+}
+
+/// <summary>
 /// Tiny high-frequency dither added while the signal magnitude is below <c>Threshold</c> — alternates sign each
 /// tick to break static friction on gear-driven wheels near center. Above the threshold it passes through.
 /// (This is also the modern replacement for the old output minimum: instead of forcing small signals up to a

@@ -383,7 +383,7 @@ public partial class Settings
 				}
 			}
 
-			return settingDescriptor.DefaultValue;
+			return settingDescriptor.EffectiveDefault;
 		}
 	}
 

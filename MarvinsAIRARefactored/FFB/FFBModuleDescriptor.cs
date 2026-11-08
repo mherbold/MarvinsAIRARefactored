@@ -37,10 +37,25 @@ public sealed class FFBSettingDescriptor
 	/// typed number is converted back (÷ this scale) and snapped to <see cref="ClickStepSize"/> on commit.</summary>
 	public float EditUnitScale = float.NaN;
 
+	/// <summary>Optional live providers for a range end / default that depend on another setting (e.g. a physical
+	/// torque knob whose maximum is the wheel force). Null = the fixed <see cref="Max"/> / <see cref="DefaultValue"/>.
+	/// Always read through <see cref="EffectiveMax"/> / <see cref="EffectiveDefault"/>.</summary>
+	public Func<float>? MaxProvider;
+	public Func<float>? DefaultProvider;
+
+	/// <summary>True when the range or default follows a live setting (the editor refreshes them when it changes).</summary>
+	public bool HasDynamicRange => ( MaxProvider != null ) || ( DefaultProvider != null );
+
+	public float EffectiveMax => ( MaxProvider != null ) ? MaxProvider() : Max;
+	public float EffectiveDefault => ( DefaultProvider != null ) ? DefaultProvider() : DefaultValue;
+
+	/// <summary>Drag increment — follows the live range for a dynamic-range knob (same (max − min) / 5760 rule).</summary>
+	public float EffectiveDragStepSize => ( MaxProvider != null ) ? ( EffectiveMax - Min ) / 5760f : DragStepSize;
+
 	/// <summary>Clamp a raw value to this setting's range (choices/switches clamp to their discrete span).</summary>
 	public float Clamp( float value )
 	{
-		return Math.Clamp( value, Min, Max );
+		return Math.Clamp( value, Min, MathF.Max( Min, EffectiveMax ) );
 	}
 }
 
