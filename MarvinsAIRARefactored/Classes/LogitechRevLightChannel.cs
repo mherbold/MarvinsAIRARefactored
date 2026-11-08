@@ -203,7 +203,8 @@ public abstract class LogitechRevLightChannel : IDisposable
 	}
 }
 
-// G PRO, RS50 and G923 Xbox. Level 0..10 over HID++ feature page 0x807A.
+// G PRO, RS50 and G923 Xbox. A level over HID++ feature page 0x807A saying how many steps of the strip
+// to light, out of however many steps the wheel says it has.
 //
 // Windows splits the wheel's HID++ interface into one collection per report size (7 byte short, 20 byte
 // long, 64 byte very long), a report id is only valid on its own collection, and a request's reply comes
@@ -232,13 +233,31 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 	// so keeping it identical means our traffic looks exactly like traffic the firmware already expects.
 	private const byte SoftwareId = 0x0D;
 
-	// Spacing for the one-time arming burst. Seven transfers back to back at session start was enough to
+	// Spacing around the one-time arming write. Transfers back to back at session start were enough to
 	// hitch force feedback, so they are spread out; this runs once, so the delay costs nothing.
 	private const int ArmGapMilliseconds = 4;
 
 	private const int ReplyTimeoutMilliseconds = 250;
 
-	public override int MaximumLevel => 10;
+	// How many steps the strip addresses when the wheel has not said otherwise. Ten is right for a G PRO
+	// and an RS50, and it is what this assumed for every wheel before it started asking.
+	private const int DefaultStripLength = 10;
+
+	// Longest strip worth believing. Nothing Logitech makes is close to this, so an answer above it means
+	// the frame was not what we took it for rather than a wheel with a very long strip.
+	private const int MaximumStripLength = 20;
+
+	// A G923 has ten lights but drives them outside in, in fixed symmetric pairs, so it addresses five
+	// steps rather than ten. The level is a fraction of the strip length, so a G923 sent a ten step scale
+	// has every level above five out of range. The wheel knows its own length and fn0 answers with it, so
+	// it is read once at open instead of assumed.
+	//
+	// Written on the sender thread as the wheel opens and read from the app tick through MaximumLevel.
+	// IsReady already orders the two, since it is set under the io lock once the open has finished and
+	// nothing reads a level until it is true; volatile just means the field does not depend on that.
+	private volatile int _stripLength = DefaultStripLength;
+
+	public override int MaximumLevel => _stripLength;
 
 	private FileStream? _shortStream;
 	private FileStream? _longStream;
@@ -247,6 +266,11 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 	private FileStream? _commandStream;
 	private int _commandLength;
 	private byte _commandReportId;
+
+	// The collection the wheel answered a request on. Replies come back on a different collection than the
+	// request went out on, so the one that answered first is remembered and every later read goes straight
+	// there rather than burning a timeout per collection.
+	private FileStream? _replyStream;
 
 	private int _longLength = LengthLong;
 
@@ -278,7 +302,14 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 		// Interface 2 is the Trueforce audio-haptic endpoint on most of these wheels, and interface 1 is
 		// on the G923 Xbox. Never open those: they are not HID++, and holding one can collide with
 		// whatever else is streaming to them.
-		var skipInterface1 = ( productId == 0xC26D ) || ( productId == 0xC26E );
+		//
+		// A G PRO switched to G923 compatibility mode in G HUB wears a G923 product id but keeps its own
+		// interface layout, HID++ on interface 1 and Trueforce on interface 2. Going by the product id
+		// alone would skip the very interface its lights live on, so the wheel's own product string is
+		// what decides: only a wheel that really is a G923 has interface 1 skipped.
+		var isReallyAG923 = IsG923ProductString( collections );
+
+		var skipInterface1 = isReallyAG923 && ( ( productId == 0xC26D ) || ( productId == 0xC26E ) );
 
 		var candidates = collections
 			.Where( collection => !collection.PathContains( "mi_02" ) )
@@ -296,6 +327,28 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 		_log( "[LogitechRevLights] No interface answered a HID++ request for the rev light feature." );
 
 		return false;
+	}
+
+	// Which chassis is actually on the end of the cable. A G923 says so in its product string; a G PRO in
+	// G923 compatibility mode keeps its own "PRO Racing Wheel". A wheel that reports no string at all is
+	// taken at its product id, which is the behaviour this had before it looked.
+	private static bool IsG923ProductString( List<HidCollectionInfo> collections )
+	{
+		var productName = collections
+			.Select( collection => collection.ProductName )
+			.FirstOrDefault( name => !string.IsNullOrWhiteSpace( name ) );
+
+		if ( string.IsNullOrWhiteSpace( productName ) )
+		{
+			return true;
+		}
+
+		if ( productName.Contains( "G923", StringComparison.OrdinalIgnoreCase ) )
+		{
+			return true;
+		}
+
+		return !productName.Contains( "PRO Racing Wheel", StringComparison.OrdinalIgnoreCase );
 	}
 
 	private bool TryGroup( List<HidCollectionInfo> group )
@@ -378,6 +431,7 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 			}
 
 			_revLightsFeatureIndex = featureIndex;
+			_stripLength = ReadStripLength();
 
 			// A wheel exposing two collections of the same size leaves an opened stream in no slot; drop
 			// those now rather than leaking the handle until the app exits.
@@ -389,7 +443,7 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 				}
 			}
 
-			ResolvedInfo = $"HID++ feature 0x{_revLightsFeatureIndex:X2}, {MaximumLevel} levels";
+			ResolvedInfo = $"HID++ feature 0x{_revLightsFeatureIndex:X2}, {_stripLength} steps";
 
 			return true;
 		}
@@ -424,6 +478,8 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 		_longStream = null;
 		_veryLongStream = null;
 		_commandStream = null;
+		_replyStream = null;
+		_stripLength = DefaultStripLength;
 	}
 
 	// HID++ root getFeature: ask the wheel which feature index the rev light page landed on. The index
@@ -461,6 +517,8 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 
 			if ( featureIndex != 0 )
 			{
+				_replyStream = stream;
+
 				return featureIndex;
 			}
 		}
@@ -510,29 +568,133 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 
 	private byte FunctionByte( int function ) => (byte) ( ( function << 4 ) | SoftwareId );
 
-	// The one-time sequence that hands control of the strip to us. Straight from what Logitech's own
-	// software sends; without it the wheel ignores the level writes.
+	// Ask the rev light feature one question and hand back the frame it answered with, or null if it said
+	// nothing we can use. Everything the wheel is asked is a short request with one parameter, so that is
+	// all this sends.
+	//
+	// Only safe while the wheel is being opened, which is the only place it is used. Once the sender is
+	// running, every level write sends an fn2 of its own whose reply nobody reads, so a question asked then
+	// could be answered by one of those instead: anything that wants to ask later has to clear the queued
+	// replies first.
+	private byte[]? Query( byte functionByte, byte parameter )
+	{
+		if ( _replyStream == null )
+		{
+			return null;
+		}
+
+		try
+		{
+			WriteCommand( [ _commandReportId, DeviceIndexWired, _revLightsFeatureIndex, functionByte, parameter, 0x00, 0x00 ] );
+		}
+		catch ( Exception exception )
+		{
+			_log( $"[LogitechRevLights] HID++ request failed: {exception.Message}" );
+
+			return null;
+		}
+
+		// Every open handle on a collection gets a copy of every input report, so the wheel's own broadcasts
+		// and anything else talking to it arrive here too. Those are skipped rather than counted as an
+		// answer, and a read that times out ends it.
+		for ( var attempt = 0; attempt < 8; attempt++ )
+		{
+			var response = new byte[ LengthVeryLong ];
+
+			var bytesRead = HidDeviceHelper.ReadWithTimeout( _replyStream, response, ReplyTimeoutMilliseconds );
+
+			if ( bytesRead < 7 )
+			{
+				return null;
+			}
+
+			if ( response[ 1 ] != DeviceIndexWired )
+			{
+				continue;
+			}
+
+			// The HID++ error reply carries 0xFF where the feature index goes and echoes the request after it.
+			if ( ( response[ 2 ] == 0xFF ) && ( response[ 4 ] == _revLightsFeatureIndex ) )
+			{
+				return null;
+			}
+
+			// A reply carries no feature page, so the full function byte including the software id nibble is
+			// what tells our answer apart from a broadcast or from someone else's traffic.
+			if ( ( response[ 2 ] == _revLightsFeatureIndex ) && ( response[ 3 ] == functionByte ) )
+			{
+				return response;
+			}
+		}
+
+		return null;
+	}
+
+	// fn0 (GET_INFO) answers with the strip length in its second parameter, and parameters start at byte 4.
+	// Ten on a G PRO or an RS50, five on a G923. A wheel that will not answer keeps the ten step default,
+	// which is what every wheel got before this asked.
+	private int ReadStripLength()
+	{
+		var response = Query( FunctionByte( 0 ), 0x00 );
+
+		if ( response == null )
+		{
+			_log( $"[LogitechRevLights] The wheel did not answer with its strip length, assuming {DefaultStripLength} steps." );
+
+			return DefaultStripLength;
+		}
+
+		var stripLength = response[ 5 ];
+
+		if ( ( stripLength < 1 ) || ( stripLength > MaximumStripLength ) )
+		{
+			_log( $"[LogitechRevLights] The wheel reported a strip length of {stripLength}, assuming {DefaultStripLength} steps." );
+
+			return DefaultStripLength;
+		}
+
+		return stripLength;
+	}
+
+	// The one-time sequence that hands control of the strip to us, from what Logitech's own software sends.
+	//
+	// The wheel has one pattern selector, the same one its own base menu sets, and it is persistent: a
+	// wheel that is already displaying something needs nothing from us, while one displaying nothing
+	// refuses every level write until an effect is set. So the state is read first (fn2 answers the live
+	// effect in its first parameter) and the effect is only set when there is none, rather than setting it
+	// every time and overwriting whatever pattern the owner picked. A wheel that does not answer is armed
+	// unconditionally, which is what this did before it asked.
 	private void Arm()
 	{
-		WriteCommand( [ _commandReportId, DeviceIndexWired, _revLightsFeatureIndex, FunctionByte( 0 ), 0x00, 0x00, 0x00 ] );
-		Thread.Sleep( ArmGapMilliseconds );
-		WriteCommand( [ _commandReportId, DeviceIndexWired, _revLightsFeatureIndex, FunctionByte( 1 ), 0x00, 0x00, 0x00 ] );
-		Thread.Sleep( ArmGapMilliseconds );
-		WriteCommand( [ _commandReportId, DeviceIndexWired, _revLightsFeatureIndex, FunctionByte( 2 ), 0x00, 0x00, 0x00 ] );
-		Thread.Sleep( ArmGapMilliseconds );
-		WriteCommand( [ _commandReportId, DeviceIndexWired, _revLightsFeatureIndex, FunctionByte( 3 ), 0x02, 0x00, 0x00 ] );
-		Thread.Sleep( ArmGapMilliseconds );
-		WriteCommand( [ _commandReportId, DeviceIndexWired, _revLightsFeatureIndex, FunctionByte( 0 ), 0x00, 0x00, 0x00 ] );
-		Thread.Sleep( ArmGapMilliseconds );
+		var state = Query( FunctionByte( 2 ), 0x00 );
+
+		var currentEffect = state == null ? -1 : state[ 4 ];
+
+		if ( currentEffect > 0 )
+		{
+			_log( $"[LogitechRevLights] The wheel is already displaying effect {currentEffect}, leaving it alone." );
+		}
+		else
+		{
+			Thread.Sleep( ArmGapMilliseconds );
+
+			WriteCommand( [ _commandReportId, DeviceIndexWired, _revLightsFeatureIndex, FunctionByte( 3 ), 0x02, 0x00, 0x00 ] );
+
+			Thread.Sleep( ArmGapMilliseconds );
+
+			_log( currentEffect == 0
+				? "[LogitechRevLights] The wheel is displaying nothing, switching its rev light effect on."
+				: "[LogitechRevLights] The wheel did not say what it is displaying, switching its rev light effect on." );
+		}
 
 		WriteLevel( 0 );
 	}
 
-	// Short function 2 then long function 6 with the level in byte 9. Byte 7 is the scale, ie how many
-	// lights the strip has.
+	// Short function 2 then long function 6 with the level in byte 9. Byte 7 is the scale, ie how many steps
+	// the strip has, so both of them come from the length the wheel reported rather than a fixed ten.
 	protected override void WriteLevel( int level )
 	{
-		var clampedLevel = (byte) Math.Clamp( level, 0, MaximumLevel );
+		var clampedLevel = (byte) Math.Clamp( level, 0, _stripLength );
 
 		WriteCommand( [ _commandReportId, DeviceIndexWired, _revLightsFeatureIndex, FunctionByte( 2 ), 0x00, 0x00, 0x00 ] );
 
@@ -543,7 +705,7 @@ public sealed class HidPlusPlusRevLightChannel( Action<string> log ) : LogitechR
 		levelReport[ 2 ] = _revLightsFeatureIndex;
 		levelReport[ 3 ] = FunctionByte( 6 );
 		levelReport[ 5 ] = 0x01;
-		levelReport[ 7 ] = (byte) MaximumLevel;
+		levelReport[ 7 ] = (byte) _stripLength;
 		levelReport[ 9 ] = clampedLevel;
 
 		_longStream?.Write( levelReport, 0, levelReport.Length );
