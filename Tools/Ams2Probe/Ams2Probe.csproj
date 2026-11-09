@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>AMS2AVX</AssemblyName>
+    <RootNamespace>Ams2Probe</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\MarvinsAIRARefactored\GameBridges\InlineArrays.cs" Link="InlineArrays.cs" />
+    <Compile Include="..\..\MarvinsAIRARefactored\GameBridges\Ams2\Ams2Data.cs" Link="Ams2Data.cs" />
+    <Compile Include="..\..\MarvinsAIRARefactored\GameBridges\Ams2\Ams2DataProvider.cs" Link="Ams2DataProvider.cs" />
+    <Compile Include="..\..\MarvinsAIRARefactored\GameBridges\Ams2\Ams2LiveDataProvider.cs" Link="Ams2LiveDataProvider.cs" />
+  </ItemGroup>
+
+</Project>

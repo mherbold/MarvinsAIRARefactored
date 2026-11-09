@@ -1853,6 +1853,9 @@
   </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
     <value>RaceRoom Racing Experience</value>
   </data>
+  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>
   <data name="FFBGraph" xml:space="preserve">
     <value>FFB graph</value>
   </data>
