@@ -16,6 +16,7 @@ public class Sounds
 		SeatOfPants,
 		BrakeThrottleWarning,
 		FfbClipping,
+		ShiftRPM,
 		RecordingStarted,
 		RecordingStopped
 	}
@@ -44,6 +45,7 @@ public class Sounds
 		{ SoundEffectType.SeatOfPants,          new SoundEffect( "seat_of_pants",           () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsVolume,           () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsFrequencyRatio,           true,  () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsLoopStartMs,           () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsLoopEndMs ) },
 		{ SoundEffectType.BrakeThrottleWarning, new SoundEffect( "brake_throttle_warning",  () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningVolume,  () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningFrequencyRatio,  true,  () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningLoopStartMs,  () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningLoopEndMs ) },
 		{ SoundEffectType.FfbClipping,          new SoundEffect( "ffb_clipping",            () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingVolume,           () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingFrequencyRatio,           true,  () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingLoopStartMs,           () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingLoopEndMs ) },
+		{ SoundEffectType.ShiftRPM,             new SoundEffect( "shift_rpm",               () => DataContext.DataContext.Instance.Settings.SoundsShiftRPMVolume,              () => DataContext.DataContext.Instance.Settings.SoundsShiftRPMFrequencyRatio,              true,  () => DataContext.DataContext.Instance.Settings.SoundsShiftRPMLoopStartMs,              () => DataContext.DataContext.Instance.Settings.SoundsShiftRPMLoopEndMs ) },
 		{ SoundEffectType.RecordingStarted,     new SoundEffect( "recording_started",       () => DataContext.DataContext.Instance.Settings.SoundsRecordingStartedVolume,      () => DataContext.DataContext.Instance.Settings.SoundsRecordingStartedFrequencyRatio,      false ) },
 		{ SoundEffectType.RecordingStopped,     new SoundEffect( "recording_stopped",       () => DataContext.DataContext.Instance.Settings.SoundsRecordingStoppedVolume,      () => DataContext.DataContext.Instance.Settings.SoundsRecordingStoppedFrequencyRatio,      false ) },
 	};
@@ -217,6 +219,17 @@ public class Sounds
 				{
 					_soundEffects[ SoundEffectType.FfbClipping ].ShouldBePlaying = true;
 					_soundEffects[ SoundEffectType.FfbClipping ].Volume = 1f;
+				}
+			}
+
+			// shift RPM (repeating beep while at or past the car's shift light RPM, not in top gear)
+
+			if ( settings.SoundsShiftRPMEnabled && !isReplayActive )
+			{
+				if ( ( app.Simulator.ShiftLightsShiftRPM > 0f ) && ( app.Simulator.RPM >= app.Simulator.ShiftLightsShiftRPM ) && ( app.Simulator.Gear > 0 ) && ( app.Simulator.Gear < app.Simulator.NumForwardGears ) )
+				{
+					_soundEffects[ SoundEffectType.ShiftRPM ].ShouldBePlaying = true;
+					_soundEffects[ SoundEffectType.ShiftRPM ].Volume = 1f;
 				}
 			}
 		}

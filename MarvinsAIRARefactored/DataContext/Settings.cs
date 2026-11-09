@@ -16964,6 +16964,251 @@ public partial class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Sounds - Shift RPM enabled
+
+	private bool _soundsShiftRPMEnabled = false;
+
+	public bool SoundsShiftRPMEnabled
+	{
+		get => _soundsShiftRPMEnabled;
+
+		set
+		{
+			if ( value != _soundsShiftRPMEnabled )
+			{
+				_soundsShiftRPMEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Shift RPM volume
+
+	private float _soundsShiftRPMVolume = 0.75f;
+
+	public float SoundsShiftRPMVolume
+	{
+		get => _soundsShiftRPMVolume;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _soundsShiftRPMVolume )
+			{
+				_soundsShiftRPMVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsShiftRPMVolumeString();
+		}
+	}
+
+	private string _soundsShiftRPMVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsShiftRPMVolumeString
+	{
+		get => _soundsShiftRPMVolumeString;
+
+		set
+		{
+			if ( value != _soundsShiftRPMVolumeString )
+			{
+				_soundsShiftRPMVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsShiftRPMVolumeString( float? value = null )
+	{
+		return $"{( value ?? _soundsShiftRPMVolume ) * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateSoundsShiftRPMVolumeString()
+	{
+		SoundsShiftRPMVolumeString = FormatSoundsShiftRPMVolumeString();
+	}
+
+	public ButtonMappings SoundsShiftRPMVolumePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsShiftRPMVolumeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Shift RPM frequency ratio
+
+	private float _soundsShiftRPMFrequencyRatio = 1f;
+
+	public float SoundsShiftRPMFrequencyRatio
+	{
+		get => _soundsShiftRPMFrequencyRatio;
+
+		set
+		{
+			value = Math.Clamp( value, 0.25f, 2f );
+
+			if ( value != _soundsShiftRPMFrequencyRatio )
+			{
+				_soundsShiftRPMFrequencyRatio = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsShiftRPMFrequencyRatioString();
+		}
+	}
+
+	private string _soundsShiftRPMFrequencyRatioString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsShiftRPMFrequencyRatioString
+	{
+		get => _soundsShiftRPMFrequencyRatioString;
+
+		set
+		{
+			if ( value != _soundsShiftRPMFrequencyRatioString )
+			{
+				_soundsShiftRPMFrequencyRatioString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdateSoundsShiftRPMFrequencyRatioString()
+	{
+		var pitchShift = _soundsShiftRPMFrequencyRatio * 100f - 100f;
+		SoundsShiftRPMFrequencyRatioString = pitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( pitchShift >= 0f ? "+" : "" )}{pitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	public ButtonMappings SoundsShiftRPMFrequencyRatioPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsShiftRPMFrequencyRatioMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Shift RPM loop start ms
+
+	private float _soundsShiftRPMLoopStartMs = 0f;
+
+	public float SoundsShiftRPMLoopStartMs
+	{
+		get => _soundsShiftRPMLoopStartMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsShiftRPMLoopStartMs )
+			{
+				_soundsShiftRPMLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsShiftRPMLoopEndMs < _soundsShiftRPMLoopStartMs )
+				{
+					SoundsShiftRPMLoopEndMs = _soundsShiftRPMLoopStartMs;
+				}
+			}
+
+			UpdateSoundsShiftRPMLoopStartMsString();
+		}
+	}
+
+	private string _soundsShiftRPMLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsShiftRPMLoopStartMsString
+	{
+		get => _soundsShiftRPMLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsShiftRPMLoopStartMsString )
+			{
+				_soundsShiftRPMLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsShiftRPMLoopStartMsString( float? value = null )
+	{
+		return $"{( value ?? _soundsShiftRPMLoopStartMs ):F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
+	}
+
+	private void UpdateSoundsShiftRPMLoopStartMsString()
+	{
+		SoundsShiftRPMLoopStartMsString = FormatSoundsShiftRPMLoopStartMsString();
+	}
+
+	#endregion
+
+	#region Sounds - Shift RPM loop end ms
+
+	private float _soundsShiftRPMLoopEndMs = 0f;
+
+	public float SoundsShiftRPMLoopEndMs
+	{
+		get => _soundsShiftRPMLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsShiftRPMLoopEndMs )
+			{
+				_soundsShiftRPMLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsShiftRPMLoopStartMs > _soundsShiftRPMLoopEndMs )
+				{
+					SoundsShiftRPMLoopStartMs = _soundsShiftRPMLoopEndMs;
+				}
+			}
+
+			UpdateSoundsShiftRPMLoopEndMsString();
+		}
+	}
+
+	private string _soundsShiftRPMLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsShiftRPMLoopEndMsString
+	{
+		get => _soundsShiftRPMLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsShiftRPMLoopEndMsString )
+			{
+				_soundsShiftRPMLoopEndMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsShiftRPMLoopEndMsString( float? value = null )
+	{
+		return $"{( value ?? _soundsShiftRPMLoopEndMs ):F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
+	}
+
+	private void UpdateSoundsShiftRPMLoopEndMsString()
+	{
+		SoundsShiftRPMLoopEndMsString = FormatSoundsShiftRPMLoopEndMsString();
+	}
+
+	#endregion
+
 	#region Sounds - Recording started enabled
 
 	private bool _soundsRecordingStartedEnabled = true;

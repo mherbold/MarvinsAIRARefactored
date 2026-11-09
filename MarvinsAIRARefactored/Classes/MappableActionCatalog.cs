@@ -621,6 +621,8 @@ public static class MappableActionCatalog
 		PlainKnob( list, "Sounds", "BrakeThrottleWarning", "FrequencyRatio", "SoundsBrakeThrottleWarningFrequencyRatio", 0.01f );
 		PlainKnob( list, "Sounds", "FfbClipping", "Volume", "SoundsFfbClippingVolume", 0.01f );
 		PlainKnob( list, "Sounds", "FfbClipping", "FrequencyRatio", "SoundsFfbClippingFrequencyRatio", 0.01f );
+		PlainKnob( list, "Sounds", "ShiftRPM", "Volume", "SoundsShiftRPMVolume", 0.01f );
+		PlainKnob( list, "Sounds", "ShiftRPM", "FrequencyRatio", "SoundsShiftRPMFrequencyRatio", 0.01f );
 		PlainKnob( list, "Sounds", "RecordingStarted", "Volume", "SoundsRecordingStartedVolume", 0.01f );
 		PlainKnob( list, "Sounds", "RecordingStarted", "FrequencyRatio", "SoundsRecordingStartedFrequencyRatio", 0.01f );
 		PlainKnob( list, "Sounds", "RecordingStopped", "Volume", "SoundsRecordingStoppedVolume", 0.01f );
