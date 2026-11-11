@@ -20,20 +20,30 @@
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </Window.DataContext>
 
-    <StackPanel Margin="20">
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         
         <TextBlock x:Name="CurrentVersion_TextBlock"
+                   Grid.Row="0"
                    Style="{StaticResource MairaTextBlockStyle}"
                    FontSize="30"
                    Text="Test"
                    Margin="0,0,0,20" />
 
-        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+        <TextBlock Grid.Row="1"
+                   Style="{StaticResource MairaTextBlockStyle}"
                    Text="{Binding Localization[Changelog]}" />
 
         <ScrollViewer x:Name="ChangeLog_ScrollViewer"
-                      VerticalScrollBarVisibility="Auto"
-                      MaxHeight="500">
+                      Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto">
 
             <Border BorderThickness="1,0,0,0"
                     BorderBrush="#666"
@@ -46,11 +56,13 @@
 
         </ScrollViewer>
 
-        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+        <TextBlock Grid.Row="3"
+                   Style="{StaticResource MairaTextBlockStyle}"
                    Text="{Binding Localization[DownloadQuestion]}"
                    HorizontalAlignment="Center" />
 
-        <Grid HorizontalAlignment="Center"
+        <Grid Grid.Row="4"
+              HorizontalAlignment="Center"
               Margin="0,10,0,0">
 
             <Grid.ColumnDefinitions>
@@ -69,6 +81,6 @@
 
         </Grid>
 
-    </StackPanel>
+    </Grid>
 
 </Window>

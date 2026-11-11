@@ -3,6 +3,9 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Interop;
+using System.Windows.Media;
+using WinFormsScreen = System.Windows.Forms.Screen;
 
 namespace MarvinsAIRARefactored.Windows;
 
@@ -32,39 +35,41 @@ public partial class NewVersionAvailableWindow : Window
 
 		Classes.WindowScaler.ApplyAppUIScale( this );
 
-		LimitChangeLogHeight();
-
 		CurrentVersion_TextBlock.Text = currentVersion;
 
 		PopulateChangeLog( changeLog );
 	}
 
-	// Caps the changelog scroll region so the whole dialog always fits on screen and the Download/Cancel buttons
-	// stay reachable -- even with a very long changelog. A fixed cap is not safe because WindowScaler wraps the
-	// content in an AppUIScale LayoutTransform (up to 2x) and switches the window to size-to-content, so a fixed
-	// 500px region becomes ~1000px on a high UI scale and can push the buttons off the bottom of the screen.
-	private void LimitChangeLogHeight()
+	protected override void OnSourceInitialized( EventArgs eventArgs )
 	{
-		// The scroll viewer lives inside the scaled root, so its MaxHeight is in pre-transform units and renders at
-		// MaxHeight * appUIScale on screen. We budget the on-screen work area, subtract the (non-scrolling) chrome,
-		// then convert what is left back into the scroll viewer's own units by dividing out the scale.
-		var appUIScale = Math.Max( 0.5, global::MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.AppUIScale );
+		var workAreaDips = GetWorkAreaDips();
 
-		var workAreaHeight = SystemParameters.WorkArea.Height;
+		MaxHeight = workAreaDips.Height;
 
-		// Window title bar + borders are not scaled by the LayoutTransform.
-		const double unscaledChromeHeight = 48.0;
+		base.OnSourceInitialized( eventArgs );
+	}
 
-		// Logical height of everything in the dialog other than the scroll viewer (version text, labels, the download
-		// question, the buttons, and all the surrounding margins) -- this content IS scaled by appUIScale.
-		const double scaledNonScrollContentHeight = 280.0;
+	protected override void OnContentRendered( EventArgs eventArgs )
+	{
+		base.OnContentRendered( eventArgs );
 
-		var availableForScrollOnScreen = workAreaHeight - unscaledChromeHeight - ( scaledNonScrollContentHeight * appUIScale );
+		var workAreaDips = GetWorkAreaDips();
 
-		var maxHeight = availableForScrollOnScreen / appUIScale;
+		Top = Math.Max( workAreaDips.Top, Math.Min( Top, workAreaDips.Bottom - ActualHeight ) );
+		Left = Math.Max( workAreaDips.Left, Math.Min( Left, workAreaDips.Right - ActualWidth ) );
+	}
 
-		// Keep a usable minimum even on tiny screens, and avoid an oversized dialog on very large ones.
-		ChangeLog_ScrollViewer.MaxHeight = Math.Clamp( maxHeight, 120.0, 700.0 );
+	private Rect GetWorkAreaDips()
+	{
+		var ownerWindow = Owner;
+
+		var referenceHandle = ownerWindow is null ? new WindowInteropHelper( this ).EnsureHandle() : new WindowInteropHelper( ownerWindow ).Handle;
+
+		var workingArea = WinFormsScreen.FromHandle( referenceHandle ).WorkingArea;
+
+		var dpi = VisualTreeHelper.GetDpi( ownerWindow ?? this );
+
+		return new Rect( workingArea.Left / dpi.DpiScaleX, workingArea.Top / dpi.DpiScaleY, workingArea.Width / dpi.DpiScaleX, workingArea.Height / dpi.DpiScaleY );
 	}
 
 	private void PopulateChangeLog( string changeLog )
