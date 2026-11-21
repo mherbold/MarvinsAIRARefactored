@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. csillapító nyomaték</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Autónkénti beállítások megosztása</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Exportálja egy vagy több autó kormányzási effekt-beállításait, hogy megossza őket másokkal, vagy importáljon olyan fájlokat, amelyeket valaki megosztott Önnel. Minden fájl egy autó beállításait tartalmazza.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Autók exportálása</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Fájlok importálása</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Kormányzási effektek exportálása</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Válassza ki az exportálandó autókat. Minden autó külön fájlba kerül.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Még nincs exportálható autó. Vezessen egy autót, miközben a MAIRA fut, hogy saját beállításokat kapjon.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (jelenlegi autó)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Összes kijelölése</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Kijelölés törlése</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Az Ön neve (nem kötelező, a fájlnevekhez kerül)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>A fájlnevek így néznek ki: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Exportálás</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Válasszon ki legalább egy autót az exportáláshoz.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Válassza ki a mappát, ahová a fájlok mentésre kerülnek</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Lecseréli a fájlokat?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>A fájlok közül {0} már létezik ebben a mappában. Szeretné lecserélni őket?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>A kormányzási effekt-beállításokat nem sikerült exportálni.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Kormányzási effektek importálása</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Az alábbi fájlok mindegyike a saját autója kormányzási effektjeit állítja be. Semmi sem változik, amíg meg nem erősíti az importálást.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Az FFB grafikon kormányzási effekt-csomópontjainak erő- és rezgésbeállításait is importálja</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Ezek a beállítások jelenleg minden autóra közösek. Autónkéntire lesznek átállítva, és minden más autó megtartja jelenlegi értékét:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importálás</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>készítette: {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Új autó: profil jön létre hozzá.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Lecseréli az autó jelenlegi kormányzási effekt-beállításait.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>A kormányzási effekt-beállításokat nem sikerült importálni.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA kormányzási effekt-fájlok</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Ez nem MAIRA kormányzási effekt-fájl, vagy sérült.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Ezt a fájlt a MAIRA újabb verziója hozta létre. Az importáláshoz frissítse a MAIRA-t.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Ez a fájl nem adja meg, melyik autóhoz készült.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Ez a fájl nem tartalmaz használható kormányzási effekt-beállításokat.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Kihagyva: egy másik kijelölt fájl ugyanehhez az autóhoz tartozik, és helyette az lesz importálva.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} ismeretlen vagy olvashatatlan érték figyelmen kívül maradt.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} érték a tartományon kívül esett, és korlátozva lett.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Az autó FFB grafikonjában nincs csomópont ehhez: {0}. Ezek a beállítások kimaradnak.</value>
+  </data>
 </root>

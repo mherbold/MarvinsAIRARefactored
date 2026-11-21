@@ -2929,4 +2929,112 @@ Hier ist der Link zum Spenden:</value>
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. Dämpfungsmoment</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Einstellungen pro Fahrzeug teilen</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Exportieren Sie die Lenkeffekt-Einstellungen eines oder mehrerer Fahrzeuge, um sie mit anderen zu teilen, oder importieren Sie Dateien, die jemand mit Ihnen geteilt hat. Jede Datei enthält die Einstellungen eines Fahrzeugs.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Fahrzeuge exportieren</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Dateien importieren</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Lenkeffekte exportieren</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Wählen Sie die zu exportierenden Fahrzeuge aus. Jedes Fahrzeug wird als eigene Datei gespeichert.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Es gibt noch keine Fahrzeuge zum Exportieren. Fahren Sie ein Fahrzeug, während MAIRA läuft, damit es eigene Einstellungen erhält.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (aktuelles Fahrzeug)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Alle auswählen</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Keine auswählen</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Ihr Name (optional, wird an die Dateinamen angehängt)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Die Dateinamen sehen so aus: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Exportieren</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Wählen Sie mindestens ein Fahrzeug zum Exportieren aus.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Wählen Sie den Ordner, in dem die Dateien gespeichert werden sollen</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Dateien ersetzen?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} der Dateien sind in diesem Ordner bereits vorhanden. Möchten Sie sie ersetzen?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Die Lenkeffekt-Einstellungen konnten nicht exportiert werden.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Lenkeffekte importieren</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Jede der folgenden Dateien legt die Lenkeffekte ihres eigenen Fahrzeugs fest. Es wird nichts geändert, bis Sie den Import bestätigen.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Auch die Kraft- und Vibrationseinstellungen der Lenkeffekt-Knoten im FFB-Diagramm importieren</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Diese Einstellungen gelten derzeit für alle Fahrzeuge. Sie werden auf „Pro Fahrzeug“ umgestellt, und alle anderen Fahrzeuge behalten ihren aktuellen Wert:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importieren</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>von {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Neues Fahrzeug: Dafür wird ein Profil erstellt.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Ersetzt die aktuellen Lenkeffekt-Einstellungen dieses Fahrzeugs.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Die Lenkeffekt-Einstellungen konnten nicht importiert werden.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA-Lenkeffektdateien</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Dies ist keine MAIRA-Lenkeffektdatei, oder sie ist beschädigt.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Diese Datei wurde mit einer neueren Version von MAIRA erstellt. Aktualisieren Sie MAIRA, um sie zu importieren.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>In dieser Datei ist nicht angegeben, für welches Fahrzeug sie gilt.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Diese Datei enthält keine verwendbaren Lenkeffekt-Einstellungen.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Übersprungen: Eine andere ausgewählte Datei gilt für dasselbe Fahrzeug und wird stattdessen importiert.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} unbekannte oder unlesbare Werte wurden ignoriert.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} Werte lagen außerhalb des zulässigen Bereichs und wurden begrenzt.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Das FFB-Diagramm dieses Fahrzeugs hat keinen Knoten für: {0}. Diese Einstellungen werden übersprungen.</value>
+  </data>
 </root>

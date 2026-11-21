@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Cuplu max. de amortizare</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Partajează setările pe mașină</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Exportă setările efectelor de volan pentru una sau mai multe mașini ca să le partajezi cu alții, sau importă fișiere pe care cineva le-a partajat cu tine. Fiecare fișier conține setările unei singure mașini.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Exportă mașini</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Importă fișiere</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Exportă efectele de volan</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Alege mașinile de exportat. Fiecare mașină este salvată într-un fișier separat.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Nu există încă mașini de exportat. Condu o mașină cu MAIRA pornit ca să primească propriile setări.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (mașina curentă)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Selectează tot</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Deselectează tot</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Numele tău (opțional, adăugat la numele fișierelor)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Numele fișierelor arată așa: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Exportă</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Alege cel puțin o mașină de exportat.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Alege folderul în care să salvezi fișierele</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Înlocuiești fișierele?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} dintre fișiere există deja în acest folder. Vrei să le înlocuiești?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Setările efectelor de volan nu au putut fi exportate.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Importă efectele de volan</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Fiecare fișier de mai jos setează efectele de volan ale propriei mașini. Nu se schimbă nimic până nu confirmi importul.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Importă și setările de forță și vibrație ale nodurilor efectelor de volan din graficul FFB</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Aceste setări sunt acum comune pentru toate mașinile. Vor deveni setări pe mașină, iar toate celelalte mașini își păstrează valoarea curentă:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importă</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>de {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Mașină nouă: va fi creat un profil pentru ea.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Înlocuiește setările curente ale efectelor de volan pentru această mașină.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Setările efectelor de volan nu au putut fi importate.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>Fișiere de efecte de volan MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Acesta nu este un fișier de efecte de volan MAIRA sau este deteriorat.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Acest fișier a fost creat de o versiune mai nouă de MAIRA. Actualizează MAIRA ca să-l poți importa.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Acest fișier nu specifică pentru ce mașină este.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Acest fișier nu conține setări utilizabile pentru efectele de volan.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Omis: un alt fișier selectat este pentru aceeași mașină și se importă acela.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} valori necunoscute sau ilizibile au fost ignorate.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} valori erau în afara intervalului și au fost limitate.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Graficul FFB al acestei mașini nu are niciun nod pentru: {0}. Acele setări sunt omise.</value>
+  </data>
 </root>

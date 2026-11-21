@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>แรงบิดหน่วงสูงสุด</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>แชร์การตั้งค่าแยกตามรถ</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>ส่งออกการตั้งค่าเอฟเฟกต์พวงมาลัยของรถหนึ่งคันหรือมากกว่าเพื่อแชร์ให้ผู้อื่น หรือนำเข้าไฟล์ที่มีคนแชร์ให้คุณ แต่ละไฟล์เก็บการตั้งค่าของรถหนึ่งคัน</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>ส่งออกรถ</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>นำเข้าไฟล์</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>ส่งออกเอฟเฟกต์พวงมาลัย</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>เลือกรถที่จะส่งออก รถแต่ละคันจะถูกบันทึกเป็นไฟล์แยกของตัวเอง</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>ยังไม่มีรถที่จะส่งออก ขับรถขณะที่ MAIRA ทำงานอยู่เพื่อให้รถคันนั้นมีการตั้งค่าของตัวเอง</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (รถปัจจุบัน)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>เลือกทั้งหมด</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>ยกเลิกการเลือกทั้งหมด</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>ชื่อของคุณ (ไม่บังคับ จะถูกเพิ่มในชื่อไฟล์)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>ชื่อไฟล์จะมีลักษณะดังนี้: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>ส่งออก</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>เลือกรถอย่างน้อยหนึ่งคันเพื่อส่งออก</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>เลือกโฟลเดอร์สำหรับบันทึกไฟล์</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>แทนที่ไฟล์หรือไม่</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>มีไฟล์ {0} ไฟล์อยู่ในโฟลเดอร์นี้แล้ว คุณต้องการแทนที่หรือไม่</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>ไม่สามารถส่งออกการตั้งค่าเอฟเฟกต์พวงมาลัยได้</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>นำเข้าเอฟเฟกต์พวงมาลัย</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>แต่ละไฟล์ด้านล่างจะตั้งค่าเอฟเฟกต์พวงมาลัยของรถคันนั้น ๆ จะไม่มีอะไรเปลี่ยนแปลงจนกว่าคุณจะยืนยันการนำเข้า</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>นำเข้าการตั้งค่าแรงและการสั่นของโหนดเอฟเฟกต์พวงมาลัยในกราฟ FFB ด้วย</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>ขณะนี้การตั้งค่าเหล่านี้ใช้ร่วมกันในรถทุกคัน การตั้งค่าจะถูกเปลี่ยนเป็นแยกตามรถ และรถคันอื่นทั้งหมดจะคงค่าปัจจุบันไว้:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>นำเข้า</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>โดย {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>รถใหม่: จะมีการสร้างโปรไฟล์ให้</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>แทนที่การตั้งค่าเอฟเฟกต์พวงมาลัยปัจจุบันของรถคันนี้</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>ไม่สามารถนำเข้าการตั้งค่าเอฟเฟกต์พวงมาลัยได้</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>ไฟล์เอฟเฟกต์พวงมาลัย MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>นี่ไม่ใช่ไฟล์เอฟเฟกต์พวงมาลัย MAIRA หรือไฟล์เสียหาย</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>ไฟล์นี้สร้างโดย MAIRA เวอร์ชันใหม่กว่า กรุณาอัปเดต MAIRA เพื่อนำเข้าไฟล์นี้</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>ไฟล์นี้ไม่ได้ระบุว่าใช้กับรถคันใด</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>ไฟล์นี้ไม่มีการตั้งค่าเอฟเฟกต์พวงมาลัยที่ใช้งานได้</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>ข้ามแล้ว: มีไฟล์อื่นที่เลือกไว้สำหรับรถคันเดียวกัน และจะนำเข้าไฟล์นั้นแทน</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>ละเว้นค่าที่ไม่รู้จักหรืออ่านไม่ได้ {0} ค่า</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>มี {0} ค่าที่อยู่นอกช่วงและถูกจำกัดไว้</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>กราฟ FFB ของรถคันนี้ไม่มีโหนดสำหรับ: {0} จะข้ามการตั้งค่าเหล่านั้น</value>
+  </data>
 </root>

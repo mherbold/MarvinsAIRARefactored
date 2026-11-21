@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. dempingskoppel</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Instellingen per auto delen</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Exporteer de stuureffectinstellingen van een of meer auto's om ze met anderen te delen, of importeer bestanden die iemand met je heeft gedeeld. Elk bestand bevat de instellingen van één auto.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Auto's exporteren</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Bestanden importeren</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Stuureffecten exporteren</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Kies de auto's die je wilt exporteren. Elke auto wordt als een eigen bestand opgeslagen.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Er zijn nog geen auto's om te exporteren. Rijd met een auto terwijl MAIRA draait om die auto eigen instellingen te geven.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (huidige auto)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Alles selecteren</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Niets selecteren</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Je naam (optioneel, wordt aan de bestandsnamen toegevoegd)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Bestandsnamen zien er zo uit: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Exporteren</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Kies minstens één auto om te exporteren.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Kies de map waarin de bestanden worden opgeslagen</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Bestanden vervangen?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} van de bestanden bestaan al in deze map. Wil je ze vervangen?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>De stuureffectinstellingen konden niet worden geëxporteerd.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Stuureffecten importeren</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Elk bestand hieronder stelt de stuureffecten van zijn eigen auto in. Er verandert niets totdat je de import bevestigt.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Ook de kracht- en trillingsinstellingen van de stuureffectnodes in de FFB-grafiek importeren</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Deze instellingen worden nu door alle auto's gedeeld. Ze worden omgezet naar per auto, en alle andere auto's behouden hun huidige waarde:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importeren</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>door {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Nieuwe auto: er wordt een profiel voor aangemaakt.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Vervangt de huidige stuureffectinstellingen van deze auto.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>De stuureffectinstellingen konden niet worden geïmporteerd.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA-stuureffectbestanden</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Dit is geen MAIRA-stuureffectbestand, of het is beschadigd.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Dit bestand is gemaakt met een nieuwere versie van MAIRA. Werk MAIRA bij om het te importeren.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Dit bestand vermeldt niet voor welke auto het is.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Dit bestand bevat geen bruikbare stuureffectinstellingen.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Overgeslagen: een ander geselecteerd bestand is voor dezelfde auto, en dat bestand wordt in plaats hiervan geïmporteerd.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} onbekende of onleesbare waarden zijn genegeerd.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} waarden lagen buiten het bereik en zijn begrensd.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>De FFB-grafiek van deze auto heeft geen node voor: {0}. Die instellingen worden overgeslagen.</value>
+  </data>
 </root>

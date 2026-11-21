@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max summutusmoment</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Jaga autopõhiseid seadeid</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Ekspordi ühe või mitme auto roolimisefektide seaded, et neid teistega jagada, või impordi faile, mida keegi on sinuga jaganud. Iga fail sisaldab ühe auto seadeid.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Ekspordi autod</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Impordi failid</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Ekspordi roolimisefektid</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Vali eksporditavad autod. Iga auto salvestatakse eraldi faili.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Eksportimiseks pole veel ühtegi autot. Sõida autoga, kui MAIRA töötab, et see saaks oma seaded.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (praegune auto)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Vali kõik</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Tühista valik</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Sinu nimi (valikuline, lisatakse failinimedele)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Failinimed näevad välja nii: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Ekspordi</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Vali eksportimiseks vähemalt üks auto.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Vali kaust, kuhu failid salvestada</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Kas asendada failid?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} faili on selles kaustas juba olemas. Kas soovid need asendada?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Roolimisefektide seadeid ei õnnestunud eksportida.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Impordi roolimisefektid</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Iga allolev fail määrab oma auto roolimisefektid. Midagi ei muutu enne, kui sa impordi kinnitad.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Impordi ka FFB graafiku roolimisefektide sõlmede jõu- ja vibratsiooniseaded</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Need seaded on praegu kõigile autodele ühised. Need muudetakse autopõhiseks ja kõik teised autod säilitavad oma praeguse väärtuse:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Impordi</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>autor: {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Uus auto: sellele luuakse profiil.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Asendab selle auto praegused roolimisefektide seaded.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Roolimisefektide seadeid ei õnnestunud importida.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA roolimisefektide failid</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>See ei ole MAIRA roolimisefektide fail või on see kahjustatud.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>See fail on loodud MAIRA uuema versiooniga. Selle importimiseks uuenda MAIRA-t.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Selles failis pole märgitud, millise auto jaoks see on.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Selles failis pole kasutatavaid roolimisefektide seadeid.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Vahele jäetud: teine valitud fail on sama auto jaoks ja imporditakse hoopis see.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} tundmatut või loetamatut väärtust jäeti arvestamata.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} väärtust olid lubatud vahemikust väljas ja neid piirati.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Selle auto FFB graafikus pole sõlme järgmise jaoks: {0}. Need seaded jäetakse vahele.</value>
+  </data>
 </root>

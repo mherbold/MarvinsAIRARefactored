@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Maks. slāpēšanas moments</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Kopīgot katras automašīnas iestatījumus</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Eksportējiet vienas vai vairāku automašīnu stūres efektu iestatījumus, lai tos kopīgotu ar citiem, vai importējiet failus, ko kāds ir kopīgojis ar jums. Katrā failā ir vienas automašīnas iestatījumi.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Eksportēt automašīnas</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Importēt failus</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Eksportēt stūres efektus</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Izvēlieties eksportējamās automašīnas. Katra automašīna tiek saglabāta atsevišķā failā.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Vēl nav nevienas automašīnas, ko eksportēt. Brauciet ar automašīnu, kamēr darbojas MAIRA, lai tai būtu savi iestatījumi.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (pašreizējā automašīna)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Atlasīt visu</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Noņemt atlasi</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Jūsu vārds (neobligāts, tiek pievienots failu nosaukumiem)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Failu nosaukumi izskatās šādi: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Eksportēt</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Izvēlieties vismaz vienu automašīnu eksportēšanai.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Izvēlieties mapi, kurā saglabāt failus</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Aizstāt failus?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} no failiem šajā mapē jau pastāv. Vai vēlaties tos aizstāt?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Stūres efektu iestatījumus nevarēja eksportēt.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Importēt stūres efektus</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Katrs tālāk norādītais fails iestata savas automašīnas stūres efektus. Nekas nemainīsies, kamēr neapstiprināsiet importēšanu.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Importēt arī FFB grafika stūres efektu mezglu spēka un vibrācijas iestatījumus</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Pašlaik šie iestatījumi ir kopīgi visām automašīnām. Tie tiks pārslēgti uz atsevišķiem katrai automašīnai, un visas pārējās automašīnas saglabās pašreizējo vērtību:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importēt</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>autors: {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Jauna automašīna: tai tiks izveidots profils.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Aizstāj šīs automašīnas pašreizējos stūres efektu iestatījumus.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Stūres efektu iestatījumus nevarēja importēt.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA stūres efektu faili</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Šis nav MAIRA stūres efektu fails, vai arī tas ir bojāts.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Šis fails ir izveidots ar jaunāku MAIRA versiju. Atjauniniet MAIRA, lai to importētu.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Šajā failā nav norādīts, kurai automašīnai tas paredzēts.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Šajā failā nav izmantojamu stūres efektu iestatījumu.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Izlaists: cits atlasītais fails ir paredzēts tai pašai automašīnai, un tā vietā tiek importēts tas.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} nezināmas vai nenolasāmas vērtības tika ignorētas.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} vērtības bija ārpus diapazona un tika ierobežotas.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Šīs automašīnas FFB grafikā nav mezgla šim: {0}. Šie iestatījumi tiek izlaisti.</value>
+  </data>
 </root>

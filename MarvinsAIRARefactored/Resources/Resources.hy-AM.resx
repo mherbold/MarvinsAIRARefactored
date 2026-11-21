@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Մարման առավելագույն մոմենտ</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Կիսվել ըստ մեքենայի կարգավորումներով</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Արտահանեք մեկ կամ մի քանի մեքենայի ղեկի էֆեկտների կարգավորումները՝ դրանցով ուրիշների հետ կիսվելու համար, կամ ներմուծեք ֆայլեր, որոնցով ինչ-որ մեկը կիսվել է ձեզ հետ։ Յուրաքանչյուր ֆայլ պարունակում է մեկ մեքենայի կարգավորումները։</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Արտահանել մեքենաները</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Ներմուծել ֆայլեր</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Ղեկի էֆեկտների արտահանում</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Ընտրեք արտահանվող մեքենաները։ Յուրաքանչյուր մեքենա պահվում է առանձին ֆայլում։</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Արտահանելու համար դեռ մեքենաներ չկան։ Վարեք մեքենան, երբ MAIRA-ն աշխատում է, որպեսզի այն ստանա իր սեփական կարգավորումները։</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (ընթացիկ մեքենա)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Ընտրել բոլորը</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Չեղարկել ընտրությունը</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Ձեր անունը (ըստ ցանկության, ավելացվում է ֆայլերի անուններին)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Ֆայլերի անունները կունենան այսպիսի տեսք՝ {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Արտահանել</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Ընտրեք առնվազն մեկ մեքենա արտահանելու համար։</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Ընտրեք թղթապանակը, որտեղ պահել ֆայլերը</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Փոխարինե՞լ ֆայլերը</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>Ֆայլերից {0}-ն արդեն առկա են այս թղթապանակում։ Ցանկանո՞ւմ եք փոխարինել դրանք։</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Ղեկի էֆեկտների կարգավորումները հնարավոր չեղավ արտահանել։</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Ղեկի էֆեկտների ներմուծում</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Ստորև նշված յուրաքանչյուր ֆայլ սահմանում է իր մեքենայի ղեկի էֆեկտները։ Ոչինչ չի փոխվի, մինչև չհաստատեք ներմուծումը։</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Ներմուծել նաև FFB գրաֆի ղեկի էֆեկտների հանգույցների ուժի և թրթռման կարգավորումները</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Այս կարգավորումները ներկայումս ընդհանուր են բոլոր մեքենաների համար։ Դրանք կփոխարկվեն ըստ մեքենայի, և մնացած բոլոր մեքենաները կպահպանեն իրենց ընթացիկ արժեքը՝</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Ներմուծել</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>հեղինակ՝ {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Նոր մեքենա՝ դրա համար կստեղծվի պրոֆիլ։</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Փոխարինում է այս մեքենայի ղեկի էֆեկտների ընթացիկ կարգավորումները։</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Ղեկի էֆեկտների կարգավորումները հնարավոր չեղավ ներմուծել։</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA ղեկի էֆեկտների ֆայլեր</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Սա MAIRA ղեկի էֆեկտների ֆայլ չէ, կամ այն վնասված է։</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Այս ֆայլը ստեղծվել է MAIRA-ի ավելի նոր տարբերակով։ Թարմացրեք MAIRA-ն՝ այն ներմուծելու համար։</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Այս ֆայլում նշված չէ, թե որ մեքենայի համար է այն։</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Այս ֆայլում ղեկի էֆեկտների օգտագործելի կարգավորումներ չկան։</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Բաց է թողնված՝ մեկ այլ ընտրված ֆայլ նույն մեքենայի համար է, և փոխարենը ներմուծվում է այն։</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} անհայտ կամ անընթեռնելի արժեքներ անտեսվեցին։</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} արժեքներ դուրս էին թույլատրելի միջակայքից և սահմանափակվեցին։</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Այս մեքենայի FFB գրաֆում հանգույց չկա հետևյալի համար՝ {0}։ Այդ կարգավորումները բաց են թողնվում։</value>
+  </data>
 </root>

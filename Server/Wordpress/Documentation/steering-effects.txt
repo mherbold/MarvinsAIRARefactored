@@ -304,6 +304,50 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="share-per-car-settings">Share per-car settings</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Steering effects are tuned car by car, so a good setup for one car is worth sharing. These buttons save the steering effects settings of your cars to files you can pass around, and load files other people have shared with you. Each file holds the settings of one car, so you only ever import the cars you want.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A file holds everything on this page that is tuned per car: whether understeer, oversteer and seat-of-pants are on, their minimum and maximum thresholds, the seat-of-pants algorithm, and the pedal vibration settings. It also holds the settings of the steering effect nodes in that car's FFB graph (the understeer, oversteer and seat-of-pants force and vibration nodes); whoever imports the file decides whether to use those too. The file records the car's name, and the name of the person who made it if they entered one.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Export cars</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Opens a list of every car you have driven with MAIRA (the car you are driving now is picked to begin with). Pick as many cars as you like, enter your name if you want it on the files, click Export and choose a folder. MAIRA writes one file per car, named after the car and you - for example <em>Ferrari 296 GT3 - Marvin.mairasteering</em> - and opens the folder so the files are ready to share. If a file with the same name is already there, MAIRA asks before replacing it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each file holds the values that car actually uses: its own profile for the settings you tune per car, and the shared value for any setting you have set to apply to all cars. For the car you are driving right now, the file holds exactly what you are driving with.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Import files</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Pick one or more <em>.mairasteering</em> files. Before anything changes, MAIRA shows a summary of every file: the car it is for, who made it, and whether the car is new to you or already has settings that will be replaced. Files that cannot be used (not a steering effects file, made by a newer version of MAIRA, or with no car name in them) are listed with the reason and left out. If two files are for the same car, only the last one is used. Values MAIRA does not recognize are ignored and values outside the allowed range are limited, and the summary tells you when that happened.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Turn on <em>Also import the force and vibration settings of the steering effect nodes in the FFB graph</em> to bring those along as well. It starts off, because those strengths are personal to each wheelbase and taste. The values go onto the matching nodes of the graph that car uses; if that graph has no node of a type the file has (for example no oversteer vibration node), the summary says so and those settings are skipped.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Click Import to apply the files. Each file only changes its own car's profile (see <a href="https://mairapp.com/home/documentation/advanced/tuning-profiles/" data-type="page">Tuning profiles</a>); a car you have never driven gets a new profile, ready for when you do. If you are driving one of the imported cars, its new settings take effect straight away.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Because the files are per car, a setting that you currently share across all cars (for example the seat-of-pants algorithm, which is shared by default) has to become a per-car setting for the import to mean anything. The summary lists any such settings. When you import, MAIRA switches them to per car and gives every other car the value it was already using, so only the imported cars change.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="calibration">Calibration</p>
 <!-- /wp:paragraph -->
 

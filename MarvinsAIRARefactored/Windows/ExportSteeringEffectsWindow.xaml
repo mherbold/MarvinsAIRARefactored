@@ -1,0 +1,170 @@
+<Window x:Class="MarvinsAIRARefactored.Windows.ExportSteeringEffectsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[ExportSteeringEffectsTitle]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        Width="600"
+        Height="640"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner"
+        KeyDown="Window_KeyDown">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </Window.DataContext>
+
+    <!-- Pick the cars to export (each becomes its own file), set the optional author name that goes into the file
+         names, then Export asks for the folder. -->
+
+    <Window.Resources>
+
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="{DynamicResource Brush.Background.Popup}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Subtle}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Foreground" Value="{DynamicResource Brush.Foreground.Primary}" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Bg"
+                                Background="Transparent"
+                                BorderBrush="{DynamicResource Brush.Border.Normal}"
+                                BorderThickness="0,0,0,1"
+                                Padding="12,6">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Hover}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Localization[ExportSteeringEffectsMessage]}"
+                   Style="{StaticResource MairaTextBlockStyle}"
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,12" />
+
+        <Grid Grid.Row="1">
+
+            <ListBox x:Name="Cars_ListBox">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <controls:MairaSwitch IsOn="{Binding IsSelected, Mode=TwoWay}"
+                                              Label="{Binding Label}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+            <TextBlock x:Name="NoCars_TextBlock"
+                       Text="{Binding Localization[ExportSteeringEffectsNoCars]}"
+                       Style="{StaticResource MairaTextBlockStyle}"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Margin="20"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource Brush.Foreground.Muted}"
+                       IsHitTestVisible="False"
+                       Visibility="Collapsed" />
+
+        </Grid>
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    Margin="0,12,0,0">
+
+            <controls:MairaButton x:Name="SelectAll_MairaButton"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[SelectAll]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/ok.png"
+                                  Click="SelectAll_MairaButton_Click" />
+
+            <controls:MairaButton x:Name="SelectNone_MairaButton"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Margin="20,0,0,0"
+                                  Label="{Binding Localization[SelectNone]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                  Click="SelectNone_MairaButton_Click" />
+
+        </StackPanel>
+
+        <controls:MairaTextBox x:Name="AuthorName_MairaTextBox"
+                               Grid.Row="3"
+                               Margin="0,16,0,0"
+                               Label="{Binding Localization[SteeringEffectsShareAuthorName]}"
+                               Value="{Binding Settings.SteeringEffectsShareAuthorName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                               ValueChanged="AuthorName_MairaTextBox_ValueChanged" />
+
+        <TextBlock x:Name="FileNameExample_TextBlock"
+                   Grid.Row="4"
+                   Style="{StaticResource MairaTextBlockStyle}"
+                   Foreground="{DynamicResource Brush.Foreground.Muted}"
+                   TextWrapping="Wrap"
+                   Margin="0,8,0,0"
+                   d:Text="File names look like this: Ferrari 296 GT3 - Marvin.mairasteering" />
+
+        <Grid Grid.Row="5"
+              Margin="0,20,0,0"
+              HorizontalAlignment="Center">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <controls:MairaButton x:Name="Export_MairaButton"
+                                  Grid.Column="0"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[ExportSteeringEffectsButton]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/export.png"
+                                  Click="Export_MairaButton_Click" />
+
+            <controls:MairaButton Grid.Column="2"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[Cancel]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                  Click="Cancel_MairaButton_Click" />
+
+        </Grid>
+
+    </Grid>
+
+</Window>

@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max dämpningsmoment</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Dela inställningar per bil</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Exportera styrningseffektinställningarna för en eller flera bilar för att dela dem med andra, eller importera filer som någon har delat med dig. Varje fil innehåller inställningarna för en bil.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Exportera bilar</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Importera filer</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Exportera styrningseffekter</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Välj vilka bilar som ska exporteras. Varje bil sparas som en egen fil.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Det finns inga bilar att exportera än. Kör en bil medan MAIRA är igång så får den egna inställningar.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (aktuell bil)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Markera alla</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Avmarkera alla</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Ditt namn (valfritt, läggs till i filnamnen)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Filnamnen ser ut så här: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Exportera</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Välj minst en bil att exportera.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Välj mappen där filerna ska sparas</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Ersätta filer?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} av filerna finns redan i den här mappen. Vill du ersätta dem?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Styrningseffektinställningarna kunde inte exporteras.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Importera styrningseffekter</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Varje fil nedan ställer in styrningseffekterna för sin egen bil. Inget ändras förrän du bekräftar importen.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Importera även kraft- och vibrationsinställningarna för styrningseffektnoderna i FFB-grafen</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>De här inställningarna delas just nu av alla bilar. De kommer att ändras till per bil, och alla andra bilar behåller sitt nuvarande värde:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importera</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>av {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Ny bil: en profil skapas för den.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Ersätter bilens nuvarande styrningseffektinställningar.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Styrningseffektinställningarna kunde inte importeras.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA-styrningseffektfiler</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Det här är inte en MAIRA-styrningseffektfil, eller så är den skadad.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Den här filen skapades av en nyare version av MAIRA. Uppdatera MAIRA för att importera den.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Den här filen anger inte vilken bil den gäller.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Den här filen innehåller inga användbara styrningseffektinställningar.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Hoppades över: en annan vald fil gäller samma bil, och den importeras i stället.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} okända eller oläsbara värden ignorerades.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} värden låg utanför det tillåtna intervallet och begränsades.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>FFB-grafen för den här bilen har ingen nod för: {0}. De inställningarna hoppas över.</value>
+  </data>
 </root>

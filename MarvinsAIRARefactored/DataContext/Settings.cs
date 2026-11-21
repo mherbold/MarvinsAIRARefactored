@@ -906,19 +906,22 @@ public partial class Settings : INotifyPropertyChanged
 	// belongs to. iRacing names are never tagged; a game no bridge knows any more shows its raw context id.
 	private static string WithGameName( string contextName, string gameName )
 	{
-		var gameLabel = gameName;
+		return $"{contextName} · {GameLabelFor( gameName )}";
+	}
 
+	// The localized brand name of the game a context belongs to ("Le Mans Ultimate"); the raw context id for a game no
+	// bridge knows any more.
+	private static string GameLabelFor( string gameName )
+	{
 		foreach ( var adapter in App.Instance!.GameBridge.Adapters )
 		{
 			if ( adapter.ContextGameName == gameName )
 			{
-				gameLabel = DataContext.Instance.Localization[ adapter.LocalizationKey ];
-
-				break;
+				return DataContext.Instance.Localization[ adapter.LocalizationKey ];
 			}
 		}
 
-		return $"{contextName} · {gameLabel}";
+		return gameName;
 	}
 
 	// Maps each imported module onto a module in the existing graph: exact module-id match first (built-in-derived
@@ -7648,6 +7651,31 @@ public partial class Settings : INotifyPropertyChanged
 			if ( value != _steeringEffectsInputMappedSettingUpdateEnabled )
 			{
 				_steeringEffectsInputMappedSettingUpdateEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Steering effects - Share author name
+
+	// The optional name added to exported per-car steering effects file names (and stored inside them), so the people
+	// the files are shared with can tell whose setup it is.
+	private string _steeringEffectsShareAuthorName = string.Empty;
+
+	public string SteeringEffectsShareAuthorName
+	{
+		get => _steeringEffectsShareAuthorName;
+
+		set
+		{
+			value ??= string.Empty;
+
+			if ( value != _steeringEffectsShareAuthorName )
+			{
+				_steeringEffectsShareAuthorName = value;
 
 				OnPropertyChanged();
 			}

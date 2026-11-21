@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Parell d'amortiment màx.</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Comparteix la configuració per cotxe</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Exporta la configuració dels efectes de direcció d'un o més cotxes per compartir-la amb altres persones, o importa fitxers que algú t'ha compartit. Cada fitxer conté la configuració d'un cotxe.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Exporta cotxes</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Importa fitxers</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Exporta els efectes de direcció</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Tria els cotxes que vols exportar. Cada cotxe es desa en un fitxer propi.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Encara no hi ha cap cotxe per exportar. Condueix un cotxe amb MAIRA en marxa perquè tingui una configuració pròpia.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (cotxe actual)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Selecciona-ho tot</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Desselecciona-ho tot</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>El teu nom (opcional, s'afegeix als noms dels fitxers)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Els noms dels fitxers seran així: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Exporta</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Tria almenys un cotxe per exportar.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Tria la carpeta on desar els fitxers</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Vols substituir els fitxers?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} dels fitxers ja existeixen en aquesta carpeta. Vols substituir-los?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>No s'ha pogut exportar la configuració dels efectes de direcció.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Importa els efectes de direcció</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Cada fitxer de sota defineix els efectes de direcció del seu propi cotxe. No canvia res fins que confirmis la importació.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Importa també la configuració de força i vibració dels nodes d'efectes de direcció del gràfic FFB</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Ara mateix aquests paràmetres són comuns a tots els cotxes. Passaran a ser per cotxe, i la resta de cotxes conservaran el valor actual:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importa</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>de {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Cotxe nou: se li crearà un perfil.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Substitueix la configuració actual dels efectes de direcció d'aquest cotxe.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>No s'ha pogut importar la configuració dels efectes de direcció.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>Fitxers d'efectes de direcció de MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Aquest no és un fitxer d'efectes de direcció de MAIRA, o està malmès.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Aquest fitxer s'ha creat amb una versió més recent de MAIRA. Actualitza MAIRA per importar-lo.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Aquest fitxer no indica per a quin cotxe és.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Aquest fitxer no conté cap configuració d'efectes de direcció utilitzable.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>S'ha omès: un altre fitxer seleccionat és per al mateix cotxe, i s'importa aquell.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>S'han ignorat {0} valors desconeguts o il·legibles.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} valors estaven fora de rang i s'han limitat.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>El gràfic FFB d'aquest cotxe no té cap node per a: {0}. Aquests paràmetres s'ometen.</value>
+  </data>
 </root>

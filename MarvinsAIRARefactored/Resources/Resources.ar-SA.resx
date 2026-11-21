@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>أقصى عزم تخميد</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>مشاركة الإعدادات لكل سيارة</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>صدِّر إعدادات تأثيرات التوجيه لسيارة واحدة أو أكثر لمشاركتها مع الآخرين، أو استورد ملفات شاركها أحدهم معك. يحتوي كل ملف على إعدادات سيارة واحدة.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>تصدير السيارات</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>استيراد الملفات</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>تصدير تأثيرات التوجيه</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>اختر السيارات المراد تصديرها. تُحفظ كل سيارة في ملف خاص بها.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>لا توجد سيارات لتصديرها بعد. قُد سيارة أثناء تشغيل MAIRA لتحصل على إعداداتها الخاصة.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (السيارة الحالية)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>تحديد الكل</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>إلغاء التحديد</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>اسمك (اختياري، يُضاف إلى أسماء الملفات)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>ستبدو أسماء الملفات هكذا: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>تصدير</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>اختر سيارة واحدة على الأقل لتصديرها.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>اختر المجلد الذي ستُحفظ فيه الملفات</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>استبدال الملفات؟</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>يوجد {0} من الملفات في هذا المجلد بالفعل. هل تريد استبدالها؟</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>تعذّر تصدير إعدادات تأثيرات التوجيه.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>استيراد تأثيرات التوجيه</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>يضبط كل ملف أدناه تأثيرات التوجيه للسيارة الخاصة به. لن يتغير شيء حتى تؤكد الاستيراد.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>استيراد إعدادات القوة والاهتزاز لعُقد تأثيرات التوجيه في رسم FFB البياني أيضًا</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>هذه الإعدادات مشتركة حاليًا بين جميع السيارات. سيتم تحويلها إلى إعدادات لكل سيارة، وستحتفظ كل السيارات الأخرى بقيمتها الحالية:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>استيراد</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>بواسطة {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>سيارة جديدة: سيتم إنشاء ملف ضبط لها.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>يستبدل إعدادات تأثيرات التوجيه الحالية لهذه السيارة.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>تعذّر استيراد إعدادات تأثيرات التوجيه.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>ملفات تأثيرات التوجيه لـ MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>هذا ليس ملف تأثيرات توجيه لـ MAIRA، أو أنه تالف.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>تم إنشاء هذا الملف بإصدار أحدث من MAIRA. حدّث MAIRA لاستيراده.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>لا يحدد هذا الملف السيارة المخصص لها.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>لا يحتوي هذا الملف على إعدادات تأثيرات توجيه قابلة للاستخدام.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>تم التخطي: ملف آخر محدد يخص السيارة نفسها، وسيتم استيراده بدلاً من هذا.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>تم تجاهل {0} من القيم غير المعروفة أو غير القابلة للقراءة.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>كانت {0} من القيم خارج النطاق وتم تقييدها.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>لا يحتوي رسم FFB البياني لهذه السيارة على عقدة لـ: {0}. سيتم تخطي تلك الإعدادات.</value>
+  </data>
 </root>

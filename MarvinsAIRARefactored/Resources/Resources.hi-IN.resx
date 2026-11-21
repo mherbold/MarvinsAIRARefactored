@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>अधिकतम डैम्पिंग टॉर्क</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>प्रति कार सेटिंग्स साझा करें</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>एक या अधिक कारों की स्टीयरिंग इफेक्ट्स सेटिंग्स निर्यात करके दूसरों के साथ साझा करें, या किसी के द्वारा आपके साथ साझा की गई फ़ाइलें आयात करें। हर फ़ाइल में एक कार की सेटिंग्स होती हैं।</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>कारें निर्यात करें</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>फ़ाइलें आयात करें</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>स्टीयरिंग इफेक्ट्स निर्यात करें</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>निर्यात करने के लिए कारें चुनें। हर कार अपनी अलग फ़ाइल में सहेजी जाती है।</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>अभी निर्यात करने के लिए कोई कार नहीं है। MAIRA चलाते हुए कोई कार चलाएँ ताकि उसे अपनी सेटिंग्स मिलें।</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (वर्तमान कार)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>सभी चुनें</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>कोई नहीं चुनें</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>आपका नाम (वैकल्पिक, फ़ाइल नामों में जोड़ा जाता है)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>फ़ाइल नाम ऐसे दिखेंगे: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>निर्यात करें</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>निर्यात करने के लिए कम से कम एक कार चुनें।</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>फ़ाइलें सहेजने के लिए फ़ोल्डर चुनें</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>फ़ाइलें बदलें?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>इनमें से {0} फ़ाइलें इस फ़ोल्डर में पहले से मौजूद हैं। क्या आप उन्हें बदलना चाहते हैं?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>स्टीयरिंग इफेक्ट्स सेटिंग्स निर्यात नहीं की जा सकीं।</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>स्टीयरिंग इफेक्ट्स आयात करें</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>नीचे दी गई हर फ़ाइल अपनी कार के स्टीयरिंग इफेक्ट्स सेट करती है। आयात की पुष्टि करने तक कुछ नहीं बदलेगा।</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>FFB ग्राफ़ में स्टीयरिंग इफेक्ट नोड्स की फ़ोर्स और कंपन सेटिंग्स भी आयात करें</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>ये सेटिंग्स अभी सभी कारों में साझा हैं। इन्हें प्रति कार में बदला जाएगा, और बाकी सभी कारें अपना वर्तमान मान बनाए रखेंगी:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>आयात करें</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>{0} द्वारा</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>नई कार: इसके लिए एक प्रोफ़ाइल बनाई जाएगी।</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>इस कार की वर्तमान स्टीयरिंग इफेक्ट्स सेटिंग्स को बदल देता है।</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>स्टीयरिंग इफेक्ट्स सेटिंग्स आयात नहीं की जा सकीं।</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA स्टीयरिंग इफेक्ट्स फ़ाइलें</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>यह MAIRA स्टीयरिंग इफेक्ट्स फ़ाइल नहीं है, या यह क्षतिग्रस्त है।</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>यह फ़ाइल MAIRA के नए संस्करण द्वारा बनाई गई थी। इसे आयात करने के लिए MAIRA अपडेट करें।</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>यह फ़ाइल नहीं बताती कि यह किस कार के लिए है।</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>इस फ़ाइल में कोई उपयोगी स्टीयरिंग इफेक्ट्स सेटिंग्स नहीं हैं।</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>छोड़ा गया: चुनी गई एक अन्य फ़ाइल उसी कार के लिए है, और उसकी जगह वही आयात की जाएगी।</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} अज्ञात या अपठनीय मानों को अनदेखा किया गया।</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} मान सीमा से बाहर थे और उन्हें सीमित किया गया।</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>इस कार के FFB ग्राफ़ में इसके लिए कोई नोड नहीं है: {0}। वे सेटिंग्स छोड़ दी जाती हैं।</value>
+  </data>
 </root>

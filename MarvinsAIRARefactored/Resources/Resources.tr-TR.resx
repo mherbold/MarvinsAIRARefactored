@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Maks. sönümleme torku</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Araç başına ayarları paylaş</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Bir veya daha fazla aracın direksiyon efekti ayarlarını başkalarıyla paylaşmak için dışa aktarın ya da birinin sizinle paylaştığı dosyaları içe aktarın. Her dosya bir aracın ayarlarını içerir.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Araçları dışa aktar</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Dosyaları içe aktar</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Direksiyon efektlerini dışa aktar</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Dışa aktarılacak araçları seçin. Her araç ayrı bir dosya olarak kaydedilir.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Henüz dışa aktarılacak araç yok. Bir araca kendi ayarlarını vermek için MAIRA çalışırken o araçla sürün.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (geçerli araç)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Tümünü seç</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Hiçbirini seçme</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Adınız (isteğe bağlı, dosya adlarına eklenir)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Dosya adları şöyle görünür: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Dışa aktar</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Dışa aktarmak için en az bir araç seçin.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Dosyaların kaydedileceği klasörü seçin</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Dosyalar değiştirilsin mi?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>Dosyalardan {0} tanesi bu klasörde zaten var. Bunları değiştirmek istiyor musunuz?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Direksiyon efekti ayarları dışa aktarılamadı.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Direksiyon efektlerini içe aktar</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Aşağıdaki her dosya kendi aracının direksiyon efektlerini ayarlar. İçe aktarmayı onaylayana kadar hiçbir şey değişmez.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>FFB grafiğindeki direksiyon efekti düğümlerinin kuvvet ve titreşim ayarlarını da içe aktar</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Bu ayarlar şu anda tüm araçlar tarafından paylaşılıyor. Araç başına olarak değiştirilecek ve diğer tüm araçlar mevcut değerlerini koruyacak:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>İçe aktar</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>hazırlayan: {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Yeni araç: bunun için bir profil oluşturulacak.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Bu aracın mevcut direksiyon efekti ayarlarının yerini alır.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Direksiyon efekti ayarları içe aktarılamadı.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA direksiyon efekti dosyaları</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Bu bir MAIRA direksiyon efekti dosyası değil veya dosya hasarlı.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Bu dosya MAIRA'nın daha yeni bir sürümüyle oluşturulmuş. İçe aktarmak için MAIRA'yı güncelleyin.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Bu dosya hangi araç için olduğunu belirtmiyor.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Bu dosyada kullanılabilir direksiyon efekti ayarı yok.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Atlandı: seçilen başka bir dosya aynı araç için ve onun yerine o içe aktarılıyor.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} bilinmeyen veya okunamayan değer yok sayıldı.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} değer aralık dışındaydı ve sınırlandı.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Bu aracın FFB grafiğinde şunun için düğüm yok: {0}. Bu ayarlar atlanıyor.</value>
+  </data>
 </root>

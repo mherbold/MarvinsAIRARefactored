@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Suurin vaimennusmomentti</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Jaa autokohtaiset asetukset</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Vie yhden tai useamman auton ohjaustehosteasetukset jakaaksesi ne muiden kanssa, tai tuo tiedostoja, joita joku on jakanut kanssasi. Jokainen tiedosto sisältää yhden auton asetukset.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Vie autoja</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Tuo tiedostoja</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Vie ohjaustehosteet</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Valitse vietävät autot. Jokainen auto tallennetaan omaksi tiedostokseen.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Vietäviä autoja ei ole vielä. Aja autolla MAIRAn ollessa käynnissä, niin se saa omat asetuksensa.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (nykyinen auto)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Valitse kaikki</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Poista valinnat</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Nimesi (valinnainen, lisätään tiedostonimiin)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Tiedostonimet näyttävät tältä: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Vie</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Valitse vähintään yksi vietävä auto.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Valitse kansio, johon tiedostot tallennetaan</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Korvataanko tiedostot?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>Tiedostoista {0} on jo tässä kansiossa. Haluatko korvata ne?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Ohjaustehosteasetuksia ei voitu viedä.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Tuo ohjaustehosteet</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Jokainen alla oleva tiedosto määrittää oman autonsa ohjaustehosteet. Mikään ei muutu ennen kuin vahvistat tuonnin.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Tuo myös FFB-kaavion ohjaustehostesolmujen voima- ja värinäasetukset</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Nämä asetukset ovat tällä hetkellä yhteisiä kaikille autoille. Ne muutetaan autokohtaisiksi, ja kaikki muut autot säilyttävät nykyisen arvonsa:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Tuo</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>tekijä: {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Uusi auto: sille luodaan profiili.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Korvaa tämän auton nykyiset ohjaustehosteasetukset.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Ohjaustehosteasetuksia ei voitu tuoda.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA-ohjaustehostetiedostot</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Tämä ei ole MAIRA-ohjaustehostetiedosto, tai se on vioittunut.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Tämä tiedosto on tehty uudemmalla MAIRA-versiolla. Päivitä MAIRA tuodaksesi sen.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Tiedostossa ei kerrota, mille autolle se on tarkoitettu.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Tiedostossa ei ole käyttökelpoisia ohjaustehosteasetuksia.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Ohitettu: toinen valittu tiedosto on samalle autolle, ja se tuodaan tämän sijaan.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} tuntematonta tai lukukelvotonta arvoa ohitettiin.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} arvoa oli sallitun alueen ulkopuolella, ja niitä rajoitettiin.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Tämän auton FFB-kaaviossa ei ole solmua kohteelle: {0}. Nämä asetukset ohitetaan.</value>
+  </data>
 </root>

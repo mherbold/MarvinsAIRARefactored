@@ -10,6 +10,8 @@ using Settings = MarvinsAIRARefactored.DataContext.Settings;
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
 using MarvinsAIRARefactored.Controls;
+using MarvinsAIRARefactored.DataContext;
+using MarvinsAIRARefactored.Windows;
 
 namespace MarvinsAIRARefactored.Pages;
 
@@ -110,6 +112,57 @@ public partial class SteeringEffectsPage : UserControl
 		var app = App.Instance!;
 
 		app.VirtualJoystick.Brake = 1f;
+	}
+
+	private void ExportSteeringEffects_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[SteeringEffectsPage] ExportSteeringEffects_MairaButton_Click >>>" );
+
+		ExportSteeringEffectsWindow.ShowModal();
+
+		app.Logger.WriteLine( "[SteeringEffectsPage] <<< ExportSteeringEffects_MairaButton_Click" );
+	}
+
+	// Pick any number of per-car files, read and validate each one (a broken file only rejects itself), then show the
+	// import summary - nothing changes until the user confirms there.
+	private void ImportSteeringEffects_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		app.Logger.WriteLine( "[SteeringEffectsPage] ImportSteeringEffects_MairaButton_Click >>>" );
+
+		var dialog = new Microsoft.Win32.OpenFileDialog
+		{
+			Title = localization[ "ImportSteeringEffectsTitle" ],
+			Filter = $"{localization[ "SteeringEffectsFiles" ]} (*{SteeringEffectsShareFile.FileExtension})|*{SteeringEffectsShareFile.FileExtension}",
+			Multiselect = true,
+			CheckFileExists = true
+		};
+
+		if ( dialog.ShowDialog() == true )
+		{
+			try
+			{
+				var candidates = dialog.FileNames.Select( settings.ReadSteeringEffectsShareFile ).ToList();
+
+				settings.PrepareSteeringEffectsImportCandidates( candidates );
+
+				ImportSteeringEffectsWindow.ShowModal( candidates );
+			}
+			catch ( Exception exception )
+			{
+				app.Logger.WriteLine( $"[SteeringEffectsPage] Import failed: {exception.Message}" );
+
+				ErrorWindow.ShowModal( localization[ "ImportSteeringEffectsFailed" ], exception );
+			}
+		}
+
+		app.Logger.WriteLine( "[SteeringEffectsPage] <<< ImportSteeringEffects_MairaButton_Click" );
 	}
 
 	#endregion

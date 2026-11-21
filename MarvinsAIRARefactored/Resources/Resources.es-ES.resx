@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Par de amortiguación máx.</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Compartir ajustes por coche</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Exporta los ajustes de efectos de dirección de uno o varios coches para compartirlos con otras personas, o importa archivos que alguien haya compartido contigo. Cada archivo contiene los ajustes de un coche.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Exportar coches</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Importar archivos</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Exportar efectos de dirección</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Elige los coches que quieres exportar. Cada coche se guarda en su propio archivo.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Aún no hay coches para exportar. Conduce un coche con MAIRA en ejecución para que tenga sus propios ajustes.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (coche actual)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Seleccionar todo</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>No seleccionar nada</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Tu nombre (opcional, se añade a los nombres de archivo)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Los nombres de archivo serán así: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Elige al menos un coche para exportar.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Elige la carpeta donde guardar los archivos</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>¿Reemplazar archivos?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} de los archivos ya existen en esta carpeta. ¿Quieres reemplazarlos?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>No se han podido exportar los ajustes de efectos de dirección.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Importar efectos de dirección</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Cada archivo de abajo establece los efectos de dirección de su propio coche. No cambia nada hasta que confirmes la importación.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Importar también los ajustes de fuerza y vibración de los nodos de efectos de dirección del gráfico FFB</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Ahora mismo estos ajustes son comunes a todos los coches. Pasarán a ser por coche, y los demás coches conservarán su valor actual:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>por {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Coche nuevo: se creará un perfil para él.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Reemplaza los ajustes de efectos de dirección actuales de este coche.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>No se han podido importar los ajustes de efectos de dirección.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>Archivos de efectos de dirección de MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Este no es un archivo de efectos de dirección de MAIRA, o está dañado.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Este archivo se creó con una versión más reciente de MAIRA. Actualiza MAIRA para importarlo.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Este archivo no indica para qué coche es.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Este archivo no contiene ajustes de efectos de dirección utilizables.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Omitido: otro archivo seleccionado es para el mismo coche, y se importa ese en su lugar.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>Se han ignorado {0} valores desconocidos o ilegibles.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} valores estaban fuera de rango y se han limitado.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>El gráfico FFB de este coche no tiene ningún nodo para: {0}. Esos ajustes se omiten.</value>
+  </data>
 </root>

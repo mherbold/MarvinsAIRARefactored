@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Trorym lleithio uchaf</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Rhannu gosodiadau fesul car</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Allforiwch osodiadau effeithiau llywio un car neu fwy i'w rhannu â phobl eraill, neu mewnforiwch ffeiliau y mae rhywun wedi'u rhannu â chi. Mae pob ffeil yn dal gosodiadau un car.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Allforio ceir</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Mewnforio ffeiliau</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Allforio effeithiau llywio</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Dewiswch y ceir i'w hallforio. Caiff pob car ei gadw fel ffeil ar wahân.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Does dim ceir i'w hallforio eto. Gyrrwch gar tra bo MAIRA yn rhedeg i roi ei osodiadau ei hun iddo.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (car presennol)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Dewis y cyfan</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Dewis dim</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Eich enw (dewisol, wedi'i ychwanegu at enwau'r ffeiliau)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Mae enwau'r ffeiliau'n edrych fel hyn: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Allforio</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Dewiswch o leiaf un car i'w allforio.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Dewiswch y ffolder i gadw'r ffeiliau ynddo</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Disodli ffeiliau?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>Mae {0} o'r ffeiliau eisoes yn bodoli yn y ffolder hwn. Ydych chi am eu disodli?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Ni ellid allforio'r gosodiadau effeithiau llywio.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Mewnforio effeithiau llywio</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Mae pob ffeil isod yn gosod effeithiau llywio ei char ei hun. Does dim yn newid nes i chi gadarnhau'r mewnforio.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Mewnforio hefyd osodiadau grym a dirgryniad nodau'r effeithiau llywio yn y graff FFB</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Mae'r gosodiadau hyn yn cael eu rhannu gan bob car ar hyn o bryd. Byddant yn cael eu newid i fod fesul car, a bydd pob car arall yn cadw ei werth presennol:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Mewnforio</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>gan {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Car newydd: bydd proffil yn cael ei greu ar ei gyfer.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Yn disodli gosodiadau effeithiau llywio presennol y car hwn.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Ni ellid mewnforio'r gosodiadau effeithiau llywio.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>Ffeiliau effeithiau llywio MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Nid ffeil effeithiau llywio MAIRA yw hon, neu mae wedi'i difrodi.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Crëwyd y ffeil hon gan fersiwn mwy newydd o MAIRA. Diweddarwch MAIRA i'w mewnforio.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Nid yw'r ffeil hon yn dweud ar gyfer pa gar y mae.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Does dim gosodiadau effeithiau llywio defnyddiadwy yn y ffeil hon.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Wedi'i hepgor: mae ffeil arall a ddewiswyd ar gyfer yr un car, a honno sy'n cael ei mewnforio yn lle hon.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>Anwybyddwyd {0} o werthoedd anhysbys neu annarllenadwy.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>Roedd {0} o werthoedd y tu allan i'r ystod ac fe'u cyfyngwyd.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Does gan y graff FFB ar gyfer y car hwn ddim nod ar gyfer: {0}. Caiff y gosodiadau hynny eu hepgor.</value>
+  </data>
 </root>

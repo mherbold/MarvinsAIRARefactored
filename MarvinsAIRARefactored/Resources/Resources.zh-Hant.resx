@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>最大阻尼扭矩</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>分享各車輛設定</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>匯出一輛或多輛車的轉向效果設定以與他人分享，或匯入他人與你分享的檔案。每個檔案儲存一輛車的設定。</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>匯出車輛</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>匯入檔案</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>匯出轉向效果</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>選擇要匯出的車輛。每輛車都會儲存為獨立的檔案。</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>目前還沒有可匯出的車輛。在 MAIRA 執行時駕駛一輛車，即可為其產生專屬設定。</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0}（目前車輛）</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全選</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>取消全選</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>你的名稱（選填，會加到檔案名稱中）</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>檔案名稱範例：{0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>匯出</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>請至少選擇一輛要匯出的車。</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>選擇用來儲存檔案的資料夾</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>取代檔案？</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>此資料夾中已有 {0} 個檔案。要取代它們嗎？</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>無法匯出轉向效果設定。</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>匯入轉向效果</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>下方每個檔案分別設定其對應車輛的轉向效果。在你確認匯入之前，不會進行任何變更。</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>同時匯入 FFB 圖表中轉向效果節點的力道與震動設定</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>這些設定目前由所有車輛共用。它們將切換為依車輛設定，其他車輛都會保留目前的值：</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>匯入</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>作者：{0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>新車輛：將為其建立設定檔。</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>將取代此車輛目前的轉向效果設定。</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>無法匯入轉向效果設定。</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>MAIRA 轉向效果檔案</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>這不是 MAIRA 轉向效果檔案，或檔案已損毀。</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>此檔案由較新版本的 MAIRA 建立。請更新 MAIRA 後再匯入。</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>此檔案未註明適用於哪輛車。</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>此檔案中沒有可用的轉向效果設定。</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>已略過：另一個選取的檔案對應同一輛車，將改為匯入該檔案。</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>已忽略 {0} 個未知或無法讀取的值。</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} 個值超出範圍，已被限制。</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>此車輛的 FFB 圖表中沒有以下節點：{0}。這些設定將被略過。</value>
+  </data>
 </root>

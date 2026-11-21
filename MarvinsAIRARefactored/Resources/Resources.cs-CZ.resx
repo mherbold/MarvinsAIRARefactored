@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. tlumicí moment</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Sdílet nastavení pro jednotlivá vozidla</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Exportujte nastavení efektů řízení jednoho či více vozidel a sdílejte je s ostatními, nebo importujte soubory, které s vámi někdo sdílel. Každý soubor obsahuje nastavení jednoho vozidla.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Exportovat vozidla</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Importovat soubory</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Exportovat efekty řízení</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Vyberte vozidla k exportu. Každé vozidlo se uloží do samostatného souboru.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Zatím nejsou žádná vozidla k exportu. Projeďte se s vozidlem, zatímco běží MAIRA, aby získalo vlastní nastavení.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (aktuální vozidlo)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Vybrat vše</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Zrušit výběr</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Vaše jméno (volitelné, přidá se k názvům souborů)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Názvy souborů budou vypadat takto: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Exportovat</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Vyberte alespoň jedno vozidlo k exportu.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Vyberte složku, do které se soubory uloží</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Nahradit soubory?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>Počet souborů, které už v této složce existují: {0}. Chcete je nahradit?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Nastavení efektů řízení se nepodařilo exportovat.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Importovat efekty řízení</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Každý soubor níže nastavuje efekty řízení svého vozidla. Nic se nezmění, dokud import nepotvrdíte.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Importovat také nastavení síly a vibrací uzlů efektů řízení v grafu FFB</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Tato nastavení jsou nyní společná pro všechna vozidla. Přepnou se na nastavení pro jednotlivá vozidla a všechna ostatní vozidla si ponechají svou aktuální hodnotu:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importovat</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>autor: {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Nové vozidlo: vytvoří se pro něj profil.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Nahradí aktuální nastavení efektů řízení tohoto vozidla.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Nastavení efektů řízení se nepodařilo importovat.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>Soubory efektů řízení MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Toto není soubor efektů řízení MAIRA, nebo je poškozený.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Tento soubor byl vytvořen novější verzí MAIRA. Pro import aktualizujte MAIRA.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Tento soubor neuvádí, pro které vozidlo je určen.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Tento soubor neobsahuje žádná použitelná nastavení efektů řízení.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Přeskočeno: jiný vybraný soubor je pro stejné vozidlo a importuje se místo tohoto.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>Počet ignorovaných neznámých nebo nečitelných hodnot: {0}.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>Počet hodnot mimo rozsah, které byly omezeny: {0}.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Graf FFB tohoto vozidla nemá uzel pro: {0}. Tato nastavení se přeskočí.</value>
+  </data>
 </root>

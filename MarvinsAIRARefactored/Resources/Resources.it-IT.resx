@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Coppia di smorzamento max</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Condividi impostazioni per auto</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Esporta le impostazioni degli effetti di sterzata di una o più auto per condividerle con altri, oppure importa i file che qualcuno ha condiviso con te. Ogni file contiene le impostazioni di un'auto.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Esporta auto</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Importa file</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Esporta effetti di sterzata</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Scegli le auto da esportare. Ogni auto viene salvata in un file a sé.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Non ci sono ancora auto da esportare. Guida un'auto con MAIRA in esecuzione per darle impostazioni proprie.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (auto attuale)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Seleziona tutto</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Deseleziona tutto</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Il tuo nome (facoltativo, aggiunto ai nomi dei file)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>I nomi dei file saranno così: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Esporta</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Scegli almeno un'auto da esportare.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Scegli la cartella in cui salvare i file</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Sostituire i file?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} dei file esistono già in questa cartella. Vuoi sostituirli?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Impossibile esportare le impostazioni degli effetti di sterzata.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Importa effetti di sterzata</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Ogni file qui sotto imposta gli effetti di sterzata della propria auto. Non cambia nulla finché non confermi l'importazione.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Importa anche le impostazioni di forza e vibrazione dei nodi degli effetti di sterzata nel grafico FFB</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Al momento queste impostazioni sono condivise da tutte le auto. Verranno rese per auto, e tutte le altre auto manterranno il valore attuale:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importa</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>di {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Nuova auto: verrà creato un profilo apposito.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Sostituisce le attuali impostazioni degli effetti di sterzata di questa auto.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Impossibile importare le impostazioni degli effetti di sterzata.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>File degli effetti di sterzata MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Questo non è un file degli effetti di sterzata MAIRA, oppure è danneggiato.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Questo file è stato creato da una versione più recente di MAIRA. Aggiorna MAIRA per importarlo.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Questo file non indica a quale auto si riferisce.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Questo file non contiene impostazioni degli effetti di sterzata utilizzabili.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Saltato: un altro file selezionato riguarda la stessa auto e verrà importato quello.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} valori sconosciuti o illeggibili sono stati ignorati.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} valori erano fuori intervallo e sono stati limitati.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Il grafico FFB di questa auto non ha nessun nodo per: {0}. Queste impostazioni vengono saltate.</value>
+  </data>
 </root>

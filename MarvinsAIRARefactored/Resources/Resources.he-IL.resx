@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>מומנט ריסון מרבי</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>שיתוף הגדרות לפי רכב</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>ייצא את הגדרות אפקטי ההיגוי של רכב אחד או יותר כדי לשתף אותן עם אחרים, או ייבא קבצים שמישהו שיתף איתך. כל קובץ מכיל את ההגדרות של רכב אחד.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>ייצוא רכבים</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>ייבוא קבצים</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>ייצוא אפקטי היגוי</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>בחר את הרכבים לייצוא. כל רכב נשמר כקובץ נפרד.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>עדיין אין רכבים לייצוא. נהג ברכב כש-MAIRA פועלת כדי לתת לו הגדרות משלו.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (הרכב הנוכחי)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>בחר הכול</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>נקה בחירה</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>השם שלך (אופציונלי, יתווסף לשמות הקבצים)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>שמות הקבצים ייראו כך: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>ייצוא</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>בחר לפחות רכב אחד לייצוא.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>בחר את התיקייה לשמירת הקבצים</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>להחליף קבצים?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} מהקבצים כבר קיימים בתיקייה זו. האם להחליף אותם?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>לא ניתן היה לייצא את הגדרות אפקטי ההיגוי.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>ייבוא אפקטי היגוי</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>כל קובץ שלהלן קובע את אפקטי ההיגוי של הרכב שלו. שום דבר לא ישתנה עד שתאשר את הייבוא.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>ייבא גם את הגדרות הכוח והרטט של צומתי אפקטי ההיגוי בגרף FFB</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>הגדרות אלה משותפות כרגע לכל הרכבים. הן יעברו להגדרה לפי רכב, וכל שאר הרכבים ישמרו על הערך הנוכחי שלהם:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>ייבוא</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>מאת {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>רכב חדש: ייווצר עבורו פרופיל.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>מחליף את הגדרות אפקטי ההיגוי הנוכחיות של רכב זה.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>לא ניתן היה לייבא את הגדרות אפקטי ההיגוי.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>קובצי אפקטי היגוי של MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>זה אינו קובץ אפקטי היגוי של MAIRA, או שהוא פגום.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>קובץ זה נוצר על ידי גרסה חדשה יותר של MAIRA. עדכן את MAIRA כדי לייבא אותו.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>קובץ זה אינו מציין לאיזה רכב הוא מיועד.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>קובץ זה אינו מכיל הגדרות אפקטי היגוי שמישות.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>דולג: קובץ נבחר אחר מיועד לאותו רכב, והוא זה שמיובא במקום.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>המערכת התעלמה מ-{0} ערכים לא ידועים או בלתי קריאים.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} ערכים היו מחוץ לטווח והוגבלו.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>לגרף FFB של רכב זה אין צומת עבור: {0}. הגדרות אלה ידולגו.</value>
+  </data>
 </root>

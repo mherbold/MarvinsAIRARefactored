@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Макс. момент демпфирования</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Поделиться настройками автомобилей</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Экспортируйте настройки эффектов руля для одного или нескольких автомобилей, чтобы поделиться ими с другими, или импортируйте файлы, которыми с вами поделились. Каждый файл содержит настройки одного автомобиля.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Экспортировать автомобили</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Импортировать файлы</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Экспорт эффектов руля</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Выберите автомобили для экспорта. Каждый автомобиль сохраняется в отдельный файл.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Пока нет автомобилей для экспорта. Проедьте на автомобиле при запущенном MAIRA, чтобы у него появились собственные настройки.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (текущий автомобиль)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Выбрать все</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Снять выбор</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Ваше имя (необязательно, добавляется к именам файлов)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Имена файлов будут выглядеть так: {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Экспортировать</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Выберите хотя бы один автомобиль для экспорта.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Выберите папку для сохранения файлов</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Заменить файлы?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>Файлов, которые уже есть в этой папке: {0}. Заменить их?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Не удалось экспортировать настройки эффектов руля.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Импорт эффектов руля</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Каждый файл ниже задаёт эффекты руля для своего автомобиля. Ничего не изменится, пока вы не подтвердите импорт.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Также импортировать настройки силы и вибрации узлов эффектов руля в графике FFB</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Сейчас эти настройки общие для всех автомобилей. Они станут отдельными для каждого автомобиля, а все остальные автомобили сохранят текущее значение:</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Импортировать</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>автор: {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Новый автомобиль: для него будет создан профиль.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Заменяет текущие настройки эффектов руля для этого автомобиля.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Не удалось импортировать настройки эффектов руля.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>Файлы эффектов руля MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Это не файл эффектов руля MAIRA, или он повреждён.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Этот файл создан более новой версией MAIRA. Обновите MAIRA, чтобы импортировать его.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>В этом файле не указано, для какого он автомобиля.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>В этом файле нет пригодных настроек эффектов руля.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Пропущено: другой выбранный файл относится к тому же автомобилю, и импортируется он.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>Пропущено неизвестных или нечитаемых значений: {0}.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>Значений вне допустимого диапазона, которые были ограничены: {0}.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>В графике FFB этого автомобиля нет узла для: {0}. Эти настройки пропускаются.</value>
+  </data>
 </root>

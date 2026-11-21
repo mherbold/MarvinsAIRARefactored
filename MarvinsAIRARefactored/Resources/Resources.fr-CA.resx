@@ -2926,4 +2926,112 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Couple d'amortissement max.</value>
   </data>
+  <data name="ShareSteeringEffects" xml:space="preserve">
+    <value>Partager les réglages par voiture</value>
+  </data>
+  <data name="ShareSteeringEffectsDescription" xml:space="preserve">
+    <value>Exportez les réglages des effets du volant d'une ou plusieurs voitures pour les partager avec d'autres personnes, ou importez des fichiers que quelqu'un a partagés avec vous. Chaque fichier contient les réglages d'une seule voiture.</value>
+  </data>
+  <data name="ExportSteeringEffectsCars" xml:space="preserve">
+    <value>Exporter des voitures</value>
+  </data>
+  <data name="ImportSteeringEffectsFiles" xml:space="preserve">
+    <value>Importer des fichiers</value>
+  </data>
+  <data name="ExportSteeringEffectsTitle" xml:space="preserve">
+    <value>Exporter les effets du volant</value>
+  </data>
+  <data name="ExportSteeringEffectsMessage" xml:space="preserve">
+    <value>Choisissez les voitures à exporter. Chaque voiture est enregistrée dans son propre fichier.</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCars" xml:space="preserve">
+    <value>Il n'y a encore aucune voiture à exporter. Conduisez une voiture pendant que MAIRA est en marche pour lui donner ses propres réglages.</value>
+  </data>
+  <data name="ExportSteeringEffectsCurrentCar" xml:space="preserve">
+    <value>{0} (voiture actuelle)</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Tout sélectionner</value>
+  </data>
+  <data name="SelectNone" xml:space="preserve">
+    <value>Tout désélectionner</value>
+  </data>
+  <data name="SteeringEffectsShareAuthorName" xml:space="preserve">
+    <value>Votre nom (facultatif, ajouté aux noms de fichiers)</value>
+  </data>
+  <data name="ExportSteeringEffectsFileNameExample" xml:space="preserve">
+    <value>Les noms de fichiers ressemblent à ceci : {0}</value>
+  </data>
+  <data name="ExportSteeringEffectsButton" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
+  <data name="ExportSteeringEffectsNoCarsPicked" xml:space="preserve">
+    <value>Choisissez au moins une voiture à exporter.</value>
+  </data>
+  <data name="ExportSteeringEffectsPickFolder" xml:space="preserve">
+    <value>Choisissez le dossier où enregistrer les fichiers</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceTitle" xml:space="preserve">
+    <value>Remplacer les fichiers?</value>
+  </data>
+  <data name="ExportSteeringEffectsReplaceMessage" xml:space="preserve">
+    <value>{0} des fichiers existent déjà dans ce dossier. Voulez-vous les remplacer?</value>
+  </data>
+  <data name="ExportSteeringEffectsFailed" xml:space="preserve">
+    <value>Les réglages des effets du volant n'ont pas pu être exportés.</value>
+  </data>
+  <data name="ImportSteeringEffectsTitle" xml:space="preserve">
+    <value>Importer des effets du volant</value>
+  </data>
+  <data name="ImportSteeringEffectsMessage" xml:space="preserve">
+    <value>Chaque fichier ci-dessous définit les effets du volant de sa propre voiture. Rien ne change tant que vous n'avez pas confirmé l'importation.</value>
+  </data>
+  <data name="ImportSteeringEffectsGraphNodes" xml:space="preserve">
+    <value>Importer aussi les réglages de force et de vibration des nœuds d'effets du volant dans le graphique FFB</value>
+  </data>
+  <data name="ImportSteeringEffectsScopeChanges" xml:space="preserve">
+    <value>Ces réglages sont présentement partagés par toutes les voitures. Ils passeront en mode par voiture, et toutes les autres voitures conservent leur valeur actuelle :</value>
+  </data>
+  <data name="ImportSteeringEffectsButton" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="ImportSteeringEffectsAuthor" xml:space="preserve">
+    <value>par {0}</value>
+  </data>
+  <data name="ImportSteeringEffectsNewCar" xml:space="preserve">
+    <value>Nouvelle voiture : un profil sera créé pour elle.</value>
+  </data>
+  <data name="ImportSteeringEffectsReplacesCar" xml:space="preserve">
+    <value>Remplace les réglages actuels des effets du volant de cette voiture.</value>
+  </data>
+  <data name="ImportSteeringEffectsFailed" xml:space="preserve">
+    <value>Les réglages des effets du volant n'ont pas pu être importés.</value>
+  </data>
+  <data name="SteeringEffectsFiles" xml:space="preserve">
+    <value>Fichiers d'effets du volant MAIRA</value>
+  </data>
+  <data name="SteeringEffectsImportInvalidFile" xml:space="preserve">
+    <value>Ce fichier n'est pas un fichier d'effets du volant MAIRA, ou il est endommagé.</value>
+  </data>
+  <data name="SteeringEffectsImportNewerVersion" xml:space="preserve">
+    <value>Ce fichier a été créé par une version plus récente de MAIRA. Mettez MAIRA à jour pour l'importer.</value>
+  </data>
+  <data name="SteeringEffectsImportNoCar" xml:space="preserve">
+    <value>Ce fichier n'indique pas à quelle voiture il est destiné.</value>
+  </data>
+  <data name="SteeringEffectsImportEmpty" xml:space="preserve">
+    <value>Ce fichier ne contient aucun réglage d'effets du volant utilisable.</value>
+  </data>
+  <data name="SteeringEffectsImportDuplicateCar" xml:space="preserve">
+    <value>Ignoré : un autre fichier sélectionné concerne la même voiture, et c'est celui-là qui est importé.</value>
+  </data>
+  <data name="SteeringEffectsImportIgnoredValues" xml:space="preserve">
+    <value>{0} valeurs inconnues ou illisibles ont été ignorées.</value>
+  </data>
+  <data name="SteeringEffectsImportClampedValues" xml:space="preserve">
+    <value>{0} valeurs étaient hors limites et ont été limitées.</value>
+  </data>
+  <data name="SteeringEffectsImportMissingNodes" xml:space="preserve">
+    <value>Le graphique FFB de cette voiture n'a aucun nœud pour : {0}. Ces réglages sont ignorés.</value>
+  </data>
 </root>
