@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Maks. slāpēšanas moments</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>Samazina spēku, kad spēcīgs apmales trieciens trāpa balstiekārtai, pēc tam plūstoši to atjauno - tā liela apmale nevar paraut stūri.  Trieciena ātrums nosaka, cik spēcīgam jābūt triecienam, un Spēka samazinājums nosaka, cik liela daļa spēka tiek noņemta.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>Samazina spēku, kad spēcīgs apmales trieciens trāpa balstiekārtai, pēc tam plūstoši to atjauno - tā liela apmale nevar paraut stūri.  Trieciena ātrums nosaka, cik spēcīgam jābūt triecienam, un Spēka samazinājums nosaka, cik liela daļa spēka tiek noņemta.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Īslaicīgi noņem daļu galvenā stūres smaguma, kad cieta apmale vai nelīdzenums trāpa balstiekārtai, pēc tam plūstoši to atjauno - tā spēcīgs apmales trieciens nevar paraut stūri.  Trieciena ātrums nosaka, cik spēcīgam jābūt triecienam, un Spēka samazinājums nosaka, cik liela daļa spēka tiek noņemta.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Īslaicīgi apklusina ceļa un riepu detaļas, kad apmale trāpa balstiekārtai, pēc tam plūstoši tās atjauno - tā apmales vairs nedūc caur stūri, bet tās smagums saglabājas.  Trieciena ātrums nosaka, cik spēcīgam jābūt triecienam, un Spēka samazinājums nosaka, cik liela daļa detaļu tiek noņemta.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Īslaicīgi apklusina ceļa un riepu detaļas, kad apmale trāpa balstiekārtai, pēc tam plūstoši tās atjauno - tā apmales vairs nedūc caur stūri, bet tās smagums saglabājas.  Trieciena ātrums nosaka, cik spēcīgam jābūt triecienam, un Spēka samazinājums nosaka, cik liela daļa detaļu tiek noņemta.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Īslaicīgi noņem daļu galvenā stūres smaguma, kad cieta apmale vai nelīdzenums trāpa balstiekārtai, pēc tam plūstoši to atjauno - tā spēcīgs apmales trieciens nevar paraut stūri.  Trieciena ātrums nosaka, cik spēcīgam jābūt triecienam, un Spēka samazinājums nosaka, cik liela daļa spēka tiek noņemta.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Samazina spēku, kad spēcīgs apmales trieciens trāpa balstiekārtai, pēc tam plūstoši to atjauno - tā liela apmale nevar paraut stūri.  Trieciena ātrums nosaka, cik spēcīgam jābūt triecienam, un Spēka samazinājums nosaka, cik liela daļa spēka tiek noņemta.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Samazina spēku, kad spēcīgs apmales trieciens trāpa balstiekārtai, pēc tam plūstoši to atjauno - tā liela apmale nevar paraut stūri.  Trieciena ātrums nosaka, cik spēcīgam jābūt triecienam, un Spēka samazinājums nosaka, cik liela daļa spēka tiek noņemta.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>Bremžu spiediens</value>
   </data>

@@ -249,7 +249,7 @@
         <ModuleId>9fd8000b870c4baf9f8f0ad0ed0b3047</ModuleId>
         <ModuleType>CurbProtection</ModuleType>
         <Name />
-        <Description />
+        <Description>Fades the force down when a hard curb strike hits the suspension, then ramps back smoothly - so a big curb cannot jerk the wheel.  Shock velocity sets how hard a hit has to be, and Force reduction sets how much of the force is removed.</Description>
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
@@ -278,8 +278,12 @@
             </value>
           </item>
         </SettingValues>
-        <PinnedSettings />
-        <PinnedOrder>0</PinnedOrder>
+        <PinnedSettings>
+          <string>Enabled</string>
+          <string>ShockVelocity</string>
+          <string>ForceReduction</string>
+        </PinnedSettings>
+        <PinnedOrder>7</PinnedOrder>
         <NodeX>928</NodeX>
         <NodeY>80</NodeY>
       </FFBModuleData>
@@ -338,7 +342,7 @@
           <string>Direction</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>7</PinnedOrder>
+        <PinnedOrder>8</PinnedOrder>
         <NodeX>1376</NodeX>
         <NodeY>80</NodeY>
       </FFBModuleData>
@@ -372,7 +376,7 @@
           <string>Direction</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>9</PinnedOrder>
+        <PinnedOrder>10</PinnedOrder>
         <NodeX>1600</NodeX>
         <NodeY>80</NodeY>
       </FFBModuleData>
@@ -406,7 +410,7 @@
           <string>Direction</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>11</PinnedOrder>
+        <PinnedOrder>12</PinnedOrder>
         <NodeX>1824</NodeX>
         <NodeY>80</NodeY>
       </FFBModuleData>
@@ -475,7 +479,7 @@
           <string>Strength</string>
           <string>Threshold</string>
         </PinnedSettings>
-        <PinnedOrder>19</PinnedOrder>
+        <PinnedOrder>20</PinnedOrder>
         <NodeX>2496</NodeX>
         <NodeY>144</NodeY>
       </FFBModuleData>
@@ -527,7 +531,7 @@
           <string>Pattern</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>8</PinnedOrder>
+        <PinnedOrder>9</PinnedOrder>
         <NodeX>256</NodeX>
         <NodeY>224</NodeY>
       </FFBModuleData>
@@ -553,7 +557,7 @@
           <string>Pattern</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>10</PinnedOrder>
+        <PinnedOrder>11</PinnedOrder>
         <NodeX>480</NodeX>
         <NodeY>224</NodeY>
       </FFBModuleData>
@@ -579,7 +583,7 @@
           <string>Pattern</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>12</PinnedOrder>
+        <PinnedOrder>13</PinnedOrder>
         <NodeX>704</NodeX>
         <NodeY>224</NodeY>
       </FFBModuleData>
@@ -613,7 +617,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>13</PinnedOrder>
+        <PinnedOrder>14</PinnedOrder>
         <NodeX>256</NodeX>
         <NodeY>320</NodeY>
       </FFBModuleData>
@@ -639,7 +643,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>14</PinnedOrder>
+        <PinnedOrder>15</PinnedOrder>
         <NodeX>480</NodeX>
         <NodeY>320</NodeY>
       </FFBModuleData>
@@ -665,7 +669,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>15</PinnedOrder>
+        <PinnedOrder>16</PinnedOrder>
         <NodeX>704</NodeX>
         <NodeY>320</NodeY>
       </FFBModuleData>
@@ -691,7 +695,7 @@
           <string>Strength</string>
           <string>FrequencyAtRedlineRPM</string>
         </PinnedSettings>
-        <PinnedOrder>16</PinnedOrder>
+        <PinnedOrder>17</PinnedOrder>
         <NodeX>256</NodeX>
         <NodeY>416</NodeY>
       </FFBModuleData>
@@ -717,7 +721,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>17</PinnedOrder>
+        <PinnedOrder>18</PinnedOrder>
         <NodeX>480</NodeX>
         <NodeY>416</NodeY>
       </FFBModuleData>
@@ -743,7 +747,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>18</PinnedOrder>
+        <PinnedOrder>19</PinnedOrder>
         <NodeX>704</NodeX>
         <NodeY>416</NodeY>
       </FFBModuleData>

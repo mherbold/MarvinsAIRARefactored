@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. csillapító nyomaték</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>Lecsökkenti az erőt, amikor egy kemény kerékvető-ütés éri a felfüggesztést, majd simán visszaengedi - így egy nagy kerékvető nem tudja megrántani a kormányt.  Az ütközési sebesség adja meg, milyen erős ütés kell, az erőcsökkentés pedig azt, hogy az erő mekkora része kerüljön elvételre.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>Lecsökkenti az erőt, amikor egy kemény kerékvető-ütés éri a felfüggesztést, majd simán visszaengedi - így egy nagy kerékvető nem tudja megrántani a kormányt.  Az ütközési sebesség adja meg, milyen erős ütés kell, az erőcsökkentés pedig azt, hogy az erő mekkora része kerüljön elvételre.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Rövid időre elveszi a fő kormánysúly egy részét, amikor egy kemény kerékvető vagy bukkanó éri a felfüggesztést, majd simán visszaengedi - így egy nagy kerékvető-ütés nem tudja megrántani a kormányt.  Az ütközési sebesség adja meg, milyen erős ütés kell, az erőcsökkentés pedig azt, hogy az erő mekkora része kerüljön elvételre.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Rövid időre elnémítja az út- és gumirészleteket, amikor egy kerékvető éri a felfüggesztést, majd simán visszaengedi - így a kerékvetők nem zizegnek át a kormányon, a súlya viszont megmarad.  Az ütközési sebesség adja meg, milyen erős ütés kell, az erőcsökkentés pedig azt, hogy a részletek mekkora része kerüljön elvételre.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Rövid időre elnémítja az út- és gumirészleteket, amikor egy kerékvető éri a felfüggesztést, majd simán visszaengedi - így a kerékvetők nem zizegnek át a kormányon, a súlya viszont megmarad.  Az ütközési sebesség adja meg, milyen erős ütés kell, az erőcsökkentés pedig azt, hogy a részletek mekkora része kerüljön elvételre.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Rövid időre elveszi a fő kormánysúly egy részét, amikor egy kemény kerékvető vagy bukkanó éri a felfüggesztést, majd simán visszaengedi - így egy nagy kerékvető-ütés nem tudja megrántani a kormányt.  Az ütközési sebesség adja meg, milyen erős ütés kell, az erőcsökkentés pedig azt, hogy az erő mekkora része kerüljön elvételre.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Lecsökkenti az erőt, amikor egy kemény kerékvető-ütés éri a felfüggesztést, majd simán visszaengedi - így egy nagy kerékvető nem tudja megrántani a kormányt.  Az ütközési sebesség adja meg, milyen erős ütés kell, az erőcsökkentés pedig azt, hogy az erő mekkora része kerüljön elvételre.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Lecsökkenti az erőt, amikor egy kemény kerékvető-ütés éri a felfüggesztést, majd simán visszaengedi - így egy nagy kerékvető nem tudja megrántani a kormányt.  Az ütközési sebesség adja meg, milyen erős ütés kell, az erőcsökkentés pedig azt, hogy az erő mekkora része kerüljön elvételre.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>Féknyomás</value>
   </data>

@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Torque máx. de amortecimento</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>Reduz a força quando uma pancada forte na zebra atinge a suspensão, e depois a restaura suavemente - assim uma zebra grande não dá um tranco no volante.  Velocidade de impacto define o quão forte um impacto precisa ser, e Redução de intensidade define quanto da força é removida.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>Reduz a força quando uma pancada forte na zebra atinge a suspensão, e depois a restaura suavemente - assim uma zebra grande não dá um tranco no volante.  Velocidade de impacto define o quão forte um impacto precisa ser, e Redução de intensidade define quanto da força é removida.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Corta brevemente parte do peso principal do volante quando uma zebra alta ou uma ondulação atinge a suspensão, e depois o restaura suavemente - assim uma pancada forte na zebra não dá um tranco no volante.  Velocidade de impacto define o quão forte um impacto precisa ser, e Redução de intensidade define quanto da força é removida.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Silencia brevemente os detalhes da pista e dos pneus quando uma zebra atinge a suspensão, e depois os restaura suavemente - assim as zebras param de vibrar no volante enquanto você mantém o peso dele.  Velocidade de impacto define o quão forte um impacto precisa ser, e Redução de intensidade define quanto dos detalhes é removido.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Silencia brevemente os detalhes da pista e dos pneus quando uma zebra atinge a suspensão, e depois os restaura suavemente - assim as zebras param de vibrar no volante enquanto você mantém o peso dele.  Velocidade de impacto define o quão forte um impacto precisa ser, e Redução de intensidade define quanto dos detalhes é removido.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Corta brevemente parte do peso principal do volante quando uma zebra alta ou uma ondulação atinge a suspensão, e depois o restaura suavemente - assim uma pancada forte na zebra não dá um tranco no volante.  Velocidade de impacto define o quão forte um impacto precisa ser, e Redução de intensidade define quanto da força é removida.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Reduz a força quando uma pancada forte na zebra atinge a suspensão, e depois a restaura suavemente - assim uma zebra grande não dá um tranco no volante.  Velocidade de impacto define o quão forte um impacto precisa ser, e Redução de intensidade define quanto da força é removida.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Reduz a força quando uma pancada forte na zebra atinge a suspensão, e depois a restaura suavemente - assim uma zebra grande não dá um tranco no volante.  Velocidade de impacto define o quão forte um impacto precisa ser, e Redução de intensidade define quanto da força é removida.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>Pressão do freio</value>
   </data>

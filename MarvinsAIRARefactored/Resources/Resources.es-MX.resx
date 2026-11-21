@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Par de amortiguación máx.</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>Atenúa la fuerza cuando un golpe fuerte contra un piano llega a la suspensión y luego la regresa de forma suave - así un piano grande no puede jalonear el volante.  Velocidad de impacto define qué tan fuerte debe ser un golpe, y Reducción de fuerza define cuánta fuerza se quita.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>Atenúa la fuerza cuando un golpe fuerte contra un piano llega a la suspensión y luego la regresa de forma suave - así un piano grande no puede jalonear el volante.  Velocidad de impacto define qué tan fuerte debe ser un golpe, y Reducción de fuerza define cuánta fuerza se quita.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Recorta brevemente parte del peso principal del volante cuando un piano fuerte o un bache golpea la suspensión y luego lo regresa de forma suave - así un golpe fuerte contra un piano no puede jalonear el volante.  Velocidad de impacto define qué tan fuerte debe ser un golpe, y Reducción de fuerza define cuánta fuerza se quita.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Silencia brevemente el detalle de la pista y las llantas cuando un piano golpea la suspensión y luego lo regresa de forma suave - así los pianos dejan de zumbar en el volante sin que pierdas su peso.  Velocidad de impacto define qué tan fuerte debe ser un golpe, y Reducción de fuerza define cuánto detalle se quita.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Silencia brevemente el detalle de la pista y las llantas cuando un piano golpea la suspensión y luego lo regresa de forma suave - así los pianos dejan de zumbar en el volante sin que pierdas su peso.  Velocidad de impacto define qué tan fuerte debe ser un golpe, y Reducción de fuerza define cuánto detalle se quita.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Recorta brevemente parte del peso principal del volante cuando un piano fuerte o un bache golpea la suspensión y luego lo regresa de forma suave - así un golpe fuerte contra un piano no puede jalonear el volante.  Velocidad de impacto define qué tan fuerte debe ser un golpe, y Reducción de fuerza define cuánta fuerza se quita.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Atenúa la fuerza cuando un golpe fuerte contra un piano llega a la suspensión y luego la regresa de forma suave - así un piano grande no puede jalonear el volante.  Velocidad de impacto define qué tan fuerte debe ser un golpe, y Reducción de fuerza define cuánta fuerza se quita.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Atenúa la fuerza cuando un golpe fuerte contra un piano llega a la suspensión y luego la regresa de forma suave - así un piano grande no puede jalonear el volante.  Velocidad de impacto define qué tan fuerte debe ser un golpe, y Reducción de fuerza define cuánta fuerza se quita.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>Presión de freno</value>
   </data>

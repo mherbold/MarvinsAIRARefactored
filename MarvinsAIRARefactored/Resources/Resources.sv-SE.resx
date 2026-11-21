@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max dämpningsmoment</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>Tonar ned kraften när en hård curbträff slår i fjädringen och rampar sedan mjukt upp igen - så att en stor curb inte kan rycka i ratten.  Chockhastighet anger hur hård en träff måste vara, och Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>Tonar ned kraften när en hård curbträff slår i fjädringen och rampar sedan mjukt upp igen - så att en stor curb inte kan rycka i ratten.  Chockhastighet anger hur hård en träff måste vara, och Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Tar kortvarigt bort en del av rattens huvudtyngd när en hård curb eller ett gupp slår i fjädringen och rampar sedan mjukt upp igen - så att en hård curbträff inte kan rycka i ratten.  Chockhastighet anger hur hård en träff måste vara, och Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Dämpar kortvarigt väg- och däckdetaljerna när en curb slår i fjädringen och rampar sedan mjukt upp igen - så att curbar slutar surra i ratten medan du behåller dess tyngd.  Chockhastighet anger hur hård en träff måste vara, och Kraftminskning anger hur mycket av detaljerna som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Dämpar kortvarigt väg- och däckdetaljerna när en curb slår i fjädringen och rampar sedan mjukt upp igen - så att curbar slutar surra i ratten medan du behåller dess tyngd.  Chockhastighet anger hur hård en träff måste vara, och Kraftminskning anger hur mycket av detaljerna som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Tar kortvarigt bort en del av rattens huvudtyngd när en hård curb eller ett gupp slår i fjädringen och rampar sedan mjukt upp igen - så att en hård curbträff inte kan rycka i ratten.  Chockhastighet anger hur hård en träff måste vara, och Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Tonar ned kraften när en hård curbträff slår i fjädringen och rampar sedan mjukt upp igen - så att en stor curb inte kan rycka i ratten.  Chockhastighet anger hur hård en träff måste vara, och Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Tonar ned kraften när en hård curbträff slår i fjädringen och rampar sedan mjukt upp igen - så att en stor curb inte kan rycka i ratten.  Chockhastighet anger hur hård en träff måste vara, och Kraftminskning anger hur mycket av kraften som tas bort.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>Bromstryck</value>
   </data>

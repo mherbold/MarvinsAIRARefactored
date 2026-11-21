@@ -2929,6 +2929,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>最大ダンピングトルク</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>縁石に強く乗った衝撃がサスペンションに伝わったとき、力を弱め、その後滑らかに戻します - 大きな縁石でステアリングが急に取られるのを防ぎます。  ショック速度で反応する衝撃の強さを、フォース低減で取り除く力の量を設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>縁石に強く乗った衝撃がサスペンションに伝わったとき、力を弱め、その後滑らかに戻します - 大きな縁石でステアリングが急に取られるのを防ぎます。  ショック速度で反応する衝撃の強さを、フォース低減で取り除く力の量を設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>硬い縁石や段差がサスペンションに当たったとき、メインのステアリングの重さを一時的に一部カットし、その後滑らかに戻します - 大きな縁石の衝撃でステアリングが急に取られるのを防ぎます。  ショック速度で反応する衝撃の強さを、フォース低減で取り除く力の量を設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>縁石がサスペンションに当たったとき、路面とタイヤのディテールを一時的にミュートし、その後滑らかに戻します - ステアリングの重さは保ったまま、縁石のビリビリ感が伝わらなくなります。  ショック速度で反応する衝撃の強さを、フォース低減で取り除くディテールの量を設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>縁石がサスペンションに当たったとき、路面とタイヤのディテールを一時的にミュートし、その後滑らかに戻します - ステアリングの重さは保ったまま、縁石のビリビリ感が伝わらなくなります。  ショック速度で反応する衝撃の強さを、フォース低減で取り除くディテールの量を設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>硬い縁石や段差がサスペンションに当たったとき、メインのステアリングの重さを一時的に一部カットし、その後滑らかに戻します - 大きな縁石の衝撃でステアリングが急に取られるのを防ぎます。  ショック速度で反応する衝撃の強さを、フォース低減で取り除く力の量を設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>縁石に強く乗った衝撃がサスペンションに伝わったとき、力を弱め、その後滑らかに戻します - 大きな縁石でステアリングが急に取られるのを防ぎます。  ショック速度で反応する衝撃の強さを、フォース低減で取り除く力の量を設定します。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>縁石に強く乗った衝撃がサスペンションに伝わったとき、力を弱め、その後滑らかに戻します - 大きな縁石でステアリングが急に取られるのを防ぎます。  ショック速度で反応する衝撃の強さを、フォース低減で取り除く力の量を設定します。</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>ブレーキ圧</value>
   </data>

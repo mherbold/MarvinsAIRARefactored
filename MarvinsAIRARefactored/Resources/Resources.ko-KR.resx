@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>최대 댐핑 토크</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>강한 연석 충격이 서스펜션을 때리면 힘을 줄였다가 부드럽게 되돌립니다 - 큰 연석이 휠을 홱 잡아채지 못하게 합니다.  충격 속도는 반응할 충격의 세기를, 포스 감소는 힘을 얼마나 줄일지를 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>강한 연석 충격이 서스펜션을 때리면 힘을 줄였다가 부드럽게 되돌립니다 - 큰 연석이 휠을 홱 잡아채지 못하게 합니다.  충격 속도는 반응할 충격의 세기를, 포스 감소는 힘을 얼마나 줄일지를 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>단단한 연석이나 범프가 서스펜션을 때리면 주요 휠 무게의 일부를 잠시 줄였다가 부드럽게 되돌립니다 - 큰 연석 충격이 휠을 홱 잡아채지 못하게 합니다.  충격 속도는 반응할 충격의 세기를, 포스 감소는 힘을 얼마나 줄일지를 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>연석이 서스펜션을 때리면 노면과 타이어 디테일을 잠시 음소거했다가 부드럽게 되돌립니다 - 휠의 무게는 유지하면서 연석의 떨림이 휠로 전달되지 않게 합니다.  충격 속도는 반응할 충격의 세기를, 포스 감소는 디테일을 얼마나 줄일지를 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>연석이 서스펜션을 때리면 노면과 타이어 디테일을 잠시 음소거했다가 부드럽게 되돌립니다 - 휠의 무게는 유지하면서 연석의 떨림이 휠로 전달되지 않게 합니다.  충격 속도는 반응할 충격의 세기를, 포스 감소는 디테일을 얼마나 줄일지를 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>단단한 연석이나 범프가 서스펜션을 때리면 주요 휠 무게의 일부를 잠시 줄였다가 부드럽게 되돌립니다 - 큰 연석 충격이 휠을 홱 잡아채지 못하게 합니다.  충격 속도는 반응할 충격의 세기를, 포스 감소는 힘을 얼마나 줄일지를 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>강한 연석 충격이 서스펜션을 때리면 힘을 줄였다가 부드럽게 되돌립니다 - 큰 연석이 휠을 홱 잡아채지 못하게 합니다.  충격 속도는 반응할 충격의 세기를, 포스 감소는 힘을 얼마나 줄일지를 설정합니다.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>강한 연석 충격이 서스펜션을 때리면 힘을 줄였다가 부드럽게 되돌립니다 - 큰 연석이 휠을 홱 잡아채지 못하게 합니다.  충격 속도는 반응할 충격의 세기를, 포스 감소는 힘을 얼마나 줄일지를 설정합니다.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>브레이크 압력</value>
   </data>

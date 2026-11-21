@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>מומנט ריסון מרבי</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>מחליש את הכוח כשפגיעה חזקה באבן שפה מגיעה למתלים, ואז מחזיר אותו בהדרגה ובחלקות - כך שאבן שפה גדולה לא תוכל לטלטל את ההגה.  מהירות זעזוע קובעת כמה חזקה צריכה להיות הפגיעה, והפחתת כוח קובעת כמה מהכוח מוסר.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>מחליש את הכוח כשפגיעה חזקה באבן שפה מגיעה למתלים, ואז מחזיר אותו בהדרגה ובחלקות - כך שאבן שפה גדולה לא תוכל לטלטל את ההגה.  מהירות זעזוע קובעת כמה חזקה צריכה להיות הפגיעה, והפחתת כוח קובעת כמה מהכוח מוסר.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>מפחית לרגע חלק מהמשקל העיקרי של ההגה כשאבן שפה גבוהה או מהמורה פוגעת במתלים, ואז מחזיר אותו בהדרגה ובחלקות - כך שפגיעה חזקה באבן שפה לא תוכל לטלטל את ההגה.  מהירות זעזוע קובעת כמה חזקה צריכה להיות הפגיעה, והפחתת כוח קובעת כמה מהכוח מוסר.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>משתיק לרגע את פרטי הכביש והצמיגים כשאבן שפה פוגעת במתלים, ואז מחזיר אותם בהדרגה ובחלקות - כך שאבני השפה מפסיקות לזמזם בהגה, והמשקל שלו נשמר.  מהירות זעזוע קובעת כמה חזקה צריכה להיות הפגיעה, והפחתת כוח קובעת כמה מהפרטים מוסרים.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>משתיק לרגע את פרטי הכביש והצמיגים כשאבן שפה פוגעת במתלים, ואז מחזיר אותם בהדרגה ובחלקות - כך שאבני השפה מפסיקות לזמזם בהגה, והמשקל שלו נשמר.  מהירות זעזוע קובעת כמה חזקה צריכה להיות הפגיעה, והפחתת כוח קובעת כמה מהפרטים מוסרים.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>מפחית לרגע חלק מהמשקל העיקרי של ההגה כשאבן שפה גבוהה או מהמורה פוגעת במתלים, ואז מחזיר אותו בהדרגה ובחלקות - כך שפגיעה חזקה באבן שפה לא תוכל לטלטל את ההגה.  מהירות זעזוע קובעת כמה חזקה צריכה להיות הפגיעה, והפחתת כוח קובעת כמה מהכוח מוסר.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>מחליש את הכוח כשפגיעה חזקה באבן שפה מגיעה למתלים, ואז מחזיר אותו בהדרגה ובחלקות - כך שאבן שפה גדולה לא תוכל לטלטל את ההגה.  מהירות זעזוע קובעת כמה חזקה צריכה להיות הפגיעה, והפחתת כוח קובעת כמה מהכוח מוסר.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>מחליש את הכוח כשפגיעה חזקה באבן שפה מגיעה למתלים, ואז מחזיר אותו בהדרגה ובחלקות - כך שאבן שפה גדולה לא תוכל לטלטל את ההגה.  מהירות זעזוע קובעת כמה חזקה צריכה להיות הפגיעה, והפחתת כוח קובעת כמה מהכוח מוסר.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>לחץ בלימה</value>
   </data>

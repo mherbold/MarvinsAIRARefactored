@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Parell d'amortiment màx.</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>Esvaeix la força quan un impacte fort contra un piano colpeja la suspensió, i després la recupera suaument - així un piano gran no et pot estirar el volant.  Velocitat de xoc determina com de fort ha de ser l'impacte, i Reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>Esvaeix la força quan un impacte fort contra un piano colpeja la suspensió, i després la recupera suaument - així un piano gran no et pot estirar el volant.  Velocitat de xoc determina com de fort ha de ser l'impacte, i Reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Retalla breument part del pes principal del volant quan un piano fort o un bony colpeja la suspensió, i després el recupera suaument - així un cop fort contra un piano no et pot estirar el volant.  Velocitat de xoc determina com de fort ha de ser l'impacte, i Reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Silencia breument el detall de la carretera i dels pneumàtics quan un piano colpeja la suspensió, i després el recupera suaument - així els pianos deixen de vibrar a través del volant mentre en conserves el pes.  Velocitat de xoc determina com de fort ha de ser l'impacte, i Reducció de força determina quant detall s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Silencia breument el detall de la carretera i dels pneumàtics quan un piano colpeja la suspensió, i després el recupera suaument - així els pianos deixen de vibrar a través del volant mentre en conserves el pes.  Velocitat de xoc determina com de fort ha de ser l'impacte, i Reducció de força determina quant detall s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Retalla breument part del pes principal del volant quan un piano fort o un bony colpeja la suspensió, i després el recupera suaument - així un cop fort contra un piano no et pot estirar el volant.  Velocitat de xoc determina com de fort ha de ser l'impacte, i Reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Esvaeix la força quan un impacte fort contra un piano colpeja la suspensió, i després la recupera suaument - així un piano gran no et pot estirar el volant.  Velocitat de xoc determina com de fort ha de ser l'impacte, i Reducció de força determina quanta força s'elimina.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Esvaeix la força quan un impacte fort contra un piano colpeja la suspensió, i després la recupera suaument - així un piano gran no et pot estirar el volant.  Velocitat de xoc determina com de fort ha de ser l'impacte, i Reducció de força determina quanta força s'elimina.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>Pressió del fre</value>
   </data>

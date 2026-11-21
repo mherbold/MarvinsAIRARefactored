@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. dempingskoppel</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>Zwakt de kracht af wanneer een harde klap op een kerbstone de vering raakt, en bouwt daarna weer soepel op - zo kan een grote kerbstone niet aan het stuur rukken.  Snelheid bepaalt hoe hard een klap moet zijn, en Verminder de sterkte met bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>Zwakt de kracht af wanneer een harde klap op een kerbstone de vering raakt, en bouwt daarna weer soepel op - zo kan een grote kerbstone niet aan het stuur rukken.  Snelheid bepaalt hoe hard een klap moet zijn, en Verminder de sterkte met bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Neemt kort een deel van het hoofdgewicht van het stuur weg wanneer een harde kerbstone of hobbel de vering raakt, en bouwt daarna weer soepel op - zo kan een harde klap op een kerbstone niet aan het stuur rukken.  Snelheid bepaalt hoe hard een klap moet zijn, en Verminder de sterkte met bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Dempt kort de weg- en banddetails wanneer een kerbstone de vering raakt, en bouwt daarna weer soepel op - zo zoemen kerbstones niet meer door het stuur terwijl je het gewicht behoudt.  Snelheid bepaalt hoe hard een klap moet zijn, en Verminder de sterkte met bepaalt hoeveel van de details wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Dempt kort de weg- en banddetails wanneer een kerbstone de vering raakt, en bouwt daarna weer soepel op - zo zoemen kerbstones niet meer door het stuur terwijl je het gewicht behoudt.  Snelheid bepaalt hoe hard een klap moet zijn, en Verminder de sterkte met bepaalt hoeveel van de details wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Neemt kort een deel van het hoofdgewicht van het stuur weg wanneer een harde kerbstone of hobbel de vering raakt, en bouwt daarna weer soepel op - zo kan een harde klap op een kerbstone niet aan het stuur rukken.  Snelheid bepaalt hoe hard een klap moet zijn, en Verminder de sterkte met bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Zwakt de kracht af wanneer een harde klap op een kerbstone de vering raakt, en bouwt daarna weer soepel op - zo kan een grote kerbstone niet aan het stuur rukken.  Snelheid bepaalt hoe hard een klap moet zijn, en Verminder de sterkte met bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Zwakt de kracht af wanneer een harde klap op een kerbstone de vering raakt, en bouwt daarna weer soepel op - zo kan een grote kerbstone niet aan het stuur rukken.  Snelheid bepaalt hoe hard een klap moet zijn, en Verminder de sterkte met bepaalt hoeveel van de kracht wordt weggenomen.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>Remdruk</value>
   </data>

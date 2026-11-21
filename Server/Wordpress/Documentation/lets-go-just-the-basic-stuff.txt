@@ -70,11 +70,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Set the Max force according to the car you are driving.  Here's another handy table -</p>
+<p>Set the Max force according to the car you are driving.  The table below gives some starting points, but treat them as <strong>very rough estimates</strong>: they were measured on a single lap or reported by drivers, and the real value changes with the track, the car setup and your driving style.  For the car you are actually in, watch the live <strong>Current force</strong> readout below Max force, or let the <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/#auto-strength-feature">auto-strength feature</a> measure it for you (Clear, drive a few clean corners, then Set).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:table -->
-<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td>NASCAR Cup Series (Next Gen)</td><td>~28-35 Nm</td></tr><tr><td>IndyCar (IR-18)</td><td>~30-60 Nm</td></tr><tr><td>Mazda MX-5 Cup</td><td>~18-22 Nm</td></tr><tr><td>Supercars (V8)</td><td>~22-28 Nm</td></tr><tr><td>GT3 (Ferrari, Porsche, BMW, etc.)</td><td>~8-14 Nm</td></tr><tr><td>GT4</td><td>~12-18 Nm</td></tr><tr><td>GTP / LMDh</td><td>~10-16 Nm</td></tr><tr><td>Formula 3</td><td>~14-20 Nm</td></tr><tr><td>Formula Vee</td><td>~16-22 Nm</td></tr><tr><td>Street Stock</td><td>~18-25 Nm</td></tr></tbody></table></figure>
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td><strong>Car</strong></td><td><strong>Very rough max force</strong></td></tr><tr><td>Mazda MX-5 Cup, Toyota GR86, BMW M2 Racing</td><td>~15-20 Nm (measured)</td></tr><tr><td>Formula Vee</td><td>~13-18 Nm (measured)</td></tr><tr><td>FIA F4</td><td>~35-40 Nm (measured)</td></tr><tr><td>GT3 (Ferrari, Porsche, BMW, etc.)</td><td>~25-40 Nm (reported)</td></tr><tr><td>Formula 3</td><td>~40+ Nm (reported)</td></tr><tr><td>IndyCar (IR-18)</td><td>~50-80 Nm (reported)</td></tr></tbody></table></figure>
 <!-- /wp:table -->
 
 <!-- wp:paragraph -->

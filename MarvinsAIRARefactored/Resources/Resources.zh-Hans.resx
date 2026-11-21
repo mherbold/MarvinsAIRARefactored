@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>最大阻尼扭矩</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>猛烈冲击路肩并传到悬挂时逐渐降低力度，然后平滑恢复 - 这样大路肩不会猛拽方向盘。  震动速率设置冲击需要多猛烈，力矩回收设置削减多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>猛烈冲击路肩并传到悬挂时逐渐降低力度，然后平滑恢复 - 这样大路肩不会猛拽方向盘。  震动速率设置冲击需要多猛烈，力矩回收设置削减多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>当猛烈的路肩或颠簸冲击悬挂时，短暂削减部分方向盘主体重量感，然后平滑恢复 - 这样大力撞上路肩也不会猛拽方向盘。  震动速率设置冲击需要多猛烈，力矩回收设置削减多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>路肩冲击悬挂时短暂静音路面和轮胎细节，然后平滑恢复 - 这样路肩不再在方向盘上嗡嗡作响，同时保留方向盘的重量感。  震动速率设置冲击需要多猛烈，力矩回收设置削减多少细节。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>路肩冲击悬挂时短暂静音路面和轮胎细节，然后平滑恢复 - 这样路肩不再在方向盘上嗡嗡作响，同时保留方向盘的重量感。  震动速率设置冲击需要多猛烈，力矩回收设置削减多少细节。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>当猛烈的路肩或颠簸冲击悬挂时，短暂削减部分方向盘主体重量感，然后平滑恢复 - 这样大力撞上路肩也不会猛拽方向盘。  震动速率设置冲击需要多猛烈，力矩回收设置削减多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>猛烈冲击路肩并传到悬挂时逐渐降低力度，然后平滑恢复 - 这样大路肩不会猛拽方向盘。  震动速率设置冲击需要多猛烈，力矩回收设置削减多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>猛烈冲击路肩并传到悬挂时逐渐降低力度，然后平滑恢复 - 这样大路肩不会猛拽方向盘。  震动速率设置冲击需要多猛烈，力矩回收设置削减多少力。</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>刹车压力</value>
   </data>

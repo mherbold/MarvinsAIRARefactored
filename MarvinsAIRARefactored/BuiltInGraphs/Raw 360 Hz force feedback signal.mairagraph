@@ -249,7 +249,7 @@
         <ModuleId>9fd8000b870c4baf9f8f0ad0ed0b3047</ModuleId>
         <ModuleType>CurbProtection</ModuleType>
         <Name />
-        <Description />
+        <Description>Fades the force down when a hard curb strike hits the suspension, then ramps back smoothly - so a big curb cannot jerk the wheel.  Shock velocity sets how hard a hit has to be, and Force reduction sets how much of the force is removed.</Description>
         <InputAModuleId>Source360</InputAModuleId>
         <InputBModuleId>Source360</InputBModuleId>
         <SettingValues>

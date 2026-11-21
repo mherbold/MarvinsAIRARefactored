@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>最大阻尼扭矩</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>猛烈輾過路緣並衝擊懸吊時逐漸降低力道，之後再平滑恢復 - 這樣大路緣也不會猛扯方向盤。  震動速度設定衝擊需要多猛烈，力道衰減設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>猛烈輾過路緣並衝擊懸吊時逐漸降低力道，之後再平滑恢復 - 這樣大路緣也不會猛扯方向盤。  震動速度設定衝擊需要多猛烈，力道衰減設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>當猛烈的路緣或顛簸衝擊懸吊時，短暫削減部分方向盤主體重量感，之後再平滑恢復 - 這樣大力撞上路緣也不會猛扯方向盤。  震動速度設定衝擊需要多猛烈，力道衰減設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>路緣衝擊懸吊時短暫靜音路面與輪胎細節，之後再平滑恢復 - 這樣路緣不再在方向盤上嗡嗡作響，同時保留方向盤的重量感。  震動速度設定衝擊需要多猛烈，力道衰減設定要削減多少細節。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>路緣衝擊懸吊時短暫靜音路面與輪胎細節，之後再平滑恢復 - 這樣路緣不再在方向盤上嗡嗡作響，同時保留方向盤的重量感。  震動速度設定衝擊需要多猛烈，力道衰減設定要削減多少細節。</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>當猛烈的路緣或顛簸衝擊懸吊時，短暫削減部分方向盤主體重量感，之後再平滑恢復 - 這樣大力撞上路緣也不會猛扯方向盤。  震動速度設定衝擊需要多猛烈，力道衰減設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>猛烈輾過路緣並衝擊懸吊時逐漸降低力道，之後再平滑恢復 - 這樣大路緣也不會猛扯方向盤。  震動速度設定衝擊需要多猛烈，力道衰減設定要削減多少力。</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>猛烈輾過路緣並衝擊懸吊時逐漸降低力道，之後再平滑恢復 - 這樣大路緣也不會猛扯方向盤。  震動速度設定衝擊需要多猛烈，力道衰減設定要削減多少力。</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>煞車壓力</value>
   </data>

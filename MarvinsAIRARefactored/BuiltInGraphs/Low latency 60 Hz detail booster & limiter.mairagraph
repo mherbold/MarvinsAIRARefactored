@@ -333,7 +333,7 @@
         <ModuleId>a0f9b426aa26421cb118cf8a189fb7fe</ModuleId>
         <ModuleType>CurbProtection</ModuleType>
         <Name>Detail curb protection</Name>
-        <Description />
+        <Description>Briefly mutes the road and tire detail when a curb hits the suspension, then ramps back smoothly - so curbs stop buzzing through the wheel while you keep its weight.  Shock velocity sets how hard a hit has to be, and Force reduction sets how much of the detail is removed.</Description>
         <InputAModuleId>7e0e94b3d49c465fadbd23b541afdb2c</InputAModuleId>
         <InputBModuleId>Source360</InputBModuleId>
         <SettingValues>
@@ -362,8 +362,12 @@
             </value>
           </item>
         </SettingValues>
-        <PinnedSettings />
-        <PinnedOrder>0</PinnedOrder>
+        <PinnedSettings>
+          <string>Enabled</string>
+          <string>ShockVelocity</string>
+          <string>ForceReduction</string>
+        </PinnedSettings>
+        <PinnedOrder>8</PinnedOrder>
         <NodeX>704</NodeX>
         <NodeY>128</NodeY>
       </FFBModuleData>
@@ -431,7 +435,7 @@
         <ModuleId>9fd8000b870c4baf9f8f0ad0ed0b3047</ModuleId>
         <ModuleType>CurbProtection</ModuleType>
         <Name>Body curb protection</Name>
-        <Description />
+        <Description>Briefly cuts part of the main wheel weight when a hard curb or bump hits the suspension, then ramps back smoothly - so a big curb strike cannot jerk the wheel.  Shock velocity sets how hard a hit has to be, and Force reduction sets how much of the force is removed.</Description>
         <InputAModuleId>534a6477a9854789815082c2c5d49a26</InputAModuleId>
         <InputBModuleId>Source360</InputBModuleId>
         <SettingValues>
@@ -460,8 +464,12 @@
             </value>
           </item>
         </SettingValues>
-        <PinnedSettings />
-        <PinnedOrder>0</PinnedOrder>
+        <PinnedSettings>
+          <string>Enabled</string>
+          <string>ShockVelocity</string>
+          <string>ForceReduction</string>
+        </PinnedSettings>
+        <PinnedOrder>7</PinnedOrder>
         <NodeX>704</NodeX>
         <NodeY>32</NodeY>
       </FFBModuleData>
@@ -542,7 +550,7 @@
           <string>Direction</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>7</PinnedOrder>
+        <PinnedOrder>9</PinnedOrder>
         <NodeX>1376</NodeX>
         <NodeY>80</NodeY>
       </FFBModuleData>
@@ -576,7 +584,7 @@
           <string>Direction</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>9</PinnedOrder>
+        <PinnedOrder>11</PinnedOrder>
         <NodeX>1600</NodeX>
         <NodeY>80</NodeY>
       </FFBModuleData>
@@ -610,7 +618,7 @@
           <string>Direction</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>11</PinnedOrder>
+        <PinnedOrder>13</PinnedOrder>
         <NodeX>1824</NodeX>
         <NodeY>80</NodeY>
       </FFBModuleData>
@@ -679,7 +687,7 @@
           <string>Strength</string>
           <string>Threshold</string>
         </PinnedSettings>
-        <PinnedOrder>19</PinnedOrder>
+        <PinnedOrder>21</PinnedOrder>
         <NodeX>2496</NodeX>
         <NodeY>144</NodeY>
       </FFBModuleData>
@@ -731,7 +739,7 @@
           <string>Pattern</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>8</PinnedOrder>
+        <PinnedOrder>10</PinnedOrder>
         <NodeX>256</NodeX>
         <NodeY>224</NodeY>
       </FFBModuleData>
@@ -757,7 +765,7 @@
           <string>Pattern</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>10</PinnedOrder>
+        <PinnedOrder>12</PinnedOrder>
         <NodeX>480</NodeX>
         <NodeY>224</NodeY>
       </FFBModuleData>
@@ -783,7 +791,7 @@
           <string>Pattern</string>
           <string>Strength</string>
         </PinnedSettings>
-        <PinnedOrder>12</PinnedOrder>
+        <PinnedOrder>14</PinnedOrder>
         <NodeX>704</NodeX>
         <NodeY>224</NodeY>
       </FFBModuleData>
@@ -817,7 +825,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>13</PinnedOrder>
+        <PinnedOrder>15</PinnedOrder>
         <NodeX>256</NodeX>
         <NodeY>320</NodeY>
       </FFBModuleData>
@@ -843,7 +851,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>14</PinnedOrder>
+        <PinnedOrder>16</PinnedOrder>
         <NodeX>480</NodeX>
         <NodeY>320</NodeY>
       </FFBModuleData>
@@ -869,7 +877,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>15</PinnedOrder>
+        <PinnedOrder>17</PinnedOrder>
         <NodeX>704</NodeX>
         <NodeY>320</NodeY>
       </FFBModuleData>
@@ -895,7 +903,7 @@
           <string>Strength</string>
           <string>FrequencyAtRedlineRPM</string>
         </PinnedSettings>
-        <PinnedOrder>16</PinnedOrder>
+        <PinnedOrder>18</PinnedOrder>
         <NodeX>256</NodeX>
         <NodeY>416</NodeY>
       </FFBModuleData>
@@ -921,7 +929,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>17</PinnedOrder>
+        <PinnedOrder>19</PinnedOrder>
         <NodeX>480</NodeX>
         <NodeY>416</NodeY>
       </FFBModuleData>
@@ -947,7 +955,7 @@
           <string>Strength</string>
           <string>Frequency</string>
         </PinnedSettings>
-        <PinnedOrder>18</PinnedOrder>
+        <PinnedOrder>20</PinnedOrder>
         <NodeX>704</NodeX>
         <NodeY>416</NodeY>
       </FFBModuleData>

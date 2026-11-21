@@ -2926,6 +2926,30 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Suurin vaimennusmomentti</value>
   </data>
+  <data name="FFBNodeDescription360Hzslewtotalcompression0a894f8cfa6b43c3aa6cb305a6384271" xml:space="preserve">
+    <value>Häivyttää voimaa, kun kova reunakivi-isku osuu jousitukseen, ja palauttaa sen sitten pehmeästi - näin iso reunakivi ei voi nykäistä rattia.  Iskujen nopeus määrittää, kuinka kova iskun on oltava, ja Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionHybridmultiadjustmenttoolkitcf4d88a121434c67b8b01dda70f11825" xml:space="preserve">
+    <value>Häivyttää voimaa, kun kova reunakivi-isku osuu jousitukseen, ja palauttaa sen sitten pehmeästi - näin iso reunakivi ei voi nykäistä rattia.  Iskujen nopeus määrittää, kuinka kova iskun on oltava, ja Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Vähentää hetkeksi osan ratin pääpainosta, kun kova reunakivi tai töyssy iskee jousitukseen, ja palauttaa sen sitten pehmeästi - näin iso reunakivi-isku ei voi nykäistä rattia.  Iskujen nopeus määrittää, kuinka kova iskun on oltava, ja Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency360Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Vaimentaa hetkeksi tien ja renkaiden yksityiskohdat, kun reunakivi iskee jousitukseen, ja palauttaa ne sitten pehmeästi - näin reunakivet eivät enää täryytä rattia, mutta ratin paino säilyy.  Iskujen nopeus määrittää, kuinka kova iskun on oltava, ja Voiman vähennys määrittää, kuinka suuri osa yksityiskohdista poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimitera0f9b426aa26421cb118cf8a189fb7fe" xml:space="preserve">
+    <value>Vaimentaa hetkeksi tien ja renkaiden yksityiskohdat, kun reunakivi iskee jousitukseen, ja palauttaa ne sitten pehmeästi - näin reunakivet eivät enää täryytä rattia, mutta ratin paino säilyy.  Iskujen nopeus määrittää, kuinka kova iskun on oltava, ja Voiman vähennys määrittää, kuinka suuri osa yksityiskohdista poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionLowlatency60Hzdetailboosterlimiter9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Vähentää hetkeksi osan ratin pääpainosta, kun kova reunakivi tai töyssy iskee jousitukseen, ja palauttaa sen sitten pehmeästi - näin iso reunakivi-isku ei voi nykäistä rattia.  Iskujen nopeus määrittää, kuinka kova iskun on oltava, ja Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw360Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Häivyttää voimaa, kun kova reunakivi-isku osuu jousitukseen, ja palauttaa sen sitten pehmeästi - näin iso reunakivi ei voi nykäistä rattia.  Iskujen nopeus määrittää, kuinka kova iskun on oltava, ja Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
+  <data name="FFBNodeDescriptionRaw60Hzforcefeedbacksignal9fd8000b870c4baf9f8f0ad0ed0b3047" xml:space="preserve">
+    <value>Häivyttää voimaa, kun kova reunakivi-isku osuu jousitukseen, ja palauttaa sen sitten pehmeästi - näin iso reunakivi ei voi nykäistä rattia.  Iskujen nopeus määrittää, kuinka kova iskun on oltava, ja Voiman vähennys määrittää, kuinka suuri osa voimasta poistetaan.</value>
+  </data>
   <data name="BrakePressure" xml:space="preserve">
     <value>Jarrupaine</value>
   </data>
