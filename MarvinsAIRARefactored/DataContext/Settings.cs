@@ -2025,6 +2025,7 @@ public partial class Settings : INotifyPropertyChanged
 
 		TyphoonWindMinimumSpeedString = FormatTyphoonWindMinimumSpeedString();
 		AccessibilityFullEffectSpeedString = FormatAccessibilityFullEffectSpeedString();
+		SoundsBrakePressureFullEffectSpeedString = FormatSoundsBrakePressureFullEffectSpeedString();
 
 		TyphoonWindSpeed1String = useMph ? $"{_typhoonWindSpeed1 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed1 * MathZ.MPSToKPH:F0}";
 		TyphoonWindSpeed2String = useMph ? $"{_typhoonWindSpeed2 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed2 * MathZ.MPSToKPH:F0}";
@@ -15442,6 +15443,552 @@ public partial class Settings : INotifyPropertyChanged
 
 	public ButtonMappings SoundsWheelLockSensitivityPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SoundsWheelLockSensitivityMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Brake pressure enabled
+
+	private bool _soundsBrakePressureEnabled = false;
+
+	public bool SoundsBrakePressureEnabled
+	{
+		get => _soundsBrakePressureEnabled;
+
+		set
+		{
+			if ( value != _soundsBrakePressureEnabled )
+			{
+				_soundsBrakePressureEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Brake pressure volume
+
+	private float _soundsBrakePressureVolume = 0.75f;
+
+	public float SoundsBrakePressureVolume
+	{
+		get => _soundsBrakePressureVolume;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _soundsBrakePressureVolume )
+			{
+				_soundsBrakePressureVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsBrakePressureVolumeString();
+		}
+	}
+
+	private string _soundsBrakePressureVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakePressureVolumeString
+	{
+		get => _soundsBrakePressureVolumeString;
+
+		set
+		{
+			if ( value != _soundsBrakePressureVolumeString )
+			{
+				_soundsBrakePressureVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsBrakePressureVolumeString( float? value = null )
+	{
+		return $"{( value ?? _soundsBrakePressureVolume ) * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateSoundsBrakePressureVolumeString()
+	{
+		SoundsBrakePressureVolumeString = FormatSoundsBrakePressureVolumeString();
+	}
+
+	public ButtonMappings SoundsBrakePressureVolumePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsBrakePressureVolumeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Brake pressure frequency ratio
+
+	private float _soundsBrakePressureFrequencyRatio = 1f;
+
+	public float SoundsBrakePressureFrequencyRatio
+	{
+		get => _soundsBrakePressureFrequencyRatio;
+
+		set
+		{
+			value = Math.Clamp( value, 0.25f, 2f );
+
+			if ( value != _soundsBrakePressureFrequencyRatio )
+			{
+				_soundsBrakePressureFrequencyRatio = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsBrakePressureFrequencyRatioString();
+		}
+	}
+
+	private string _soundsBrakePressureFrequencyRatioString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakePressureFrequencyRatioString
+	{
+		get => _soundsBrakePressureFrequencyRatioString;
+
+		set
+		{
+			if ( value != _soundsBrakePressureFrequencyRatioString )
+			{
+				_soundsBrakePressureFrequencyRatioString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdateSoundsBrakePressureFrequencyRatioString()
+	{
+		var brakePressurePitchShift = _soundsBrakePressureFrequencyRatio * 100f - 100f;
+		SoundsBrakePressureFrequencyRatioString = brakePressurePitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( brakePressurePitchShift >= 0f ? "+" : "" )}{brakePressurePitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	public ButtonMappings SoundsBrakePressureFrequencyRatioPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsBrakePressureFrequencyRatioMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Brake pressure pitch rise
+
+	private float _soundsBrakePressurePitchRise = 0.5f;
+
+	public float SoundsBrakePressurePitchRise
+	{
+		get => _soundsBrakePressurePitchRise;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _soundsBrakePressurePitchRise )
+			{
+				_soundsBrakePressurePitchRise = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsBrakePressurePitchRiseString();
+		}
+	}
+
+	private string _soundsBrakePressurePitchRiseString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakePressurePitchRiseString
+	{
+		get => _soundsBrakePressurePitchRiseString;
+
+		set
+		{
+			if ( value != _soundsBrakePressurePitchRiseString )
+			{
+				_soundsBrakePressurePitchRiseString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsBrakePressurePitchRiseString( float? value = null )
+	{
+		var resolvedValue = value ?? _soundsBrakePressurePitchRise;
+
+		return ( resolvedValue == 0f ) ? DataContext.Instance.Localization[ "OFF" ] : $"+{resolvedValue * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateSoundsBrakePressurePitchRiseString()
+	{
+		SoundsBrakePressurePitchRiseString = FormatSoundsBrakePressurePitchRiseString();
+	}
+
+	public ButtonMappings SoundsBrakePressurePitchRisePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsBrakePressurePitchRiseMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Brake pressure loop start ms
+
+	private float _soundsBrakePressureLoopStartMs = 0f;
+
+	public float SoundsBrakePressureLoopStartMs
+	{
+		get => _soundsBrakePressureLoopStartMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsBrakePressureLoopStartMs )
+			{
+				_soundsBrakePressureLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsBrakePressureLoopEndMs < _soundsBrakePressureLoopStartMs )
+				{
+					SoundsBrakePressureLoopEndMs = _soundsBrakePressureLoopStartMs;
+				}
+			}
+
+			UpdateSoundsBrakePressureLoopStartMsString();
+		}
+	}
+
+	private string _soundsBrakePressureLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakePressureLoopStartMsString
+	{
+		get => _soundsBrakePressureLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsBrakePressureLoopStartMsString )
+			{
+				_soundsBrakePressureLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsBrakePressureLoopStartMsString( float? value = null )
+	{
+		return $"{( value ?? _soundsBrakePressureLoopStartMs ):F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
+	}
+
+	private void UpdateSoundsBrakePressureLoopStartMsString()
+	{
+		SoundsBrakePressureLoopStartMsString = FormatSoundsBrakePressureLoopStartMsString();
+	}
+
+	#endregion
+
+	#region Sounds - Brake pressure loop end ms
+
+	private float _soundsBrakePressureLoopEndMs = 0f;
+
+	public float SoundsBrakePressureLoopEndMs
+	{
+		get => _soundsBrakePressureLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsBrakePressureLoopEndMs )
+			{
+				_soundsBrakePressureLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsBrakePressureLoopStartMs > _soundsBrakePressureLoopEndMs )
+				{
+					SoundsBrakePressureLoopStartMs = _soundsBrakePressureLoopEndMs;
+				}
+			}
+
+			UpdateSoundsBrakePressureLoopEndMsString();
+		}
+	}
+
+	private string _soundsBrakePressureLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakePressureLoopEndMsString
+	{
+		get => _soundsBrakePressureLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsBrakePressureLoopEndMsString )
+			{
+				_soundsBrakePressureLoopEndMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsBrakePressureLoopEndMsString( float? value = null )
+	{
+		return $"{( value ?? _soundsBrakePressureLoopEndMs ):F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
+	}
+
+	private void UpdateSoundsBrakePressureLoopEndMsString()
+	{
+		SoundsBrakePressureLoopEndMsString = FormatSoundsBrakePressureLoopEndMsString();
+	}
+
+	#endregion
+
+	#region Sounds - Brake pressure full-effect speed
+
+	private float _soundsBrakePressureFullEffectSpeed = 100f * MathZ.KPHToMPS;
+
+	public float SoundsBrakePressureFullEffectSpeed
+	{
+		get => _soundsBrakePressureFullEffectSpeed;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 100f );
+
+			if ( value != _soundsBrakePressureFullEffectSpeed )
+			{
+				_soundsBrakePressureFullEffectSpeed = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsBrakePressureFullEffectSpeedString();
+		}
+	}
+
+	private string _soundsBrakePressureFullEffectSpeedString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakePressureFullEffectSpeedString
+	{
+		get => _soundsBrakePressureFullEffectSpeedString;
+
+		set
+		{
+			if ( value != _soundsBrakePressureFullEffectSpeedString )
+			{
+				_soundsBrakePressureFullEffectSpeedString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsBrakePressureFullEffectSpeedString( float? value = null )
+	{
+		var resolvedValue = value ?? _soundsBrakePressureFullEffectSpeed;
+
+		if ( resolvedValue == 0f )
+		{
+			return DataContext.Instance.Localization[ "OFF" ];
+		}
+
+		return ( App.Instance!.Simulator.DisplayUnits == 0 ) ? $"{resolvedValue * MathZ.MPSToMPH:F0}{DataContext.Instance.Localization[ "MPHUnits" ]}" : $"{resolvedValue * MathZ.MPSToKPH:F0}{DataContext.Instance.Localization[ "KPHUnits" ]}";
+	}
+
+	private void UpdateSoundsBrakePressureFullEffectSpeedString()
+	{
+		SoundsBrakePressureFullEffectSpeedString = FormatSoundsBrakePressureFullEffectSpeedString();
+	}
+
+	public ButtonMappings SoundsBrakePressureFullEffectSpeedPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsBrakePressureFullEffectSpeedMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Brake pressure minimum brake
+
+	private float _soundsBrakePressureMinimumBrake = 0.05f;
+
+	public float SoundsBrakePressureMinimumBrake
+	{
+		get => _soundsBrakePressureMinimumBrake;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _soundsBrakePressureMinimumBrake )
+			{
+				_soundsBrakePressureMinimumBrake = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsBrakePressureMaximumBrake < _soundsBrakePressureMinimumBrake )
+				{
+					SoundsBrakePressureMaximumBrake = _soundsBrakePressureMinimumBrake;
+				}
+			}
+
+			UpdateSoundsBrakePressureMinimumBrakeString();
+		}
+	}
+
+	private string _soundsBrakePressureMinimumBrakeString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakePressureMinimumBrakeString
+	{
+		get => _soundsBrakePressureMinimumBrakeString;
+
+		set
+		{
+			if ( value != _soundsBrakePressureMinimumBrakeString )
+			{
+				_soundsBrakePressureMinimumBrakeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsBrakePressureMinimumBrakeString( float? value = null )
+	{
+		return $"{( value ?? _soundsBrakePressureMinimumBrake ) * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateSoundsBrakePressureMinimumBrakeString()
+	{
+		SoundsBrakePressureMinimumBrakeString = FormatSoundsBrakePressureMinimumBrakeString();
+	}
+
+	public ButtonMappings SoundsBrakePressureMinimumBrakePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsBrakePressureMinimumBrakeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Brake pressure maximum brake
+
+	private float _soundsBrakePressureMaximumBrake = 1f;
+
+	public float SoundsBrakePressureMaximumBrake
+	{
+		get => _soundsBrakePressureMaximumBrake;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _soundsBrakePressureMaximumBrake )
+			{
+				_soundsBrakePressureMaximumBrake = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsBrakePressureMinimumBrake > _soundsBrakePressureMaximumBrake )
+				{
+					SoundsBrakePressureMinimumBrake = _soundsBrakePressureMaximumBrake;
+				}
+			}
+
+			UpdateSoundsBrakePressureMaximumBrakeString();
+		}
+	}
+
+	private string _soundsBrakePressureMaximumBrakeString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakePressureMaximumBrakeString
+	{
+		get => _soundsBrakePressureMaximumBrakeString;
+
+		set
+		{
+			if ( value != _soundsBrakePressureMaximumBrakeString )
+			{
+				_soundsBrakePressureMaximumBrakeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsBrakePressureMaximumBrakeString( float? value = null )
+	{
+		return $"{( value ?? _soundsBrakePressureMaximumBrake ) * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateSoundsBrakePressureMaximumBrakeString()
+	{
+		SoundsBrakePressureMaximumBrakeString = FormatSoundsBrakePressureMaximumBrakeString();
+	}
+
+	public ButtonMappings SoundsBrakePressureMaximumBrakePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsBrakePressureMaximumBrakeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Brake pressure curve
+
+	private float _soundsBrakePressureCurve = 0f;
+
+	public float SoundsBrakePressureCurve
+	{
+		get => _soundsBrakePressureCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _soundsBrakePressureCurve )
+			{
+				_soundsBrakePressureCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsBrakePressureCurveString();
+		}
+	}
+
+	private string _soundsBrakePressureCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakePressureCurveString
+	{
+		get => _soundsBrakePressureCurveString;
+
+		set
+		{
+			if ( value != _soundsBrakePressureCurveString )
+			{
+				_soundsBrakePressureCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private string FormatSoundsBrakePressureCurveString( float? value = null )
+	{
+		var resolvedValue = value ?? _soundsBrakePressureCurve;
+
+		return ( resolvedValue == 0f ) ? DataContext.Instance.Localization[ "OFF" ] : $"{resolvedValue * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	private void UpdateSoundsBrakePressureCurveString()
+	{
+		SoundsBrakePressureCurveString = FormatSoundsBrakePressureCurveString();
+	}
+
+	public ButtonMappings SoundsBrakePressureCurvePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsBrakePressureCurveMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

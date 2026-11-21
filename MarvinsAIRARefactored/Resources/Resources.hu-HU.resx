@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. csillapító nyomaték</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Féknyomás</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Hangmagasság-emelkedés</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimális fék</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maximális fék</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Autónkénti beállítások megosztása</value>
   </data>

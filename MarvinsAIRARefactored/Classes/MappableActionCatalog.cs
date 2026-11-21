@@ -608,6 +608,13 @@ public static class MappableActionCatalog
 		PlainKnob( list, "Sounds", "WheelLock", "Volume", "SoundsWheelLockVolume", 0.01f );
 		PlainKnob( list, "Sounds", "WheelLock", "FrequencyRatio", "SoundsWheelLockFrequencyRatio", 0.01f );
 		PlainKnob( list, "Sounds", "WheelLock", "Sensitivity", "SoundsWheelLockSensitivity", 0.01f );
+		PlainKnob( list, "Sounds", "BrakePressure", "Volume", "SoundsBrakePressureVolume", 0.01f );
+		PlainKnob( list, "Sounds", "BrakePressure", "FrequencyRatio", "SoundsBrakePressureFrequencyRatio", 0.01f );
+		PlainKnob( list, "Sounds", "BrakePressure", "PitchRise", "SoundsBrakePressurePitchRise", 0.01f );
+		PlainKnob( list, "Sounds", "BrakePressure", "FullEffectSpeed", "SoundsBrakePressureFullEffectSpeed", 0.5f );
+		PlainKnob( list, "Sounds", "BrakePressure", "MinimumBrake", "SoundsBrakePressureMinimumBrake", 0.01f );
+		PlainKnob( list, "Sounds", "BrakePressure", "MaximumBrake", "SoundsBrakePressureMaximumBrake", 0.01f );
+		PlainKnob( list, "Sounds", "BrakePressure", "Curve", "SoundsBrakePressureCurve", 0.01f );
 		PlainKnob( list, "Sounds", "WheelSpin", "Volume", "SoundsWheelSpinVolume", 0.01f );
 		PlainKnob( list, "Sounds", "WheelSpin", "FrequencyRatio", "SoundsWheelSpinFrequencyRatio", 0.01f );
 		PlainKnob( list, "Sounds", "WheelSpin", "Sensitivity", "SoundsWheelSpinSensitivity", 0.01f );

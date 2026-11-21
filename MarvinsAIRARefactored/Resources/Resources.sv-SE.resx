@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max dämpningsmoment</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Bromstryck</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Tonhöjdshöjning</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minsta broms</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Största broms</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Dela inställningar per bil</value>
   </data>

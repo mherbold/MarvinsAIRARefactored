@@ -2927,6 +2927,18 @@
   <data name="FFBSettingAccelerationThreshold" xml:space="preserve">
     <value>Acceleration threshold</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Brake pressure</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Pitch rise</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimum brake</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maximum brake</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Share per-car settings</value>
   </data>

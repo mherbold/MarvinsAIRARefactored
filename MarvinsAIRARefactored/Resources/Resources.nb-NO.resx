@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Maks. dempingsmoment</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Bremsetrykk</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Tonehøydeøkning</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimum brems</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maksimum brems</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Del innstillinger per bil</value>
   </data>

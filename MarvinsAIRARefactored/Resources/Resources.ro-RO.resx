@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Cuplu max. de amortizare</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Presiune frână</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Creștere ton</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Frână minimă</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Frână maximă</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Partajează setările pe mașină</value>
   </data>

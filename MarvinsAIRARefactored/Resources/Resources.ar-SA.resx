@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>أقصى عزم تخميد</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>ضغط الفرامل</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>ارتفاع طبقة الصوت</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>الحد الأدنى للفرامل</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>الحد الأقصى للفرامل</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>مشاركة الإعدادات لكل سيارة</value>
   </data>

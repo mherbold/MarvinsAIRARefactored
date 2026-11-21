@@ -59,6 +59,13 @@ public partial class SoundsPage : UserControl
 		app.Sounds.Test( Sounds.SoundEffectType.WheelLock );
 	}
 
+	private void BrakePressure_Test_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Sounds.Test( Sounds.SoundEffectType.BrakePressure );
+	}
+
 	private void WheelSpin_Test_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;

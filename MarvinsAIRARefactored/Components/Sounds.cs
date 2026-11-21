@@ -10,6 +10,7 @@ public class Sounds
 		Click,
 		ABSEngaged,
 		WheelLock,
+		BrakePressure,
 		WheelSpin,
 		Understeer,
 		Oversteer,
@@ -32,12 +33,22 @@ public class Sounds
 		public bool IsPlaying { get; set; } = false;
 		public bool ShouldBePlaying { get; set; } = false;
 		public float Volume { get; set; } = 0f;
+
+		// per-tick pitch multiplier on top of the effect's frequency ratio setting (brake pressure raises it with the pedal)
+		public float FrequencyMultiplier { get; set; } = 1f;
 	}
+
+	// the brake pressure test sweeps the response from released to full brake over two seconds so the pitch rise is audible
+	private const int BrakePressureTestSweepTicks = 120;
+
+	// below this speed (m/s, ~3.6 km/h) the car counts as stopped and the brake pressure sound never plays
+	private const float BrakePressureStoppedSpeed = 1f;
 
 	private readonly Dictionary<SoundEffectType, SoundEffect> _soundEffects = new() {
 		{ SoundEffectType.Click,                new SoundEffect( "click",                   () => DataContext.DataContext.Instance.Settings.SoundsClickVolume,                 () => DataContext.DataContext.Instance.Settings.SoundsClickFrequencyRatio,                 false ) },
 		{ SoundEffectType.ABSEngaged,           new SoundEffect( "abs_engaged",             () => DataContext.DataContext.Instance.Settings.SoundsABSEngagedVolume,            () => DataContext.DataContext.Instance.Settings.SoundsABSEngagedFrequencyRatio,            true,  () => DataContext.DataContext.Instance.Settings.SoundsABSEngagedLoopStartMs,            () => DataContext.DataContext.Instance.Settings.SoundsABSEngagedLoopEndMs ) },
 		{ SoundEffectType.WheelLock,            new SoundEffect( "wheel_lock",              () => DataContext.DataContext.Instance.Settings.SoundsWheelLockVolume,             () => DataContext.DataContext.Instance.Settings.SoundsWheelLockFrequencyRatio,             true,  () => DataContext.DataContext.Instance.Settings.SoundsWheelLockLoopStartMs,             () => DataContext.DataContext.Instance.Settings.SoundsWheelLockLoopEndMs ) },
+		{ SoundEffectType.BrakePressure,        new SoundEffect( "brake_pressure",          () => DataContext.DataContext.Instance.Settings.SoundsBrakePressureVolume,         () => DataContext.DataContext.Instance.Settings.SoundsBrakePressureFrequencyRatio,         true,  () => DataContext.DataContext.Instance.Settings.SoundsBrakePressureLoopStartMs,         () => DataContext.DataContext.Instance.Settings.SoundsBrakePressureLoopEndMs ) },
 		{ SoundEffectType.WheelSpin,            new SoundEffect( "wheel_spin",              () => DataContext.DataContext.Instance.Settings.SoundsWheelSpinVolume,             () => DataContext.DataContext.Instance.Settings.SoundsWheelSpinFrequencyRatio,             true,  () => DataContext.DataContext.Instance.Settings.SoundsWheelSpinLoopStartMs,             () => DataContext.DataContext.Instance.Settings.SoundsWheelSpinLoopEndMs ) },
 		{ SoundEffectType.Understeer,           new SoundEffect( "understeer",              () => DataContext.DataContext.Instance.Settings.SoundsUndersteerVolume,            () => DataContext.DataContext.Instance.Settings.SoundsUndersteerFrequencyRatio,            true,  () => DataContext.DataContext.Instance.Settings.SoundsUndersteerLoopStartMs,            () => DataContext.DataContext.Instance.Settings.SoundsUndersteerLoopEndMs ) },
 		{ SoundEffectType.Oversteer,            new SoundEffect( "oversteer",               () => DataContext.DataContext.Instance.Settings.SoundsOversteerVolume,             () => DataContext.DataContext.Instance.Settings.SoundsOversteerFrequencyRatio,             true,  () => DataContext.DataContext.Instance.Settings.SoundsOversteerLoopStartMs,             () => DataContext.DataContext.Instance.Settings.SoundsOversteerLoopEndMs ) },
@@ -66,7 +77,7 @@ public class Sounds
 	public void Test( SoundEffectType soundEffectType )
 	{
 		_testSoundEffectType = soundEffectType;
-		_testSoundCounter = _soundEffects[ soundEffectType ].LoopSound ? 60 : 1;
+		_testSoundCounter = ( soundEffectType == SoundEffectType.BrakePressure ) ? BrakePressureTestSweepTicks : _soundEffects[ soundEffectType ].LoopSound ? 60 : 1;
 	}
 
 	public void Play( SoundEffectType soundEffectType, float volume = 1f )
@@ -78,6 +89,8 @@ public class Sounds
 		var soundEffect = _soundEffects[ soundEffectType ];
 
 		soundEffect.Volume = volume;
+
+		soundEffect.FrequencyMultiplier = 1f;
 
 		var finalVolume = soundEffect.Volume * soundEffect.GetVolume() * settings.SoundsMasterVolume;
 
@@ -95,14 +108,26 @@ public class Sounds
 		foreach ( var keyValuePair in _soundEffects )
 		{
 			keyValuePair.Value.ShouldBePlaying = false;
+			keyValuePair.Value.FrequencyMultiplier = 1f;
 		}
 
 		// play test sound effect
 
 		if ( _testSoundEffectType != null )
 		{
-			_soundEffects[ (SoundEffectType) _testSoundEffectType ].ShouldBePlaying = true;
-			_soundEffects[ (SoundEffectType) _testSoundEffectType ].Volume = 1f;
+			var testSoundEffect = _soundEffects[ (SoundEffectType) _testSoundEffectType ];
+
+			testSoundEffect.ShouldBePlaying = true;
+			testSoundEffect.Volume = 1f;
+
+			if ( _testSoundEffectType == SoundEffectType.BrakePressure )
+			{
+				// sweep from released to full brake
+				var testResponse = 1f - ( (float) _testSoundCounter / BrakePressureTestSweepTicks );
+
+				testSoundEffect.Volume = testResponse * 0.9f + 0.1f;
+				testSoundEffect.FrequencyMultiplier = 1f + settings.SoundsBrakePressurePitchRise * testResponse;
+			}
 
 			_testSoundCounter--;
 
@@ -145,6 +170,29 @@ public class Sounds
 						_soundEffects[ SoundEffectType.WheelLock ].ShouldBePlaying = true;
 						_soundEffects[ SoundEffectType.WheelLock ].Volume = MathZ.Saturate( differencePct / 0.03f ) * ( ( settings.SoundsWheelLockFadeWithBrake ) ? ( app.Simulator.Brake * 0.9f + 0.1f ) : 1f );
 					}
+				}
+			}
+
+			// brake pressure - uses the raw pedal input (what the driver's foot is doing), not the sim's processed brake,
+			// which ABS modulates in ABS cars; the cue teaches pedal control, and in non-ABS cars the two are the same
+
+			if ( settings.SoundsBrakePressureEnabled && !isReplayActive )
+			{
+				var brakeInput = app.Simulator.BrakeRaw;
+				var carSpeed = app.Simulator.Speed;
+
+				if ( ( brakeInput > settings.SoundsBrakePressureMinimumBrake ) && ( carSpeed >= BrakePressureStoppedSpeed ) )
+				{
+					var brakeRange = MathF.Max( settings.SoundsBrakePressureMaximumBrake - settings.SoundsBrakePressureMinimumBrake, 0.001f );
+					var normalizedBrake = MathZ.Saturate( ( brakeInput - settings.SoundsBrakePressureMinimumBrake ) / brakeRange );
+					var brakeResponse = MathF.Pow( normalizedBrake, MathZ.CurveToPower( settings.SoundsBrakePressureCurve ) );
+
+					// full-effect speed of zero turns speed scaling off; otherwise the sound fades out linearly as the car slows
+					var speedFactor = ( settings.SoundsBrakePressureFullEffectSpeed > 0f ) ? MathZ.Saturate( carSpeed / settings.SoundsBrakePressureFullEffectSpeed ) : 1f;
+
+					_soundEffects[ SoundEffectType.BrakePressure ].ShouldBePlaying = true;
+					_soundEffects[ SoundEffectType.BrakePressure ].Volume = ( brakeResponse * 0.9f + 0.1f ) * speedFactor;
+					_soundEffects[ SoundEffectType.BrakePressure ].FrequencyMultiplier = 1f + settings.SoundsBrakePressurePitchRise * brakeResponse;
 				}
 			}
 
@@ -230,16 +278,17 @@ public class Sounds
 			if ( soundEffect.ShouldBePlaying )
 			{
 				float finalVolume = soundEffect.Volume * soundEffect.GetVolume() * settings.SoundsMasterVolume;
+				var finalFrequencyRatio = soundEffect.GetFrequencyRatio() * soundEffect.FrequencyMultiplier;
 
 				if ( soundEffect.IsPlaying )
 				{
-					app.AudioManager.Update( soundEffect.SoundKey, finalVolume, soundEffect.GetFrequencyRatio() );
+					app.AudioManager.Update( soundEffect.SoundKey, finalVolume, finalFrequencyRatio );
 				}
 				else
 				{
 					// Play reopens the output device if it was released while idle; if it still cannot start the
 					// sound, IsPlaying stays false so it is retried on a later tick instead of being lost
-					soundEffect.IsPlaying = app.AudioManager.Play( soundEffect.SoundKey, finalVolume, soundEffect.GetFrequencyRatio(), soundEffect.LoopSound, soundEffect.GetLoopStartMs(), soundEffect.GetLoopEndMs() );
+					soundEffect.IsPlaying = app.AudioManager.Play( soundEffect.SoundKey, finalVolume, finalFrequencyRatio, soundEffect.LoopSound, soundEffect.GetLoopStartMs(), soundEffect.GetLoopEndMs() );
 				}
 			}
 			else if ( soundEffect.IsPlaying )

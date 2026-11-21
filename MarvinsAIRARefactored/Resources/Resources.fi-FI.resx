@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Suurin vaimennusmomentti</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Jarrupaine</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Äänenkorkeuden nousu</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Jarrun minimi</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Jarrun maksimi</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Jaa autokohtaiset asetukset</value>
   </data>

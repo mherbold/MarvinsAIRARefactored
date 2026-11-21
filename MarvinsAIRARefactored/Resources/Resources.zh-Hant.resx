@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>最大阻尼扭矩</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>煞車壓力</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>音調升高</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>最小煞車</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>最大煞車</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>分享各車輛設定</value>
   </data>

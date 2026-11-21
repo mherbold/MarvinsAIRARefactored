@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. dempingskoppel</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Remdruk</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Toonhoogtestijging</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimale rem</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maximale rem</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Instellingen per auto delen</value>
   </data>

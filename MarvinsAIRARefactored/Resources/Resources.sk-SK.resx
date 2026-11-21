@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. tlmiaci moment</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Tlak na brzdu</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Zvýšenie výšky tónu</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimálna brzda</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maximálna brzda</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Zdieľať nastavenia pre jednotlivé autá</value>
   </data>

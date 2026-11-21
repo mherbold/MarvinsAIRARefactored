@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Maks. moment tłumienia</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Nacisk hamulca</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Wzrost wysokości dźwięku</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimalne hamowanie</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maksymalne hamowanie</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Udostępnij ustawienia dla aut</value>
   </data>

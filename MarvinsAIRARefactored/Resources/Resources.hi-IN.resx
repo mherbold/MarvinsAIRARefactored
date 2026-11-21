@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>अधिकतम डैम्पिंग टॉर्क</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>ब्रेक दबाव</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>पिच वृद्धि</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>न्यूनतम ब्रेक</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>अधिकतम ब्रेक</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>प्रति कार सेटिंग्स साझा करें</value>
   </data>

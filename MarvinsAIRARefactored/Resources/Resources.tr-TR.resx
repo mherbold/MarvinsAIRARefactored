@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Maks. sönümleme torku</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Fren basıncı</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Perde yükselmesi</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimum fren</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maksimum fren</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Araç başına ayarları paylaş</value>
   </data>

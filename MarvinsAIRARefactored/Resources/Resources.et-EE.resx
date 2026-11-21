@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max summutusmoment</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Pidurirõhk</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Helikõrguse tõus</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimaalne pidur</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maksimaalne pidur</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Jaga autopõhiseid seadeid</value>
   </data>

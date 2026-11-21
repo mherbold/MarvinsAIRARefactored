@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>מומנט ריסון מרבי</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>לחץ בלימה</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>עליית גובה הצליל</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>בלימה מינימלית</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>בלימה מקסימלית</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>שיתוף הגדרות לפי רכב</value>
   </data>

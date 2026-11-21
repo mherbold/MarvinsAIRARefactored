@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Trorym lleithio uchaf</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Pwysau'r brêc</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Codiad traw</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Brêc lleiaf</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Brêc mwyaf</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Rhannu gosodiadau fesul car</value>
   </data>

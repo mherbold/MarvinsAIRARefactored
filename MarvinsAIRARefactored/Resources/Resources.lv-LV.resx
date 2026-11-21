@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Maks. slāpēšanas moments</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Bremžu spiediens</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Toņa augstuma pieaugums</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimālā bremze</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maksimālā bremze</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Kopīgot katras automašīnas iestatījumus</value>
   </data>

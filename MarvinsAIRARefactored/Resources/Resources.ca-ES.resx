@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Parell d'amortiment màx.</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Pressió del fre</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Pujada de to</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Fre mínim</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Fre màxim</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Comparteix la configuració per cotxe</value>
   </data>

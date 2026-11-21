@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Մարման առավելագույն մոմենտ</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Արգելակի ճնշում</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Տոնի բարձրացում</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Նվազագույն արգելակ</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Առավելագույն արգելակ</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Կիսվել ըստ մեքենայի կարգավորումներով</value>
   </data>

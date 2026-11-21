@@ -309,6 +309,133 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[BrakePressure]}"
+                                HelpTopic="advanced/sounds/#brake-pressure">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="64" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls:MairaSwitch Grid.Row="0" Grid.Column="0"
+                                      IsOn="{Binding Settings.SoundsBrakePressureEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[Enabled]}"
+                                      LabelPosition="Top" />
+
+                <controls:MairaKnob Grid.Row="0" Grid.Column="2"
+                                    Label="{Binding Localization[Volume]}"
+                                    Value="{Binding Settings.SoundsBrakePressureVolume, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsBrakePressureVolumeString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
+                                    PlusButtonMappings="{Binding Settings.SoundsBrakePressureVolumePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsBrakePressureVolumeMinusButtonMappings}"
+                                    DefaultValue="0.75" />
+
+                <controls:MairaKnob Grid.Row="2" Grid.Column="2"
+                                    Label="{Binding Localization[FrequencyRatio]}"
+                                    Value="{Binding Settings.SoundsBrakePressureFrequencyRatio, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsBrakePressureFrequencyRatioString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
+                                    PlusButtonMappings="{Binding Settings.SoundsBrakePressureFrequencyRatioPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsBrakePressureFrequencyRatioMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Row="4" Grid.Column="2"
+                                    Label="{Binding Localization[PitchRise]}"
+                                    Value="{Binding Settings.SoundsBrakePressurePitchRise, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsBrakePressurePitchRiseString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
+                                    PlusButtonMappings="{Binding Settings.SoundsBrakePressurePitchRisePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsBrakePressurePitchRiseMinusButtonMappings}"
+                                    DefaultValue="0.5" />
+
+                <controls:MairaKnob Grid.Row="0" Grid.Column="4"
+                                    Label="{Binding Localization[LoopStart]}"
+                                    Value="{Binding Settings.SoundsBrakePressureLoopStartMs, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsBrakePressureLoopStartMsString}"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
+                                    DefaultValue="0" />
+
+                <controls:MairaKnob Grid.Row="2" Grid.Column="4"
+                                    Label="{Binding Localization[LoopEnd]}"
+                                    Value="{Binding Settings.SoundsBrakePressureLoopEndMs, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsBrakePressureLoopEndMsString}"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
+                                    DefaultValue="0" />
+
+                <controls:MairaKnob Grid.Row="4" Grid.Column="4"
+                                    Label="{Binding Localization[FullEffectSpeed]}"
+                                    Value="{Binding Settings.SoundsBrakePressureFullEffectSpeed, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsBrakePressureFullEffectSpeedString}"
+                                    ClickStepSize="0.5"
+                                    DragStepSize="0.0174"
+                                    PlusButtonMappings="{Binding Settings.SoundsBrakePressureFullEffectSpeedPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsBrakePressureFullEffectSpeedMinusButtonMappings}"
+                                    DefaultValue="27.7778" />
+
+                <controls:MairaKnob Grid.Row="0" Grid.Column="6"
+                                    Label="{Binding Localization[MinimumBrake]}"
+                                    Value="{Binding Settings.SoundsBrakePressureMinimumBrake, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsBrakePressureMinimumBrakeString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
+                                    PlusButtonMappings="{Binding Settings.SoundsBrakePressureMinimumBrakePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsBrakePressureMinimumBrakeMinusButtonMappings}"
+                                    DefaultValue="0.05" />
+
+                <controls:MairaKnob Grid.Row="2" Grid.Column="6"
+                                    Label="{Binding Localization[MaximumBrake]}"
+                                    Value="{Binding Settings.SoundsBrakePressureMaximumBrake, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsBrakePressureMaximumBrakeString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
+                                    PlusButtonMappings="{Binding Settings.SoundsBrakePressureMaximumBrakePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsBrakePressureMaximumBrakeMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Row="4" Grid.Column="6"
+                                    Label="{Binding Localization[Curve]}"
+                                    Value="{Binding Settings.SoundsBrakePressureCurve, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SoundsBrakePressureCurveString}"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000347"
+                                    PlusButtonMappings="{Binding Settings.SoundsBrakePressureCurvePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SoundsBrakePressureCurveMinusButtonMappings}"
+                                    DefaultValue="0" />
+
+                <controls:MairaButton Grid.Row="0" Grid.Column="8" Grid.RowSpan="5"
+                                      VerticalAlignment="Center"
+                                      Label="{Binding Localization[Test]}"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                      Click="BrakePressure_Test_MairaButton_Click"
+                                      IsSmall="True" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
         <controls:MairaGroupBox Label="{Binding Localization.Upper[WheelSpin]}"
                                 HelpTopic="advanced/sounds/#wheel-spin">
 

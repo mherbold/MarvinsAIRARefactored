@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Binário máx. de amortecimento</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Pressão do travão</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Aumento de tom</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Travão mínimo</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Travão máximo</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Partilhar definições por carro</value>
   </data>

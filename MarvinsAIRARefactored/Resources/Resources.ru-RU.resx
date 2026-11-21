@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Макс. момент демпфирования</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Давление тормоза</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Повышение тона</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Минимальный тормоз</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Максимальный тормоз</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Поделиться настройками автомобилей</value>
   </data>

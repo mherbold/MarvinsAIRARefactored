@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Coppia di smorzamento max</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Pressione freno</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Aumento di tono</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Freno minimo</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Freno massimo</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Condividi impostazioni per auto</value>
   </data>

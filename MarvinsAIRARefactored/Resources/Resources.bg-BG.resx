@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Макс. демпфиращ момент</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Натиск на спирачката</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Повишаване на тона</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Минимална спирачка</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Максимална спирачка</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Споделяне на настройки по кола</value>
   </data>

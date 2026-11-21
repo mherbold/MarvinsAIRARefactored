@@ -2929,6 +2929,18 @@ Hier ist der Link zum Spenden:</value>
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Max. Dämpfungsmoment</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Bremsdruck</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Tonhöhenanstieg</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Minimale Bremse</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Maximale Bremse</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Einstellungen pro Fahrzeug teilen</value>
   </data>

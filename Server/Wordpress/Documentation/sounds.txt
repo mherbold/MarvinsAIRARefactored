@@ -56,6 +56,10 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
+<li>brake_pressure</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li>wheel_spin</li>
 <!-- /wp:list-item -->
 
@@ -196,6 +200,66 @@
 
 <!-- wp:paragraph {"className":"default"} -->
 <p class="default">Default: OFF, 75% volume, Pitch OFF, 85% sensitivity, Fade ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="brake-pressure">Brake pressure</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a steady looping tone whenever you are on the brake, so you can learn threshold braking by ear. The harder you press, the louder the tone gets and the higher its pitch climbs, so the point just before lockup turns into a note you can aim for and hold. It is most useful in cars without ABS, like the FIA F4, where there is nothing else to tell you that you have found the limit until the tyres lock.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The tone follows the raw brake pedal input — what your foot is actually doing — rather than the brake value the simulator applies after its ABS has stepped in. The cue is there to train your foot, and in a car without ABS the two are the same anyway. It also fades out as the car slows down and never plays while the car is stopped, so it stays quiet while you hold the brake on the grid or in the pits.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Pitch rise</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How far the pitch climbs between the minimum and maximum brake points. At +50% the tone ends a musical fifth higher at full brake than where it started; at +100% it ends a full octave higher. Set it to OFF if you only want the volume to change.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Full-effect speed</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>At and above this speed the tone plays at its full level. Below it, the volume drops in a straight line with speed, so it fades away as you come down to the apex. Pitch is not affected by speed, so the note still tells you how hard you are pressing. Set it to OFF to ignore speed completely (the tone still stays silent while stopped).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Minimum brake</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The brake pedal position where the tone starts. Below it the tone is silent, which keeps it from chirping when you rest your foot on the pedal or brush it while trail braking.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Maximum brake</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The brake pedal position where the tone reaches its full volume and highest pitch. Set this to the pedal position where the car you are driving starts to lock its wheels, and the top of the tone becomes your threshold. Anything past it sounds the same.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shapes how the tone responds between the minimum and maximum brake points. At OFF the response is a straight line. Positive values keep the tone low and quiet through most of the pedal travel and make it rise quickly near the maximum, which spreads out the top end where threshold braking happens. Negative values do the opposite.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The <strong>Test</strong> button for this effect sweeps the tone from released to full brake over two seconds, so you can hear the whole range with your current settings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF, 75% volume, Pitch OFF, Pitch rise +50%, Full-effect speed 100 KPH, Minimum brake 5%, Maximum brake 100%, Curve OFF</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

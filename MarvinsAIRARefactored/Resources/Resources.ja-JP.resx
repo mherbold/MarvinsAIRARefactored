@@ -2929,6 +2929,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>最大ダンピングトルク</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>ブレーキ圧</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>ピッチ上昇</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>最小ブレーキ</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>最大ブレーキ</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>車ごとの設定を共有</value>
   </data>

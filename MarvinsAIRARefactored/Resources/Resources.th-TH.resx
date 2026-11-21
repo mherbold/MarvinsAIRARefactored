@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>แรงบิดหน่วงสูงสุด</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>แรงดันเบรก</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>การเพิ่มระดับเสียง</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>เบรกต่ำสุด</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>เบรกสูงสุด</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>แชร์การตั้งค่าแยกตามรถ</value>
   </data>

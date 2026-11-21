@@ -2926,6 +2926,18 @@
   <data name="FFBSettingMaxDampingTorque" xml:space="preserve">
     <value>Макс. момент демпфування</value>
   </data>
+  <data name="BrakePressure" xml:space="preserve">
+    <value>Тиск на гальмо</value>
+  </data>
+  <data name="PitchRise" xml:space="preserve">
+    <value>Підвищення тону</value>
+  </data>
+  <data name="MinimumBrake" xml:space="preserve">
+    <value>Мінімальне гальмо</value>
+  </data>
+  <data name="MaximumBrake" xml:space="preserve">
+    <value>Максимальне гальмо</value>
+  </data>
   <data name="ShareSteeringEffects" xml:space="preserve">
     <value>Поділитися налаштуваннями автомобілів</value>
   </data>
