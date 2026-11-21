@@ -199,6 +199,11 @@ build. Instead take the most recent release that is both **not a pre-release**
 and **an ancestor of `HEAD`**:
 
 ```bash
+# Release tags are created on GitHub, so fetch them first. Without this the
+# newest tag is missing locally, the ancestor check below fails for it, and the
+# loop silently falls back to an older release as the baseline.
+git fetch --tags -q origin
+
 # Most recent non-prerelease tag that is actually on this branch:
 for t in $(gh release list --exclude-drafts --exclude-pre-releases --limit 20 \
              --json tagName --jq '.[].tagName'); do
