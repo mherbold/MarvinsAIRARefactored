@@ -36,6 +36,11 @@ public sealed class HidCollectionInfo
 	public required int InputReportByteLength { get; init; }
 	public required int OutputReportByteLength { get; init; }
 
+	// What the device calls itself. Two Logitech wheels can share a product id (a G PRO put into G923
+	// compatibility mode enumerates as a G923) and the string is the only thing that tells them apart.
+	// Empty when the device does not carry one, which is the case for some wheels in console mode.
+	public required string ProductName { get; init; }
+
 	// The sibling collections of one USB interface share a device path up to the "&col" suffix
 	// Windows appends per top-level collection. Grouping on that stem keeps, say, the HID++ short,
 	// long, and very-long collections of interface 0 together and apart from interface 1's.
@@ -58,6 +63,10 @@ public static class HidDeviceHelper
 	private const uint GenericWrite = 0x40000000;
 
 	private const int HidpStatusSuccess = 0x00110000;
+
+	// A USB string descriptor holds at most 126 characters, so this is room for the longest one plus its
+	// terminator and a little slack.
+	private const int ProductNameCharacters = 128;
 
 	// Enumerate every present HID collection belonging to the given vendor. Best effort throughout:
 	// a collection that cannot be opened for query or does not answer HidP_GetCaps is skipped rather
@@ -183,13 +192,36 @@ public static class HidDeviceHelper
 				UsagePage = capabilities.UsagePage,
 				Usage = capabilities.Usage,
 				InputReportByteLength = capabilities.InputReportByteLength,
-				OutputReportByteLength = capabilities.OutputReportByteLength
+				OutputReportByteLength = capabilities.OutputReportByteLength,
+				ProductName = ReadProductName( deviceHandle )
 			};
 		}
 		finally
 		{
 			PInvoke.HidD_FreePreparsedData( preparsedData );
 		}
+	}
+
+	// The device's own product string. A USB string descriptor is at most 126 characters, and a device
+	// that has none at all just gives an empty one rather than an error worth reporting.
+	private static unsafe string ReadProductName( SafeFileHandle deviceHandle )
+	{
+		var buffer = stackalloc char[ ProductNameCharacters ];
+
+		// CsWin32 generates no SafeHandle-friendly overload for this one, and the caller owns the handle for
+		// the whole of this call, so the raw handle is safe to hand over here.
+		var rawHandle = (HANDLE) deviceHandle.DangerousGetHandle();
+
+		if ( !PInvoke.HidD_GetProductString( rawHandle, buffer, (uint) ( ProductNameCharacters * sizeof( char ) ) ) )
+		{
+			return string.Empty;
+		}
+
+		var characters = new ReadOnlySpan<char>( buffer, ProductNameCharacters );
+
+		var terminator = characters.IndexOf( '\0' );
+
+		return ( ( terminator >= 0 ) ? characters[ ..terminator ] : characters ).Trim().ToString();
 	}
 
 	// Open a collection for report I/O. Overlapped so reads can be abandoned on a timeout - a HID++
