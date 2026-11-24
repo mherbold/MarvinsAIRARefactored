@@ -17,6 +17,7 @@ public partial class GameBridge
 	public AssettoCorsaRallyBridge AssettoCorsaRally { get; } = new();
 	public RFactor2Bridge RFactor2 { get; } = new();
 	public RaceRoomBridge RaceRoom { get; } = new();
+	public Automobilista2Bridge Automobilista2 { get; } = new();
 
 	public IReadOnlyList<GameBridgeAdapter> Adapters { get; }
 
@@ -38,7 +39,7 @@ public partial class GameBridge
 
 	public GameBridge()
 	{
-		Adapters = [ LeMansUltimate, AssettoCorsa, AssettoCorsaCompetizione, AssettoCorsaEvo, AssettoCorsaRally, RFactor2, RaceRoom ];
+		Adapters = [ LeMansUltimate, AssettoCorsa, AssettoCorsaCompetizione, AssettoCorsaEvo, AssettoCorsaRally, RFactor2, RaceRoom, Automobilista2 ];
 	}
 
 	public void Initialize()
@@ -98,6 +99,10 @@ public partial class GameBridge
 		else if ( adapter == RaceRoom )
 		{
 			return settings.GameBridgeRaceRoomRacingExperienceEnabled;
+		}
+		else if ( adapter == Automobilista2 )
+		{
+			return settings.GameBridgeAutomobilista2Enabled;
 		}
 
 		return false;
